@@ -1,6 +1,7 @@
 package com.example.mainco;
 
 import android.content.Context;
+
 import androidx.test.InstrumentationRegistry;
 import androidx.test.runner.AndroidJUnit4;
 
@@ -21,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.mainco", appContext.getPackageName());
+        assertEquals( "com.example.mainco", appContext.getPackageName() );
     }
 }

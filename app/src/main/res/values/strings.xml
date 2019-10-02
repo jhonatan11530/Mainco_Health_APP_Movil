@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">mainco</string>
+    <string name="MAIN">Mainco</string>
+
+
+    <string name="title_activity_login">LOGIN</string>
+
+
+    <string name="SALIR">SALIR</string>
+    <string name="retroceder">ATRAS</string>
+    <string name="title_activity_operador">OPERADOR</string>
+    <string name="title_activity_registro">REGISTRO</string>
 </resources>

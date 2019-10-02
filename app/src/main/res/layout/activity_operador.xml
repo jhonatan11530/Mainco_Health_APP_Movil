@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OperadorActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="12"
+        >
+        <LinearLayout android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="10"
+            android:layout_weight="1"
+            >
+
+            <LinearLayout android:id="@+id/linearLayout4"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="10"
+                android:layout_weight="3.3"
+                >
+
+                <EditText
+                    android:id="@+id/operador"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3.3"
+                    android:ems="10"
+                    android:hint="INGRESE ID DEL OPERADOR"
+                    android:inputType="numberSigned"
+                    />
+
+                <Button
+                    android:id="@+id/btnoperador"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3.3"
+                    android:onClick="operador"
+                    android:text="Consultar operador"
+                    android:background="#008577"/>
+
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/linearLayout5"
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="10"
+                android:layout_weight="3.3"
+                >
+
+                <ListView
+                    android:id="@+id/listar_operador"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="3.3" />
+
+                <TextView
+                    android:id="@+id/CANTIDADID"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_weight="3.3"
+                    android:gravity="center"
+                    android:textColor="#000000"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:weightSum="10">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:gravity="center"
+                android:text="NUMERO OP"
+                android:textColor="#000000"
+                android:textSize="13sp" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="35dp" />
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:text="ACTIVIDAD"
+                android:textSize="13sp" />
+
+            <Spinner
+                android:id="@+id/spinner1"
+                android:layout_width="match_parent"
+                android:layout_height="35dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="6.6"
+            android:orientation="vertical"
+            android:weightSum="10">
+
+            <Button
+                android:id="@+id/insertar"
+                android:layout_width="match_parent"
+                android:layout_height="50px"
+                android:layout_weight="2.5"
+                android:background="#008577"
+                android:onClick="registrar"
+                android:text="COMENZAR" />
+
+            <Button
+                android:id="@+id/aplazar"
+                android:layout_width="match_parent"
+                android:layout_marginVertical="5dp"
+                android:layout_height="50px"
+                android:onClick="aplazo"
+                android:background="#6BCBFF"
+                android:layout_weight="2.5"
+                android:text="APLAZAR PRODUCCION" />
+
+            <Button
+                android:id="@+id/tiempo"
+                android:layout_width="match_parent"
+                android:layout_height="50px"
+                android:layout_weight="2.5"
+                android:background="#5CABFF"
+                android:onClick="hora"
+                android:text="REGISTRAR TIEMPO DE PARO" />
+
+            <Button
+                android:id="@+id/salida"
+                android:layout_width="match_parent"
+                android:layout_marginVertical="5dp"
+                android:layout_height="50px"
+                android:layout_weight="2.5"
+                android:background="#00574B"
+                android:onClick="salida"
+                android:text="FINALIZAR" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</RelativeLayout>

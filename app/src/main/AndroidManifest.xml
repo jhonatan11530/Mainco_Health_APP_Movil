@@ -1,21 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.mainco" >
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.mainco">
 
+<uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:icon="@mipmap/mainco"
+        android:label="@string/MAIN"
+        android:roundIcon="@mipmap/mainco_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
-        <activity android:name=".MainActivity" >
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:icon="@drawable/salir"
+            android:label="@string/title_activity_login" />
+        <activity
+            android:name=".OperadorActivity"
+            android:label="@string/title_activity_operador" />
+        <activity
+            android:name=".RegistroActivity"
+            android:label="@string/title_activity_registro" />
+        <activity android:name=".OlvidoActivity" />
     </application>
 
 </manifest>

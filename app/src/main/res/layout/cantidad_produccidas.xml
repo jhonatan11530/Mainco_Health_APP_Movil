@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0"
+        android:orientation="horizontal"
+        android:weightSum="12">
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="252dp"
+            android:layout_weight="4"
+            android:orientation="vertical"
+
+            >
+
+            <EditText
+                android:id="@+id/digicantidad"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="CANTIDAD DE UNIDADES PRODUCCIDAS"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/fallas"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginVertical="5dp"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="CANTIDAD NO CONFORMES"
+                android:inputType="number" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:background="#69D2FF"
+                android:gravity="center"
+                android:text="MOTIVO DE NO CONFORME"
+                android:textColor="#c000"
+                android:textSize="17sp" />
+
+            <Spinner
+                android:id="@+id/spinner2"
+                android:layout_width="match_parent"
+                android:layout_height="60dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
