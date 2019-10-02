@@ -49,7 +49,7 @@ public class OperadorActivity extends AppCompatActivity {
 
     private  Button BTN_time, go, stop, btnconfir,desbloquear,positivo,neutrar, registroTIME, salidaTIME,validarinfo,cantidadund,btnvalidar;
     private  TimePickerDialog listo;
-    private int minuto, i, hora,cantidadpro,vo,volumencan,total;
+    private int minuto, i, hora,cantidadpro,vo,volumencan,total,datoverifica;;
     ArrayList<cantidades> dato = new ArrayList<cantidades>();
     private ArrayList<String> datos2 = new ArrayList<String>();
     private ArrayList<produccion> dato3 = new ArrayList<produccion>();
@@ -67,7 +67,7 @@ public class OperadorActivity extends AppCompatActivity {
     private AsyncHttpClient clientes2;
     private AsyncHttpClient clientes3;
     TSSManager ttsManager=null;
-    public Thread hilo;
+    public Thread hilo,mostracant,eliminaOK;
     private RadioButton botonSi,botonNo;
 
     @Override
@@ -371,101 +371,6 @@ public class OperadorActivity extends AppCompatActivity {
 
                         }
 
-                            new Thread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    while (true){
-                                        try {
-                                            Thread.sleep(1000);
-
-
-                                            String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedit.php?numero="+Nop.toString()).body();
-
-                                            try {
-                                                JSONArray RESTARCANTIDAD = new JSONArray(response);
-                                                String acz = HttpRequest.get("http://"+cambiarIP.ip+"/validar/validarcantidad.php?id="+nombretarea.toString()).body();
-
-                                                JSONArray tareita = new JSONArray(acz);
-
-                                                totalcan.setText("CANTIDAD OP : "+RESTARCANTIDAD.getString(0)+" CANTIDAD PENDIENTE : "+tareita.getString(0));
-
-
-
-                                            } catch (JSONException e) {
-                                                e.printStackTrace();
-                                            }
-
-
-
-                                        } catch (InterruptedException e) {
-                                            e.printStackTrace();
-                                        }
-
-                                    }
-
-                                }
-                            }).start();
-                            Thread.interrupted();
-
-                            new Thread(new Runnable() {
-                                @Override
-                                public void run() {
-
-                                    try {
-                                        Thread.sleep(1000);
-
-                                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedit.php?numero="+Nop.toString()).body();
-
-                                        try {
-                                            JSONArray RESTARCANTIDAD = new JSONArray(response);
-                                            int datico = Integer.parseInt(RESTARCANTIDAD.getString(0));
-
-                                            String asd = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizartarea.php?tarea="+nombretarea.toString()+"&canpen="+datico).body();
-
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
-                                        }
-
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
-                                    }
-
-                                }
-                            }).start();
-                            Thread.interrupted();
-
-                            new Thread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    while(true){
-                                        try {
-                                            Thread.sleep(1000);
-
-
-                                            String cero = HttpRequest.get("http://"+cambiarIP.ip+"/validar/eliminarcanok.php").body();
-
-                                            try {
-                                                JSONArray nada = new JSONArray(cero);
-
-                                               System.out.println("EL TIPO DE COSITA ES "+nada.getString(0));
-
-
-                                             //   dato.remove(nada.getString(0));
-                                            //    resuldato.setOnClickListener(new View.OnClickListener() {
-
-
-                                            } catch (JSONException e) {
-                                                e.printStackTrace();
-                                            }
-
-                                        } catch (InterruptedException e) {
-                                            e.printStackTrace();
-                                        }
-                                    }
-                                }
-                            }).start();
-                    Thread.interrupted();
-
 
                         }
                         else{
@@ -489,6 +394,7 @@ public class OperadorActivity extends AppCompatActivity {
 
             }).start();
             Thread.interrupted();
+
             resultados.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, datos2));
             datos2.clear();
 
@@ -497,8 +403,166 @@ public class OperadorActivity extends AppCompatActivity {
 
         }
 
+         new Thread( new Runnable() {
+             @Override
+             public void run() {
+                 String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/operador.php?id=" + id.getText().toString()).body();
+
+                 try {
+                     JSONArray obj = new JSONArray( response );
+
+                    if(obj.getString( 0 )!= null && obj.getString( 1 ) != null){
+
+                        
+
+                        final String nombretarea = resuldato.getSelectedItem().toString();
+
+                        final String Nop = resuldato3.getSelectedItem().toString();
+                        mostracant =   new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                while(true){
+                                    try {
+                                        Thread.sleep( 1000 );
+
+                                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedit.php?numero="+Nop.toString()).body();
+
+                                        try {
+                                            JSONArray RESTARCANTIDAD = new JSONArray(response);
+                                            String acz = HttpRequest.get("http://"+cambiarIP.ip+"/validar/validarcantidad.php?id="+nombretarea.toString()).body();
+
+                                            JSONArray tareita = new JSONArray(acz);
+                                            datoverifica = Integer.parseInt(tareita.getString( 0 ));
+
+                                            totalcan.setText("CANTIDAD OP : "+RESTARCANTIDAD.getString(0)+" CANTIDAD PENDIENTE : "+tareita.getString(0));
+
+                                            if(datoverifica == 0){
+
+
+                                                new verificar().start();
+                                            }
+
+
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+
+
+
+                            }
+                        });
+                        mostracant.start();
+
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                try {
+                                    Thread.sleep(1000);
+
+                                    String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedit.php?numero="+Nop.toString()).body();
+
+                                    try {
+                                        JSONArray RESTARCANTIDAD = new JSONArray(response);
+                                        int datico = Integer.parseInt(RESTARCANTIDAD.getString(0));
+
+                                        String asd = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizartarea.php?tarea="+nombretarea.toString()+"&canpen="+datico).body();
+
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        }).start();
+
+                    }
+
+
+                 } catch (JSONException e) {
+                     e.printStackTrace();
+                 }
+
+             }
+         } ).start();
+
+
+
+
     }
 
+    class verificar extends Thread{
+        public void run(){
+
+            eliminaOK = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    while(true){
+                        try {
+                            Thread.sleep(1000);
+
+
+                            String cero = HttpRequest.get("http://"+cambiarIP.ip+"/validar/eliminarcanok.php").body();
+
+                            try {
+                                JSONArray nada = new JSONArray(cero);
+
+                                System.out.println("EL TIPO DE COSITA ES "+nada.getString(0));
+
+
+                                if(nada.getString(0) == null){
+
+
+                                runOnUiThread( new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        ((TextView) resuldato.getSelectedView()).setTextColor(Color.BLACK);
+
+                                    }
+                                } );
+
+
+                                }
+                                else if(nada.getString(0) != null){
+
+                                    runOnUiThread( new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            desbloquear.setEnabled(false);
+                                            registroTIME.setEnabled(false);
+                                            salidaTIME.setEnabled(false);
+                                            cantidadund.setEnabled(false);
+                                            ((TextView) resuldato.getSelectedView()).setTextColor(Color.RED);
+
+                                        }
+                                    } );
+
+                                }
+
+
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            });
+            eliminaOK.start();
+
+
+        }
+    }
 
 
     public void hora(View v) {
