@@ -347,7 +347,7 @@ public class OperadorActivity extends AppCompatActivity {
 
 
                         try {
-                        String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/operador.php?id=" + id.getText().toString()).body();
+                        String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/operador.php?id=" + id.getText().toString()+"&op="+Nop.toString()).body();
 
                         JSONArray objecto = new JSONArray(response);
 
@@ -370,6 +370,72 @@ public class OperadorActivity extends AppCompatActivity {
                             datos2.add(mensaje);
 
                         }
+
+                            mostracant =   new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                while(true){
+                                    try {
+                                        Thread.sleep( 1000 );
+
+                                    String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedit.php?numero="+Nop.toString()).body();
+
+                                            try {
+                                                JSONArray RESTARCANTIDAD = new JSONArray(response);
+                                                String acz = HttpRequest.get("http://"+cambiarIP.ip+"/validar/validarcantidad.php?id="+nombretarea.toString()).body();
+
+                                                JSONArray tareita = new JSONArray(acz);
+                                                  datoverifica = Integer.parseInt(tareita.getString( 0 ));
+
+                                                totalcan.setText("CANTIDAD OP : "+RESTARCANTIDAD.getString(0)+" CANTIDAD PENDIENTE : "+tareita.getString(0));
+
+                                                if(datoverifica == 0){
+
+
+                                                    new verificar().start();
+                                                }
+
+
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+
+
+
+                                }
+                            });
+                            mostracant.start();
+
+
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    try {
+                                        Thread.sleep(1000);
+
+                                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedit.php?numero="+Nop.toString()).body();
+
+                                        try {
+                                            JSONArray RESTARCANTIDAD = new JSONArray(response);
+                                            int datico = Integer.parseInt(RESTARCANTIDAD.getString(0));
+
+                                            String asd = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizartarea.php?tarea="+nombretarea.toString()+"&canpen="+datico).body();
+
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                }
+                            }).start();
 
 
                         }
@@ -401,99 +467,8 @@ public class OperadorActivity extends AppCompatActivity {
 
 
 
+
         }
-
-         new Thread( new Runnable() {
-             @Override
-             public void run() {
-                 String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/operador.php?id=" + id.getText().toString()).body();
-
-                 try {
-                     JSONArray obj = new JSONArray( response );
-
-                    if(obj.getString( 0 )!= null && obj.getString( 1 ) != null){
-
-                        
-
-                        final String nombretarea = resuldato.getSelectedItem().toString();
-
-                        final String Nop = resuldato3.getSelectedItem().toString();
-                        mostracant =   new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                while(true){
-                                    try {
-                                        Thread.sleep( 1000 );
-
-                                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedit.php?numero="+Nop.toString()).body();
-
-                                        try {
-                                            JSONArray RESTARCANTIDAD = new JSONArray(response);
-                                            String acz = HttpRequest.get("http://"+cambiarIP.ip+"/validar/validarcantidad.php?id="+nombretarea.toString()).body();
-
-                                            JSONArray tareita = new JSONArray(acz);
-                                            datoverifica = Integer.parseInt(tareita.getString( 0 ));
-
-                                            totalcan.setText("CANTIDAD OP : "+RESTARCANTIDAD.getString(0)+" CANTIDAD PENDIENTE : "+tareita.getString(0));
-
-                                            if(datoverifica == 0){
-
-
-                                                new verificar().start();
-                                            }
-
-
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
-                                        }
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-
-
-
-                            }
-                        });
-                        mostracant.start();
-
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-
-                                try {
-                                    Thread.sleep(1000);
-
-                                    String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedit.php?numero="+Nop.toString()).body();
-
-                                    try {
-                                        JSONArray RESTARCANTIDAD = new JSONArray(response);
-                                        int datico = Integer.parseInt(RESTARCANTIDAD.getString(0));
-
-                                        String asd = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizartarea.php?tarea="+nombretarea.toString()+"&canpen="+datico).body();
-
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-
-                            }
-                        }).start();
-
-                    }
-
-
-                 } catch (JSONException e) {
-                     e.printStackTrace();
-                 }
-
-             }
-         } ).start();
-
-
 
 
     }
@@ -858,7 +833,7 @@ public class OperadorActivity extends AppCompatActivity {
         edit.setText(fecha);
 
         final   String fechas =edit.getText().toString();
-
+        final String Nop = resuldato3.getSelectedItem().toString();
         builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
 
             @Override
@@ -868,7 +843,7 @@ public class OperadorActivity extends AppCompatActivity {
                      @Override
                     public void run() {
 
-                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaEntrada.php?id="+id.getText().toString()+"&Finicial="+fechas+"&Hinicial="+hora.toString()).body();
+                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaEntrada.php?op="+Nop.toString()+"&id="+id.getText().toString()+"&Finicial="+fechas+"&Hinicial="+hora.toString()).body();
 
                          runOnUiThread(new Runnable() {
                              @Override
@@ -959,12 +934,12 @@ public class OperadorActivity extends AppCompatActivity {
 
                             if(cantidadreg == 0){
 
-                                String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&Ffinal="+fechas+"&Hfinal="+horas+"&cantidad="+volumen+"&fallas="+falla.toString()+"&cantidaderror="+error.toString()+"&tarea="+tarea.toString()+"&op="+op.toString()).body();
+                                String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?op="+op.toString()+"&id="+id.getText().toString()+"&Ffinal="+fechas+"&Hfinal="+horas+"&cantidad="+volumen+"&fallas="+falla.toString()+"&cantidaderror="+error.toString()+"&tarea="+tarea.toString()).body();
 
                             }
                             else if(cantidadreg > 0){
 
-                                String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&Ffinal="+fechas+"&Hfinal="+horas+"&cantidad="+total+"&fallas="+falla.toString()+"&cantidaderror="+error.toString()+"&tarea="+tarea.toString()+"&op="+op.toString()).body();
+                                String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?op="+op.toString()+"&id="+id.getText().toString()+"&Ffinal="+fechas+"&Hfinal="+horas+"&cantidad="+total+"&fallas="+falla.toString()+"&cantidaderror="+error.toString()+"&tarea="+tarea.toString()).body();
 
                             }
                         } catch (JSONException e) {
@@ -1113,7 +1088,7 @@ public class OperadorActivity extends AppCompatActivity {
                     public void run() {
                         final String Nop = resuldato3.getSelectedItem().toString();
                         volumencan = Integer.parseInt(digito.getText().toString());
-                       String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizarcantidad.php?numero="+Nop.toString()+"&canpen="+volumencan).body();
+                       String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizarcantidad.php?numero="+Nop.toString()+"&id="+id.getText().toString()+"&canpen="+volumencan).body();
 
                     }
                 }).start();
