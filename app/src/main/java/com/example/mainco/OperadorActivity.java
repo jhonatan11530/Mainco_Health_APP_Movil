@@ -156,10 +156,15 @@ public class OperadorActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
+
+
+
                         Toast.makeText(getApplicationContext(),"SESIÒN CERRADA", Toast.LENGTH_SHORT).show();
                         ttsManager.initQueue("HASTA LUEGO");
                         Intent e = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(e);
+
+
                     }
                 });
 
@@ -329,6 +334,7 @@ public class OperadorActivity extends AppCompatActivity {
         id = (EditText) findViewById(R.id.operador);
         resultados = (ListView) findViewById(R.id.listar_operador);
 
+
         if (id.getText().toString().length() == 0) {
 
             id.setError("ID ES REQUERIDO !");
@@ -341,7 +347,7 @@ public class OperadorActivity extends AppCompatActivity {
             final String Nop = resuldato3.getSelectedItem().toString();
 
 
-              new Thread(new Runnable() {
+             hilo = new Thread(new Runnable() {
                 @Override
                 public void run() {
 
@@ -458,8 +464,11 @@ public class OperadorActivity extends AppCompatActivity {
                 }
 
 
-            }).start();
-            Thread.interrupted();
+            });
+            hilo.start();
+
+
+
 
             resultados.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, datos2));
             datos2.clear();
@@ -534,7 +543,6 @@ public class OperadorActivity extends AppCompatActivity {
                 }
             });
             eliminaOK.start();
-
 
         }
     }
