@@ -678,8 +678,6 @@ public class OperadorActivity extends AppCompatActivity {
 
                 final String prueba = resuldato2.getSelectedItem().toString();
 
-                String d = Integer.toString(minuto);
-
 
                 final String Nop = resuldato3.getSelectedItem().toString();
 
@@ -693,14 +691,14 @@ public class OperadorActivity extends AppCompatActivity {
                 final String horas = hourFormat.format(date);
                 final String fechas = dateFormat.format(date);
 
-                paro.setText("");
+
                 new Thread(new Runnable() {
 
                     @Override
                     public void run() {
 
-                            String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/RegistrarMotivo.php?op="+Nop.toString()+"&id="+id.getText().toString()+"&paro="+minuto+"&motivo="+prueba.toString()+"&fecha="+fechas+"&hora="+horas.toString()).body();
-
+                            String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/RegistrarMotivo.php?op="+Nop.toString()+"&id="+id.getText().toString()+"&paro="+paro.getText().toString()+"&motivo="+prueba.toString()+"&fecha="+fechas+"&hora="+horas.toString()).body();
+                        paro.setText("");
                     }
                 }).start();
 
