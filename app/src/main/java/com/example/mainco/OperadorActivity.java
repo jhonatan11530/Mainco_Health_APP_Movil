@@ -614,6 +614,9 @@ public class OperadorActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
 
 
+                        Toast.makeText(getApplicationContext(),"DATOS VERIFICADOS", Toast.LENGTH_SHORT).show();
+
+
             }
         });
         registros.setNeutralButton("REGISTRAR OTRO MOTIVO DE PARO", new DialogInterface.OnClickListener() {
@@ -674,16 +677,21 @@ public class OperadorActivity extends AppCompatActivity {
                 positivo.setEnabled(true);
 
                 final String prueba = resuldato2.getSelectedItem().toString();
+
                 String d = Integer.toString(minuto);
 
 
                 final String Nop = resuldato3.getSelectedItem().toString();
 
+                // imprime fecha
+                dateFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
+                date = new Date();
+
+                //imprime hora
+                hourFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
+
                 final String horas = hourFormat.format(date);
-                final String fechas =edit.getText().toString();
-
-
-                Toast.makeText(getApplicationContext(),"DATOS VERIFICADOS", Toast.LENGTH_SHORT).show();
+                final String fechas = dateFormat.format(date);
 
                 paro.setText("");
                 new Thread(new Runnable() {
@@ -691,21 +699,14 @@ public class OperadorActivity extends AppCompatActivity {
                     @Override
                     public void run() {
 
-                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/RegistrarMotivo.php?op="+Nop.toString()+"&id="+id.getText().toString()+"&paro="+minuto+"&motivo="+prueba.toString()+"&fecha="+fechas+"&hora="+horas.toString()).body();
-
-
-                        try {
-
-                           JSONArray objecto = new JSONArray(response);
-
-                            minuto=0;
-                            hora=0;
-
-                        }catch (Exception s){}
+                            String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/RegistrarMotivo.php?op="+Nop.toString()+"&id="+id.getText().toString()+"&paro="+minuto+"&motivo="+prueba.toString()+"&fecha="+fechas+"&hora="+horas.toString()).body();
 
                     }
                 }).start();
-                Thread.interrupted();
+
+                minuto=0;
+                hora=0;
+
             }
         });
 
