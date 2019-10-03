@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-10-2019 a las 22:42:49
+-- Tiempo de generación: 03-10-2019 a las 14:32:17
 -- Versión del servidor: 10.4.6-MariaDB
 -- Versión de PHP: 7.3.9
 
@@ -189,14 +189,14 @@ CREATE TABLE `operador` (
 --
 
 INSERT INTO `operador` (`zxc`, `id`, `numero_op`, `nombre`, `tarea`, `cantidad`, `no_conforme`, `cantidad_fallas`, `inicial`, `hora_inicial`, `final`, `hora_final`) VALUES
-(1, 34, '5173-6', 'adriana', NULL, '0', NULL, NULL, '', '', '', ''),
-(2, 114, '5173-6', 'erika', NULL, '0', NULL, NULL, '', '', '', ''),
-(3, 262, '5173-6', 'yoxana', NULL, '0', NULL, NULL, '', '', '', ''),
-(4, 882, '5173-6', 'juan david', NULL, '0', NULL, NULL, NULL, '', '', ''),
-(5, 34, '5173-1', 'adriana', NULL, '0', NULL, NULL, NULL, NULL, '', ''),
-(6, 114, '5175-1', 'erika', NULL, '0', NULL, NULL, NULL, '', '', ''),
-(7, 262, '5173-1', 'yoxanas', NULL, '0', NULL, NULL, NULL, NULL, NULL, NULL),
-(8, 882, '5175-1', 'juan david', NULL, '0', NULL, NULL, NULL, '', '', NULL);
+(1, 34, '5175-1', 'adriana', NULL, '0', NULL, NULL, '', '', '', ''),
+(2, 114, '5175-1', 'erika', NULL, '0', NULL, NULL, '', '', '', ''),
+(3, 262, '5175-1', 'yoxana', NULL, '0', NULL, NULL, '', '', '', ''),
+(4, 882, '5175-1', 'juan david', NULL, '0', NULL, NULL, NULL, '', '', ''),
+(5, 34, '5173-6', 'adriana', NULL, '0', NULL, NULL, NULL, NULL, '', ''),
+(6, 114, '5173-6', 'erika', NULL, '0', NULL, NULL, NULL, '', '', ''),
+(7, 262, '5173-6', 'yoxanas', NULL, '0', NULL, NULL, NULL, NULL, NULL, NULL),
+(8, 882, '5173-6', 'juan david', NULL, '0', NULL, NULL, NULL, '', '', NULL);
 
 -- --------------------------------------------------------
 
@@ -217,8 +217,8 @@ CREATE TABLE `produccion` (
 --
 
 INSERT INTO `produccion` (`id`, `numero_id`, `cod_producto`, `descripcion`, `cantidad`) VALUES
-(20, '5173-6', 101642, 'PAQ CIRUGIA GENERAL NO 14 (201641)', 528),
-(21, '5173-1', 101642, 'PAQ CIRUGIA GENERAL NO 14 (301643)', 350);
+(20, '5175-1', 101640, 'PAQ CIRUGIA GENERAL NO 14 (201641)', 528),
+(21, '5173-6', 101642, 'PAQ CIRUGIA GENERAL NO 14 (301643)', 350);
 
 -- --------------------------------------------------------
 
