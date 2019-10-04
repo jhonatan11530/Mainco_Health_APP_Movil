@@ -706,7 +706,7 @@ public class OperadorActivity extends AppCompatActivity {
                     public void run() {
 
                             String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/RegistrarMotivo.php?op="+Nop.toString()+"&id="+id.getText().toString()+"&paro="+paro.getText().toString()+"&motivo="+prueba.toString()+"&fecha="+fechas+"&hora="+horas.toString()).body();
-                        paro.setText("");
+
                     }
                 }).start();
 
