@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegistroActivity">
+    tools:context=".RegistroActivity"
+    android:background="#3CBDEB">
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -14,47 +15,45 @@
         android:weightSum="4.5"
         >
 
-
         <LinearLayout
             android:id="@+id/linearLayout1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="3.5"
-            android:orientation="vertical"
-            android:weightSum="10"
             android:gravity="center"
-            >
+            android:orientation="vertical"
+            android:weightSum="10">
 
             <EditText
                 android:id="@+id/nombre"
                 android:layout_width="350dp"
                 android:layout_height="5dp"
-                android:inputType="textPersonName"
-                android:hint="NOMBRE"
+                android:layout_marginVertical="3dp"
                 android:layout_weight="1.3"
-                android:background="#cccccc"
+                android:background="#ffffff"
                 android:gravity="center"
-                android:layout_marginVertical="3dp"/>
+                android:hint="INGRESE SU NOMBRE"
+                android:inputType="textPersonName" />
 
             <EditText
                 android:id="@+id/apellido"
                 android:layout_width="350dp"
                 android:layout_height="5dp"
-                android:inputType="textPersonName"
-                android:hint="APELLIDO"
-                android:layout_weight="1.3"
                 android:layout_marginVertical="3dp"
-                android:background="#cccccc"
-                android:gravity="center"/>
+                android:layout_weight="1.3"
+                android:background="#ffffff"
+                android:gravity="center"
+                android:hint="INGRESE SU APELLIDO"
+                android:inputType="textPersonName" />
 
             <EditText
                 android:id="@+id/cedula"
                 android:layout_width="350dp"
                 android:layout_height="5dp"
-                android:layout_weight="1.3"
-                android:gravity="center"
                 android:layout_marginVertical="3dp"
-                android:background="#cccccc"
+                android:layout_weight="1.3"
+                android:background="#ffffff"
+                android:gravity="center"
                 android:hint="USUARIO"
                 android:inputType="number" />
 
@@ -62,46 +61,49 @@
                 android:id="@+id/pass"
                 android:layout_width="350dp"
                 android:layout_height="5dp"
-                android:inputType="textPassword"
-                android:hint="CONTRASEÑA"
-                android:background="#cccccc"
                 android:layout_marginVertical="6dp"
                 android:layout_weight="1.3"
-                android:gravity="center"/>
+                android:background="#ffffff"
+                android:gravity="center"
+                android:hint="CONTRASEÑA"
+                android:inputType="textPassword" />
 
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="SELECIONE EL ROL"
-                android:background="#4D73E8"
-                android:textSize="20sp"
                 android:layout_marginVertical="6dp"
-                />
+                android:background="#3CBDEB"
+                android:gravity="center"
+                android:textColor="#ffffff"
+                android:text="SELECIONE EL ROL"
+                android:textSize="20sp" />
 
             <Spinner
                 android:id="@+id/rol"
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
-                android:layout_weight="1.3"/>
+                android:layout_weight="1.3"
+                />
 
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout3"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_height="65dp"
+            android:layout_weight="0.1"
             android:orientation="vertical"
-            android:weightSum="10">
+            android:weightSum="10"
+            android:gravity="center">
 
             <Button
                 android:id="@+id/registro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_width="350dp"
+                android:layout_height="65dp"
                 android:text="REGISTRAR"
+                android:textColor="#ffffff"
+                android:background="#008577"
                 android:onClick="registrar"/>
         </LinearLayout>
     </LinearLayout>

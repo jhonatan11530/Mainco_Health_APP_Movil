@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity"
+    android:background="#3CBDEB"
 
 
     >
@@ -48,9 +49,9 @@
 
         <EditText
             android:id="@+id/estado"
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="61dp"
-            android:background="#cccccc"
+            android:background="#ffffff"
             android:hint="INGRESE SU ID"
             android:inputType="number"
             android:gravity="center"
@@ -60,9 +61,9 @@
 
         <EditText
             android:id="@+id/ID"
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="61dp"
-            android:background="#cccccc"
+            android:background="#ffffff"
             android:hint="INGRESE SU CONTRASEÑA"
             android:inputType="textPassword"
             android:gravity="center"
@@ -82,12 +83,13 @@
 
         <Button
             android:id="@+id/login"
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="65dp"
+            android:gravity="center"
+            android:textColor="#ffffff"
             android:text="iniciar sesion"
-
             android:onClick="validartodo"
-            android:background="#5977EB"
+            android:background="#008577"
             android:layout_marginVertical="5dp"/>
 
         <LinearLayout
@@ -107,16 +109,18 @@
             android:onClick="registro"
             android:layout_weight="5"
             android:text="REGISTRARSE"
-            android:background="#39CCEB"
-            android:layout_marginHorizontal="2dp" />
+            android:textColor="#ffffff"
+            android:background="#3CBDEB"
+           />
 
             <Button
                 android:id="@+id/olvido"
                 android:layout_width="200dp"
                 android:layout_height="match_parent"
                 android:layout_weight="5"
+                android:textColor="#ffffff"
                 android:text="¿HAS OLVIDADO SU CONTRASEÑA?"
-                android:background="#39CCEB"
+                android:background="#3CBDEB"
                 android:onClick="olvidoC"/>
 
 
