@@ -41,6 +41,7 @@
                     android:ems="10"
                     android:hint="INGRESE ID DEL OPERADOR"
                     android:inputType="numberSigned"
+                    android:layout_marginVertical="4dp"
                     />
 
                 <Button
@@ -106,8 +107,9 @@
                 android:id="@+id/spinner"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
+
                 />
-                />
+
 
             <TextView
                 android:id="@+id/textView1"

@@ -1,23 +1,18 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <item
-        android:id="@+id/atras"
-        android:title="@string/SALIR"
-        android:icon="@drawable/salir"
-        app:showAsAction="ifRoom|withText">
-
-
-    </item>
 
     <item
         android:id="@+id/ayuda"
         android:title=""
         android:icon="@drawable/help"
-        app:showAsAction="ifRoom|withText">
+        app:showAsAction="ifRoom|withText"
+        >
 
 
     </item>
+
+
     
 
 </menu>

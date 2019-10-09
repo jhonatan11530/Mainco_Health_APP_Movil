@@ -76,7 +76,7 @@
                 android:background="@color/colorAzulCLM"
                 android:gravity="center"
                 android:textColor="#ffffff"
-                android:text="SELECIONE EL ROL"
+                android:text="SELECIONE EL CARGO ASIGNADO"
                 android:textSize="20sp" />
 
             <Spinner
