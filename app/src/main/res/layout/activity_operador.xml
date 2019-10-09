@@ -28,6 +28,7 @@
                 android:orientation="vertical"
                 android:weightSum="10"
                 android:layout_weight="3.3"
+                android:layout_marginHorizontal="4dp"
                 >
 
                 <EditText
@@ -153,13 +154,14 @@
                 android:layout_weight="2.5"
                 android:text="APLAZAR PRODUCCION" />
 
+
             <Button
                 android:id="@+id/tiempo"
                 android:layout_width="match_parent"
                 android:layout_height="50px"
                 android:textColor="#ffffff"
                 android:layout_weight="2.5"
-                android:background="@color/colorAzulCLM"
+                android:background="@color/colorVerdeM"
                 android:onClick="hora"
                 android:text="REGISTRAR TIEMPO DE PARO" />
 
@@ -170,7 +172,7 @@
                 android:layout_height="50px"
                 android:textColor="#ffffff"
                 android:layout_weight="2.5"
-                android:background="@color/colorVerdeM"
+                android:background="@color/colorAzulCLM"
                 android:onClick="salida"
                 android:text="FINALIZAR" />
 

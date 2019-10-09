@@ -80,10 +80,6 @@ public class OperadorActivity extends AppCompatActivity {
         clientes2 = new AsyncHttpClient();
         clientes3 = new AsyncHttpClient();
 
-        // CAMBIAR COLOR DEL BOTON HORA
-        BTN_time = (Button) findViewById(R.id.tiempo);
-        BTN_time.setEnabled(true);
-        BTN_time.setBackgroundColor(Color.parseColor("#878AFF"));
 
         ttsManager=new TSSManager();
         ttsManager.init(this);
