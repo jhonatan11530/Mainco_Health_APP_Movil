@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OperadorActivity">
+    tools:context=".OperadorActivity"
+    android:background="@color/colorAzulOSM">
 
     <LinearLayout
         android:id="@+id/linearLayout1"
@@ -34,6 +35,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="3.3"
+                    android:gravity="center"
+                    android:background="#ffffff"
                     android:ems="10"
                     android:hint="INGRESE ID DEL OPERADOR"
                     android:inputType="numberSigned"
@@ -46,7 +49,8 @@
                     android:layout_weight="3.3"
                     android:onClick="operador"
                     android:text="Consultar operador"
-                    android:background="#008577"/>
+                    android:textColor="#ffffff"
+                    android:background="@color/colorAzulCLM"/>
 
             </LinearLayout>
 
@@ -62,6 +66,7 @@
                     android:id="@+id/listar_operador"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
+                    android:textColor="#ffffff"
                     android:layout_weight="3.3" />
 
                 <TextView
@@ -70,7 +75,7 @@
                     android:layout_height="50dp"
                     android:layout_weight="3.3"
                     android:gravity="center"
-                    android:textColor="#000000"
+                    android:textColor="#ffffff"
                     android:textSize="12sp" />
 
             </LinearLayout>
@@ -93,20 +98,22 @@
                 android:layout_height="20dp"
                 android:gravity="center"
                 android:text="NUMERO OP"
-                android:textColor="#000000"
+                android:textColor="#ffffff"
                 android:textSize="13sp" />
 
             <Spinner
                 android:id="@+id/spinner"
                 android:layout_width="match_parent"
-                android:layout_height="35dp" />
+                android:layout_height="35dp"
+                />
+                />
 
             <TextView
                 android:id="@+id/textView1"
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:gravity="center"
-                android:textColor="#000000"
+                android:textColor="#ffffff"
                 android:text="ACTIVIDAD"
                 android:textSize="13sp" />
 
@@ -130,7 +137,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="50px"
                 android:layout_weight="2.5"
-                android:background="#008577"
+                android:background="@color/colorVerdeM"
+                android:textColor="#ffffff"
                 android:onClick="registrar"
                 android:text="COMENZAR" />
 
@@ -139,8 +147,9 @@
                 android:layout_width="match_parent"
                 android:layout_marginVertical="5dp"
                 android:layout_height="50px"
+                android:textColor="#ffffff"
                 android:onClick="aplazo"
-                android:background="#6BCBFF"
+                android:background="@color/colorAzulCLM"
                 android:layout_weight="2.5"
                 android:text="APLAZAR PRODUCCION" />
 
@@ -148,8 +157,9 @@
                 android:id="@+id/tiempo"
                 android:layout_width="match_parent"
                 android:layout_height="50px"
+                android:textColor="#ffffff"
                 android:layout_weight="2.5"
-                android:background="#5CABFF"
+                android:background="@color/colorAzulCLM"
                 android:onClick="hora"
                 android:text="REGISTRAR TIEMPO DE PARO" />
 
@@ -158,8 +168,9 @@
                 android:layout_width="match_parent"
                 android:layout_marginVertical="5dp"
                 android:layout_height="50px"
+                android:textColor="#ffffff"
                 android:layout_weight="2.5"
-                android:background="#00574B"
+                android:background="@color/colorVerdeM"
                 android:onClick="salida"
                 android:text="FINALIZAR" />
 

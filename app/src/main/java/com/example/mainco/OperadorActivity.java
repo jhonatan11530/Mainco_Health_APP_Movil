@@ -105,6 +105,10 @@ public class OperadorActivity extends AppCompatActivity {
         salidaTIME = (Button) findViewById(R.id.salida);
 
 
+
+
+
+
         llenarSpinner();
         llenarSpinner2();
 
@@ -285,6 +289,7 @@ public class OperadorActivity extends AppCompatActivity {
             }
             ArrayAdapter<produccion> a = new ArrayAdapter<produccion>(this, android.R.layout.simple_dropdown_item_1line, dato3);
             resuldato3.setAdapter(a);
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -834,7 +839,7 @@ public class OperadorActivity extends AppCompatActivity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
         builder.setTitle("DATOS INSERTADOS");
-
+        builder.setMessage( "PORFAVOR EMPIECE SU LABOR" );
          edit = new EditText(this);
         edit.setEnabled(false);
         edit.setText(fecha);

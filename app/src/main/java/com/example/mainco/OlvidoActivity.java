@@ -1,8 +1,5 @@
 package com.example.mainco;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +7,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONArray;
 
@@ -18,6 +20,7 @@ public class OlvidoActivity extends AppCompatActivity {
 
     private EditText id,cedula;
     TSSManager ttsManager=null;
+    ViewFlipper v_flipper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,8 +32,24 @@ public class OlvidoActivity extends AppCompatActivity {
         id = (EditText)findViewById(R.id.CDUNICO);
         cedula = (EditText)findViewById(R.id.cc);
 
+        int images[] = {R.drawable.mainco,R.drawable.mainco,R.drawable.mainco};
+        v_flipper = findViewById( R.id.v_flipper );
 
+        for(int image : images){
+            flipperImages( image );
+        }
+    }
+    public void flipperImages(int images){
 
+        ImageView imageView = new ImageView( this );
+        imageView.setBackgroundResource( images );
+
+        v_flipper.addView(imageView);
+        v_flipper.setFlipInterval( 5000 );
+        v_flipper.setAutoStart( true );
+
+        v_flipper.setInAnimation( this, android.R.anim.slide_in_left );
+        v_flipper.setOutAnimation( this, android.R.anim.slide_out_right );
     }
     public void onBackPressed() {
 
