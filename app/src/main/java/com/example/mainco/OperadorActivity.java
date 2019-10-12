@@ -67,7 +67,7 @@ public class OperadorActivity extends AppCompatActivity {
     private AsyncHttpClient clientes2;
     private AsyncHttpClient clientes3;
     TSSManager ttsManager=null;
-    public Thread hilo,mostracant,eliminaOK;
+    public Thread hilo,eliminaOK;
     private RadioButton botonSi,botonNo;
 
     @Override
@@ -378,12 +378,9 @@ public class OperadorActivity extends AppCompatActivity {
 
                         }
 
-                            mostracant =   new Thread(new Runnable() {
+                           new Thread(new Runnable() {
                                 @Override
                                 public void run() {
-                                while(true){
-                                    try {
-                                        Thread.sleep( 1000 );
 
                                     String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedit.php?numero="+Nop.toString()).body();
 
@@ -406,16 +403,9 @@ public class OperadorActivity extends AppCompatActivity {
                                             } catch (JSONException e) {
                                                 e.printStackTrace();
                                             }
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-
-
 
                                 }
-                            });
-                            mostracant.start();
+                            }).start();
 
 
                             new Thread(new Runnable() {
@@ -480,6 +470,43 @@ public class OperadorActivity extends AppCompatActivity {
 
         }
 
+
+    }
+    public void MOSTRAROP(){
+
+
+        final String nombretarea = resuldato.getSelectedItem().toString();
+
+        final String Nop = resuldato3.getSelectedItem().toString();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedit.php?numero="+Nop.toString()).body();
+
+                try {
+                    JSONArray RESTARCANTIDAD = new JSONArray(response);
+                    String acz = HttpRequest.get("http://"+cambiarIP.ip+"/validar/validarcantidad.php?id="+nombretarea.toString()).body();
+
+                    JSONArray tareita = new JSONArray(acz);
+                    datoverifica = Integer.parseInt(tareita.getString( 0 ));
+
+                    totalcan.setText("CANTIDAD OP : "+RESTARCANTIDAD.getString(0)+" CANTIDAD PENDIENTE : "+tareita.getString(0));
+
+                    if(datoverifica == 0){
+
+
+                        new verificar().start();
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }).start();
 
     }
 
@@ -1129,6 +1156,7 @@ public class OperadorActivity extends AppCompatActivity {
                                        @Override
                                        public void run() {
                                            Toast.makeText(getApplicationContext(),"SE REGISTRO EL ADELANTO PRODUCCIDO ", Toast.LENGTH_SHORT).show();
+                                           MOSTRAROP();
                                        }
                                    });
                                     }
@@ -1158,7 +1186,7 @@ public class OperadorActivity extends AppCompatActivity {
                                             }
                                         });
 
-                                    }else{
+                                    }/*else{
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
@@ -1174,7 +1202,7 @@ public class OperadorActivity extends AppCompatActivity {
 
                                         }
                                     });
-                                    }
+                                    } */
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
