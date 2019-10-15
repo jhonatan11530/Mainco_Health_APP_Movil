@@ -8,14 +8,19 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONArray;
+
+import java.util.ArrayList;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -24,6 +29,8 @@ public class LoginActivity extends AppCompatActivity {
     Button validar,registre;
     JSONArray objecto;
     TSSManager ttsManager=null;
+    ArrayList com;
+   private ListView componentes;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,12 +75,104 @@ public class LoginActivity extends AppCompatActivity {
                    @Override
                    public void run() {
                        View help = getLayoutInflater().inflate(R.layout.ayuda,null);
+
                        AlertDialog.Builder builder = new AlertDialog.Builder( LoginActivity.this );
-                       builder.setTitle("ASISTENCIA ");
+                       builder.setTitle("ASISTENCIA O INFORMACION ");
                        Button acercaapp = (Button)help.findViewById( R.id.ACERCA );
                        Button ayuda = (Button)help.findViewById( R.id.HELP);
+                       Button soport = (Button)help.findViewById( R.id.SOPORTE );
 
 
+                       ayuda.setOnClickListener( new View.OnClickListener() {
+                           @Override
+                           public void onClick(View view) {
+
+                               View tutorial = getLayoutInflater().inflate(R.layout.tutorial,null);
+                               AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                                componentes = tutorial.findViewById( R.id.tutorial );
+                               final ArrayList<HELPCOMP> comphelp= new ArrayList<HELPCOMP>();
+                               comphelp.add(new HELPCOMP( "INTRODUCCION A MAINCO APP" ));
+                               comphelp.add(new HELPCOMP( "COMO CREO UN USUARIO ?" ));
+                               comphelp.add(new HELPCOMP( "COMO RECUPERO MI CONTRASEÑA ?" ));
+                               comphelp.add(new HELPCOMP( "COMO INGRESO AL SISTEMA ?" ));
+                               comphelp.add(new HELPCOMP( "COMO EMPIEZO A REGISTRAR ?" ));
+                               comphelp.add(new HELPCOMP( "COMO REGISTRO MIS PAUSAS ?" ));
+                               comphelp.add(new HELPCOMP( "COMO SABER SI FINALIZOx LA O.P ?" ));
+                               comphelp.add(new HELPCOMP( "COMO SABER SI YA TERMINE ?" ));
+
+                               ArrayAdapter<HELPCOMP> adapdtador = new ArrayAdapter<HELPCOMP>( LoginActivity.this,android.R.layout.simple_dropdown_item_1line,comphelp );
+                               componentes.setAdapter( adapdtador );
+
+                               componentes.setOnItemClickListener( new AdapterView.OnItemClickListener() {
+                                   @Override
+                                   public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+
+                                       HELPCOMP H =comphelp.get( position );
+                                       if (H.getNombre() == "INTRODUCCION A MAINCO APP"){
+                                           Toast.makeText(getApplicationContext(),"a", Toast.LENGTH_SHORT).show();
+                                       }
+
+                                       else if (H.getNombre() == "COMO CREO UN USUARIO ?"){
+                                           Toast.makeText(getApplicationContext(),"B", Toast.LENGTH_SHORT).show();
+                                       }
+
+                                       else if (H.getNombre() == "COMO RECUPERO MI CONTRASEÑA ?"){
+                                           Toast.makeText(getApplicationContext(),"C", Toast.LENGTH_SHORT).show();
+                                       }
+
+                                       else if (H.getNombre() == "COMO INGRESO AL SISTEMA ?"){
+                                           Toast.makeText(getApplicationContext(),"d", Toast.LENGTH_SHORT).show();
+                                       }
+
+                                       else if (H.getNombre() == "COMO EMPIEZO A REGISTRAR ?"){
+                                           Toast.makeText(getApplicationContext(),"E", Toast.LENGTH_SHORT).show();
+                                       }
+
+                                       else if (H.getNombre() == "COMO REGISTRO MIS PAUSAS ?"){
+                                           Toast.makeText(getApplicationContext(),"F", Toast.LENGTH_SHORT).show();
+                                       }
+
+                                       else if (H.getNombre() == "COMO SABER SI SE CERRO LA O.P ?"){
+                                           Toast.makeText(getApplicationContext(),"G", Toast.LENGTH_SHORT).show();
+                                       }
+
+                                       else if (H.getNombre() == "COMO SABER SI YA TERMINE ?"){
+                                           Toast.makeText(getApplicationContext(),"H", Toast.LENGTH_SHORT).show();
+                                       }
+                                   }
+                               } );
+
+                               builder.setPositiveButton( "salir", new DialogInterface.OnClickListener() {
+                                   @Override
+                                   public void onClick(DialogInterface dialogInterface, int i) {
+
+                                   }
+                               } );
+                                builder.setView( tutorial );
+                               builder.create().show();
+
+
+                           }
+                       } );
+                       soport.setOnClickListener( new View.OnClickListener() {
+                           @Override
+                           public void onClick(View view) {
+                               AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                               builder.setTitle( "CONTACTO" );
+                               builder.setMessage( "si desea soporte o comunicarte con el desarrollador de la aplicacion Mainco Health Care.\n\n" +
+                                       "INFORMACION DEL DESARROLLADOR\n\n" +
+                                       "NOMBRE : JHONATAN FERNANDEZ MUÑOZ \n\n" +
+                                       "TELEFONO : 3114360830\n\n" +
+                                       "CORREO : jhonatan1153@hotmail.com" );
+                               builder.setPositiveButton( "aceptar", new DialogInterface.OnClickListener() {
+                                   @Override
+                                   public void onClick(DialogInterface dialogInterface, int i) {
+
+                                   }
+                               } );
+                               builder.create().show();
+                           }
+                       } );
                        acercaapp.setOnClickListener( new View.OnClickListener() {
                            @Override
                            public void onClick(View view) {
@@ -85,6 +184,7 @@ public class LoginActivity extends AppCompatActivity {
                                        "EXCLUSIVIDAD : " +
                                        "La aplicacion Mainco Health care para dispositivos android es de uso exclusivo para la empresa MAINCO HEALTH CARE se prohibe el uso de esta app por personas (TERCEROS) sin previa autorizacion de MAINCO HEALTH CARE es uso no autorizado de esta app por terceros puede ser sancionado por la respectiva empresa \n\n"
                                        );
+
                                builder.setNegativeButton( "ACUERDO DE LICENCIA", new DialogInterface.OnClickListener() {
                                    @Override
                                    public void onClick(DialogInterface dialogInterface, int i) {
@@ -282,6 +382,8 @@ public class LoginActivity extends AppCompatActivity {
                                                "SIN GARANTÍAS O CONDICIONES DE NINGÚN TIPO, ya sea expresa o implícita.\n" +
                                                "Consulte la Licencia para ver los permisos de idioma específicos y\n" +
                                                "limitaciones bajo la Licencia." );
+
+
                                        builder.setPositiveButton( "ACEPTAR", new DialogInterface.OnClickListener() {
                                            @Override
                                            public void onClick(DialogInterface dialogInterface, int i) {

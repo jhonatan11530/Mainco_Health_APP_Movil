@@ -25,5 +25,12 @@
             android:layout_height="80dp"
             android:layout_weight="1"
             android:text="ACERCA DE LA APP" />
+
+        <Button
+            android:id="@+id/SOPORTE"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:text="SOPORTE " />
     </LinearLayout>
 </LinearLayout>
