@@ -1,9 +1,9 @@
 package com.example.mainco;
 
 
-
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,15 +27,16 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText login,pass;
     Button validar,registre;
-    JSONArray objecto;
     TSSManager ttsManager=null;
     ArrayList com;
    private ListView componentes;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         ttsManager=new TSSManager();
         ttsManager.init(this);
@@ -108,8 +109,13 @@ public class LoginActivity extends AppCompatActivity {
                                    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
                                        HELPCOMP H =comphelp.get( position );
+
                                        if (H.getNombre() == "INTRODUCCION A MAINCO APP"){
-                                           Toast.makeText(getApplicationContext(),"a", Toast.LENGTH_SHORT).show();
+
+                                           Intent e = new Intent(getApplicationContext(), videouno.class);
+                                           startActivity(e);
+
+
                                        }
 
                                        else if (H.getNombre() == "COMO CREO UN USUARIO ?"){

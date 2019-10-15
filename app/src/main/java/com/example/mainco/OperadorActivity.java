@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
@@ -80,7 +81,7 @@ public class OperadorActivity extends AppCompatActivity {
         clientes2 = new AsyncHttpClient();
         clientes3 = new AsyncHttpClient();
 
-
+        setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         ttsManager=new TSSManager();
         ttsManager.init(this);
 

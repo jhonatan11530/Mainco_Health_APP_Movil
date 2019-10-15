@@ -2,6 +2,7 @@ package com.example.mainco;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,6 +28,7 @@ public class OlvidoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_olvido);
 
         ttsManager=new TSSManager();
+        setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         ttsManager.init(this);
 
         id = (EditText)findViewById(R.id.CDUNICO);
