@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
         isNetDisponible();
         Log.e("netHabilitada", Boolean.toString(isNetDisponible()));
         Log.e("accInternet",   Boolean.toString(isOnlineNet()));
-    
+
     }
     public void onBackPressed() {
 
