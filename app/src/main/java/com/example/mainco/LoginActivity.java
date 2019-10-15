@@ -98,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
                                comphelp.add(new HELPCOMP( "COMO INGRESO AL SISTEMA ?" ));
                                comphelp.add(new HELPCOMP( "COMO EMPIEZO A REGISTRAR ?" ));
                                comphelp.add(new HELPCOMP( "COMO REGISTRO MIS PAUSAS ?" ));
-                               comphelp.add(new HELPCOMP( "COMO SABER SI FINALIZOx LA O.P ?" ));
+                               comphelp.add(new HELPCOMP( "COMO SABER SI SE CERRO LA O.P ?" ));
                                comphelp.add(new HELPCOMP( "COMO SABER SI YA TERMINE ?" ));
 
                                ArrayAdapter<HELPCOMP> adapdtador = new ArrayAdapter<HELPCOMP>( LoginActivity.this,android.R.layout.simple_dropdown_item_1line,comphelp );
@@ -114,36 +114,48 @@ public class LoginActivity extends AppCompatActivity {
 
                                            Intent e = new Intent(getApplicationContext(), videouno.class);
                                            startActivity(e);
-
-
                                        }
 
                                        else if (H.getNombre() == "COMO CREO UN USUARIO ?"){
-                                           Toast.makeText(getApplicationContext(),"B", Toast.LENGTH_SHORT).show();
+
+                                           Intent e = new Intent(getApplicationContext(), videodos.class);
+                                           startActivity(e);
                                        }
 
                                        else if (H.getNombre() == "COMO RECUPERO MI CONTRASEÑA ?"){
-                                           Toast.makeText(getApplicationContext(),"C", Toast.LENGTH_SHORT).show();
+
+                                           Intent e = new Intent(getApplicationContext(), videotres.class);
+                                           startActivity(e);
                                        }
 
                                        else if (H.getNombre() == "COMO INGRESO AL SISTEMA ?"){
-                                           Toast.makeText(getApplicationContext(),"d", Toast.LENGTH_SHORT).show();
+
+                                           Intent e = new Intent(getApplicationContext(), videocuatro.class);
+                                           startActivity(e);
                                        }
 
                                        else if (H.getNombre() == "COMO EMPIEZO A REGISTRAR ?"){
-                                           Toast.makeText(getApplicationContext(),"E", Toast.LENGTH_SHORT).show();
+
+                                           Intent e = new Intent(getApplicationContext(), videocinco.class);
+                                           startActivity(e);
                                        }
 
                                        else if (H.getNombre() == "COMO REGISTRO MIS PAUSAS ?"){
-                                           Toast.makeText(getApplicationContext(),"F", Toast.LENGTH_SHORT).show();
+
+                                           Intent e = new Intent(getApplicationContext(), videoseix.class);
+                                           startActivity(e);
                                        }
 
                                        else if (H.getNombre() == "COMO SABER SI SE CERRO LA O.P ?"){
-                                           Toast.makeText(getApplicationContext(),"G", Toast.LENGTH_SHORT).show();
+
+                                           Intent e = new Intent(getApplicationContext(), videosiete.class);
+                                           startActivity(e);
                                        }
 
                                        else if (H.getNombre() == "COMO SABER SI YA TERMINE ?"){
-                                           Toast.makeText(getApplicationContext(),"H", Toast.LENGTH_SHORT).show();
+
+                                           Intent e = new Intent(getApplicationContext(), videoocho.class);
+                                           startActivity(e);
                                        }
                                    }
                                } );

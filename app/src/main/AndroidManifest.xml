@@ -15,7 +15,6 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
 
-
         <activity
             android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
@@ -37,7 +36,29 @@
         <activity
             android:name=".OlvidoActivity"
             android:label="@string/title_activity_olvido" />
-        <activity android:name=".videouno"
+        <activity
+            android:name=".videouno"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".videoocho"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".videosiete"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity
+            android:name=".videoseix"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity
+            android:name=".videocinco"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity
+            android:name=".videocuatro"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity
+            android:name=".videotres"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
+        <activity
+            android:name=".videodos"
             android:theme="@style/Theme.AppCompat.NoActionBar"/>
     </application>
 
