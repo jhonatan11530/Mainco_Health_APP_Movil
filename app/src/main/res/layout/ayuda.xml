@@ -13,14 +13,14 @@
         android:weightSum="12">
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/HELP"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_weight="1"
             android:text="AYUDA" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/ACERCA"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_weight="1"
