@@ -354,7 +354,7 @@ public class OperadorActivity extends AppCompatActivity {
 
 
                         try {
-                        String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/operador.php?id=" + id.getText().toString()+"&op="+Nop.toString()).body();
+                        String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/operador.php?id=" + id.getText().toString()).body();
 
                         JSONArray objecto = new JSONArray(response);
 
@@ -516,9 +516,7 @@ public class OperadorActivity extends AppCompatActivity {
             eliminaOK = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    while(true){
-                        try {
-                            Thread.sleep(1000);
+
 
 
                             String cero = HttpRequest.get("http://"+cambiarIP.ip+"/validar/eliminarcanok.php").body();
@@ -553,6 +551,18 @@ public class OperadorActivity extends AppCompatActivity {
                                             cantidadund.setEnabled(false);
                                             ((TextView) resuldato.getSelectedView()).setTextColor(Color.RED);
 
+                                            AlertDialog.Builder builder = new AlertDialog.Builder( OperadorActivity.this );
+                                            builder.setTitle( "LA OP FINALIZO " );
+                                            builder.setMessage( "DEBE SELECCIONAR OTRA OP " );
+                                            builder.setPositiveButton( "ACEPTAR", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialogInterface, int i) {
+
+                                                }
+                                            } );
+                                            builder.create().show();
+
+
                                         }
                                     } );
 
@@ -564,10 +574,6 @@ public class OperadorActivity extends AppCompatActivity {
                                 e.printStackTrace();
                             }
 
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
                 }
             });
             eliminaOK.start();
@@ -878,7 +884,7 @@ public class OperadorActivity extends AppCompatActivity {
                      @Override
                     public void run() {
 
-                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaEntrada.php?op="+Nop.toString()+"&id="+id.getText().toString()+"&Finicial="+fechas+"&Hinicial="+hora.toString()).body();
+                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaEntrada.php?id="+id.getText().toString()+"&Finicial="+fechas+"&Hinicial="+hora.toString()+"&op="+Nop.toString()).body();
 
                          runOnUiThread(new Runnable() {
                              @Override
@@ -887,7 +893,7 @@ public class OperadorActivity extends AppCompatActivity {
                              }
                          });
 
-
+                         MOSTRAROP();
 
                     }
                 }).start();
@@ -977,6 +983,9 @@ public class OperadorActivity extends AppCompatActivity {
                                 String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?op="+op.toString()+"&id="+id.getText().toString()+"&Ffinal="+fechas+"&Hfinal="+horas+"&cantidad="+total+"&fallas="+falla.toString()+"&cantidaderror="+error.toString()+"&tarea="+tarea.toString()).body();
 
                             }
+
+                            MOSTRAROP();
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
