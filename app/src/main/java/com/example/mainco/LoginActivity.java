@@ -445,51 +445,54 @@ public class LoginActivity extends AppCompatActivity {
                 login.setError("ID ES REQUERIDO !");
 
             }else{
-               new Thread(new Runnable() {
+
+
+                new Thread(new Runnable() {
                     @Override
                     public void run() {
 
 
-            String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/validar.php?cedula="+login.getText().toString()+"&pass="+pass.getText().toString()).body();
+                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/validar.php?cedula="+login.getText().toString()+"&pass="+pass.getText().toString()).body();
 
-            try {
-                JSONArray objecto = new JSONArray(response);
+                        try {
+                            JSONArray objecto = new JSONArray(response);
 
-                if(objecto.length()>0) {
+                            if(objecto.length()>0) {
 
 
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Intent e = new Intent(getApplicationContext(), OperadorActivity.class);
-                            startActivity(e);
-                            ttsManager.initQueue("BIENVENIDO");
-                            Toast.makeText(getApplicationContext(),"SESIÒN INICIADA", Toast.LENGTH_SHORT).show();
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Intent e = new Intent(getApplicationContext(), OperadorActivity.class);
+                                        startActivity(e);
+                                        ttsManager.initQueue("BIENVENIDO");
+                                        Toast.makeText(getApplicationContext(),"SESIÒN INICIADA", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+
+                            }
+
+                            else{
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        ttsManager.initQueue("USUARIO O CONTRASEÑA INCORRECTO");
+                                        Toast.makeText(getApplicationContext(),"USUARIO O CONTRASEÑA INCORRECTO", Toast.LENGTH_SHORT).show();
+
+                                    }
+                                });
+                            }
+
+
+
+
+                        }catch (Exception e) {
+                            // TODO: handle exception
+                            e.printStackTrace();
                         }
-                    });
-
-                }
-
-               else{
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            ttsManager.initQueue("USUARIO O CONTRASEÑA INCORRECTO");
-                            Toast.makeText(getApplicationContext(),"USUARIO O CONTRASEÑA INCORRECTO", Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-                }
-
-
-
-
-            }catch (Exception e) {
-                // TODO: handle exception
-                e.printStackTrace();
-            }
                     }
-               }).start();
+                }).start();
+
 
         }
 }
