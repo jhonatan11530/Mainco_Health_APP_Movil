@@ -10,7 +10,7 @@ $noconforme = $_GET["cantidaderror"];
 
 
   $mysqli = mysqli_connect("127.0.0.1", "root", "", "proyecto");
-  $sql_statement = "UPDATE operador SET cantidad='".$cantidad."',no_conforme='".$fallas."',cantidad_fallas='".$noconforme."',tarea='".$tarea."',final='".$final."',hora_final='".$finalh."' WHERE id= '".$ID."'AND numero_op='".$op."'";
+  $sql_statement = "UPDATE operador SET cantidad='".$cantidad."',no_conforme='".$fallas."',cantidad_fallas='".$noconforme."',tarea='".$tarea."',final='".$final."',hora_final='".$finalh."',numero_op='".$op."' WHERE id= '".$ID."'";
   $result = mysqli_query($mysqli, $sql_statement);
 
 
