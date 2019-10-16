@@ -916,7 +916,14 @@ public class OperadorActivity extends AppCompatActivity {
                                             AlertDialog.Builder builder = new AlertDialog.Builder( OperadorActivity.this );
                                             builder.setTitle( "LA OP FINALIZO " );
                                             builder.setMessage( "DEBE SELECCIONAR OTRA OP " );
+
                                             builder.setPositiveButton( "ACEPTAR", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialogInterface, int i) {
+
+                                                }
+                                            } );
+                                            builder.setNegativeButton( "REGISTRAR OTRA OP", new DialogInterface.OnClickListener() {
                                                 @Override
                                                 public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -1337,12 +1344,12 @@ public class OperadorActivity extends AppCompatActivity {
 
                             if(cantidadreg == 0){
 
-                                String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?op="+op.toString()+"&id="+id.getText().toString()+"&Ffinal="+fechas+"&Hfinal="+horas+"&cantidad="+volumen+"&fallas="+falla.toString()+"&cantidaderror="+error.toString()+"&tarea="+tarea.toString()).body();
+                                String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&Ffinal="+fechas+"&Hfinal="+horas+"&cantidad="+volumen+"&fallas="+falla.toString()+"&cantidaderror="+error.toString()+"&tarea="+tarea.toString()+"&op="+op.toString()).body();
 
                             }
                             else if(cantidadreg > 0){
 
-                                String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?op="+op.toString()+"&id="+id.getText().toString()+"&Ffinal="+fechas+"&Hfinal="+horas+"&cantidad="+total+"&fallas="+falla.toString()+"&cantidaderror="+error.toString()+"&tarea="+tarea.toString()).body();
+                                String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&Ffinal="+fechas+"&Hfinal="+horas+"&cantidad="+total+"&fallas="+falla.toString()+"&cantidaderror="+error.toString()+"&tarea="+tarea.toString()+"&op="+op.toString()).body();
 
                             }
 
