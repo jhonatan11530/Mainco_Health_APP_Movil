@@ -1,14 +1,10 @@
 package com.example.mainco;
 
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -53,10 +49,6 @@ public class LoginActivity extends AppCompatActivity {
         validar = (Button)findViewById(R.id.login);
 
 
-        isOnlineNet();
-        isNetDisponible();
-        Log.e("netHabilitada", Boolean.toString(isNetDisponible()));
-        Log.e("accInternet",   Boolean.toString(isOnlineNet()));
 
     }
     public void onBackPressed() {
@@ -444,34 +436,7 @@ public class LoginActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-    private boolean isNetDisponible() {
 
-        ConnectivityManager connectivityManager = (ConnectivityManager)
-                getSystemService( Context.CONNECTIVITY_SERVICE);
-
-        NetworkInfo actNetInfo = connectivityManager.getActiveNetworkInfo();
-
-
-
-        return (actNetInfo != null && actNetInfo.isConnected());
-    }
-    public Boolean isOnlineNet() {
-
-        try {
-            Process p = java.lang.Runtime.getRuntime().exec("ping -c 1 www.google.com");
-
-            int val           = p.waitFor();
-            boolean reachable = (val == 0);
-            return reachable;
-
-
-
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return false;
-    }
         public void validartodo(View view){
             if(pass.getText().toString().length() == 0 && login.getText().toString().length() == 0) {
 
