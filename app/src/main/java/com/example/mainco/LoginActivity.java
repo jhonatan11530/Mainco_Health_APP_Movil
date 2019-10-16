@@ -534,7 +534,6 @@ public class LoginActivity extends AppCompatActivity {
         Intent e = new Intent(getApplicationContext(), RegistroActivity.class);
         startActivity(e);
 
-
     }
 
     public void olvidoC (View v){

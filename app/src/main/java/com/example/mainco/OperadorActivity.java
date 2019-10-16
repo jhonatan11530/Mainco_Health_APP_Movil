@@ -740,47 +740,34 @@ public class OperadorActivity extends AppCompatActivity {
 
                         }
 
-                           new Thread(new Runnable() {
-                                @Override
-                                public void run() {
 
-                                    String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedit.php?numero="+Nop.toString()).body();
+                            String responses = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedit.php?numero="+Nop.toString()).body();
 
-                                            try {
-                                                JSONArray RESTARCANTIDAD = new JSONArray(response);
-                                                String acz = HttpRequest.get("http://"+cambiarIP.ip+"/validar/validarcantidad.php?id="+nombretarea.toString()).body();
+                            try {
+                                JSONArray RESTARCANTIDAD = new JSONArray(responses);
+                                String acz = HttpRequest.get("http://"+cambiarIP.ip+"/validar/validarcantidad.php?id="+nombretarea.toString()).body();
 
-                                                JSONArray tareita = new JSONArray(acz);
-                                                  datoverifica = Integer.parseInt(tareita.getString( 0 ));
+                                JSONArray tareita = new JSONArray(acz);
+                                datoverifica = Integer.parseInt(tareita.getString( 0 ));
 
-                                                totalcan.setText("CANTIDAD OP : "+RESTARCANTIDAD.getString(0)+" CANTIDAD PENDIENTE : "+tareita.getString(0));
+                                totalcan.setText("CANTIDAD OP : "+RESTARCANTIDAD.getString(0)+" CANTIDAD PENDIENTE : "+tareita.getString(0));
 
-                                                if(datoverifica == 0){
+                                if(datoverifica == 0){
 
 
-                                                    new verificar().start();
-                                                }
-
-
-                                            } catch (JSONException e) {
-                                                e.printStackTrace();
-                                            }
-
+                                    new verificar().start();
                                 }
-                            }).start();
 
 
-                            new Thread(new Runnable() {
-                                @Override
-                                public void run() {
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
 
-                                    try {
-                                        Thread.sleep(1000);
 
-                                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedit.php?numero="+Nop.toString()).body();
+                                        String responsesx = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedit.php?numero="+Nop.toString()).body();
 
                                         try {
-                                            JSONArray RESTARCANTIDAD = new JSONArray(response);
+                                            JSONArray RESTARCANTIDAD = new JSONArray(responsesx);
                                             int datico = Integer.parseInt(RESTARCANTIDAD.getString(0));
 
                                             String asd = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizartarea.php?tarea="+nombretarea.toString()+"&canpen="+datico).body();
@@ -788,13 +775,6 @@ public class OperadorActivity extends AppCompatActivity {
                                         } catch (JSONException e) {
                                             e.printStackTrace();
                                         }
-
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
-                                    }
-
-                                }
-                            }).start();
 
 
                         }
@@ -819,7 +799,7 @@ public class OperadorActivity extends AppCompatActivity {
 
             });
             hilo.start();
-
+            hilo.interrupted();
 
 
 
@@ -869,7 +849,7 @@ public class OperadorActivity extends AppCompatActivity {
 
             }
         }).start();
-
+        Thread.interrupted();
     }
 
     class verificar extends Thread{
@@ -946,7 +926,7 @@ public class OperadorActivity extends AppCompatActivity {
                 }
             });
             eliminaOK.start();
-
+            eliminaOK.interrupted();
         }
     }
 
@@ -1102,7 +1082,6 @@ public class OperadorActivity extends AppCompatActivity {
                 final String horas = hourFormat.format(date);
                 final String fechas = dateFormat.format(date);
 
-
                 new Thread(new Runnable() {
 
                     @Override
@@ -1112,7 +1091,7 @@ public class OperadorActivity extends AppCompatActivity {
 
                     }
                 }).start();
-
+                Thread.interrupted();
                 minuto=0;
                 hora=0;
 
@@ -1266,7 +1245,7 @@ public class OperadorActivity extends AppCompatActivity {
 
                     }
                 }).start();
-            Thread.interrupted();
+                Thread.interrupted();
             }
         });
 
@@ -1360,72 +1339,60 @@ public class OperadorActivity extends AppCompatActivity {
                         }
 
 
-                    }
-                }).start();
-                Thread.interrupted();
-
-
-
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-
                         String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedits.php?numero="+nombretarea.toString()).body();
 
-                            try {
-                                JSONArray RESTARCANTIDAD = new JSONArray(response);
+                        try {
+                            JSONArray RESTARCANTIDAD = new JSONArray(response);
 
-                                volumencan = Integer.parseInt(cantidad.getText().toString());
-                                cantidadpro = Integer.parseInt(RESTARCANTIDAD.getString(0));
+                            volumencan = Integer.parseInt(cantidad.getText().toString());
+                            cantidadpro = Integer.parseInt(RESTARCANTIDAD.getString(0));
 
-                                int totalade = cantidadpro - volumencan;
+                            int totalade = cantidadpro - volumencan;
 
-                                        if(totalade >= 0){
-                                        String responses = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?numero="+nombretarea.toString()+"&totales="+totalade).body();
+                            if(totalade >= 0){
+                                String responses = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?numero="+nombretarea.toString()+"&totales="+totalade).body();
 
-                                        runOnUiThread(new Runnable() {
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(getApplicationContext(),"DATOS VERIFICADOS", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+
+                            }else if (totalade < 0){
+
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
+                                        builder.setTitle("EXEDIO LA CANTIDAD DE PRODUCCION AUTORIZADA");
+                                        builder.setMessage("usted exedio la cantidad permitida por la op ");
+                                        builder.setNegativeButton("VOLVER AL REGISTRO", new DialogInterface.OnClickListener() {
                                             @Override
-                                            public void run() {
-                                                Toast.makeText(getApplicationContext(),"DATOS VERIFICADOS", Toast.LENGTH_SHORT).show();
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+
                                             }
                                         });
 
-                                        }else if (totalade < 0){
 
-                                    runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-
-                                                AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
-                                                builder.setTitle("EXEDIO LA CANTIDAD DE PRODUCCION AUTORIZADA");
-                                                builder.setMessage("usted exedio la cantidad permitida por la op ");
-                                                builder.setNegativeButton("VOLVER AL REGISTRO", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                                                    }
-                                                });
+                                        builder.create().show();
 
 
-                                                builder.create().show();
+                                    }
+                                });
 
-
-                                        }
-                                    });
-
-                                }
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
                             }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
 
 
                     }
                 }).start();
                 Thread.interrupted();
-
-
-
 
             }
         });
@@ -1503,96 +1470,74 @@ public class OperadorActivity extends AppCompatActivity {
                         volumencan = Integer.parseInt(digito.getText().toString());
                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizarcantidad.php?numero="+Nop.toString()+"&id="+id.getText().toString()+"&canpen="+volumencan).body();
 
-                    }
-                }).start();
-                Thread.interrupted();
 
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                final String nombretarea = resuldato.getSelectedItem().toString();
+                        final String nombretarea = resuldato.getSelectedItem().toString();
+                        try {
+                            Thread.sleep(1000);
+
+
+                            String responses = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedits.php?numero="+nombretarea.toString()).body();
+
                             try {
-                                Thread.sleep(1000);
+                                JSONArray RESTARCANTIDAD = new JSONArray(responses);
 
+                                volumencan = Integer.parseInt(digito.getText().toString());
+                                cantidadpro = Integer.parseInt(RESTARCANTIDAD.getString(0));
 
-                                String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedits.php?numero="+nombretarea.toString()).body();
+                                int totalade = cantidadpro - volumencan;
 
-                                try {
-                                    JSONArray RESTARCANTIDAD = new JSONArray(response);
+                                System.out.println("LAS CANTIDADES SON : "+totalade);
 
-                                    volumencan = Integer.parseInt(digito.getText().toString());
-                                    cantidadpro = Integer.parseInt(RESTARCANTIDAD.getString(0));
+                                if(totalade >= 0){
+                                    String responsesx = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?numero="+nombretarea.toString()+"&totales="+totalade).body();
 
-                                  int totalade = cantidadpro - volumencan;
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(getApplicationContext(),"SE REGISTRO EL ADELANTO PRODUCCIDO ", Toast.LENGTH_SHORT).show();
+                                            MOSTRAROP();
+                                        }
+                                    });
+                                }
+                                else if (totalade < 0){
 
-                                    System.out.println("LAS CANTIDADES SON : "+totalade);
-
-                                    if(totalade >= 0){
-                                String responses = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?numero="+nombretarea.toString()+"&totales="+totalade).body();
-
-                                runOnUiThread(new Runnable() {
-                                       @Override
-                                       public void run() {
-                                           Toast.makeText(getApplicationContext(),"SE REGISTRO EL ADELANTO PRODUCCIDO ", Toast.LENGTH_SHORT).show();
-                                           MOSTRAROP();
-                                       }
-                                   });
-                                    }
-                                    else if (totalade < 0){
-
-                                        runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                try {
-                                                    Thread.sleep(500);
-                                                    AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
-                                                    builder.setTitle("EXEDIO LA CANTIDAD DE PRODUCCION AUTORIZADA");
-                                                    builder.setMessage("usted exedio la cantidad permitida por la op ");
-                                                    builder.setNegativeButton("VOLVER AL REGISTRO", new DialogInterface.OnClickListener() {
-                                                        @Override
-                                                        public void onClick(DialogInterface dialogInterface, int i) {
-
-                                                        }
-                                                    });
-
-
-                                                    builder.create().show();
-                                                } catch (InterruptedException e) {
-                                                    e.printStackTrace();
-                                                }
-
-                                            }
-                                        });
-
-                                    }/*else{
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
                                             try {
                                                 Thread.sleep(500);
+                                                AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
+                                                builder.setTitle("EXEDIO LA CANTIDAD DE PRODUCCION AUTORIZADA");
+                                                builder.setMessage("usted exedio la cantidad permitida por la op ");
+                                                builder.setNegativeButton("VOLVER AL REGISTRO", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialogInterface, int i) {
 
-                                                ttsManager.initQueue("SE REGISTRO EL ADELANTO PRODUCIDO");
-                                                Toast.makeText(getApplicationContext(),"SE REGISTRO EL ADELANTO PRODUCIDO", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
 
+
+                                                builder.create().show();
                                             } catch (InterruptedException e) {
                                                 e.printStackTrace();
                                             }
 
                                         }
                                     });
-                                    } */
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
+
                                 }
-
-
-                            } catch (InterruptedException e) {
+                            } catch (JSONException e) {
                                 e.printStackTrace();
                             }
 
+
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }).start();
                 Thread.interrupted();
+
            }
         });
         aplazarproduccion.setPositiveButton("CANCELAR", new DialogInterface.OnClickListener() {
