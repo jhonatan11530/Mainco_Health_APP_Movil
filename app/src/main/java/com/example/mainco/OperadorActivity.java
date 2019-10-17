@@ -86,6 +86,7 @@ public class OperadorActivity extends AppCompatActivity {
         ttsManager.init( this );
 
 
+        startService(new Intent(this, ServiceNotification.class));
 
 
         resuldato = (Spinner) findViewById(R.id.spinner1);

@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 
 public class LoginActivity<notificationChannel> extends AppCompatActivity {
-
+    
     EditText login,pass;
     Button validar,registre;
     TSSManager ttsManager=null;
@@ -463,8 +463,8 @@ public class LoginActivity<notificationChannel> extends AppCompatActivity {
 
                             if(objecto.length()>0) {
 
-                             //   startService(new Intent(LoginActivity.this, ServerConnect.class));
-                                startService(new Intent(LoginActivity.this, ServiceNotification.class));
+                               //  startService(new Intent(LoginActivity.this, ServerConnect.class));
+
 
                             }
 
