@@ -27,7 +27,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.loopj.android.http.*;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -71,7 +72,7 @@ public class OperadorActivity extends AppCompatActivity {
     public Thread hilo,eliminaOK;
     private RadioButton botonSi,botonNo;
     private ListView componentes;
-    TSSManager  ttsManager=null;
+    TSSManager ttsManager=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,8 +85,10 @@ public class OperadorActivity extends AppCompatActivity {
 
         setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        ttsManager=new TSSManager ();
-        ttsManager.init( this );
+
+
+
+
 
         resuldato = (Spinner) findViewById(R.id.spinner1);
 
@@ -164,7 +167,6 @@ public class OperadorActivity extends AppCompatActivity {
 
 
                         Toast.makeText(getApplicationContext(),"SESIÒN CERRADA", Toast.LENGTH_SHORT).show();
-
 
                         ttsManager.initQueue("HASTA LUEGO");
                         Intent e = new Intent(getApplicationContext(), LoginActivity.class);
@@ -1439,6 +1441,7 @@ public class OperadorActivity extends AppCompatActivity {
 
 
                 if(grupo.getCheckedRadioButtonId() == -1){
+
 
                     ttsManager.initQueue("NO SE PUEDE CONTINUAR DEBE SELECCIONAR UNA OPCION");
                     Toast.makeText(getApplicationContext(),"NO SE PUEDE CONTINUAR DEBE SELECCIONAR UNA OPCION", Toast.LENGTH_SHORT).show();
