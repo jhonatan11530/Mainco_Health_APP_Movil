@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 
 public class LoginActivity<notificationChannel> extends AppCompatActivity {
-    
+
     EditText login,pass;
     Button validar,registre;
     TSSManager ttsManager=null;
