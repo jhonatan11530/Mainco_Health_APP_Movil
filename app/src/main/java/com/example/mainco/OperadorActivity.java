@@ -85,7 +85,8 @@ public class OperadorActivity extends AppCompatActivity {
 
         setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-
+        ttsManager = new TSSManager();
+        ttsManager.init( this );
 
 
 
@@ -172,7 +173,6 @@ public class OperadorActivity extends AppCompatActivity {
                         Intent e = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(e);
 
-                        stopService(new Intent(OperadorActivity.this, ServiceConnectServer.class));
 
 
                     }
@@ -899,6 +899,7 @@ public class OperadorActivity extends AppCompatActivity {
                                             salidaTIME.setEnabled(false);
                                             cantidadund.setEnabled(false);
                                             ((TextView) resuldato.getSelectedView()).setTextColor(Color.RED);
+
 
                                             AlertDialog.Builder builder = new AlertDialog.Builder( OperadorActivity.this );
                                             builder.setTitle( "LA OP FINALIZO " );

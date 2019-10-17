@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
 import org.json.JSONArray;
 
@@ -30,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     TSSManager ttsManager=null;
     ArrayList com;
    private ListView componentes;
-
+    NotificationCompat.Builder notificacion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +39,10 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        ttsManager = new TSSManager();
+        ttsManager.init( this );
 
-
-
+        
       login = (EditText)findViewById(R.id.estado);
          pass = (EditText)findViewById(R.id.ID);
 
@@ -458,9 +460,10 @@ public class LoginActivity extends AppCompatActivity {
                             JSONArray objecto = new JSONArray(response);
 
                             if(objecto.length()>0) {
-                                startService(new Intent(LoginActivity.this, ServiceConnectServer.class));
 
-
+                                Intent e = new Intent( getApplicationContext(), OperadorActivity.class );
+                                startActivity( e );
+                                Toast.makeText(getApplicationContext(),"SESIÒN INICIADA", Toast.LENGTH_SHORT).show();
 
                             }
 
