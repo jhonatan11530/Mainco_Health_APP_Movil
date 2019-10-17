@@ -68,10 +68,10 @@ public class OperadorActivity extends AppCompatActivity {
     private AsyncHttpClient clientes;
     private AsyncHttpClient clientes2;
     private AsyncHttpClient clientes3;
-    TSSManager ttsManager=null;
     public Thread hilo,eliminaOK;
     private RadioButton botonSi,botonNo;
     private ListView componentes;
+    TSSManager  ttsManager=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,8 +83,9 @@ public class OperadorActivity extends AppCompatActivity {
         clientes3 = new AsyncHttpClient();
 
         setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        ttsManager=new TSSManager();
-        ttsManager.init(this);
+
+        ttsManager=new TSSManager ();
+        ttsManager.init( this );
 
         resuldato = (Spinner) findViewById(R.id.spinner1);
 
@@ -163,9 +164,13 @@ public class OperadorActivity extends AppCompatActivity {
 
 
                         Toast.makeText(getApplicationContext(),"SESIÒN CERRADA", Toast.LENGTH_SHORT).show();
+
+
                         ttsManager.initQueue("HASTA LUEGO");
                         Intent e = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(e);
+
+                        stopService(new Intent(OperadorActivity.this, ServiceConnectServer.class));
 
 
                     }
@@ -1434,6 +1439,7 @@ public class OperadorActivity extends AppCompatActivity {
 
 
                 if(grupo.getCheckedRadioButtonId() == -1){
+
                     ttsManager.initQueue("NO SE PUEDE CONTINUAR DEBE SELECCIONAR UNA OPCION");
                     Toast.makeText(getApplicationContext(),"NO SE PUEDE CONTINUAR DEBE SELECCIONAR UNA OPCION", Toast.LENGTH_SHORT).show();
                 }

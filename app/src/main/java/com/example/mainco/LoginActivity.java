@@ -38,8 +38,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        ttsManager=new TSSManager();
-        ttsManager.init(this);
+
 
 
       login = (EditText)findViewById(R.id.estado);
@@ -446,10 +445,11 @@ public class LoginActivity extends AppCompatActivity {
 
             }else{
 
-
-                new Thread(new Runnable() {
+                 new Thread(new Runnable() {
                     @Override
                     public void run() {
+                        try {
+                            Thread.sleep( 500 );
 
 
                         String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/validar.php?cedula="+login.getText().toString()+"&pass="+pass.getText().toString()).body();
@@ -458,17 +458,9 @@ public class LoginActivity extends AppCompatActivity {
                             JSONArray objecto = new JSONArray(response);
 
                             if(objecto.length()>0) {
+                                startService(new Intent(LoginActivity.this, ServiceConnectServer.class));
 
 
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Intent e = new Intent(getApplicationContext(), OperadorActivity.class);
-                                        startActivity(e);
-                                        ttsManager.initQueue("BIENVENIDO");
-                                        Toast.makeText(getApplicationContext(),"SESIÒN INICIADA", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
 
                             }
 
@@ -485,11 +477,14 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-
                         }catch (Exception e) {
                             // TODO: handle exception
                             e.printStackTrace();
                         }
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
                     }
                 }).start();
 

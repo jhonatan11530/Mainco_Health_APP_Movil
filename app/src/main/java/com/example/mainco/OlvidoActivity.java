@@ -28,8 +28,9 @@ public class OlvidoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_olvido);
 
         ttsManager=new TSSManager();
-        setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         ttsManager.init(this);
+        setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
 
         id = (EditText)findViewById(R.id.CDUNICO);
         cedula = (EditText)findViewById(R.id.cc);
