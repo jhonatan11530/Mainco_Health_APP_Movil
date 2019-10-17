@@ -1,9 +1,11 @@
 package com.example.mainco;
 
 
+import android.app.Notification;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,14 +20,16 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import org.json.JSONArray;
 
 import java.util.ArrayList;
 
 
-public class LoginActivity extends AppCompatActivity {
-
+public class LoginActivity<notificationChannel> extends AppCompatActivity {
+    public static final int NOTIFICATION_ID = 1;
+    public static final String NOTIFICATION_CHANNEL_ID = "channel_id";
     EditText login,pass;
     Button validar,registre;
     TSSManager ttsManager=null;
@@ -42,12 +46,14 @@ public class LoginActivity extends AppCompatActivity {
         ttsManager = new TSSManager();
         ttsManager.init( this );
 
-        
+
       login = (EditText)findViewById(R.id.estado);
          pass = (EditText)findViewById(R.id.ID);
 
         registre = (Button)findViewById(R.id.registre);
         validar = (Button)findViewById(R.id.login);
+
+
 
 
 
@@ -461,9 +467,31 @@ public class LoginActivity extends AppCompatActivity {
 
                             if(objecto.length()>0) {
 
+                                runOnUiThread( new Runnable() {
+                                    @Override
+                                    public void run() {
+
+                                NotificationCompat.Builder builder = new NotificationCompat.Builder(LoginActivity.this, NOTIFICATION_CHANNEL_ID);
+                                builder.setContentTitle("usted acaba de iniciar sesión");
+                                builder.setContentText("el usuario ha entrado al sistema exitosamente");
+                                builder.setSmallIcon(R.drawable.mainco);
+                                builder.setStyle ( new NotificationCompat. BigTextStyle ( ) );
+
+                                builder.setLargeIcon( BitmapFactory.decodeResource(getResources(), R.drawable.mainco));
+                                Notification notification = builder.build();
+
+                                NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(LoginActivity.this);
+                                notificationManagerCompat.notify(NOTIFICATION_ID, notification);
+
+                                        builder.setVisibility( NotificationCompat. VISIBILITY_PUBLIC ) ;
+
                                 Intent e = new Intent( getApplicationContext(), OperadorActivity.class );
                                 startActivity( e );
                                 Toast.makeText(getApplicationContext(),"SESIÒN INICIADA", Toast.LENGTH_SHORT).show();
+
+
+                                    }
+                                } );
 
                             }
 
@@ -496,7 +524,9 @@ public class LoginActivity extends AppCompatActivity {
 }
 
 
-    public void registro (View v){
+
+    public void registro (View v) {
+
         Intent e = new Intent(getApplicationContext(), RegistroActivity.class);
         startActivity(e);
 

@@ -24,7 +24,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -45,7 +44,6 @@ public class OperadorActivity extends AppCompatActivity {
 
     private EditText id, cantidad, paro, fallas;
     private String mensaje = "";
-    String cargarSpinner;
     private ListView resultados;
     private TextView motivo, MOSTRAR,texto,totalcan,tex;
     private Spinner resuldato, resuldato2, resuldato3, resuldato4;
@@ -53,11 +51,10 @@ public class OperadorActivity extends AppCompatActivity {
     private  Button BTN_time, go, stop, btnconfir,desbloquear,positivo,neutrar, registroTIME, salidaTIME,validarinfo,cantidadund,btnvalidar;
     private  TimePickerDialog listo;
     private int minuto, i, hora,cantidadpro,vo,volumencan,total,datoverifica;;
-    ArrayList<cantidades> dato = new ArrayList<cantidades>();
+    private ArrayList<cantidades> dato = new ArrayList<cantidades>();
     private ArrayList<String> datos2 = new ArrayList<String>();
     private ArrayList<produccion> dato3 = new ArrayList<produccion>();
     private ArrayList<cantidadfallas> dato4 = new ArrayList<cantidadfallas>();
-    ActionBar actionBar;
     EditText edit,digito;
     View tiempo1,adelanto;
     AlertDialog.Builder registros,aplazarproduccion;
