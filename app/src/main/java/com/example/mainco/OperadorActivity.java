@@ -1535,7 +1535,7 @@ public class OperadorActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
                     }
-                }).start();
+                });
                 Thread.interrupted();
 
            }
