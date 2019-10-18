@@ -17,21 +17,20 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
 
 import org.json.JSONArray;
 
 import java.util.ArrayList;
 
 
-public class LoginActivity<notificationChannel> extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
-    EditText login,pass;
-    Button validar,registre;
-    TSSManager ttsManager=null;
+    EditText login, pass;
+    Button validar, registre;
+    TSSManager ttsManager = null;
     ArrayList com;
-   private ListView componentes;
-    NotificationCompat.Builder notificacion;
+    private ListView componentes;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,18 +38,15 @@ public class LoginActivity<notificationChannel> extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+
+
         ttsManager = new TSSManager();
         ttsManager.init( this );
-
-
       login = (EditText)findViewById(R.id.estado);
          pass = (EditText)findViewById(R.id.ID);
 
         registre = (Button)findViewById(R.id.registre);
         validar = (Button)findViewById(R.id.login);
-
-
-
 
 
     }
@@ -463,8 +459,8 @@ public class LoginActivity<notificationChannel> extends AppCompatActivity {
 
                             if(objecto.length()>0) {
 
-                               //  startService(new Intent(LoginActivity.this, ServerConnect.class));
 
+                             startService(new Intent(LoginActivity.this, ServerConnect.class));
 
                             }
 
@@ -472,6 +468,7 @@ public class LoginActivity<notificationChannel> extends AppCompatActivity {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
+
                                         ttsManager.initQueue("USUARIO O CONTRASEÑA INCORRECTO");
                                         Toast.makeText(getApplicationContext(),"USUARIO O CONTRASEÑA INCORRECTO", Toast.LENGTH_SHORT).show();
 
@@ -500,10 +497,13 @@ public class LoginActivity<notificationChannel> extends AppCompatActivity {
 
     public void registro (View v) {
 
-        Intent e = new Intent(getApplicationContext(), RegistroActivity.class);
+       Intent e = new Intent(getApplicationContext(), RegistroActivity.class);
         startActivity(e);
 
+
+
     }
+
 
     public void olvidoC (View v){
         Intent e = new Intent(getApplicationContext(), OlvidoActivity.class);

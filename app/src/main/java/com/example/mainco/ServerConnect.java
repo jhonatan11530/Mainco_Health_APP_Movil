@@ -6,6 +6,7 @@ import android.os.IBinder;
 
 public class ServerConnect extends Service {
 
+
     public ServerConnect() {
     }
 
@@ -19,6 +20,7 @@ public class ServerConnect extends Service {
     public void onCreate() {
         super.onCreate();
 
+
     }
 
     @Override
@@ -26,6 +28,8 @@ public class ServerConnect extends Service {
 
 
 
+       Intent e = new Intent(getApplicationContext(), OperadorActivity.class);
+       startActivity(e);
 
 
 

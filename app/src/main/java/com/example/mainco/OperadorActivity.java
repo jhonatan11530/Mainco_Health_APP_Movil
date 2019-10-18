@@ -70,6 +70,7 @@ public class OperadorActivity extends AppCompatActivity {
     private RadioButton botonSi,botonNo;
     private ListView componentes;
     TSSManager ttsManager=null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,7 +87,7 @@ public class OperadorActivity extends AppCompatActivity {
         ttsManager.init( this );
 
 
-        startService(new Intent(this, ServiceNotification.class));
+
 
 
         resuldato = (Spinner) findViewById(R.id.spinner1);

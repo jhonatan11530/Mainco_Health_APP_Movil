@@ -14,14 +14,10 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-
-        <service android:name=".ServiceNotification"
+        <service
+            android:name=".ServerConnect"
             android:enabled="true"
-            android:exported="true"/>
-
-        <service android:name=".ServerConnect"
-            android:enabled="true"
-            android:exported="true"/>
+            android:exported="true" />
 
         <activity
             android:name=".MainActivity"
