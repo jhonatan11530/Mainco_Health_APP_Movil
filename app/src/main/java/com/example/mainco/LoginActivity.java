@@ -523,7 +523,7 @@ public void guardar(){
 public void mostrarguardado(){
 
     SharedPreferences mostrardato = getPreferences( Context.MODE_PRIVATE );
-   final String user = mostrardato.getString( "usuario","NO HAY DATOS DEL USUARIO GUARDADO" );
+   final String user = mostrardato.getString( "usuario","" );
 
     new Thread( new Runnable() {
         @Override
