@@ -1,8 +1,10 @@
 package com.example.mainco;
 
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -29,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     Button validar, registre;
     TSSManager ttsManager = null;
     ArrayList com;
+    final String user ="";
     private ListView componentes;
 
 
@@ -38,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        mostrarguardado();
 
 
         ttsManager = new TSSManager();
@@ -452,6 +457,7 @@ public class LoginActivity extends AppCompatActivity {
                             Thread.sleep( 500 );
 
 
+
                         String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/validar.php?cedula="+login.getText().toString()+"&pass="+pass.getText().toString()).body();
 
                         try {
@@ -460,7 +466,20 @@ public class LoginActivity extends AppCompatActivity {
                             if(objecto.length()>0) {
 
 
-                             startService(new Intent(LoginActivity.this, ServerConnect.class));
+                                CheckBox GUARDARUTO = (CheckBox) findViewById(R.id.OK);
+
+                                if(GUARDARUTO.isChecked()==true){
+                                    runOnUiThread( new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText( getApplicationContext(),"SE GUARDO EL USUARIO Y CONTRASEÑA",Toast.LENGTH_SHORT).show();
+
+                                            guardar();
+                                        }
+                                    } );
+
+                                }
+                            startService(new Intent(LoginActivity.this, ServerConnect.class));
 
                             }
 
@@ -491,6 +510,33 @@ public class LoginActivity extends AppCompatActivity {
 
 
         }
+}
+
+public void guardar(){
+
+    SharedPreferences preferences = getSharedPreferences("ARCHIVO_LOGIN", Context.MODE_PRIVATE );
+    SharedPreferences shared = getPreferences(Context.MODE_PRIVATE);
+    SharedPreferences.Editor usu = shared.edit();
+    usu.putString("usuario",login.getText().toString());
+    usu.commit();
+
+}
+public void mostrarguardado(){
+
+    SharedPreferences mostrardato = getPreferences( Context.MODE_PRIVATE );
+   final String user = mostrardato.getString( "usuario","NO HAY DATOS DEL USUARIO GUARDADO" );
+
+    new Thread( new Runnable() {
+        @Override
+        public void run() {
+            try {
+                Thread.sleep( 2000 );
+            login.setText( user );
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    } ).start();
 }
 
 
