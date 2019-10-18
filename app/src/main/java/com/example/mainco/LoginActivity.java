@@ -1,6 +1,7 @@
 package com.example.mainco;
 
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -479,7 +480,22 @@ public class LoginActivity extends AppCompatActivity {
                                     } );
 
                                 }
-                            startService(new Intent(LoginActivity.this, ServerConnect.class));
+                                    runOnUiThread( new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            ProgressDialog pd = new ProgressDialog(LoginActivity.this);
+
+                                            pd.setTitle("INICIANDO SESION");
+
+                                            pd.setMessage("Porfavor espere");
+                                            pd.setCanceledOnTouchOutside(false);
+
+                                            pd.show();
+
+                                            startService(new Intent(LoginActivity.this, ServerConnect.class));
+                                        }
+                                    } );
+
 
                             }
 

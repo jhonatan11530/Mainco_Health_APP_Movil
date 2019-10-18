@@ -32,7 +32,6 @@ public class ServerConnect extends Service {
        startActivity(e);
 
 
-
         return START_STICKY;
     }
 
