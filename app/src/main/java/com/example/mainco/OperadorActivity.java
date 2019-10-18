@@ -1,6 +1,7 @@
 package com.example.mainco;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -164,9 +165,14 @@ public class OperadorActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialogInterface, int i) {
 
 
+                        ProgressDialog pd = new ProgressDialog(OperadorActivity.this);
 
+                        pd.setTitle("CERRANDO SESION");
 
-                        Toast.makeText(getApplicationContext(),"SESIÒN CERRADA", Toast.LENGTH_SHORT).show();
+                        pd.setMessage("Porfavor espere");
+                        pd.setCanceledOnTouchOutside(false);
+
+                        pd.show();
 
                         ttsManager.initQueue("HASTA LUEGO");
                         Intent e = new Intent(getApplicationContext(), LoginActivity.class);
