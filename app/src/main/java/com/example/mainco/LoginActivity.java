@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
     ArrayList com;
     final String user ="";
     private ListView componentes;
-
+    CheckBox GUARDARUTO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +44,11 @@ public class LoginActivity extends AppCompatActivity {
 
         mostrarguardado();
 
+         GUARDARUTO = (CheckBox) findViewById(R.id.OK);
 
         ttsManager = new TSSManager();
         ttsManager.init( this );
+
       login = (EditText)findViewById(R.id.estado);
          pass = (EditText)findViewById(R.id.ID);
 
@@ -466,8 +468,6 @@ public class LoginActivity extends AppCompatActivity {
                             if(objecto.length()>0) {
 
 
-                                CheckBox GUARDARUTO = (CheckBox) findViewById(R.id.OK);
-
                                 if(GUARDARUTO.isChecked()==true){
                                     runOnUiThread( new Runnable() {
                                         @Override
@@ -498,7 +498,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
                         }catch (Exception e) {
-                            // TODO: handle exception
                             e.printStackTrace();
                         }
                         } catch (InterruptedException e) {

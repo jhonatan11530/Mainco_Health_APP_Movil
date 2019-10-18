@@ -86,7 +86,7 @@
             android:layout_width="350dp"
             android:layout_height="80dp"
             android:gravity="center"
-            android:text="RECORDAR LOGIN"
+            android:text="RECORDAR USUARIO"
             android:textColor="#ffffff"
             android:textSize="15sp" />
 
