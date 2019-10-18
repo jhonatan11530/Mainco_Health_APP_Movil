@@ -1,12 +1,15 @@
 package com.example.mainco;
 
+
 import android.content.Context;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 
 import java.util.Locale;
 
+
 public class TSSManager {
+
 
     private TextToSpeech mTts = null;
     private boolean isLoaded = false;
@@ -22,7 +25,7 @@ public class TSSManager {
     private TextToSpeech.OnInitListener onInitListener = new TextToSpeech.OnInitListener() {
         @Override
         public void onInit(int status) {
-            Locale spanish = new Locale("es", "USA");
+            Locale spanish = new Locale("es", "ES");
             if (status == TextToSpeech.SUCCESS) {
                 int result = mTts.setLanguage(spanish);
                 isLoaded = true;
