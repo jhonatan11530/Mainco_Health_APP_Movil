@@ -491,7 +491,7 @@ public class LoginActivity extends AppCompatActivity {
                                             pd.setCanceledOnTouchOutside(false);
 
                                             pd.show();
-
+                                            ttsManager.initQueue("BIENVENIDO");
                                             startService(new Intent(LoginActivity.this, ServerConnect.class));
                                         }
                                     } );
