@@ -704,8 +704,7 @@ public class OperadorActivity extends AppCompatActivity {
 
 
     public void operador(View v) {
-        mensaje = "";
-
+      mensaje="";
         id = (EditText) findViewById(R.id.operador);
         resultados = (ListView) findViewById(R.id.listar_operador);
 
@@ -751,45 +750,7 @@ public class OperadorActivity extends AppCompatActivity {
                             datos2.add(mensaje);
 
                         }
-
-
-                            String responses = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedit.php?numero="+Nop.toString()).body();
-
-                            try {
-                                JSONArray RESTARCANTIDAD = new JSONArray(responses);
-                                String acz = HttpRequest.get("http://"+cambiarIP.ip+"/validar/validarcantidad.php?id="+nombretarea.toString()).body();
-
-                                JSONArray tareita = new JSONArray(acz);
-                                datoverifica = Integer.parseInt(tareita.getString( 0 ));
-
-                                totalcan.setText("CANTIDAD OP : "+RESTARCANTIDAD.getString(0)+" CANTIDAD PENDIENTE : "+tareita.getString(0));
-
-                                if(datoverifica == 0){
-
-
-                                    new verificar().start();
-                                }
-
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-
-
-                                        String responsesx = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedit.php?numero="+Nop.toString()).body();
-
-                                        try {
-                                            JSONArray RESTARCANTIDAD = new JSONArray(responsesx);
-                                            int datico = Integer.parseInt(RESTARCANTIDAD.getString(0));
-
-                                            String asd = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizartarea.php?tarea="+nombretarea.toString()+"&canpen="+datico).body();
-
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
-                                        }
-
-
-                        }
+                         }
                         else{
                             runOnUiThread(new Runnable() {
                                 @Override
@@ -813,17 +774,32 @@ public class OperadorActivity extends AppCompatActivity {
             hilo.start();
             hilo.interrupted();
 
-
-
             resultados.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, datos2));
             datos2.clear();
-
-
-
-
-
         }
 
+
+    }
+    public void actarea(){
+        final String nombretarea = resuldato.getSelectedItem().toString();
+
+        final String Nop = resuldato3.getSelectedItem().toString();
+        new Thread( new Runnable() {
+            @Override
+            public void run() {
+                String responsesx = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedit.php?numero="+Nop.toString()).body();
+
+                try {
+                    JSONArray RESTARCANTIDADES = new JSONArray(responsesx);
+                    int datico = Integer.parseInt(RESTARCANTIDADES.getString(0));
+
+                    String asd = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizartarea.php?tarea="+nombretarea.toString()+"&canpen="+datico).body();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        } ).start();
 
     }
     public void MOSTRAROP(){
