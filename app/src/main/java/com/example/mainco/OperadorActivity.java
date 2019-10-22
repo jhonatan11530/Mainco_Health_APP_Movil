@@ -750,6 +750,8 @@ public class OperadorActivity extends AppCompatActivity {
                             datos2.add(mensaje);
 
                         }
+                            
+
                          }
                         else{
                             runOnUiThread(new Runnable() {
