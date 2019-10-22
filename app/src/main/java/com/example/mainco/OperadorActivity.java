@@ -44,14 +44,14 @@ public class OperadorActivity extends AppCompatActivity {
 
 
     private EditText id, cantidad, paro, fallas;
-    private String mensaje = "";
+    private String mensaje = "",falla,error;
     private ListView resultados;
     private TextView motivo, MOSTRAR,texto,totalcan,tex;
     private Spinner resuldato, resuldato2, resuldato3, resuldato4;
 
     private  Button BTN_time, go, stop, btnconfir,desbloquear,positivo,neutrar, registroTIME, salidaTIME,validarinfo,cantidadund,btnvalidar;
     private  TimePickerDialog listo;
-    private int minuto, i, hora,cantidadpro,vo,volumencan,total,datoverifica;;
+    private int minuto, i, hora,cantidadpro,volumen,volumencan,total,datoverifica;;
     private ArrayList<cantidades> dato = new ArrayList<cantidades>();
     private ArrayList<String> datos2 = new ArrayList<String>();
     private ArrayList<produccion> dato3 = new ArrayList<produccion>();
@@ -763,35 +763,25 @@ public class OperadorActivity extends AppCompatActivity {
                                     totalcan.setText("CANTIDAD OP : "+RESTARCANTIDAD.getString(0)+" CANTIDAD PENDIENTE : "+tareita.getString(0));
 
                                     if(datoverifica == 0){
+                                        verificar();
 
 
-                                        new verificar().start();
                                     }
+                                    if(RESTARCANTIDAD.getString(0) != null){
+
+
+                                        MOSTRAROP();
+                                    }
+
+
+
 
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
 
-                            final String nombretarea = resuldato.getSelectedItem().toString();
 
-                            final String Nop = resuldato3.getSelectedItem().toString();
-                            new Thread( new Runnable() {
-                                @Override
-                                public void run() {
-                                    String responsesx = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedit.php?numero="+Nop.toString()).body();
-
-                                    try {
-                                        JSONArray RESTARCANTIDADES = new JSONArray(responsesx);
-                                        int datico = Integer.parseInt(RESTARCANTIDADES.getString(0));
-
-                                        String asd = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizartarea.php?tarea="+nombretarea.toString()+"&canpen="+datico).body();
-
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                            } ).start();
 
 
 
@@ -825,6 +815,30 @@ public class OperadorActivity extends AppCompatActivity {
 
 
     }
+    public void restaurarACAN(){
+
+        final String nombretarea = resuldato.getSelectedItem().toString();
+
+        final String Nop = resuldato3.getSelectedItem().toString();
+        new Thread( new Runnable() {
+            @Override
+            public void run() {
+              String responsesx = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedit.php?numero="+Nop.toString()).body();
+
+                try {
+                    JSONArray RESTARCANTIDADES = new JSONArray(responsesx);
+                    int datico = Integer.parseInt(RESTARCANTIDADES.getString(0));
+
+                    String asd = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizartarea.php?tarea="+nombretarea.toString()+"&canpen="+datico).body();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        } ).start();
+    }
     public void MOSTRAROP(){
 
 
@@ -835,8 +849,11 @@ public class OperadorActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
+                while(true){
+                    try {
+                        Thread.sleep( 1000 );
 
-                String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedit.php?numero="+Nop.toString()).body();
+                    String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedit.php?numero="+Nop.toString()).body();
 
                 try {
                     JSONArray RESTARCANTIDAD = new JSONArray(response);
@@ -847,24 +864,22 @@ public class OperadorActivity extends AppCompatActivity {
 
                     totalcan.setText("CANTIDAD OP : "+RESTARCANTIDAD.getString(0)+" CANTIDAD PENDIENTE : "+tareita.getString(0));
 
-                    if(datoverifica == 0){
-
-
-                        new verificar().start();
-                    }
 
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         }).start();
-        Thread.interrupted();
+
+
     }
 
-    class verificar extends Thread{
-        public void run(){
+  public void verificar(){
 
             eliminaOK = new Thread(new Runnable() {
                 @Override
@@ -939,9 +954,8 @@ public class OperadorActivity extends AppCompatActivity {
             });
             eliminaOK.start();
             eliminaOK.interrupted();
-        }
-    }
 
+  }
 
     public void hora(View v) {
 
@@ -1310,18 +1324,18 @@ public class OperadorActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
-            final   int volumen = Integer.parseInt(cantidad.getText().toString());
-            final   String falla = fallas.getText().toString();
-            final String error = resuldato4.getSelectedItem().toString();
+            volumen = Integer.parseInt(cantidad.getText().toString());
+             falla = fallas.getText().toString();
+            error = resuldato4.getSelectedItem().toString();
 
                 final String Nop = resuldato3.getSelectedItem().toString();
                 final String nombretarea = resuldato.getSelectedItem().toString();
 
 
+
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-
                         String cantiok = HttpRequest.get("http://"+cambiarIP.ip+"/validar/consulcantidad.php?numero="+id.getText().toString()).body();
 
                         try {
@@ -1367,6 +1381,7 @@ public class OperadorActivity extends AppCompatActivity {
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
+
                                         Toast.makeText(getApplicationContext(),"DATOS VERIFICADOS", Toast.LENGTH_SHORT).show();
                                     }
                                 });
@@ -1395,6 +1410,7 @@ public class OperadorActivity extends AppCompatActivity {
                                 });
 
                             }
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();
