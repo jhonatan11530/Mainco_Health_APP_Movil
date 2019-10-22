@@ -715,38 +715,65 @@ public class OperadorActivity extends AppCompatActivity {
 
             final String Nop = resuldato3.getSelectedItem().toString();
 
-            new Thread( new Runnable() {
+            new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    String responses = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/cantidadedit.php?numero=" + Nop.toString() ).body();
 
-                    try {
-                        JSONArray RESTARCANTIDAD = new JSONArray( responses );
-                        String acz = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/validarcantidad.php?id=" + nombretarea.toString() ).body();
+                    try { /*
+                        String response = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/operador.php?id=" + id.getText().toString() ).body();
 
-                        JSONArray tareita = new JSONArray( acz );
-                        datoverifica = Integer.parseInt( tareita.getString( 0 ) );
+                        JSONArray objecto = new JSONArray( response );
 
-                        totalcan.setText( "CANTIDAD OP : " + RESTARCANTIDAD.getString( 0 ) + " CANTIDAD PENDIENTE : " + tareita.getString( 0 ) );
+                        if (objecto.length() != 0) {
 
-                        if (datoverifica == 0) {
-                            verificar();
+                            runOnUiThread( new Runnable() {
+                                @Override
+                                public void run() {
+                                    desbloquear.setEnabled( true );
+                                    registroTIME.setEnabled( true );
+                                    salidaTIME.setEnabled( true );
+                                    cantidadund.setEnabled( true );
+                                }
+                            } );
+
+                            resultados.setText( objecto.getString( 0 ).toString() );
+*/
 
 
-                        }
-                        if (RESTARCANTIDAD.getString( 0 ) != null) {
+                                String rest = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/validarcantidad.php?id=" + nombretarea.toString()+"&numero="+ Nop.toString()  ).body();
+
+                                JSONArray tareita = new JSONArray(rest);
+
+                                datoverifica = Integer.parseInt( tareita.getString( 1 ) );
+
+                                totalcan.setText( "CANTIDAD OP : " + tareita.getString( 0 ) + " CANTIDAD PENDIENTE : " + tareita.getString( 1 ) );
 
 
-                            MOSTRAROP();
-                        }
+                                if (tareita.getString( 1 ) != null) {
+
+                                    restaurarACAN();
+                                    MOSTRAROP();
+                                }
+                                if (datoverifica == 0) {
+                                    verificar();
 
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                                }
+                        System.out.println( "ASSSSSSSSSSSSSSSS" );
+                        System.out.println( tareita.getString( 0 ) );
+                        System.out.println( tareita.getString( 1 ) );
+
+                      //  }
+                    } catch (Exception e) {
+                        // TODO: handle exception
+
                     }
                 }
-            } ).start();
+
+
+            }).start();
             Thread.interrupted();
+
 
                     }
                     else{
