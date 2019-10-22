@@ -105,7 +105,9 @@ public class OperadorActivity extends AppCompatActivity {
 
         salidaTIME = (Button) findViewById(R.id.salida);
 
+        id = (EditText) findViewById(R.id.operador);
 
+        resultados = (TextView) findViewById(R.id.listar_operador);
 
 
 
@@ -703,97 +705,58 @@ public class OperadorActivity extends AppCompatActivity {
 
     public void operador(View v) {
 
-        id = (EditText) findViewById(R.id.operador);
-        resultados = (TextView) findViewById(R.id.listar_operador);
-
-
-        if (id.getText().toString().length() == 0) {
+        if (id.getText().toString() == null) {
 
             id.setError("ID ES REQUERIDO !");
 
-        }
-         else {
+        }if (id.getText().toString() != null) {
 
             final String nombretarea = resultados.toString();
 
             final String Nop = resuldato3.getSelectedItem().toString();
 
-
-             hilo = new Thread(new Runnable() {
+            new Thread( new Runnable() {
                 @Override
                 public void run() {
+                    String responses = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/cantidadedit.php?numero=" + Nop.toString() ).body();
 
+                    try {
+                        JSONArray RESTARCANTIDAD = new JSONArray( responses );
+                        String acz = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/validarcantidad.php?id=" + nombretarea.toString() ).body();
 
-                        try {
-                            String response = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/operador.php?id=" + id.getText().toString() ).body();
+                        JSONArray tareita = new JSONArray( acz );
+                        datoverifica = Integer.parseInt( tareita.getString( 0 ) );
 
-                            JSONArray objecto = new JSONArray( response );
+                        totalcan.setText( "CANTIDAD OP : " + RESTARCANTIDAD.getString( 0 ) + " CANTIDAD PENDIENTE : " + tareita.getString( 0 ) );
 
-                            if (objecto.length() != 0) {
+                        if (datoverifica == 0) {
+                            verificar();
 
-                                runOnUiThread( new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        desbloquear.setEnabled( true );
-                                        registroTIME.setEnabled( true );
-                                        salidaTIME.setEnabled( true );
-                                        cantidadund.setEnabled( true );
-                                    }
-                                } );
-
-                                resultados.setText( "" + objecto.getString( 0 ).toString() );
-
-
-                                String responses = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/cantidadedit.php?numero=" + Nop.toString() ).body();
-
-                                try {
-                                    JSONArray RESTARCANTIDAD = new JSONArray( responses );
-                                    String acz = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/validarcantidad.php?id=" + nombretarea.toString() ).body();
-
-                                    JSONArray tareita = new JSONArray( acz );
-                                    datoverifica = Integer.parseInt( tareita.getString( 0 ) );
-
-                                    totalcan.setText( "CANTIDAD OP : " + RESTARCANTIDAD.getString( 0 ) + " CANTIDAD PENDIENTE : " + tareita.getString( 0 ) );
-
-                                    if (datoverifica == 0) {
-                                        verificar();
-
-
-                                    }
-                                    if (RESTARCANTIDAD.getString( 0 ) != null) {
-
-
-                                        MOSTRAROP();
-                                    }
-
-
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-
-                            }
-                            else{
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Toast.makeText(getApplicationContext(),"EL CODIGO DEL USUARIO NO EXISTE", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
-                            }
-                        } catch(Exception e){
-                            // TODO: handle exception
 
                         }
+                        if (RESTARCANTIDAD.getString( 0 ) != null) {
 
+
+                            MOSTRAROP();
+                        }
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
+            } ).start();
+            Thread.interrupted();
 
-
-            });
-            hilo.start();
-            hilo.interrupted();
-
-        }
-
+                    }
+                    else{
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(),"EL CODIGO DEL USUARIO NO EXISTE", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
 
     }
     public void restaurarACAN(){
@@ -1115,7 +1078,7 @@ public class OperadorActivity extends AppCompatActivity {
 
         go.setEnabled(false);
 
-        hilo =  new Thread(new Runnable() {
+        new Thread(new Runnable() {
 
             @Override
             public void run() {
@@ -1176,7 +1139,6 @@ public class OperadorActivity extends AppCompatActivity {
 
 
         });
-
         hilo.start();
 
         if(hilo!=null){
