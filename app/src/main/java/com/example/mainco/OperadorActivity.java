@@ -764,7 +764,7 @@ public class OperadorActivity extends AppCompatActivity {
 
                                     if(datoverifica == 0){
 
-                                        actarea();
+
                                         new verificar().start();
                                     }
 
@@ -772,6 +772,26 @@ public class OperadorActivity extends AppCompatActivity {
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
+
+                            final String nombretarea = resuldato.getSelectedItem().toString();
+
+                            final String Nop = resuldato3.getSelectedItem().toString();
+                            new Thread( new Runnable() {
+                                @Override
+                                public void run() {
+                                    String responsesx = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedit.php?numero="+Nop.toString()).body();
+
+                                    try {
+                                        JSONArray RESTARCANTIDADES = new JSONArray(responsesx);
+                                        int datico = Integer.parseInt(RESTARCANTIDADES.getString(0));
+
+                                        String asd = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizartarea.php?tarea="+nombretarea.toString()+"&canpen="+datico).body();
+
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            } ).start();
 
 
 
@@ -803,28 +823,6 @@ public class OperadorActivity extends AppCompatActivity {
             datos2.clear();
         }
 
-
-    }
-    public void actarea(){
-        final String nombretarea = resuldato.getSelectedItem().toString();
-
-        final String Nop = resuldato3.getSelectedItem().toString();
-        new Thread( new Runnable() {
-            @Override
-            public void run() {
-                String responsesx = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedit.php?numero="+Nop.toString()).body();
-
-                try {
-                    JSONArray RESTARCANTIDADES = new JSONArray(responsesx);
-                    int datico = Integer.parseInt(RESTARCANTIDADES.getString(0));
-
-                    String asd = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizartarea.php?tarea="+nombretarea.toString()+"&canpen="+datico).body();
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        } ).start();
 
     }
     public void MOSTRAROP(){
@@ -1346,7 +1344,7 @@ public class OperadorActivity extends AppCompatActivity {
 
                             }
 
-                            MOSTRAROP();
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();
