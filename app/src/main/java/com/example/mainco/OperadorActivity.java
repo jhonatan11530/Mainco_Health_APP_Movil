@@ -725,70 +725,65 @@ public class OperadorActivity extends AppCompatActivity {
 
 
                         try {
-                        String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/operador.php?id=" + id.getText().toString()).body();
+                            String response = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/operador.php?id=" + id.getText().toString() ).body();
 
-                        JSONArray objecto = new JSONArray(response);
+                            JSONArray objecto = new JSONArray( response );
 
-                        if(objecto.length()!=0){
+                            if (objecto.length() != 0) {
 
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    desbloquear.setEnabled(true);
-                                    registroTIME.setEnabled(true);
-                                    salidaTIME.setEnabled(true);
-                                    cantidadund.setEnabled(true);
+                                runOnUiThread( new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        desbloquear.setEnabled( true );
+                                        registroTIME.setEnabled( true );
+                                        salidaTIME.setEnabled( true );
+                                        cantidadund.setEnabled( true );
+                                    }
+                                } );
+
+                                resultados.setText( "" + objecto.getString( 0 ).toString() );
+
+
+                                String responses = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/cantidadedit.php?numero=" + Nop.toString() ).body();
+
+                                try {
+                                    JSONArray RESTARCANTIDAD = new JSONArray( responses );
+                                    String acz = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/validarcantidad.php?id=" + nombretarea.toString() ).body();
+
+                                    JSONArray tareita = new JSONArray( acz );
+                                    datoverifica = Integer.parseInt( tareita.getString( 0 ) );
+
+                                    totalcan.setText( "CANTIDAD OP : " + RESTARCANTIDAD.getString( 0 ) + " CANTIDAD PENDIENTE : " + tareita.getString( 0 ) );
+
+                                    if (datoverifica == 0) {
+                                        verificar();
+
+
+                                    }
+                                    if (RESTARCANTIDAD.getString( 0 ) != null) {
+
+
+                                        MOSTRAROP();
+                                    }
+
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
                                 }
-                            });
 
-                            resultados.setText(""+objecto.getString( 0 ).toString());
-                            
-                                String responses = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedit.php?numero="+Nop.toString()).body();
-
-                            try {
-                                JSONArray RESTARCANTIDAD = new JSONArray(responses);
-                                String acz = HttpRequest.get("http://"+cambiarIP.ip+"/validar/validarcantidad.php?id="+nombretarea.toString()).body();
-
-                                JSONArray tareita = new JSONArray(acz);
-                                datoverifica = Integer.parseInt(tareita.getString( 0 ));
-
-                                totalcan.setText("CANTIDAD OP : "+RESTARCANTIDAD.getString(0)+" CANTIDAD PENDIENTE : "+tareita.getString(0));
-
-                                if(datoverifica == 0){
-                                    verificar();
-
-
-                                }
-                                if(RESTARCANTIDAD.getString(0) != null){
-
-
-                                    MOSTRAROP();
-                                }
-
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
                             }
+                            else{
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(getApplicationContext(),"EL CODIGO DEL USUARIO NO EXISTE", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
+                        } catch(Exception e){
+                            // TODO: handle exception
 
-
-
-
-                         }
-                        else{
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Toast.makeText(getApplicationContext(),"EL CODIGO DEL USUARIO NO EXISTE", Toast.LENGTH_SHORT).show();
-                                }
-                            });
                         }
-
-                    } catch (Exception e) {
-                        // TODO: handle exception
-
-                    }
-
-
 
                 }
 
