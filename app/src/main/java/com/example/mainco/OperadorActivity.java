@@ -751,6 +751,29 @@ public class OperadorActivity extends AppCompatActivity {
 
                         }
 
+                                String responses = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedit.php?numero="+Nop.toString()).body();
+
+                                try {
+                                    JSONArray RESTARCANTIDAD = new JSONArray(responses);
+                                    String acz = HttpRequest.get("http://"+cambiarIP.ip+"/validar/validarcantidad.php?id="+nombretarea.toString()).body();
+
+                                    JSONArray tareita = new JSONArray(acz);
+                                    datoverifica = Integer.parseInt(tareita.getString( 0 ));
+
+                                    totalcan.setText("CANTIDAD OP : "+RESTARCANTIDAD.getString(0)+" CANTIDAD PENDIENTE : "+tareita.getString(0));
+
+                                    if(datoverifica == 0){
+
+                                        actarea();
+                                        new verificar().start();
+                                    }
+
+
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+
 
                          }
                         else{
