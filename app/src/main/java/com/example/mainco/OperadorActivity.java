@@ -44,16 +44,14 @@ public class OperadorActivity extends AppCompatActivity {
 
 
     private EditText id, cantidad, paro, fallas;
-    private String mensaje = "",falla,error;
-    private ListView resultados;
-    private TextView motivo, MOSTRAR,texto,totalcan,tex;
+    private String falla,error;
+    private TextView motivo, MOSTRAR,texto,totalcan,tex,resultados;
     private Spinner resuldato, resuldato2, resuldato3, resuldato4;
 
     private  Button BTN_time, go, stop, btnconfir,desbloquear,positivo,neutrar, registroTIME, salidaTIME,validarinfo,cantidadund,btnvalidar;
     private  TimePickerDialog listo;
     private int minuto, i, hora,cantidadpro,volumen,volumencan,total,datoverifica;;
     private ArrayList<cantidades> dato = new ArrayList<cantidades>();
-    private ArrayList<String> datos2 = new ArrayList<String>();
     private ArrayList<produccion> dato3 = new ArrayList<produccion>();
     private ArrayList<cantidadfallas> dato4 = new ArrayList<cantidadfallas>();
     EditText edit,digito;
@@ -704,9 +702,9 @@ public class OperadorActivity extends AppCompatActivity {
 
 
     public void operador(View v) {
-      mensaje="";
+
         id = (EditText) findViewById(R.id.operador);
-        resultados = (ListView) findViewById(R.id.listar_operador);
+        resultados = (TextView) findViewById(R.id.listar_operador);
 
 
         if (id.getText().toString().length() == 0) {
@@ -716,7 +714,7 @@ public class OperadorActivity extends AppCompatActivity {
         }
          else {
 
-            final String nombretarea = resuldato.getSelectedItem().toString();
+            final String nombretarea = resultados.toString();
 
             final String Nop = resuldato3.getSelectedItem().toString();
 
@@ -743,44 +741,34 @@ public class OperadorActivity extends AppCompatActivity {
                                 }
                             });
 
-                        for (int i = 0; i < objecto.length(); i++) {
-                            mensaje = "" + objecto.getJSONArray(i).getString(0);
-
-
-                            datos2.add(mensaje);
-
-                        }
-
+                            resultados.setText(""+objecto.getString( 0 ).toString());
+                            
                                 String responses = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedit.php?numero="+Nop.toString()).body();
 
-                                try {
-                                    JSONArray RESTARCANTIDAD = new JSONArray(responses);
-                                    String acz = HttpRequest.get("http://"+cambiarIP.ip+"/validar/validarcantidad.php?id="+nombretarea.toString()).body();
+                            try {
+                                JSONArray RESTARCANTIDAD = new JSONArray(responses);
+                                String acz = HttpRequest.get("http://"+cambiarIP.ip+"/validar/validarcantidad.php?id="+nombretarea.toString()).body();
 
-                                    JSONArray tareita = new JSONArray(acz);
-                                    datoverifica = Integer.parseInt(tareita.getString( 0 ));
+                                JSONArray tareita = new JSONArray(acz);
+                                datoverifica = Integer.parseInt(tareita.getString( 0 ));
 
-                                    totalcan.setText("CANTIDAD OP : "+RESTARCANTIDAD.getString(0)+" CANTIDAD PENDIENTE : "+tareita.getString(0));
+                                totalcan.setText("CANTIDAD OP : "+RESTARCANTIDAD.getString(0)+" CANTIDAD PENDIENTE : "+tareita.getString(0));
 
-                                    if(datoverifica == 0){
-                                        verificar();
-
-
-                                    }
-                                    if(RESTARCANTIDAD.getString(0) != null){
+                                if(datoverifica == 0){
+                                    verificar();
 
 
-                                        MOSTRAROP();
-                                    }
+                                }
+                                if(RESTARCANTIDAD.getString(0) != null){
 
 
-
-
-
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
+                                    MOSTRAROP();
                                 }
 
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
 
 
 
@@ -809,8 +797,6 @@ public class OperadorActivity extends AppCompatActivity {
             hilo.start();
             hilo.interrupted();
 
-            resultados.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, datos2));
-            datos2.clear();
         }
 
 
