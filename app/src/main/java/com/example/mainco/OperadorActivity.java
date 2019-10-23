@@ -1463,13 +1463,39 @@ public class OperadorActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+
+                // imprime fecha
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
+                Date date = new Date();
+
+                //imprime hora
+                SimpleDateFormat hourFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
+
+                //almacena los datos en una cadena
+                final	String horafinal = hourFormat.format(date);
+                final	String fechafinal = dateFormat.format(date);
+
+               final EditText edit = new EditText(OperadorActivity.this);
+                edit.setEnabled(false);
+                edit.setText(fechafinal);
+
+                final EditText editt = new EditText(OperadorActivity.this);
+                editt.setEnabled(false);
+                editt.setText(horafinal);
+
+                  // +"&Ffinal="+fechas+"&Hfinal="+horas
+
+                        final   String fechas =edit.getText().toString();
+                        final   String horas =editt.getText().toString();
+
+
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
 
                         final String Nop = resuldato3.getSelectedItem().toString();
                         volumencan = Integer.parseInt(digito.getText().toString());
-                       String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizarcantidad.php?numero="+Nop.toString()+"&id="+id.getText().toString()+"&canpen="+volumencan).body();
+                       String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizarcantidad.php?numero="+Nop.toString()+"&id="+id.getText().toString()+"&canpen="+volumencan+"&Ffinal="+fechas+"&Hfinal="+horas).body();
 
 
                         final String nombretarea = resuldato.getSelectedItem().toString();
