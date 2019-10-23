@@ -754,7 +754,6 @@ public class OperadorActivity extends AppCompatActivity {
                                 MOSTRAROP();
                                 if(datoverifica == 0){
                                     restaurarACAN();
-                                    verificar();
 
                                 }
 
@@ -857,15 +856,16 @@ public class OperadorActivity extends AppCompatActivity {
 
   public void verificar(){
 
+      final String nombretarea = resuldato.getSelectedItem().toString();
             eliminaOK = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                     String cero = HttpRequest.get("http://"+cambiarIP.ip+"/validar/eliminarcanok.php").body();
+                     String cero = HttpRequest.get("http://"+cambiarIP.ip+"/validar/eliminarcanok.php?id=" + nombretarea.toString()).body();
 
                             try {
                                 JSONArray nada = new JSONArray(cero);
-
-                                if(nada.getString(0) == null){
+                                int vacio = Integer.parseInt(nada.getString(0));
+                                if(vacio != 0){
 
 
                                 runOnUiThread( new Runnable() {
@@ -878,7 +878,7 @@ public class OperadorActivity extends AppCompatActivity {
 
 
                                 }
-                                else if(nada.getString(0) != null){
+                                else if(vacio == 0){
 
                                     runOnUiThread( new Runnable() {
                                         @Override
