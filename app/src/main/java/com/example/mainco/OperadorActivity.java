@@ -752,8 +752,7 @@ public class OperadorActivity extends AppCompatActivity {
                             String rest = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/validarcantidad.php?numero="+ Nop.toString()  ).body();
 
                                 JSONArray tareita = new JSONArray(rest);
-
-                                datoverifica = Integer.parseInt( tareita.getString( 1 ) );
+                                
 
                                 totalcan.setText( "CANTIDAD OP : " + tareita.getString( 0 ) + " CANTIDAD PENDIENTE : " + responsable.getString( 0 ) );
 
