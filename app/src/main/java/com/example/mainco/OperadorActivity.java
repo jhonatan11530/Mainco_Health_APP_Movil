@@ -711,7 +711,7 @@ public class OperadorActivity extends AppCompatActivity {
 
         }if (id.getText().toString() != null) {
 
-            final String nombretarea = resultados.toString();
+            final String nombretarea = resuldato.getSelectedItem().toString();
 
             final String Nop = resuldato3.getSelectedItem().toString();
 
@@ -749,10 +749,10 @@ public class OperadorActivity extends AppCompatActivity {
 
                                 datoverifica = Integer.parseInt( tareita.getString( 0 ) );
 
-                                totalcan.setText( "CANTIDAD OP : " + tareita.getString( 0 ) + " CANTIDAD PENDIENTE : " +tareita.getString( 0 ) );
+                                totalcan.setText( "CANTIDAD OP : " + RESTARCANTIDAD.getString( 0 ) + " CANTIDAD PENDIENTE : " +tareita.getString( 0 ) );
 
 
-                            /*    if (tareita.getString( 1 ) != null) {
+                               if (tareita.getString( 1 ) != null) {
 
                                     restaurarACAN();
                                     MOSTRAROP();
@@ -761,7 +761,7 @@ public class OperadorActivity extends AppCompatActivity {
                                    verificar();
 
 
-                               } */
+                               } 
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
