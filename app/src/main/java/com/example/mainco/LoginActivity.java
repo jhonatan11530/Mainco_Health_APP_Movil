@@ -57,7 +57,7 @@ public class LoginActivity extends AppCompatActivity {
 
         registre = (Button)findViewById(R.id.registre);
         validar = (Button)findViewById(R.id.login);
-        
+
 
     }
 
