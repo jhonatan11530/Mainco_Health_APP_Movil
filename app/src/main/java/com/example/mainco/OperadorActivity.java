@@ -738,14 +738,24 @@ public class OperadorActivity extends AppCompatActivity {
 
                             resultados.setText( objecto.getString( 0 ).toString() );
 
+                            try {
+                            String responsex = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/cantidadpendiente.php?id=" + nombretarea.toString()).body();
 
-                                String rest = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/validarcantidad.php?id=" + nombretarea.toString()+"&numero="+ Nop.toString()  ).body();
+                             JSONArray responsable = new JSONArray(responsex);
+
+                                datoverifica = Integer.parseInt( responsable.getString( 0 ) );
+                                if (datoverifica == 0) {
+                                    verificar();
+
+
+                                }
+                            String rest = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/validarcantidad.php?numero="+ Nop.toString()  ).body();
 
                                 JSONArray tareita = new JSONArray(rest);
 
-                                datoverifica = Integer.parseInt( tareita.getString( 1 ));
+                                datoverifica = Integer.parseInt( tareita.getString( 1 ) );
 
-                                totalcan.setText( "CANTIDAD OP : " + tareita.getString( 0 ) + " CANTIDAD PENDIENTE : " + tareita.getString( 1 ) );
+                                totalcan.setText( "CANTIDAD OP : " + tareita.getString( 0 ) + " CANTIDAD PENDIENTE : " + responsable.getString( 0 ) );
 
 
                                 if (tareita.getString( 1 ) != null) {
@@ -753,17 +763,15 @@ public class OperadorActivity extends AppCompatActivity {
                                     restaurarACAN();
                                     MOSTRAROP();
                                 }
-                                if (datoverifica == 0) {
-                                    verificar();
 
 
-                                }
-                        System.out.println( "ASSSSSSSSSSSSSSSS" );
-                        System.out.println( tareita.getString( 0 ) );
-                        System.out.println( tareita.getString( 1 ) );
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                       }
 
-                      }
-                    } catch (Exception e) {
+
+                        } catch (Exception e) {
                         // TODO: handle exception
 
                     }
@@ -819,32 +827,30 @@ public class OperadorActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
+                while(true){
+                    try {
+                        Thread.sleep( 1000 );
 
-                        try {
-                        String canti = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadpendiente.php?id="+nombretarea.toString()).body();
+                    String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedit.php?numero="+Nop.toString()).body();
 
-
-                            JSONArray RESTARCANTIDAD2 = new JSONArray(canti);
-
-                            datoverifica = Integer.parseInt(RESTARCANTIDAD2.getString( 0 ));
-                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/validarcantidad.php?numero="+Nop.toString()).body();
                 try {
                     JSONArray RESTARCANTIDAD = new JSONArray(response);
+                    String acz = HttpRequest.get("http://"+cambiarIP.ip+"/validar/validarcantidad.php?id="+nombretarea.toString()).body();
 
+                    JSONArray tareita = new JSONArray(acz);
+                    datoverifica = Integer.parseInt(tareita.getString( 0 ));
 
-
-                    totalcan.setText("CANTIDAD OP : "+RESTARCANTIDAD.getString(0)+" CANTIDAD PENDIENTE : "+RESTARCANTIDAD2.getString(0));
+                    totalcan.setText("CANTIDAD OP : "+RESTARCANTIDAD.getString(0)+" CANTIDAD PENDIENTE : "+tareita.getString(0));
 
 
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                        }catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         }).start();
 
