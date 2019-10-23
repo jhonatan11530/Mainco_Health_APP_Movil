@@ -1483,7 +1483,7 @@ public class OperadorActivity extends AppCompatActivity {
                 editt.setEnabled(false);
                 editt.setText(horafinal);
 
-                  // +"&Ffinal="+fechas+"&Hfinal="+horas
+
 
                         final   String fechas =edit.getText().toString();
                         final   String horas =editt.getText().toString();
