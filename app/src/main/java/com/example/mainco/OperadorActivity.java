@@ -738,31 +738,30 @@ public class OperadorActivity extends AppCompatActivity {
 
                             resultados.setText( objecto.getString( 0 ).toString() );
 
-                            try {
-                            String responsex = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/cantidadpendiente.php?id=" + nombretarea.toString()).body();
 
-                             JSONArray responsable = new JSONArray(responsex);
-
-                                datoverifica = Integer.parseInt( responsable.getString( 0 ) );
-                                if (datoverifica == 0) {
-                                    verificar();
-
-
-                                }
                             String rest = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/validarcantidad.php?numero="+ Nop.toString()  ).body();
+                            try {
+                                JSONArray RESTARCANTIDAD = new JSONArray(rest);
 
-                                JSONArray tareita = new JSONArray(rest);
-                                
+                                String acz = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/cantidadpendiente.php?id=" + nombretarea.toString()).body();
 
-                                totalcan.setText( "CANTIDAD OP : " + tareita.getString( 0 ) + " CANTIDAD PENDIENTE : " + responsable.getString( 0 ) );
+                                JSONArray tareita = new JSONArray(acz);
+
+                                datoverifica = Integer.parseInt( tareita.getString( 0 ) );
+
+                                totalcan.setText( "CANTIDAD OP : " + tareita.getString( 0 ) + " CANTIDAD PENDIENTE : " +tareita.getString( 0 ) );
 
 
-                                if (tareita.getString( 1 ) != null) {
+                            /*    if (tareita.getString( 1 ) != null) {
 
                                     restaurarACAN();
                                     MOSTRAROP();
                                 }
+                               if (datoverifica == 0) {
+                                   verificar();
 
+
+                               } */
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -830,13 +829,14 @@ public class OperadorActivity extends AppCompatActivity {
                     try {
                         Thread.sleep( 1000 );
 
-                    String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedit.php?numero="+Nop.toString()).body();
+                        String response = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/validarcantidad.php?numero="+ Nop.toString()  ).body();
 
-                try {
+
+                        try {
                     JSONArray RESTARCANTIDAD = new JSONArray(response);
-                    String acz = HttpRequest.get("http://"+cambiarIP.ip+"/validar/validarcantidad.php?id="+nombretarea.toString()).body();
+                            String acz = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/cantidadpendiente.php?id=" + nombretarea.toString()).body();
 
-                    JSONArray tareita = new JSONArray(acz);
+                            JSONArray tareita = new JSONArray(acz);
                     datoverifica = Integer.parseInt(tareita.getString( 0 ));
 
                     totalcan.setText("CANTIDAD OP : "+RESTARCANTIDAD.getString(0)+" CANTIDAD PENDIENTE : "+tareita.getString(0));
