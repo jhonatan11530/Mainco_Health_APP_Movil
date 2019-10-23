@@ -751,12 +751,13 @@ public class OperadorActivity extends AppCompatActivity {
 
                                 totalcan.setText( "CANTIDAD OP : " + RESTARCANTIDAD.getString( 0 ) + " CANTIDAD PENDIENTE : " +tareita.getString( 0 ) );
 
-
-                               if (RESTARCANTIDAD.getString( 0 ) != null) {
-
+                                MOSTRAROP();
+                                if(datoverifica == 0){
                                     restaurarACAN();
-                                   MOSTRAROP();
+                                    verificar();
+
                                 }
+
 
 
                             } catch (JSONException e) {
@@ -859,16 +860,12 @@ public class OperadorActivity extends AppCompatActivity {
             eliminaOK = new Thread(new Runnable() {
                 @Override
                 public void run() {
-
-
-
-                            String cero = HttpRequest.get("http://"+cambiarIP.ip+"/validar/eliminarcanok.php").body();
+                     String cero = HttpRequest.get("http://"+cambiarIP.ip+"/validar/eliminarcanok.php").body();
 
                             try {
                                 JSONArray nada = new JSONArray(cero);
-                                int vacio = Integer.parseInt(nada.getString(0));
 
-                                if(vacio != 0){
+                                if(nada.getString(0) == null){
 
 
                                 runOnUiThread( new Runnable() {
@@ -881,7 +878,7 @@ public class OperadorActivity extends AppCompatActivity {
 
 
                                 }
-                                else if(vacio == 0){
+                                else if(nada.getString(0) != null){
 
                                     runOnUiThread( new Runnable() {
                                         @Override
