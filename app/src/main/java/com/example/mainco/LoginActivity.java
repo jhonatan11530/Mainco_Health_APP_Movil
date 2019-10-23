@@ -7,6 +7,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -55,9 +57,7 @@ public class LoginActivity extends AppCompatActivity {
 
         registre = (Button)findViewById(R.id.registre);
         validar = (Button)findViewById(R.id.login);
-
-
-
+        
 
     }
 
@@ -456,76 +456,93 @@ public class LoginActivity extends AppCompatActivity {
 
             }else{
 
-                 new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            Thread.sleep( 500 );
+                ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+                if (networkInfo != null && networkInfo.isConnected()) {
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                Thread.sleep( 500 );
 
 
 
-                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/validar.php?cedula="+login.getText().toString()+"&pass="+pass.getText().toString()).body();
+                                String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/validar.php?cedula="+login.getText().toString()+"&pass="+pass.getText().toString()).body();
 
-                        try {
-                            JSONArray objecto = new JSONArray(response);
+                                try {
+                                    JSONArray objecto = new JSONArray(response);
 
-                            if(objecto.length()>0) {
+                                    if(objecto.length()>0) {
 
 
-                                if(GUARDARUTO.isChecked()==true){
-                                    runOnUiThread( new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            Toast.makeText( getApplicationContext(),"SE GUARDO EL USUARIO Y CONTRASEÑA",Toast.LENGTH_SHORT).show();
+                                        if(GUARDARUTO.isChecked()==true){
+                                            runOnUiThread( new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    Toast.makeText( getApplicationContext(),"SE GUARDO EL USUARIO Y CONTRASEÑA",Toast.LENGTH_SHORT).show();
 
-                                            guardar();
+                                                    guardar();
+                                                }
+                                            } );
+
                                         }
-                                    } );
+                                        runOnUiThread( new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                ProgressDialog pd = new ProgressDialog(LoginActivity.this);
 
-                                }
-                                    runOnUiThread( new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            ProgressDialog pd = new ProgressDialog(LoginActivity.this);
+                                                pd.setTitle("INICIANDO SESION");
 
-                                            pd.setTitle("INICIANDO SESION");
+                                                pd.setMessage("Porfavor espere");
+                                                pd.setCanceledOnTouchOutside(false);
 
-                                            pd.setMessage("Porfavor espere");
-                                            pd.setCanceledOnTouchOutside(false);
+                                                pd.show();
+                                                ttsManager.initQueue("BIENVENIDO");
+                                                startService(new Intent(LoginActivity.this, ServerConnect.class));
+                                            }
+                                        } );
 
-                                            pd.show();
-                                            ttsManager.initQueue("BIENVENIDO");
-                                            startService(new Intent(LoginActivity.this, ServerConnect.class));
-                                        }
-                                    } );
-
-
-                            }
-
-                            else{
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-
-                                        ttsManager.initQueue("USUARIO O CONTRASEÑA INCORRECTO");
-                                        Toast.makeText(getApplicationContext(),"USUARIO O CONTRASEÑA INCORRECTO", Toast.LENGTH_SHORT).show();
 
                                     }
-                                });
+
+                                    else{
+                                        runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+
+                                                ttsManager.initQueue("USUARIO O CONTRASEÑA INCORRECTO");
+                                                Toast.makeText(getApplicationContext(),"USUARIO O CONTRASEÑA INCORRECTO", Toast.LENGTH_SHORT).show();
+
+                                            }
+                                        });
+                                    }
+
+
+
+                                }catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
                             }
 
-
-
-                        }catch (Exception e) {
-                            e.printStackTrace();
                         }
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
+                    }).start();
+
+                } else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder( LoginActivity.this );
+                    builder.setTitle( "NO ESTAS CONECTADO A INTERNET" );
+                    builder.setMessage( "Porfavor verifica la conexion a internet" );
+                    builder.setPositiveButton( "ACEPTAR", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
                         }
+                    } );
 
-                    }
-                }).start();
-
+                    builder.create().show();
+                }
 
         }
 }
