@@ -57,7 +57,10 @@ public class LoginActivity extends AppCompatActivity {
         validar = (Button)findViewById(R.id.login);
 
 
+
+
     }
+
     public void onBackPressed() {
 
     }
