@@ -1488,14 +1488,13 @@ public class OperadorActivity extends AppCompatActivity {
                         final   String fechas =edit.getText().toString();
                         final   String horas =editt.getText().toString();
 
-
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-
+                        final String tarea = resuldato.getSelectedItem().toString();
                         final String Nop = resuldato3.getSelectedItem().toString();
                         volumencan = Integer.parseInt(digito.getText().toString());
-                       String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizarcantidad.php?numero="+Nop.toString()+"&id="+id.getText().toString()+"&canpen="+volumencan+"&Ffinal="+fechas+"&Hfinal="+horas).body();
+                       String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizarcantidad.php?numero="+Nop.toString()+"&id="+id.getText().toString()+"&canpen="+volumencan+"&Ffinal="+fechas+"&Hfinal="+horas+"&tarea="+tarea.toString()).body();
 
 
                         final String nombretarea = resuldato.getSelectedItem().toString();
