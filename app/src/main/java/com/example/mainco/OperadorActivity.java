@@ -752,16 +752,16 @@ public class OperadorActivity extends AppCompatActivity {
                                 totalcan.setText( "CANTIDAD OP : " + RESTARCANTIDAD.getString( 0 ) + " CANTIDAD PENDIENTE : " +tareita.getString( 0 ) );
 
 
-                               if (tareita.getString( 1 ) != null) {
+                               if (RESTARCANTIDAD.getString( 0 ) != null) {
 
                                     restaurarACAN();
-                                    MOSTRAROP();
+                                   MOSTRAROP();
                                 }
-                               if (datoverifica == 0) {
-                                   verificar();
+                             /*  if (datoverifica == 0) {
+                                    verificar();
 
 
-                               } 
+                                } */
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -799,13 +799,14 @@ public class OperadorActivity extends AppCompatActivity {
         new Thread( new Runnable() {
             @Override
             public void run() {
-              String responsesx = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedit.php?numero="+Nop.toString()).body();
+                String responsesx = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/validarcantidad.php?numero="+ Nop.toString()  ).body();
 
                 try {
                     JSONArray RESTARCANTIDADES = new JSONArray(responsesx);
                     int datico = Integer.parseInt(RESTARCANTIDADES.getString(0));
 
                     String asd = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizartarea.php?tarea="+nombretarea.toString()+"&canpen="+datico).body();
+
 
                 } catch (JSONException e) {
                     e.printStackTrace();
