@@ -757,11 +757,7 @@ public class OperadorActivity extends AppCompatActivity {
                                     restaurarACAN();
                                    MOSTRAROP();
                                 }
-                             /*  if (datoverifica == 0) {
-                                    verificar();
 
-
-                                } */
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -851,6 +847,7 @@ public class OperadorActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
+
             }
         }).start();
 
@@ -869,11 +866,9 @@ public class OperadorActivity extends AppCompatActivity {
 
                             try {
                                 JSONArray nada = new JSONArray(cero);
+                                int vacio = Integer.parseInt(nada.getString(0));
 
-                                System.out.println("EL TIPO DE COSITA ES "+nada.getString(0));
-
-
-                                if(nada.getString(0) == null){
+                                if(vacio != 0){
 
 
                                 runOnUiThread( new Runnable() {
@@ -886,7 +881,7 @@ public class OperadorActivity extends AppCompatActivity {
 
 
                                 }
-                                else if(nada.getString(0) != null){
+                                else if(vacio == 0){
 
                                     runOnUiThread( new Runnable() {
                                         @Override
@@ -1360,6 +1355,7 @@ public class OperadorActivity extends AppCompatActivity {
                                     public void run() {
 
                                         Toast.makeText(getApplicationContext(),"DATOS VERIFICADOS", Toast.LENGTH_SHORT).show();
+                                        verificar();
                                     }
                                 });
 
@@ -1503,6 +1499,7 @@ public class OperadorActivity extends AppCompatActivity {
                                         public void run() {
                                             Toast.makeText(getApplicationContext(),"SE REGISTRO EL ADELANTO PRODUCCIDO ", Toast.LENGTH_SHORT).show();
                                             MOSTRAROP();
+                                            verificar();
                                         }
                                     });
                                 }
