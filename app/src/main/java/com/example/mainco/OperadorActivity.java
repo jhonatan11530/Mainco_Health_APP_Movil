@@ -1466,6 +1466,11 @@ public class OperadorActivity extends AppCompatActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
+
+
+
+
+
                         final String Nop = resuldato3.getSelectedItem().toString();
                         volumencan = Integer.parseInt(digito.getText().toString());
                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizarcantidad.php?numero="+Nop.toString()+"&id="+id.getText().toString()+"&canpen="+volumencan).body();
