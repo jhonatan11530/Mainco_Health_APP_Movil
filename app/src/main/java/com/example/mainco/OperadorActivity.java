@@ -56,7 +56,7 @@ public class OperadorActivity extends AppCompatActivity {
     private ArrayList<cantidadfallas> dato4 = new ArrayList<cantidadfallas>();
     EditText edit,digito;
     View tiempo1,adelanto;
-    AlertDialog.Builder registros,aplazarproduccion;
+    AlertDialog.Builder registros;
     Date date;
     SimpleDateFormat hourFormat;
     SimpleDateFormat dateFormat;
@@ -1405,7 +1405,7 @@ public class OperadorActivity extends AppCompatActivity {
     }
     public void aplazo(View v){
 
-        aplazarproduccion = new AlertDialog.Builder(OperadorActivity.this);
+        AlertDialog.Builder aplazarproduccion = new AlertDialog.Builder(OperadorActivity.this);
        adelanto = getLayoutInflater().inflate(R.layout.aplazar_produccion,null);
          tex = (TextView)adelanto.findViewById(R.id.textos);
          grupo = (RadioGroup)adelanto.findViewById(R.id.GRUPORADIO);
@@ -1466,10 +1466,6 @@ public class OperadorActivity extends AppCompatActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-
-
-
-
 
                         final String Nop = resuldato3.getSelectedItem().toString();
                         volumencan = Integer.parseInt(digito.getText().toString());
@@ -1541,7 +1537,7 @@ public class OperadorActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
                     }
-                });
+                }).start();
                 Thread.interrupted();
 
            }
@@ -1560,6 +1556,7 @@ public class OperadorActivity extends AppCompatActivity {
 
 
     }
+
 
 
 }
