@@ -719,7 +719,7 @@ public class OperadorActivity extends AppCompatActivity {
                 @Override
                 public void run() {
 
-                    try { /*
+                    try {
                         String response = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/operador.php?id=" + id.getText().toString() ).body();
 
                         JSONArray objecto = new JSONArray( response );
@@ -737,14 +737,13 @@ public class OperadorActivity extends AppCompatActivity {
                             } );
 
                             resultados.setText( objecto.getString( 0 ).toString() );
-*/
 
 
                                 String rest = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/validarcantidad.php?id=" + nombretarea.toString()+"&numero="+ Nop.toString()  ).body();
 
                                 JSONArray tareita = new JSONArray(rest);
 
-                                datoverifica = Integer.parseInt( tareita.getString( 1 ) );
+                                datoverifica = Integer.parseInt( tareita.getString( 1 ));
 
                                 totalcan.setText( "CANTIDAD OP : " + tareita.getString( 0 ) + " CANTIDAD PENDIENTE : " + tareita.getString( 1 ) );
 
@@ -763,7 +762,7 @@ public class OperadorActivity extends AppCompatActivity {
                         System.out.println( tareita.getString( 0 ) );
                         System.out.println( tareita.getString( 1 ) );
 
-                      //  }
+                      }
                     } catch (Exception e) {
                         // TODO: handle exception
 
@@ -824,22 +823,29 @@ public class OperadorActivity extends AppCompatActivity {
                     try {
                         Thread.sleep( 1000 );
 
-                    String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedit.php?numero="+Nop.toString()).body();
+                        try {
+                        String canti = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadpendiente.php?id="+nombretarea.toString()).body();
 
+
+                            JSONArray RESTARCANTIDAD2 = new JSONArray(canti);
+
+                            datoverifica = Integer.parseInt(RESTARCANTIDAD2.getString( 0 ));
+                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/validarcantidad.php?numero="+Nop.toString()).body();
                 try {
                     JSONArray RESTARCANTIDAD = new JSONArray(response);
-                    String acz = HttpRequest.get("http://"+cambiarIP.ip+"/validar/validarcantidad.php?id="+nombretarea.toString()).body();
 
-                    JSONArray tareita = new JSONArray(acz);
-                    datoverifica = Integer.parseInt(tareita.getString( 0 ));
 
-                    totalcan.setText("CANTIDAD OP : "+RESTARCANTIDAD.getString(0)+" CANTIDAD PENDIENTE : "+tareita.getString(0));
+
+                    totalcan.setText("CANTIDAD OP : "+RESTARCANTIDAD.getString(0)+" CANTIDAD PENDIENTE : "+RESTARCANTIDAD2.getString(0));
 
 
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                        }catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
