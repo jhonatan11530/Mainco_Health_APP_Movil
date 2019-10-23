@@ -819,9 +819,6 @@ public class OperadorActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                while(true){
-                    try {
-                        Thread.sleep( 1000 );
 
                         try {
                         String canti = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadpendiente.php?id="+nombretarea.toString()).body();
@@ -846,10 +843,8 @@ public class OperadorActivity extends AppCompatActivity {
                         }catch (JSONException e) {
                             e.printStackTrace();
                         }
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
+
+
             }
         }).start();
 
