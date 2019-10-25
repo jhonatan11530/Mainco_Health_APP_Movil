@@ -65,7 +65,7 @@ public class OperadorActivity extends AppCompatActivity {
     private AsyncHttpClient clientes;
     private AsyncHttpClient clientes2;
     private AsyncHttpClient clientes3;
-    public Thread hilo,eliminaOK;
+    public Thread hilo,eliminaOK,MOP;
     private RadioButton botonSi,botonNo;
     private ListView componentes;
     TSSManager ttsManager=null;
@@ -819,7 +819,7 @@ public class OperadorActivity extends AppCompatActivity {
 
         final String Nop = resuldato3.getSelectedItem().toString();
 
-        new Thread(new Runnable() {
+        MOP =  new Thread(new Runnable() {
             @Override
             public void run() {
                 while(true){
@@ -849,7 +849,8 @@ public class OperadorActivity extends AppCompatActivity {
                 }
 
             }
-        }).start();
+        });
+        MOP.start();
 
 
     }
@@ -912,9 +913,10 @@ public class OperadorActivity extends AppCompatActivity {
                                         }
                                     } );
 
+
                                 }
 
-
+                                nuevo();
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -926,6 +928,18 @@ public class OperadorActivity extends AppCompatActivity {
             eliminaOK.interrupted();
 
   }
+
+
+ public void nuevo(){
+        new Thread( new Runnable() {
+            @Override
+            public void run() {
+                id=(EditText)findViewById(R.id.operador);
+                String cero = HttpRequest.get("http://"+cambiarIP.ip+"/validar/nuevoRegistro.php?ID=" + id.toString()).body();
+            }
+        } ).start();
+    }
+
 
     public void hora(View v) {
 
