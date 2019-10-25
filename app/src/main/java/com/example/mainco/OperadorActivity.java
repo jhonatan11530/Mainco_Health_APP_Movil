@@ -751,7 +751,8 @@ public class OperadorActivity extends AppCompatActivity {
 
                                 totalcan.setText( "CANTIDAD OP : " + RESTARCANTIDAD.getString( 0 ) + " CANTIDAD PENDIENTE : " +tareita.getString( 0 ) );
 
-                                MOSTRAROP();
+                                MOSTRAROP ops =new MOSTRAROP();
+                                ops.start();
                                 if(datoverifica == 0){
                                     restaurarACAN();
 
@@ -812,48 +813,52 @@ public class OperadorActivity extends AppCompatActivity {
             }
         } ).start();
     }
-    public void MOSTRAROP(){
+    class MOSTRAROP extends Thread{
+        public void run() {
+            final String nombretarea = resuldato.getSelectedItem().toString();
 
+            final String Nop = resuldato3.getSelectedItem().toString();
 
-        final String nombretarea = resuldato.getSelectedItem().toString();
-
-        final String Nop = resuldato3.getSelectedItem().toString();
-
-        MOP =  new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while(true){
-                    try {
-                        Thread.sleep( 1000 );
-
-                        String response = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/validarcantidad.php?numero="+ Nop.toString()  ).body();
-
+            MOP =  new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    int num = 1000;
 
                         try {
-                    JSONArray RESTARCANTIDAD = new JSONArray(response);
-                            String acz = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/cantidadpendiente.php?id=" + nombretarea.toString()).body();
+                            Thread.sleep( 1000 );
 
-                            JSONArray tareita = new JSONArray(acz);
-                    datoverifica = Integer.parseInt(tareita.getString( 0 ));
-
-                    totalcan.setText("CANTIDAD OP : "+RESTARCANTIDAD.getString(0)+" CANTIDAD PENDIENTE : "+tareita.getString(0));
+                            String response = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/validarcantidad.php?numero="+ Nop.toString()  ).body();
 
 
+                            try {
+                                JSONArray RESTARCANTIDAD = new JSONArray(response);
+                                String acz = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/cantidadpendiente.php?id=" + nombretarea.toString()).body();
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                                JSONArray tareita = new JSONArray(acz);
+                                datoverifica = Integer.parseInt(tareita.getString( 0 ));
+
+                                totalcan.setText("CANTIDAD OP : "+RESTARCANTIDAD.getString(0)+" CANTIDAD PENDIENTE : "+tareita.getString(0));
+
+
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+
+
                 }
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-            }
-        });
-        MOP.start();
-
-
+            });
+            MOP.start();
+        }
     }
+
+
+
+
+
 
   public void verificar(){
 
@@ -938,6 +943,9 @@ public class OperadorActivity extends AppCompatActivity {
                 String cero = HttpRequest.get("http://"+cambiarIP.ip+"/validar/nuevoRegistro.php?ID=" + id.toString()).body();
             }
         } ).start();
+
+
+
     }
 
 
@@ -1250,7 +1258,7 @@ public class OperadorActivity extends AppCompatActivity {
                              }
                          });
 
-                         MOSTRAROP();
+
 
                     }
                 }).start();
@@ -1366,6 +1374,8 @@ public class OperadorActivity extends AppCompatActivity {
                                     public void run() {
 
                                         Toast.makeText(getApplicationContext(),"DATOS VERIFICADOS", Toast.LENGTH_SHORT).show();
+                                        MOSTRAROP ops =new MOSTRAROP();
+                                        ops.start();
                                         verificar();
                                     }
                                 });
@@ -1535,7 +1545,8 @@ public class OperadorActivity extends AppCompatActivity {
                                         @Override
                                         public void run() {
                                             Toast.makeText(getApplicationContext(),"SE REGISTRO EL ADELANTO PRODUCCIDO ", Toast.LENGTH_SHORT).show();
-                                            MOSTRAROP();
+                                            MOSTRAROP ops =new MOSTRAROP();
+                                            ops.start();
                                             verificar();
                                         }
                                     });
