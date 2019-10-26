@@ -98,7 +98,7 @@
             android:textColor="#ffffff"
             android:text="iniciar sesion"
             android:onClick="validartodo"
-            android:background="@color/colorVerdeM"
+            android:background="@drawable/btn_redondo"
             android:layout_marginVertical="5dp"/>
 
         <LinearLayout

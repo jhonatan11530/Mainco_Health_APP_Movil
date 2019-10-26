@@ -60,32 +60,12 @@
                 android:layout_height="65dp"
                 android:onClick="comprobar"
                 android:textColor="#ffffff"
-                android:background="@color/colorVerdeM"
+                android:background="@drawable/btn_redondo"
                 android:text="Recuperar Contraseña"
                 android:gravity="center"/>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/linearLayout4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:weightSum="10"
-            android:gravity="center"
-
-
-            >
-
-            <ViewFlipper
-                android:id="@+id/v_flipper"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-
-
-                />
-
-        </LinearLayout>
 
 
     </LinearLayout>

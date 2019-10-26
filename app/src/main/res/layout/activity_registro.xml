@@ -103,7 +103,7 @@
                 android:layout_height="65dp"
                 android:text="REGISTRAR"
                 android:textColor="#ffffff"
-                android:background="@color/colorVerdeM"
+                android:background="@drawable/btn_redondo"
                 android:onClick="registrar"/>
         </LinearLayout>
     </LinearLayout>
