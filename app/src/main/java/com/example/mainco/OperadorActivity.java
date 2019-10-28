@@ -43,16 +43,15 @@ import cz.msebera.android.httpclient.Header;
 public class OperadorActivity extends AppCompatActivity {
 
 
-    private EditText id, cantidad, paro, fallas;
+    private EditText id, cantidad, paro, fallas,resuldato3;
     private String falla,error;
     private TextView motivo, MOSTRAR,texto,totalcan,tex,resultados;
-    private Spinner resuldato, resuldato2, resuldato3, resuldato4;
+    private Spinner resuldato,resuldato2,  resuldato4;
 
     private  Button BTN_time, go, stop, btnconfir,desbloquear,positivo,neutrar, registroTIME, salidaTIME,validarinfo,cantidadund,btnvalidar;
     private  TimePickerDialog listo;
     private int minuto, i, hora,cantidadpro,volumen,volumencan,total,datoverifica;;
     private ArrayList<cantidades> dato = new ArrayList<cantidades>();
-    private ArrayList<produccion> dato3 = new ArrayList<produccion>();
     private ArrayList<cantidadfallas> dato4 = new ArrayList<cantidadfallas>();
     EditText edit,digito;
     View tiempo1,adelanto;
@@ -95,7 +94,7 @@ public class OperadorActivity extends AppCompatActivity {
 
         resuldato2 = (Spinner) findViewById(R.id.spinner2);
 
-        resuldato3 = (Spinner) findViewById(R.id.spinner);
+        resuldato3 = (EditText) findViewById(R.id.spinner);
 
         cantidadund = (Button) findViewById(R.id.aplazar);
 
@@ -113,7 +112,7 @@ public class OperadorActivity extends AppCompatActivity {
 
 
         llenarSpinner();
-        llenarSpinner2();
+
 
         desbloquear.setEnabled(false);
         registroTIME.setEnabled(false);
@@ -175,6 +174,7 @@ public class OperadorActivity extends AppCompatActivity {
                         pd.show();
 
                         ttsManager.initQueue("HASTA LUEGO");
+                        stopService(new Intent(OperadorActivity.this, ServerConnect.class));
                         Intent e = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(e);
 
@@ -557,7 +557,46 @@ public class OperadorActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    public void filtro(View V){
+        llenarSpinners();
+    }
+    public void llenarSpinners() {
 
+        String url = "http://" + cambiarIP.ip + "/validar/cantidadfiltre.php?op="+resuldato3.getText().toString();
+        client.post(url, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                if (statusCode == 200) {
+                    cargarSpinner(new String(responseBody));
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+
+            }
+        });
+    }
+
+
+    public void cargarSpinners(String cargarSpinners) {
+        ArrayList<cantidades> dato = new ArrayList<cantidades>();
+        try {
+            JSONArray objecto = new JSONArray(cargarSpinners);
+            for (int i = 0; i < objecto.length(); i++) {
+                cantidades a = new cantidades();
+                a.setTarea(objecto.getJSONObject(i).getString("tarea"));
+                dato.add(a);
+            }
+            ArrayAdapter<cantidades> a = new ArrayAdapter<cantidades>(this, android.R.layout.simple_dropdown_item_1line, dato);
+            resuldato.setAdapter(a);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+
+    }
     public void llenarSpinner() {
 
         String url = "http://" + cambiarIP.ip + "/validar/cantidad.php";
@@ -575,6 +614,7 @@ public class OperadorActivity extends AppCompatActivity {
             }
         });
     }
+
 
     public void cargarSpinner(String cargarSpinner) {
         ArrayList<cantidades> dato = new ArrayList<cantidades>();
@@ -631,41 +671,6 @@ public class OperadorActivity extends AppCompatActivity {
     }
 
 
-    public void llenarSpinner2() {
-        String url = "http://" + cambiarIP.ip + "/validar/produccion.php";
-        clientes2.post(url, new AsyncHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                if (statusCode == 200) {
-                    cargar2Spinner(new String(responseBody));
-                }
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-
-            }
-        });
-    }
-
-    public void cargar2Spinner(String cargar2Spinner) {
-        ArrayList<produccion> dato3 = new ArrayList<produccion>();
-        try {
-            JSONArray objecto = new JSONArray(cargar2Spinner);
-            for (int i = 0; i < objecto.length(); i++) {
-                produccion c = new produccion();
-                c.setId(objecto.getJSONObject(i).getString("numero_id"));
-                dato3.add(c);
-            }
-            ArrayAdapter<produccion> a = new ArrayAdapter<produccion>(this, android.R.layout.simple_dropdown_item_1line, dato3);
-            resuldato3.setAdapter(a);
-
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
 
     public void llenarSpinner3() {
         String url = "http://" + cambiarIP.ip + "/validar/motivocantidad.php";
@@ -713,7 +718,7 @@ public class OperadorActivity extends AppCompatActivity {
 
             final String nombretarea = resuldato.getSelectedItem().toString();
 
-            final String Nop = resuldato3.getSelectedItem().toString();
+            final String Nop = resuldato3.getText().toString();
 
             new Thread(new Runnable() {
                 @Override
@@ -792,7 +797,7 @@ public class OperadorActivity extends AppCompatActivity {
 
         final String nombretarea = resuldato.getSelectedItem().toString();
 
-        final String Nop = resuldato3.getSelectedItem().toString();
+        final String Nop = resuldato3.getText().toString();
         new Thread( new Runnable() {
             @Override
             public void run() {
@@ -817,7 +822,7 @@ public class OperadorActivity extends AppCompatActivity {
         public void run() {
             final String nombretarea = resuldato.getSelectedItem().toString();
 
-            final String Nop = resuldato3.getSelectedItem().toString();
+            final String Nop = resuldato3.getText().toString();
 
             MOP =  new Thread(new Runnable() {
                 @Override
@@ -952,7 +957,7 @@ public class OperadorActivity extends AppCompatActivity {
     public void hora(View v) {
 
 
-        llenarSpinner2();
+
 
          registros = new AlertDialog.Builder(OperadorActivity.this);
         tiempo1 = getLayoutInflater().inflate(R.layout.dialog_spinner,null);
@@ -1088,7 +1093,7 @@ public class OperadorActivity extends AppCompatActivity {
                 final String prueba = resuldato2.getSelectedItem().toString();
 
 
-                final String Nop = resuldato3.getSelectedItem().toString();
+                final String Nop = resuldato3.getText().toString();
 
                 // imprime fecha
                 dateFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
@@ -1239,7 +1244,7 @@ public class OperadorActivity extends AppCompatActivity {
         edit.setText(fecha);
 
         final   String fechas =edit.getText().toString();
-        final String Nop = resuldato3.getSelectedItem().toString();
+        final String Nop = resuldato3.getText().toString();
         builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
 
             @Override
@@ -1281,7 +1286,7 @@ public class OperadorActivity extends AppCompatActivity {
         fallas = (EditText)view.findViewById(R.id.fallas);
         cantidad = (EditText)view.findViewById(R.id.digicantidad);
 
-         final String op = resuldato3.getSelectedItem().toString(); //**
+         final String op = resuldato3.getText().toString(); //**
          final String tarea = resuldato.getSelectedItem().toString(); //**
 
         // imprime fecha
@@ -1319,7 +1324,7 @@ public class OperadorActivity extends AppCompatActivity {
              falla = fallas.getText().toString();
             error = resuldato4.getSelectedItem().toString();
 
-                final String Nop = resuldato3.getSelectedItem().toString();
+                final String Nop = resuldato3.getText().toString();
                 final String nombretarea = resuldato.getSelectedItem().toString();
 
 
@@ -1516,7 +1521,7 @@ public class OperadorActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         final String tarea = resuldato.getSelectedItem().toString();
-                        final String Nop = resuldato3.getSelectedItem().toString();
+                        final String Nop = resuldato3.getText().toString();
                         volumencan = Integer.parseInt(digito.getText().toString());
                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizarcantidad.php?numero="+Nop.toString()+"&id="+id.getText().toString()+"&canpen="+volumencan+"&Ffinal="+fechas+"&Hfinal="+horas+"&tarea="+tarea.toString()).body();
 
