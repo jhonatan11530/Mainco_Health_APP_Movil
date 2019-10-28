@@ -93,6 +93,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
+            android:gravity="center"
             android:weightSum="10">
 
 
@@ -111,8 +112,10 @@
 
             <Button
                 android:id="@+id/button"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_width="350dp"
+                android:layout_height="55dp"
+                android:background="@drawable/btn_redondo"
+                android:gravity="center"
                 android:layout_weight="3.3"
                 android:onClick="filtro"
                 android:text="CONFIRMAR" />
