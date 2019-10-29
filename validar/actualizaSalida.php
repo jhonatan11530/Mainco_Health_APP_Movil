@@ -9,6 +9,7 @@ $fallas = $_GET["fallas"];
 $noconforme = $_GET["cantidaderror"];
 
 
+  
  $mysqli = mysqli_connect("127.0.0.1", "root", "", "proyecto");
   $sql_statement = "UPDATE IGNORE operador SET cantidad='".$cantidad."',no_conforme='".$fallas."',cantidad_fallas='".$noconforme."',tarea='".$tarea."',final='".$final."',hora_final='".$finalh."' WHERE id= '".$ID."'";
   $result = mysqli_query($mysqli, $sql_statement);
@@ -41,18 +42,19 @@ while ($row = mysqli_fetch_array($resultado)){
     $arreglit[0]=$row["cantidad"];
 
   }
-  $cantAC=$arreglit[0];
+ $cantAC=$arreglit[0];
  $cant=$arreglito[2];
  $cantno=$arreglito[8];
 
-
- $divicion = $cantAC - $cantno ;
+$divicion = $cantAC - $cantno ;
  $totales = $divicion / $cant * 100;
-$porcentaje = round($totales);
+ $porcentaje = round($totales);
 
+  if($porcentaje != null){
+    $workers=new eficencia();
+    $workers->run($porcentaje,$ID);
+  }
 
-  $workers=new eficencia();
-  $workers->run($porcentaje,$ID);
 
 
 
@@ -77,16 +79,39 @@ $porcentaje = round($totales);
 }
 
 $timeST=$arreglit[0];
-$segundos=substr($timeST ,0,2);
-echo "ejemplo ".$segundos;
+
+$sql_statement = "SELECT * FROM operador WHERE id= '".$ID."'";
+ $res = mysqli_query($mysqli, $sql_statement);
+
+ while ($row = mysqli_fetch_array($res)){ 
+  $arreglits = array();
+  $arreglits[0]=$row["hora_final"];
+
+}
+$timeFH = $arreglits[0];
+
+$date = new DateTime($timeST);
+$ST = $date->format('Hi');
+
+$date = new DateTime($timeFH);
+$FH = $date->format('Hi');
+
+
+$FIS = $ST / $FH * 100;
+$fis = round($FIS);
+
+if($fis != null){
+  $ssd=new eficacia();
+  $ssd->run($fis,$ID);
+}
+
 
  class eficacia{
-
-  public function  run($porcentaje,$ID){
-    sleep(1);
+  public function  run($fis,$ID){
+    sleep(3);
 
   $mysqli = mysqli_connect("127.0.0.1", "root", "", "proyecto");
-  $sql_statement = "UPDATE IGNORE operador SET eficencia='".$porcentaje."' WHERE id= '".$ID."'";
+  $sql_statement = "UPDATE IGNORE operador SET eficencia='".$fis."' WHERE id= '".$ID."'";
   $result = mysqli_query($mysqli, $sql_statement);
   }
  } 

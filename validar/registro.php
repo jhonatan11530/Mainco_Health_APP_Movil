@@ -17,7 +17,7 @@
     $cargo = "analista";
  }else if ($rol == "operador"){
   $rol =  $rolop = 3;
-  $cargo = "analista";
+  $cargo = "operador";
  }
 $mysqli = mysqli_connect("127.0.0.1", "root", "", "proyecto");
 $res = "INSERT INTO usuarios (nomusuario,apeusuario,password,cedula,rol,cargo) VALUES ('".$nombre."','".$apellido."','".$dato."','".$cedula."','".$rol."','".$cargo."')";
