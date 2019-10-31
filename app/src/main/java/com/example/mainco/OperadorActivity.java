@@ -914,7 +914,7 @@ public class OperadorActivity extends AppCompatActivity {
                                             builder.setNegativeButton( "REGISTRAR OTRA OP", new DialogInterface.OnClickListener() {
                                                 @Override
                                                 public void onClick(DialogInterface dialogInterface, int i) {
-
+                                                    nuevo();
                                                 }
                                             } );
                                             builder.create().show();
@@ -926,7 +926,7 @@ public class OperadorActivity extends AppCompatActivity {
 
                                 }
 
-                                nuevo();
+
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
