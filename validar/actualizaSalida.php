@@ -19,7 +19,7 @@ while ($row = mysqli_fetch_array($result)){
   $arreglito[0]=$row["cantidad"];
 }
 
- json_encode($arreglito[0]);
+
   $cantid=$arreglito[0];
 
 if($cantid == 0){
@@ -158,7 +158,7 @@ $date = new DateTime($timeST);
    $tiempoespera = ($cant  * $ST) / 3600;
 
      $eficencia =  $tiempoespera / $fist * 10;
-  echo  $eficencias = round($eficencia); 
+    $eficencias = round($eficencia); 
 
   if($eficencias != null){
     $efi=new eficencia();
