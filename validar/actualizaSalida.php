@@ -80,17 +80,19 @@ class ejecutar{
     $dates = new DateTime($arreglito[5]);
      $Hini = $dates->format('H:i');
 
-      $datest = new DateTime($arreglito[7]);
-       $Hfini = $datest->format('H:i');
+    $datest = new DateTime($arreglito[7]);
+    $Hfini = $datest->format('H:i');
 
- 
-     $dteDiff  = $datest->diff($dates);
-      $fis = $dteDiff->format("%H1:%I");
+     $horai= substr($Hini ,0,2);
 
-       $fist = round($fis);
-   
+   $horaf =substr($Hfini,0,2);
+
+    $fis =  $horaf / $horai;
+     $fist = round($fis);
+
      $divicion = $cant - $cantno ;
     $totales = $divicion / $cantAC *100;
+    // LA EFICACIA YA ESTA TERMINADA
      $porcentaje = round($totales);
 
 if($porcentaje != null){
@@ -155,10 +157,9 @@ $date = new DateTime($timeST);
 
    $tiempoespera = ($cant  * $ST) / 3600;
 
+     $eficencia =  $tiempoespera / $fist * 10;
+  echo  $eficencias = round($eficencia); 
 
-  echo $eficencia = $tiempoespera  / $fist * 100;
-      $eficencias = round($eficencia); 
- //  
   if($eficencias != null){
     $efi=new eficencia();
     $efi->run($eficencias,$ID);
