@@ -49,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
     private ListView componentes;
     CheckBox GUARDARUTO;
     private final int REQUEST_ACCESS_READ = 0;
+    String url,version;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,6 +71,8 @@ public class LoginActivity extends AppCompatActivity {
 
         Init();
 
+        version=getIntent().getStringExtra("version");
+        url=getIntent().getStringExtra("url");
 
         if(ActivityCompat.checkSelfPermission( LoginActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) !=  PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions( LoginActivity.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},REQUEST_ACCESS_READ);
@@ -79,7 +82,18 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        oMyReceiver.borrarRegistro(oMyReceiver);
+    }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        oMyReceiver.registrar(oMyReceiver);
+    }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
 
@@ -612,15 +626,15 @@ public void mostrarguardado(){
 
 public void Init(){
     oMyReceiver=new MyReceiver( LoginActivity.this );
-    oMyReceiver.REGISTRAR( oMyReceiver );
+    oMyReceiver.registrar( oMyReceiver );
 }
 
     public void registro (View v) {
 
      //Intent e = new Intent(getApplicationContext(), RegistroActivity.class);
       // startActivity(e);
-        oMyReceiver.descargar();
 
+        oMyReceiver.Descargar( url );
 
     }
 
