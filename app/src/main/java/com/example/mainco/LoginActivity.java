@@ -35,12 +35,9 @@ import org.json.JSONArray;
 
 import java.util.ArrayList;
 
-import upgrade.MyReceiver;
-
 
 public class LoginActivity extends AppCompatActivity {
 
-    MyReceiver oMyReceiver;
     EditText login, pass;
     Button validar, registre;
     TSSManager ttsManager = null;
@@ -69,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
         registre = (Button)findViewById(R.id.registre);
         validar = (Button)findViewById(R.id.login);
 
-        Init();
+  
 
         version=getIntent().getStringExtra("version");
         url=getIntent().getStringExtra("url");
@@ -82,18 +79,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
-    @Override
-    protected void onPause() {
-        super.onPause();
-        oMyReceiver.borrarRegistro(oMyReceiver);
-    }
 
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        oMyReceiver.registrar(oMyReceiver);
-    }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
 
@@ -624,17 +610,12 @@ public void mostrarguardado(){
     } ).start();
 }
 
-public void Init(){
-    oMyReceiver=new MyReceiver( LoginActivity.this );
-    oMyReceiver.registrar( oMyReceiver );
-}
+
 
     public void registro (View v) {
 
-     //Intent e = new Intent(getApplicationContext(), RegistroActivity.class);
-      // startActivity(e);
-
-        oMyReceiver.Descargar( url );
+     Intent e = new Intent(getApplicationContext(), RegistroActivity.class);
+       startActivity(e);
 
     }
 
