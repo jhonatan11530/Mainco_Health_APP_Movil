@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "900876019683",
+    "firebase_url": "https://mainco-healt-app.firebaseio.com",
+    "project_id": "mainco-healt-app",
+    "storage_bucket": "mainco-healt-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:900876019683:android:b29e96129764cf4fe7a2d6",
+        "android_client_info": {
+          "package_name": "com.example.mainco"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "900876019683-eb60uetbl10o5iqrfslvgadrk9nb57ld.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcFSXBfKo6iBwOwR2OgqcUxGm5NgIxYKc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "900876019683-eb60uetbl10o5iqrfslvgadrk9nb57ld.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

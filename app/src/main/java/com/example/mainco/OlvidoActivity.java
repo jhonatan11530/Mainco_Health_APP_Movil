@@ -16,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONArray;
 
+import upgrade.MyReceiver;
+
 public class OlvidoActivity extends AppCompatActivity {
 
     private EditText id,cedula;
@@ -33,6 +35,7 @@ public class OlvidoActivity extends AppCompatActivity {
 
         id = (EditText)findViewById(R.id.CDUNICO);
         cedula = (EditText)findViewById(R.id.cc);
+
 
     }
 

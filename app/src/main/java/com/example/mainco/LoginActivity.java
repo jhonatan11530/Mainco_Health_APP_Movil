@@ -1,15 +1,18 @@
 package com.example.mainco;
 
-
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+
 import android.os.Bundle;
+
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,16 +24,23 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
+
 
 import org.json.JSONArray;
 
 import java.util.ArrayList;
 
+import upgrade.MyReceiver;
+
 
 public class LoginActivity extends AppCompatActivity {
 
+    MyReceiver oMyReceiver;
     EditText login, pass;
     Button validar, registre;
     TSSManager ttsManager = null;
@@ -38,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
     final String user ="";
     private ListView componentes;
     CheckBox GUARDARUTO;
-
+    private final int REQUEST_ACCESS_READ = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,9 +68,35 @@ public class LoginActivity extends AppCompatActivity {
         registre = (Button)findViewById(R.id.registre);
         validar = (Button)findViewById(R.id.login);
 
+        Init();
+
+
+        if(ActivityCompat.checkSelfPermission( LoginActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) !=  PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions( LoginActivity.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},REQUEST_ACCESS_READ);
+
+
+        }
+
 
     }
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
+
+        switch (requestCode) {
+            case REQUEST_ACCESS_READ: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    Toast.makeText (LoginActivity.this,"Permiso concedido",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText (LoginActivity.this,"Permiso no concedido",Toast.LENGTH_SHORT).show();
+                }
+                return;
+
+            }
+        }
+    }
     public void onBackPressed() {
 
     }
@@ -574,13 +610,16 @@ public void mostrarguardado(){
     } ).start();
 }
 
-
+public void Init(){
+    oMyReceiver=new MyReceiver( LoginActivity.this );
+    oMyReceiver.REGISTRAR( oMyReceiver );
+}
 
     public void registro (View v) {
 
-       Intent e = new Intent(getApplicationContext(), RegistroActivity.class);
-        startActivity(e);
-
+     //Intent e = new Intent(getApplicationContext(), RegistroActivity.class);
+      // startActivity(e);
+        oMyReceiver.descargar();
 
 
     }

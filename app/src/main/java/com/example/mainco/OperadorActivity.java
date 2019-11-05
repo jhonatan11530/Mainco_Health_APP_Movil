@@ -48,10 +48,10 @@ public class OperadorActivity extends AppCompatActivity {
     private TextView motivo, MOSTRAR,texto,totalcan,tex,resultados;
     private Spinner resuldato,resuldato2,  resuldato4;
 
-    private  Button BTN_time, go, stop, btnconfir,desbloquear,positivo,neutrar, registroTIME, salidaTIME,validarinfo,cantidadund,btnvalidar;
-    private  TimePickerDialog listo;
-    private int minuto, i, hora,cantidadpro,volumen,volumencan,total,datoverifica;;
-    private ArrayList<cantidades> dato = new ArrayList<cantidades>();
+    private  Button go, stop, btnconfir,desbloquear,positivo,neutrar, registroTIME, salidaTIME,validarinfo,cantidadund,btnvalidar;
+
+    private int minuto, i, hora,cantidadpro,volumencan,total,totals,datoverifica,volumen;
+
     private ArrayList<cantidadfallas> dato4 = new ArrayList<cantidadfallas>();
     EditText edit,digito;
     View tiempo1,adelanto;
@@ -1340,17 +1340,45 @@ public class OperadorActivity extends AppCompatActivity {
 
 
                             final int cantidadreg = Integer.parseInt(objecto.getString(0));
-                            int volumen = Integer.parseInt(cantidad.getText().toString());
+                             volumen = Integer.parseInt(cantidad.getText().toString());
+
+
                             total = cantidadreg + volumen;
+
 
                             if(cantidadreg == 0){
 
                                 String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&Ffinal="+fechas+"&Hfinal="+horas+"&cantidad="+volumen+"&fallas="+falla.toString()+"&cantidaderror="+error.toString()+"&tarea="+tarea.toString()+"&op="+op.toString()).body();
 
+                                new Thread( new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        try {
+                                            Thread.sleep( 10000 );
+                                            String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&Ffinal="+fechas+"&Hfinal="+horas+"&cantidad="+volumen+"&fallas="+falla.toString()+"&cantidaderror="+error.toString()+"&tarea="+tarea.toString()+"&op="+op.toString()).body();
+
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                } ).start();
                             }
                             else if(cantidadreg > 0){
 
                                 String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&Ffinal="+fechas+"&Hfinal="+horas+"&cantidad="+total+"&fallas="+falla.toString()+"&cantidaderror="+error.toString()+"&tarea="+tarea.toString()+"&op="+op.toString()).body();
+
+                                new Thread( new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        try {
+                                            Thread.sleep( 10000 );
+                                            String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&Ffinal="+fechas+"&Hfinal="+horas+"&cantidad="+total+"&fallas="+falla.toString()+"&cantidaderror="+error.toString()+"&tarea="+tarea.toString()+"&op="+op.toString()).body();
+
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                } ).start();
 
                             }
 
