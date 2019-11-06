@@ -164,7 +164,7 @@ public class RegistroActivity extends AppCompatActivity {
                             builder.setTitle("REGISTRO DE USUARIO EXITOSO");
 
                             builder.setMessage("Se completo el registro exitosamente");
-                             
+
 
                             builder.setPositiveButton("Iniciar Sesiòn", new DialogInterface.OnClickListener() {
                                 @Override

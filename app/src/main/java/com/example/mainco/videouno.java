@@ -21,7 +21,7 @@ public class videouno extends AppCompatActivity {
 
 
         mVideoView =(VideoView)findViewById(R.id.mp4);
-
+   
         mVideoView.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.sample);
 
         MediaController media = new MediaController( this );
