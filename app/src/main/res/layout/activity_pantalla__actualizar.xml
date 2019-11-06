@@ -16,13 +16,23 @@
 
         >
 
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:gravity="center"
+            android:background="@drawable/updateimg" />
+
+
         <TextView
             android:id="@+id/textView5"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:text="EXISTE UNA NUEVA ACTUALIZACION"
             android:textSize="20sp"
-            android:gravity="center"/>
+            android:textColor="#ffffff"
+            android:gravity="center"
+            android:text="EXISTE UNA NUEVA ACTUALIZACION"
+            android:background="#4D97FF"/>
 
         <LinearLayout
             android:id="@+id/linearLayout1"
@@ -34,11 +44,29 @@
 
             >
 
-        <Button
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:text="EXISTE UNA VERSION DE MAINCO HEALTH APP.
+                 PARA CONTINUAR UTILIZANDO LA APP. ES NECESESARIO ACTUALIZARLA"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+               />
+
+            <Button
             android:id="@+id/btn_Actualizar"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:text="Button" />
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="#4489FF"
+            android:textSize="18sp"
+            android:text="ACTUALIZAR" />
 
     </LinearLayout>
 
