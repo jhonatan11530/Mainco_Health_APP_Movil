@@ -13,9 +13,6 @@ import android.util.Log;
 import android.webkit.MimeTypeMap;
 import android.webkit.URLUtil;
 
-import com.example.mainco.Pantalla_Actualizar;
-
-
 import java.io.File;
 
 public class MyReceiver extends BroadcastReceiver {
