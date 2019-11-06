@@ -289,7 +289,7 @@ public class LoginActivity extends AppCompatActivity {
                                builder.setMessage( "USO : " +
                                        "La aplicacion Mainco Health care es una aplicacion de registro de informacion en el area de planta atravez de esta app se podra registrar la hora de entrada , salida , las cantidades produccidas las cantidades defectuosa , el registro de tiempo de descanso \n\n" +
                                        "EXCLUSIVIDAD : " +
-                                       "La aplicacion Mainco Health care para dispositivos android es de uso exclusivo para la empresa MAINCO HEALTH CARE se prohibe el uso de esta app por personas (TERCEROS) sin previa autorizacion de MAINCO HEALTH CARE es uso no autorizado de esta app por terceros puede ser sancionado por la respectiva empresa \n\n"
+                                       "La aplicacion Mainco Health care para dispositivos android es de uso exclusivo para la empresa MAINCO HEALTH CARE se prohibe el uso de esta app por personas (TERCEROS) sin previa autorizacion de MAINCO HEALTH CARE el uso no autorizado de esta app por terceros puede ser sancionado por la respectiva empresa \n\n"
                                        );
 
                                builder.setNegativeButton( "ACUERDO DE LICENCIA", new DialogInterface.OnClickListener() {
