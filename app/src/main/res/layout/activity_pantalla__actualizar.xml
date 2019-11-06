@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Pantalla_Actualizar">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="10"
+        android:layout_weight="10"
+
+        >
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="EXISTE UNA NUEVA ACTUALIZACION"
+            android:textSize="20sp"
+            android:gravity="center"/>
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:weightSum="10"
+            android:gravity="center"
+
+            >
+
+        <Button
+            android:id="@+id/btn_Actualizar"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:text="Button" />
+
+    </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>

@@ -15,7 +15,6 @@
         android:weightSum="10"
         android:layout_weight="10"
 
-
         >
 
         <LinearLayout

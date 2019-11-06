@@ -23,13 +23,17 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 
@@ -45,9 +49,11 @@ public class LoginActivity extends AppCompatActivity {
     final String user ="";
     private ListView componentes;
     CheckBox GUARDARUTO;
-    private final int REQUEST_ACCESS_READ = 0;
-    String url,version;
-    @Override
+
+    String version_actual="1.2";
+    String version_firebase;
+    String url_firebase;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -67,36 +73,69 @@ public class LoginActivity extends AppCompatActivity {
         validar = (Button)findViewById(R.id.login);
 
 
-
-        version=getIntent().getStringExtra("version");
-        url=getIntent().getStringExtra("url");
-
-        if(ActivityCompat.checkSelfPermission( LoginActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) !=  PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions( LoginActivity.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},REQUEST_ACCESS_READ);
+        Obtener_Firebase();
 
 
-        }
 
 
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
+    private  void Obtener_Firebase(){
+        FirebaseDatabase database=FirebaseDatabase.getInstance();
+        DatabaseReference referencia_version,referencia_url;
 
-        switch (requestCode) {
-            case REQUEST_ACCESS_READ: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
-                    Toast.makeText (LoginActivity.this,"Permiso concedido",Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText (LoginActivity.this,"Permiso no concedido",Toast.LENGTH_SHORT).show();
+
+        referencia_url=database.getReference("url");
+        referencia_url.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                url_firebase=dataSnapshot.getValue().toString();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(LoginActivity.this,"URL "+databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        referencia_version=database.getReference("version");
+        referencia_version.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                version_firebase=dataSnapshot.getValue().toString();
+
+                if(version_firebase.trim().equals(version_actual.trim())){
+                    Toast.makeText(LoginActivity.this,"No es Necesario Actualizar ", Toast.LENGTH_SHORT).show();
+
                 }
-                return;
+                else{
+
+                    Intent pantaActualizar=new Intent(getApplicationContext(),Pantalla_Actualizar.class);
+                    pantaActualizar.putExtra("version",version_firebase);
+                    pantaActualizar.putExtra("url",url_firebase);
+                    finish();
+                    startActivity(pantaActualizar);
+                }
+
 
             }
-        }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+               Toast.makeText(LoginActivity.this,"Version "+databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+
+
+
+
     }
+
+
     public void onBackPressed() {
 
     }
