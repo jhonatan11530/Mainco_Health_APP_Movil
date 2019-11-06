@@ -596,7 +596,8 @@ public class LoginActivity extends AppCompatActivity {
                                                 ProgressDialog pd = new ProgressDialog(LoginActivity.this);
 
                                                 pd.setTitle("INICIANDO SESION");
-
+                                                Intent e = new Intent(getApplicationContext(), OperadorActivity.class);
+                                                startActivity(e);
                                                 pd.setMessage("Porfavor espere");
                                                 pd.setCanceledOnTouchOutside(false);
 
