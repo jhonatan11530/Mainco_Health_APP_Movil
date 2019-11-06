@@ -24,7 +24,7 @@
             android:exported="true" />
 
         <activity
-            android:name=".LoginActivity"
+            android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             >
             <intent-filter>
@@ -33,6 +33,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/title_activity_login" />
         <activity
             android:name=".OperadorActivity"
             android:label="@string/title_activity_operador" />
@@ -66,9 +69,7 @@
         <activity
             android:name=".videodos"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity
-            android:name=".MainActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar" />
+
     </application>
 
 </manifest>
