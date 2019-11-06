@@ -16,7 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.json.JSONArray;
 
-import upgrade.MyReceiver;
 
 public class OlvidoActivity extends AppCompatActivity {
 
