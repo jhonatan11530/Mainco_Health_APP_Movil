@@ -1,4 +1,4 @@
-package com.example.mainco;
+package Introducciones;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -8,13 +8,15 @@ import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class videosiete extends AppCompatActivity {
+import com.example.mainco.R;
+
+public class RECUPERAR_PASSWORD extends AppCompatActivity {
 
     private VideoView mVideoView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_videosiete );
+        setContentView( R.layout.activity_videotres );
 
         setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);
         this.getWindow().setFlags( WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);

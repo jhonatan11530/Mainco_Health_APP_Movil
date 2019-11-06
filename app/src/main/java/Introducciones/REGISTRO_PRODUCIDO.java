@@ -1,4 +1,4 @@
-package com.example.mainco;
+package Introducciones;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -8,13 +8,15 @@ import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class videodos extends AppCompatActivity {
+import com.example.mainco.R;
+
+public class REGISTRO_PRODUCIDO extends AppCompatActivity {
 
     private VideoView mVideoView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_videodos );
+        setContentView( R.layout.activity_videocinco );
 
         setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);
         this.getWindow().setFlags( WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -29,5 +31,6 @@ public class videodos extends AppCompatActivity {
         media.setAnchorView( mVideoView );
         mVideoView.setMediaController( media );
         mVideoView.start();
+
     }
 }

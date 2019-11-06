@@ -2,7 +2,6 @@ package com.example.mainco;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -38,6 +37,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
+import Introducciones.REGISTRO_PRODUCIDO;
+import Introducciones.SYSTEM;
+import Introducciones.CREAR_USER;
+import Introducciones.TERMINADO;
+import Introducciones.PAUSE_ACTIVAS;
+import Introducciones.CLOSE_OP;
+import Introducciones.RECUPERAR_PASSWORD;
+import Introducciones.INTRODUCCION;
 import cz.msebera.android.httpclient.Header;
 
 public class OperadorActivity extends AppCompatActivity {
@@ -233,49 +240,49 @@ public class OperadorActivity extends AppCompatActivity {
 
                                         if (H.getNombre() == "INTRODUCCION A MAINCO APP"){
 
-                                            Intent e = new Intent(getApplicationContext(), videouno.class);
+                                            Intent e = new Intent(getApplicationContext(), INTRODUCCION.class);
                                             startActivity(e);
                                         }
 
                                         else if (H.getNombre() == "COMO CREO UN USUARIO ?"){
 
-                                            Intent e = new Intent(getApplicationContext(), videodos.class);
+                                            Intent e = new Intent(getApplicationContext(), CREAR_USER.class);
                                             startActivity(e);
                                         }
 
                                         else if (H.getNombre() == "COMO RECUPERO MI CONTRASEÑA ?"){
 
-                                            Intent e = new Intent(getApplicationContext(), videotres.class);
+                                            Intent e = new Intent(getApplicationContext(), RECUPERAR_PASSWORD.class);
                                             startActivity(e);
                                         }
 
                                         else if (H.getNombre() == "COMO INGRESO AL SISTEMA ?"){
 
-                                            Intent e = new Intent(getApplicationContext(), videocuatro.class);
+                                            Intent e = new Intent(getApplicationContext(), SYSTEM.class);
                                             startActivity(e);
                                         }
 
                                         else if (H.getNombre() == "COMO EMPIEZO A REGISTRAR ?"){
 
-                                            Intent e = new Intent(getApplicationContext(), videocinco.class);
+                                            Intent e = new Intent(getApplicationContext(), REGISTRO_PRODUCIDO.class);
                                             startActivity(e);
                                         }
 
                                         else if (H.getNombre() == "COMO REGISTRO MIS PAUSAS ?"){
 
-                                            Intent e = new Intent(getApplicationContext(), videoseix.class);
+                                            Intent e = new Intent(getApplicationContext(), PAUSE_ACTIVAS.class);
                                             startActivity(e);
                                         }
 
                                         else if (H.getNombre() == "COMO SABER SI SE CERRO LA O.P ?"){
 
-                                            Intent e = new Intent(getApplicationContext(), videosiete.class);
+                                            Intent e = new Intent(getApplicationContext(), CLOSE_OP.class);
                                             startActivity(e);
                                         }
 
                                         else if (H.getNombre() == "COMO SABER SI YA TERMINE ?"){
 
-                                            Intent e = new Intent(getApplicationContext(), videoocho.class);
+                                            Intent e = new Intent(getApplicationContext(), TERMINADO.class);
                                             startActivity(e);
                                         }
                                     }

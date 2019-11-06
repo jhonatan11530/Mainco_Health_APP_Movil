@@ -1,4 +1,4 @@
-package com.example.mainco;
+package Introducciones;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -8,20 +8,22 @@ import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class videouno extends AppCompatActivity {
+import com.example.mainco.R;
+
+public class SYSTEM extends AppCompatActivity {
 
     private VideoView mVideoView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
-        setContentView(R.layout.activity_videouno);
+        setContentView( R.layout.activity_videocuatro );
 
         setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);
         this.getWindow().setFlags( WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
         mVideoView =(VideoView)findViewById(R.id.mp4);
-   
+
         mVideoView.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.sample);
 
         MediaController media = new MediaController( this );

@@ -42,28 +42,28 @@
             android:name=".OlvidoActivity"
             android:label="@string/title_activity_olvido" />
         <activity
-            android:name=".videouno"
+            android:name="Introducciones.INTRODUCCION"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".videoocho"
+            android:name="Introducciones.TERMINADO"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".videosiete"
+            android:name="Introducciones.CLOSE_OP"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".videoseix"
+            android:name="Introducciones.PAUSE_ACTIVAS"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".videocinco"
+            android:name="Introducciones.REGISTRO_PRODUCIDO"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".videocuatro"
+            android:name="Introducciones.SYSTEM"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".videotres"
+            android:name="Introducciones.RECUPERAR_PASSWORD"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".videodos"
+            android:name="Introducciones.CREAR_USER"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
     </application>
 
