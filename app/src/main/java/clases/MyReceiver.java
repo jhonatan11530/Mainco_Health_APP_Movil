@@ -19,6 +19,8 @@ public class MyReceiver extends BroadcastReceiver {
 
     DownloadManager my_DownloadManager;
     long tamaño;
+
+
     IntentFilter my_IntentFilter;
     private Context my_context;
     private Activity my_activity;
@@ -31,8 +33,8 @@ public class MyReceiver extends BroadcastReceiver {
         my_IntentFilter.addAction(DownloadManager.ACTION_DOWNLOAD_COMPLETE);
 
     }
-    @Override
-    public void onReceive(Context context, Intent intent) {
+
+    public void onReceive(Context context,Intent intent) {
 
         Log.e("Evento_Action",intent.getAction());
 
