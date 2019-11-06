@@ -38,8 +38,6 @@ public class Pantalla_Actualizar extends AppCompatActivity {
         btn_descargar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 oMyReceiver.Descargar(url);
             }
         });
