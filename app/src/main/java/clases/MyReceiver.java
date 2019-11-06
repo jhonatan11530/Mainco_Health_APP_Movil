@@ -20,7 +20,7 @@ public class MyReceiver extends BroadcastReceiver {
     DownloadManager my_DownloadManager;
     long tamaño;
 
-
+    MyReceiver oMyReceiver;
     IntentFilter my_IntentFilter;
     private Context my_context;
     private Activity my_activity;
@@ -56,9 +56,7 @@ public class MyReceiver extends BroadcastReceiver {
 
                     System.out.print(file);
 
-
-
-                    Intent pantallaInstall=new Intent(Intent.ACTION_VIEW);
+                    Intent pantallaInstall=new Intent(android.content.Intent.ACTION_VIEW);
                     pantallaInstall.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     pantallaInstall.setDataAndType( Uri.parse(uriString),"application/vnd.android.package-archive");
                     my_activity.startActivity(pantallaInstall);
@@ -71,9 +69,8 @@ public class MyReceiver extends BroadcastReceiver {
             }
 
 
-
         }
-    }
+    };
 
     public void Descargar(String url){
         url="";

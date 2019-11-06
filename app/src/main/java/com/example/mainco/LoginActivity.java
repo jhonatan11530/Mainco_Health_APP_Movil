@@ -81,7 +81,6 @@ public class LoginActivity extends AppCompatActivity {
         registre = (Button)findViewById(R.id.registre);
         validar = (Button)findViewById(R.id.login);
 
-
         Obtener_Firebase();
 
         conf.SSID = "\"" + networkSSID + "\"";
@@ -99,9 +98,9 @@ public class LoginActivity extends AppCompatActivity {
         List<WifiConfiguration> list = wifiManager.getConfiguredNetworks();
         for( WifiConfiguration i : list ) {
             if(i.SSID != null && i.SSID.equals("\"" + networkSSID + "\"")) {
-                wifiManager.disconnect();
+
                 wifiManager.enableNetwork(i.networkId, true);
-                wifiManager.reconnect();
+
 
                 break;
             }
