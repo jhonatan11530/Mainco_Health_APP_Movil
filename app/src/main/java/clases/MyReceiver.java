@@ -13,6 +13,9 @@ import android.util.Log;
 import android.webkit.MimeTypeMap;
 import android.webkit.URLUtil;
 
+import com.example.mainco.Pantalla_Actualizar;
+import com.example.mainco.RegistroActivity;
+
 import java.io.File;
 
 public class MyReceiver extends BroadcastReceiver {
@@ -20,7 +23,7 @@ public class MyReceiver extends BroadcastReceiver {
     DownloadManager my_DownloadManager;
     long tamaño;
     IntentFilter my_IntentFilter;
-
+    Pantalla_Actualizar updates = new Pantalla_Actualizar();
     private Context my_context;
     private Activity my_activity;
 
@@ -55,10 +58,14 @@ public class MyReceiver extends BroadcastReceiver {
 
                     System.out.print(file);
 
+
+
                     Intent pantallaInstall=new Intent(Intent.ACTION_VIEW);
                     pantallaInstall.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     pantallaInstall.setDataAndType( Uri.parse(uriString),"application/vnd.android.package-archive");
                     my_activity.startActivity(pantallaInstall);
+
+
 
                     Log.e("MsjDescarga","Se descargo sin problemas");
 

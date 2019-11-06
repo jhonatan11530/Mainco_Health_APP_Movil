@@ -8,59 +8,79 @@
     android:background="#ffffff">
 
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="12"
+        android:layout_weight="12"
+       >
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:weightSum="10"
-        android:layout_weight="10"
+        android:layout_weight="4"
+        android:gravity="center"
 
         >
 
         <ImageView
             android:id="@+id/imageView1"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:gravity="center"
-            android:background="@drawable/updateimg" />
+            android:layout_height="match_parent"
+            android:background="@drawable/updateimg"
+            android:layout_weight="2"/>
 
 
         <TextView
             android:id="@+id/textView5"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="match_parent"
             android:textSize="20sp"
+            android:layout_weight="8"
             android:textColor="#ffffff"
             android:gravity="center"
             android:text="EXISTE UNA NUEVA ACTUALIZACION"
             android:background="#4D97FF"/>
 
-        <LinearLayout
-            android:id="@+id/linearLayout1"
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="10"
+        android:layout_weight="4"
+        android:gravity="center"
+
+        >
+
+        <TextView
+            android:id="@+id/textView6"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:weightSum="10"
-            android:gravity="center"
+            android:layout_height="match_parent"
+            android:text="EXISTE UNA VERSION DE MAINCO HEALTH APP"
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:gravity="center"/>
+    </LinearLayout>
 
-            >
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="10"
+        android:layout_weight="4"
+        android:gravity="center"
 
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:text="EXISTE UNA VERSION DE MAINCO HEALTH APP"
-                android:textColor="#000000"
-                android:textSize="15sp"
-                android:gravity="center"/>
-
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-               />
-
-            <Button
+        >
+        <Button
             android:id="@+id/btn_Actualizar"
             android:layout_width="match_parent"
             android:layout_height="70dp"
@@ -69,6 +89,6 @@
             android:text="ACTUALIZAR" />
 
     </LinearLayout>
+            </LinearLayout>
 
-    </LinearLayout>
 </RelativeLayout>
