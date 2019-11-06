@@ -9,6 +9,8 @@ import android.content.pm.ActivityInfo;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import android.net.wifi.WifiConfiguration;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 
 import android.view.Menu;
@@ -35,6 +37,7 @@ import com.google.firebase.database.ValueEventListener;
 import org.json.JSONArray;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import Introducciones.REGISTRO_PRODUCIDO;
 import Introducciones.SYSTEM;
@@ -59,6 +62,10 @@ public class LoginActivity extends AppCompatActivity {
     String version_firebase;
     String url_firebase;
 
+    String networkSSID = "WIFIMainco";
+    String networkPass = "A125277935";
+    WifiConfiguration conf = new WifiConfiguration();
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -67,8 +74,6 @@ public class LoginActivity extends AppCompatActivity {
         mostrarguardado();
 
          GUARDARUTO = (CheckBox) findViewById(R.id.OK);
-
-
 
       login = (EditText)findViewById(R.id.estado);
          pass = (EditText)findViewById(R.id.ID);
@@ -79,9 +84,28 @@ public class LoginActivity extends AppCompatActivity {
 
         Obtener_Firebase();
 
+        conf.SSID = "\"" + networkSSID + "\"";
+        conf.preSharedKey = "\""+ networkPass +"\"";
 
+        WifiManager wifiManager = (WifiManager)getApplicationContext().getSystemService(Context.WIFI_SERVICE);
 
+        if ((wifiManager.isWifiEnabled() == false)) {
+            Toast.makeText( LoginActivity.this, "Conectando a Mainco.", Toast.LENGTH_LONG ).show();
+            wifiManager.setWifiEnabled( true );
 
+        }
+
+        wifiManager.addNetwork(conf);
+        List<WifiConfiguration> list = wifiManager.getConfiguredNetworks();
+        for( WifiConfiguration i : list ) {
+            if(i.SSID != null && i.SSID.equals("\"" + networkSSID + "\"")) {
+                wifiManager.disconnect();
+                wifiManager.enableNetwork(i.networkId, true);
+                wifiManager.reconnect();
+
+                break;
+            }
+        }
     }
 
     private  void Obtener_Firebase(){
@@ -110,7 +134,7 @@ public class LoginActivity extends AppCompatActivity {
                 version_firebase=dataSnapshot.getValue().toString();
 
                 if(version_firebase.trim().equals(version_actual.trim())){
-                    
+
 
                 }
                 else{
@@ -551,7 +575,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                 try {
                                     JSONArray objecto = new JSONArray(response);
-
+                                    System.out.println(objecto);
                                     if(objecto.length()>0) {
 
 
