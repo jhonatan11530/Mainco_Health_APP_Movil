@@ -67,7 +67,7 @@ public class OperadorActivity extends AppCompatActivity {
     public Thread hilo,eliminaOK,MOP;
     private RadioButton botonSi,botonNo;
     private ListView componentes;
-    TSSManager ttsManager=null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,8 +81,6 @@ public class OperadorActivity extends AppCompatActivity {
 
         setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        ttsManager = new TSSManager();
-        ttsManager.init( this );
 
 
 
@@ -173,8 +171,8 @@ public class OperadorActivity extends AppCompatActivity {
 
                         pd.show();
 
-                        ttsManager.initQueue("HASTA LUEGO");
-                        stopService(new Intent(OperadorActivity.this, ServerConnect.class));
+
+
                         Intent e = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(e);
 
@@ -1491,7 +1489,7 @@ public class OperadorActivity extends AppCompatActivity {
                 if(grupo.getCheckedRadioButtonId() == -1){
 
 
-                    ttsManager.initQueue("NO SE PUEDE CONTINUAR DEBE SELECCIONAR UNA OPCION");
+
                     Toast.makeText(getApplicationContext(),"NO SE PUEDE CONTINUAR DEBE SELECCIONAR UNA OPCION", Toast.LENGTH_SHORT).show();
                 }
                 else if(botonSi.isChecked()){

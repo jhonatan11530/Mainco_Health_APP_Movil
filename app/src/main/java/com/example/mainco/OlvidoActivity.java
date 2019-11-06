@@ -20,15 +20,14 @@ import org.json.JSONArray;
 public class OlvidoActivity extends AppCompatActivity {
 
     private EditText id,cedula;
-    TSSManager ttsManager=null;
+
     ViewFlipper v_flipper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_olvido);
 
-        ttsManager=new TSSManager();
-        ttsManager.init(this);
+
         setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
 
@@ -111,7 +110,7 @@ public class OlvidoActivity extends AppCompatActivity {
 
                                                builder.setTitle("SE RESTAURO LA CONTRASEÑA");
                                                builder.setMessage("Se cambio la contraseña exitosamente");
-                                                    ttsManager.initQueue("SE RESTAURO LA CONTRASEÑA");
+
                                                builder.setPositiveButton("Iniciar Sesiòn", new DialogInterface.OnClickListener() {
                                                    @Override
                                                    public void onClick(DialogInterface dialogInterface, int i) {

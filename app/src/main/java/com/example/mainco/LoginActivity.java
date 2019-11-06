@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText login, pass;
     Button validar, registre;
-    TSSManager ttsManager = null;
+
     ArrayList com;
     private ListView componentes;
     CheckBox GUARDARUTO;
@@ -60,8 +60,7 @@ public class LoginActivity extends AppCompatActivity {
 
          GUARDARUTO = (CheckBox) findViewById(R.id.OK);
 
-        ttsManager = new TSSManager();
-        ttsManager.init( this );
+
 
       login = (EditText)findViewById(R.id.estado);
          pass = (EditText)findViewById(R.id.ID);
@@ -523,7 +522,7 @@ public class LoginActivity extends AppCompatActivity {
             if(pass.getText().toString().length() == 0 && login.getText().toString().length() == 0) {
 
                 pass.setError("CONTRASEÑA ES REQUERIDO !");
-                ttsManager.initQueue("los campos de usuario y contraseña deben llenarse");
+
                 login.setError("ID ES REQUERIDO !");
 
             }else{
@@ -570,8 +569,8 @@ public class LoginActivity extends AppCompatActivity {
                                                 pd.setCanceledOnTouchOutside(false);
 
                                                 pd.show();
-                                                ttsManager.initQueue("BIENVENIDO");
-                                                startService(new Intent(LoginActivity.this, ServerConnect.class));
+
+
                                             }
                                         } );
 
@@ -583,7 +582,7 @@ public class LoginActivity extends AppCompatActivity {
                                             @Override
                                             public void run() {
 
-                                                ttsManager.initQueue("USUARIO O CONTRASEÑA INCORRECTO");
+
                                                 Toast.makeText(getApplicationContext(),"USUARIO O CONTRASEÑA INCORRECTO", Toast.LENGTH_SHORT).show();
 
                                             }

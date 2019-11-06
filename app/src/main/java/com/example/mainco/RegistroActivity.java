@@ -29,7 +29,7 @@ public class RegistroActivity extends AppCompatActivity {
     EditText id,nombre,apellido,cedula,pass;
     Spinner resultado;
     Button registro;
-    TSSManager ttsManager=null;
+
 
     private AsyncHttpClient client;
 
@@ -41,8 +41,6 @@ public class RegistroActivity extends AppCompatActivity {
 
         client = new AsyncHttpClient();
 
-        ttsManager=new TSSManager();
-        ttsManager.init(this);
 
         nombre = (EditText)findViewById(R.id.nombre);
         apellido = (EditText)findViewById(R.id.apellido);
@@ -166,7 +164,7 @@ public class RegistroActivity extends AppCompatActivity {
                             builder.setTitle("REGISTRO DE USUARIO EXITOSO");
 
                             builder.setMessage("Se completo el registro exitosamente");
-                                ttsManager.initQueue("REGISTRO DE USUARIO EXITOSO");
+                             
 
                             builder.setPositiveButton("Iniciar Sesiòn", new DialogInterface.OnClickListener() {
                                 @Override
