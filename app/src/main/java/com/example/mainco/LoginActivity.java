@@ -110,7 +110,7 @@ public class LoginActivity extends AppCompatActivity {
                 version_firebase=dataSnapshot.getValue().toString();
 
                 if(version_firebase.trim().equals(version_actual.trim())){
-                    Toast.makeText(LoginActivity.this,"No es Necesario Actualizar ", Toast.LENGTH_SHORT).show();
+                    
 
                 }
                 else{
