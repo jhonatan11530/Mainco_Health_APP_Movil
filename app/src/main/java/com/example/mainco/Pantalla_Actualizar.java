@@ -30,17 +30,17 @@ public class Pantalla_Actualizar extends AppCompatActivity {
 
         Init();
 
+        if(ActivityCompat.checkSelfPermission( Pantalla_Actualizar.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) !=  PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions( Pantalla_Actualizar.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},REQUEST_ACCESS_READ);
 
+
+        }
         btn_descargar=(Button) findViewById(R.id.btn_Actualizar);
         btn_descargar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if(ActivityCompat.checkSelfPermission( Pantalla_Actualizar.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) !=  PackageManager.PERMISSION_GRANTED){
-                    ActivityCompat.requestPermissions( Pantalla_Actualizar.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},REQUEST_ACCESS_READ);
 
-
-                }
                 oMyReceiver.Descargar(url);
             }
         });
