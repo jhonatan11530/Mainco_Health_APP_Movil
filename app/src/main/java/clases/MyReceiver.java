@@ -74,7 +74,7 @@ public class MyReceiver extends BroadcastReceiver {
     }
 
     public void Descargar(String url){
-        url="https://firebasestorage.googleapis.com/v0/b/mainco-healt-app.appspot.com/o/MAINCO.apk?alt=media&token=a2b19a64-a0de-465a-94ec-976ab6ca707c";
+        url="";
         DownloadManager.Request my_Request;
 
         my_DownloadManager=(DownloadManager) my_context.getSystemService(Context.DOWNLOAD_SERVICE);
