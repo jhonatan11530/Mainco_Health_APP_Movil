@@ -14,7 +14,7 @@ import android.webkit.MimeTypeMap;
 import android.webkit.URLUtil;
 
 import com.example.mainco.Pantalla_Actualizar;
-import com.example.mainco.RegistroActivity;
+
 
 import java.io.File;
 
@@ -23,7 +23,6 @@ public class MyReceiver extends BroadcastReceiver {
     DownloadManager my_DownloadManager;
     long tamaño;
     IntentFilter my_IntentFilter;
-    Pantalla_Actualizar updates = new Pantalla_Actualizar();
     private Context my_context;
     private Activity my_activity;
 
