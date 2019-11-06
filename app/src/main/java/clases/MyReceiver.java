@@ -87,7 +87,7 @@ public class MyReceiver extends BroadcastReceiver {
         File miFile=new File( Environment.getExternalStorageDirectory(),"MAINCO");
         boolean isCreada=miFile.exists();
 
-        if(isCreada==false){
+        if(isCreada==true){
             isCreada=miFile.mkdirs();
         }
 
