@@ -1014,8 +1014,15 @@ public class OperadorActivity extends AppCompatActivity {
                 texto.setVisibility(View.VISIBLE);
                 resuldato2.setVisibility(View.VISIBLE);
 
-                 String mostrardatos = resuldato2.getSelectedItem().toString();
-                Toast.makeText(getApplicationContext(),"USTED SELECCIÓNO "+mostrardatos, Toast.LENGTH_SHORT).show();
+
+                 runOnUiThread( new Runnable() {
+                     @Override
+                     public void run() {
+                         String mostrardatos = resuldato2.getSelectedItem().toString();
+                         Toast.makeText(getApplicationContext(),"USTED SELECCIÓNO "+mostrardatos, Toast.LENGTH_SHORT).show();
+                     }
+                 } );
+
             }
         });
 
@@ -1136,7 +1143,7 @@ public class OperadorActivity extends AppCompatActivity {
 
         go.setEnabled(false);
 
-        new Thread(new Runnable() {
+        hilo = new Thread(new Runnable() {
 
             @Override
             public void run() {
@@ -1201,7 +1208,7 @@ public class OperadorActivity extends AppCompatActivity {
 
         if(hilo!=null){
             stop.setEnabled(true);
-            hilo.interrupted();
+     
 
         }
 
