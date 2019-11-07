@@ -606,24 +606,6 @@ public class OperadorActivity extends AppCompatActivity {
     }
 
 
-    public void cargarSpinners(String cargarSpinners) {
-        ArrayList<cantidades> dato = new ArrayList<cantidades>();
-        try {
-            JSONArray objecto = new JSONArray(cargarSpinners);
-            for (int i = 0; i < objecto.length(); i++) {
-                cantidades a = new cantidades();
-                a.setTarea(objecto.getJSONObject(i).getString("tarea"));
-                dato.add(a);
-            }
-            ArrayAdapter<cantidades> a = new ArrayAdapter<cantidades>(this, android.R.layout.simple_dropdown_item_1line, dato);
-            resuldato.setAdapter(a);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-
-        }
-
-    }
     public void llenarSpinner() {
 
         String url = "http://" + cambiarIP.ip + "/validar/cantidad.php";
