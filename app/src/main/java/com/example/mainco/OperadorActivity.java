@@ -1,18 +1,22 @@
 package com.example.mainco;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -75,7 +79,8 @@ public class OperadorActivity extends AppCompatActivity {
     private RadioButton botonSi,botonNo;
     private ListView componentes;
 
-
+    protected PowerManager.WakeLock wakelock;
+    @SuppressLint("InvalidWakeLockTag")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,7 +96,9 @@ public class OperadorActivity extends AppCompatActivity {
 
 
 
-
+        final PowerManager pm=(PowerManager)getSystemService(Context.POWER_SERVICE);
+        this.wakelock=pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, "etiqueta");
+        wakelock.acquire();
 
         resuldato = (Spinner) findViewById(R.id.spinner1);
 
@@ -124,6 +131,21 @@ public class OperadorActivity extends AppCompatActivity {
         salidaTIME.setEnabled(false);
         cantidadund.setEnabled(false);
 
+
+
+    }
+    protected void onDestroy(){
+        super.onDestroy();
+
+        this.wakelock.release();
+    }
+    protected void onResume(){
+        super.onResume();
+        wakelock.acquire();
+    }
+    public void onSaveInstanceState(Bundle icicle) {
+        super.onSaveInstanceState(icicle);
+        this.wakelock.release();
     }
     public void onBackPressed() {
 
