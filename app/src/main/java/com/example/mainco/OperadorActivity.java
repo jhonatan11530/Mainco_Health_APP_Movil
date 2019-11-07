@@ -836,10 +836,10 @@ public class OperadorActivity extends AppCompatActivity {
             MOP =  new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    int num = 1000;
+
 
                         try {
-                            Thread.sleep( 1000 );
+                            Thread.sleep( 500 );
 
                             String response = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/validarcantidad.php?numero="+ Nop.toString()  ).body();
 
