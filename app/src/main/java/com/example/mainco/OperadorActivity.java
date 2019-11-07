@@ -1208,7 +1208,7 @@ public class OperadorActivity extends AppCompatActivity {
 
         if(hilo!=null){
             stop.setEnabled(true);
-     
+
 
         }
 
