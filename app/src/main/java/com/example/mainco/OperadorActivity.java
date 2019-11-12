@@ -954,7 +954,7 @@ public class OperadorActivity extends AppCompatActivity {
             @Override
             public void run() {
                 id=(EditText)findViewById(R.id.operador);
-                String cero = HttpRequest.get("http://"+cambiarIP.ip+"/validar/nuevoRegistro.php?ID=" + id.toString()).body();
+                String cero = HttpRequest.get("http://"+cambiarIP.ip+"/validar/nuevoRegistro.php?kl=" + id.toString()).body();
             }
         } ).start();
 
