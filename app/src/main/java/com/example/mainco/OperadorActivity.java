@@ -923,8 +923,16 @@ public class OperadorActivity extends AppCompatActivity {
                                             builder.setNegativeButton( "REGISTRAR OTRA OP", new DialogInterface.OnClickListener() {
                                                 @Override
                                                 public void onClick(DialogInterface dialogInterface, int i) {
-                                                    nuevo();
-                                                }
+                                                       new Thread( new Runnable() {
+                                                           @Override
+                                                           public void run() {
+
+                                                             String cero = HttpRequest.get("http://"+cambiarIP.ip+"/validar/nuevoRegistro.php?ID="+ id.getText().toString() ).body();
+
+                                                           }
+                                                       } ).start();
+
+                                               }
                                             } );
                                             builder.create().show();
 
@@ -947,21 +955,6 @@ public class OperadorActivity extends AppCompatActivity {
             eliminaOK.interrupted();
 
   }
-
-
- public void nuevo(){
-        new Thread( new Runnable() {
-            @Override
-            public void run() {
-                id=(EditText)findViewById(R.id.operador);
-                String cero = HttpRequest.get("http://"+cambiarIP.ip+"/validar/nuevoRegistro.php?ID=" + id.toString()).body();
-            }
-        } ).start();
-
-
-
-    }
-
 
     public void hora(View v) {
 
