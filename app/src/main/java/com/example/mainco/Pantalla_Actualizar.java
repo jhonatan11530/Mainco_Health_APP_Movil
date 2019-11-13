@@ -37,7 +37,7 @@ public class Pantalla_Actualizar extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 oMyReceiver.Descargar(url);
-                btn_descargar.setVisibility(View.INVISIBLE);
+                btn_descargar.setVisibility(View.VISIBLE);
 
 
             }
