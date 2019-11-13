@@ -1,6 +1,7 @@
 package clases;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DownloadManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -13,6 +14,8 @@ import android.util.Log;
 import android.webkit.MimeTypeMap;
 import android.webkit.URLUtil;
 
+import com.example.mainco.OperadorActivity;
+
 import java.io.File;
 
 public class MyReceiver extends BroadcastReceiver {
@@ -22,6 +25,7 @@ public class MyReceiver extends BroadcastReceiver {
 
     MyReceiver oMyReceiver;
     IntentFilter my_IntentFilter;
+
     private Context my_context;
     private Activity my_activity;
 
@@ -31,6 +35,8 @@ public class MyReceiver extends BroadcastReceiver {
 
         my_IntentFilter=new IntentFilter();
         my_IntentFilter.addAction(DownloadManager.ACTION_DOWNLOAD_COMPLETE);
+
+
 
     }
 
@@ -59,6 +65,11 @@ public class MyReceiver extends BroadcastReceiver {
                     Intent pantallaInstall=new Intent(android.content.Intent.ACTION_VIEW);
                     pantallaInstall.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     pantallaInstall.setDataAndType( Uri.parse(uriString),"application/vnd.android.package-archive");
+
+
+
+
+
                     my_activity.startActivity(pantallaInstall);
 
 
