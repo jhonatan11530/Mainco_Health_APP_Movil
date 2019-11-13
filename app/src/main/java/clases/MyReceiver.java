@@ -13,7 +13,6 @@ import android.util.Log;
 import android.webkit.MimeTypeMap;
 import android.webkit.URLUtil;
 
-
 import java.io.File;
 
 public class MyReceiver extends BroadcastReceiver {
@@ -45,6 +44,7 @@ public class MyReceiver extends BroadcastReceiver {
         String action=intent.getAction();
 
         if(DownloadManager.ACTION_DOWNLOAD_COMPLETE.equals(action)){
+
 
             intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID,0);
             DownloadManager.Query query=new DownloadManager.Query();
