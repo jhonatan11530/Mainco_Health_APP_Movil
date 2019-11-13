@@ -108,7 +108,7 @@
                 android:ems="10"
                 android:gravity="center"
                 android:hint="INGRESE EL NUMERO OP"
-                android:inputType="numberSigned" />
+                android:inputType="text" />
 
             <Button
                 android:id="@+id/button"
