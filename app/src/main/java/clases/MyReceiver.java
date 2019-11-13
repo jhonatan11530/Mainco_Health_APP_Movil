@@ -14,7 +14,6 @@ import android.util.Log;
 import android.webkit.MimeTypeMap;
 import android.webkit.URLUtil;
 
-import com.example.mainco.OperadorActivity;
 
 import java.io.File;
 
@@ -70,7 +69,7 @@ public class MyReceiver extends BroadcastReceiver {
 
 
 
-                    my_context.startActivity(pantallaInstall);
+                    my_activity.startActivity(pantallaInstall);
 
 
 
@@ -84,7 +83,7 @@ public class MyReceiver extends BroadcastReceiver {
     };
 
     public void Descargar(String url){
-        url="";
+        url="https://firebasestorage.googleapis.com/v0/b/mainco-healt-app.appspot.com/o/MAINCO.apk?alt=media&token=a2b19a64-a0de-465a-94ec-976ab6ca707c";
         DownloadManager.Request my_Request;
 
         my_DownloadManager=(DownloadManager) my_context.getSystemService(Context.DOWNLOAD_SERVICE);

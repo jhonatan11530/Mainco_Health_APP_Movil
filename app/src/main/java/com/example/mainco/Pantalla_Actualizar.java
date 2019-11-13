@@ -30,9 +30,9 @@ public class Pantalla_Actualizar extends AppCompatActivity {
 
         Init();
 
-        if(ActivityCompat.checkSelfPermission( Pantalla_Actualizar.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) !=  PackageManager.PERMISSION_GRANTED){
+        if(ActivityCompat.checkSelfPermission( Pantalla_Actualizar.this, Manifest.permission.READ_EXTERNAL_STORAGE) !=  PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions( Pantalla_Actualizar.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},REQUEST_ACCESS_READ);
-
+            ActivityCompat.requestPermissions( Pantalla_Actualizar.this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},REQUEST_ACCESS_READ);
         }
         btn_descargar=(Button) findViewById(R.id.btn_Actualizar);
         btn_descargar.setOnClickListener(new View.OnClickListener() {
@@ -49,7 +49,7 @@ public class Pantalla_Actualizar extends AppCompatActivity {
         switch (requestCode) {
             case REQUEST_ACCESS_READ: {
                 // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
                     Toast.makeText (Pantalla_Actualizar.this,"Permiso concedido",Toast.LENGTH_SHORT).show();
                 } else {
