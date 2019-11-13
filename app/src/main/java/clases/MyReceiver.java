@@ -37,6 +37,7 @@ public class MyReceiver extends BroadcastReceiver {
 
 
 
+
     }
 
     public void onReceive(Context context,Intent intent) {
@@ -64,10 +65,6 @@ public class MyReceiver extends BroadcastReceiver {
                     Intent pantallaInstall=new Intent(android.content.Intent.ACTION_VIEW);
                     pantallaInstall.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     pantallaInstall.setDataAndType( Uri.parse(uriString),"application/vnd.android.package-archive");
-
-
-
-
 
                     my_activity.startActivity(pantallaInstall);
 
