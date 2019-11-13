@@ -70,7 +70,7 @@ public class MyReceiver extends BroadcastReceiver {
 
 
 
-                    my_activity.startActivity(pantallaInstall);
+                    my_context.startActivity(pantallaInstall);
 
 
 
