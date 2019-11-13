@@ -1,6 +1,7 @@
 package Introducciones;
 
 import android.content.pm.ActivityInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.MediaController;
@@ -13,6 +14,7 @@ import com.example.mainco.R;
 public class TERMINADO extends AppCompatActivity {
 
     private VideoView mVideoView;
+    Uri video=Uri.parse("http://www.ebookfrenzy.com/android_book/movie.mp4");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -24,7 +26,7 @@ public class TERMINADO extends AppCompatActivity {
 
         mVideoView =(VideoView)findViewById(R.id.mp4);
 
-        mVideoView.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.sample);
+        mVideoView.setVideoURI(video);
 
         MediaController media = new MediaController( this );
 

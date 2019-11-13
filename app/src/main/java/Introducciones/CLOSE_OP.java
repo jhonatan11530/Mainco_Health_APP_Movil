@@ -14,7 +14,7 @@ import com.example.mainco.R;
 public class CLOSE_OP extends AppCompatActivity {
 
     private VideoView mVideoView;
- 
+    Uri video=Uri.parse("http://www.ebookfrenzy.com/android_book/movie.mp4");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -25,8 +25,8 @@ public class CLOSE_OP extends AppCompatActivity {
 
 
         mVideoView =(VideoView)findViewById(R.id.mp4);
+        mVideoView.setVideoURI(video);
 
-         mVideoView.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.sample);
 
 
         MediaController media = new MediaController( this );
