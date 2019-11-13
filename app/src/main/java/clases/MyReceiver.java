@@ -1,7 +1,6 @@
 package clases;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.DownloadManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -21,12 +20,11 @@ public class MyReceiver extends BroadcastReceiver {
 
     DownloadManager my_DownloadManager;
     long tamaño;
-
-    MyReceiver oMyReceiver;
     IntentFilter my_IntentFilter;
-
+    Intent pantallaInstall;
+    DownloadManager.Request my_Request;
     private Context my_context;
-    private Activity my_activity;
+    public Activity my_activity;
 
     public MyReceiver(Activity activity_) {
         this.my_context=activity_;
@@ -47,6 +45,7 @@ public class MyReceiver extends BroadcastReceiver {
         String action=intent.getAction();
 
         if(DownloadManager.ACTION_DOWNLOAD_COMPLETE.equals(action)){
+
             intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID,0);
             DownloadManager.Query query=new DownloadManager.Query();
             query.setFilterById(tamaño);
@@ -62,11 +61,11 @@ public class MyReceiver extends BroadcastReceiver {
 
                     System.out.print(file);
 
-                    Intent pantallaInstall=new Intent(android.content.Intent.ACTION_VIEW);
+                     pantallaInstall=new Intent( Intent.ACTION_VIEW);
                     pantallaInstall.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     pantallaInstall.setDataAndType( Uri.parse(uriString),"application/vnd.android.package-archive");
 
-                    my_activity.startActivity(pantallaInstall);
+
 
 
 
@@ -78,10 +77,18 @@ public class MyReceiver extends BroadcastReceiver {
 
         }
     };
+    public void Install(){
+
+
+        my_activity.startActivity(pantallaInstall);
+
+
+
+    }
 
     public void Descargar(String url){
         url="https://firebasestorage.googleapis.com/v0/b/mainco-healt-app.appspot.com/o/MAINCO.apk?alt=media&token=a2b19a64-a0de-465a-94ec-976ab6ca707c";
-        DownloadManager.Request my_Request;
+
 
         my_DownloadManager=(DownloadManager) my_context.getSystemService(Context.DOWNLOAD_SERVICE);
 

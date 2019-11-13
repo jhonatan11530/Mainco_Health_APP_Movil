@@ -86,7 +86,16 @@
             android:layout_height="70dp"
             android:background="#4489FF"
             android:textSize="18sp"
-            android:text="ACTUALIZAR" />
+            android:text="ACTUALIZAR"
+       />
+
+        <Button
+            android:id="@+id/btn_Install"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:textSize="18sp"
+            android:background="#4489FF"
+            android:text="INSTALAR" />
 
     </LinearLayout>
             </LinearLayout>

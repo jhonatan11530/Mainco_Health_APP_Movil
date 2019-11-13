@@ -16,7 +16,7 @@ import clases.MyReceiver;
 public class Pantalla_Actualizar extends AppCompatActivity {
 
     MyReceiver oMyReceiver;
-    Button btn_descargar;
+    Button btn_descargar,btn_install;
     String url,version;
     private final int REQUEST_ACCESS_READ = 0;
 
@@ -28,20 +28,34 @@ public class Pantalla_Actualizar extends AppCompatActivity {
         version=getIntent().getStringExtra("version");
         url=getIntent().getStringExtra("url");
 
+        btn_install=(Button) findViewById(R.id.btn_Install);
+        btn_descargar=(Button) findViewById(R.id.btn_Actualizar);
+
+        btn_install.setVisibility(View.INVISIBLE);
+
+        btn_descargar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                oMyReceiver.Descargar(url);
+                btn_descargar.setVisibility(View.INVISIBLE);
+                btn_install.setVisibility(View.VISIBLE);
+
+            }
+        });
+        btn_install.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                oMyReceiver.Install();
+            }
+        } );
+
         Init();
 
         if(ActivityCompat.checkSelfPermission( Pantalla_Actualizar.this, Manifest.permission.READ_EXTERNAL_STORAGE) !=  PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions( Pantalla_Actualizar.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},REQUEST_ACCESS_READ);
             ActivityCompat.requestPermissions( Pantalla_Actualizar.this,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},REQUEST_ACCESS_READ);
         }
-        btn_descargar=(Button) findViewById(R.id.btn_Actualizar);
-        btn_descargar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-              oMyReceiver.Descargar(url);
 
-            }
-        });
     }
 
     @Override

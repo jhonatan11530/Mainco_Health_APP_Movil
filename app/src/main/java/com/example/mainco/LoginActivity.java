@@ -1,5 +1,6 @@
 package com.example.mainco;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,6 +12,7 @@ import android.net.NetworkInfo;
 
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.Bundle;
 
 import android.view.Menu;
@@ -58,7 +60,8 @@ public class LoginActivity extends AppCompatActivity {
     private ListView componentes;
     CheckBox GUARDARUTO;
 
-    String version_actual="1.2";
+    String version_actual= getVersionName();
+
     String version_firebase;
     String url_firebase;
 
@@ -73,6 +76,7 @@ public class LoginActivity extends AppCompatActivity {
 
         mostrarguardado();
 
+        System.out.println( "LA VERSION ES "+version_actual );
          GUARDARUTO = (CheckBox) findViewById(R.id.OK);
 
       login = (EditText)findViewById(R.id.estado);
@@ -105,6 +109,10 @@ public class LoginActivity extends AppCompatActivity {
                 break;
             }
         }
+    }
+
+    public String getVersionName(){
+        return BuildConfig.VERSION_NAME;
     }
 
     private  void Obtener_Firebase(){
