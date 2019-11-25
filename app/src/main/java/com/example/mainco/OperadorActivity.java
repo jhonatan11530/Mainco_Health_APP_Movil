@@ -729,7 +729,7 @@ public class OperadorActivity extends AppCompatActivity {
 
             final String nombretarea = resuldato.getSelectedItem().toString();
 
-            final String Nop = resuldato3.getText().toString();
+            final String Nop = items.getText().toString();
 
             new Thread(new Runnable() {
                 @Override
