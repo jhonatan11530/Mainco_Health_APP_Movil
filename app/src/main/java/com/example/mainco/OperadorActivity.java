@@ -54,7 +54,7 @@ import cz.msebera.android.httpclient.Header;
 public class OperadorActivity extends AppCompatActivity {
 
 
-    private EditText id, cantidad, paro, fallas,resuldato3;
+    private EditText id, cantidad, paro, fallas,resuldato3,items;
     private String falla,error;
     private TextView motivo, MOSTRAR,texto,totalcan,tex,resultados;
     private Spinner resuldato,resuldato2,  resuldato4;
@@ -107,6 +107,8 @@ public class OperadorActivity extends AppCompatActivity {
         resuldato2 = (Spinner) findViewById(R.id.spinner2);
 
         resuldato3 = (EditText) findViewById(R.id.spinner);
+
+        items = (EditText) findViewById(R.id.item);
 
         cantidadund = (Button) findViewById(R.id.aplazar);
 
@@ -589,7 +591,7 @@ public class OperadorActivity extends AppCompatActivity {
     }
     public void llenarSpinners() {
 
-        String url = "http://" + cambiarIP.ip + "/validar/cantidadfiltre.php?op="+resuldato3.getText().toString();
+        String url = "http://" + cambiarIP.ip + "/validar/cantidadfiltre.php?op="+items.getText().toString();
         client.post(url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
