@@ -12,7 +12,7 @@ $noconforme = $_GET["cantidaderror"];
   
 $mysqli = mysqli_connect("127.0.0.1", "root", "", "proyecto");
 
- $sql_statement = "UPDATE  operador SET cantidad='".$cantidad."',no_conforme='".$fallas."',cantidad_fallas='".$noconforme."',tarea='".$tarea."',final='".$final."',hora_final='".$finalh."' WHERE id= '".$ID."'";
+ $sql_statement = "UPDATE IGNORE operador SET cantidad='".$cantidad."',no_conforme='".$fallas."',cantidad_fallas='".$noconforme."',tarea='".$tarea."',final='".$final."',hora_final='".$finalh."' WHERE id= '".$ID."'";
   $result = mysqli_query($mysqli, $sql_statement);
 
   $workers=new ejecutar();
@@ -25,9 +25,10 @@ class ejecutar{
         $sql_statement = "SELECT * FROM operador WHERE id= '".$ID."'";
       $resultado = mysqli_query($mysqli, $sql_statement);
 
+      $arreglito = array();
+
     while ($row = mysqli_fetch_array($resultado)){ 
-    
-        $arreglito = array();
+  
       
         $arreglito[0]=$row["id"];
         $arreglito[1]=$row["nombre"];
@@ -38,7 +39,7 @@ class ejecutar{
         $arreglito[6]=$row["final"];
         $arreglito[7]=$row["hora_final"];
         $arreglito[8]=$row["no_conforme"];
-    
+   
 
       }
       echo json_encode($arreglito);
@@ -58,16 +59,18 @@ class ejecutar{
     
     $cantno=$arreglito[8];
     
+
+
+ 
+     $dates = new DateTime($arreglito[5]);
+      $Hini = $dates->format('H:i');
     
-    $dates = new DateTime($arreglito[5]);
-     $Hini = $dates->format('H:i');
-
     $datest = new DateTime($arreglito[7]);
-    $Hfini = $datest->format('H:i');
-
+     $Hfini = $datest->format('H:i');
+    echo "<br/>";
      $horai= substr($Hini ,0,2);
-
-   $horaf =substr($Hfini,0,2);
+    
+    $horaf =substr($Hfini,0,2);
 
     $fis =  $horaf / $horai;
      $fist = round($fis);
@@ -87,7 +90,7 @@ if($porcentaje != null){
 
 //-------TERMINANO
 
- $sql_statementt = "SELECT * FROM tarea WHERE tarea='".$tarea."'";
+ $sql_statementt = "SELECT * FROM tarea WHERE tarea='".$tarea."' AND numero_op='".$op."'";
  $res = mysqli_query($mysqli, $sql_statementt);
 
  while ($row = mysqli_fetch_array($res)){ 
@@ -109,37 +112,10 @@ while ($row = mysqli_fetch_array($ress)){
 }
 $cantpendi =$arreglitt[0];
 
-
-
-$sql_statementstt = "SELECT * FROM operador WHERE id= '".$ID."'";
- $resst = mysqli_query($mysqli, $sql_statementstt);
-
- while ($row = mysqli_fetch_array($resst)){ 
-  $arreglits = array();
-  $arreglits[0]=$row["hora_final"];
-
-
-}
- $timeFH = $arreglits[0];
-
-$date = new DateTime($timeST);
- $ST = $date->format('i');
-
- $segundos =$cantpendi * $ST;
-
- $minute = $segundos / 60;
-
-   $minutos = round($minute); 
-
-   $hours = $minutos / 60;
-//--hora extandar
- $hora = round($hours); 
-
- //--hora extandar
-
-  echo $tiempoespera = ($cant  * $ST) / 3600;
+// $timeST;
+ echo $tiempoespera = ( $timeST * $cant) / 3600;
   echo "<br/>";
-  echo  $eficencia =  $tiempoespera / $fist * 10;
+  echo  $eficencia =  $tiempoespera / $fist * 100;
   echo "<br/>";
   echo  $eficencias = round($eficencia); 
 

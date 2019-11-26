@@ -2,7 +2,7 @@
 
 
   $mysqli = mysqli_connect("127.0.0.1", "root", "", "proyecto");
-  $sql_statement = "SELECT tarea FROM  tarea ";
+  $sql_statement = "SELECT DISTINCT  tarea FROM  tarea ";
   $result = mysqli_query($mysqli, $sql_statement);
 
   $result=mysqli_query($mysqli, $sql_statement);
