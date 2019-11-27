@@ -75,7 +75,7 @@ public class OperadorActivity extends AppCompatActivity {
     private AsyncHttpClient clientes;
     private AsyncHttpClient clientes2;
     private AsyncHttpClient clientes3;
-    public Thread hilo,eliminaOK,MOP;
+    public Thread hilo,eliminaOK;
     private RadioButton botonSi,botonNo;
     private ListView componentes;
 
@@ -835,7 +835,7 @@ public class OperadorActivity extends AppCompatActivity {
 
             final String Nop = resuldato3.getText().toString();
 
-            MOP =  new Thread(new Runnable() {
+      new Thread(new Runnable() {
                 @Override
                 public void run() {
 
@@ -866,8 +866,7 @@ public class OperadorActivity extends AppCompatActivity {
 
 
                 }
-            });
-            MOP.start();
+            }).start();
         }
     }
 
