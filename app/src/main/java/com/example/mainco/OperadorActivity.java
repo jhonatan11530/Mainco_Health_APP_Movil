@@ -841,7 +841,7 @@ public class OperadorActivity extends AppCompatActivity {
 
 
                         try {
-                            Thread.sleep( 500 );
+                            Thread.sleep( 2000 );
 
                             String response = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/validarcantidad.php?numero="+ Nop.toString()  ).body();
 
