@@ -1369,7 +1369,7 @@ public class OperadorActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         String elitico = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&Ffinal="+fechas+"&Hfinal="+horas+"&cantidad="+volumen+"&fallas="+falla.toString()+"&cantidaderror="+error.toString()+"&tarea="+tarea.toString()+"&op="+items.getText().toString()).body();
-                        
+
 
                         String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedits.php?numero="+nombretarea.toString()+"&op="+items.getText().toString()).body();
 

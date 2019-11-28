@@ -12,7 +12,7 @@ $noconforme = $_GET["cantidaderror"];
   
 $mysqli = mysqli_connect("127.0.0.1", "root", "", "proyecto");
 
- $sql_statement = "UPDATE IGNORE operador SET cantidad='".$cantidad."',no_conforme='".$fallas."',cantidad_fallas='".$noconforme."',tarea='".$tarea."',final='".$final."',hora_final='".$finalh."' WHERE id= '".$ID."'";
+ $sql_statement = "UPDATE  IGNORE operador SET cantidad='".$cantidad."',no_conforme='".$fallas."',cantidad_fallas='".$noconforme."',tarea='".$tarea."',final='".$final."',hora_final='".$finalh."' WHERE id= '".$ID."'";
   $result = mysqli_query($mysqli, $sql_statement);
 
   $workers=new ejecutar();
@@ -132,7 +132,7 @@ class eficencia{
   public function run($eficencias,$ID){
     
     $mysqli = mysqli_connect("127.0.0.1", "root", "", "proyecto");
-    $sql_statement = "UPDATE IGNORE operador SET eficencia='".$eficencias."' WHERE id= '".$ID."'";
+    $sql_statement = "UPDATE  IGNORE operador SET eficencia='".$eficencias."' WHERE id= '".$ID."'";
     $result = mysqli_query($mysqli, $sql_statement);
 
     
@@ -142,7 +142,7 @@ class efica{
   public function run($porcentaje,$ID){
     
     $mysqli = mysqli_connect("127.0.0.1", "root", "", "proyecto");
-$sql_statement = "UPDATE IGNORE operador SET eficacia='".$porcentaje."' WHERE id= '".$ID."'";
+$sql_statement = "UPDATE  IGNORE operador SET eficacia='".$porcentaje."' WHERE id= '".$ID."'";
   $result = mysqli_query($mysqli, $sql_statement);
 
  
