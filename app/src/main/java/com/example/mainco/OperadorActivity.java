@@ -59,7 +59,7 @@ public class OperadorActivity extends AppCompatActivity {
     private TextView motivo, MOSTRAR,texto,totalcan,tex,resultados;
     private Spinner resuldato,resuldato2,  resuldato4;
 
-    private  Button go, stop, btnconfir,desbloquear,positivo,neutrar, registroTIME, salidaTIME,validarinfo,cantidadund,btnvalidar;
+    private  Button go, stop, btnconfir,desbloquear,positivo,neutrar, registroTIME, salidaTIME,validarinfo,cantidadund,btnvalidar,filtre;
 
     private int minuto, i, hora,cantidadpro,volumencan,total,totals,datoverifica,volumen;
 
@@ -100,6 +100,7 @@ public class OperadorActivity extends AppCompatActivity {
         this.wakelock=pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, "etiqueta");
         wakelock.acquire();
 
+         filtre = (Button) findViewById( R.id.FILTROS );
         resuldato = (Spinner) findViewById(R.id.spinner1);
 
         totalcan = (TextView)findViewById(R.id.CANTIDADID);
@@ -588,15 +589,16 @@ public class OperadorActivity extends AppCompatActivity {
     }
     public void filtro(View V){
         llenarSpinners();
+        filtre.setEnabled( false );
     }
     public void llenarSpinners() {
-
         String url = "http://" + cambiarIP.ip + "/validar/cantidadfiltre.php?op="+items.getText().toString();
         client.post(url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if (statusCode == 200) {
                     cargarSpinner(new String(responseBody));
+                    filtrocantidad();
                 }
             }
 
@@ -605,6 +607,28 @@ public class OperadorActivity extends AppCompatActivity {
 
             }
         });
+    }
+    public void filtrocantidad(){
+
+        final String Nop = items.getText().toString();
+        new Thread( new Runnable() {
+            @Override
+            public void run() {
+                String responsesx = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/validarcantidad.php?numero="+ Nop.toString()  ).body();
+
+                try {
+                    JSONArray RESTARCANTIDADES = new JSONArray(responsesx);
+                    int datico = Integer.parseInt(RESTARCANTIDADES.getString(0));
+
+                    String asd = HttpRequest.get("http://"+cambiarIP.ip+"/validar/llenarfiltro.php?op="+Nop.toString()+"&canpen="+datico).body();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        } ).start();
     }
 
 
@@ -759,7 +783,7 @@ public class OperadorActivity extends AppCompatActivity {
                             try {
                                 JSONArray RESTARCANTIDAD = new JSONArray(rest);
 
-                                String acz = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/cantidadpendiente.php?id=" + nombretarea.toString()).body();
+                                String acz = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/cantidadpendiente.php?id=" + nombretarea.toString()+"&numerico="+ Nop.toString()).body();
 
                                 JSONArray tareita = new JSONArray(acz);
 
@@ -771,6 +795,7 @@ public class OperadorActivity extends AppCompatActivity {
                                 ops.start();
                                 if(datoverifica == 0){
                                     restaurarACAN();
+
 
                                 }
 
@@ -848,10 +873,10 @@ public class OperadorActivity extends AppCompatActivity {
 
                             try {
                                 JSONArray RESTARCANTIDAD = new JSONArray(response);
-                                String acz = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/cantidadpendiente.php?id=" + nombretarea.toString()).body();
+                                String acz = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/cantidadpendiente.php?id=" + nombretarea.toString()+"&numerico="+ Nop.toString()).body();
 
                                 JSONArray tareita = new JSONArray(acz);
-                                datoverifica = Integer.parseInt(tareita.getString( 0 ));
+
 
                                 totalcan.setText("CANTIDAD OP : "+RESTARCANTIDAD.getString(0)+" CANTIDAD PENDIENTE : "+tareita.getString(0));
 
@@ -908,6 +933,7 @@ public class OperadorActivity extends AppCompatActivity {
                                             registroTIME.setEnabled(false);
                                             salidaTIME.setEnabled(false);
                                             cantidadund.setEnabled(false);
+                                            filtre.setEnabled( true );
                                             ((TextView) resuldato.getSelectedView()).setTextColor(Color.RED);
 
 
@@ -1399,16 +1425,16 @@ public class OperadorActivity extends AppCompatActivity {
                         }
 
 
-                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedits.php?numero="+nombretarea.toString()).body();
+                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedits.php?numero="+nombretarea.toString()+"&op="+items.getText().toString()).body();
 
                         try {
                             JSONArray RESTARCANTIDAD = new JSONArray(response);
 
-                            volumencan = Integer.parseInt(cantidad.getText().toString());
-                            cantidadpro = Integer.parseInt(RESTARCANTIDAD.getString(0));
+                          System.out.println( "EL VOLUMEN ES "+volumencan );  volumencan = Integer.parseInt(cantidad.getText().toString());
+                            System.out.println( "LA CANTIDAD ES  "+cantidadpro ); cantidadpro = Integer.parseInt(RESTARCANTIDAD.getString(0));
 
                             int totalade = cantidadpro - volumencan;
-
+                            System.out.println( "LA TOTAL ES  "+totalade );
                             if(totalade >= 0){
                                 String responses = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?numero="+nombretarea.toString()+"&totales="+totalade).body();
 
@@ -1417,8 +1443,7 @@ public class OperadorActivity extends AppCompatActivity {
                                     public void run() {
 
                                         Toast.makeText(getApplicationContext(),"DATOS VERIFICADOS", Toast.LENGTH_SHORT).show();
-                                        MOSTRAROP ops =new MOSTRAROP();
-                                        ops.start();
+
                                         verificar();
                                     }
                                 });
@@ -1453,7 +1478,8 @@ public class OperadorActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-
+                        MOSTRAROP ops =new MOSTRAROP();
+                        ops.start();
 
                     }
                 }).start();
@@ -1569,7 +1595,7 @@ public class OperadorActivity extends AppCompatActivity {
                             Thread.sleep(1000);
 
 
-                            String responses = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedits.php?numero="+nombretarea.toString()).body();
+                            String responses = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedits.php?numero="+nombretarea.toString()+"&op="+items.getText().toString()).body();
 
                             try {
                                 JSONArray RESTARCANTIDAD = new JSONArray(responses);
@@ -1588,8 +1614,7 @@ public class OperadorActivity extends AppCompatActivity {
                                         @Override
                                         public void run() {
                                             Toast.makeText(getApplicationContext(),"SE REGISTRO EL ADELANTO PRODUCCIDO ", Toast.LENGTH_SHORT).show();
-                                            MOSTRAROP ops =new MOSTRAROP();
-                                            ops.start();
+
                                             verificar();
                                         }
                                     });
@@ -1629,6 +1654,8 @@ public class OperadorActivity extends AppCompatActivity {
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
+                        MOSTRAROP ops =new MOSTRAROP();
+                        ops.start();
                     }
                 }).start();
                 Thread.interrupted();

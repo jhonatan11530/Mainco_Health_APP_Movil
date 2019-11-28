@@ -124,7 +124,7 @@
                 android:inputType="text" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/FILTROS"
                 android:layout_width="350dp"
                 android:layout_height="50dp"
                 android:background="@drawable/btn_redondo"
