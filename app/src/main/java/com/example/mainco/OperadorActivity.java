@@ -1368,63 +1368,8 @@ public class OperadorActivity extends AppCompatActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        String cantiok = HttpRequest.get("http://"+cambiarIP.ip+"/validar/consulcantidad.php?numero="+id.getText().toString()).body();
-
-                        try {
-
-                            JSONArray objecto = new JSONArray(cantiok);
-
-                            final int cantidadreg = Integer.parseInt(objecto.getString(0));
-
-                            total = cantidadreg + volumen;
-
-                            if(objecto.getString(0) == null){
-
-                                String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&Ffinal="+fechas+"&Hfinal="+horas+"&cantidad="+volumen+"&fallas="+falla.toString()+"&cantidaderror="+error.toString()+"&tarea="+tarea.toString()+"&op="+items.getText().toString()).body();
-
-                            }
-                            else if(cantidadreg == 0){
-
-                                String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&Ffinal="+fechas+"&Hfinal="+horas+"&cantidad="+volumen+"&fallas="+falla.toString()+"&cantidaderror="+error.toString()+"&tarea="+tarea.toString()+"&op="+items.getText().toString()).body();
-
-                               /* new Thread( new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        try {
-                                            Thread.sleep( 2000 );
-                                            String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&Ffinal="+fechas+"&Hfinal="+horas+"&cantidad="+volumen+"&fallas="+falla.toString()+"&cantidaderror="+error.toString()+"&tarea="+tarea.toString()+"&op="+items.getText().toString()).body();
-
-                                        } catch (InterruptedException e) {
-                                            e.printStackTrace();
-                                        }
-                                    }
-                                } ).start();*/
-                            }
-                            else if(cantidadreg > 0){
-
-                                String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&Ffinal="+fechas+"&Hfinal="+horas+"&cantidad="+total+"&fallas="+falla.toString()+"&cantidaderror="+error.toString()+"&tarea="+tarea.toString()+"&op="+items.getText().toString()).body();
-
-                               /* new Thread( new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        try {
-                                            Thread.sleep( 2000 );
-                                            String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&Ffinal="+fechas+"&Hfinal="+horas+"&cantidad="+total+"&fallas="+falla.toString()+"&cantidaderror="+error.toString()+"&tarea="+tarea.toString()+"&op="+items.getText().toString()).body();
-
-                                        } catch (InterruptedException e) {
-                                            e.printStackTrace();
-                                        }
-                                    }
-                                } ).start();*/
-
-                            }
-
-
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
+                        String elitico = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&Ffinal="+fechas+"&Hfinal="+horas+"&cantidad="+volumen+"&fallas="+falla.toString()+"&cantidaderror="+error.toString()+"&tarea="+tarea.toString()+"&op="+items.getText().toString()).body();
+                        
 
                         String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedits.php?numero="+nombretarea.toString()+"&op="+items.getText().toString()).body();
 
