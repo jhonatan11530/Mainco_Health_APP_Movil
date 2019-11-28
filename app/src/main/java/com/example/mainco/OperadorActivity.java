@@ -1374,47 +1374,48 @@ public class OperadorActivity extends AppCompatActivity {
 
                             JSONArray objecto = new JSONArray(cantiok);
 
-
                             final int cantidadreg = Integer.parseInt(objecto.getString(0));
-                             volumen = Integer.parseInt(cantidad.getText().toString());
-
 
                             total = cantidadreg + volumen;
 
-
-                            if(cantidadreg == 0){
+                            if(objecto.getString(0) == null){
 
                                 String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&Ffinal="+fechas+"&Hfinal="+horas+"&cantidad="+volumen+"&fallas="+falla.toString()+"&cantidaderror="+error.toString()+"&tarea="+tarea.toString()+"&op="+items.getText().toString()).body();
 
-                                new Thread( new Runnable() {
+                            }
+                            else if(cantidadreg == 0){
+
+                                String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&Ffinal="+fechas+"&Hfinal="+horas+"&cantidad="+volumen+"&fallas="+falla.toString()+"&cantidaderror="+error.toString()+"&tarea="+tarea.toString()+"&op="+items.getText().toString()).body();
+
+                               /* new Thread( new Runnable() {
                                     @Override
                                     public void run() {
                                         try {
-                                            Thread.sleep( 10000 );
+                                            Thread.sleep( 2000 );
                                             String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&Ffinal="+fechas+"&Hfinal="+horas+"&cantidad="+volumen+"&fallas="+falla.toString()+"&cantidaderror="+error.toString()+"&tarea="+tarea.toString()+"&op="+items.getText().toString()).body();
 
                                         } catch (InterruptedException e) {
                                             e.printStackTrace();
                                         }
                                     }
-                                } ).start();
+                                } ).start();*/
                             }
                             else if(cantidadreg > 0){
 
                                 String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&Ffinal="+fechas+"&Hfinal="+horas+"&cantidad="+total+"&fallas="+falla.toString()+"&cantidaderror="+error.toString()+"&tarea="+tarea.toString()+"&op="+items.getText().toString()).body();
 
-                                new Thread( new Runnable() {
+                               /* new Thread( new Runnable() {
                                     @Override
                                     public void run() {
                                         try {
-                                            Thread.sleep( 3000 );
+                                            Thread.sleep( 2000 );
                                             String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&Ffinal="+fechas+"&Hfinal="+horas+"&cantidad="+total+"&fallas="+falla.toString()+"&cantidaderror="+error.toString()+"&tarea="+tarea.toString()+"&op="+items.getText().toString()).body();
 
                                         } catch (InterruptedException e) {
                                             e.printStackTrace();
                                         }
                                     }
-                                } ).start();
+                                } ).start();*/
 
                             }
 
@@ -1496,6 +1497,7 @@ public class OperadorActivity extends AppCompatActivity {
         alert.setCanceledOnTouchOutside(false);
 
     }
+
     public void aplazo(View v){
 
         AlertDialog.Builder aplazarproduccion = new AlertDialog.Builder(OperadorActivity.this);
