@@ -54,10 +54,10 @@ import cz.msebera.android.httpclient.Header;
 public class OperadorActivity extends AppCompatActivity {
 
 
-    private EditText id, cantidad, paro, fallas,resuldato3,items;
+    private EditText id, cantidad, paro, fallas,items;
     private String falla,error;
     private TextView motivo, MOSTRAR,texto,totalcan,tex,resultados;
-    private Spinner resuldato,resuldato2,  resuldato4;
+    private Spinner resuldato,resuldato2,  resuldato4,resuldato3;
 
     private  Button go, stop, btnconfir,desbloquear,positivo,neutrar, registroTIME, salidaTIME,validarinfo,cantidadund,btnvalidar,filtre;
 
@@ -107,7 +107,7 @@ public class OperadorActivity extends AppCompatActivity {
 
         resuldato2 = (Spinner) findViewById(R.id.spinner2);
 
-        resuldato3 = (EditText) findViewById(R.id.spinner);
+        resuldato3 = (Spinner) findViewById(R.id.spinner);
 
         items = (EditText) findViewById(R.id.item);
 
@@ -833,7 +833,7 @@ public class OperadorActivity extends AppCompatActivity {
 
         final String nombretarea = resuldato.getSelectedItem().toString();
 
-        final String Nop = resuldato3.getText().toString();
+        final String Nop = resuldato3.getSelectedItem().toString();
         new Thread( new Runnable() {
             @Override
             public void run() {
@@ -858,7 +858,7 @@ public class OperadorActivity extends AppCompatActivity {
         public void run() {
             final String nombretarea = resuldato.getSelectedItem().toString();
 
-            final String Nop = resuldato3.getText().toString();
+            final String Nop = resuldato3.getSelectedItem().toString();
 
       new Thread(new Runnable() {
                 @Override
@@ -1129,7 +1129,7 @@ public class OperadorActivity extends AppCompatActivity {
                 final String prueba = resuldato2.getSelectedItem().toString();
 
 
-                final String Nop = resuldato3.getText().toString();
+                final String Nop = resuldato3.getSelectedItem().toString();
 
                 // imprime fecha
                 dateFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
@@ -1280,7 +1280,7 @@ public class OperadorActivity extends AppCompatActivity {
         edit.setText(fecha);
 
         final   String fechas =edit.getText().toString();
-        final String Nop = resuldato3.getText().toString();
+        final String Nop = resuldato3.getSelectedItem().toString();
         builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
 
             @Override
@@ -1322,7 +1322,7 @@ public class OperadorActivity extends AppCompatActivity {
         fallas = (EditText)view.findViewById(R.id.fallas);
         cantidad = (EditText)view.findViewById(R.id.digicantidad);
 
-         final String op = resuldato3.getText().toString(); //**
+         final String op = resuldato3.getSelectedItem().toString(); //**
          final String tarea = resuldato.getSelectedItem().toString(); //**
 
         // imprime fecha
@@ -1360,7 +1360,7 @@ public class OperadorActivity extends AppCompatActivity {
              falla = fallas.getText().toString();
             error = resuldato4.getSelectedItem().toString();
 
-                final String Nop = resuldato3.getText().toString();
+                final String Nop = resuldato3.getSelectedItem().toString();
                 final String nombretarea = resuldato.getSelectedItem().toString();
 
 
@@ -1532,7 +1532,7 @@ public class OperadorActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         final String tarea = resuldato.getSelectedItem().toString();
-                        final String Nop = resuldato3.getText().toString();
+                        final String Nop = resuldato3.getSelectedItem().toString();
                         volumencan = Integer.parseInt(digito.getText().toString());
                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizarcantidad.php?numero="+Nop.toString()+"&id="+id.getText().toString()+"&canpen="+volumencan+"&Ffinal="+fechas+"&Hfinal="+horas+"&tarea="+tarea.toString()).body();
 
