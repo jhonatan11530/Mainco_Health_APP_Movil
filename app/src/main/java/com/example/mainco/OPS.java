@@ -1,23 +1,23 @@
 package com.example.mainco;
 
 public class OPS {
-    private String tarea;
+    private String cod_producto;
 
-    public OPS(){
+    public OPS (){
 
     }
-    public OPS(String tarea){
-        this.tarea = tarea;
+    public OPS(String cod_producto){
+        this.cod_producto = cod_producto;
     }
 
-    public void setTarea(String tarea) {
-        this.tarea = tarea;
+    public void setOps(String cod_producto) {
+        this.cod_producto = cod_producto;
     }
 
-    public String getTarea() {
-        return tarea;
+    public String getOps() {
+        return cod_producto;
     }
     public String toString(){
-        return  tarea;
+        return  cod_producto;
     }
 }

@@ -61,7 +61,7 @@ public class OperadorActivity extends AppCompatActivity {
 
     private  Button go, stop, btnconfir,desbloquear,positivo,neutrar, registroTIME, salidaTIME,validarinfo,cantidadund,btnvalidar,filtre;
 
-    private int minuto, i, hora,cantidadpro,volumencan,total,totals,datoverifica,volumen;
+    private int minuto, i, hora,cantidadpro,volumencan,total,datoverifica,volumen;
 
     private ArrayList<cantidadfallas> dato4 = new ArrayList<cantidadfallas>();
     EditText edit,digito;
@@ -127,6 +127,8 @@ public class OperadorActivity extends AppCompatActivity {
 
 
         llenarSpinner();
+        llenarOps();
+
 
 
         desbloquear.setEnabled(false);
@@ -589,7 +591,8 @@ public class OperadorActivity extends AppCompatActivity {
     }
     public void filtro(View V){
         llenarSpinners();
-        filtre.setEnabled( false );
+        llenarOPS();
+
     }
     public void llenarSpinners() {
         String url = "http://" + cambiarIP.ip + "/validar/cantidadfiltre.php?op="+items.getText().toString();
@@ -599,6 +602,23 @@ public class OperadorActivity extends AppCompatActivity {
                 if (statusCode == 200) {
                     cargarSpinner(new String(responseBody));
                     filtrocantidad();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+
+            }
+        });
+    }
+    public void llenarOPS() {
+        String url = "http://" + cambiarIP.ip + "/validar/opfiltre.php?op="+items.getText().toString();
+        client.post(url, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                if (statusCode == 200) {
+                    cargarops(new String(responseBody));
+
                 }
             }
 
@@ -632,6 +652,46 @@ public class OperadorActivity extends AppCompatActivity {
     }
 
 
+    public void llenarOps() {
+
+        String url = "http://" + cambiarIP.ip + "/validar/OPS.php";
+        client.post(url, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                if (statusCode == 200) {
+                    cargarops(new String(responseBody));
+
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+
+            }
+        });
+    }
+
+
+    public void cargarops(String cargarops) {
+        ArrayList<OPS> dato = new ArrayList<OPS>();
+        try {
+            JSONArray objecto = new JSONArray(cargarops);
+            for (int i = 0; i < objecto.length(); i++) {
+                OPS a = new OPS();
+                a.setOps(objecto.getJSONObject(i).getString("cod_producto"));
+                dato.add(a);
+            }
+            ArrayAdapter<OPS> a = new ArrayAdapter<OPS>(this, android.R.layout.simple_dropdown_item_1line, dato);
+            resuldato3.setAdapter(a);
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+
+    }
+
     public void llenarSpinner() {
 
         String url = "http://" + cambiarIP.ip + "/validar/cantidad.php";
@@ -640,6 +700,7 @@ public class OperadorActivity extends AppCompatActivity {
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if (statusCode == 200) {
                     cargarSpinner(new String(responseBody));
+
                 }
             }
 
@@ -663,12 +724,14 @@ public class OperadorActivity extends AppCompatActivity {
             ArrayAdapter<cantidades> a = new ArrayAdapter<cantidades>(this, android.R.layout.simple_dropdown_item_1line, dato);
             resuldato.setAdapter(a);
 
+
         } catch (Exception e) {
             e.printStackTrace();
 
         }
 
     }
+
 
     public void datos() {
         String url = "http://" + cambiarIP.ip + "/validar/motivo.php";
@@ -933,7 +996,7 @@ public class OperadorActivity extends AppCompatActivity {
                                             registroTIME.setEnabled(false);
                                             salidaTIME.setEnabled(false);
                                             cantidadund.setEnabled(false);
-                                            filtre.setEnabled( true );
+
                                             ((TextView) resuldato.getSelectedView()).setTextColor(Color.RED);
 
 
@@ -1356,6 +1419,9 @@ public class OperadorActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
+                MOSTRAROP ops =new MOSTRAROP();
+                ops.start();
+
             volumen = Integer.parseInt(cantidad.getText().toString());
              falla = fallas.getText().toString();
             error = resuldato4.getSelectedItem().toString();
@@ -1376,10 +1442,13 @@ public class OperadorActivity extends AppCompatActivity {
                         try {
                             JSONArray RESTARCANTIDAD = new JSONArray(response);
 
-                          System.out.println( "EL VOLUMEN ES "+volumencan );  volumencan = Integer.parseInt(cantidad.getText().toString());
-                            System.out.println( "LA CANTIDAD ES  "+cantidadpro ); cantidadpro = Integer.parseInt(RESTARCANTIDAD.getString(0));
-
-                            int totalade = cantidadpro - volumencan;
+                            total = Integer.parseInt(falla.toString());
+                            volumencan = Integer.parseInt(cantidad.getText().toString());
+                             cantidadpro = Integer.parseInt(RESTARCANTIDAD.getString(0));
+                                int tool = volumencan + total;
+                            int totalade = cantidadpro - tool;
+                            System.out.println( "LA CANTIDAD ES "+volumencan );
+                            System.out.println( "LA CANTIDAD ES "+cantidadpro );
                             System.out.println( "LA TOTAL ES  "+totalade );
                             if(totalade >= 0){
                                 String responses = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?numero="+nombretarea.toString()+"&totales="+totalade).body();
@@ -1391,8 +1460,10 @@ public class OperadorActivity extends AppCompatActivity {
                                         Toast.makeText(getApplicationContext(),"DATOS VERIFICADOS", Toast.LENGTH_SHORT).show();
 
                                         verificar();
+
                                     }
                                 });
+
 
                             }else if (totalade < 0){
 
@@ -1424,8 +1495,7 @@ public class OperadorActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-                        MOSTRAROP ops =new MOSTRAROP();
-                        ops.start();
+
 
                     }
                 }).start();
@@ -1563,6 +1633,8 @@ public class OperadorActivity extends AppCompatActivity {
                                             Toast.makeText(getApplicationContext(),"SE REGISTRO EL ADELANTO PRODUCCIDO ", Toast.LENGTH_SHORT).show();
 
                                             verificar();
+                                            MOSTRAROP ops =new MOSTRAROP();
+                                            ops.start();
                                         }
                                     });
                                 }
@@ -1601,8 +1673,7 @@ public class OperadorActivity extends AppCompatActivity {
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
-                        MOSTRAROP ops =new MOSTRAROP();
-                        ops.start();
+
                     }
                 }).start();
                 Thread.interrupted();
