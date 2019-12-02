@@ -832,7 +832,7 @@ public class OperadorActivity extends AppCompatActivity {
                             runOnUiThread( new Runnable() {
                                 @Override
                                 public void run() {
-                                    desbloquear.setEnabled( true );
+
                                     registroTIME.setEnabled( true );
                                     salidaTIME.setEnabled( true );
                                     cantidadund.setEnabled( true );
@@ -851,16 +851,26 @@ public class OperadorActivity extends AppCompatActivity {
                                 JSONArray tareita = new JSONArray(acz);
 
                                 datoverifica = Integer.parseInt( tareita.getString( 0 ) );
+                                int canop = Integer.parseInt(RESTARCANTIDAD.getString( 0 ));
 
                                 totalcan.setText( "CANTIDAD OP : " + RESTARCANTIDAD.getString( 0 ) + " CANTIDAD PENDIENTE : " +tareita.getString( 0 ) );
 
-                                MOSTRAROP ops =new MOSTRAROP();
-                                ops.start();
-                                if(datoverifica == 0){
-                                    restaurarACAN();
 
+
+                                if(datoverifica == 0){
+                                    desbloquear.setEnabled( true );
+                                    restaurarACAN();
+                                }
+                                 if ( canop == datoverifica){
+                                    desbloquear.setEnabled( true );
 
                                 }
+                                else if ( canop != datoverifica){
+                                    desbloquear.setEnabled( false );
+                                }
+
+
+
 
 
 
@@ -878,9 +888,30 @@ public class OperadorActivity extends AppCompatActivity {
 
 
             }).start();
-            Thread.interrupted();
 
 
+            new Thread( new Runnable() {
+                @Override
+                public void run() {
+                   // while (true){
+                    try {
+                        Thread.sleep( 1000 );
+
+                        MOSTRAROP ops =new MOSTRAROP();
+                        ops.start();
+                        System.out.println( "SE ESTA EJECUNTANDO" );
+                        if(datoverifica == 0){
+
+
+                        }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                   // }
+
+
+                }
+            } ).start();
                     }
                     else{
                             runOnUiThread(new Runnable() {
@@ -931,16 +962,14 @@ public class OperadorActivity extends AppCompatActivity {
                         try {
                             Thread.sleep( 2000 );
 
-                            String response = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/validarcantidad.php?numero="+ Nop.toString()  ).body();
+                            String rest = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/validarcantidad.php?numero="+ Nop.toString()  ).body();
 
 
                             try {
-                                JSONArray RESTARCANTIDAD = new JSONArray(response);
+                                JSONArray RESTARCANTIDAD = new JSONArray(rest);
                                 String acz = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/cantidadpendiente.php?id=" + nombretarea.toString()+"&numerico="+ Nop.toString()).body();
 
                                 JSONArray tareita = new JSONArray(acz);
-
-
                                 totalcan.setText("CANTIDAD OP : "+RESTARCANTIDAD.getString(0)+" CANTIDAD PENDIENTE : "+tareita.getString(0));
 
 
@@ -1418,9 +1447,14 @@ public class OperadorActivity extends AppCompatActivity {
         builder.setPositiveButton("VERIFICAR", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+                new Thread( new Runnable() {
+                    @Override
+                    public void run() {
+                        MOSTRAROP ops =new MOSTRAROP();
+                        ops.start();
+                    }
+                } ).start();
 
-                MOSTRAROP ops =new MOSTRAROP();
-                ops.start();
 
             volumen = Integer.parseInt(cantidad.getText().toString());
              falla = fallas.getText().toString();
@@ -1562,7 +1596,7 @@ public class OperadorActivity extends AppCompatActivity {
                 }
                 else if(botonNo.isChecked()){
 
-                    Toast.makeText(getApplicationContext(),"CUANTAS CANTIDADES DESEAS ADELANTAR ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"NO SE ADELANTARA LO PRODUCCIDO", Toast.LENGTH_SHORT).show();
 
                     digito.setVisibility(adelanto.INVISIBLE);
                 }
