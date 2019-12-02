@@ -893,21 +893,22 @@ public class OperadorActivity extends AppCompatActivity {
             new Thread( new Runnable() {
                 @Override
                 public void run() {
-                   // while (true){
+                   while (true){
                     try {
                         Thread.sleep( 1000 );
 
-                        MOSTRAROP ops =new MOSTRAROP();
-                        ops.start();
+                        MOSTRAROP ops = new MOSTRAROP();
+                        ops.run();
+
                         System.out.println( "SE ESTA EJECUNTANDO" );
                         if(datoverifica == 0){
-
-
+                            Thread.interrupted();
+                            desbloquear.setEnabled( true );
                         }
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                   // }
+                    }
 
 
                 }
@@ -959,30 +960,25 @@ public class OperadorActivity extends AppCompatActivity {
                 public void run() {
 
 
-                        try {
-                            Thread.sleep( 2000 );
+                    String rest = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/validarcantidad.php?numero="+ Nop.toString()  ).body();
+                    try {
+                        JSONArray RESTARCANTIDAD = new JSONArray(rest);
 
-                            String rest = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/validarcantidad.php?numero="+ Nop.toString()  ).body();
+                        String acz = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/cantidadpendiente.php?id=" + nombretarea.toString()+"&numerico="+ Nop.toString()).body();
 
+                        JSONArray tareita = new JSONArray(acz);
 
-                            try {
-                                JSONArray RESTARCANTIDAD = new JSONArray(rest);
-                                String acz = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/cantidadpendiente.php?id=" + nombretarea.toString()+"&numerico="+ Nop.toString()).body();
+                        datoverifica = Integer.parseInt( tareita.getString( 0 ) );
+                        int canop = Integer.parseInt(RESTARCANTIDAD.getString( 0 ));
 
-                                JSONArray tareita = new JSONArray(acz);
-                                totalcan.setText("CANTIDAD OP : "+RESTARCANTIDAD.getString(0)+" CANTIDAD PENDIENTE : "+tareita.getString(0));
+                        totalcan.setText( "CANTIDAD OP : " + RESTARCANTIDAD.getString( 0 ) + " CANTIDAD PENDIENTE : " +tareita.getString( 0 ) );
 
-
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
 
-                }
+                    }
             }).start();
         }
     }
