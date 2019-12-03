@@ -19,6 +19,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
+
         <activity
             android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
@@ -37,6 +38,9 @@
         <activity
             android:name=".OperadorActivity"
             android:label="@string/title_activity_operador" />
+        <activity android:name=".options"
+            android:label="@string/title_activity_opciones"
+            />
         <activity
             android:name=".RegistroActivity"
             android:label="@string/title_activity_registro" />
