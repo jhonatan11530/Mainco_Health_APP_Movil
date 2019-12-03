@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -27,7 +28,7 @@ import cz.msebera.android.httpclient.Header;
 public class RegistroActivity extends AppCompatActivity {
 
     EditText id,nombre,apellido,cedula,pass;
-    Spinner resultado;
+    CheckBox resultado;
     Button registro;
 
 
@@ -47,11 +48,10 @@ public class RegistroActivity extends AppCompatActivity {
         cedula = (EditText)findViewById(R.id.cedula);
         pass = (EditText)findViewById(R.id.pass);
 
-        resultado = (Spinner)findViewById(R.id.rol);
+        resultado = (CheckBox)findViewById(R.id.rol);
 
         registro = (Button)findViewById(R.id.registro);
 
-        llenarSpinner();
 
 
     }
@@ -82,40 +82,7 @@ public class RegistroActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-    public  void llenarSpinner(){
-        String url = "http://"+cambiarIP.ip+"/validar/RegistroSpinner.php";
-        client.post(url, new AsyncHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                if(statusCode == 200){
-                    cargarSpinner(new String(responseBody));
-                }
-            }
 
-            @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-
-            }
-        });
-    }
-    public void cargarSpinner(String cargarSpinner){
-        ArrayList <roles> dato = new ArrayList <roles>();
-        try {
-            JSONArray objecto = new JSONArray(cargarSpinner);
-            for(int i = 0; i< objecto.length(); i ++){
-                roles a = new roles();
-                a.setId(objecto.getJSONObject(i).getString("cargo"));
-                dato.add(a);
-            }
-            ArrayAdapter <roles> a = new ArrayAdapter<roles> (this, android.R.layout.simple_dropdown_item_1line, dato );
-            resultado.setAdapter(a);
-
-        }catch (Exception e){
-            e.printStackTrace();
-
-        }
-
-    }
 
 
 
@@ -125,12 +92,7 @@ public class RegistroActivity extends AppCompatActivity {
         apellido = (EditText)findViewById(R.id.apellido);
         cedula = (EditText)findViewById(R.id.cedula);
         pass = (EditText)findViewById(R.id.pass);
-
-
-
-        resultado = (Spinner)findViewById(R.id.rol);
-
-        final String ROL = resultado.getSelectedItem().toString();
+        resultado = (CheckBox)findViewById(R.id.rol);
 
         if ( nombre.getText().toString().length() == 0 ){
             nombre.setError( "NOMBRE ES REQUERIDO !" );
@@ -150,8 +112,14 @@ public class RegistroActivity extends AppCompatActivity {
                 @Override
                 public void run() {
 
+                    if(resultado.isChecked()==true){
 
-                String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/registro.php?nombre="+nombre.getText().toString()+"&apellido="+apellido.getText().toString()+"&cedula="+cedula.getText().toString()+"&pass="+pass.getText().toString()+"&rol="+ROL.toString()).body();
+                        String ROL = "operador";
+
+                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/registro.php?nombre="+nombre.getText().toString()+"&apellido="+apellido.getText().toString()+"&cedula="+cedula.getText().toString()+"&pass="+pass.getText().toString()+"&rol="+ROL.toString()).body();
+
+
+
                 try {
 
                         runOnUiThread(new Runnable() {
@@ -185,6 +153,33 @@ public class RegistroActivity extends AppCompatActivity {
                 // TODO: handle exception
                 e.printStackTrace();
             }
+
+                    }
+                    else{
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+
+                                AlertDialog.Builder builder = new AlertDialog.Builder(RegistroActivity.this);
+
+                                builder.setTitle("NO SE PUDO REGISTRAR DEBE SELECCIONAR EL ROL DEL USUARIO");
+
+                                builder.setMessage("el usuario debe tener un rol asignado");
+
+
+                                builder.setPositiveButton("VOLVER AL REGISTRO ", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                                    }
+                                });
+
+                                builder.create().show();
+                            }
+                        });
+                    }
 
                 }
             }).start();

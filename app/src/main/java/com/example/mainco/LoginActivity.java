@@ -689,7 +689,7 @@ public void mostrarguardado(){
 
     public void registro (View v) {
 
-     Intent e = new Intent(getApplicationContext(), RegistroActivity.class);
+     Intent e = new Intent(getApplicationContext(), ejemplo.class);
        startActivity(e);
 
     }
