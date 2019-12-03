@@ -107,8 +107,8 @@
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
-                    android:text="OTRA INFORMACION"
-                    android:onClick="info"/>
+                    android:text="INFORMACION DETALLADA"
+                    android:onClick="detalles"/>
 
 
             </LinearLayout>
