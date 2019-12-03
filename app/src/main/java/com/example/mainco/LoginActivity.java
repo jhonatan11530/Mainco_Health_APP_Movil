@@ -1,6 +1,5 @@
 package com.example.mainco;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -12,7 +11,6 @@ import android.net.NetworkInfo;
 
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
-import android.os.Build;
 import android.os.Bundle;
 
 import android.view.Menu;
@@ -130,7 +128,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(LoginActivity.this,"URL "+databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText( LoginActivity.this,"URL "+databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -158,7 +156,7 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-               Toast.makeText(LoginActivity.this,"Version "+databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+               Toast.makeText( LoginActivity.this,"Version "+databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -209,7 +207,7 @@ public class LoginActivity extends AppCompatActivity {
                            public void onClick(View view) {
 
                                View tutorial = getLayoutInflater().inflate(R.layout.tutorial,null);
-                               AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                               AlertDialog.Builder builder = new AlertDialog.Builder( LoginActivity.this);
                                 componentes = tutorial.findViewById( R.id.tutorial );
                                final ArrayList<HELPCOMP> comphelp= new ArrayList<HELPCOMP>();
                                comphelp.add(new HELPCOMP( "INTRODUCCION A MAINCO APP" ));
@@ -295,7 +293,7 @@ public class LoginActivity extends AppCompatActivity {
                        soport.setOnClickListener( new View.OnClickListener() {
                            @Override
                            public void onClick(View view) {
-                               AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                               AlertDialog.Builder builder = new AlertDialog.Builder( LoginActivity.this);
                                builder.setTitle( "CONTACTO" );
                                builder.setMessage( "si desea soporte o comunicarte con el desarrollador de la aplicacion Mainco Health Care.\n\n" +
                                        "INFORMACION DEL DESARROLLADOR\n\n" +
@@ -600,7 +598,7 @@ public class LoginActivity extends AppCompatActivity {
                                         runOnUiThread( new Runnable() {
                                             @Override
                                             public void run() {
-                                                ProgressDialog pd = new ProgressDialog(LoginActivity.this);
+                                                ProgressDialog pd = new ProgressDialog( LoginActivity.this);
 
                                                 pd.setTitle("INICIANDO SESION");
                                                 Intent e = new Intent(getApplicationContext(), OperadorActivity.class);
