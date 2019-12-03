@@ -890,29 +890,6 @@ public class OperadorActivity extends AppCompatActivity {
             }).start();
 
 
-            new Thread( new Runnable() {
-                @Override
-                public void run() {
-                   while (true){
-                    try {
-                        Thread.sleep( 1000 );
-
-                        MOSTRAROP ops = new MOSTRAROP();
-                        ops.run();
-
-                        System.out.println( "SE ESTA EJECUNTANDO" );
-                        if(datoverifica == 0){
-                            Thread.interrupted();
-                            desbloquear.setEnabled( true );
-                        }
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                    }
-
-
-                }
-            } ).start();
                     }
                     else{
                             runOnUiThread(new Runnable() {
