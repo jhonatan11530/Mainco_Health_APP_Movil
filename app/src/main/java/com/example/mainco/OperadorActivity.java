@@ -94,6 +94,8 @@ public class OperadorActivity extends AppCompatActivity {
 
 
 
+        llenarSpinner();
+        llenarOps();
 
         final PowerManager pm=(PowerManager)getSystemService(Context.POWER_SERVICE);
         this.wakelock=pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, "etiqueta");
@@ -125,8 +127,6 @@ public class OperadorActivity extends AppCompatActivity {
 
 
 
-        llenarSpinner();
-        llenarOps();
 
 
 
@@ -279,6 +279,8 @@ public class OperadorActivity extends AppCompatActivity {
         new Thread( new Runnable() {
             @Override
             public void run() {
+
+
                 String responsesx = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/validarcantidad.php?numero="+ Nop.toString()  ).body();
 
                 try {
@@ -290,10 +292,12 @@ public class OperadorActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
-
             }
         } ).start();
+        Thread.interrupted();
+
+
+
     }
 
 
@@ -570,6 +574,7 @@ public class OperadorActivity extends AppCompatActivity {
 
             }
         } ).start();
+        Thread.interrupted();
     }
     public void MOSTRAROP(){
 
@@ -662,14 +667,11 @@ public class OperadorActivity extends AppCompatActivity {
                                             builder.setNegativeButton( "REGISTRAR OTRA OP", new DialogInterface.OnClickListener() {
                                                 @Override
                                                 public void onClick(DialogInterface dialogInterface, int i) {
-                                                       new Thread( new Runnable() {
-                                                           @Override
-                                                           public void run() {
 
-                                                             String cero = HttpRequest.get("http://"+cambiarIP.ip+"/validar/nuevoRegistro.php?ID="+ id.getText().toString() ).body();
+                                                            String cero = HttpRequest.get("http://"+cambiarIP.ip+"/validar/nuevoRegistro.php?ID="+ id.getText().toString() ).body();
 
-                                                           }
-                                                       } ).start();
+
+
 
                                                }
                                             } );
@@ -1067,14 +1069,8 @@ public class OperadorActivity extends AppCompatActivity {
         builder.setPositiveButton("VERIFICAR", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                new Thread( new Runnable() {
-                    @Override
-                    public void run() {
+
                         MOSTRAROP();
-
-                    }
-                } ).start();
-
 
             volumen = Integer.parseInt(cantidad.getText().toString());
              falla = fallas.getText().toString();

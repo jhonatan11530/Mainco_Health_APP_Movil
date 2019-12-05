@@ -16,8 +16,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -39,14 +37,6 @@ import org.json.JSONArray;
 import java.util.ArrayList;
 import java.util.List;
 
-import Introducciones.REGISTRO_PRODUCIDO;
-import Introducciones.SYSTEM;
-import Introducciones.CREAR_USER;
-import Introducciones.TERMINADO;
-import Introducciones.PAUSE_ACTIVAS;
-import Introducciones.CLOSE_OP;
-import Introducciones.RECUPERAR_PASSWORD;
-import Introducciones.INTRODUCCION;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -217,16 +207,12 @@ public class LoginActivity extends AppCompatActivity {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            try {
-                                Thread.sleep( 500 );
-
-
 
                                 String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/validar.php?cedula="+login.getText().toString()+"&pass="+pass.getText().toString()).body();
 
                                 try {
                                     JSONArray objecto = new JSONArray(response);
-                                    System.out.println(objecto);
+                                    System.out.println("ESTO ES UN EJEMPLO"+objecto);
                                     if(objecto.length()>0) {
 
 
@@ -278,9 +264,7 @@ public class LoginActivity extends AppCompatActivity {
                                 }catch (Exception e) {
                                     e.printStackTrace();
                                 }
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
+
 
                         }
                     }).start();
