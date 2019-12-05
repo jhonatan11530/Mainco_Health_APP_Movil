@@ -1069,8 +1069,8 @@ public class OperadorActivity extends AppCompatActivity {
         builder.setPositiveButton("VERIFICAR", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+          
 
-                        MOSTRAROP();
 
             volumen = Integer.parseInt(cantidad.getText().toString());
              falla = fallas.getText().toString();
@@ -1110,7 +1110,7 @@ public class OperadorActivity extends AppCompatActivity {
                                         Toast.makeText(getApplicationContext(),"DATOS VERIFICADOS", Toast.LENGTH_SHORT).show();
 
                                         verificar();
-
+                                        MOSTRAROP();
                                     }
                                 });
 
