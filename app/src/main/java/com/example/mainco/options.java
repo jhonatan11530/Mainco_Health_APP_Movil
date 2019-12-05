@@ -190,7 +190,7 @@ public class options extends AppCompatActivity {
 
 
 
-          builder.setPositiveButton( "VOLVER", new DialogInterface.OnClickListener() {
+          builder.setPositiveButton( "aceptar", new DialogInterface.OnClickListener() {
                      @Override
                      public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -200,23 +200,5 @@ public class options extends AppCompatActivity {
 
      }
 
-     public void detalles(View v){
-         androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(options.this);
-         builder.setTitle( "INFORMACION DETALLADA DE LA APP" );
-         builder.setMessage( "si desea soporte o comunicarte con el desarrollador de la aplicacion Mainco Health Care.\n\n" +
-                 "INFORMACION DEL DESARROLLADOR\n\n" +
-                 "NOMBRE : JHONATAN FERNANDEZ MUÑOZ \n\n" +
-                 "TELEFONO : 3114360830\n\n" +
-                 "CORREO : jhonatan1153@hotmail.com" );
-         builder.setPositiveButton( "aceptar", new DialogInterface.OnClickListener() {
-             @Override
-             public void onClick(DialogInterface dialogInterface, int i) {
 
-             }
-         } );
-         builder.create().show();
-
-
-
-     }
         }
