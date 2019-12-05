@@ -100,7 +100,9 @@
             <Spinner
                 android:id="@+id/spinner"
                 android:layout_width="match_parent"
-                android:layout_height="35dp" />
+                android:layout_height="35dp"
+
+                />
 
             <EditText
                 android:id="@+id/item"

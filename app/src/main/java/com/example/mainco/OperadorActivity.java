@@ -126,10 +126,6 @@ public class OperadorActivity extends AppCompatActivity {
 
 
 
-
-
-
-
         desbloquear.setEnabled(false);
         registroTIME.setEnabled(false);
         salidaTIME.setEnabled(false);
@@ -234,11 +230,13 @@ public class OperadorActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     public void filtro(View V){
         llenarSpinners();
         llenarOPS();
 
     }
+
     public void llenarSpinners() {
         String url = "http://" + cambiarIP.ip + "/validar/cantidadfiltre.php?op="+items.getText().toString();
         client.post(url, new AsyncHttpResponseHandler() {
@@ -256,6 +254,7 @@ public class OperadorActivity extends AppCompatActivity {
             }
         });
     }
+
     public void llenarOPS() {
         String url = "http://" + cambiarIP.ip + "/validar/opfiltre.php?op="+items.getText().toString();
         client.post(url, new AsyncHttpResponseHandler() {
@@ -416,7 +415,6 @@ public class OperadorActivity extends AppCompatActivity {
         }
 
     }
-
 
 
     public void llenarSpinner3() {
@@ -1036,7 +1034,7 @@ public class OperadorActivity extends AppCompatActivity {
         fallas = (EditText)view.findViewById(R.id.fallas);
         cantidad = (EditText)view.findViewById(R.id.digicantidad);
 
-         final String op = resuldato3.getSelectedItem().toString(); //**
+
          final String tarea = resuldato.getSelectedItem().toString(); //**
 
         // imprime fecha
@@ -1069,17 +1067,15 @@ public class OperadorActivity extends AppCompatActivity {
         builder.setPositiveButton("VERIFICAR", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-          
+
 
 
             volumen = Integer.parseInt(cantidad.getText().toString());
              falla = fallas.getText().toString();
             error = resuldato4.getSelectedItem().toString();
 
-                final String Nop = resuldato3.getSelectedItem().toString();
+
                 final String nombretarea = resuldato.getSelectedItem().toString();
-
-
 
                 new Thread(new Runnable() {
                     @Override

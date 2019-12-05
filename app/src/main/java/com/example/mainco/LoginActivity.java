@@ -11,6 +11,7 @@ import android.net.NetworkInfo;
 
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import android.view.Menu;
@@ -34,6 +35,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
 
     String version_firebase;
     String url_firebase;
+
 
     String networkSSID = "WIFIMainco";
     String networkPass = "A125277935";
@@ -74,6 +81,12 @@ public class LoginActivity extends AppCompatActivity {
         validar = (Button)findViewById(R.id.login);
 
         Obtener_Firebase();
+
+
+
+
+
+
 
         conf.SSID = "\"" + networkSSID + "\"";
         conf.preSharedKey = "\""+ networkPass +"\"";
@@ -98,6 +111,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     }
+
 
     public String getVersionName(){
         return BuildConfig.VERSION_NAME;
@@ -317,8 +331,8 @@ public void mostrarguardado(){
 
     public void registro (View v) {
 
-     Intent e = new Intent(getApplicationContext(), RegistroActivity.class);
-       startActivity(e);
+        Intent e = new Intent(getApplicationContext(), RegistroActivity.class);
+        startActivity(e);
 
     }
 
