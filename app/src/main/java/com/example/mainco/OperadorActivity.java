@@ -16,7 +16,6 @@ import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -40,14 +39,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-import Introducciones.REGISTRO_PRODUCIDO;
-import Introducciones.SYSTEM;
-import Introducciones.CREAR_USER;
-import Introducciones.TERMINADO;
-import Introducciones.PAUSE_ACTIVAS;
-import Introducciones.CLOSE_OP;
-import Introducciones.RECUPERAR_PASSWORD;
-import Introducciones.INTRODUCCION;
 import cz.msebera.android.httpclient.Header;
 
 public class OperadorActivity extends AppCompatActivity {
@@ -76,7 +67,6 @@ public class OperadorActivity extends AppCompatActivity {
     private AsyncHttpClient clientes3;
     public Thread hilo,eliminaOK;
     private RadioButton botonSi,botonNo;
-    private ListView componentes;
 
     protected PowerManager.WakeLock wakelock;
     @SuppressLint("InvalidWakeLockTag")
