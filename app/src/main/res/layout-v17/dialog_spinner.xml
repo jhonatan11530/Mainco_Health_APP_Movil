@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:weightSum="9">
 
     <LinearLayout
@@ -10,7 +11,9 @@
         android:layout_height="wrap_content"
         android:layout_weight="0"
         android:orientation="horizontal"
-        android:weightSum="1">
+        android:weightSum="1"
+
+        >
 
         <TextView
             android:id="@+id/MOSTRAR"
@@ -18,7 +21,7 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="0:0:0"
-            android:textColor="#000000"
+            android:textColor="@color/colorAzulCRO"
             android:textSize="63sp" />
     </LinearLayout>
 
@@ -36,8 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:orientation="horizontal"
-           >
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/textos"
@@ -55,14 +57,15 @@
             android:layout_weight="0"
             android:orientation="horizontal"
             android:weightSum="0.5">
-        <EditText
-            android:id="@+id/paro"
-            android:layout_width="217dp"
-            android:layout_height="wrap_content"
-            android:editable="false"
-            android:gravity="center" />
 
-    </LinearLayout>
+            <EditText
+                android:id="@+id/paro"
+                android:layout_width="217dp"
+                android:layout_height="wrap_content"
+                android:editable="false"
+                android:gravity="center" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -91,39 +94,38 @@
 
         </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/linearLayout5.2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:orientation="horizontal"
-                android:weightSum="1">
+        <LinearLayout
+            android:id="@+id/linearLayout5.2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:orientation="horizontal"
+            android:weightSum="1">
 
-                <Button
-                    android:id="@+id/stop"
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:onClick="stop"
-                    android:text="FINALIZAR" />
-
-</LinearLayout>
+            <Button
+                android:id="@+id/stop"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:onClick="stop"
+                android:text="FINALIZAR" />
 
         </LinearLayout>
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/MOTIVO"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="MOTIVO DE PARO"
+        android:background="#69D2FF"
         android:gravity="center"
-        android:textSize="19sp"
-        android:background="#69D2FF"/>
+        android:text="MOTIVO DE PARO"
+        android:textSize="19sp" />
 
     <Spinner
         android:id="@+id/spinner2"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        />
+        android:layout_height="40dp" />
 
     <Button
         android:id="@+id/validarinfo"

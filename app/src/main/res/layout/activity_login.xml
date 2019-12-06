@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity"
-    android:background="@color/colorAzulOSM"
+
     >
 
     <LinearLayout
@@ -42,29 +42,31 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:weightSum="10"
-        android:layout_weight="4"
+        android:layout_weight="4.6"
         android:gravity="center"
         >
 
         <EditText
             android:id="@+id/estado"
             android:layout_width="350dp"
-            android:layout_height="61dp"
-            android:background="#ffffff"
+            android:layout_height="50dp"
+            android:background="@drawable/lineas_login"
             android:hint="INGRESE SU ID"
             android:inputType="number"
             android:gravity="center"
-            android:layout_marginVertical="5dp"
+            android:layout_marginVertical="20dp"
+            android:drawablePadding="10dp"
 
             />
 
         <EditText
             android:id="@+id/ID"
             android:layout_width="350dp"
-            android:layout_height="61dp"
-            android:background="#ffffff"
+            android:layout_height="50dp"
+            android:background="@drawable/lineas_login"
             android:hint="INGRESE SU CONTRASEÑA"
             android:inputType="textPassword"
+            android:drawablePadding="10dp"
             android:gravity="center"
             />
 
@@ -79,62 +81,83 @@
         android:layout_weight="4"
         android:gravity="center"
         >
-
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="10"
+            android:layout_weight="5"
+            android:gravity="center"
+            >
         <CheckBox
             android:id="@+id/OK"
-            android:layout_width="350dp"
-            android:layout_height="80dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:gravity="center"
             android:text="RECORDAR USUARIO"
-            android:textColor="#ffffff"
-            android:textSize="15sp" />
+            android:textColor="#000000"
+            android:textSize="15sp"
+            android:layout_marginHorizontal="20dp"/>
 
-        <Button
-            android:id="@+id/login"
-            android:layout_width="350dp"
-            android:layout_height="65dp"
-            android:gravity="center"
-            android:textColor="#ffffff"
-            android:text="iniciar sesion"
-            android:onClick="validartodo"
-            android:background="@drawable/btn_redondo"
-            android:layout_marginVertical="5dp"/>
+            <TextView
+                android:gravity="center"
+                android:textColor="#000"
+                android:editable="false"
+                android:id="@+id/olvido"
+                android:layout_width="200dp"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/ic_lock_open_black_24dp"
+                android:text="OLVIDADO SU CONTRASEÑA"
+                android:background="#FAFAFA"
+                android:onClick="olvidoC"/>
 
+        </LinearLayout>
         <LinearLayout
             android:id="@+id/linearLayout5"
-            android:layout_width="match_parent"
-            android:layout_height="65dp"
-            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:weightSum="10"
             android:layout_weight="0"
             android:gravity="center"
 
             >
         <Button
-            android:id="@+id/registre"
-            android:layout_width="200dp"
-            android:layout_height="match_parent"
-            android:onClick="registro"
-            android:layout_weight="5"
-            android:text="REGISTRARSE"
-            android:textColor="#ffffff"
-            android:background="@color/colorAzulOSM"
-           />
+            android:id="@+id/login"
+            android:layout_width="350dp"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:text="iniciar sesion"
+            android:onClick="validartodo"
+            android:background="@drawable/btn_redondo"
+            android:layout_marginVertical="10dp"/>
 
-            <Button
-                android:id="@+id/olvido"
-                android:layout_width="200dp"
-                android:layout_height="match_parent"
-                android:layout_weight="5"
-                android:textColor="#ffffff"
-                android:text="¿HAS OLVIDADO SU CONTRASEÑA?"
-                android:background="@color/colorAzulOSM"
-                android:onClick="olvidoC"/>
+
+        <TextView
+            android:gravity="center"
+            android:textColor="#000"
+            android:editable="false"
+            android:id="@+id/registre"
+            android:layout_width="350dp"
+            android:layout_height="60dp"
+            android:onClick="registro"
+            android:text="REGISTRARSE"
+            />
+
+
+
+
 
 
         </LinearLayout>
 
+
+
     </LinearLayout>
+
+
+
 
     </LinearLayout>
 </RelativeLayout>

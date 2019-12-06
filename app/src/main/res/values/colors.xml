@@ -3,6 +3,7 @@
     <color name="colorVerdeM">#B2C900</color>
     <color name="colorAzulCLM">#3DA7CF</color>
     <color name="colorAzulOSM">#1672A3</color>
+    <color name="colorAzulCRO">#2196F3</color>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">@color/colorVerdeM</color>
     <color name="colorAccent">#D81B60</color>

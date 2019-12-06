@@ -53,8 +53,7 @@ public class options extends AppCompatActivity {
         switch (item.getItemId()) {
 
             case R.id.salir:
-                Intent e = new Intent(getApplicationContext(), OperadorActivity.class);
-                startActivity(e);
+                finish();
                 break;
 
             default:

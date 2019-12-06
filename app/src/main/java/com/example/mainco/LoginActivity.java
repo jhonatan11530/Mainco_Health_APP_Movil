@@ -11,7 +11,7 @@ import android.net.NetworkInfo;
 
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
-import android.os.AsyncTask;
+
 import android.os.Bundle;
 
 import android.view.Menu;
@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -35,11 +36,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,10 +44,10 @@ import java.util.List;
 public class LoginActivity extends AppCompatActivity {
 
     EditText login, pass;
-    Button validar, registre;
+    Button validar;
+    TextView registre;
 
     ArrayList com;
-    private ListView componentes;
     CheckBox GUARDARUTO;
 
     String version_actual= getVersionName();
@@ -77,7 +73,8 @@ public class LoginActivity extends AppCompatActivity {
       login = (EditText)findViewById(R.id.estado);
          pass = (EditText)findViewById(R.id.ID);
 
-        registre = (Button)findViewById(R.id.registre);
+        registre = (TextView)findViewById(R.id.registre);
+
         validar = (Button)findViewById(R.id.login);
 
         Obtener_Firebase();

@@ -609,12 +609,6 @@ public class OperadorActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
   public void verificar(){
 
       final String nombretarea = resuldato.getSelectedItem().toString();
@@ -824,7 +818,7 @@ public class OperadorActivity extends AppCompatActivity {
                 resuldato2.setClickable(true);
                 resuldato2.setEnabled(true);
                 resuldato2.setVisibility(View.VISIBLE);
-
+                paro.setText("");
                 MOSTRAR.setText("0:0:0");
             }
         });
@@ -844,7 +838,7 @@ public class OperadorActivity extends AppCompatActivity {
                 final String Nop = resuldato3.getSelectedItem().toString();
 
                 // imprime fecha
-                dateFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
+                dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
                 date = new Date();
 
                 //imprime hora
@@ -973,7 +967,7 @@ public class OperadorActivity extends AppCompatActivity {
         id = (EditText)findViewById(R.id.operador);
 
         // imprime fecha
-         dateFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
+         dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
          date = new Date();
 
         //imprime hora
@@ -1038,7 +1032,7 @@ public class OperadorActivity extends AppCompatActivity {
          final String tarea = resuldato.getSelectedItem().toString(); //**
 
         // imprime fecha
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         Date date = new Date();
 
         //imprime hora
@@ -1221,7 +1215,7 @@ public class OperadorActivity extends AppCompatActivity {
 
 
                 // imprime fecha
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd", Locale.getDefault());
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
                 Date date = new Date();
 
                 //imprime hora
