@@ -99,7 +99,7 @@
 
             <CheckBox
                 android:id="@+id/rol"
-                android:layout_width="match_parent"
+                android:layout_width="200dp"
                 android:layout_height="15dp"
                 android:gravity="center"
                 android:textColor="#000"

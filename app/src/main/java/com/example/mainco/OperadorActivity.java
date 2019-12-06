@@ -13,6 +13,7 @@ import android.os.PowerManager;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -479,6 +481,7 @@ public class OperadorActivity extends AppCompatActivity {
                                     cantidadund.setEnabled( true );
                                 }
                             } );
+
 
                             resultados.setText( objecto.getString( 0 ).toString() );
 

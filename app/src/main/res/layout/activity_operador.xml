@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".OperadorActivity"
-    android:background="@color/colorAzulOSM">
+    >
 
     <LinearLayout
         android:id="@+id/linearLayout1"
@@ -37,7 +37,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3.3"
                     android:gravity="center"
-                    android:background="#ffffff"
+                    android:background="@drawable/items"
                     android:ems="10"
                     android:hint="INGRESE ID DEL OPERADOR"
                     android:inputType="numberSigned"
@@ -84,7 +84,6 @@
             </LinearLayout>
 
 
-
         </LinearLayout>
 
         <LinearLayout
@@ -99,8 +98,8 @@
 
             <Spinner
                 android:id="@+id/spinner"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
+                android:layout_width="250dp"
+                android:layout_height="40dp"
 
                 />
 
@@ -111,7 +110,7 @@
                 android:layout_marginVertical="3dp"
                 android:layout_marginHorizontal="10dp"
                 android:layout_weight="3.3"
-                android:background="#ffffff"
+                android:background="@drawable/items"
                 android:ems="10"
                 android:gravity="center"
                 android:hint="INGRESE EL ITEM"
@@ -139,7 +138,9 @@
             <Spinner
                 android:id="@+id/spinner1"
                 android:layout_width="match_parent"
-                android:layout_height="35dp" />
+                android:layout_height="40dp"
+                android:textAlignment="center"
+               />
 
         </LinearLayout>
 
@@ -193,7 +194,6 @@
                 android:background="@color/colorAzulCLM"
                 android:onClick="salida"
                 android:text="FINALIZAR" />
-
 
         </LinearLayout>
 
