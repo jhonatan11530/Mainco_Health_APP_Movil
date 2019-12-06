@@ -19,13 +19,11 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -41,6 +39,7 @@ import java.util.Locale;
 
 import cz.msebera.android.httpclient.Header;
 
+
 public class OperadorActivity extends AppCompatActivity {
 
 
@@ -54,6 +53,10 @@ public class OperadorActivity extends AppCompatActivity {
     private int minuto, i, hora,cantidadpro,volumencan,total,datoverifica,volumen;
 
     private ArrayList<cantidadfallas> dato4 = new ArrayList<cantidadfallas>();
+    private ArrayList<cantidades> dato3 = new ArrayList<cantidades>();
+    private ArrayList<motivoparo> dato2 = new ArrayList<motivoparo>();
+    private ArrayList<OPS> dato = new ArrayList<OPS>();
+
     EditText edit,digito;
     View tiempo1,adelanto;
     AlertDialog.Builder registros;
@@ -81,6 +84,7 @@ public class OperadorActivity extends AppCompatActivity {
         clientes3 = new AsyncHttpClient();
 
         setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
 
 
 
@@ -351,15 +355,15 @@ public class OperadorActivity extends AppCompatActivity {
 
 
     public void cargarSpinner(String cargarSpinner) {
-        ArrayList<cantidades> dato = new ArrayList<cantidades>();
+        ArrayList<cantidades> dato3 = new ArrayList<cantidades>();
         try {
             JSONArray objecto = new JSONArray(cargarSpinner);
             for (int i = 0; i < objecto.length(); i++) {
                 cantidades a = new cantidades();
                 a.setTarea(objecto.getJSONObject(i).getString("tarea"));
-                dato.add(a);
+                dato3.add( a );
             }
-            ArrayAdapter<cantidades> a = new ArrayAdapter<cantidades>(this, android.R.layout.simple_dropdown_item_1line, dato);
+            ArrayAdapter<cantidades> a = new ArrayAdapter<cantidades>(this, android.R.layout.simple_dropdown_item_1line, dato3);
             resuldato.setAdapter(a);
 
 

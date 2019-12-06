@@ -1,6 +1,3 @@
-package com.example.mainco;
-
-
 /*
  * Copyright (c) 2014 Kevin Sawicki <kevinsawicki@gmail.com>
  *
@@ -22,6 +19,7 @@ package com.example.mainco;
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
  * IN THE SOFTWARE.
  */
+package com.example.mainco;
 
 import static java.net.HttpURLConnection.HTTP_BAD_REQUEST;
 import static java.net.HttpURLConnection.HTTP_CREATED;
