@@ -76,7 +76,7 @@ public class OlvidoActivity extends AppCompatActivity {
 
     public void comprobar (View v){
 
-        
+
         id = (EditText)findViewById(R.id.CDUNICO);
         cedula = (EditText)findViewById(R.id.cc);
         if( id.getText().toString().length() == 0 ){
