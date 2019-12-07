@@ -14,6 +14,8 @@ import android.widget.ViewFlipper;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import org.json.JSONArray;
 
 
@@ -74,6 +76,7 @@ public class OlvidoActivity extends AppCompatActivity {
 
     public void comprobar (View v){
 
+        
         id = (EditText)findViewById(R.id.CDUNICO);
         cedula = (EditText)findViewById(R.id.cc);
         if( id.getText().toString().length() == 0 ){
