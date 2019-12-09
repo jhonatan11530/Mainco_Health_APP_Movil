@@ -9,6 +9,7 @@
     android:background="@drawable/spash">
 
     <TextView
+        android:id="@+id/titles"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/progressBar"
@@ -21,7 +22,6 @@
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
-        android:progress="50"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"

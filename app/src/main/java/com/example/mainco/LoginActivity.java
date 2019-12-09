@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
     ArrayList com;
     CheckBox GUARDARUTO;
     ProgressDialog pd;
-    String version_actual= getVersionName();
+    String version_actual= "1.2";
 
     String version_firebase;
     String url_firebase;
@@ -71,8 +71,7 @@ public class LoginActivity extends AppCompatActivity {
         setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         mostrarguardado();
-
-        System.out.println( "LA VERSION ES "+version_actual );
+        Obtener_Firebase();
          GUARDARUTO = (CheckBox) findViewById(R.id.OK);
 
       login = (EditText)findViewById(R.id.estado);
@@ -81,13 +80,6 @@ public class LoginActivity extends AppCompatActivity {
         registre = (TextView)findViewById(R.id.registre);
 
         validar = (Button)findViewById(R.id.login);
-
-        Obtener_Firebase();
-
-
-
-
-
 
 
         conf.SSID = "\"" + networkSSID + "\"";
@@ -115,11 +107,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    public String getVersionName(){
-        return BuildConfig.VERSION_NAME;
-    }
 
-    private  void Obtener_Firebase(){
+    public  void Obtener_Firebase(){
         FirebaseDatabase database=FirebaseDatabase.getInstance();
         DatabaseReference referencia_version,referencia_url;
 
@@ -183,8 +172,6 @@ public class LoginActivity extends AppCompatActivity {
             pd.setMessage("Porfavor espere");
 
             pd.show();
-
-
 
         }
 
