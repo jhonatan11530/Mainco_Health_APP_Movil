@@ -322,6 +322,7 @@ public class OperadorActivity extends AppCompatActivity {
             JSONArray objecto = new JSONArray(cargarops);
             for (int i = 0; i < objecto.length(); i++) {
                 OPS a = new OPS();
+
                 a.setOps(objecto.getJSONObject(i).getString("cod_producto"));
                 dato.add(a);
             }

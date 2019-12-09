@@ -6,14 +6,19 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -49,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
 
     ArrayList com;
     CheckBox GUARDARUTO;
-
+    ProgressDialog pd;
     String version_actual= getVersionName();
 
     String version_firebase;
@@ -169,6 +174,115 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    class TASK extends AsyncTask<String,Void,String>{
+
+        @Override
+        protected void onPreExecute() {
+             pd = new ProgressDialog( LoginActivity.this);
+            pd.setTitle("INICIANDO SESION");
+            pd.setMessage("Porfavor espere");
+
+            pd.show();
+
+
+
+        }
+
+        @Override
+        protected void onCancelled(String s) {
+            try {
+                Thread.sleep( 2000 );
+                pd.cancel();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            runOnUiThread( new Runnable() {
+                @Override
+                public void run() {
+                    String titleText = "ERROR AL INICIAR SESSION";
+                    ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan( Color.parseColor("#E82F2E"));
+
+                    SpannableStringBuilder ssBuilder = new SpannableStringBuilder(titleText);
+
+                    ssBuilder.setSpan(
+                            foregroundColorSpan,
+                            0,
+                            titleText.length(),
+                            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                    );
+
+                   final AlertDialog.Builder builder = new AlertDialog.Builder( LoginActivity.this );
+                    builder.setTitle(ssBuilder);
+                    builder.setIcon(R.drawable.peligro);
+
+                    builder.setMessage( "verifique el usuario o contraseña " );
+                    builder.setPositiveButton( "ACEPTAR", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            builder.setCancelable(true);
+                        }
+                    } );
+                    builder.create().show();
+
+                }
+            } );
+
+        }
+
+        @Override
+        protected String doInBackground(final String... strings) {
+
+            new Thread( new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                    String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/validar.php?cedula="+login.getText().toString()+"&pass="+pass.getText().toString()).body();
+                        System.out.println( "COSITA "+response.toString());
+
+
+
+
+                        if(response.length() >0) {
+
+                            Intent e = new Intent(getApplicationContext(), OperadorActivity.class);
+                            startActivity(e);
+
+                            if(GUARDARUTO.isChecked()==true){
+
+                                runOnUiThread( new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText( getApplicationContext(),"SE GUARDO EL USUARIO Y CONTRASEÑA",Toast.LENGTH_SHORT).show();
+
+                                        guardar();
+
+                                    }
+                                } );
+
+
+                            }
+
+                        }else{
+
+
+                            onCancelled(null);
+
+
+                        }
+
+
+
+                    }catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            } ).start();
+
+            return strings[0];
+        }
+
+    }
 
     public void onBackPressed() {
 
@@ -202,6 +316,7 @@ public class LoginActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
         public void validartodo(View view){
             if(pass.getText().toString().length() == 0 && login.getText().toString().length() == 0) {
 
@@ -209,76 +324,17 @@ public class LoginActivity extends AppCompatActivity {
 
                 login.setError("ID ES REQUERIDO !");
 
-            }else{
+            }else if (pass.getText().toString() != null && login.getText().toString() != null){
+
 
                 ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                 NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
 
                 if (networkInfo != null && networkInfo.isConnected()) {
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-
-                                String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/validar.php?cedula="+login.getText().toString()+"&pass="+pass.getText().toString()).body();
-
-                                try {
-                                    JSONArray objecto = new JSONArray(response);
-                                    System.out.println("ESTO ES UN EJEMPLO"+objecto);
-                                    if(objecto.length()>0) {
 
 
-                                        if(GUARDARUTO.isChecked()==true){
-                                            runOnUiThread( new Runnable() {
-                                                @Override
-                                                public void run() {
-                                                    Toast.makeText( getApplicationContext(),"SE GUARDO EL USUARIO Y CONTRASEÑA",Toast.LENGTH_SHORT).show();
+                    new TASK().execute( login.getText().toString(),pass.getText().toString() );
 
-                                                    guardar();
-                                                }
-                                            } );
-
-                                        }
-                                        runOnUiThread( new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                ProgressDialog pd = new ProgressDialog( LoginActivity.this);
-
-                                                pd.setTitle("INICIANDO SESION");
-                                                Intent e = new Intent(getApplicationContext(), OperadorActivity.class);
-                                                startActivity(e);
-                                                pd.setMessage("Porfavor espere");
-                                                pd.setCanceledOnTouchOutside(false);
-
-                                                pd.show();
-
-
-                                            }
-                                        } );
-
-
-                                    }
-
-                                    else{
-                                        runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-
-
-                                                Toast.makeText(getApplicationContext(),"USUARIO O CONTRASEÑA INCORRECTO", Toast.LENGTH_SHORT).show();
-
-                                            }
-                                        });
-                                    }
-
-
-
-                                }catch (Exception e) {
-                                    e.printStackTrace();
-                                }
-
-
-                        }
-                    }).start();
 
                 } else {
                     AlertDialog.Builder builder = new AlertDialog.Builder( LoginActivity.this );
