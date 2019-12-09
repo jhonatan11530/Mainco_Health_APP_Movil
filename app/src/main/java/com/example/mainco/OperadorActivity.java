@@ -246,7 +246,7 @@ public class OperadorActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-
+                llenarSpinners();
             }
         });
     }
@@ -264,7 +264,7 @@ public class OperadorActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-
+                llenarOPS();
             }
         });
     }
@@ -310,7 +310,7 @@ public class OperadorActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-
+                llenarOps();
             }
         });
     }
@@ -351,7 +351,7 @@ public class OperadorActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-
+                llenarSpinner();
             }
         });
     }
@@ -390,7 +390,7 @@ public class OperadorActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-
+                datos();
             }
         });
     }
@@ -426,7 +426,7 @@ public class OperadorActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-
+                llenarSpinner3();
             }
         });
     }
