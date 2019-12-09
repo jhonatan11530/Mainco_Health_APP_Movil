@@ -29,8 +29,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         pb = (ProgressBar) findViewById(R.id.progressBar);
 
-        LoginActivity loginActivity = new LoginActivity();
-        loginActivity.Obtener_Firebase();
 
         new MyTask().execute();
 
@@ -77,6 +75,9 @@ public class MainActivity extends AppCompatActivity {
                     onPostExecute();
                 }
             }
+
+
+
             return "complete";
         }
 

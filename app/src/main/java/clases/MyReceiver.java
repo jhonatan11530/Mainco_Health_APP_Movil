@@ -63,11 +63,8 @@ public class MyReceiver extends BroadcastReceiver {
 
                      pantallaInstall=new Intent( Intent.ACTION_VIEW);
                     pantallaInstall.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    pantallaInstall.setDataAndType( Uri.parse(uriString),"application/vnd.android.package-archive");
 
-
-
-
+                    pantallaInstall.setDataAndType(Uri.fromFile(new File(Environment.getExternalStorageDirectory() + "/MAINCO/" + "app.apk")),"application/vnd.android.package-archive");
 
                     Log.e("MsjDescarga","Se descargo sin problemas");
 
@@ -78,9 +75,13 @@ public class MyReceiver extends BroadcastReceiver {
         }
     };
     public void Install(){
+        new Thread( new Runnable() {
+            @Override
+            public void run() {
 
-
-        my_activity.startActivity(pantallaInstall);
+                my_activity.startActivity(pantallaInstall);
+            }
+        } ).start();
 
 
 
