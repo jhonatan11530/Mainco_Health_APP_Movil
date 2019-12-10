@@ -657,8 +657,12 @@ public class OperadorActivity extends AppCompatActivity {
                                             builder.setNegativeButton( "REGISTRAR OTRA OP", new DialogInterface.OnClickListener() {
                                                 @Override
                                                 public void onClick(DialogInterface dialogInterface, int i) {
-
-                                                            String cero = HttpRequest.get("http://"+cambiarIP.ip+"/validar/nuevoRegistro.php?ID="+ id.getText().toString() ).body();
+                                            new Thread( new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    String cero = HttpRequest.get("http://"+cambiarIP.ip+"/validar/nuevoRegistro.php?ID="+ id.getText().toString() ).body();
+                                                }
+                                            } ).start();
 
 
 
