@@ -603,6 +603,7 @@ public class OperadorActivity extends AppCompatActivity {
 
             }
         }).start();
+        Thread.interrupted();
     }
 
 
