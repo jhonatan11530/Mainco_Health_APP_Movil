@@ -501,14 +501,10 @@ public class OperadorActivity extends AppCompatActivity {
                                 totalcan.setText( "CANTIDAD OP : " + RESTARCANTIDAD.getString( 0 ) + " CANTIDAD PENDIENTE : " +tareita.getString( 0 ) );
 
 
-
+                                desbloquear.setEnabled( true );
                                 if(datoverifica == 0){
                                     desbloquear.setEnabled( true );
                                     restaurarACAN();
-                                }
-                                 if ( canop == datoverifica){
-                                    desbloquear.setEnabled( true );
-
                                 }
                                 else if ( canop != datoverifica){
                                     desbloquear.setEnabled( false );
