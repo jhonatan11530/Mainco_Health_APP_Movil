@@ -14,7 +14,7 @@ import com.example.mainco.R;
 public class RECUPERAR_PASSWORD extends AppCompatActivity {
 
     private VideoView mVideoView;
-    Uri video=Uri.parse("http://www.ebookfrenzy.com/android_book/movie.mp4");
+    Uri video=Uri.parse("");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
