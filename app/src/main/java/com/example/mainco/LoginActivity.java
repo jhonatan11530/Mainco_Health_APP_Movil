@@ -44,6 +44,7 @@ import org.json.JSONArray;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -71,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
         setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         mostrarguardado();
-        Obtener_Firebase();
+
          GUARDARUTO = (CheckBox) findViewById(R.id.OK);
 
       login = (EditText)findViewById(R.id.estado);
@@ -108,60 +109,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-    public  void Obtener_Firebase(){
-        FirebaseDatabase database=FirebaseDatabase.getInstance();
-        DatabaseReference referencia_version,referencia_url;
 
-
-
-        referencia_url=database.getReference("url");
-        referencia_url.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                url_firebase=dataSnapshot.getValue().toString();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText( LoginActivity.this,"URL "+databaseError.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        referencia_version=database.getReference("version");
-        referencia_version.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                version_firebase=dataSnapshot.getValue().toString();
-
-                if(version_firebase.trim().equals(version_actual.trim())){
-
-
-                }
-                else{
-
-                    Intent pantaActualizar=new Intent(getApplicationContext(),Pantalla_Actualizar.class);
-                    pantaActualizar.putExtra("version",version_firebase);
-                    pantaActualizar.putExtra("url",url_firebase);
-                    finish();
-                    startActivity(pantaActualizar);
-                }
-
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-               Toast.makeText( LoginActivity.this,"Version "+databaseError.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-
-
-
-
-
-    }
 
     class TASK extends AsyncTask<String,Void,String>{
 
