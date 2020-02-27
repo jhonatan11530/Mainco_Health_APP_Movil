@@ -84,7 +84,7 @@ public class OperadorActivity extends AppCompatActivity {
         clientes2 = new AsyncHttpClient();
         clientes3 = new AsyncHttpClient();
 
-        setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
 
 
 
@@ -129,6 +129,10 @@ public class OperadorActivity extends AppCompatActivity {
 
 
     }
+    public void onBackPressed() {
+        //  Intent e = new Intent(getApplicationContext(), Modulos.class);
+        // startActivity(e);
+    }
     protected void onDestroy(){
         super.onDestroy();
 
@@ -142,9 +146,7 @@ public class OperadorActivity extends AppCompatActivity {
         super.onSaveInstanceState(icicle);
         this.wakelock.release();
     }
-    public void onBackPressed() {
 
-    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

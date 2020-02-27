@@ -19,7 +19,8 @@
         android:taskAffinity=".string"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
-        tools:ignore="GoogleAppIndexingWarning">
+        tools:ignore="GoogleAppIndexingWarning"
+        android:screenOrientation="portrait">
         <activity
             android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
@@ -33,10 +34,10 @@
         <activity android:name=".Escaner"/>
 
         <activity android:name=".ScanActivity"
-            android:label="@string/title_activity_escaner"/>
+            android:label="@string/title_activity_escaner" />
 
         <activity android:name=".Modulos"
-            android:label="@string/title_activity_modulos"/>
+            android:label="@string/title_activity_modulos" />
 
         <activity android:name=".options"
             android:label="@string/title_activity_opciones"/>

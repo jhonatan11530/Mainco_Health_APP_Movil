@@ -30,7 +30,6 @@ public class OlvidoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_olvido);
 
 
-        setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
 
         id = (EditText)findViewById(R.id.CDUNICO);
@@ -43,10 +42,6 @@ public class OlvidoActivity extends AppCompatActivity {
 
 
     }
-
-
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

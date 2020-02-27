@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
 
         mostrarguardado();
 
@@ -203,6 +203,8 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onBackPressed() {
 
+      //  Intent e = new Intent(getApplicationContext(), Modulos.class);
+       // startActivity(e);
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
