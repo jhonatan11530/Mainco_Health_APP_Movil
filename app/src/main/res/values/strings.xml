@@ -8,5 +8,6 @@
     <string name="title_activity_olvido">OLVIDO SU CONTRASEÑA</string>
     <string name="title_activity_registro">REGISTRO DE USUARIOS</string>
     <string name="title_activity_opciones">OPCIONES</string>
-
+    <string name="title_activity_escaner">ESCANEAR CODIGOS</string>
+    <string name="title_activity_modulos">MODULOS DE TRABAJO</string>
 </resources>

@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             guardar();
-                Intent e = new Intent(getApplicationContext(), LoginActivity.class);
+                Intent e = new Intent(getApplicationContext(), Modulos.class);
                 startActivity(e);
 
         }
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 if(user == "100"){
-                    Intent e = new Intent(getApplicationContext(), LoginActivity.class);
+                    Intent e = new Intent(getApplicationContext(), Modulos.class);
                     startActivity(e);
                 }
 
