@@ -28,23 +28,14 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import org.json.JSONArray;
-
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT;
+
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -53,13 +44,8 @@ public class LoginActivity extends AppCompatActivity {
     Button validar;
     TextView registre;
 
-    ArrayList com;
     CheckBox GUARDARUTO;
     ProgressDialog pd;
-    String version_actual= "1.2";
-
-    String version_firebase;
-    String url_firebase;
 
 
     String networkSSID = "WIFIMainco";
@@ -173,10 +159,6 @@ public class LoginActivity extends AppCompatActivity {
                 public void run() {
                     try {
                     String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/validar.php?cedula="+login.getText().toString()+"&pass="+pass.getText().toString()).body();
-                        System.out.println( "COSITA "+response.toString());
-
-
-
 
                         if(response.length() >0) {
 

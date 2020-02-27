@@ -19,24 +19,26 @@
           android:layout_weight="3"
           android:orientation="horizontal"
           android:gravity="center"
-          android:weightSum="3">
+          android:weightSum="3"
+          >
 
           <ImageButton
               android:id="@+id/Produccion"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:onClick="Produccion"
+              android:layout_width="180dp"
+              android:layout_height="200dp"
               android:background="#fff"
+              android:onClick="Produccion"
               android:src="@drawable/ropa"
+
               />
 
           <ImageButton
               android:id="@+id/Logistica"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
+              android:layout_width="180dp"
+              android:layout_height="200dp"
               android:adjustViewBounds="true"
-              android:onClick="Logistica"
               android:background="#fff"
+              android:onClick="Logistica"
               android:src="@drawable/ropa"
 
               />
