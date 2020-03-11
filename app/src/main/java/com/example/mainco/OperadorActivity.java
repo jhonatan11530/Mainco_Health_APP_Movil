@@ -324,7 +324,7 @@ public class OperadorActivity extends AppCompatActivity {
             for (int i = 0; i < objecto.length(); i++) {
                 OPS a = new OPS();
 
-                a.setOps(objecto.getJSONObject(i).getString("cod_producto"));
+                a.setOps(objecto.getJSONObject(i).getString("numero_id"));
                 dato.add(a);
             }
             ArrayAdapter<OPS> a = new ArrayAdapter<OPS>(this, android.R.layout.simple_dropdown_item_1line, dato);
@@ -1077,23 +1077,33 @@ public class OperadorActivity extends AppCompatActivity {
                         String elitico = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&Ffinal="+fechas+"&Hfinal="+horas+"&cantidad="+volumen+"&fallas="+falla.toString()+"&cantidaderror="+error.toString()+"&tarea="+tarea.toString()+"&op="+items.getText().toString()).body();
 
 
-                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedits.php?numero="+nombretarea.toString()+"&op="+items.getText().toString()).body();
+                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedits.php?op="+items.getText().toString()).body();
 
                         try {
+
+
                             JSONArray RESTARCANTIDAD = new JSONArray(response);
 
                             total = Integer.parseInt(falla.toString());
                             volumencan = Integer.parseInt(cantidad.getText().toString());
                              cantidadpro = Integer.parseInt(RESTARCANTIDAD.getString(0));
                                 int tool = volumencan + total;
-                            int totalade = cantidadpro - tool;
-                            System.out.println( "LA CANTIDAD ES "+volumencan );
-                            System.out.println( "LA CANTIDAD ES "+cantidadpro );
-                            System.out.println( "LA TOTAL ES  "+totalade );
-                            if(totalade >= 0){
-                                String responses = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?numero="+nombretarea.toString()+"&totales="+totalade).body();
+                            int total = cantidadpro - tool;
+                            String modif = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?numero="+nombretarea.toString()+"&totales="+total).body();
 
-                                runOnUiThread(new Runnable() {
+                            System.out.println( "LA CANTIDAD DIGITADA ES "+volumencan );
+                            System.out.println( "LA CANTIDAD MALAS ES "+total );
+                            System.out.println( "LA CANTIDAD ES MYSQL "+cantidadpro );
+
+                            String Sobrante = HttpRequest.get("http://"+cambiarIP.ip+"/validar/Sobrante.php?op="+items.getText().toString()).body();
+
+                            JSONArray Sobrantes = new JSONArray(Sobrante );
+                            int SOBRA = Integer.parseInt(Sobrantes.getString(0));
+                            System.out.println( "LA CANTIDAD ES REAL "+SOBRA );
+                            int ok = SOBRA - tool;
+                            if(ok >= 0){
+                                String responsesx = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?numero="+nombretarea.toString()+"&totales="+ok).body();
+                               runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
 
@@ -1105,7 +1115,7 @@ public class OperadorActivity extends AppCompatActivity {
                                 });
 
 
-                            }else if (totalade < 0){
+                            }else if (ok < 0){
 
                                 runOnUiThread(new Runnable() {
                                     @Override
@@ -1252,7 +1262,7 @@ public class OperadorActivity extends AppCompatActivity {
                             Thread.sleep(1000);
 
 
-                            String responses = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedits.php?numero="+nombretarea.toString()+"&op="+items.getText().toString()).body();
+                            String responses = HttpRequest.get("http://"+cambiarIP.ip+"/validar/Sobrante.php?op="+items.getText().toString()).body();
 
                             try {
                                 JSONArray RESTARCANTIDAD = new JSONArray(responses);
