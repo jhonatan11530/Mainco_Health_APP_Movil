@@ -129,11 +129,11 @@
             <TextView
                 android:id="@+id/textView1"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="30dp"
                 android:gravity="center"
-                android:textColor="#ffffff"
+                android:textColor="#000"
                 android:text="ACTIVIDAD"
-                android:textSize="13sp" />
+                android:textSize="20sp" />
 
             <Spinner
                 android:id="@+id/spinner1"
