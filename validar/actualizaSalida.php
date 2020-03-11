@@ -80,7 +80,7 @@ class ejecutar{
     
 
 
- 
+ // LA EFICACIA SE DEBE VERIFICAR
      $dates = new DateTime($arreglito[5]);
       $Hini = $dates->format('H:i');
     
@@ -97,8 +97,9 @@ class ejecutar{
   
         $divicion = $cant - $cantno ;
          $totales = $divicion / $cantAC *100;
-    // LA EFICACIA YA ESTA TERMINADA
+    
      $porcentaje = round($totales);
+// FIN DE EFICACIA
 
 if($porcentaje != null){
   $workers=new efica();
@@ -131,12 +132,13 @@ while ($row = mysqli_fetch_array($ress)){
 }
 $cantpendi =$arreglitt[0];
 
-
+//EFICENCIA SE DEBE VERIFICAR
   $tiempoespera = ( $timeST * $cant) / 3600;
 
     $eficencia =  $tiempoespera / $fist * 100;
 
     $eficencias = round($eficencia); 
+// FIN DE EFICENCIA
 
   if($eficencias != null){
     $efi=new eficencia();

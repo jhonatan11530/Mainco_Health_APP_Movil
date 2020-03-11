@@ -1,8 +1,7 @@
 <?php
-
  $op = $_GET["op"];
  $mysqli = mysqli_connect("127.0.0.1", "root", "", "proyecto");
- $res = "SELECT cantidad FROM  produccion WHERE cod_producto = '".$op."'";
+ $res = "SELECT cantidadpentiente FROM tarea WHERE numero_op  = '".$op."'";
  
  $result = mysqli_query($mysqli, $res);
  
@@ -11,7 +10,7 @@
    $arreglo2= array();
        
 
-       $arreglo2[] = $row["cantidad"];
+       $arreglo2[] = $row["cantidadpentiente"];
  
 
          
