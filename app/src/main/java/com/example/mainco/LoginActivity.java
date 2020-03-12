@@ -112,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected void onCancelled(String s) {
             try {
-                Thread.sleep( 2000 );
+                Thread.sleep( 1000 );
                 pd.cancel();
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -290,7 +290,7 @@ public void mostrarguardado(){
         @Override
         public void run() {
             try {
-                Thread.sleep( 2000 );
+                Thread.sleep( 1000 );
             login.setText( user );
             } catch (InterruptedException e) {
                 e.printStackTrace();

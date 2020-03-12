@@ -46,10 +46,10 @@ public class OperadorActivity extends AppCompatActivity {
 
     private EditText id, cantidad, paro, fallas,items;
     private String falla,error;
-    private TextView motivo, MOSTRAR,texto,totalcan,tex,resultados;
+    private TextView motivo, MOSTRAR,texto,totalcan,autorizadoxop,resultados;
     private Spinner resuldato,resuldato2,  resuldato4,resuldato3;
 
-    private  Button go, stop, btnconfir,desbloquear,positivo,neutrar, registroTIME, salidaTIME,validarinfo,cantidadund,btnvalidar,filtre;
+    private  Button go, stop, btnconfir,desbloquear,positivo,neutrar, registroTIME, salidaTIME,validarinfo,cantidadund,filtre;
 
     private int minuto, i, hora,cantidadpro,volumencan,total,datoverifica,volumen;
 
@@ -64,13 +64,11 @@ public class OperadorActivity extends AppCompatActivity {
     Date date;
     SimpleDateFormat hourFormat;
     SimpleDateFormat dateFormat;
-    private RadioGroup grupo;
     private AsyncHttpClient client;
     private AsyncHttpClient clientes;
     private AsyncHttpClient clientes2;
     private AsyncHttpClient clientes3;
     public Thread hilo,eliminaOK;
-    private RadioButton botonSi,botonNo;
 
     protected PowerManager.WakeLock wakelock;
     @SuppressLint("InvalidWakeLockTag")
@@ -461,7 +459,7 @@ public class OperadorActivity extends AppCompatActivity {
 
             final String nombretarea = resuldato.getSelectedItem().toString();
 
-            final String Nop = items.getText().toString();
+            final String Nop = resuldato3.getSelectedItem().toString();
 
             new Thread(new Runnable() {
                 @Override
@@ -487,18 +485,21 @@ public class OperadorActivity extends AppCompatActivity {
 
                             resultados.setText( objecto.getString( 0 ).toString() );
 
-
+/*
                             String rest = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/validarcantidad.php?numero="+ Nop.toString()  ).body();
-                            try {
+
                                 JSONArray RESTARCANTIDAD = new JSONArray(rest);
+
+                                String modif = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?numero="+nombretarea.toString()+"&totales="+RESTARCANTIDAD.getString( 0 )).body();
 
                                 String acz = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/cantidadpendiente.php?id=" + nombretarea.toString()+"&numerico="+ Nop.toString()).body();
 
                                 JSONArray tareita = new JSONArray(acz);
 
-                                datoverifica = Integer.parseInt( tareita.getString( 0 ) );
-                                int canop = Integer.parseInt(RESTARCANTIDAD.getString( 0 ));
-
+                                datoverifica = Integer.parseInt( tareita.getString( 0 ).toString());
+                               int canop = Integer.parseInt(RESTARCANTIDAD.getString( 0 ).toString());
+                                System.out.println( "ESTO SE ESTA EJECUTANDO "+datoverifica );
+                                System.out.println( "ESTO SE ESTA EJECUTANDO "+canop );
                                 totalcan.setText( "CANTIDAD OP : " + RESTARCANTIDAD.getString( 0 ) + " CANTIDAD PENDIENTE : " +tareita.getString( 0 ) );
 
 
@@ -511,14 +512,7 @@ public class OperadorActivity extends AppCompatActivity {
                                     desbloquear.setEnabled( false );
                                 }
 
-
-
-
-
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
+                                */
                        }
 
 
@@ -987,6 +981,7 @@ public class OperadorActivity extends AppCompatActivity {
 
         final   String fechas =edit.getText().toString();
         final String Nop = resuldato3.getSelectedItem().toString();
+        final String tarea = resuldato.getSelectedItem().toString();
         builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
 
             @Override
@@ -995,6 +990,15 @@ public class OperadorActivity extends AppCompatActivity {
                 new Thread(new Runnable() {
                      @Override
                     public void run() {
+                         String cant = HttpRequest.get("http://"+cambiarIP.ip+"/validar/validarcantidad.php?numero="+Nop.toString()).body();
+                         try {
+                             JSONArray CNT = new JSONArray( cant );
+
+                             String asdsad = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?numero="+tarea.toString()+"&totales="+ CNT.getString(0)).body();
+
+                         } catch (JSONException e) {
+                             e.printStackTrace();
+                         }
 
                         String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaEntrada.php?id="+id.getText().toString()+"&Finicial="+fechas+"&Hinicial="+hora.toString()+"&op="+Nop.toString()).body();
 
@@ -1074,13 +1078,13 @@ public class OperadorActivity extends AppCompatActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        String elitico = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&Ffinal="+fechas+"&Hfinal="+horas+"&cantidad="+volumen+"&fallas="+falla.toString()+"&cantidaderror="+error.toString()+"&tarea="+tarea.toString()+"&op="+items.getText().toString()).body();
+                        String elitico = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&Ffinal="+fechas+"&Hfinal="+horas+"&motivo="+error+"&conforme="+falla+"&tarea="+nombretarea+"&op="+resuldato3.getSelectedItem().toString()).body();
+
 
 
                         String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedits.php?op="+items.getText().toString()).body();
 
                         try {
-
 
                             JSONArray RESTARCANTIDAD = new JSONArray(response);
 
@@ -1088,24 +1092,20 @@ public class OperadorActivity extends AppCompatActivity {
                             volumencan = Integer.parseInt(cantidad.getText().toString());
                              cantidadpro = Integer.parseInt(RESTARCANTIDAD.getString(0));
                                 int tool = volumencan + total;
-                            int total = cantidadpro - tool;
-                            String modif = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?numero="+nombretarea.toString()+"&totales="+total).body();
+                                int end = cantidadpro - tool;
 
                             System.out.println( "LA CANTIDAD DIGITADA ES "+volumencan );
                             System.out.println( "LA CANTIDAD MALAS ES "+total );
-                            System.out.println( "LA CANTIDAD ES MYSQL "+cantidadpro );
+                            System.out.println( "LA CANTIDAD EN MYSQL "+cantidadpro );
+                            System.out.println( "LA CANTIDAD EN MYSQL RESTADA "+end );
 
-                            String Sobrante = HttpRequest.get("http://"+cambiarIP.ip+"/validar/Sobrante.php?op="+items.getText().toString()).body();
+                            String modif = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?numero="+nombretarea.toString()+"&totales="+end).body();
 
-                            JSONArray Sobrantes = new JSONArray(Sobrante );
-                            int SOBRA = Integer.parseInt(Sobrantes.getString(0));
-                            System.out.println( "LA CANTIDAD ES REAL "+SOBRA );
-                            int ok = SOBRA - tool;
-                            if(ok >= 0){
-                                String responsesx = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?numero="+nombretarea.toString()+"&totales="+ok).body();
+                            if(end >= 0){
                                runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
+
 
                                         Toast.makeText(getApplicationContext(),"DATOS VERIFICADOS", Toast.LENGTH_SHORT).show();
 
@@ -1115,7 +1115,7 @@ public class OperadorActivity extends AppCompatActivity {
                                 });
 
 
-                            }else if (ok < 0){
+                            }else if (end < 0){
 
                                 runOnUiThread(new Runnable() {
                                     @Override
@@ -1167,57 +1167,15 @@ public class OperadorActivity extends AppCompatActivity {
 
         AlertDialog.Builder aplazarproduccion = new AlertDialog.Builder(OperadorActivity.this);
        adelanto = getLayoutInflater().inflate(R.layout.aplazar_produccion,null);
-         tex = (TextView)adelanto.findViewById(R.id.textos);
-         grupo = (RadioGroup)adelanto.findViewById(R.id.GRUPORADIO);
+        autorizadoxop = (TextView)adelanto.findViewById(R.id.Cantidadops);
          btnconfir = (Button)adelanto.findViewById(R.id.CONFIRMARADE);
-         btnvalidar = (Button)adelanto.findViewById(R.id.VALIDARADE);
-         botonSi = (RadioButton)adelanto.findViewById(R.id.SI);
-        botonNo = (RadioButton)adelanto.findViewById(R.id.NO);
         digito = (EditText)adelanto.findViewById(R.id.digicantidad);
 
-        digito.setVisibility(adelanto.INVISIBLE);
-        btnconfir.setVisibility(adelanto.INVISIBLE);
-
-        btnvalidar.setVisibility(adelanto.VISIBLE);
-        grupo.setVisibility(adelanto.VISIBLE);
-        botonSi.setVisibility(adelanto.VISIBLE);
-        botonNo.setVisibility(adelanto.VISIBLE);
+        digito.setVisibility(adelanto.VISIBLE);
+        btnconfir.setVisibility(adelanto.VISIBLE);
 
 
 
-
-        btnvalidar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-                if(grupo.getCheckedRadioButtonId() == -1){
-
-
-
-                    Toast.makeText(getApplicationContext(),"NO SE PUEDE CONTINUAR DEBE SELECCIONAR UNA OPCION", Toast.LENGTH_SHORT).show();
-                }
-                else if(botonSi.isChecked()){
-                    Toast.makeText(getApplicationContext(),"SI DESEO ADELANTAR LO PRODUCCIDO", Toast.LENGTH_SHORT).show();
-
-                    digito.setVisibility(adelanto.VISIBLE);
-                    btnconfir.setVisibility(adelanto.VISIBLE);
-
-                    btnvalidar.setVisibility(adelanto.INVISIBLE);
-                    grupo.setVisibility(adelanto.INVISIBLE);
-                    botonSi.setVisibility(adelanto.INVISIBLE);
-                    botonNo.setVisibility(adelanto.INVISIBLE);
-                    tex.setVisibility(adelanto.INVISIBLE);
-
-                }
-                else if(botonNo.isChecked()){
-
-                    Toast.makeText(getApplicationContext(),"NO SE ADELANTARA LO PRODUCCIDO", Toast.LENGTH_SHORT).show();
-
-                    digito.setVisibility(adelanto.INVISIBLE);
-                }
-            }
-        });
 
         btnconfir.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1270,16 +1228,19 @@ public class OperadorActivity extends AppCompatActivity {
                                 volumencan = Integer.parseInt(digito.getText().toString());
                                 cantidadpro = Integer.parseInt(RESTARCANTIDAD.getString(0));
 
-                                int totalade = cantidadpro - volumencan;
+                                final int totalade = cantidadpro - volumencan;
 
                                 System.out.println("LAS CANTIDADES SON : "+totalade);
 
                                 if(totalade >= 0){
+
                                     String responsesx = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?numero="+nombretarea.toString()+"&totales="+totalade).body();
+
 
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
+                                            autorizadoxop.setText( "cantidad restante : "+totalade );
                                             Toast.makeText(getApplicationContext(),"SE REGISTRO EL ADELANTO PRODUCCIDO ", Toast.LENGTH_SHORT).show();
 
                                             verificar();

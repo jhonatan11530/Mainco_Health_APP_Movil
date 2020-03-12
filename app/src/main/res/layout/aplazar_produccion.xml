@@ -10,7 +10,7 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="450dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:weightSum="12"
         >
@@ -18,7 +18,7 @@
         <LinearLayout
             android:id="@+id/linearLayout1"
             android:layout_width="match_parent"
-            android:layout_height="450dp"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:weightSum="12"
             >
@@ -28,88 +28,21 @@
                 android:layout_height="80dp"
                 android:orientation="vertical"
                 android:weightSum="12"
+
                 >
 
                 <TextView
                     android:id="@+id/TEXT"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="DESEA ADELANTAR LO PRODUCCIDO ?"
                     android:textColor="#000000"
-                    android:textSize="25sp" />
+                    android:textSize="25sp"
+                    />
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/linearLayout3"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:orientation="vertical"
-                android:weightSum="12"
-                >
-                <TextView
-                    android:id="@+id/nada"
-                    android:layout_width="match_parent"
-                    android:layout_height="15dp"
-                    android:gravity="center"
-                    android:textSize="10sp"
-                    android:textColor="#000000"
-                    android:layout_weight="1"
-                    android:text="-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" />
-                <TextView
-                    android:id="@+id/textos"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textSize="15sp"
-                    android:textColor="#000000"
-                    android:layout_weight="1"
-                    android:text="SELECCIONE UNA OPCION" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:id="@+id/linearLayout4"
-                android:layout_width="match_parent"
-                android:layout_height="47dp"
-                android:orientation="horizontal"
-                android:weightSum="12"
-                >
-
-                <RadioGroup
-
-                    android:id="@+id/GRUPORADIO"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/SI"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="SI DESEO ADELANTAR LO PRODUCCIDO"
-                        android:gravity="center"
-                        android:textSize="15sp"/>
-
-                    <RadioButton
-                        android:id="@+id/NO"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="NO DESEO ADELANTAR LO PRODUCCIDO"
-                        android:textSize="15sp"/>
-                </RadioGroup>
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/VALIDARADE"
-                android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:text="VALIDAR" />
 
             <EditText
                 android:id="@+id/digicantidad"
@@ -125,6 +58,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="75dp"
                 android:text="CONFIRMAR" />
+
+            <TextView
+                android:id="@+id/Cantidadops"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:gravity="center"
+                android:textColor="@color/colorAzulCRO"
+                android:textSize="28sp"
+                 android:text="cantidad restante : "/>
+
+
         </LinearLayout>
 
       </LinearLayout>

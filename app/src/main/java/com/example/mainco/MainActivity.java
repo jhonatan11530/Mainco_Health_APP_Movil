@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
             while (progressStatus <= 100){
                 try {
-                    Thread.sleep( 20 );
+                    Thread.sleep( 5 );
 
                     progressStatus +=1;
 
