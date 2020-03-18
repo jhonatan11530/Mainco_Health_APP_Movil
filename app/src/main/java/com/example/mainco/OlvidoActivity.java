@@ -114,6 +114,7 @@ public class OlvidoActivity extends AppCompatActivity {
                                                    public void onClick(DialogInterface dialogInterface, int i) {
                                                        Intent e = new Intent(getApplicationContext(), LoginActivity.class);
                                                        startActivity(e);
+                                                       finish();
                                                    }
                                                });
                                                builder.create().show();

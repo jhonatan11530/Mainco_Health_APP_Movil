@@ -132,16 +132,6 @@ public class OperadorActivity extends AppCompatActivity {
                 //llenarSpinners();
             }
         } );
-       /* resuldato3.addOnLayoutChangeListener( new View.OnLayoutChangeListener() {
-            @Override
-            public void onLayoutChange(View view, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
-
-
-
-
-            }
-        } );*/
-
 
     }
     public void onBackPressed() {
@@ -216,7 +206,7 @@ public class OperadorActivity extends AppCompatActivity {
 
                         Intent e = new Intent(getApplicationContext(), LoginActivity.class);
                         startActivity(e);
-
+                        finish();
 
 
                     }

@@ -20,9 +20,10 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
-        >
+         >
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,27 +32,35 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Escaner"/>
+        <activity android:name=".Escaner"
+            android:screenOrientation="portrait"/>
 
         <activity android:name=".ScanActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_escaner" />
 
         <activity android:name=".Modulos"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_modulos" />
 
         <activity android:name=".options"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_opciones"/>
         <activity
             android:name=".LoginActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_login" />
         <activity
             android:name=".OperadorActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_operador" />
         <activity
             android:name=".RegistroActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_registro" />
         <activity
             android:name=".OlvidoActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_olvido" />
         <activity
             android:name="Introducciones.INTRODUCCION"

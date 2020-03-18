@@ -164,7 +164,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             Intent e = new Intent(getApplicationContext(), OperadorActivity.class);
                             startActivity(e);
-
+                            finish();
                             if(GUARDARUTO.isChecked()==true){
 
                                 runOnUiThread( new Runnable() {

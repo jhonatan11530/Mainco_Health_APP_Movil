@@ -131,6 +131,7 @@ public class RegistroActivity extends AppCompatActivity {
 
                                     Intent e = new Intent(getApplicationContext(), LoginActivity.class);
                                     startActivity(e);
+                                    finish();
                                 }
                             });
 

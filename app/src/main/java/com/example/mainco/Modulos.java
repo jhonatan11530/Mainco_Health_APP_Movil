@@ -17,9 +17,11 @@ public class Modulos extends AppCompatActivity {
     public void Produccion(View view){
         Intent e = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(e);
+        finish();
     }
     public void Logistica(View view){
         Intent e = new Intent(getApplicationContext(), ScanActivity.class);
         startActivity(e);
+        finish();
     }
 }

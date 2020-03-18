@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
             guardar();
                 Intent e = new Intent(getApplicationContext(), Modulos.class);
                 startActivity(e);
-
         }
 
         @Override
