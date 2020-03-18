@@ -854,7 +854,7 @@ public class OperadorActivity extends AppCompatActivity {
                 date = new Date();
 
                 //imprime hora
-                hourFormat = new SimpleDateFormat("hh:mm:ss", Locale.getDefault());
+                hourFormat = new SimpleDateFormat("HH:mm:ss a");
 
                 final String horas = hourFormat.format(date);
                 final String fechas = dateFormat.format(date);
@@ -983,7 +983,7 @@ public class OperadorActivity extends AppCompatActivity {
          date = new Date();
 
         //imprime hora
-         hourFormat = new SimpleDateFormat("hh:mm:ss", Locale.getDefault());
+         hourFormat = new SimpleDateFormat("HH:mm:ss a");
 
         //almacena los datos en una cadena
         final	String hora = hourFormat.format(date);
@@ -1058,7 +1058,7 @@ public class OperadorActivity extends AppCompatActivity {
         Date date = new Date();
 
         //imprime hora
-        SimpleDateFormat hourFormat = new SimpleDateFormat("hh:mm:ss", Locale.getDefault());
+        SimpleDateFormat hourFormat = new SimpleDateFormat("HH:mm:ss a");
 
         //almacena los datos en una cadena
         final	String horafinal = hourFormat.format(date);
@@ -1205,7 +1205,7 @@ public class OperadorActivity extends AppCompatActivity {
                 Date date = new Date();
 
                 //imprime hora
-                SimpleDateFormat hourFormat = new SimpleDateFormat("hh:mm:ss", Locale.getDefault());
+                SimpleDateFormat hourFormat = new SimpleDateFormat("HH:mm:ss a");
 
                 //almacena los datos en una cadena
                 final	String horafinal = hourFormat.format(date);
