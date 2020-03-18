@@ -40,6 +40,7 @@
                     android:background="@drawable/items"
                     android:ems="10"
                     android:hint="INGRESE ID DEL OPERADOR"
+                    android:textColorHint="#000"
                     android:inputType="numberSigned"
                     android:layout_marginVertical="4dp"
                     />
@@ -96,13 +97,6 @@
             android:weightSum="10">
 
 
-            <Spinner
-                android:id="@+id/spinner"
-                android:layout_width="250dp"
-                android:layout_height="40dp"
-
-                />
-
             <EditText
                 android:id="@+id/item"
                 android:layout_width="match_parent"
@@ -113,18 +107,31 @@
                 android:background="@drawable/items"
                 android:ems="10"
                 android:gravity="center"
-                android:hint="INGRESE EL ITEM"
+                android:hint="INGRESE EL O.P"
+                android:textColorHint="#000"
                 android:inputType="text" />
 
-            <Button
-                android:id="@+id/FILTROS"
-                android:layout_width="350dp"
-                android:layout_height="50dp"
-                android:background="@drawable/btn_redondo"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
                 android:gravity="center"
+                android:textColor="#000"
+                android:text="NUMERO DE ITEM"
+                android:textSize="20sp" />
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
                 android:layout_weight="3.3"
-                android:onClick="filtro"
-                android:text="CONFIRMAR" />
+                android:background="@color/colorVerdeM"
+                android:textColor="#ffffff"
+                android:onClick="filtroActivity"
+                android:text="Verificar ITEM" />
 
             <TextView
                 android:id="@+id/textView1"

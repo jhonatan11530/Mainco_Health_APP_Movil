@@ -14,6 +14,7 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -49,7 +50,7 @@ public class OperadorActivity extends AppCompatActivity {
     private TextView motivo, MOSTRAR,texto,totalcan,autorizadoxop,resultados;
     private Spinner resuldato,resuldato2,  resuldato4,resuldato3;
 
-    private  Button go, stop, btnconfir,desbloquear,positivo,neutrar, registroTIME, salidaTIME,validarinfo,cantidadund,filtre;
+    private  Button go, stop, btnconfir,desbloquear,positivo,neutrar, registroTIME, salidaTIME,validarinfo,cantidadund;
 
     private int minuto, i, hora,cantidadpro,volumencan,total,datoverifica,volumen;
 
@@ -94,7 +95,7 @@ public class OperadorActivity extends AppCompatActivity {
         this.wakelock=pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, "etiqueta");
         wakelock.acquire();
 
-         filtre = (Button) findViewById( R.id.FILTROS );
+
         resuldato = (Spinner) findViewById(R.id.spinner1);
 
         totalcan = (TextView)findViewById(R.id.CANTIDADID);
@@ -124,6 +125,22 @@ public class OperadorActivity extends AppCompatActivity {
         salidaTIME.setEnabled(false);
         cantidadund.setEnabled(false);
 
+        items.addOnLayoutChangeListener( new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View view, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
+                FiltrarOps();
+                //llenarSpinners();
+            }
+        } );
+       /* resuldato3.addOnLayoutChangeListener( new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View view, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
+
+
+
+
+            }
+        } );*/
 
 
     }
@@ -226,14 +243,14 @@ public class OperadorActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void filtro(View V){
-        llenarSpinners();
-        llenarOPS();
+    public void filtroActivity(View v){
+        llenarSpinners(); //item
+
 
     }
 
     public void llenarSpinners() {
-        String url = "http://" + cambiarIP.ip + "/validar/cantidadfiltre.php?op="+items.getText().toString();
+        String url = "http://" + cambiarIP.ip + "/validar/cantidadfiltre.php?op="+resuldato3.getSelectedItem().toString(); // SE DEBE CAMBIAR
         client.post(url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -250,23 +267,6 @@ public class OperadorActivity extends AppCompatActivity {
         });
     }
 
-    public void llenarOPS() {
-        String url = "http://" + cambiarIP.ip + "/validar/opfiltre.php?op="+items.getText().toString();
-        client.post(url, new AsyncHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                if (statusCode == 200) {
-                    cargarops(new String(responseBody));
-
-                }
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                llenarOPS();
-            }
-        });
-    }
     public void filtrocantidad(){
 
         final String Nop = items.getText().toString();
@@ -294,7 +294,24 @@ public class OperadorActivity extends AppCompatActivity {
 
     }
 
+    public void FiltrarOps() {
 
+        String url = "http://" + cambiarIP.ip + "/validar/FiltroOPS.php?op="+items.getText().toString();
+        client.post(url, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                if (statusCode == 200) {
+                    cargarops(new String(responseBody));
+
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                llenarOps();
+            }
+        });
+    }
     public void llenarOps() {
 
         String url = "http://" + cambiarIP.ip + "/validar/OPS.php";
@@ -322,7 +339,7 @@ public class OperadorActivity extends AppCompatActivity {
             for (int i = 0; i < objecto.length(); i++) {
                 OPS a = new OPS();
 
-                a.setOps(objecto.getJSONObject(i).getString("numero_id"));
+                a.setOps(objecto.getJSONObject(i).getString("cod_producto"));
                 dato.add(a);
             }
             ArrayAdapter<OPS> a = new ArrayAdapter<OPS>(this, android.R.layout.simple_dropdown_item_1line, dato);
@@ -479,6 +496,7 @@ public class OperadorActivity extends AppCompatActivity {
                                     registroTIME.setEnabled( true );
                                     salidaTIME.setEnabled( true );
                                     cantidadund.setEnabled( true );
+                                    desbloquear.setEnabled( true );
                                 }
                             } );
 
@@ -836,7 +854,7 @@ public class OperadorActivity extends AppCompatActivity {
                 date = new Date();
 
                 //imprime hora
-                hourFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+                hourFormat = new SimpleDateFormat("hh:mm:ss", Locale.getDefault());
 
                 final String horas = hourFormat.format(date);
                 final String fechas = dateFormat.format(date);
@@ -965,7 +983,7 @@ public class OperadorActivity extends AppCompatActivity {
          date = new Date();
 
         //imprime hora
-         hourFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+         hourFormat = new SimpleDateFormat("hh:mm:ss", Locale.getDefault());
 
         //almacena los datos en una cadena
         final	String hora = hourFormat.format(date);
@@ -1040,7 +1058,7 @@ public class OperadorActivity extends AppCompatActivity {
         Date date = new Date();
 
         //imprime hora
-        SimpleDateFormat hourFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+        SimpleDateFormat hourFormat = new SimpleDateFormat("hh:mm:ss", Locale.getDefault());
 
         //almacena los datos en una cadena
         final	String horafinal = hourFormat.format(date);
@@ -1078,7 +1096,7 @@ public class OperadorActivity extends AppCompatActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        String elitico = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&Ffinal="+fechas+"&Hfinal="+horas+"&motivo="+error+"&conforme="+falla+"&tarea="+nombretarea+"&op="+resuldato3.getSelectedItem().toString()).body();
+                        String elitico = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&cantidad="+volumen+"&Ffinal="+fechas+"&Hfinal="+horas+"&motivo="+error+"&conforme="+falla+"&tarea="+nombretarea+"&op="+resuldato3.getSelectedItem().toString()).body();
 
 
 
@@ -1187,7 +1205,7 @@ public class OperadorActivity extends AppCompatActivity {
                 Date date = new Date();
 
                 //imprime hora
-                SimpleDateFormat hourFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+                SimpleDateFormat hourFormat = new SimpleDateFormat("hh:mm:ss", Locale.getDefault());
 
                 //almacena los datos en una cadena
                 final	String horafinal = hourFormat.format(date);
@@ -1220,7 +1238,7 @@ public class OperadorActivity extends AppCompatActivity {
                             Thread.sleep(1000);
 
 
-                            String responses = HttpRequest.get("http://"+cambiarIP.ip+"/validar/Sobrante.php?op="+items.getText().toString()).body();
+                            String responses = HttpRequest.get("http://"+cambiarIP.ip+"/validar/Sobrante.php?op="+items.getText().toString()+"&tarea="+nombretarea.toString()).body();
 
                             try {
                                 JSONArray RESTARCANTIDAD = new JSONArray(responses);
