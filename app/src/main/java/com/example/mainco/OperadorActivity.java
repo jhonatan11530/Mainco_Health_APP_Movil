@@ -493,34 +493,6 @@ public class OperadorActivity extends AppCompatActivity {
 
                             resultados.setText( objecto.getString( 0 ).toString() );
 
-/*
-                            String rest = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/validarcantidad.php?numero="+ Nop.toString()  ).body();
-
-                                JSONArray RESTARCANTIDAD = new JSONArray(rest);
-
-                                String modif = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?numero="+nombretarea.toString()+"&totales="+RESTARCANTIDAD.getString( 0 )).body();
-
-                                String acz = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/cantidadpendiente.php?id=" + nombretarea.toString()+"&numerico="+ Nop.toString()).body();
-
-                                JSONArray tareita = new JSONArray(acz);
-
-                                datoverifica = Integer.parseInt( tareita.getString( 0 ).toString());
-                               int canop = Integer.parseInt(RESTARCANTIDAD.getString( 0 ).toString());
-                                System.out.println( "ESTO SE ESTA EJECUTANDO "+datoverifica );
-                                System.out.println( "ESTO SE ESTA EJECUTANDO "+canop );
-                                totalcan.setText( "CANTIDAD OP : " + RESTARCANTIDAD.getString( 0 ) + " CANTIDAD PENDIENTE : " +tareita.getString( 0 ) );
-
-
-                                desbloquear.setEnabled( true );
-                                if(datoverifica == 0){
-                                    desbloquear.setEnabled( true );
-                                    restaurarACAN();
-                                }
-                                else if ( canop != datoverifica){
-                                    desbloquear.setEnabled( false );
-                                }
-
-                                */
                        }
 
 
@@ -1086,11 +1058,7 @@ public class OperadorActivity extends AppCompatActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        String elitico = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&cantidad="+volumen+"&Ffinal="+fechas+"&Hfinal="+horas+"&motivo="+error+"&conforme="+falla+"&tarea="+nombretarea+"&op="+resuldato3.getSelectedItem().toString()).body();
-
-
-
-                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedits.php?op="+items.getText().toString()).body();
+                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedits.php?op="+resuldato3.getSelectedItem().toString()).body();
 
                         try {
 
@@ -1110,7 +1078,9 @@ public class OperadorActivity extends AppCompatActivity {
                             String modif = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?numero="+nombretarea.toString()+"&totales="+end).body();
 
                             if(end >= 0){
-                               runOnUiThread(new Runnable() {
+                                String elitico = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&cantidad="+volumen+"&Ffinal="+fechas+"&Hfinal="+horas+"&motivo="+error+"&conforme="+falla+"&tarea="+nombretarea+"&op="+resuldato3.getSelectedItem().toString()).body();
+
+                                runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
 
