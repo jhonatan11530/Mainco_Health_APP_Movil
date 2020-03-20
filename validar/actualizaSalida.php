@@ -11,25 +11,26 @@ $final = $_GET["Ffinal"];
 $hora_final = $_GET["Hfinal"];
 
 if(isset($ID,$op,$tarea,$cantidad,$no_conforme,$motivo,$final,$hora_final)){
+ 
 
 $mysqli = mysqli_connect("127.0.0.1", "root", "", "proyecto");
 $sql_statement = "UPDATE operador SET final='".$final."',cantidad='".$cantidad."',hora_final='".$hora_final."',tarea='".$tarea."',cantidad_fallas='".$no_conforme."',no_conforme='".$motivo."' 
 WHERE id= '".$ID."' AND numero_op = '".$op."'";
 $result = mysqli_query($mysqli, $sql_statement);
 
+
+
+}else{
+  echo "aqui no paso nada";
+}
 $a = new ejemplo();
 $a->ejecutar($ID,$op);
-
-  }else{
-    echo "aqui no paso nada";
-  }
-
 class ejemplo{
   
 function ejecutar($ID,$op){
     sleep(1);
     $conecting = mysqli_connect("127.0.0.1", "root", "", "proyecto");
-    $consulta = "SELECT cantidad FROM operador WHERE id='".$ID."' AND numero_op = '".$op."'";
+    $consulta = "SELECT cantidad FROM produccion WHERE numero_id = '".$op."'";
     $result = mysqli_query($conecting, $consulta);  
 
     while($row = mysqli_fetch_array($result)) {
@@ -97,7 +98,12 @@ class HORA{
   function EFICACIA($cant,$extandar,$ID){
 
     /*CONVERTIDO A HORA EFICACIA*/
-    $dato = $extandar * $cant;
+    $result = $extandar * $cant;
+    $hora = substr($result,0,-3); 
+    $segundos = substr($result,2);
+    $dato = "0".$hora.":".$segundos;
+
+
     echo "TIEMPO EN HORAS QUE SE DEBE DEMORAR EN HACER LA OP: ".$dato;
      
     $d = new entradasalida();
@@ -115,18 +121,23 @@ class entradasalida{
           
       $inicial = $listo["hora_inicial"];
       $final = $listo["hora_final"];
+
     }
     
-    $total = $final -$inicial;
+    $fecha1 = new DateTime($inicial);
+    $fecha2 = new DateTime($final);
+    $intervalo = $fecha1->diff($fecha2);
+    $total =  $intervalo->format('%H:%I:%S');
+
     echo "<br>";  
     echo "<br>";
-    echo "TIEMPO ENTRADA :".$inicial;
+    echo "TIEMPO ENTRADA : ".$inicial;
     echo "<br>";
     echo "<br>";
-    echo "TIEMPO SALIDA :".$final;
+    echo "TIEMPO SALIDA : ".$final;
     echo "<br>";
     echo "<br>";
-    echo "TOTAL HORA REAL AL TERMINAR OP :".$total;
+    echo "TOTAL HORA REAL AL TERMINAR OP : ".$total;
 
 
     $e = new EFICIENCIA();
@@ -138,10 +149,12 @@ class EFICIENCIA{
 
       
     $eficiencia = $dato / $total;
-    $formula = $eficiencia * 100;
+    $formula = $eficiencia  * 100;
     echo "<br>";
     echo "<br>";
     echo "EFICIENCIA : ".$formula;
+
+
 
     $conn = mysqli_connect("127.0.0.1", "root", "", "proyecto");
     $search = "UPDATE operador SET eficencia='".$formula."' WHERE id= '".$ID."'";
@@ -169,7 +182,7 @@ class EFICACIA{
 
     echo "<br>";
     echo "<br>";
-    echo "CANT : ".$total;
+    echo "EFICACIA : ".$total;
 
 
     $conn = mysqli_connect("127.0.0.1", "root", "", "proyecto");
