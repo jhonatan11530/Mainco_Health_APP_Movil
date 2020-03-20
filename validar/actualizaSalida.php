@@ -19,12 +19,12 @@ WHERE id= '".$ID."' AND numero_op = '".$op."'";
 $result = mysqli_query($mysqli, $sql_statement);
 
 
+$a = new ejemplo();
+$a->ejecutar($ID,$op);
 
 }else{
   echo "aqui no paso nada";
 }
-$a = new ejemplo();
-$a->ejecutar($ID,$op);
 class ejemplo{
   
 function ejecutar($ID,$op){
