@@ -980,7 +980,7 @@ public class OperadorActivity extends AppCompatActivity {
                              e.printStackTrace();
                          }
 
-                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaEntrada.php?id="+id.getText().toString()+"&Finicial="+fechas+"&Hinicial="+hora.toString()+"&op="+Nop.toString()).body();
+                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaEntrada.php?id="+id.getText().toString()+"&Finicial="+fechas+"&Hinicial="+hora.toString()+"&op="+items.getText().toString()).body();
 
                          runOnUiThread(new Runnable() {
                              @Override
@@ -1078,7 +1078,7 @@ public class OperadorActivity extends AppCompatActivity {
                             String modif = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?numero="+nombretarea.toString()+"&totales="+end).body();
 
                             if(end >= 0){
-                                String elitico = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&cantidad="+volumen+"&Ffinal="+fechas+"&Hfinal="+horas+"&motivo="+error+"&conforme="+falla+"&tarea="+nombretarea+"&op="+resuldato3.getSelectedItem().toString()).body();
+                                String elitico = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&cantidad="+volumen+"&Ffinal="+fechas+"&Hfinal="+horas+"&motivo="+error+"&conforme="+falla+"&tarea="+nombretarea+"&op="+items.getText().toString()).body();
 
                                 runOnUiThread(new Runnable() {
                                     @Override
