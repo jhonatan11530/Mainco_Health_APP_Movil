@@ -19,34 +19,36 @@ WHERE id= '".$ID."' AND numero_op = '".$op."'";
 $result = mysqli_query($mysqli, $sql_statement);
 
 
+
 $a = new ejemplo();
 $a->ejecutar($ID,$op);
 
 }else{
   echo "aqui no paso nada";
 }
+
+
 class ejemplo{
-  
-function ejecutar($ID,$op){
-    sleep(1);
-    $conecting = mysqli_connect("127.0.0.1", "root", "", "proyecto");
-    $consulta = "SELECT cantidad FROM produccion WHERE numero_id = '".$op."'";
-    $result = mysqli_query($conecting, $consulta);  
+  function ejecutar($ID,$op){
+      sleep(1);
+      $conecting = mysqli_connect("127.0.0.1", "root", "", "proyecto");
+      $consulta = "SELECT cantidad FROM produccion WHERE numero_id = '".$op."'";
+      $result = mysqli_query($conecting, $consulta);  
 
-    while($row = mysqli_fetch_array($result)) {
-      
-      $cant = $row["cantidad"];
-
+      while($row = mysqli_fetch_array($result)) {
         
+        $cant = $row["cantidad"];
+
+          
+      }
+        echo "CANTIDAD EN OP :".$cant;
+        echo "<br>";
+        echo "<br>";
+
+      $a = new produc();
+      $a->produccion($cant,$op,$ID);
+
     }
-      echo "CANTIDAD EN OP :".$cant;
-      echo "<br>";
-      echo "<br>";
-
-    $a = new produc();
-    $a->produccion($cant,$op,$ID);
-
-  }
 }
 
 class produc{
@@ -71,7 +73,6 @@ class produc{
   }
 } 
   
-
 class tarea{
   function extand($cant,$cod,$ID){
 
@@ -110,6 +111,7 @@ class HORA{
     $d->totaltime($ID,$dato,$cant);
   }
 }
+
 class entradasalida{
   function totaltime($ID,$dato,$cant){
 
@@ -144,6 +146,7 @@ class entradasalida{
     $e->eficiencias($total,$dato,$cant,$ID);
   }
 }
+
 class EFICIENCIA{
   function eficiencias($total,$dato,$cant,$ID){
 
@@ -179,6 +182,7 @@ class EFICACIA{
     }
     $eficacia = $buenas - $malas;
     $total = $eficacia / $buenas * 100;
+    $dato = round($total);
 
     echo "<br>";
     echo "<br>";
@@ -186,7 +190,7 @@ class EFICACIA{
 
 
     $conn = mysqli_connect("127.0.0.1", "root", "", "proyecto");
-    $search = "UPDATE operador SET eficacia='".$total."' WHERE id= '".$ID."'";
+    $search = "UPDATE operador SET eficacia='".$dato."' WHERE id= '".$ID."'";
     $res = mysqli_query($conn, $search);
     $mysqli->close();	
   }
