@@ -1,9 +1,8 @@
-package com.example.mainco;
+package com.example.App;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,7 +14,6 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.loopj.android.http.AsyncHttpClient;
-
 public class RegistroActivity extends AppCompatActivity {
 
     EditText id,nombre,apellido,cedula,pass;

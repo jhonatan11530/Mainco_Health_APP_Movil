@@ -1,31 +1,24 @@
-package com.example.mainco;
+package com.example.App;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.PowerManager;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -41,13 +34,12 @@ import java.util.Locale;
 
 import cz.msebera.android.httpclient.Header;
 
-
 public class OperadorActivity extends AppCompatActivity {
 
 
     private EditText id, cantidad, paro, fallas,items;
     private String falla,error;
-    private TextView motivo, MOSTRAR,texto,totalcan,autorizadoxop,resultados;
+    private TextView motivo, MOSTRAR,texto,autorizadoxop,resultados;
     private Spinner resuldato,resuldato2,  resuldato4,resuldato3;
 
     private  Button go, stop, btnconfir,desbloquear,positivo,neutrar, registroTIME, salidaTIME,validarinfo,cantidadund;
@@ -71,8 +63,6 @@ public class OperadorActivity extends AppCompatActivity {
     private AsyncHttpClient clientes3;
     public Thread hilo,eliminaOK;
 
-    protected PowerManager.WakeLock wakelock;
-    @SuppressLint("InvalidWakeLockTag")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,22 +73,10 @@ public class OperadorActivity extends AppCompatActivity {
         clientes2 = new AsyncHttpClient();
         clientes3 = new AsyncHttpClient();
 
-
-
-
-
-
         llenarSpinner();
         llenarOps();
 
-        final PowerManager pm=(PowerManager)getSystemService(Context.POWER_SERVICE);
-        this.wakelock=pm.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK, "etiqueta");
-        wakelock.acquire();
-
-
         resuldato = (Spinner) findViewById(R.id.spinner1);
-
-        totalcan = (TextView)findViewById(R.id.CANTIDADID);
 
         resuldato2 = (Spinner) findViewById(R.id.spinner2);
 
@@ -127,9 +105,9 @@ public class OperadorActivity extends AppCompatActivity {
 
         items.addOnLayoutChangeListener( new View.OnLayoutChangeListener() {
             @Override
-            public void onLayoutChange(View view, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
+            public void onLayoutChange(View view, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+
                 FiltrarOps();
-                //llenarSpinners();
             }
         } );
 
@@ -137,19 +115,6 @@ public class OperadorActivity extends AppCompatActivity {
     public void onBackPressed() {
         //  Intent e = new Intent(getApplicationContext(), Modulos.class);
         // startActivity(e);
-    }
-    protected void onDestroy(){
-        super.onDestroy();
-
-        this.wakelock.release();
-    }
-    protected void onResume(){
-        super.onResume();
-        wakelock.acquire();
-    }
-    public void onSaveInstanceState(Bundle icicle) {
-        super.onSaveInstanceState(icicle);
-        this.wakelock.release();
     }
 
     @Override
@@ -234,7 +199,13 @@ public class OperadorActivity extends AppCompatActivity {
     }
 
     public void filtroActivity(View v){
-        llenarSpinners(); //item
+        if(items.getText().toString().length() == 0){
+            items.setError("NUMERO OP ES REQUERIDO !");
+
+        }if (items.getText().toString().length() != 0){
+            llenarSpinners(); //item
+        }
+
 
 
     }
@@ -458,11 +429,11 @@ public class OperadorActivity extends AppCompatActivity {
 
     public void operador(View v) {
 
-        if (id.getText().toString() == null) {
+        if (id.getText().toString().length() == 0) {
 
             id.setError("ID ES REQUERIDO !");
 
-        }if (id.getText().toString() != null) {
+        }if (id.getText().toString().length() != 0) {
 
             final String nombretarea = resuldato.getSelectedItem().toString();
 
@@ -473,6 +444,8 @@ public class OperadorActivity extends AppCompatActivity {
                 public void run() {
 
                     try {
+
+
                         String response = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/operador.php?id=" + id.getText().toString() ).body();
 
                         JSONArray objecto = new JSONArray( response );
@@ -492,6 +465,15 @@ public class OperadorActivity extends AppCompatActivity {
 
 
                             resultados.setText( objecto.getString( 0 ).toString() );
+                            System.out.println("ESTO SE MUESTRA "+resuldato3.getSelectedItem().toString());
+
+
+
+
+
+
+
+
 
                        }
 
@@ -517,67 +499,6 @@ public class OperadorActivity extends AppCompatActivity {
                         }
 
     }
-    public void restaurarACAN(){
-
-        final String nombretarea = resuldato.getSelectedItem().toString();
-
-        final String Nop = resuldato3.getSelectedItem().toString();
-        new Thread( new Runnable() {
-            @Override
-            public void run() {
-                String responsesx = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/validarcantidad.php?numero="+ Nop.toString()  ).body();
-
-                try {
-                    JSONArray RESTARCANTIDADES = new JSONArray(responsesx);
-                    int datico = Integer.parseInt(RESTARCANTIDADES.getString(0));
-
-                    String asd = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizartarea.php?tarea="+nombretarea.toString()+"&canpen="+datico).body();
-
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-
-            }
-        } ).start();
-        Thread.interrupted();
-    }
-    public void MOSTRAROP(){
-
-        final String nombretarea = resuldato.getSelectedItem().toString();
-
-        final String Nop = resuldato3.getSelectedItem().toString();
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-
-                String rest = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/validarcantidad.php?numero="+ Nop.toString()  ).body();
-                try {
-                    JSONArray RESTARCANTIDAD = new JSONArray(rest);
-
-                    String acz = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/cantidadpendiente.php?id=" + nombretarea.toString()+"&numerico="+ Nop.toString()).body();
-
-                    JSONArray tareita = new JSONArray(acz);
-
-                    datoverifica = Integer.parseInt( tareita.getString( 0 ) );
-                    int canop = Integer.parseInt(RESTARCANTIDAD.getString( 0 ));
-
-                    totalcan.setText( "CANTIDAD OP : " + RESTARCANTIDAD.getString( 0 ) + " CANTIDAD PENDIENTE : " +tareita.getString( 0 ) );
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-
-            }
-        }).start();
-        Thread.interrupted();
-    }
-
-
 
   public void verificar(){
 
@@ -620,26 +541,16 @@ public class OperadorActivity extends AppCompatActivity {
                                             builder.setTitle( "LA OP FINALIZO " );
                                             builder.setMessage( "DEBE SELECCIONAR OTRA OP " );
 
-                                            builder.setPositiveButton( "ACEPTAR", new DialogInterface.OnClickListener() {
+                                            builder.setPositiveButton( "REGISTRAR OTRA OP", new DialogInterface.OnClickListener() {
                                                 @Override
                                                 public void onClick(DialogInterface dialogInterface, int i) {
-
+                                                    new Thread( new Runnable() {
+                                                        @Override
+                                                        public void run() {
+                                                            String cero = HttpRequest.get("http://"+cambiarIP.ip+"/validar/nuevoRegistro.php?id="+ id.getText().toString() ).body();
+                                                        }
+                                                    } ).start();
                                                 }
-                                            } );
-                                            builder.setNegativeButton( "REGISTRAR OTRA OP", new DialogInterface.OnClickListener() {
-                                                @Override
-                                                public void onClick(DialogInterface dialogInterface, int i) {
-                                            new Thread( new Runnable() {
-                                                @Override
-                                                public void run() {
-                                                    String cero = HttpRequest.get("http://"+cambiarIP.ip+"/validar/nuevoRegistro.php?ID="+ id.getText().toString() ).body();
-                                                }
-                                            } ).start();
-
-
-
-
-                                               }
                                             } );
                                             builder.create().show();
 
@@ -664,9 +575,6 @@ public class OperadorActivity extends AppCompatActivity {
   }
 
     public void hora(View v) {
-
-
-
 
          registros = new AlertDialog.Builder(OperadorActivity.this);
         tiempo1 = getLayoutInflater().inflate(R.layout.dialog_spinner,null);
@@ -940,6 +848,7 @@ public class OperadorActivity extends AppCompatActivity {
 
         id = (EditText)findViewById(R.id.operador);
 
+
         // imprime fecha
          dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
          date = new Date();
@@ -970,17 +879,20 @@ public class OperadorActivity extends AppCompatActivity {
                 new Thread(new Runnable() {
                      @Override
                     public void run() {
-                         String cant = HttpRequest.get("http://"+cambiarIP.ip+"/validar/validarcantidad.php?numero="+Nop.toString()).body();
-                         try {
-                             JSONArray CNT = new JSONArray( cant );
 
-                             String asdsad = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?numero="+tarea.toString()+"&totales="+ CNT.getString(0)).body();
+                         try {
+
+                             String responses = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedits.php?op="+resuldato3.getSelectedItem().toString()).body();
+
+                             JSONArray  RESTARCANTIDAD = new JSONArray(responses);
+
+                             HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+tarea.toString()+"&totales="+RESTARCANTIDAD.getString(0)).body();
 
                          } catch (JSONException e) {
                              e.printStackTrace();
                          }
 
-                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaEntrada.php?id="+id.getText().toString()+"&Finicial="+fechas+"&Hinicial="+hora.toString()+"&op="+items.getText().toString()).body();
+                        HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaEntrada.php?id="+id.getText().toString()+"&Finicial="+fechas+"&Hinicial="+hora.toString()+"&op="+items.getText().toString()).body();
 
                          runOnUiThread(new Runnable() {
                              @Override
@@ -1046,6 +958,12 @@ public class OperadorActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
+                if(fallas.getText().toString().length() == 0 && cantidad.getText().toString().length() == 0){
+                    fallas.setError("DEBE LLENARSE");
+                    cantidad.setError("DEBE LLENARSE");
+                }
+                else{
+
 
 
             volumen = Integer.parseInt(cantidad.getText().toString());
@@ -1058,7 +976,7 @@ public class OperadorActivity extends AppCompatActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedits.php?op="+resuldato3.getSelectedItem().toString()).body();
+                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/Sobrante.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+nombretarea.toString()).body();
 
                         try {
 
@@ -1075,10 +993,11 @@ public class OperadorActivity extends AppCompatActivity {
                             System.out.println( "LA CANTIDAD EN MYSQL "+cantidadpro );
                             System.out.println( "LA CANTIDAD EN MYSQL RESTADA "+end );
 
-                            String modif = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?numero="+nombretarea.toString()+"&totales="+end).body();
 
                             if(end >= 0){
-                                String elitico = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&cantidad="+volumen+"&Ffinal="+fechas+"&Hfinal="+horas+"&motivo="+error+"&conforme="+falla+"&tarea="+nombretarea+"&op="+items.getText().toString()).body();
+                                HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+nombretarea.toString()+"&totales="+end).body();
+
+                                HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&cantidad="+volumen+"&Ffinal="+fechas+"&Hfinal="+horas+"&motivo="+error+"&conforme="+falla+"&tarea="+nombretarea+"&op="+items.getText().toString()).body();
 
                                 runOnUiThread(new Runnable() {
                                     @Override
@@ -1088,7 +1007,7 @@ public class OperadorActivity extends AppCompatActivity {
                                         Toast.makeText(getApplicationContext(),"DATOS VERIFICADOS", Toast.LENGTH_SHORT).show();
 
                                         verificar();
-                                        MOSTRAROP();
+
                                     }
                                 });
 
@@ -1099,10 +1018,20 @@ public class OperadorActivity extends AppCompatActivity {
                                     @Override
                                     public void run() {
 
+                                        String titleText = "EXEDIO LA CANTIDAD DE PRODUCCION AUTORIZADA";
+                                        ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan( Color.parseColor("#E82F2E"));
+                                        SpannableStringBuilder ssBuilder = new SpannableStringBuilder(titleText);
+                                        ssBuilder.setSpan(
+                                                foregroundColorSpan,
+                                                0,
+                                                titleText.length(),
+                                                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                                        );
                                         AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
-                                        builder.setTitle("EXEDIO LA CANTIDAD DE PRODUCCION AUTORIZADA");
-                                        builder.setMessage("usted exedio la cantidad permitida por la op ");
-                                        builder.setNegativeButton("VOLVER AL REGISTRO", new DialogInterface.OnClickListener() {
+                                        builder.setTitle(ssBuilder);
+                                        builder.setIcon(R.drawable.peligro);
+                                        builder.setMessage("USTED EXEDIO LA CANTIDAD PERMITIDA POR LA O.P");
+                                        builder.setNegativeButton("VOLVER A REGISTRAR", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -1129,6 +1058,7 @@ public class OperadorActivity extends AppCompatActivity {
                 }).start();
                 Thread.interrupted();
 
+                }
             }
         });
 
@@ -1153,12 +1083,12 @@ public class OperadorActivity extends AppCompatActivity {
         btnconfir.setVisibility(adelanto.VISIBLE);
 
 
-
-
         btnconfir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if(digito.getText().toString().length() == 0){
+                    digito.setError("DEBE LLENARSE");
+                }if(digito.getText().toString().length() != 0){
 
                 // imprime fecha
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
@@ -1188,7 +1118,7 @@ public class OperadorActivity extends AppCompatActivity {
                     @Override
                     public void run() {
                         final String tarea = resuldato.getSelectedItem().toString();
-                        final String Nop = resuldato3.getSelectedItem().toString();
+                        final String Nop = items.getText().toString();
                         volumencan = Integer.parseInt(digito.getText().toString());
                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizarcantidad.php?numero="+Nop.toString()+"&id="+id.getText().toString()+"&canpen="+volumencan+"&Ffinal="+fechas+"&Hfinal="+horas+"&tarea="+tarea.toString()).body();
 
@@ -1197,8 +1127,8 @@ public class OperadorActivity extends AppCompatActivity {
                         try {
                             Thread.sleep(1000);
 
+                            String responses = HttpRequest.get("http://"+cambiarIP.ip+"/validar/Sobrante.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+nombretarea.toString()).body();
 
-                            String responses = HttpRequest.get("http://"+cambiarIP.ip+"/validar/Sobrante.php?op="+items.getText().toString()+"&tarea="+nombretarea.toString()).body();
 
                             try {
                                 JSONArray RESTARCANTIDAD = new JSONArray(responses);
@@ -1212,7 +1142,7 @@ public class OperadorActivity extends AppCompatActivity {
 
                                 if(totalade >= 0){
 
-                                    String responsesx = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?numero="+nombretarea.toString()+"&totales="+totalade).body();
+                                    String responsesx = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+nombretarea.toString()+"&totales="+totalade).body();
 
 
                                     runOnUiThread(new Runnable() {
@@ -1222,7 +1152,7 @@ public class OperadorActivity extends AppCompatActivity {
                                             Toast.makeText(getApplicationContext(),"SE REGISTRO EL ADELANTO PRODUCCIDO ", Toast.LENGTH_SHORT).show();
 
                                             verificar();
-                                            MOSTRAROP();
+
 
                                         }
                                     });
@@ -1234,10 +1164,20 @@ public class OperadorActivity extends AppCompatActivity {
                                         public void run() {
                                             try {
                                                 Thread.sleep(500);
+                                                String titleText = "EXEDIO LA CANTIDAD DE PRODUCCION AUTORIZADA";
+                                                ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan( Color.parseColor("#E82F2E"));
+                                                SpannableStringBuilder ssBuilder = new SpannableStringBuilder(titleText);
+                                                ssBuilder.setSpan(
+                                                        foregroundColorSpan,
+                                                        0,
+                                                        titleText.length(),
+                                                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                                                );
                                                 AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
-                                                builder.setTitle("EXEDIO LA CANTIDAD DE PRODUCCION AUTORIZADA");
-                                                builder.setMessage("usted exedio la cantidad permitida por la op ");
-                                                builder.setNegativeButton("VOLVER AL REGISTRO", new DialogInterface.OnClickListener() {
+                                                builder.setTitle(ssBuilder);
+                                                builder.setIcon(R.drawable.peligro);
+                                                builder.setMessage("USTED EXEDIO LA CANTIDAD PERMITIDA POR LA O.P");
+                                                builder.setNegativeButton("VOLVER A REGISTRAR", new DialogInterface.OnClickListener() {
                                                     @Override
                                                     public void onClick(DialogInterface dialogInterface, int i) {
 
@@ -1267,6 +1207,7 @@ public class OperadorActivity extends AppCompatActivity {
                 }).start();
                 Thread.interrupted();
 
+                }
            }
         });
         aplazarproduccion.setPositiveButton("CANCELAR", new DialogInterface.OnClickListener() {

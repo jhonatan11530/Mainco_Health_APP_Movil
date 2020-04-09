@@ -1,19 +1,16 @@
-package com.example.mainco;
-
-import androidx.appcompat.app.AppCompatActivity;
-
+package com.example.App;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-
 import android.os.Bundle;
-
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 
@@ -25,8 +22,6 @@ import Introducciones.RECUPERAR_PASSWORD;
 import Introducciones.REGISTRO_PRODUCIDO;
 import Introducciones.SYSTEM;
 import Introducciones.TERMINADO;
-
-
 public class options extends AppCompatActivity {
 
     private ListView componentes;
@@ -162,7 +157,7 @@ public class options extends AppCompatActivity {
     public void support(View v){
         androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(options.this);
         builder.setTitle( "CONTACTO" );
-        builder.setMessage( "si desea soporte o comunicarte con el desarrollador de la aplicacion Mainco Health Care.\n\n" +
+        builder.setMessage( "si desea soporte o comunicarte con el desarrollador de la aplicacion Mainco Health app.\n\n" +
                 "INFORMACION DEL DESARROLLADOR\n\n" +
                 "NOMBRE : JHONATAN FERNANDEZ MUÑOZ \n\n" +
                 "TELEFONO : 3114360830\n\n" +
@@ -181,9 +176,9 @@ public class options extends AppCompatActivity {
         androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder( options.this );
         builder.setTitle( "APLICACION MAINCO HEALTH CARE" );
         builder.setMessage( "USO : " +
-                "La aplicacion Mainco Health care es una aplicacion de registro de informacion en el area de planta atravez de esta app se podra registrar la hora de entrada , salida , las cantidades produccidas las cantidades defectuosa , el registro de tiempo de descanso \n\n" +
+                "La aplicacion Mainco Health app es una aplicacion de registro de informacion para el area de planta a travez de esta app se podra registrar la hora de entrada , salida , las cantidades produccidas las cantidades defectuosa , el registro de tiempo de descanso \n\n" +
                 "EXCLUSIVIDAD : " +
-                "La aplicacion Mainco Health care para dispositivos android es de uso exclusivo para la empresa MAINCO HEALTH CARE se prohibe el uso de esta app por personas (TERCEROS) sin previa autorizacion de MAINCO HEALTH CARE el uso no autorizado de esta app por terceros puede ser sancionado por la respectiva empresa \n\n"
+                "La aplicacion Mainco Health app para dispositivos android es de uso exclusivo para la empresa MAINCO HEALTH CARE se prohibe el uso de esta app por personas (TERCEROS) sin previa autorizacion de MAINCO HEALTH CARE el uso no autorizado de esta app por terceros puede ser sancionado por la respectiva empresa o puede ser sansionado por las leyes del pais\n\n"
         );
 
 

@@ -1,21 +1,17 @@
-package com.example.mainco;
+package com.example.App;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
-
 import android.os.AsyncTask;
 import android.os.Bundle;
-
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
@@ -25,16 +21,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.App.R;
 
-import java.util.ArrayList;
 import java.util.List;
-
 
 
 
@@ -137,7 +132,7 @@ public class LoginActivity extends AppCompatActivity {
                     builder.setTitle(ssBuilder);
                     builder.setIcon(R.drawable.peligro);
 
-                    builder.setMessage( "verifique el usuario o contraseña " );
+                    builder.setMessage( "VERIFIQUE EL USUARIO Y CONTRASEÑA" );
                     builder.setPositiveButton( "ACEPTAR", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -243,7 +238,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 login.setError("ID ES REQUERIDO !");
 
-            }else if (pass.getText().toString() != null && login.getText().toString() != null){
+            }else if (pass.getText().toString().length() != 0 && login.getText().toString().length() != 0){
 
 
                 ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);

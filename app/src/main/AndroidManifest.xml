@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.mainco">
+    package="com.example.App">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -31,17 +30,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".Escaner"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name=".ScanActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_escaner" />
-
-        <activity android:name=".Modulos"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_modulos" />
 
         <activity android:name=".options"
             android:screenOrientation="portrait"

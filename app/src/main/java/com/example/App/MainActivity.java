@@ -1,16 +1,14 @@
-package com.example.mainco;
+package com.example.App;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.ActivityInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             guardar();
-                Intent e = new Intent(getApplicationContext(), Modulos.class);
+                Intent e = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(e);
         }
 
@@ -100,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 if(user == "100"){
-                    Intent e = new Intent(getApplicationContext(), Modulos.class);
+                    Intent e = new Intent(getApplicationContext(), LoginActivity.class);
                     startActivity(e);
                 }
 

@@ -1,4 +1,4 @@
-package com.example.mainco;
+package com.example.App;
 
 public class cantidadfallas {
 

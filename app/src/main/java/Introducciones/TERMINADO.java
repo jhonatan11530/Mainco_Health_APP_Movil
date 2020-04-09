@@ -8,8 +8,7 @@ import android.widget.MediaController;
 import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.mainco.R;
+import com.example.App.R;
 
 public class TERMINADO extends AppCompatActivity {
 

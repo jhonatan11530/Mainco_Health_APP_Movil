@@ -8,8 +8,8 @@ import android.widget.MediaController;
 import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import com.example.App.R;
 
-import com.example.mainco.R;
 
 public class CLOSE_OP extends AppCompatActivity {
 
