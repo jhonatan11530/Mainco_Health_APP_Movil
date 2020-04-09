@@ -41,7 +41,7 @@
                     android:ems="10"
                     android:hint="ID DEL OPERADOR"
                     android:textColorHint="#000"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:layout_marginVertical="4dp"
                     />
 
@@ -51,7 +51,7 @@
                     android:layout_height="45dp"
                     android:layout_weight="5"
                     android:background="@color/colorAzulCLM"
-                    android:onClick="operador"
+                    android:onClick="d"
                     android:text="VALIDAR"
                     android:textColor="#ffffff" />
 
@@ -154,7 +154,7 @@
             <Button
                 android:id="@+id/insertar"
                 android:layout_width="match_parent"
-                android:layout_height="50px"
+                android:layout_height="wrap_content"
                 android:layout_weight="2.5"
                 android:background="@color/colorVerdeM"
                 android:textColor="#ffffff"
@@ -165,7 +165,7 @@
                 android:id="@+id/aplazar"
                 android:layout_width="match_parent"
                 android:layout_marginVertical="5dp"
-                android:layout_height="50px"
+                android:layout_height="wrap_content"
                 android:textColor="#ffffff"
                 android:onClick="aplazo"
                 android:background="@color/colorAzulCLM"
@@ -176,7 +176,7 @@
             <Button
                 android:id="@+id/tiempo"
                 android:layout_width="match_parent"
-                android:layout_height="50px"
+                android:layout_height="wrap_content"
                 android:textColor="#ffffff"
                 android:layout_weight="2.5"
                 android:background="@color/colorVerdeM"
@@ -187,7 +187,7 @@
                 android:id="@+id/salida"
                 android:layout_width="match_parent"
                 android:layout_marginVertical="5dp"
-                android:layout_height="50px"
+                android:layout_height="wrap_content"
                 android:textColor="#ffffff"
                 android:layout_weight="2.5"
                 android:background="@color/colorAzulCLM"

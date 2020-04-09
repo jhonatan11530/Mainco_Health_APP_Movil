@@ -435,10 +435,6 @@ public class OperadorActivity extends AppCompatActivity {
 
         }if (id.getText().toString().length() != 0) {
 
-            final String nombretarea = resuldato.getSelectedItem().toString();
-
-            final String Nop = resuldato3.getSelectedItem().toString();
-
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -465,13 +461,6 @@ public class OperadorActivity extends AppCompatActivity {
 
 
                             resultados.setText( objecto.getString( 0 ).toString() );
-                            System.out.println("ESTO SE MUESTRA "+resuldato3.getSelectedItem().toString());
-
-
-
-
-
-
 
 
 
