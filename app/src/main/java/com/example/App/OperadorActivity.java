@@ -33,6 +33,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import cz.msebera.android.httpclient.Header;
+import com.example.App.HttpRequest;
 
 public class OperadorActivity extends AppCompatActivity {
 
