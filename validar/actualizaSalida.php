@@ -26,6 +26,7 @@ $a->ejecutar($ID,$op);
   echo "aqui no paso nada";
 }
 
+
 class ejemplo{
   function ejecutar($ID,$op){
       sleep(1);
@@ -97,12 +98,7 @@ class HORA{
   function EFICACIA($cant,$extandar,$ID){
 
     /*CONVERTIDO A HORA EFICACIA */
-    $dato = $extandar * $cant;
-    $hora = substr($dato,0,-3); 
-    $minutos = substr($dato,2,2);
-    $segundos = substr($dato,5,6);
-
-    
+    $dato = $extandar * $cant;    
 
     echo "TIEMPO EN HORAS QUE SE DEBE DEMORAR EN HACER LA OP: ".$dato;
      
@@ -149,11 +145,12 @@ class EFICIENCIA{
   function eficiencias($total,$dato,$ID){
     
     $eficiencia = $dato / $total;
-    $formula = $eficiencia  * 100;
+    $redondo = $eficiencia  * 100;
+    $formula = round($redondo);
 
     echo "<br>";
     echo "<br>";
-    echo "EFICIENCIA : ".round($formula);
+    echo "EFICIENCIA : ".$formula;
 
 
     $mysqli = mysqli_connect("127.0.0.1", "root", "", "proyecto");
