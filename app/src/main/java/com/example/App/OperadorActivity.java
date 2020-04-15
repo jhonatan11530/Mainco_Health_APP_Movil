@@ -6,8 +6,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
+import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -104,13 +106,24 @@ public class OperadorActivity extends AppCompatActivity {
         salidaTIME.setEnabled(false);
         cantidadund.setEnabled(false);
 
-        items.addOnLayoutChangeListener( new View.OnLayoutChangeListener() {
+        items.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onLayoutChange(View view, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-                FiltrarOps();
             }
-        } );
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                FiltrarOps();
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
 
     }
     public void onBackPressed() {
@@ -706,15 +719,12 @@ public class OperadorActivity extends AppCompatActivity {
 
                 final String prueba = resuldato2.getSelectedItem().toString();
 
-
-                final String Nop = resuldato3.getSelectedItem().toString();
-
                 // imprime fecha
                 dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
                 date = new Date();
 
                 //imprime hora
-                hourFormat = new SimpleDateFormat("HH:mm:ss a");
+                hourFormat = new SimpleDateFormat("H:mm:ss");
 
                 final String horas = hourFormat.format(date);
                 final String fechas = dateFormat.format(date);
@@ -724,7 +734,7 @@ public class OperadorActivity extends AppCompatActivity {
                     @Override
                     public void run() {
 
-                            String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/RegistrarMotivo.php?op="+Nop.toString()+"&id="+id.getText().toString()+"&paro="+paro.getText().toString()+"&motivo="+prueba.toString()+"&fecha="+fechas+"&hora="+horas.toString()).body();
+                            String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/RegistrarMotivo.php?op="+items.getText().toString()+"&id="+id.getText().toString()+"&paro="+paro.getText().toString()+"&motivo="+prueba.toString()+"&fecha="+fechas+"&hora="+horas.toString()).body();
 
                     }
                 }).start();
@@ -844,7 +854,7 @@ public class OperadorActivity extends AppCompatActivity {
          date = new Date();
 
         //imprime hora
-         hourFormat = new SimpleDateFormat("HH:mm:ss a");
+         hourFormat = new SimpleDateFormat("H:mm:ss");
 
         //almacena los datos en una cadena
         final	String hora = hourFormat.format(date);
@@ -922,7 +932,7 @@ public class OperadorActivity extends AppCompatActivity {
         Date date = new Date();
 
         //imprime hora
-        SimpleDateFormat hourFormat = new SimpleDateFormat("HH:mm:ss a");
+        SimpleDateFormat hourFormat = new SimpleDateFormat("H:mm:ss");
 
         //almacena los datos en una cadena
         final	String horafinal = hourFormat.format(date);
@@ -1085,7 +1095,7 @@ public class OperadorActivity extends AppCompatActivity {
                 Date date = new Date();
 
                 //imprime hora
-                SimpleDateFormat hourFormat = new SimpleDateFormat("HH:mm:ss a");
+                SimpleDateFormat hourFormat = new SimpleDateFormat("H:mm:ss");
 
                 //almacena los datos en una cadena
                 final	String horafinal = hourFormat.format(date);
