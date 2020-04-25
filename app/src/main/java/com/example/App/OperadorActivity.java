@@ -17,12 +17,15 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.ThemedSpinnerAdapter;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -60,6 +63,7 @@ public class OperadorActivity extends AppCompatActivity {
     Date date;
     SimpleDateFormat hourFormat;
     SimpleDateFormat dateFormat;
+    RelativeLayout production;
     private AsyncHttpClient client;
     private AsyncHttpClient clientes;
     private AsyncHttpClient clientes2;
@@ -78,6 +82,9 @@ public class OperadorActivity extends AppCompatActivity {
 
         llenarSpinner();
         llenarOps();
+
+        production=(RelativeLayout)findViewById(R.id.principal);
+
 
         resuldato = (Spinner) findViewById(R.id.spinner1);
 
@@ -217,7 +224,9 @@ public class OperadorActivity extends AppCompatActivity {
             items.setError("NUMERO OP ES REQUERIDO !");
 
         }if (items.getText().toString().length() != 0){
+            resuldato.setAdapter(null);
             llenarSpinners(); //item
+
         }
 
 
@@ -231,7 +240,7 @@ public class OperadorActivity extends AppCompatActivity {
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if (statusCode == 200) {
                     cargarSpinner(new String(responseBody));
-                    filtrocantidad();
+
                 }
             }
 
@@ -240,33 +249,6 @@ public class OperadorActivity extends AppCompatActivity {
                 llenarSpinners();
             }
         });
-    }
-
-    public void filtrocantidad(){
-
-        final String Nop = items.getText().toString();
-        new Thread( new Runnable() {
-            @Override
-            public void run() {
-
-
-                String responsesx = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/validarcantidad.php?numero="+ Nop.toString()  ).body();
-
-                try {
-                    JSONArray RESTARCANTIDADES = new JSONArray(responsesx);
-                    int datico = Integer.parseInt(RESTARCANTIDADES.getString(0));
-
-                    String asd = HttpRequest.get("http://"+cambiarIP.ip+"/validar/llenarfiltro.php?op="+Nop.toString()+"&canpen="+datico).body();
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        } ).start();
-        Thread.interrupted();
-
-
-
     }
 
     public void FiltrarOps() {
@@ -287,6 +269,7 @@ public class OperadorActivity extends AppCompatActivity {
             }
         });
     }
+
     public void llenarOps() {
 
         String url = "http://" + cambiarIP.ip + "/validar/OPS.php";
@@ -305,7 +288,6 @@ public class OperadorActivity extends AppCompatActivity {
             }
         });
     }
-
 
     public void cargarops(String cargarops) {
         ArrayList<OPS> dato = new ArrayList<OPS>();
@@ -347,7 +329,6 @@ public class OperadorActivity extends AppCompatActivity {
         });
     }
 
-
     public void cargarSpinner(String cargarSpinner) {
         ArrayList<cantidades> dato3 = new ArrayList<cantidades>();
         try {
@@ -367,7 +348,6 @@ public class OperadorActivity extends AppCompatActivity {
         }
 
     }
-
 
     public void datos() {
         String url = "http://" + cambiarIP.ip + "/validar/motivo.php";
@@ -404,7 +384,6 @@ public class OperadorActivity extends AppCompatActivity {
 
     }
 
-
     public void llenarSpinner3() {
         String url = "http://" + cambiarIP.ip + "/validar/motivocantidad.php";
         clientes3.post(url, new AsyncHttpResponseHandler() {
@@ -439,7 +418,6 @@ public class OperadorActivity extends AppCompatActivity {
         }
 
     }
-
 
     public void operador(View v) {
 
@@ -503,7 +481,7 @@ public class OperadorActivity extends AppCompatActivity {
 
     }
 
-  public void verificar(){
+    public void verificar(){
 
       final String nombretarea = resuldato.getSelectedItem().toString();
             eliminaOK = new Thread(new Runnable() {
@@ -750,7 +728,6 @@ public class OperadorActivity extends AppCompatActivity {
         desbloquear.setEnabled(false);
     }
 
-
     public void go (View v)  {
 
         go.setEnabled(false);
@@ -826,7 +803,6 @@ public class OperadorActivity extends AppCompatActivity {
 
     }
 
-
     public void  stop (View v) {
         stop.setEnabled(false);
         go.setEnabled(false);
@@ -847,7 +823,6 @@ public class OperadorActivity extends AppCompatActivity {
     public void registrar (View v) {
 
         id = (EditText)findViewById(R.id.operador);
-
 
         // imprime fecha
          dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
@@ -881,12 +856,42 @@ public class OperadorActivity extends AppCompatActivity {
                     public void run() {
 
                          try {
+                             final String nombretarea = resuldato.getSelectedItem().toString();
+                             String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/Sobrante.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+nombretarea.toString()).body();
+                             JSONArray  validar = new JSONArray(response);
+                             int validator = Integer.parseInt(validar.getString(0));
+                                System.out.println("EL VALOR "+validator);
 
-                             String responses = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedits.php?op="+resuldato3.getSelectedItem().toString()).body();
+                             if(validator == 0){
+                                 System.out.println("ESTO SUCEDIO");
+                                 String responses = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedits.php?op="+resuldato3.getSelectedItem().toString()).body();
 
-                             JSONArray  RESTARCANTIDAD = new JSONArray(responses);
+                                 JSONArray  RESTARCANTIDAD = new JSONArray(responses);
 
-                             HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+tarea.toString()+"&totales="+RESTARCANTIDAD.getString(0)).body();
+                                 HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+tarea.toString()+"&totales="+RESTARCANTIDAD.getString(0)).body();
+                                 cantidad();
+                             }
+                             if(validator > 0){
+                                 cantidad();
+                                 runOnUiThread(new Runnable() {
+                                     @Override
+                                     public void run() {
+                                         AlertDialog.Builder builder = new AlertDialog.Builder( OperadorActivity.this );
+                                         builder.setTitle( "HAY CANTIDADES PENDIENTES" );
+                                         builder.setIcon(R.drawable.informacion);
+                                         builder.setMessage( "DEBE TERMINAR LAS CANTIDADES PENDIENTES" );
+
+                                         builder.setPositiveButton( "ACEPTAR", new DialogInterface.OnClickListener() {
+                                             @Override
+                                             public void onClick(DialogInterface dialogInterface, int i) {
+
+                                             }
+                                         } );
+                                         builder.create().show();
+                                     }
+                                 });
+
+                             }
 
                          } catch (JSONException e) {
                              e.printStackTrace();
@@ -910,6 +915,27 @@ public class OperadorActivity extends AppCompatActivity {
         });
 
         builder.create().show();
+
+    }
+
+    public void cantidad(){
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                final String nombretarea = resuldato.getSelectedItem().toString();
+                String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/Sobrante.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+nombretarea.toString()).body();
+
+                try {
+                    JSONArray RESTARCANTIDAD = new JSONArray(response);
+
+                    Snackbar snackbar = Snackbar.make(production,"CANTIDAD EN O.P : "+RESTARCANTIDAD.getString(0),Snackbar.LENGTH_INDEFINITE);
+                    snackbar.show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
 
     }
 
@@ -1007,7 +1033,7 @@ public class OperadorActivity extends AppCompatActivity {
                                         Toast.makeText(getApplicationContext(),"DATOS VERIFICADOS", Toast.LENGTH_SHORT).show();
 
                                         verificar();
-
+                                        cantidad();
                                     }
                                 });
 
@@ -1148,11 +1174,11 @@ public class OperadorActivity extends AppCompatActivity {
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            autorizadoxop.setText( "cantidad restante : "+totalade );
+                                            autorizadoxop.setText( "CANTIDAD RESTANTE : "+totalade );
                                             Toast.makeText(getApplicationContext(),"SE REGISTRO EL ADELANTO PRODUCCIDO ", Toast.LENGTH_SHORT).show();
 
                                             verificar();
-
+                                            cantidad();
 
                                         }
                                     });
@@ -1210,7 +1236,7 @@ public class OperadorActivity extends AppCompatActivity {
                 }
            }
         });
-        aplazarproduccion.setPositiveButton("CANCELAR", new DialogInterface.OnClickListener() {
+        aplazarproduccion.setPositiveButton("SALIR", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
