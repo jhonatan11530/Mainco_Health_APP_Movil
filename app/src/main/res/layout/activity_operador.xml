@@ -157,7 +157,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2.5"
-                android:background="@color/colorVerdeM"
+
                 android:textColor="#ffffff"
                 android:onClick="registrar"
                 android:text="COMENZAR" />
@@ -169,7 +169,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="#ffffff"
                 android:onClick="aplazo"
-                android:background="@color/colorAzulCLM"
+
                 android:layout_weight="2.5"
                 android:text="APLAZAR PRODUCCION" />
 
@@ -180,7 +180,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="#ffffff"
                 android:layout_weight="2.5"
-                android:background="@color/colorVerdeM"
+
                 android:onClick="hora"
                 android:text="REGISTRAR TIEMPO DE PARO" />
 
@@ -191,7 +191,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="#ffffff"
                 android:layout_weight="2.5"
-                android:background="@color/colorAzulCLM"
+
                 android:onClick="salida"
                 android:text="FINALIZAR" />
 

@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Process;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -112,6 +113,12 @@ public class OperadorActivity extends AppCompatActivity {
         registroTIME.setEnabled(false);
         salidaTIME.setEnabled(false);
         cantidadund.setEnabled(false);
+
+        desbloquear.setBackgroundColor(Color.parseColor("#919191"));
+        registroTIME.setBackgroundColor(Color.parseColor("#919191"));
+        salidaTIME.setBackgroundColor(Color.parseColor("#919191"));
+        cantidadund.setBackgroundColor(Color.parseColor("#919191"));
+
 
         items.addTextChangedListener(new TextWatcher() {
             @Override
@@ -224,8 +231,30 @@ public class OperadorActivity extends AppCompatActivity {
             items.setError("NUMERO OP ES REQUERIDO !");
 
         }if (items.getText().toString().length() != 0){
-            resuldato.setAdapter(null);
-            llenarSpinners(); //item
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    resuldato.setAdapter(null);
+                }
+            });
+
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+
+                    try {
+                        Thread.sleep(500);
+                        llenarSpinners();  //item
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            });
+
+
+
 
         }
 
@@ -448,6 +477,13 @@ public class OperadorActivity extends AppCompatActivity {
                                     salidaTIME.setEnabled( true );
                                     cantidadund.setEnabled( true );
                                     desbloquear.setEnabled( true );
+
+                                    desbloquear.setBackgroundColor(Color.parseColor("#B2C900"));
+                                    registroTIME.setBackgroundColor(Color.parseColor("#B2C900"));
+                                    cantidadund.setBackgroundColor(Color.parseColor("#2196F3"));
+                                    salidaTIME.setBackgroundColor(Color.parseColor("#2196F3"));
+
+
                                 }
                             } );
 
@@ -514,6 +550,11 @@ public class OperadorActivity extends AppCompatActivity {
                                             registroTIME.setEnabled(false);
                                             salidaTIME.setEnabled(false);
                                             cantidadund.setEnabled(false);
+
+                                            desbloquear.setBackgroundColor(Color.parseColor("#919191"));
+                                            registroTIME.setBackgroundColor(Color.parseColor("#919191"));
+                                            cantidadund.setBackgroundColor(Color.parseColor("#919191"));
+                                            salidaTIME.setBackgroundColor(Color.parseColor("#919191"));
 
                                             ((TextView) resuldato.getSelectedView()).setTextColor(Color.RED);
 
@@ -861,15 +902,16 @@ public class OperadorActivity extends AppCompatActivity {
                              JSONArray  validar = new JSONArray(response);
                              int validator = Integer.parseInt(validar.getString(0));
                                 System.out.println("EL VALOR "+validator);
-
+                             cantidad();
                              if(validator == 0){
+                                 cantidad();
                                  System.out.println("ESTO SUCEDIO");
                                  String responses = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedits.php?op="+resuldato3.getSelectedItem().toString()).body();
 
                                  JSONArray  RESTARCANTIDAD = new JSONArray(responses);
 
                                  HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+tarea.toString()+"&totales="+RESTARCANTIDAD.getString(0)).body();
-                                 cantidad();
+
                              }
                              if(validator > 0){
                                  cantidad();
@@ -920,22 +962,28 @@ public class OperadorActivity extends AppCompatActivity {
 
     public void cantidad(){
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                final String nombretarea = resuldato.getSelectedItem().toString();
-                String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/Sobrante.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+nombretarea.toString()).body();
 
-                try {
-                    JSONArray RESTARCANTIDAD = new JSONArray(response);
+       Thread thread = new Thread(new Runnable() {
+           @Override
+           public void run() {
+               final String nombretarea = resuldato.getSelectedItem().toString();
+               String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/Sobrante.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+nombretarea.toString()).body();
 
-                    Snackbar snackbar = Snackbar.make(production,"CANTIDAD EN O.P : "+RESTARCANTIDAD.getString(0),Snackbar.LENGTH_INDEFINITE);
-                    snackbar.show();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
+               try {
+                   JSONArray RESTARCANTIDAD = new JSONArray(response);
+
+                 Snackbar snackbar = Snackbar.make(production,"CANTIDAD EN O.P : "+RESTARCANTIDAD.getString(0),Snackbar.LENGTH_INDEFINITE);
+                  snackbar.show();
+
+
+               } catch (JSONException e) {
+                   e.printStackTrace();
+               }
+           }
+       });
+       thread.start();
+       thread.setPriority(Thread.MAX_PRIORITY);
+
 
     }
 
