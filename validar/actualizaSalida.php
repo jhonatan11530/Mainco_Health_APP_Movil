@@ -10,7 +10,7 @@ $motivo = $_GET["motivo"];
 $final = $_GET["Ffinal"];
 $hora_final = $_GET["Hfinal"];
 
-/*if(isset($ID,$op,$tarea,$cantidad,$no_conforme,$motivo,$final,$hora_final)){
+if(isset($ID,$op,$tarea,$cantidad,$no_conforme,$motivo,$final,$hora_final)){
  
 
 $mysqli = mysqli_connect("127.0.0.1", "root", "", "proyecto");
@@ -24,9 +24,8 @@ $a->ejecutar($ID,$op);
 
 }else{
   echo "aqui no paso nada";
-}*/
-$a = new ejemplo();
-$a->ejecutar($ID,$op);
+}
+
 class ejemplo{
   function ejecutar($ID,$op){
       sleep(1);
