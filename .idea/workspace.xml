@@ -13,7 +13,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="prueba_API_28" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="RF8MB1QMR6P" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -28,6 +28,8 @@
   </component>
   <component name="ProjectId" id="1bBEvbg5l35U2mqggc2PDPsXWYU" />
   <component name="PropertiesComponent">
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="14330766" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-04-29T17:35:17.583Z" />
     <property name="android.sdk.path" value="D:/sdk" />
     <property name="settings.editor.selected.configurable" value="memory.settings" />
   </component>

@@ -180,7 +180,6 @@
                 android:layout_height="wrap_content"
                 android:textColor="#ffffff"
                 android:layout_weight="2.5"
-
                 android:onClick="hora"
                 android:text="REGISTRAR TIEMPO DE PARO" />
 

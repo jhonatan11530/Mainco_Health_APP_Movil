@@ -51,7 +51,7 @@ public class OperadorActivity extends AppCompatActivity {
 
     private  Button go, stop, btnconfir,desbloquear,positivo,neutrar, registroTIME, salidaTIME,validarinfo,cantidadund;
 
-    private int minuto, i, hora,cantidadpro,volumencan,total,datoverifica,volumen;
+    private int minuto, i, hora,cantidadpro,volumencan,total,volumen;
 
     private ArrayList<cantidadfallas> dato4 = new ArrayList<cantidadfallas>();
     private ArrayList<cantidades> dato3 = new ArrayList<cantidades>();
@@ -65,21 +65,20 @@ public class OperadorActivity extends AppCompatActivity {
     SimpleDateFormat hourFormat;
     SimpleDateFormat dateFormat;
     RelativeLayout production;
-    private AsyncHttpClient client;
-    private AsyncHttpClient clientes;
-    private AsyncHttpClient clientes2;
-    private AsyncHttpClient clientes3;
-    public Thread hilo,eliminaOK;
+    private AsyncHttpClient cliente,cliente1,cliente2,cliente3,cliente4,cliente5;
+    public Thread hilo,eliminaOK,registrar,operador,cantidadhilo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_operador);
 
-        client = new AsyncHttpClient();
-        clientes = new AsyncHttpClient();
-        clientes2 = new AsyncHttpClient();
-        clientes3 = new AsyncHttpClient();
+        cliente = new AsyncHttpClient();
+        cliente1 = new AsyncHttpClient();
+        cliente2 = new AsyncHttpClient();
+        cliente3 = new AsyncHttpClient();
+        cliente4 = new AsyncHttpClient();
+        cliente5 = new AsyncHttpClient();
 
         llenarSpinner();
         llenarOps();
@@ -244,8 +243,8 @@ public class OperadorActivity extends AppCompatActivity {
                 public void run() {
 
                     try {
-                        Thread.sleep(500);
-                        llenarSpinners();  //item
+                        Thread.sleep(1500);
+                        filtraritem();  //item
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -262,47 +261,50 @@ public class OperadorActivity extends AppCompatActivity {
 
     }
 
-    public void llenarSpinners() {
+
+
+    public void filtraritem() {
         String url = "http://" + cambiarIP.ip + "/validar/cantidadfiltre.php?op="+resuldato3.getSelectedItem().toString(); // SE DEBE CAMBIAR
-        client.post(url, new AsyncHttpResponseHandler() {
+        cliente.post(url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if (statusCode == 200) {
-                    cargarSpinner(new String(responseBody));
+                    itemfiltre(new String(responseBody));
 
                 }
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                llenarSpinners();
+                filtraritem();
             }
         });
     }
 
-    public void FiltrarOps() {
-
-        String url = "http://" + cambiarIP.ip + "/validar/FiltroOPS.php?op="+items.getText().toString();
-        client.post(url, new AsyncHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                if (statusCode == 200) {
-                    cargarops(new String(responseBody));
-
-                }
+    public void itemfiltre(String itemfiltre) {
+        ArrayList<cantidades> dato3 = new ArrayList<cantidades>();
+        try {
+            JSONArray objecto = new JSONArray(itemfiltre);
+            for (int i = 0; i < objecto.length(); i++) {
+                cantidades a = new cantidades();
+                a.setTarea(objecto.getJSONObject(i).getString("tarea"));
+                dato3.add( a );
             }
+            ArrayAdapter<cantidades> a = new ArrayAdapter<cantidades>(this, android.R.layout.simple_dropdown_item_1line, dato3);
+            resuldato.setAdapter(a);
 
-            @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                llenarOps();
-            }
-        });
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+
     }
 
     public void llenarOps() {
 
         String url = "http://" + cambiarIP.ip + "/validar/OPS.php";
-        client.post(url, new AsyncHttpResponseHandler() {
+        cliente2.post(url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if (statusCode == 200) {
@@ -339,10 +341,50 @@ public class OperadorActivity extends AppCompatActivity {
 
     }
 
+    public void FiltrarOps() {
+
+        String url = "http://" + cambiarIP.ip + "/validar/FiltroOPS.php?op="+items.getText().toString();
+        cliente1.post(url, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                if (statusCode == 200) {
+                    filtroOPS(new String(responseBody));
+
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                llenarOps();
+            }
+        });
+    }
+
+    public void filtroOPS(String filtroOPS) {
+        ArrayList<OPS> dato = new ArrayList<OPS>();
+        try {
+            JSONArray objecto = new JSONArray(filtroOPS);
+            for (int i = 0; i < objecto.length(); i++) {
+                OPS a = new OPS();
+
+                a.setOps(objecto.getJSONObject(i).getString("cod_producto"));
+                dato.add(a);
+            }
+            ArrayAdapter<OPS> a = new ArrayAdapter<OPS>(this, android.R.layout.simple_dropdown_item_1line, dato);
+            resuldato3.setAdapter(a);
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+
+    }
+
     public void llenarSpinner() {
 
         String url = "http://" + cambiarIP.ip + "/validar/cantidad.php";
-        client.post(url, new AsyncHttpResponseHandler() {
+        cliente3.post(url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if (statusCode == 200) {
@@ -378,27 +420,27 @@ public class OperadorActivity extends AppCompatActivity {
 
     }
 
-    public void datos() {
+    public void llenardescanso() {
         String url = "http://" + cambiarIP.ip + "/validar/motivo.php";
-        clientes.post(url, new AsyncHttpResponseHandler() {
+        cliente4.post(url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if (statusCode == 200) {
-                    listoSpinner(new String(responseBody));
+                    filtrardescanso(new String(responseBody));
                 }
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                datos();
+                llenardescanso();
             }
         });
     }
 
-    public void listoSpinner(String listoSpinner) {
+    public void filtrardescanso(String filtrardescanso) {
         ArrayList<motivoparo> dato2 = new ArrayList<motivoparo>();
         try {
-            JSONArray objecto = new JSONArray(listoSpinner);
+            JSONArray objecto = new JSONArray(filtrardescanso);
             for (int i = 0; i < objecto.length(); i++) {
                 motivoparo b = new motivoparo();
                 b.setParo(objecto.getJSONObject(i).getString("paro"));
@@ -413,27 +455,27 @@ public class OperadorActivity extends AppCompatActivity {
 
     }
 
-    public void llenarSpinner3() {
+    public void motivofalla() {
         String url = "http://" + cambiarIP.ip + "/validar/motivocantidad.php";
-        clientes3.post(url, new AsyncHttpResponseHandler() {
+        cliente5.post(url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if (statusCode == 200) {
-                    cargar3Spinner(new String(responseBody));
+                    cargarmotivo(new String(responseBody));
                 }
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                llenarSpinner3();
+                motivofalla();
             }
         });
     }
 
-    public void cargar3Spinner(String cargar3Spinner) {
+    public void cargarmotivo(String cargarmotivo) {
         ArrayList<cantidadfallas> dato4 = new ArrayList<cantidadfallas>();
         try {
-            JSONArray objecto = new JSONArray(cargar3Spinner);
+            JSONArray objecto = new JSONArray(cargarmotivo);
             for (int i = 0; i < objecto.length(); i++) {
                 cantidadfallas c = new cantidadfallas();
                 c.setFallas(objecto.getJSONObject(i).getString("fallas"));
@@ -448,6 +490,8 @@ public class OperadorActivity extends AppCompatActivity {
 
     }
 
+
+
     public void operador(View v) {
 
         if (id.getText().toString().length() == 0) {
@@ -456,7 +500,7 @@ public class OperadorActivity extends AppCompatActivity {
 
         }if (id.getText().toString().length() != 0) {
 
-            new Thread(new Runnable() {
+           operador =  new Thread(new Runnable() {
                 @Override
                 public void run() {
 
@@ -502,8 +546,9 @@ public class OperadorActivity extends AppCompatActivity {
                 }
 
 
-            }).start();
-
+            });
+            operador.start();
+            operador.isInterrupted();
 
                     }
                     else{
@@ -546,15 +591,16 @@ public class OperadorActivity extends AppCompatActivity {
                                     runOnUiThread( new Runnable() {
                                         @Override
                                         public void run() {
-                                            desbloquear.setEnabled(false);
-                                            registroTIME.setEnabled(false);
-                                            salidaTIME.setEnabled(false);
-                                            cantidadund.setEnabled(false);
 
                                             desbloquear.setBackgroundColor(Color.parseColor("#919191"));
                                             registroTIME.setBackgroundColor(Color.parseColor("#919191"));
                                             cantidadund.setBackgroundColor(Color.parseColor("#919191"));
                                             salidaTIME.setBackgroundColor(Color.parseColor("#919191"));
+
+                                            desbloquear.setEnabled(false);
+                                            registroTIME.setEnabled(false);
+                                            salidaTIME.setEnabled(false);
+                                            cantidadund.setEnabled(false);
 
                                             ((TextView) resuldato.getSelectedView()).setTextColor(Color.RED);
 
@@ -601,7 +647,7 @@ public class OperadorActivity extends AppCompatActivity {
          registros = new AlertDialog.Builder(OperadorActivity.this);
         tiempo1 = getLayoutInflater().inflate(R.layout.dialog_spinner,null);
 
-        datos();
+        llenardescanso();
         id=(EditText)findViewById(R.id.operador);
 
         paro = (EditText)tiempo1.findViewById(R.id.paro);
@@ -835,7 +881,7 @@ public class OperadorActivity extends AppCompatActivity {
 
         });
         hilo.start();
-
+        hilo.setPriority(Thread.NORM_PRIORITY);
         if(hilo!=null){
             stop.setEnabled(true);
 
@@ -865,6 +911,7 @@ public class OperadorActivity extends AppCompatActivity {
 
         id = (EditText)findViewById(R.id.operador);
 
+
         // imprime fecha
          dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
          date = new Date();
@@ -891,27 +938,28 @@ public class OperadorActivity extends AppCompatActivity {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
+
                 // TODO Auto-generated method stub
-                new Thread(new Runnable() {
+                 registrar =  new Thread(new Runnable() {
                      @Override
                     public void run() {
-
+                         cantidad();
                          try {
                              final String nombretarea = resuldato.getSelectedItem().toString();
                              String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/Sobrante.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+nombretarea.toString()).body();
                              JSONArray  validar = new JSONArray(response);
                              int validator = Integer.parseInt(validar.getString(0));
                                 System.out.println("EL VALOR "+validator);
-                      
+
                              if(validator == 0){
-                                 cantidad();
+
                                  System.out.println("ESTO SUCEDIO");
                                  String responses = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedits.php?op="+resuldato3.getSelectedItem().toString()).body();
 
                                  JSONArray  RESTARCANTIDAD = new JSONArray(responses);
 
                                  HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+tarea.toString()+"&totales="+RESTARCANTIDAD.getString(0)).body();
-
+                                 cantidad();
                              }
                              if(validator > 0){
                                  cantidad();
@@ -951,8 +999,10 @@ public class OperadorActivity extends AppCompatActivity {
 
 
                     }
-                }).start();
-                Thread.interrupted();
+                });
+                registrar.start();
+                registrar.setPriority(Thread.MIN_PRIORITY);
+                registrar.interrupted();
             }
         });
 
@@ -962,8 +1012,7 @@ public class OperadorActivity extends AppCompatActivity {
 
     public void cantidad(){
 
-
-       Thread thread = new Thread(new Runnable() {
+        cantidadhilo = new Thread(new Runnable() {
            @Override
            public void run() {
                final String nombretarea = resuldato.getSelectedItem().toString();
@@ -981,15 +1030,15 @@ public class OperadorActivity extends AppCompatActivity {
                }
            }
        });
-       thread.start();
-       thread.setPriority(Thread.MAX_PRIORITY);
+        cantidadhilo.start();
+        cantidadhilo.setPriority(Thread.MAX_PRIORITY);
 
 
     }
 
     public void salida (View v) {
 
-        llenarSpinner3();
+        motivofalla();
 
 
         id=(EditText)findViewById(R.id.operador);
@@ -1298,8 +1347,6 @@ public class OperadorActivity extends AppCompatActivity {
 
 
     }
-
-
 
 }
 
