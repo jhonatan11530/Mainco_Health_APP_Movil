@@ -902,7 +902,7 @@ public class OperadorActivity extends AppCompatActivity {
                              JSONArray  validar = new JSONArray(response);
                              int validator = Integer.parseInt(validar.getString(0));
                                 System.out.println("EL VALOR "+validator);
-                             cantidad();
+                      
                              if(validator == 0){
                                  cantidad();
                                  System.out.println("ESTO SUCEDIO");
