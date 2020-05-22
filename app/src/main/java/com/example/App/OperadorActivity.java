@@ -500,7 +500,7 @@ public class OperadorActivity extends AppCompatActivity {
 
         }if (id.getText().toString().length() != 0) {
 
-           operador =  new Thread(new Runnable() {
+            operador =  new Thread(new Runnable() {
                 @Override
                 public void run() {
 
@@ -536,10 +536,10 @@ public class OperadorActivity extends AppCompatActivity {
 
 
 
-                       }
+                        }
 
 
-                        } catch (Exception e) {
+                    } catch (Exception e) {
                         // TODO: handle exception
 
                     }
@@ -550,15 +550,17 @@ public class OperadorActivity extends AppCompatActivity {
             operador.start();
             operador.isInterrupted();
 
-                    }
-                    else{
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Toast.makeText(getApplicationContext(),"EL CODIGO DEL USUARIO NO EXISTE", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                        }
+        }
+        else{
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(getApplicationContext(),"EL CODIGO DEL USUARIO NO EXISTE", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+
 
     }
 
