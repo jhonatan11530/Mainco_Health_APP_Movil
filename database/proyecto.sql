@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-05-2020 a las 18:42:46
--- Versión del servidor: 10.1.36-MariaDB
--- Versión de PHP: 7.2.10
+-- Tiempo de generación: 26-05-2020 a las 14:27:13
+-- Versión del servidor: 10.4.11-MariaDB
+-- Versión de PHP: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -148,9 +148,9 @@ CREATE TABLE `operador` (
   `cantidad` int(10) NOT NULL,
   `no_conforme` varchar(35) COLLATE utf8_spanish_ci DEFAULT NULL,
   `cantidad_fallas` varchar(35) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `inicial` mediumtext COLLATE utf8_spanish_ci,
+  `inicial` mediumtext COLLATE utf8_spanish_ci DEFAULT NULL,
   `hora_inicial` varchar(8) COLLATE utf8_spanish_ci DEFAULT NULL,
-  `final` mediumtext COLLATE utf8_spanish_ci,
+  `final` mediumtext COLLATE utf8_spanish_ci DEFAULT NULL,
   `hora_final` varchar(8) COLLATE utf8_spanish_ci DEFAULT NULL,
   `eficencia` varchar(12) COLLATE utf8_spanish_ci DEFAULT NULL,
   `eficacia` varchar(12) COLLATE utf8_spanish_ci DEFAULT NULL
@@ -161,7 +161,7 @@ CREATE TABLE `operador` (
 --
 
 INSERT INTO `operador` (`llaves`, `id`, `nombre`, `numero_op`, `tarea`, `cantidad`, `no_conforme`, `cantidad_fallas`, `inicial`, `hora_inicial`, `final`, `hora_final`, `eficencia`, `eficacia`) VALUES
-(1, 2, 'BENITEZ OVIEDO JUAN', '1010', NULL, 0, NULL, NULL, '10/10/10', '10:10:10', NULL, NULL, NULL, NULL),
+(1, 2, 'BENITEZ OVIEDO JUAN', NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (2, 3, 'LERMA HINESTROZA ANA MERCEDES', NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (3, 4, 'QUINTERO LONDONO CARMEN ELISA', NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (4, 5, 'CASTANEDA LARA SONIA', NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
@@ -440,8 +440,7 @@ INSERT INTO `operador` (`llaves`, `id`, `nombre`, `numero_op`, `tarea`, `cantida
 (277, 283, 'CARLOSAMA YAQUENO ANA LUCIA', NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (278, 284, 'TORO AVILA DAHYAN', NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (279, 285, 'NARVAEZ CASTILLO LORENA BETTY ', NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(280, 286, 'RAMIREZ GIL EMELY', NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(289, 2, 'BENITEZ OVIEDO JUAN', '1010', NULL, 1000, '10', 'malo', '12/10/10', '12:10:10', '12/12/12', '12:12:12', '12590', '100');
+(280, 286, 'RAMIREZ GIL EMELY', NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1440,8 +1439,7 @@ INSERT INTO `produccion` (`id`, `numero_op`, `cod_producto`, `descripcion`, `can
 (500101, NULL, '500101', 'Bata Man.Japonesa T Xl Mt0A Cj*200', 0),
 (500249, NULL, '500249', 'Gorro Oruga Sd5A Cj*2500', 0),
 (500459, NULL, '500459', 'Gorro Oruga Promocion 12*13 Cj*2500', 0),
-(500460, NULL, '500460', 'Gorro Oruga Promocion 12*12 Cj*2500', 0),
-(500461, '1010', '25', 'Puno 0.10*0.08 Tela Deportiva', 1000);
+(500460, NULL, '500460', 'Gorro Oruga Promocion 12*12 Cj*2500', 0);
 
 -- --------------------------------------------------------
 
@@ -1455,21 +1453,6 @@ CREATE TABLE `promedio` (
   `cod_operador` int(10) DEFAULT NULL,
   `time_promedio` varchar(10) COLLATE utf8_spanish_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `promedio`
---
-
-INSERT INTO `promedio` (`numero_op`, `cantidad_op`, `cod_operador`, `time_promedio`) VALUES
-('', 0, 0, '01:30:00'),
-('1010', 0, 2, '01:30:00'),
-('1010', 1000, 2, '03:08:07'),
-('1010', 1000, 2, '03:08:04'),
-('1010', 1000, 2, '03:08:13'),
-('1010', 1000, 2, '03:14:06'),
-('1010', 1000, 2, '03:08:03'),
-('1010', 1000, 2, '03:08:00'),
-('1010', 1000, 2, '03:09:01');
 
 -- --------------------------------------------------------
 
@@ -4628,8 +4611,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nomusuario`, `apeusuario`, `password`, `cedula`, `rol`, `cargo`) VALUES
-(1, 'Mainco', 'Health Care', '$2y$10$LCdwzTRQaZdLxSVCcSIGjO.VcXTOtScGKRGRFEjFML6h943xoLXBG', '123', '1', 'administrador'),
-(3, 'jhonatan', 'FernÃ¡ndez ', '$2y$10$ebQO7ZG/ssH8Aa3hwOOim.5d5.m60RtNvqHxdN9Vfwj949N7IH5lG', '1006', '3', 'operador');
+(1, 'Mainco', 'Health Care', '$2y$10$LCdwzTRQaZdLxSVCcSIGjO.VcXTOtScGKRGRFEjFML6h943xoLXBG', '123', '1', 'administrador');
 
 --
 -- Índices para tablas volcadas
@@ -4704,13 +4686,13 @@ ALTER TABLE `motivo`
 -- AUTO_INCREMENT de la tabla `operador`
 --
 ALTER TABLE `operador`
-  MODIFY `llaves` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=290;
+  MODIFY `llaves` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=291;
 
 --
 -- AUTO_INCREMENT de la tabla `produccion`
 --
 ALTER TABLE `produccion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=500462;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=500463;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
