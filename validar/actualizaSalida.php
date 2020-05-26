@@ -99,14 +99,14 @@ class HORA{
   function EFICACIA($cant,$extandar,$ID,$op){
 
     /*CONVERTIDO A HORA EFICACIA */
-    $datos = $extandar * $cant * 3600;    
+    $dato = $extandar * $cant * 3600;    
    /* $timestamp = strtotime($datos);
     $hora =date('H:i:s',$timestamp);
 
     list($horas, $minutos, $segundos) = explode(':', $hora);
     $datoz = ($horas * 3600 ) + ($minutos * 60 ) + $segundos;*/
 
-    echo "TIEMPO EN HORAS QUE SE DEBE DEMORAR EN HACER LA OP: ".$datos;
+    echo "TIEMPO EN HORAS QUE SE DEBE DEMORAR EN HACER LA OP: ".$dato;
      
     $d = new entradasalida();
     $d->totaltime($ID,$dato,$op,$cant);
