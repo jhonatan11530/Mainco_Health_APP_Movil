@@ -11,7 +11,7 @@ $motivo = $_GET["motivo"];
 $final = $_GET["Ffinal"];
 $hora_final = $_GET["Hfinal"];
 
-if(isset($ID,$op,$tarea,$cantidad,$no_conforme,$motivo,$final,$hora_final)){
+/*if(isset($ID,$op,$tarea,$cantidad,$no_conforme,$motivo,$final,$hora_final)){
  
 
 $mysqli = mysqli_connect("127.0.0.1", "root", "", "proyecto");
@@ -25,7 +25,9 @@ $a->ejecutar($ID,$op);
 
 }else{
   echo "aqui no paso nada";
-}
+}*/
+$a = new ejemplo();
+$a->ejecutar($ID,$op);
 class ejemplo{
   function ejecutar($ID,$op){
       sleep(1);
@@ -97,15 +99,14 @@ class HORA{
   function EFICACIA($cant,$extandar,$ID,$op){
 
     /*CONVERTIDO A HORA EFICACIA */
-    $datos = $extandar * $cant;    
-
-    $timestamp = strtotime($datos);
+    $datos = $extandar * $cant * 3600;    
+   /* $timestamp = strtotime($datos);
     $hora =date('H:i:s',$timestamp);
 
     list($horas, $minutos, $segundos) = explode(':', $hora);
-    $dato = ($horas * 3600 ) + ($minutos * 60 ) + $segundos;
+    $datoz = ($horas * 3600 ) + ($minutos * 60 ) + $segundos;*/
 
-    echo "TIEMPO EN HORAS QUE SE DEBE DEMORAR EN HACER LA OP: ".$dato;
+    echo "TIEMPO EN HORAS QUE SE DEBE DEMORAR EN HACER LA OP: ".$datos;
      
     $d = new entradasalida();
     $d->totaltime($ID,$dato,$op,$cant);
