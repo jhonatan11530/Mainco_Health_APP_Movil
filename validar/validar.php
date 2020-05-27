@@ -1,6 +1,6 @@
 <?php
 
-
+error_reporting(0);
  $id = $_REQUEST["cedula"];
  $pass = $_REQUEST["pass"];
 

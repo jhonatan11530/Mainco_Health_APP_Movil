@@ -21,17 +21,16 @@ $result = mysqli_query($mysqli, $sql_statement);
 
 
 $a = new ejemplo();
-$a->ejecutar($ID,$op);
+$a->ejecutar($ID,$op,$tarea);
 
 }else{
   echo "aqui no paso nada";
 }
-
 class ejemplo{
-  function ejecutar($ID,$op){
+  function ejecutar($ID,$op,$tarea){
       sleep(1);
       $mysqli = mysqli_connect("127.0.0.1", "root", "", "proyecto");
-      $consulta = "SELECT cantidad FROM produccion WHERE numero_op = '".$op."'";
+      $consulta = "SELECT cantidad FROM operador WHERE numero_op = '".$op."' AND id='".$ID."' ";
       $result = mysqli_query($mysqli, $consulta);  
 
       while($row = mysqli_fetch_array($result)) {
@@ -45,13 +44,13 @@ class ejemplo{
         echo "<br>";
 
       $a = new produc();
-      $a->produccion($cant,$op,$ID);
+      $a->produccion($cant,$op,$ID,$tarea);
 
     }
 }
 
 class produc{
-  function produccion($cant,$op,$ID){
+  function produccion($cant,$op,$ID,$tarea){
 
       $mysqli = mysqli_connect("127.0.0.1", "root", "", "proyecto");
       $consulta = "SELECT cod_producto FROM produccion WHERE numero_op = '".$op."'";
@@ -68,15 +67,15 @@ class produc{
 
 
       $b = new tarea();
-      $b->extand($cant,$cod,$ID,$op);
+      $b->extand($cant,$cod,$ID,$op,$tarea);
   }
 } 
   
 class tarea{
-  function extand($cant,$cod,$ID,$op){
+  function extand($cant,$cod,$ID,$op,$tarea){
 
     $mysqli = mysqli_connect("127.0.0.1", "root", "", "proyecto");
-    $search = "SELECT extandar FROM tarea WHERE numero_op = '".$cod."'";
+    $search = "SELECT extandar FROM tarea WHERE numero_op = '".$cod."' AND tarea= '".$tarea."' ";
     $res = mysqli_query($mysqli, $search);  
     
     while($listo = mysqli_fetch_array($res)) {
@@ -98,12 +97,10 @@ class HORA{
   function EFICACIA($cant,$extandar,$ID,$op){
 
     /*CONVERTIDO A HORA EFICACIA */
-    $dato = $extandar * $cant * 3600;    
-   /* $timestamp = strtotime($datos);
-    $hora =date('H:i:s',$timestamp);
-
-    list($horas, $minutos, $segundos) = explode(':', $hora);
-    $datoz = ($horas * 3600 ) + ($minutos * 60 ) + $segundos;*/
+  $SegundosXhoras = 3600;
+  $listo = round($extandar * 3600);
+  $dato = $SegundosXhoras / $listo;
+ 
 
     echo "TIEMPO EN HORAS QUE SE DEBE DEMORAR EN HACER LA OP: ".$dato;
      
@@ -125,14 +122,6 @@ class entradasalida{
       $final = $listo["hora_final"];
 
     }
-    
-    $fecha1 = new DateTime($inicial);
-    $fecha2 = new DateTime($final);
-    $intervalo = $fecha1->diff($fecha2);
-    $time =  $intervalo->format('%H:%I:%S');
-
-    list($horas, $minutos, $segundos) = explode(':', $time);
-    $total = ($horas * 3600 ) + ($minutos * 60 ) + $segundos;
 
     echo "<br>";  
     echo "<br>";
@@ -140,27 +129,25 @@ class entradasalida{
     echo "<br>";
     echo "<br>";
     echo "TIEMPO SALIDA : ".$final;
-    echo "<br>";
-    echo "<br>";
-    echo "TOTAL HORA REAL AL TERMINAR OP : ".$total;
+
 
     
     $e = new EFICIENCIA();
-    $e->eficiencias($total,$dato,$ID,$op,$cant);
+    $e->eficiencias($inicial,$final,$dato,$ID,$op,$cant);
   }
 }
 
 class EFICIENCIA{
-  function eficiencias($total,$dato,$ID,$op,$cant){
+  function eficiencias($inicial,$final,$dato,$ID,$op,$cant){
 
-    $eficiencia = $dato / $total;
-    $redondo = $eficiencia  * 100;
-    $formula = round($redondo);
     
+    $formulas = $cant / $dato;
+    
+    $formula = round($formulas * 100);
 
     echo "<br>";
     echo "<br>";
-    echo "EFICIENCIA : ".$formula;
+    echo "EFICIENCIA : ".$cant;
 
 
     $mysqli = mysqli_connect("127.0.0.1", "root", "", "proyecto");
@@ -168,12 +155,12 @@ class EFICIENCIA{
     $res = mysqli_query($mysqli, $search);
 
    $f = new EFICACIA();
-    $f->eficacias($ID,$dato,$total,$op,$cant);
+    $f->eficacias($ID,$dato,$inicial,$final,$op,$cant);
   }
 }
 
 class EFICACIA{
-  function eficacias($ID,$dato,$total,$op,$cant){
+  function eficacias($ID,$dato,$inicial,$final,$op,$cant){
 
     $mysqli = mysqli_connect("127.0.0.1", "root", "", "proyecto");
     $search = "SELECT * FROM operador WHERE id = '".$ID."'";
@@ -185,8 +172,8 @@ class EFICACIA{
       $malas = $listo["cantidad_fallas"];
     }
     $efic = $buenas - $malas;
-    $eficacia = $efic / $buenas * 100;
-
+    $eficacias = $efic / $buenas * 100;
+    $eficacia = round($eficacias);
     echo "<br>";
     echo "<br>";
     echo "EFICACIA : ".$eficacia;
@@ -197,29 +184,18 @@ class EFICACIA{
     $res = mysqli_query($mysqli, $search);
 
     $f = new TIEMPO_PROMEDIO();
-    $f->promedio($ID,$dato,$total,$op,$cant);
+    $f->promedio($ID,$dato,$inicial,$final,$op,$cant);
     
   }
 }
 class TIEMPO_PROMEDIO{
-  function promedio($ID,$dato,$total,$op,$cant){
+  function promedio($ID,$dato,$inicial,$final,$op,$cant){
 
-    echo "<br>";
-    echo "<br>";
-    $restarhoras = $dato+$total;
-    $prom = $restarhoras / 2;
-    $promedio = date('h:i:s',$prom);
+     $newDate = ($inicial + $final) / 2;
 
-     echo $promedio;
-     echo "<br>";
-     echo "<br>";
-     echo $ID;
-     echo "<br>";
-     echo "<br>";
-     echo $op;
-     echo "<br>";
-     echo "<br>";
-     echo $cant;
+     $promedio = date("h:m:s", strtotime($newDate));  
+
+
     $mysqli = mysqli_connect("127.0.0.1", "root", "", "proyecto");
     $search = "INSERT INTO promedio (numero_op,cantidad_op,cod_operador,time_promedio) VALUES ('".$op."','".$cant."','".$ID."','".$promedio."')";
     mysqli_query($mysqli, $search);

@@ -1119,7 +1119,12 @@ public class OperadorActivity extends AppCompatActivity {
                             System.out.println( "LA CANTIDAD EN MYSQL RESTADA "+end );
 
 
+                            int valorCantOP = cantidadpro - total;
+
                             if(end >= 0){
+
+                                 HttpRequest.get("http://"+cambiarIP.ip+"/validar/canbiarAucOP.php?op="+items.getText().toString()+"&item="+resuldato3.getSelectedItem().toString()+"&cantidad="+valorCantOP).body();
+
                                 HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+nombretarea.toString()+"&totales="+end).body();
 
                                 HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&cantidad="+volumen+"&Ffinal="+fechas+"&Hfinal="+horas+"&motivo="+error+"&conforme="+falla+"&tarea="+nombretarea+"&op="+items.getText().toString()).body();
