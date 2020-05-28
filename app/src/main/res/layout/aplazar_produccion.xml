@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/aplazar_produccion"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".OperadorActivity">
@@ -50,8 +51,33 @@
                 android:layout_height="60dp"
                 android:ems="10"
                 android:gravity="center"
-                android:hint="CANTIDAD DE UNIDADES PRODUCCIDAS"
+                android:hint="CANTIDAD PRODUCCIDAS"
                 android:inputType="number" />
+
+            <EditText
+                android:id="@+id/fallas"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="CANTIDAD DEFECTUOSA"
+                android:inputType="number" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:background="#69D2FF"
+                android:gravity="center"
+                android:text="MOTIVO DE NO CONFORME"
+                android:textColor="#c000"
+                android:textSize="17sp" />
+
+            <Spinner
+                android:id="@+id/spinner2"
+                android:layout_width="match_parent"
+                android:layout_height="60dp" />
 
             <Button
                 android:id="@+id/CONFIRMARADE"

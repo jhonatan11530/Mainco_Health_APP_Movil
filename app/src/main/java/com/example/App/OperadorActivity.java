@@ -128,6 +128,10 @@ public class OperadorActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 FiltrarOps();
+                resuldato.setAdapter(null);
+
+
+
 
             }
 
@@ -136,7 +140,6 @@ public class OperadorActivity extends AppCompatActivity {
 
             }
         });
-
 
     }
     public void onBackPressed() {
@@ -230,30 +233,7 @@ public class OperadorActivity extends AppCompatActivity {
             items.setError("NUMERO OP ES REQUERIDO !");
 
         }if (items.getText().toString().length() != 0){
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    resuldato.setAdapter(null);
-                }
-            });
-
-
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-
-                    try {
-                        Thread.sleep(1500);
-                        filtraritem();  //item
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-
-                }
-            });
-
-
-
+            filtraritem();
 
         }
 
@@ -1206,12 +1186,18 @@ public class OperadorActivity extends AppCompatActivity {
         AlertDialog.Builder aplazarproduccion = new AlertDialog.Builder(OperadorActivity.this);
        adelanto = getLayoutInflater().inflate(R.layout.aplazar_produccion,null);
         autorizadoxop = (TextView)adelanto.findViewById(R.id.Cantidadops);
+        resuldato4 =(Spinner)adelanto.findViewById(R.id.spinner2);
+        fallas = (EditText)adelanto.findViewById(R.id.fallas);
          btnconfir = (Button)adelanto.findViewById(R.id.CONFIRMARADE);
         digito = (EditText)adelanto.findViewById(R.id.digicantidad);
 
         digito.setVisibility(adelanto.VISIBLE);
         btnconfir.setVisibility(adelanto.VISIBLE);
 
+        motivofalla();
+
+        ArrayAdapter <cantidadfallas> a = new ArrayAdapter<cantidadfallas> (this, android.R.layout.simple_dropdown_item_1line, dato4 );
+        resuldato4.setAdapter(a);
 
         btnconfir.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1250,8 +1236,11 @@ public class OperadorActivity extends AppCompatActivity {
                         final String tarea = resuldato.getSelectedItem().toString();
                         final String Nop = items.getText().toString();
                         volumencan = Integer.parseInt(digito.getText().toString());
-                       String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizarcantidad.php?numero="+Nop.toString()+"&id="+id.getText().toString()+"&canpen="+volumencan+"&Ffinal="+fechas+"&Hfinal="+horas+"&tarea="+tarea.toString()).body();
+                        final int cantmalas = Integer.parseInt(fallas.getText().toString());
+                        error = resuldato4.getSelectedItem().toString();
 
+
+                        HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizarcantidad.php?numero="+Nop.toString()+"&id="+id.getText().toString()+"&canpen="+volumencan+"&malo="+cantmalas+"&motivo="+error+"&Ffinal="+fechas+"&Hfinal="+horas+"&tarea="+tarea.toString()).body();
 
                         final String nombretarea = resuldato.getSelectedItem().toString();
                         try {
@@ -1262,17 +1251,17 @@ public class OperadorActivity extends AppCompatActivity {
 
                             try {
                                 JSONArray RESTARCANTIDAD = new JSONArray(responses);
-
-                                volumencan = Integer.parseInt(digito.getText().toString());
                                 cantidadpro = Integer.parseInt(RESTARCANTIDAD.getString(0));
 
-                                final int totalade = cantidadpro - volumencan;
+                                final int BuenasMalas = volumencan + cantmalas;
+                                final int totalade = cantidadpro - BuenasMalas;
 
-                                System.out.println("LAS CANTIDADES SON : "+totalade);
+                                int valorCantOP = cantidadpro - cantmalas;
 
                                 if(totalade >= 0){
+                                    HttpRequest.get("http://"+cambiarIP.ip+"/validar/canbiarAucOP.php?op="+items.getText().toString()+"&item="+resuldato3.getSelectedItem().toString()+"&cantidad="+valorCantOP).body();
 
-                                    String responsesx = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+nombretarea.toString()+"&totales="+totalade).body();
+                                  HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+nombretarea.toString()+"&totales="+totalade).body();
 
 
                                     runOnUiThread(new Runnable() {
@@ -1281,7 +1270,7 @@ public class OperadorActivity extends AppCompatActivity {
                                             autorizadoxop.setText( "CANTIDAD RESTANTE : "+totalade );
                                             Toast.makeText(getApplicationContext(),"SE REGISTRO EL ADELANTO PRODUCCIDO ", Toast.LENGTH_SHORT).show();
 
-                                            verificar();
+                                           // verificar();
                                             cantidad();
 
                                         }
