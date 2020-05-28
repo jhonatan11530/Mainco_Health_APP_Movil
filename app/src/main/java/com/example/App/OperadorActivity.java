@@ -2,9 +2,11 @@ package com.example.App;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Process;
 import android.text.Editable;
@@ -480,13 +482,13 @@ public class OperadorActivity extends AppCompatActivity {
 
         }if (id.getText().toString().length() != 0) {
 
+
+
             operador =  new Thread(new Runnable() {
                 @Override
                 public void run() {
-
+                    cantidad();
                     try {
-
-
                         String response = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/operador.php?id=" + id.getText().toString() ).body();
 
                         JSONArray objecto = new JSONArray( response );
@@ -799,6 +801,8 @@ public class OperadorActivity extends AppCompatActivity {
 
     public void go (View v)  {
 
+
+
         go.setEnabled(false);
 
         hilo = new Thread(new Runnable() {
@@ -992,30 +996,57 @@ public class OperadorActivity extends AppCompatActivity {
 
     }
 
+    class Task extends AsyncTask<String,Integer,String>{
+
+
+        protected void onPreExecute(String s) {
+            Snackbar snackbar = Snackbar.make(production,"CANTIDAD EN O.P : "+s,Snackbar.LENGTH_INDEFINITE);
+            snackbar.show();
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate( values );
+            Snackbar snackbar = Snackbar.make(production,"CANTIDAD EN O.P : "+values[0],Snackbar.LENGTH_INDEFINITE);
+            snackbar.show();
+        }
+
+
+        @Override
+        protected void onCancelled(String s) {
+            super.onCancelled( s );
+        }
+
+        @Override
+        protected String doInBackground(String... strings) {
+
+
+            new Thread( new Runnable() {
+                @Override
+                public void run() {
+
+                    final String nombretarea = resuldato.getSelectedItem().toString();
+                    String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/Sobrante.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+nombretarea.toString()).body();
+
+                    try {
+                        JSONArray RESTARCANTIDAD = new JSONArray(response);
+                        Snackbar snackbar = Snackbar.make(production,"CANTIDAD EN O.P : "+RESTARCANTIDAD.getString( 0 ),Snackbar.LENGTH_INDEFINITE);
+                        snackbar.show();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            } ).start();
+
+
+            return strings[0];
+        }
+    }
+
     public void cantidad(){
-
-        cantidadhilo = new Thread(new Runnable() {
-           @Override
-           public void run() {
-               final String nombretarea = resuldato.getSelectedItem().toString();
-               String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/Sobrante.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+nombretarea.toString()).body();
-
-               try {
-                   JSONArray RESTARCANTIDAD = new JSONArray(response);
-
-                 Snackbar snackbar = Snackbar.make(production,"CANTIDAD EN O.P : "+RESTARCANTIDAD.getString(0),Snackbar.LENGTH_INDEFINITE);
-                  snackbar.show();
-
-
-               } catch (JSONException e) {
-                   e.printStackTrace();
-               }
-           }
-       });
-        cantidadhilo.start();
-        cantidadhilo.setPriority(Thread.MAX_PRIORITY);
-
-
+            new Task().execute(resuldato.getSelectedItem().toString());
     }
 
     public void salida (View v) {
@@ -1270,7 +1301,7 @@ public class OperadorActivity extends AppCompatActivity {
                                             autorizadoxop.setText( "CANTIDAD RESTANTE : "+totalade );
                                             Toast.makeText(getApplicationContext(),"SE REGISTRO EL ADELANTO PRODUCCIDO ", Toast.LENGTH_SHORT).show();
 
-                                           // verificar();
+                                            verificar();
                                             cantidad();
 
                                         }

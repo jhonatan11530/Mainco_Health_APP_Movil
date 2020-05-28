@@ -52,7 +52,7 @@
                     android:layout_height="45dp"
                     android:layout_weight="5"
                     android:background="@color/colorAzulCLM"
-                    android:onClick="operador"
+                        android:onClick="operador"
                     android:text="VALIDAR"
                     android:textColor="#ffffff" />
 
