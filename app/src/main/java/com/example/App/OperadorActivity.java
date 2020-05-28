@@ -46,34 +46,34 @@ import com.example.App.HttpRequest;
 public class OperadorActivity extends AppCompatActivity {
 
 
-    private EditText id, cantidad, paro, fallas,items;
-    private String falla,error;
-    private TextView motivo, MOSTRAR,texto,autorizadoxop,resultados;
-    private Spinner resuldato,resuldato2,  resuldato4,resuldato3;
+    private EditText id, cantidad, paro, fallas, items;
+    private String falla, error;
+    private TextView motivo, MOSTRAR, texto, autorizadoxop, resultados;
+    private Spinner resuldato, resuldato2, resuldato4, resuldato3;
 
-    private  Button go, stop, btnconfir,desbloquear,positivo,neutrar, registroTIME, salidaTIME,validarinfo,cantidadund;
+    private Button go, stop, btnconfir, desbloquear, positivo, neutrar, registroTIME, salidaTIME, validarinfo, cantidadund;
 
-    private int minuto, i, hora,cantidadpro,volumencan,total,volumen;
+    private int minuto, i, hora, cantidadpro, volumencan, total, volumen;
 
     private ArrayList<cantidadfallas> dato4 = new ArrayList<cantidadfallas>();
     private ArrayList<cantidades> dato3 = new ArrayList<cantidades>();
     private ArrayList<motivoparo> dato2 = new ArrayList<motivoparo>();
     private ArrayList<OPS> dato = new ArrayList<OPS>();
 
-    EditText edit,digito;
-    View tiempo1,adelanto;
+    EditText edit, digito;
+    View tiempo1, adelanto;
     AlertDialog.Builder registros;
     Date date;
     SimpleDateFormat hourFormat;
     SimpleDateFormat dateFormat;
     RelativeLayout production;
-    private AsyncHttpClient cliente,cliente1,cliente2,cliente3,cliente4,cliente5;
-    public Thread hilo,eliminaOK,registrar,operador,cantidadhilo;
+    private AsyncHttpClient cliente, cliente1, cliente2, cliente3, cliente4, cliente5;
+    public Thread hilo, eliminaOK, registrar, operador, cantidadhilo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_operador);
+        super.onCreate( savedInstanceState );
+        setContentView( R.layout.activity_operador );
 
         cliente = new AsyncHttpClient();
         cliente1 = new AsyncHttpClient();
@@ -85,43 +85,42 @@ public class OperadorActivity extends AppCompatActivity {
         llenarSpinner();
         llenarOps();
 
-        production=(RelativeLayout)findViewById(R.id.principal);
+        production = (RelativeLayout) findViewById( R.id.principal );
 
 
-        resuldato = (Spinner) findViewById(R.id.spinner1);
+        resuldato = (Spinner) findViewById( R.id.spinner1 );
 
-        resuldato2 = (Spinner) findViewById(R.id.spinner2);
+        resuldato2 = (Spinner) findViewById( R.id.spinner2 );
 
-        resuldato3 = (Spinner) findViewById(R.id.spinner);
+        resuldato3 = (Spinner) findViewById( R.id.spinner );
 
-        items = (EditText) findViewById(R.id.item);
+        items = (EditText) findViewById( R.id.item );
 
-        cantidadund = (Button) findViewById(R.id.aplazar);
+        cantidadund = (Button) findViewById( R.id.aplazar );
 
-        desbloquear = (Button) findViewById(R.id.tiempo);
+        desbloquear = (Button) findViewById( R.id.tiempo );
 
-        registroTIME = (Button) findViewById(R.id.insertar);
+        registroTIME = (Button) findViewById( R.id.insertar );
 
-        salidaTIME = (Button) findViewById(R.id.salida);
+        salidaTIME = (Button) findViewById( R.id.salida );
 
-        id = (EditText) findViewById(R.id.operador);
+        id = (EditText) findViewById( R.id.operador );
 
-        resultados = (TextView) findViewById(R.id.listar_operador);
-
-
-
-        desbloquear.setEnabled(false);
-        registroTIME.setEnabled(false);
-        salidaTIME.setEnabled(false);
-        cantidadund.setEnabled(false);
-
-        desbloquear.setBackgroundColor(Color.parseColor("#919191"));
-        registroTIME.setBackgroundColor(Color.parseColor("#919191"));
-        salidaTIME.setBackgroundColor(Color.parseColor("#919191"));
-        cantidadund.setBackgroundColor(Color.parseColor("#919191"));
+        resultados = (TextView) findViewById( R.id.listar_operador );
 
 
-        items.addTextChangedListener(new TextWatcher() {
+        desbloquear.setEnabled( false );
+        registroTIME.setEnabled( false );
+        salidaTIME.setEnabled( false );
+        cantidadund.setEnabled( false );
+
+        desbloquear.setBackgroundColor( Color.parseColor( "#919191" ) );
+        registroTIME.setBackgroundColor( Color.parseColor( "#919191" ) );
+        salidaTIME.setBackgroundColor( Color.parseColor( "#919191" ) );
+        cantidadund.setBackgroundColor( Color.parseColor( "#919191" ) );
+
+
+        items.addTextChangedListener( new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -130,9 +129,7 @@ public class OperadorActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 FiltrarOps();
-                resuldato.setAdapter(null);
-
-
+                resuldato.setAdapter( null );
 
 
             }
@@ -141,9 +138,10 @@ public class OperadorActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
 
             }
-        });
+        } );
 
     }
+
     public void onBackPressed() {
         //  Intent e = new Intent(getApplicationContext(), Modulos.class);
         // startActivity(e);
@@ -152,7 +150,7 @@ public class OperadorActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.global, menu);
+        getMenuInflater().inflate( R.menu.global, menu );
 
         return true;
     }
@@ -166,13 +164,13 @@ public class OperadorActivity extends AppCompatActivity {
 
             case R.id.atras:
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder( OperadorActivity.this );
 
                 String titleText = "SALIR";
 
-                ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(Color.parseColor("#58B4E8"));
+                ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan( Color.parseColor( "#58B4E8" ) );
 
-                SpannableStringBuilder ssBuilder = new SpannableStringBuilder(titleText);
+                SpannableStringBuilder ssBuilder = new SpannableStringBuilder( titleText );
 
                 ssBuilder.setSpan(
                         foregroundColorSpan,
@@ -181,77 +179,75 @@ public class OperadorActivity extends AppCompatActivity {
                         Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
                 );
 
-                builder.setTitle(ssBuilder);
+                builder.setTitle( ssBuilder );
 
-                builder.setMessage("¿ ESTAS SEGURO QUE DESEA CERRAR SESIÒN ?");
+                builder.setMessage( "¿ ESTAS SEGURO QUE DESEA CERRAR SESIÒN ?" );
 
-                builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton( "ACEPTAR", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
 
-                        ProgressDialog pd = new ProgressDialog(OperadorActivity.this);
+                        ProgressDialog pd = new ProgressDialog( OperadorActivity.this );
 
-                        pd.setTitle("CERRANDO SESION");
+                        pd.setTitle( "CERRANDO SESION" );
 
-                        pd.setMessage("Porfavor espere");
-                        pd.setCanceledOnTouchOutside(false);
+                        pd.setMessage( "Porfavor espere" );
+                        pd.setCanceledOnTouchOutside( false );
 
                         pd.show();
 
 
-
-                        Intent e = new Intent(getApplicationContext(), LoginActivity.class);
-                        startActivity(e);
+                        Intent e = new Intent( getApplicationContext(), LoginActivity.class );
+                        startActivity( e );
                         finish();
 
 
                     }
-                });
+                } );
 
-                builder.setNegativeButton("CANCELAR", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton( "CANCELAR", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(getApplicationContext(),"LA SESIÒN SE MANTENDRA ACTIVA", Toast.LENGTH_SHORT).show();
+                        Toast.makeText( getApplicationContext(), "LA SESIÒN SE MANTENDRA ACTIVA", Toast.LENGTH_SHORT ).show();
                     }
-                });
+                } );
 
                 builder.create().show();
                 break;
 
             case R.id.ayuda:
-                Intent e = new Intent(getApplicationContext(), options.class);
-                startActivity(e);
+                Intent e = new Intent( getApplicationContext(), options.class );
+                startActivity( e );
 
                 break;
             default:
                 break;
         }
-        return super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected( item );
     }
 
-    public void filtroActivity(View v){
-        if(items.getText().toString().length() == 0){
-            items.setError("NUMERO OP ES REQUERIDO !");
+    public void filtroActivity(View v) {
+        if (items.getText().toString().length() == 0) {
+            items.setError( "NUMERO OP ES REQUERIDO !" );
 
-        }if (items.getText().toString().length() != 0){
+        }
+        if (items.getText().toString().length() != 0) {
             filtraritem();
 
         }
 
 
-
     }
 
 
-
     public void filtraritem() {
-        String url = "http://" + cambiarIP.ip + "/validar/cantidadfiltre.php?op="+resuldato3.getSelectedItem().toString(); // SE DEBE CAMBIAR
-        cliente.post(url, new AsyncHttpResponseHandler() {
+        String url = "http://" + cambiarIP.ip + "/validar/cantidadfiltre.php?op=" + resuldato3.getSelectedItem().toString(); // SE DEBE CAMBIAR
+        cliente.post( url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if (statusCode == 200) {
-                    itemfiltre(new String(responseBody));
+                    itemfiltre( new String( responseBody ) );
 
                 }
             }
@@ -260,20 +256,20 @@ public class OperadorActivity extends AppCompatActivity {
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 filtraritem();
             }
-        });
+        } );
     }
 
     public void itemfiltre(String itemfiltre) {
         ArrayList<cantidades> dato3 = new ArrayList<cantidades>();
         try {
-            JSONArray objecto = new JSONArray(itemfiltre);
+            JSONArray objecto = new JSONArray( itemfiltre );
             for (int i = 0; i < objecto.length(); i++) {
                 cantidades a = new cantidades();
-                a.setTarea(objecto.getJSONObject(i).getString("tarea"));
+                a.setTarea( objecto.getJSONObject( i ).getString( "tarea" ) );
                 dato3.add( a );
             }
-            ArrayAdapter<cantidades> a = new ArrayAdapter<cantidades>(this, android.R.layout.simple_dropdown_item_1line, dato3);
-            resuldato.setAdapter(a);
+            ArrayAdapter<cantidades> a = new ArrayAdapter<cantidades>( this, android.R.layout.simple_dropdown_item_1line, dato3 );
+            resuldato.setAdapter( a );
 
 
         } catch (Exception e) {
@@ -286,11 +282,11 @@ public class OperadorActivity extends AppCompatActivity {
     public void llenarOps() {
 
         String url = "http://" + cambiarIP.ip + "/validar/OPS.php";
-        cliente2.post(url, new AsyncHttpResponseHandler() {
+        cliente2.post( url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if (statusCode == 200) {
-                    cargarops(new String(responseBody));
+                    cargarops( new String( responseBody ) );
 
                 }
             }
@@ -299,21 +295,21 @@ public class OperadorActivity extends AppCompatActivity {
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 llenarOps();
             }
-        });
+        } );
     }
 
     public void cargarops(String cargarops) {
         ArrayList<OPS> dato = new ArrayList<OPS>();
         try {
-            JSONArray objecto = new JSONArray(cargarops);
+            JSONArray objecto = new JSONArray( cargarops );
             for (int i = 0; i < objecto.length(); i++) {
                 OPS a = new OPS();
 
-                a.setOps(objecto.getJSONObject(i).getString("cod_producto"));
-                dato.add(a);
+                a.setOps( objecto.getJSONObject( i ).getString( "cod_producto" ) );
+                dato.add( a );
             }
-            ArrayAdapter<OPS> a = new ArrayAdapter<OPS>(this, android.R.layout.simple_dropdown_item_1line, dato);
-            resuldato3.setAdapter(a);
+            ArrayAdapter<OPS> a = new ArrayAdapter<OPS>( this, android.R.layout.simple_dropdown_item_1line, dato );
+            resuldato3.setAdapter( a );
 
 
         } catch (Exception e) {
@@ -325,12 +321,12 @@ public class OperadorActivity extends AppCompatActivity {
 
     public void FiltrarOps() {
 
-        String url = "http://" + cambiarIP.ip + "/validar/FiltroOPS.php?op="+items.getText().toString();
-        cliente1.post(url, new AsyncHttpResponseHandler() {
+        String url = "http://" + cambiarIP.ip + "/validar/FiltroOPS.php?op=" + items.getText().toString();
+        cliente1.post( url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if (statusCode == 200) {
-                    filtroOPS(new String(responseBody));
+                    filtroOPS( new String( responseBody ) );
 
                 }
             }
@@ -339,21 +335,21 @@ public class OperadorActivity extends AppCompatActivity {
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 llenarOps();
             }
-        });
+        } );
     }
 
     public void filtroOPS(String filtroOPS) {
         ArrayList<OPS> dato = new ArrayList<OPS>();
         try {
-            JSONArray objecto = new JSONArray(filtroOPS);
+            JSONArray objecto = new JSONArray( filtroOPS );
             for (int i = 0; i < objecto.length(); i++) {
                 OPS a = new OPS();
 
-                a.setOps(objecto.getJSONObject(i).getString("cod_producto"));
-                dato.add(a);
+                a.setOps( objecto.getJSONObject( i ).getString( "cod_producto" ) );
+                dato.add( a );
             }
-            ArrayAdapter<OPS> a = new ArrayAdapter<OPS>(this, android.R.layout.simple_dropdown_item_1line, dato);
-            resuldato3.setAdapter(a);
+            ArrayAdapter<OPS> a = new ArrayAdapter<OPS>( this, android.R.layout.simple_dropdown_item_1line, dato );
+            resuldato3.setAdapter( a );
 
 
         } catch (Exception e) {
@@ -366,11 +362,11 @@ public class OperadorActivity extends AppCompatActivity {
     public void llenarSpinner() {
 
         String url = "http://" + cambiarIP.ip + "/validar/cantidad.php";
-        cliente3.post(url, new AsyncHttpResponseHandler() {
+        cliente3.post( url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if (statusCode == 200) {
-                    cargarSpinner(new String(responseBody));
+                    cargarSpinner( new String( responseBody ) );
 
                 }
             }
@@ -379,20 +375,20 @@ public class OperadorActivity extends AppCompatActivity {
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 llenarSpinner();
             }
-        });
+        } );
     }
 
     public void cargarSpinner(String cargarSpinner) {
         ArrayList<cantidades> dato3 = new ArrayList<cantidades>();
         try {
-            JSONArray objecto = new JSONArray(cargarSpinner);
+            JSONArray objecto = new JSONArray( cargarSpinner );
             for (int i = 0; i < objecto.length(); i++) {
                 cantidades a = new cantidades();
-                a.setTarea(objecto.getJSONObject(i).getString("tarea"));
+                a.setTarea( objecto.getJSONObject( i ).getString( "tarea" ) );
                 dato3.add( a );
             }
-            ArrayAdapter<cantidades> a = new ArrayAdapter<cantidades>(this, android.R.layout.simple_dropdown_item_1line, dato3);
-            resuldato.setAdapter(a);
+            ArrayAdapter<cantidades> a = new ArrayAdapter<cantidades>( this, android.R.layout.simple_dropdown_item_1line, dato3 );
+            resuldato.setAdapter( a );
 
 
         } catch (Exception e) {
@@ -404,11 +400,11 @@ public class OperadorActivity extends AppCompatActivity {
 
     public void llenardescanso() {
         String url = "http://" + cambiarIP.ip + "/validar/motivo.php";
-        cliente4.post(url, new AsyncHttpResponseHandler() {
+        cliente4.post( url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if (statusCode == 200) {
-                    filtrardescanso(new String(responseBody));
+                    filtrardescanso( new String( responseBody ) );
                 }
             }
 
@@ -416,20 +412,20 @@ public class OperadorActivity extends AppCompatActivity {
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 llenardescanso();
             }
-        });
+        } );
     }
 
     public void filtrardescanso(String filtrardescanso) {
         ArrayList<motivoparo> dato2 = new ArrayList<motivoparo>();
         try {
-            JSONArray objecto = new JSONArray(filtrardescanso);
+            JSONArray objecto = new JSONArray( filtrardescanso );
             for (int i = 0; i < objecto.length(); i++) {
                 motivoparo b = new motivoparo();
-                b.setParo(objecto.getJSONObject(i).getString("paro"));
-                dato2.add(b);
+                b.setParo( objecto.getJSONObject( i ).getString( "paro" ) );
+                dato2.add( b );
             }
-            ArrayAdapter<motivoparo> a = new ArrayAdapter<motivoparo>(this, android.R.layout.simple_dropdown_item_1line, dato2);
-            resuldato2.setAdapter(a);
+            ArrayAdapter<motivoparo> a = new ArrayAdapter<motivoparo>( this, android.R.layout.simple_dropdown_item_1line, dato2 );
+            resuldato2.setAdapter( a );
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -439,11 +435,11 @@ public class OperadorActivity extends AppCompatActivity {
 
     public void motivofalla() {
         String url = "http://" + cambiarIP.ip + "/validar/motivocantidad.php";
-        cliente5.post(url, new AsyncHttpResponseHandler() {
+        cliente5.post( url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if (statusCode == 200) {
-                    cargarmotivo(new String(responseBody));
+                    cargarmotivo( new String( responseBody ) );
                 }
             }
 
@@ -451,20 +447,20 @@ public class OperadorActivity extends AppCompatActivity {
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 motivofalla();
             }
-        });
+        } );
     }
 
     public void cargarmotivo(String cargarmotivo) {
         ArrayList<cantidadfallas> dato4 = new ArrayList<cantidadfallas>();
         try {
-            JSONArray objecto = new JSONArray(cargarmotivo);
+            JSONArray objecto = new JSONArray( cargarmotivo );
             for (int i = 0; i < objecto.length(); i++) {
                 cantidadfallas c = new cantidadfallas();
-                c.setFallas(objecto.getJSONObject(i).getString("fallas"));
-                dato4.add(c);
+                c.setFallas( objecto.getJSONObject( i ).getString( "fallas" ) );
+                dato4.add( c );
             }
-            ArrayAdapter<cantidadfallas> a = new ArrayAdapter<cantidadfallas>(this, android.R.layout.simple_dropdown_item_1line, dato4);
-            resuldato4.setAdapter(a);
+            ArrayAdapter<cantidadfallas> a = new ArrayAdapter<cantidadfallas>( this, android.R.layout.simple_dropdown_item_1line, dato4 );
+            resuldato4.setAdapter( a );
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -473,21 +469,20 @@ public class OperadorActivity extends AppCompatActivity {
     }
 
 
-
     public void operador(View v) {
 
         if (id.getText().toString().length() == 0) {
 
-            id.setError("ID ES REQUERIDO !");
+            id.setError( "ID ES REQUERIDO !" );
 
-        }if (id.getText().toString().length() != 0) {
+        }
+        if (id.getText().toString().length() != 0) {
 
 
-
-            operador =  new Thread(new Runnable() {
+            operador = new Thread( new Runnable() {
                 @Override
                 public void run() {
-                    cantidad();
+
                     try {
                         String response = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/operador.php?id=" + id.getText().toString() ).body();
 
@@ -504,10 +499,10 @@ public class OperadorActivity extends AppCompatActivity {
                                     cantidadund.setEnabled( true );
                                     desbloquear.setEnabled( true );
 
-                                    desbloquear.setBackgroundColor(Color.parseColor("#B2C900"));
-                                    registroTIME.setBackgroundColor(Color.parseColor("#B2C900"));
-                                    cantidadund.setBackgroundColor(Color.parseColor("#2196F3"));
-                                    salidaTIME.setBackgroundColor(Color.parseColor("#2196F3"));
+                                    desbloquear.setBackgroundColor( Color.parseColor( "#B2C900" ) );
+                                    registroTIME.setBackgroundColor( Color.parseColor( "#B2C900" ) );
+                                    cantidadund.setBackgroundColor( Color.parseColor( "#2196F3" ) );
+                                    salidaTIME.setBackgroundColor( Color.parseColor( "#2196F3" ) );
 
 
                                 }
@@ -515,7 +510,6 @@ public class OperadorActivity extends AppCompatActivity {
 
 
                             resultados.setText( objecto.getString( 0 ).toString() );
-
 
 
                         }
@@ -528,332 +522,323 @@ public class OperadorActivity extends AppCompatActivity {
                 }
 
 
-            });
+            } );
             operador.start();
             operador.isInterrupted();
 
-        }
-        else{
-            runOnUiThread(new Runnable() {
+        } else {
+            runOnUiThread( new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText(getApplicationContext(),"EL CODIGO DEL USUARIO NO EXISTE", Toast.LENGTH_SHORT).show();
+                    Toast.makeText( getApplicationContext(), "EL CODIGO DEL USUARIO NO EXISTE", Toast.LENGTH_SHORT ).show();
                 }
-            });
+            } );
         }
-
 
 
     }
 
-    public void verificar(){
+    public void verificar() {
 
-      final String nombretarea = resuldato.getSelectedItem().toString();
-            eliminaOK = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                     String cero = HttpRequest.get("http://"+cambiarIP.ip+"/validar/eliminarcanok.php?id=" + nombretarea.toString()).body();
+        final String nombretarea = resuldato.getSelectedItem().toString();
+        eliminaOK = new Thread( new Runnable() {
+            @Override
+            public void run() {
+                String cero = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/eliminarcanok.php?id=" + nombretarea.toString() ).body();
 
-                            try {
-                                JSONArray nada = new JSONArray(cero);
-                                int vacio = Integer.parseInt(nada.getString(0));
-                                if(vacio != 0){
+                try {
+                    JSONArray nada = new JSONArray( cero );
+                    int vacio = Integer.parseInt( nada.getString( 0 ) );
+                    if (vacio != 0) {
 
 
-                                runOnUiThread( new Runnable() {
+                        runOnUiThread( new Runnable() {
+                            @Override
+                            public void run() {
+                                ((TextView) resuldato.getSelectedView()).setTextColor( Color.BLACK );
+
+                            }
+                        } );
+
+
+                    } else if (vacio == 0) {
+
+                        runOnUiThread( new Runnable() {
+                            @Override
+                            public void run() {
+
+                                desbloquear.setBackgroundColor( Color.parseColor( "#919191" ) );
+                                registroTIME.setBackgroundColor( Color.parseColor( "#919191" ) );
+                                cantidadund.setBackgroundColor( Color.parseColor( "#919191" ) );
+                                salidaTIME.setBackgroundColor( Color.parseColor( "#919191" ) );
+
+                                desbloquear.setEnabled( false );
+                                registroTIME.setEnabled( false );
+                                salidaTIME.setEnabled( false );
+                                cantidadund.setEnabled( false );
+
+                                ((TextView) resuldato.getSelectedView()).setTextColor( Color.RED );
+
+
+                                AlertDialog.Builder builder = new AlertDialog.Builder( OperadorActivity.this );
+                                builder.setTitle( "LA OP FINALIZO " );
+                                builder.setMessage( "DEBE SELECCIONAR OTRA OP " );
+
+                                builder.setPositiveButton( "REGISTRAR OTRA OP", new DialogInterface.OnClickListener() {
                                     @Override
-                                    public void run() {
-                                        ((TextView) resuldato.getSelectedView()).setTextColor(Color.BLACK);
-
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        new Thread( new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                String cero = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/nuevoRegistro.php?id=" + id.getText().toString() ).body();
+                                            }
+                                        } ).start();
                                     }
                                 } );
+                                builder.create().show();
 
 
-                                }
-                                else if(vacio == 0){
-
-                                    runOnUiThread( new Runnable() {
-                                        @Override
-                                        public void run() {
-
-                                            desbloquear.setBackgroundColor(Color.parseColor("#919191"));
-                                            registroTIME.setBackgroundColor(Color.parseColor("#919191"));
-                                            cantidadund.setBackgroundColor(Color.parseColor("#919191"));
-                                            salidaTIME.setBackgroundColor(Color.parseColor("#919191"));
-
-                                            desbloquear.setEnabled(false);
-                                            registroTIME.setEnabled(false);
-                                            salidaTIME.setEnabled(false);
-                                            cantidadund.setEnabled(false);
-
-                                            ((TextView) resuldato.getSelectedView()).setTextColor(Color.RED);
-
-
-                                            AlertDialog.Builder builder = new AlertDialog.Builder( OperadorActivity.this );
-                                            builder.setTitle( "LA OP FINALIZO " );
-                                            builder.setMessage( "DEBE SELECCIONAR OTRA OP " );
-
-                                            builder.setPositiveButton( "REGISTRAR OTRA OP", new DialogInterface.OnClickListener() {
-                                                @Override
-                                                public void onClick(DialogInterface dialogInterface, int i) {
-                                                    new Thread( new Runnable() {
-                                                        @Override
-                                                        public void run() {
-                                                            String cero = HttpRequest.get("http://"+cambiarIP.ip+"/validar/nuevoRegistro.php?id="+ id.getText().toString() ).body();
-                                                        }
-                                                    } ).start();
-                                                }
-                                            } );
-                                            builder.create().show();
-
-
-                                        }
-                                    } );
-
-
-                                }
-
-
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
                             }
+                        } );
 
+
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
                 }
-            });
-            eliminaOK.start();
-            eliminaOK.interrupted();
 
-  }
+            }
+        } );
+        eliminaOK.start();
+        eliminaOK.interrupted();
+
+    }
 
     public void hora(View v) {
 
-         registros = new AlertDialog.Builder(OperadorActivity.this);
-        tiempo1 = getLayoutInflater().inflate(R.layout.dialog_spinner,null);
+        registros = new AlertDialog.Builder( OperadorActivity.this );
+        tiempo1 = getLayoutInflater().inflate( R.layout.dialog_spinner, null );
 
         llenardescanso();
-        id=(EditText)findViewById(R.id.operador);
+        id = (EditText) findViewById( R.id.operador );
 
-        paro = (EditText)tiempo1.findViewById(R.id.paro);
-        MOSTRAR = (TextView) tiempo1.findViewById(R.id.MOSTRAR);
-       texto = (TextView) tiempo1.findViewById(R.id.textos);
-        stop = (Button)tiempo1.findViewById(R.id.stop);
-        go = (Button)tiempo1.findViewById(R.id.go);
-        validarinfo = (Button)tiempo1.findViewById(R.id.validarinfo);
+        paro = (EditText) tiempo1.findViewById( R.id.paro );
+        MOSTRAR = (TextView) tiempo1.findViewById( R.id.MOSTRAR );
+        texto = (TextView) tiempo1.findViewById( R.id.textos );
+        stop = (Button) tiempo1.findViewById( R.id.stop );
+        go = (Button) tiempo1.findViewById( R.id.go );
+        validarinfo = (Button) tiempo1.findViewById( R.id.validarinfo );
 
 
-
-        motivo = (TextView) tiempo1.findViewById(R.id.MOTIVO);
-        resuldato2 = (Spinner)tiempo1.findViewById(R.id.spinner2);
+        motivo = (TextView) tiempo1.findViewById( R.id.MOTIVO );
+        resuldato2 = (Spinner) tiempo1.findViewById( R.id.spinner2 );
 
 
         //botones
 
-        MOSTRAR.setVisibility(View.INVISIBLE);
-        paro.setVisibility(View.INVISIBLE);
-        stop.setVisibility(View.INVISIBLE);
-        go.setVisibility(View.INVISIBLE);
-        texto.setVisibility(View.INVISIBLE);
-        resuldato2.setVisibility(View.INVISIBLE);
+        MOSTRAR.setVisibility( View.INVISIBLE );
+        paro.setVisibility( View.INVISIBLE );
+        stop.setVisibility( View.INVISIBLE );
+        go.setVisibility( View.INVISIBLE );
+        texto.setVisibility( View.INVISIBLE );
+        resuldato2.setVisibility( View.INVISIBLE );
 
 
         //TEXTVIEW Y SPINNER
-        motivo.setVisibility(View.VISIBLE);
-        resuldato2.setVisibility(View.VISIBLE);
+        motivo.setVisibility( View.VISIBLE );
+        resuldato2.setVisibility( View.VISIBLE );
 
-        validarinfo.setOnClickListener(new View.OnClickListener() {
+        validarinfo.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                validarinfo.setVisibility(View.INVISIBLE);
-                resuldato2.setClickable(false);
-                resuldato2.setEnabled(false);
+                validarinfo.setVisibility( View.INVISIBLE );
+                resuldato2.setClickable( false );
+                resuldato2.setEnabled( false );
 
 
+                MOSTRAR.setVisibility( View.VISIBLE );
+                paro.setVisibility( View.VISIBLE );
+                stop.setVisibility( View.VISIBLE );
+                go.setVisibility( View.VISIBLE );
+                texto.setVisibility( View.VISIBLE );
+                resuldato2.setVisibility( View.VISIBLE );
 
-                MOSTRAR.setVisibility(View.VISIBLE);
-                paro.setVisibility(View.VISIBLE);
-                stop.setVisibility(View.VISIBLE);
-                go.setVisibility(View.VISIBLE);
-                texto.setVisibility(View.VISIBLE);
-                resuldato2.setVisibility(View.VISIBLE);
 
-
-                 runOnUiThread( new Runnable() {
-                     @Override
-                     public void run() {
-                         String mostrardatos = resuldato2.getSelectedItem().toString();
-                         Toast.makeText(getApplicationContext(),"USTED SELECCIÓNO "+mostrardatos, Toast.LENGTH_SHORT).show();
-                     }
-                 } );
+                runOnUiThread( new Runnable() {
+                    @Override
+                    public void run() {
+                        String mostrardatos = resuldato2.getSelectedItem().toString();
+                        Toast.makeText( getApplicationContext(), "USTED SELECCIÓNO " + mostrardatos, Toast.LENGTH_SHORT ).show();
+                    }
+                } );
 
             }
-        });
+        } );
 
 
-        registros.setPositiveButton("FINALIZAR", new DialogInterface.OnClickListener() {
+        registros.setPositiveButton( "FINALIZAR", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(getApplicationContext(),"LOS DATOS FUERON GUARDADOS CORRECTAMENTE", Toast.LENGTH_SHORT).show();
+                Toast.makeText( getApplicationContext(), "LOS DATOS FUERON GUARDADOS CORRECTAMENTE", Toast.LENGTH_SHORT ).show();
             }
-        });
+        } );
 
 
-        registros.setNegativeButton("REGISTRAR", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-
-                        Toast.makeText(getApplicationContext(),"DATOS VERIFICADOS", Toast.LENGTH_SHORT).show();
-
-
-            }
-        });
-        registros.setNeutralButton("REGISTRAR OTRO MOTIVO DE PARO", new DialogInterface.OnClickListener() {
+        registros.setNegativeButton( "REGISTRAR", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
+
+                Toast.makeText( getApplicationContext(), "DATOS VERIFICADOS", Toast.LENGTH_SHORT ).show();
+
+
             }
-        });
+        } );
+        registros.setNeutralButton( "REGISTRAR OTRO MOTIVO DE PARO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        } );
 
 
+        stop.setEnabled( false );
 
-        stop.setEnabled(false);
-
-        registros.setView(tiempo1);
+        registros.setView( tiempo1 );
         registros.create();
-      AlertDialog alert = registros.create();
+        AlertDialog alert = registros.create();
         alert.show();
 
-        alert.setCanceledOnTouchOutside(false);
+        alert.setCanceledOnTouchOutside( false );
 
-        desbloquear = alert.getButton(AlertDialog.BUTTON_NEGATIVE);
-        neutrar = alert.getButton(AlertDialog.BUTTON_NEUTRAL);
-        positivo = alert.getButton(AlertDialog.BUTTON_POSITIVE);
+        desbloquear = alert.getButton( AlertDialog.BUTTON_NEGATIVE );
+        neutrar = alert.getButton( AlertDialog.BUTTON_NEUTRAL );
+        positivo = alert.getButton( AlertDialog.BUTTON_POSITIVE );
 
-        neutrar.setOnClickListener(new View.OnClickListener() {
+        neutrar.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                positivo.setEnabled(false);
-                neutrar.setEnabled(false);
-                desbloquear.setEnabled(false);
-                go.setEnabled(true);
+                positivo.setEnabled( false );
+                neutrar.setEnabled( false );
+                desbloquear.setEnabled( false );
+                go.setEnabled( true );
 
-                MOSTRAR.setVisibility(View.INVISIBLE);
-                paro.setVisibility(View.INVISIBLE);
-                stop.setVisibility(View.INVISIBLE);
-                go.setVisibility(View.INVISIBLE);
-                texto.setVisibility(View.INVISIBLE);
+                MOSTRAR.setVisibility( View.INVISIBLE );
+                paro.setVisibility( View.INVISIBLE );
+                stop.setVisibility( View.INVISIBLE );
+                go.setVisibility( View.INVISIBLE );
+                texto.setVisibility( View.INVISIBLE );
 
-                
-                validarinfo.setVisibility(View.VISIBLE);
-                motivo.setVisibility(View.VISIBLE);
-                resuldato2.setClickable(true);
-                resuldato2.setEnabled(true);
-                resuldato2.setVisibility(View.VISIBLE);
-                paro.setText("");
-                MOSTRAR.setText("0:0:0");
+
+                validarinfo.setVisibility( View.VISIBLE );
+                motivo.setVisibility( View.VISIBLE );
+                resuldato2.setClickable( true );
+                resuldato2.setEnabled( true );
+                resuldato2.setVisibility( View.VISIBLE );
+                paro.setText( "" );
+                MOSTRAR.setText( "0:0:0" );
             }
-        });
+        } );
 
 
-        desbloquear.setOnClickListener(new View.OnClickListener() {
+        desbloquear.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                desbloquear.setEnabled(false);
-                neutrar.setEnabled(true);
-                positivo.setEnabled(true);
+                desbloquear.setEnabled( false );
+                neutrar.setEnabled( true );
+                positivo.setEnabled( true );
 
                 final String prueba = resuldato2.getSelectedItem().toString();
 
                 // imprime fecha
-                dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                dateFormat = new SimpleDateFormat( "dd/MM/yyyy", Locale.getDefault() );
                 date = new Date();
 
                 //imprime hora
-                hourFormat = new SimpleDateFormat("H:mm:ss");
+                hourFormat = new SimpleDateFormat( "H:mm:ss" );
 
-                final String horas = hourFormat.format(date);
-                final String fechas = dateFormat.format(date);
+                final String horas = hourFormat.format( date );
+                final String fechas = dateFormat.format( date );
 
-                new Thread(new Runnable() {
+                new Thread( new Runnable() {
 
                     @Override
                     public void run() {
 
-                            String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/RegistrarMotivo.php?op="+items.getText().toString()+"&id="+id.getText().toString()+"&paro="+paro.getText().toString()+"&motivo="+prueba.toString()+"&fecha="+fechas+"&hora="+horas.toString()).body();
+                        String response = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/RegistrarMotivo.php?op=" + items.getText().toString() + "&id=" + id.getText().toString() + "&paro=" + paro.getText().toString() + "&motivo=" + prueba.toString() + "&fecha=" + fechas + "&hora=" + horas.toString() ).body();
 
                     }
-                }).start();
+                } ).start();
                 Thread.interrupted();
-                minuto=0;
-                hora=0;
+                minuto = 0;
+                hora = 0;
 
             }
-        });
+        } );
 
-        positivo.setEnabled(false);
-        neutrar.setEnabled(false);
-        desbloquear.setEnabled(false);
+        positivo.setEnabled( false );
+        neutrar.setEnabled( false );
+        desbloquear.setEnabled( false );
     }
 
-    public void go (View v)  {
+    public void go(View v) {
 
 
+        go.setEnabled( false );
 
-        go.setEnabled(false);
-
-        hilo = new Thread(new Runnable() {
+        hilo = new Thread( new Runnable() {
 
             @Override
             public void run() {
 
                 try {
 
-                    i=0;
-                    minuto =0;
-                    hora=0;
+                    i = 0;
+                    minuto = 0;
+                    hora = 0;
 
-                    for ( i= 0; i <= 60; i++){
-                        System.out.println(i);
+                    for (i = 0; i <= 60; i++) {
+                        System.out.println( i );
 
-                        Thread.sleep(1000);
+                        Thread.sleep( 1000 );
 
-                        if (i==60){
-                            i=0;
+                        if (i == 60) {
+                            i = 0;
                             minuto++;
 
                         }
 
-                        if (minuto == 59){
-                            minuto =0;
+                        if (minuto == 59) {
+                            minuto = 0;
                             hora++;
                         }
 
-                        if(hora==12){
-                            hora=0;
+                        if (hora == 12) {
+                            hora = 0;
 
                         }
 
-                        final  String segundo = Integer.toString(i);
-                        final  String minutos = Integer.toString(minuto);
-                        final String horas = Integer.toString(hora);
+                        final String segundo = Integer.toString( i );
+                        final String minutos = Integer.toString( minuto );
+                        final String horas = Integer.toString( hora );
 
-                        runOnUiThread(new Runnable() {
+                        runOnUiThread( new Runnable() {
                             @Override
                             public void run() {
 
-                                MOSTRAR.setText(horas+":"+minuto+":"+segundo);
+                                MOSTRAR.setText( horas + ":" + minuto + ":" + segundo );
 
                             }
-                        });
+                        } );
 
                     }
 
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     // TODO: handle exception
                     e.printStackTrace();
 
@@ -864,189 +849,183 @@ public class OperadorActivity extends AppCompatActivity {
             }
 
 
-
-        });
+        } );
         hilo.start();
-        hilo.setPriority(Thread.NORM_PRIORITY);
-        if(hilo!=null){
-            stop.setEnabled(true);
+        hilo.setPriority( Thread.NORM_PRIORITY );
+        if (hilo != null) {
+            stop.setEnabled( true );
 
 
         }
 
     }
 
-    public void  stop (View v) {
-        stop.setEnabled(false);
-        go.setEnabled(false);
-        desbloquear.setEnabled(true);
-        if(paro!=null){
+    public void stop(View v) {
+        stop.setEnabled( false );
+        go.setEnabled( false );
+        desbloquear.setEnabled( true );
+        if (paro != null) {
 
-            motivo.setVisibility(View.VISIBLE);
-            resuldato2.setVisibility(View.VISIBLE);
+            motivo.setVisibility( View.VISIBLE );
+            resuldato2.setVisibility( View.VISIBLE );
             hilo.interrupt();
 
         }
 
-       String d = Integer.toString(minuto);
-       paro.setText(d);
+        String d = Integer.toString( minuto );
+        paro.setText( d );
 
     }
 
-    public void registrar (View v) {
+    public void registrar(View v) {
 
-        id = (EditText)findViewById(R.id.operador);
+        id = (EditText) findViewById( R.id.operador );
 
 
         // imprime fecha
-         dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-         date = new Date();
+        dateFormat = new SimpleDateFormat( "dd/MM/yyyy", Locale.getDefault() );
+        date = new Date();
 
         //imprime hora
-         hourFormat = new SimpleDateFormat("H:mm:ss");
+        hourFormat = new SimpleDateFormat( "H:mm:ss" );
 
         //almacena los datos en una cadena
-        final	String hora = hourFormat.format(date);
+        final String hora = hourFormat.format( date );
 
-        final	String fecha = dateFormat.format(date);
+        final String fecha = dateFormat.format( date );
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
-        builder.setTitle("DATOS INSERTADOS");
+        AlertDialog.Builder builder = new AlertDialog.Builder( OperadorActivity.this );
+        builder.setTitle( "DATOS INSERTADOS" );
         builder.setMessage( "PORFAVOR EMPIECE SU LABOR" );
-         edit = new EditText(this);
-        edit.setEnabled(false);
-        edit.setText(fecha);
+        edit = new EditText( this );
+        edit.setEnabled( false );
+        edit.setText( fecha );
 
-        final   String fechas =edit.getText().toString();
+        final String fechas = edit.getText().toString();
         final String Nop = resuldato3.getSelectedItem().toString();
         final String tarea = resuldato.getSelectedItem().toString();
-        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton( "Aceptar", new DialogInterface.OnClickListener() {
 
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
                 // TODO Auto-generated method stub
-                 registrar =  new Thread(new Runnable() {
-                     @Override
+                registrar = new Thread( new Runnable() {
+                    @Override
                     public void run() {
-                         cantidad();
-                         try {
-                             final String nombretarea = resuldato.getSelectedItem().toString();
-                             String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/Sobrante.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+nombretarea.toString()).body();
-                             JSONArray  validar = new JSONArray(response);
-                             int validator = Integer.parseInt(validar.getString(0));
-                                System.out.println("EL VALOR "+validator);
+                        cantidad();
+                        try {
+                            final String nombretarea = resuldato.getSelectedItem().toString();
+                            String response = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/Sobrante.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + nombretarea.toString() ).body();
+                            JSONArray validar = new JSONArray( response );
+                            int validator = Integer.parseInt( validar.getString( 0 ) );
+                            System.out.println( "EL VALOR " + validator );
 
-                             if(validator == 0){
+                            if (validator == 0) {
 
-                                 System.out.println("ESTO SUCEDIO");
-                                 String responses = HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadedits.php?op="+resuldato3.getSelectedItem().toString()).body();
+                                System.out.println( "ESTO SUCEDIO" );
+                                String responses = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/cantidadedits.php?op=" + resuldato3.getSelectedItem().toString() ).body();
 
-                                 JSONArray  RESTARCANTIDAD = new JSONArray(responses);
+                                JSONArray RESTARCANTIDAD = new JSONArray( responses );
 
-                                 HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+tarea.toString()+"&totales="+RESTARCANTIDAD.getString(0)).body();
-                                 cantidad();
-                             }
-                             if(validator > 0){
-                                 cantidad();
-                                 runOnUiThread(new Runnable() {
-                                     @Override
-                                     public void run() {
-                                         AlertDialog.Builder builder = new AlertDialog.Builder( OperadorActivity.this );
-                                         builder.setTitle( "HAY CANTIDADES PENDIENTES" );
-                                         builder.setIcon(R.drawable.informacion);
-                                         builder.setMessage( "DEBE TERMINAR LAS CANTIDADES PENDIENTES" );
+                                HttpRequest.get( "http://" + cambiarIP.ip + "/validar/cantidadmodifi.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + tarea.toString() + "&totales=" + RESTARCANTIDAD.getString( 0 ) ).body();
+                                cantidad();
+                            }
+                            if (validator > 0) {
+                                cantidad();
+                                runOnUiThread( new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        AlertDialog.Builder builder = new AlertDialog.Builder( OperadorActivity.this );
+                                        builder.setTitle( "HAY CANTIDADES PENDIENTES" );
+                                        builder.setIcon( R.drawable.informacion );
+                                        builder.setMessage( "DEBE TERMINAR LAS CANTIDADES PENDIENTES" );
 
-                                         builder.setPositiveButton( "ACEPTAR", new DialogInterface.OnClickListener() {
-                                             @Override
-                                             public void onClick(DialogInterface dialogInterface, int i) {
+                                        builder.setPositiveButton( "ACEPTAR", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
 
-                                             }
-                                         } );
-                                         builder.create().show();
-                                     }
-                                 });
+                                            }
+                                        } );
+                                        builder.create().show();
+                                    }
+                                } );
 
-                             }
+                            }
 
-                         } catch (JSONException e) {
-                             e.printStackTrace();
-                         }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
 
-                        HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaEntrada.php?id="+id.getText().toString()+"&Finicial="+fechas+"&Hinicial="+hora.toString()+"&op="+items.getText().toString()).body();
+                        HttpRequest.get( "http://" + cambiarIP.ip + "/validar/actualizaEntrada.php?id=" + id.getText().toString() + "&Finicial=" + fechas + "&Hinicial=" + hora.toString() + "&op=" + items.getText().toString() ).body();
 
-                         runOnUiThread(new Runnable() {
-                             @Override
-                             public void run() {
-                                 registroTIME.setEnabled(false);
-                             }
-                         });
-
+                        runOnUiThread( new Runnable() {
+                            @Override
+                            public void run() {
+                                registroTIME.setEnabled( false );
+                            }
+                        } );
 
 
                     }
-                });
+                } );
                 registrar.start();
-                registrar.setPriority(Thread.MIN_PRIORITY);
+                registrar.setPriority( Thread.MIN_PRIORITY );
                 registrar.interrupted();
             }
-        });
+        } );
 
         builder.create().show();
 
     }
-
-    class Task extends AsyncTask<String,Integer,String>{
-
-
-        protected void onPreExecute(String s) {
-            Snackbar snackbar = Snackbar.make(production,"CANTIDAD EN O.P : "+s,Snackbar.LENGTH_INDEFINITE);
-            snackbar.show();
-            super.onPreExecute();
-        }
-
-        @Override
-        protected void onProgressUpdate(Integer... values) {
-            super.onProgressUpdate( values );
-            Snackbar snackbar = Snackbar.make(production,"CANTIDAD EN O.P : "+values[0],Snackbar.LENGTH_INDEFINITE);
-            snackbar.show();
-        }
-
-
-        @Override
-        protected void onCancelled(String s) {
-            super.onCancelled( s );
-        }
+    class Task extends AsyncTask<String,Void,String>{
 
         @Override
         protected String doInBackground(String... strings) {
 
-
             new Thread( new Runnable() {
                 @Override
                 public void run() {
-
-                    final String nombretarea = resuldato.getSelectedItem().toString();
-                    String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/Sobrante.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+nombretarea.toString()).body();
-
                     try {
+                        final String nombretarea = resuldato.getSelectedItem().toString();
+                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/Sobrante.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+nombretarea.toString()).body();
+
                         JSONArray RESTARCANTIDAD = new JSONArray(response);
-                        Snackbar snackbar = Snackbar.make(production,"CANTIDAD EN O.P : "+RESTARCANTIDAD.getString( 0 ),Snackbar.LENGTH_INDEFINITE);
-                        snackbar.show();
+                        String s = RESTARCANTIDAD.getString( 0 );
+                        onPreExecute(s);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-
                 }
             } ).start();
 
-
             return strings[0];
         }
-    }
 
+
+        protected void onPreExecute(String s) {
+            super.onPreExecute();
+            Snackbar snackbar = Snackbar.make(production,"CANTIDAD EN O.P : "+s,Snackbar.LENGTH_INDEFINITE);
+            snackbar.show();
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate( values );
+
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute( s );
+
+        }
+    }
     public void cantidad(){
-            new Task().execute(resuldato.getSelectedItem().toString());
+        new Task().execute( resuldato.getSelectedItem().toString() );
+
+
+
     }
 
     public void salida (View v) {
