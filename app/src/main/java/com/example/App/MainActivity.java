@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             guardar();
-                Intent e = new Intent(getApplicationContext(), LoginActivity.class);
+                Intent e = new Intent(getApplicationContext(), OperadorActivity.class);
                 startActivity(e);
         }
 

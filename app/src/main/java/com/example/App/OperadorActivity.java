@@ -8,22 +8,22 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Process;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.ThemedSpinnerAdapter;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,13 +41,12 @@ import java.util.Date;
 import java.util.Locale;
 
 import cz.msebera.android.httpclient.Header;
-import com.example.App.HttpRequest;
 
 public class OperadorActivity extends AppCompatActivity {
 
 
     private EditText id, cantidad, paro, fallas, items;
-    private String falla, error;
+    private String falla, error,VaribleTOTAL;
     private TextView motivo, MOSTRAR, texto, autorizadoxop, resultados;
     private Spinner resuldato, resuldato2, resuldato4, resuldato3;
 
@@ -67,9 +66,9 @@ public class OperadorActivity extends AppCompatActivity {
     SimpleDateFormat hourFormat;
     SimpleDateFormat dateFormat;
     RelativeLayout production;
+
     private AsyncHttpClient cliente, cliente1, cliente2, cliente3, cliente4, cliente5;
     public Thread hilo, eliminaOK, registrar, operador, cantidadhilo;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
@@ -122,20 +121,28 @@ public class OperadorActivity extends AppCompatActivity {
 
         items.addTextChangedListener( new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            public void beforeTextChanged(CharSequence limpio, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence escribio, int start, int before, int count) {
+                if(items.getText().toString()!= null){
+                    FiltrarOps();
+                }
 
             }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                FiltrarOps();
-                resuldato.setAdapter( null );
-
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
+            public void afterTextChanged(Editable editable) {
+                if(editable.toString().length() <1 ){
+                    items.setError( "EL CAMPO NO DEBE ESTAR VACIO !!" );
+                    llenarSpinner();
+                }
+                    /*
+                    FiltrarOps();
+                    resuldato.setAdapter( null );
+                    filtraritem();
+                    */
 
             }
         } );
@@ -143,8 +150,6 @@ public class OperadorActivity extends AppCompatActivity {
     }
 
     public void onBackPressed() {
-        //  Intent e = new Intent(getApplicationContext(), Modulos.class);
-        // startActivity(e);
     }
 
     @Override
@@ -226,20 +231,6 @@ public class OperadorActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected( item );
     }
-
-    public void filtroActivity(View v) {
-        if (items.getText().toString().length() == 0) {
-            items.setError( "NUMERO OP ES REQUERIDO !" );
-
-        }
-        if (items.getText().toString().length() != 0) {
-            filtraritem();
-
-        }
-
-
-    }
-
 
     public void filtraritem() {
         String url = "http://" + cambiarIP.ip + "/validar/cantidadfiltre.php?op=" + resuldato3.getSelectedItem().toString(); // SE DEBE CAMBIAR
@@ -351,6 +342,9 @@ public class OperadorActivity extends AppCompatActivity {
             ArrayAdapter<OPS> a = new ArrayAdapter<OPS>( this, android.R.layout.simple_dropdown_item_1line, dato );
             resuldato3.setAdapter( a );
 
+            if(resuldato3.getSelectedItem().toString() != null){
+                filtraritem();
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -475,9 +469,7 @@ public class OperadorActivity extends AppCompatActivity {
 
             id.setError( "ID ES REQUERIDO !" );
 
-        }
-        if (id.getText().toString().length() != 0) {
-
+        }else {
 
             operador = new Thread( new Runnable() {
                 @Override
@@ -487,9 +479,9 @@ public class OperadorActivity extends AppCompatActivity {
                         String response = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/operador.php?id=" + id.getText().toString() ).body();
 
                         JSONArray objecto = new JSONArray( response );
-
-                        if (objecto.length() != 0) {
-
+                        if (response.length()>0) {
+                            System.out.println( "EL USER NO EXISTE"+response.length() );
+                            cantidad();
                             runOnUiThread( new Runnable() {
                                 @Override
                                 public void run() {
@@ -512,31 +504,23 @@ public class OperadorActivity extends AppCompatActivity {
                             resultados.setText( objecto.getString( 0 ).toString() );
 
 
+                        }else{
+                            System.out.println( "FALLO" );
                         }
-
 
                     } catch (Exception e) {
                         // TODO: handle exception
 
                     }
                 }
-
-
             } );
             operador.start();
-            operador.isInterrupted();
 
-        } else {
-            runOnUiThread( new Runnable() {
-                @Override
-                public void run() {
-                    Toast.makeText( getApplicationContext(), "EL CODIGO DEL USUARIO NO EXISTE", Toast.LENGTH_SHORT ).show();
-                }
-            } );
+
         }
 
-
     }
+
 
     public void verificar() {
 
@@ -978,54 +962,42 @@ public class OperadorActivity extends AppCompatActivity {
         builder.create().show();
 
     }
-    class Task extends AsyncTask<String,Void,String>{
+class Task extends AsyncTask<String, Void, String> {
 
-        @Override
-        protected String doInBackground(String... strings) {
+    @Override
+    protected String doInBackground(String... strings) {
+        String nombretarea = resuldato.getSelectedItem().toString();
+        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/Sobrante.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+nombretarea.toString()).body();
 
-            new Thread( new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        final String nombretarea = resuldato.getSelectedItem().toString();
-                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/Sobrante.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+nombretarea.toString()).body();
-
-                        JSONArray RESTARCANTIDAD = new JSONArray(response);
-                        String s = RESTARCANTIDAD.getString( 0 );
-                        onPreExecute(s);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            } ).start();
-
-            return strings[0];
+        try {
+            JSONArray array = new JSONArray(response);
+            VaribleTOTAL = array.getString( 0 );
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
 
-
-        protected void onPreExecute(String s) {
-            super.onPreExecute();
-            Snackbar snackbar = Snackbar.make(production,"CANTIDAD EN O.P : "+s,Snackbar.LENGTH_INDEFINITE);
-            snackbar.show();
-        }
-
-        @Override
-        protected void onProgressUpdate(Void... values) {
-            super.onProgressUpdate( values );
-
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute( s );
-
-        }
+        return VaribleTOTAL;
     }
-    public void cantidad(){
-        new Task().execute( resuldato.getSelectedItem().toString() );
 
+    @Override
+    protected void onPostExecute(final String VaribleTOTAL) {
+        super.onPostExecute( VaribleTOTAL );
 
+       /* Toast toast = Toast.makeText( getApplicationContext(),"CANTIDAD EN O.P : "+VaribleTOTAL,100000 );
+        toast.setGravity( Gravity.BOTTOM,0,0);
+        toast.show();*/
+       runOnUiThread( new Runnable() {
+           @Override
+           public void run() {
+               Snackbar.make(findViewById(R.id.principal ),"CANTIDAD EN O.P : "+VaribleTOTAL,Snackbar.LENGTH_INDEFINITE).show();
 
+           }
+       } );
+
+    }
+}
+    public void cantidad() {
+       new Task().execute();
     }
 
     public void salida (View v) {
@@ -1353,6 +1325,5 @@ public class OperadorActivity extends AppCompatActivity {
 
 
     }
-
 }
 
