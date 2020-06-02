@@ -63,7 +63,7 @@ public class options extends AppCompatActivity {
                 androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(options.this);
                 builder.setTitle( "TUTORIALES" );
                 componentes = tutorial.findViewById( R.id.tutorial );
-                final ArrayList<HELPCOMP> comphelp= new ArrayList<HELPCOMP>();
+                final ArrayList<HELPCOMP> comphelp= new ArrayList<>();
                 comphelp.add(new HELPCOMP( "INTRODUCCION A MAINCO APP" ));
                 comphelp.add(new HELPCOMP( "COMO CREO UN USUARIO ?" ));
                 comphelp.add(new HELPCOMP( "COMO RECUPERO MI CONTRASEÑA ?" ));
@@ -73,7 +73,7 @@ public class options extends AppCompatActivity {
                 comphelp.add(new HELPCOMP( "COMO SABER SI SE CERRO LA O.P ?" ));
                 comphelp.add(new HELPCOMP( "COMO SABER SI YA TERMINE ?" ));
 
-                ArrayAdapter<HELPCOMP> adapdtador = new ArrayAdapter<HELPCOMP>( options.this,android.R.layout.simple_dropdown_item_1line,comphelp );
+                ArrayAdapter<HELPCOMP> adapdtador = new ArrayAdapter<>( options.this, android.R.layout.simple_dropdown_item_1line, comphelp );
                 componentes.setAdapter( adapdtador );
 
                 componentes.setOnItemClickListener( new AdapterView.OnItemClickListener() {
@@ -82,49 +82,49 @@ public class options extends AppCompatActivity {
 
                         HELPCOMP H =comphelp.get( position );
 
-                        if (H.getNombre() == "INTRODUCCION A MAINCO APP"){
+                        if (H.getNombre().equals( "INTRODUCCION A MAINCO APP" )){
 
                             Intent e = new Intent(getApplicationContext(), INTRODUCCION.class);
                             startActivity(e);
                         }
 
-                        else if (H.getNombre() == "COMO CREO UN USUARIO ?"){
+                        else if (H.getNombre().equals( "COMO CREO UN USUARIO ?" )){
 
                             Intent e = new Intent(getApplicationContext(), CREAR_USER.class);
                             startActivity(e);
                         }
 
-                        else if (H.getNombre() == "COMO RECUPERO MI CONTRASEÑA ?"){
+                        else if (H.getNombre().equals( "COMO RECUPERO MI CONTRASEÑA ?" )){
 
                             Intent e = new Intent(getApplicationContext(), RECUPERAR_PASSWORD.class);
                             startActivity(e);
                         }
 
-                        else if (H.getNombre() == "COMO INGRESO AL SISTEMA ?"){
+                        else if (H.getNombre().equals( "COMO INGRESO AL SISTEMA ?" )){
 
                             Intent e = new Intent(getApplicationContext(), SYSTEM.class);
                             startActivity(e);
                         }
 
-                        else if (H.getNombre() == "COMO EMPIEZO A REGISTRAR ?"){
+                        else if (H.getNombre().equals( "COMO EMPIEZO A REGISTRAR ?" )){
 
                             Intent e = new Intent(getApplicationContext(), REGISTRO_PRODUCIDO.class);
                             startActivity(e);
                         }
 
-                        else if (H.getNombre() == "COMO REGISTRO MIS PAUSAS ?"){
+                        else if (H.getNombre().equals( "COMO REGISTRO MIS PAUSAS ?" )){
 
                             Intent e = new Intent(getApplicationContext(), PAUSE_ACTIVAS.class);
                             startActivity(e);
                         }
 
-                        else if (H.getNombre() == "COMO SABER SI SE CERRO LA O.P ?"){
+                        else if (H.getNombre().equals( "COMO SABER SI SE CERRO LA O.P ?" )){
 
                             Intent e = new Intent(getApplicationContext(), CLOSE_OP.class);
                             startActivity(e);
                         }
 
-                        else if (H.getNombre() == "COMO SABER SI YA TERMINE ?"){
+                        else if (H.getNombre().equals( "COMO SABER SI YA TERMINE ?" )){
 
                             Intent e = new Intent(getApplicationContext(), TERMINADO.class);
                             startActivity(e);

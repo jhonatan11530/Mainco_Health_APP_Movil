@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         new Thread( new Runnable() {
             @Override
             public void run() {
-                if(user == "100"){
+                if(user.equals( "100" )){
                     Intent e = new Intent(getApplicationContext(), LoginActivity.class);
                     startActivity(e);
                 }

@@ -59,10 +59,10 @@ public class OperadorActivity extends AppCompatActivity {
 
     private int minuto, i, hora, cantidadpro, volumencan, total, volumen;
 
-    private final ArrayList<cantidadfallas> dato4 = new ArrayList<cantidadfallas>();
-    private ArrayList<cantidades> dato3 = new ArrayList<cantidades>();
-    private ArrayList<motivoparo> dato2 = new ArrayList<motivoparo>();
-    private ArrayList<OPS> dato = new ArrayList<OPS>();
+    private final ArrayList<cantidadfallas> dato4 = new ArrayList<>();
+    private ArrayList<cantidades> dato3 = new ArrayList<>();
+    private ArrayList<motivoparo> dato2 = new ArrayList<>();
+    private ArrayList<OPS> dato = new ArrayList<>();
 
     EditText edit, digito;
     View tiempo1, adelanto;
@@ -256,7 +256,7 @@ public class OperadorActivity extends AppCompatActivity {
     }
 
     public void itemfiltre(String itemfiltre) {
-        ArrayList<cantidades> dato3 = new ArrayList<cantidades>();
+        ArrayList<cantidades> dato3 = new ArrayList<>();
         try {
             JSONArray objecto = new JSONArray( itemfiltre );
             for (int i = 0; i < objecto.length(); i++) {
@@ -264,7 +264,7 @@ public class OperadorActivity extends AppCompatActivity {
                 a.setTarea( objecto.getJSONObject( i ).getString( "tarea" ) );
                 dato3.add( a );
             }
-            ArrayAdapter<cantidades> a = new ArrayAdapter<cantidades>( this, android.R.layout.simple_dropdown_item_1line, dato3 );
+            ArrayAdapter<cantidades> a = new ArrayAdapter<>( this, android.R.layout.simple_dropdown_item_1line, dato3 );
             resuldato.setAdapter( a );
 
 
@@ -295,7 +295,7 @@ public class OperadorActivity extends AppCompatActivity {
     }
 
     public void cargarops(String cargarops) {
-        ArrayList<OPS> dato = new ArrayList<OPS>();
+        ArrayList<OPS> dato = new ArrayList<>();
         try {
             JSONArray objecto = new JSONArray( cargarops );
             for (int i = 0; i < objecto.length(); i++) {
@@ -304,7 +304,7 @@ public class OperadorActivity extends AppCompatActivity {
                 a.setOps( objecto.getJSONObject( i ).getString( "cod_producto" ) );
                 dato.add( a );
             }
-            ArrayAdapter<OPS> a = new ArrayAdapter<OPS>( this, android.R.layout.simple_dropdown_item_1line, dato );
+            ArrayAdapter<OPS> a = new ArrayAdapter<>( this, android.R.layout.simple_dropdown_item_1line, dato );
             resuldato3.setAdapter( a );
 
 
@@ -335,7 +335,7 @@ public class OperadorActivity extends AppCompatActivity {
     }
 
     public void filtroOPS(String filtroOPS) {
-        ArrayList<OPS> dato = new ArrayList<OPS>();
+        ArrayList<OPS> dato = new ArrayList<>();
         try {
             JSONArray objecto = new JSONArray( filtroOPS );
             for (int i = 0; i < objecto.length(); i++) {
@@ -344,12 +344,11 @@ public class OperadorActivity extends AppCompatActivity {
                 a.setOps( objecto.getJSONObject( i ).getString( "cod_producto" ) );
                 dato.add( a );
             }
-            ArrayAdapter<OPS> a = new ArrayAdapter<OPS>( this, android.R.layout.simple_dropdown_item_1line, dato );
+            ArrayAdapter<OPS> a = new ArrayAdapter<>( this, android.R.layout.simple_dropdown_item_1line, dato );
             resuldato3.setAdapter( a );
 
-            if(resuldato3.getSelectedItem().toString() != null){
-                filtraritem();
-            }
+            resuldato3.getSelectedItem().toString();
+            filtraritem();
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -378,7 +377,7 @@ public class OperadorActivity extends AppCompatActivity {
     }
 
     public void cargarSpinner(String cargarSpinner) {
-        ArrayList<cantidades> dato3 = new ArrayList<cantidades>();
+        ArrayList<cantidades> dato3 = new ArrayList<>();
         try {
             JSONArray objecto = new JSONArray( cargarSpinner );
             for (int i = 0; i < objecto.length(); i++) {
@@ -386,7 +385,7 @@ public class OperadorActivity extends AppCompatActivity {
                 a.setTarea( objecto.getJSONObject( i ).getString( "tarea" ) );
                 dato3.add( a );
             }
-            ArrayAdapter<cantidades> a = new ArrayAdapter<cantidades>( this, android.R.layout.simple_dropdown_item_1line, dato3 );
+            ArrayAdapter<cantidades> a = new ArrayAdapter<>( this, android.R.layout.simple_dropdown_item_1line, dato3 );
             resuldato.setAdapter( a );
 
 
@@ -415,7 +414,7 @@ public class OperadorActivity extends AppCompatActivity {
     }
 
     public void filtrardescanso(String filtrardescanso) {
-        ArrayList<motivoparo> dato2 = new ArrayList<motivoparo>();
+        ArrayList<motivoparo> dato2 = new ArrayList<>();
         try {
             JSONArray objecto = new JSONArray( filtrardescanso );
             for (int i = 0; i < objecto.length(); i++) {
@@ -423,7 +422,7 @@ public class OperadorActivity extends AppCompatActivity {
                 b.setParo( objecto.getJSONObject( i ).getString( "paro" ) );
                 dato2.add( b );
             }
-            ArrayAdapter<motivoparo> a = new ArrayAdapter<motivoparo>( this, android.R.layout.simple_dropdown_item_1line, dato2 );
+            ArrayAdapter<motivoparo> a = new ArrayAdapter<>( this, android.R.layout.simple_dropdown_item_1line, dato2 );
             resuldato2.setAdapter( a );
 
         } catch (Exception e) {
@@ -450,7 +449,7 @@ public class OperadorActivity extends AppCompatActivity {
     }
 
     public void cargarmotivo(String cargarmotivo) {
-        ArrayList<cantidadfallas> dato4 = new ArrayList<cantidadfallas>();
+        ArrayList<cantidadfallas> dato4 = new ArrayList<>();
         try {
             JSONArray objecto = new JSONArray( cargarmotivo );
             for (int i = 0; i < objecto.length(); i++) {
@@ -458,7 +457,7 @@ public class OperadorActivity extends AppCompatActivity {
                 c.setFallas( objecto.getJSONObject( i ).getString( "fallas" ) );
                 dato4.add( c );
             }
-            ArrayAdapter<cantidadfallas> a = new ArrayAdapter<cantidadfallas>( this, android.R.layout.simple_dropdown_item_1line, dato4 );
+            ArrayAdapter<cantidadfallas> a = new ArrayAdapter<>( this, android.R.layout.simple_dropdown_item_1line, dato4 );
             resuldato4.setAdapter( a );
 
         } catch (Exception e) {
@@ -550,7 +549,7 @@ public class OperadorActivity extends AppCompatActivity {
                         } );
 
 
-                    } else if (vacio == 0) {
+                    } else {
 
                         runOnUiThread( new Runnable() {
                             @Override
@@ -601,7 +600,7 @@ public class OperadorActivity extends AppCompatActivity {
             }
         } );
         eliminaOK.start();
-        Thread.interrupted();
+        eliminaOK.interrupted();
 
     }
 
@@ -960,7 +959,7 @@ public class OperadorActivity extends AppCompatActivity {
                 } );
                 registrar.start();
                 registrar.setPriority( Thread.MIN_PRIORITY );
-                Thread.interrupted();
+                registrar.interrupted();
             }
         } );
 
@@ -1030,7 +1029,7 @@ class Task extends AsyncTask<String, Void, String> {
         final AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
 
 
-        ArrayAdapter <cantidadfallas> a = new ArrayAdapter<cantidadfallas> (this, android.R.layout.simple_dropdown_item_1line, dato4 );
+        ArrayAdapter <cantidadfallas> a = new ArrayAdapter<>( this, android.R.layout.simple_dropdown_item_1line, dato4 );
         resuldato4.setAdapter(a);
 
         EditText edit = new EditText(this);
@@ -1106,7 +1105,7 @@ class Task extends AsyncTask<String, Void, String> {
                                 });
 
 
-                            }else if (end < 0){
+                            }else {
 
                                 runOnUiThread(new Runnable() {
                                     @Override
@@ -1180,7 +1179,7 @@ class Task extends AsyncTask<String, Void, String> {
 
         motivofalla();
 
-        ArrayAdapter <cantidadfallas> a = new ArrayAdapter<cantidadfallas> (this, android.R.layout.simple_dropdown_item_1line, dato4 );
+        ArrayAdapter <cantidadfallas> a = new ArrayAdapter<>( this, android.R.layout.simple_dropdown_item_1line, dato4 );
         resuldato4.setAdapter(a);
 
         btnconfir.setOnClickListener( new View.OnClickListener() {
@@ -1260,7 +1259,7 @@ class Task extends AsyncTask<String, Void, String> {
                                         }
                                     });
                                 }
-                                else if (totalade < 0){
+                                else {
 
                                     runOnUiThread(new Runnable() {
                                         @Override

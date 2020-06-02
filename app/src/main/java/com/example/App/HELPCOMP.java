@@ -1,7 +1,8 @@
 package com.example.App;
 
+@SuppressWarnings("ALL")
 public class HELPCOMP {
-    private String nombres;
+    private final String nombres;
 
     public HELPCOMP(String nombres){
         this.nombres = nombres;

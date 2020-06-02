@@ -1,5 +1,6 @@
 package com.example.App;
 
+@SuppressWarnings("ALL")
 public class cantidades {
     private String tarea;
 

@@ -1,5 +1,6 @@
 package com.example.App;
 
+@SuppressWarnings("ALL")
 public class OPS {
     private String cod_producto;
 
