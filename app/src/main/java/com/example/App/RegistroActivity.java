@@ -104,7 +104,7 @@ public class RegistroActivity extends AppCompatActivity {
 
                         String ROL = "operador";
 
-                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/registro.php?nombre="+nombre.getText().toString()+"&apellido="+apellido.getText().toString()+"&cedula="+cedula.getText().toString()+"&pass="+pass.getText().toString()+"&rol="+ROL.toString()).body();
+                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/registro.php?nombre="+nombre.getText().toString()+"&apellido="+apellido.getText().toString()+"&cedula="+cedula.getText().toString()+"&pass="+pass.getText().toString()+"&rol="+ ROL ).body();
 
 
 

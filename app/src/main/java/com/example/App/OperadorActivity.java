@@ -501,7 +501,7 @@ public class OperadorActivity extends AppCompatActivity {
                             } );
 
 
-                            resultados.setText( objecto.getString( 0 ).toString() );
+                            resultados.setText( objecto.getString( 0 ) );
 
 
                         }else{
@@ -528,7 +528,7 @@ public class OperadorActivity extends AppCompatActivity {
         eliminaOK = new Thread( new Runnable() {
             @Override
             public void run() {
-                String cero = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/eliminarcanok.php?id=" + nombretarea.toString() ).body();
+                String cero = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/eliminarcanok.php?id=" + nombretarea ).body();
 
                 try {
                     JSONArray nada = new JSONArray( cero );
@@ -596,7 +596,7 @@ public class OperadorActivity extends AppCompatActivity {
             }
         } );
         eliminaOK.start();
-        eliminaOK.interrupted();
+        Thread.interrupted();
 
     }
 
@@ -754,7 +754,7 @@ public class OperadorActivity extends AppCompatActivity {
                     @Override
                     public void run() {
 
-                        String response = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/RegistrarMotivo.php?op=" + items.getText().toString() + "&id=" + id.getText().toString() + "&paro=" + paro.getText().toString() + "&motivo=" + prueba.toString() + "&fecha=" + fechas + "&hora=" + horas.toString() ).body();
+                        String response = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/RegistrarMotivo.php?op=" + items.getText().toString() + "&id=" + id.getText().toString() + "&paro=" + paro.getText().toString() + "&motivo=" + prueba + "&fecha=" + fechas + "&hora=" + horas ).body();
 
                     }
                 } ).start();
@@ -900,7 +900,7 @@ public class OperadorActivity extends AppCompatActivity {
                         cantidad();
                         try {
                             final String nombretarea = resuldato.getSelectedItem().toString();
-                            String response = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/Sobrante.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + nombretarea.toString() ).body();
+                            String response = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/Sobrante.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + nombretarea ).body();
                             JSONArray validar = new JSONArray( response );
                             int validator = Integer.parseInt( validar.getString( 0 ) );
                             System.out.println( "EL VALOR " + validator );
@@ -912,7 +912,7 @@ public class OperadorActivity extends AppCompatActivity {
 
                                 JSONArray RESTARCANTIDAD = new JSONArray( responses );
 
-                                HttpRequest.get( "http://" + cambiarIP.ip + "/validar/cantidadmodifi.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + tarea.toString() + "&totales=" + RESTARCANTIDAD.getString( 0 ) ).body();
+                                HttpRequest.get( "http://" + cambiarIP.ip + "/validar/cantidadmodifi.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + tarea + "&totales=" + RESTARCANTIDAD.getString( 0 ) ).body();
                                 cantidad();
                             }
                             if (validator > 0) {
@@ -941,7 +941,7 @@ public class OperadorActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-                        HttpRequest.get( "http://" + cambiarIP.ip + "/validar/actualizaEntrada.php?id=" + id.getText().toString() + "&Finicial=" + fechas + "&Hinicial=" + hora.toString() + "&op=" + items.getText().toString() ).body();
+                        HttpRequest.get( "http://" + cambiarIP.ip + "/validar/actualizaEntrada.php?id=" + id.getText().toString() + "&Finicial=" + fechas + "&Hinicial=" + hora + "&op=" + items.getText().toString() ).body();
 
                         runOnUiThread( new Runnable() {
                             @Override
@@ -955,7 +955,7 @@ public class OperadorActivity extends AppCompatActivity {
                 } );
                 registrar.start();
                 registrar.setPriority( Thread.MIN_PRIORITY );
-                registrar.interrupted();
+                Thread.interrupted();
             }
         } );
 
@@ -967,7 +967,7 @@ class Task extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... strings) {
         String nombretarea = resuldato.getSelectedItem().toString();
-        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/Sobrante.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+nombretarea.toString()).body();
+        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/Sobrante.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+ nombretarea ).body();
 
         try {
             JSONArray array = new JSONArray(response);
@@ -1063,13 +1063,13 @@ class Task extends AsyncTask<String, Void, String> {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/Sobrante.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+nombretarea.toString()).body();
+                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/Sobrante.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+ nombretarea ).body();
 
                         try {
 
                             JSONArray RESTARCANTIDAD = new JSONArray(response);
 
-                            total = Integer.parseInt(falla.toString());
+                            total = Integer.parseInt( falla );
                             volumencan = Integer.parseInt(cantidad.getText().toString());
                              cantidadpro = Integer.parseInt(RESTARCANTIDAD.getString(0));
                                 int tool = volumencan + total;
@@ -1087,7 +1087,7 @@ class Task extends AsyncTask<String, Void, String> {
 
                                  HttpRequest.get("http://"+cambiarIP.ip+"/validar/canbiarAucOP.php?op="+items.getText().toString()+"&item="+resuldato3.getSelectedItem().toString()+"&cantidad="+valorCantOP).body();
 
-                                HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+nombretarea.toString()+"&totales="+end).body();
+                                HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+ nombretarea +"&totales="+end).body();
 
                                 HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&cantidad="+volumen+"&Ffinal="+fechas+"&Hfinal="+horas+"&motivo="+error+"&conforme="+falla+"&tarea="+nombretarea+"&op="+items.getText().toString()).body();
 
@@ -1173,8 +1173,8 @@ class Task extends AsyncTask<String, Void, String> {
          btnconfir = (Button)adelanto.findViewById(R.id.CONFIRMARADE);
         digito = (EditText)adelanto.findViewById(R.id.digicantidad);
 
-        digito.setVisibility(adelanto.VISIBLE);
-        btnconfir.setVisibility(adelanto.VISIBLE);
+        digito.setVisibility( View.VISIBLE );
+        btnconfir.setVisibility( View.VISIBLE );
 
         motivofalla();
 
@@ -1222,13 +1222,13 @@ class Task extends AsyncTask<String, Void, String> {
                         error = resuldato4.getSelectedItem().toString();
 
 
-                        HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizarcantidad.php?numero="+Nop.toString()+"&id="+id.getText().toString()+"&canpen="+volumencan+"&malo="+cantmalas+"&motivo="+error+"&Ffinal="+fechas+"&Hfinal="+horas+"&tarea="+tarea.toString()).body();
+                        HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizarcantidad.php?numero="+ Nop +"&id="+id.getText().toString()+"&canpen="+volumencan+"&malo="+cantmalas+"&motivo="+error+"&Ffinal="+fechas+"&Hfinal="+horas+"&tarea="+ tarea ).body();
 
                         final String nombretarea = resuldato.getSelectedItem().toString();
                         try {
                             Thread.sleep(1000);
 
-                            String responses = HttpRequest.get("http://"+cambiarIP.ip+"/validar/Sobrante.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+nombretarea.toString()).body();
+                            String responses = HttpRequest.get("http://"+cambiarIP.ip+"/validar/Sobrante.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+ nombretarea ).body();
 
 
                             try {
@@ -1243,7 +1243,7 @@ class Task extends AsyncTask<String, Void, String> {
                                 if(totalade >= 0){
                                     HttpRequest.get("http://"+cambiarIP.ip+"/validar/canbiarAucOP.php?op="+items.getText().toString()+"&item="+resuldato3.getSelectedItem().toString()+"&cantidad="+valorCantOP).body();
 
-                                  HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+nombretarea.toString()+"&totales="+totalade).body();
+                                  HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+ nombretarea +"&totales="+totalade).body();
 
 
                                     runOnUiThread(new Runnable() {
