@@ -21,14 +21,12 @@ public class RegistroActivity extends AppCompatActivity {
     Button registro;
 
 
-    private AsyncHttpClient client;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
 
-        client = new AsyncHttpClient();
+        AsyncHttpClient client = new AsyncHttpClient();
 
 
         nombre = (EditText)findViewById(R.id.nombre);
@@ -58,15 +56,9 @@ public class RegistroActivity extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        switch (item.getItemId()) {
-
-            case R.id.salir:
-                Intent e = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(e);
-                break;
-
-            default:
-                break;
+        if (item.getItemId() == R.id.salir) {
+            Intent e = new Intent( getApplicationContext(), LoginActivity.class );
+            startActivity( e );
         }
         return super.onOptionsItemSelected(item);
     }
@@ -100,7 +92,7 @@ public class RegistroActivity extends AppCompatActivity {
                 @Override
                 public void run() {
 
-                    if(resultado.isChecked()==true){
+                    if(resultado.isChecked()){
 
                         String ROL = "operador";
 

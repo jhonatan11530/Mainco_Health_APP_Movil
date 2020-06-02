@@ -70,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
 
         WifiManager wifiManager = (WifiManager)getApplicationContext().getSystemService(Context.WIFI_SERVICE);
 
-        if ((wifiManager.isWifiEnabled() == false)) {
+        if ((!wifiManager.isWifiEnabled())) {
             Toast.makeText( LoginActivity.this, "Conectando a Mainco.", Toast.LENGTH_LONG ).show();
             wifiManager.setWifiEnabled( true );
 
@@ -160,7 +160,7 @@ public class LoginActivity extends AppCompatActivity {
 
                             Intent e = new Intent(getApplicationContext(), OperadorActivity.class);
                             startActivity(e);
-                            if(GUARDARUTO.isChecked()==true){
+                            if(GUARDARUTO.isChecked()){
 
                                 runOnUiThread( new Runnable() {
                                     @Override

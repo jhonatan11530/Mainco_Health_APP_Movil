@@ -13,7 +13,6 @@ import com.example.App.R;
 
 public class CLOSE_OP extends AppCompatActivity {
 
-    private VideoView mVideoView;
     Uri video=Uri.parse("");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +23,7 @@ public class CLOSE_OP extends AppCompatActivity {
         this.getWindow().setFlags( WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
-        mVideoView =(VideoView)findViewById(R.id.mp4);
+        VideoView mVideoView = (VideoView) findViewById( R.id.mp4 );
         mVideoView.setVideoURI(video);
 
 

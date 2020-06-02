@@ -50,7 +50,15 @@ public class OperadorActivity extends AppCompatActivity {
     private TextView motivo, MOSTRAR, texto, autorizadoxop, resultados;
     private Spinner resuldato, resuldato2, resuldato4, resuldato3;
 
-    private Button go, stop, btnconfir, desbloquear, positivo, neutrar, registroTIME, salidaTIME, validarinfo, cantidadund;
+    private Button go;
+    private Button stop;
+    private Button desbloquear;
+    private Button positivo;
+    private Button neutrar;
+    private Button registroTIME;
+    private Button salidaTIME;
+    private Button validarinfo;
+    private Button cantidadund;
 
     private int minuto, i, hora, cantidadpro, volumencan, total, volumen;
 
@@ -1170,7 +1178,7 @@ class Task extends AsyncTask<String, Void, String> {
         autorizadoxop = (TextView)adelanto.findViewById(R.id.Cantidadops);
         resuldato4 =(Spinner)adelanto.findViewById(R.id.spinner2);
         fallas = (EditText)adelanto.findViewById(R.id.fallas);
-         btnconfir = (Button)adelanto.findViewById(R.id.CONFIRMARADE);
+        Button btnconfir = (Button) adelanto.findViewById( R.id.CONFIRMARADE );
         digito = (EditText)adelanto.findViewById(R.id.digicantidad);
 
         digito.setVisibility( View.VISIBLE );
@@ -1181,7 +1189,7 @@ class Task extends AsyncTask<String, Void, String> {
         ArrayAdapter <cantidadfallas> a = new ArrayAdapter<cantidadfallas> (this, android.R.layout.simple_dropdown_item_1line, dato4 );
         resuldato4.setAdapter(a);
 
-        btnconfir.setOnClickListener(new View.OnClickListener() {
+        btnconfir.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(digito.getText().toString().length() == 0){

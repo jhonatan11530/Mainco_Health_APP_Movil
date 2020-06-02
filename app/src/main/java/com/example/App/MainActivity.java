@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     private int progressStatus = 0;
     private ProgressBar pb;
-    private int splash = 100;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,7 +85,8 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("ARCHIVO_LOGIN", Context.MODE_PRIVATE );
         SharedPreferences shared = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor usu = shared.edit();
-        usu.putString("Splash", String.valueOf(splash));
+        int splash = 100;
+        usu.putString("Splash", String.valueOf( splash ));
         usu.commit();
 
     }
