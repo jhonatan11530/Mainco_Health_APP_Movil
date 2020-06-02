@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(R.layout.activity_main);
-        pb = (ProgressBar) findViewById(R.id.progressBar);
+        pb = findViewById(R.id.progressBar);
 
         splash();
         new MyTask().execute();

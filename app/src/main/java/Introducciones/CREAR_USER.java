@@ -23,7 +23,7 @@ public class CREAR_USER extends AppCompatActivity {
         this.getWindow().setFlags( WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
-        VideoView mVideoView = (VideoView) findViewById( R.id.mp4 );
+        VideoView mVideoView = findViewById( R.id.mp4 );
         mVideoView.setVideoURI(video);
 
 

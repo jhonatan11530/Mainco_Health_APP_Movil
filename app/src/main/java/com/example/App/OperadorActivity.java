@@ -91,28 +91,28 @@ public class OperadorActivity extends AppCompatActivity {
         llenarSpinner();
         llenarOps();
 
-        production = (RelativeLayout) findViewById( R.id.principal );
+        production = findViewById( R.id.principal );
 
 
-        resuldato = (Spinner) findViewById( R.id.spinner1 );
+        resuldato = findViewById( R.id.spinner1 );
 
-        resuldato2 = (Spinner) findViewById( R.id.spinner2 );
+        resuldato2 = findViewById( R.id.spinner2 );
 
-        resuldato3 = (Spinner) findViewById( R.id.spinner );
+        resuldato3 = findViewById( R.id.spinner );
 
-        items = (EditText) findViewById( R.id.item );
+        items = findViewById( R.id.item );
 
-        cantidadund = (Button) findViewById( R.id.aplazar );
+        cantidadund = findViewById( R.id.aplazar );
 
-        desbloquear = (Button) findViewById( R.id.tiempo );
+        desbloquear = findViewById( R.id.tiempo );
 
-        registroTIME = (Button) findViewById( R.id.insertar );
+        registroTIME = findViewById( R.id.insertar );
 
-        salidaTIME = (Button) findViewById( R.id.salida );
+        salidaTIME = findViewById( R.id.salida );
 
-        id = (EditText) findViewById( R.id.operador );
+        id = findViewById( R.id.operador );
 
-        resultados = (TextView) findViewById( R.id.listar_operador );
+        resultados = findViewById( R.id.listar_operador );
 
 
         desbloquear.setEnabled( false );
@@ -602,7 +602,7 @@ public class OperadorActivity extends AppCompatActivity {
             }
         } );
         eliminaOK.start();
-        eliminaOK.interrupted();
+        Thread.interrupted();
 
     }
 
@@ -612,18 +612,18 @@ public class OperadorActivity extends AppCompatActivity {
         tiempo1 = getLayoutInflater().inflate( R.layout.dialog_spinner, null );
 
         llenardescanso();
-        id = (EditText) findViewById( R.id.operador );
+        id = findViewById( R.id.operador );
 
-        paro = (EditText) tiempo1.findViewById( R.id.paro );
-        MOSTRAR = (TextView) tiempo1.findViewById( R.id.MOSTRAR );
-        texto = (TextView) tiempo1.findViewById( R.id.textos );
-        stop = (Button) tiempo1.findViewById( R.id.stop );
-        go = (Button) tiempo1.findViewById( R.id.go );
-        validarinfo = (Button) tiempo1.findViewById( R.id.validarinfo );
+        paro = tiempo1.findViewById( R.id.paro );
+        MOSTRAR = tiempo1.findViewById( R.id.MOSTRAR );
+        texto = tiempo1.findViewById( R.id.textos );
+        stop = tiempo1.findViewById( R.id.stop );
+        go = tiempo1.findViewById( R.id.go );
+        validarinfo = tiempo1.findViewById( R.id.validarinfo );
 
 
-        motivo = (TextView) tiempo1.findViewById( R.id.MOTIVO );
-        resuldato2 = (Spinner) tiempo1.findViewById( R.id.spinner2 );
+        motivo = tiempo1.findViewById( R.id.MOTIVO );
+        resuldato2 = tiempo1.findViewById( R.id.spinner2 );
 
 
         //botones
@@ -869,7 +869,7 @@ public class OperadorActivity extends AppCompatActivity {
 
     public void registrar(View v) {
 
-        id = (EditText) findViewById( R.id.operador );
+        id = findViewById( R.id.operador );
 
 
         // imprime fecha
@@ -961,7 +961,7 @@ public class OperadorActivity extends AppCompatActivity {
                 } );
                 registrar.start();
                 registrar.setPriority( Thread.MIN_PRIORITY );
-                registrar.interrupted();
+                Thread.interrupted();
             }
         } );
 
@@ -1008,11 +1008,11 @@ class Task extends AsyncTask<String, Void, String> {
         motivofalla();
 
 
-        id=(EditText)findViewById(R.id.operador);
+        id= findViewById(R.id.operador);
         View view = getLayoutInflater().inflate(R.layout.cantidad_produccidas,null);
-        resuldato4 =(Spinner)view.findViewById(R.id.spinner2);
-        fallas = (EditText)view.findViewById(R.id.fallas);
-        cantidad = (EditText)view.findViewById(R.id.digicantidad);
+        resuldato4 = view.findViewById(R.id.spinner2);
+        fallas = view.findViewById(R.id.fallas);
+        cantidad = view.findViewById(R.id.digicantidad);
 
 
          final String tarea = resuldato.getSelectedItem().toString(); //**
@@ -1170,11 +1170,11 @@ class Task extends AsyncTask<String, Void, String> {
 
         AlertDialog.Builder aplazarproduccion = new AlertDialog.Builder(OperadorActivity.this);
        adelanto = getLayoutInflater().inflate(R.layout.aplazar_produccion,null);
-        autorizadoxop = (TextView)adelanto.findViewById(R.id.Cantidadops);
-        resuldato4 =(Spinner)adelanto.findViewById(R.id.spinner2);
-        fallas = (EditText)adelanto.findViewById(R.id.fallas);
-        Button btnconfir = (Button) adelanto.findViewById( R.id.CONFIRMARADE );
-        digito = (EditText)adelanto.findViewById(R.id.digicantidad);
+        autorizadoxop = adelanto.findViewById(R.id.Cantidadops);
+        resuldato4 = adelanto.findViewById(R.id.spinner2);
+        fallas = adelanto.findViewById(R.id.fallas);
+        Button btnconfir = adelanto.findViewById( R.id.CONFIRMARADE );
+        digito = adelanto.findViewById(R.id.digicantidad);
 
         digito.setVisibility( View.VISIBLE );
         btnconfir.setVisibility( View.VISIBLE );

@@ -29,14 +29,14 @@ public class RegistroActivity extends AppCompatActivity {
         AsyncHttpClient client = new AsyncHttpClient();
 
 
-        nombre = (EditText)findViewById(R.id.nombre);
-        apellido = (EditText)findViewById(R.id.apellido);
-        cedula = (EditText)findViewById(R.id.cedula);
-        pass = (EditText)findViewById(R.id.pass);
+        nombre = findViewById(R.id.nombre);
+        apellido = findViewById(R.id.apellido);
+        cedula = findViewById(R.id.cedula);
+        pass = findViewById(R.id.pass);
 
-        resultado = (CheckBox)findViewById(R.id.rol);
+        resultado = findViewById(R.id.rol);
 
-        registro = (Button)findViewById(R.id.registro);
+        registro = findViewById(R.id.registro);
 
 
 
@@ -68,11 +68,11 @@ public class RegistroActivity extends AppCompatActivity {
 
     public void registrar (View v){
 
-        nombre = (EditText)findViewById(R.id.nombre);
-        apellido = (EditText)findViewById(R.id.apellido);
-        cedula = (EditText)findViewById(R.id.cedula);
-        pass = (EditText)findViewById(R.id.pass);
-        resultado = (CheckBox)findViewById(R.id.rol);
+        nombre = findViewById(R.id.nombre);
+        apellido = findViewById(R.id.apellido);
+        cedula = findViewById(R.id.cedula);
+        pass = findViewById(R.id.pass);
+        resultado = findViewById(R.id.rol);
 
         if ( nombre.getText().toString().length() == 0 ){
             nombre.setError( "NOMBRE ES REQUERIDO !" );

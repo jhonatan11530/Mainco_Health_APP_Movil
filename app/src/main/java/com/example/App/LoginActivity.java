@@ -53,14 +53,14 @@ public class LoginActivity extends AppCompatActivity {
 
         mostrarguardado();
 
-         GUARDARUTO = (CheckBox) findViewById(R.id.OK);
+         GUARDARUTO = findViewById(R.id.OK);
 
-      login = (EditText)findViewById(R.id.estado);
-         pass = (EditText)findViewById(R.id.ID);
+      login = findViewById(R.id.estado);
+         pass = findViewById(R.id.ID);
 
-        registre = (TextView)findViewById(R.id.registre);
+        registre = findViewById(R.id.registre);
 
-        validar = (Button)findViewById(R.id.login);
+        validar = findViewById(R.id.login);
 
 
         conf.SSID = "\"" + networkSSID + "\"";

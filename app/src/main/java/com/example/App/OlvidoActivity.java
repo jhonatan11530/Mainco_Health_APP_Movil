@@ -28,8 +28,8 @@ public class OlvidoActivity extends AppCompatActivity {
 
 
 
-        id = (EditText)findViewById(R.id.CDUNICO);
-        cedula = (EditText)findViewById(R.id.cc);
+        id = findViewById(R.id.CDUNICO);
+        cedula = findViewById(R.id.cc);
 
 
     }
@@ -61,8 +61,8 @@ public class OlvidoActivity extends AppCompatActivity {
     public void comprobar (View v){
 
 
-        id = (EditText)findViewById(R.id.CDUNICO);
-        cedula = (EditText)findViewById(R.id.cc);
+        id = findViewById(R.id.CDUNICO);
+        cedula = findViewById(R.id.cc);
         if( id.getText().toString().length() == 0 ){
             id.setError( "ID ES REQUERIDO !" );
         }
