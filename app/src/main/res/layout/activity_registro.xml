@@ -84,8 +84,6 @@
                 android:hint="CONTRASEÑA"
                 android:inputType="textPassword" />
 
-           s
-
         </LinearLayout>
 
         <LinearLayout
