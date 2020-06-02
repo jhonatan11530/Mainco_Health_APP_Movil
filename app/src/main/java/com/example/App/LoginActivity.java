@@ -31,6 +31,7 @@ import java.util.List;
 
 
 
+@SuppressWarnings("ALL")
 public class LoginActivity extends AppCompatActivity {
 
     EditText login, pass;

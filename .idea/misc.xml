@@ -1,7 +1,306 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="EntryPointsManager">
+    <entry_points version="2.0">
+      <entry_point TYPE="field" FQNAME="com.example.App.LoginActivity registre" />
+      <entry_point TYPE="field" FQNAME="com.example.App.LoginActivity validar" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest.Base64 _STANDARD_ALPHABET" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest BOUNDARY" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest bufferSize" />
+      <entry_point TYPE="field" FQNAME="com.example.App.OperadorActivity cantidadhilo" />
+      <entry_point TYPE="field" FQNAME="com.example.App.roles cargo" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest CHARSET_UTF8" />
+      <entry_point TYPE="method" FQNAME="com.example.App.HttpRequest$1 void checkClientTrusted(java.security.cert.X509Certificate[] chain, java.lang.String authType)" />
+      <entry_point TYPE="method" FQNAME="com.example.App.HttpRequest$1 void checkServerTrusted(java.security.cert.X509Certificate[] chain, java.lang.String authType)" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest.CloseOperation closeable" />
+      <entry_point TYPE="field" FQNAME="com.example.App.OPS cod_producto" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest connection" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest CONNECTION_FACTORY" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest CONTENT_TYPE_FORM" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest CONTENT_TYPE_JSON" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest CONTENT_TYPE_MULTIPART" />
+      <entry_point TYPE="method" FQNAME="com.example.App.HttpRequest.ConnectionFactory$1 java.net.HttpURLConnection create(java.net.URL url)" />
+      <entry_point TYPE="method" FQNAME="com.example.App.HttpRequest.ConnectionFactory$1 java.net.HttpURLConnection create(java.net.URL url, java.net.Proxy proxy)" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest CRLF" />
+      <entry_point TYPE="field" FQNAME="com.example.App.OperadorActivity dato" />
+      <entry_point TYPE="field" FQNAME="com.example.App.OperadorActivity dato2" />
+      <entry_point TYPE="field" FQNAME="com.example.App.OperadorActivity dato3" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest.ConnectionFactory DEFAULT" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest.UploadProgress DEFAULT" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest EMPTY_STRINGS" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest.RequestOutputStream encoder" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest ENCODING_GZIP" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest.Base64 EQUALS_SIGN" />
+      <entry_point TYPE="field" FQNAME="com.example.App.cantidadfallas fallas" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest.FlushOperation flushable" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest form" />
+      <entry_point TYPE="method" FQNAME="com.example.App.HttpRequest$1 java.security.cert.X509Certificate[] getAcceptedIssuers()" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest HEADER_ACCEPT" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest HEADER_ACCEPT_CHARSET" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest HEADER_ACCEPT_ENCODING" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest HEADER_AUTHORIZATION" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest HEADER_CACHE_CONTROL" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest HEADER_CONTENT_ENCODING" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest HEADER_CONTENT_LENGTH" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest HEADER_CONTENT_TYPE" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest HEADER_DATE" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest HEADER_ETAG" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest HEADER_EXPIRES" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest HEADER_IF_NONE_MATCH" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest HEADER_LAST_MODIFIED" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest HEADER_LOCATION" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest HEADER_PROXY_AUTHORIZATION" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest HEADER_REFERER" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest HEADER_SERVER" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest HEADER_USER_AGENT" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest httpProxyHost" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest httpProxyPort" />
+      <entry_point TYPE="field" FQNAME="com.example.App.RegistroActivity id" />
+      <entry_point TYPE="field" FQNAME="com.example.App.roles id" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest.CloseOperation ignoreCloseExceptions" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest ignoreCloseExceptions" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest METHOD_DELETE" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest METHOD_GET" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest METHOD_HEAD" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest METHOD_OPTIONS" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest METHOD_POST" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest METHOD_PUT" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest METHOD_TRACE" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest multipart" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HELPCOMP nombres" />
+      <entry_point TYPE="method" FQNAME="com.example.App.OperadorActivity$16$4$2 void onClick(android.content.DialogInterface dialogInterface, int i)" />
+      <entry_point TYPE="method" FQNAME="com.example.App.OperadorActivity$24 void onClick(android.view.View view)" />
+      <entry_point TYPE="method" FQNAME="com.example.App.HttpRequest.UploadProgress$1 void onUpload(long uploaded, long total)" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest output" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest PARAM_CHARSET" />
+      <entry_point TYPE="field" FQNAME="com.example.App.motivoparo paro" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest.Base64 PREFERRED_ENCODING" />
+      <entry_point TYPE="field" FQNAME="com.example.App.OperadorActivity production" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest progress" />
+      <entry_point TYPE="field" FQNAME="com.example.App.RegistroActivity registro" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest requestMethod" />
+      <entry_point TYPE="method" FQNAME="com.example.App.HttpRequest$8 java.lang.String run()" />
+      <entry_point TYPE="method" FQNAME="com.example.App.HttpRequest$9 java.lang.String run()" />
+      <entry_point TYPE="method" FQNAME="com.example.App.HttpRequest$10 com.example.App.HttpRequest run()" />
+      <entry_point TYPE="method" FQNAME="com.example.App.HttpRequest$11 com.example.App.HttpRequest run()" />
+      <entry_point TYPE="method" FQNAME="com.example.App.HttpRequest$12 com.example.App.HttpRequest run()" />
+      <entry_point TYPE="method" FQNAME="com.example.App.HttpRequest$13 com.example.App.HttpRequest run()" />
+      <entry_point TYPE="method" FQNAME="com.example.App.HttpRequest$14 com.example.App.HttpRequest run()" />
+      <entry_point TYPE="method" FQNAME="com.example.App.HttpRequest$15 com.example.App.HttpRequest run()" />
+      <entry_point TYPE="method" FQNAME="com.example.App.OlvidoActivity$5 void run()" />
+      <entry_point TYPE="method" FQNAME="com.example.App.OlvidoActivity$5$3 void run()" />
+      <entry_point TYPE="method" FQNAME="com.example.App.OperadorActivity$16 void run()" />
+      <entry_point TYPE="method" FQNAME="com.example.App.OperadorActivity$16$4 void run()" />
+      <entry_point TYPE="method" FQNAME="com.example.App.OperadorActivity$16$4$2$1 void run()" />
+      <entry_point TYPE="method" FQNAME="com.example.App.OperadorActivity$24$1 void run()" />
+      <entry_point TYPE="method" FQNAME="com.example.App.OperadorActivity$26 void run()" />
+      <entry_point TYPE="method" FQNAME="com.example.App.RegistroActivity$5 void run()" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest.HttpRequestException serialVersionUID" />
+      <entry_point TYPE="field" FQNAME="com.example.App.cantidades tarea" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest totalSize" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest totalWritten" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest TRUSTED_FACTORY" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest TRUSTED_VERIFIER" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest uncompress" />
+      <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest url" />
+      <entry_point TYPE="field" FQNAME="com.example.App.OlvidoActivity v_flipper" />
+      <entry_point TYPE="method" FQNAME="com.example.App.HttpRequest$2 boolean verify(java.lang.String hostname, javax.net.ssl.SSLSession session)" />
+    </entry_points>
     <pattern value="com.example.App.cantidades" method="cantidades" />
+    <pattern value="com.example.App.LoginActivity" method="guardar" />
+    <pattern value="com.example.App.LoginActivity" />
+    <pattern value="com.example.App.LoginActivity" method="olvidoC" />
+    <pattern value="com.example.App.LoginActivity" method="registro" />
+    <pattern value="com.example.App.LoginActivity" method="validartodo" />
+    <pattern value="com.example.App.HttpRequest" method="accept" />
+    <pattern value="com.example.App.HttpRequest" method="acceptCharset" />
+    <pattern value="com.example.App.HttpRequest" method="acceptEncoding" />
+    <pattern value="com.example.App.HttpRequest" method="acceptGzipEncoding" />
+    <pattern value="com.example.App.HttpRequest" method="acceptJson" />
+    <pattern value="com.example.App.HttpRequest" method="addParam" />
+    <pattern value="com.example.App.HttpRequest" method="addParamPrefix" />
+    <pattern value="com.example.App.HttpRequest" method="addPathSeparator" />
+    <pattern value="com.example.App.OperadorActivity" method="aplazo" />
+    <pattern value="com.example.App.HttpRequest" method="append" />
+    <pattern value="com.example.App.HttpRequest" method="arrayToList" />
+    <pattern value="com.example.App.HttpRequest" method="authorization" />
+    <pattern value="com.example.App.HttpRequest" method="badRequest" />
+    <pattern value="com.example.App.HttpRequest.Base64" />
+    <pattern value="com.example.App.HttpRequest" method="basic" />
+    <pattern value="com.example.App.HttpRequest" method="body" />
+    <pattern value="com.example.App.HttpRequest" method="buffer" />
+    <pattern value="com.example.App.HttpRequest" method="bufferedReader" />
+    <pattern value="com.example.App.HttpRequest" method="bufferSize" />
+    <pattern value="com.example.App.HttpRequest" method="bytes" />
+    <pattern value="com.example.App.HttpRequest" method="byteStream" />
+    <pattern value="com.example.App.HttpRequest" method="cacheControl" />
+    <pattern value="com.example.App.HttpRequest.Operation" method="call" />
+    <pattern value="com.example.App.cantidades" />
+    <pattern value="com.example.App.cantidadfallas" />
+    <pattern value="com.example.App.cantidadfallas" method="cantidadfallas" />
+    <pattern value="com.example.App.HttpRequest" method="charset" />
+    <pattern value="com.example.App.HttpRequest" method="chunk" />
+    <pattern value="Introducciones.CLOSE_OP" />
+    <pattern value="com.example.App.HttpRequest.CloseOperation" />
+    <pattern value="com.example.App.HttpRequest.CloseOperation" method="CloseOperation" />
+    <pattern value="com.example.App.HttpRequest" method="closeOutput" />
+    <pattern value="com.example.App.HttpRequest" method="closeOutputQuietly" />
+    <pattern value="com.example.App.HttpRequest" method="code" />
+    <pattern value="com.example.App.OlvidoActivity" method="comprobar" />
+    <pattern value="com.example.App.HttpRequest.ConnectionFactory" />
+    <pattern value="com.example.App.HttpRequest" method="connectTimeout" />
+    <pattern value="com.example.App.HttpRequest" method="contentEncoding" />
+    <pattern value="com.example.App.HttpRequest" method="contentLength" />
+    <pattern value="com.example.App.HttpRequest" method="contentType" />
+    <pattern value="com.example.App.HttpRequest" method="copy" />
+    <pattern value="Introducciones.CREAR_USER" />
+    <pattern value="com.example.App.HttpRequest.ConnectionFactory" method="create" />
+    <pattern value="com.example.App.HttpRequest" method="createConnection" />
+    <pattern value="com.example.App.HttpRequest" method="created" />
+    <pattern value="com.example.App.HttpRequest" method="createProxy" />
+    <pattern value="com.example.App.HttpRequest" method="date" />
+    <pattern value="com.example.App.HttpRequest" method="dateHeader" />
+    <pattern value="com.example.App.HttpRequest" method="delete" />
+    <pattern value="com.example.App.HttpRequest" method="disconnect" />
+    <pattern value="com.example.App.HttpRequest.Operation" method="done" />
+    <pattern value="com.example.App.HttpRequest.CloseOperation" method="done" />
+    <pattern value="com.example.App.HttpRequest.FlushOperation" method="done" />
+    <pattern value="com.example.App.HttpRequest" method="encode" />
+    <pattern value="com.example.App.HttpRequest.Base64" method="encode" />
+    <pattern value="com.example.App.HttpRequest.Base64" method="encode3to4" />
+    <pattern value="com.example.App.HttpRequest.Base64" method="encodeBytes" />
+    <pattern value="com.example.App.HttpRequest.Base64" method="encodeBytesToBytes" />
+    <pattern value="com.example.App.HttpRequest" method="eTag" />
+    <pattern value="com.example.App.ExampleInstrumentedTest" />
+    <pattern value="com.example.App.HttpRequest" method="expires" />
+    <pattern value="com.example.App.HttpRequest.FlushOperation" />
+    <pattern value="com.example.App.HttpRequest.FlushOperation" method="FlushOperation" />
+    <pattern value="com.example.App.HttpRequest" method="followRedirects" />
+    <pattern value="com.example.App.HttpRequest" method="form" />
+    <pattern value="com.example.App.HttpRequest" method="get" />
+    <pattern value="com.example.App.roles" method="getCargo" />
+    <pattern value="com.example.App.HttpRequest.HttpRequestException" method="getCause" />
+    <pattern value="com.example.App.HttpRequest" method="getConnection" />
+    <pattern value="com.example.App.roles" method="getId" />
+    <pattern value="com.example.App.HELPCOMP" method="getNombre" />
+    <pattern value="com.example.App.OPS" method="getOps" />
+    <pattern value="com.example.App.HttpRequest" method="getParam" />
+    <pattern value="com.example.App.HttpRequest" method="getParams" />
+    <pattern value="com.example.App.motivoparo" method="getParo" />
+    <pattern value="com.example.App.HttpRequest" method="getTrustedFactory" />
+    <pattern value="com.example.App.HttpRequest" method="getTrustedVerifier" />
+    <pattern value="com.example.App.HttpRequest" method="getValidCharset" />
+    <pattern value="com.example.App.OperadorActivity" method="go" />
+    <pattern value="com.example.App.MainActivity" method="guardar" />
+    <pattern value="com.example.App.HttpRequest" method="head" />
+    <pattern value="com.example.App.HttpRequest" method="header" />
+    <pattern value="com.example.App.HttpRequest" method="headers" />
+    <pattern value="com.example.App.HELPCOMP" />
+    <pattern value="com.example.App.HELPCOMP" method="HELPCOMP" />
+    <pattern value="com.example.App.OperadorActivity" method="hora" />
+    <pattern value="com.example.App.HttpRequest" />
+    <pattern value="com.example.App.HttpRequest" method="HttpRequest" />
+    <pattern value="com.example.App.HttpRequest.HttpRequestException" />
+    <pattern value="com.example.App.HttpRequest.HttpRequestException" method="HttpRequestException" />
+    <pattern value="com.example.App.HttpRequest" method="ifModifiedSince" />
+    <pattern value="com.example.App.HttpRequest" method="ifNoneMatch" />
+    <pattern value="com.example.App.HttpRequest" method="ignoreCloseExceptions" />
+    <pattern value="Introducciones.INTRODUCCION" />
+    <pattern value="com.example.App.MainActivity" />
+    <pattern value="com.example.App.OlvidoActivity" />
+    <pattern value="com.example.App.OperadorActivity" />
+    <pattern value="com.example.App.HttpRequest.Operation" />
+    <pattern value="com.example.App.options" />
+    <pattern value="Introducciones.PAUSE_ACTIVAS" />
+    <pattern value="Introducciones.RECUPERAR_PASSWORD" />
+    <pattern value="Introducciones.REGISTRO_PRODUCIDO" />
+    <pattern value="com.example.App.RegistroActivity" />
+    <pattern value="Introducciones.SYSTEM" />
+    <pattern value="Introducciones.TERMINADO" />
+    <pattern value="com.example.App.HttpRequest" method="incrementTotalSize" />
+    <pattern value="com.example.App.options" method="info" />
+    <pattern value="com.example.App.HttpRequest" method="intHeader" />
+    <pattern value="com.example.App.HttpRequest" method="isBodyEmpty" />
+    <pattern value="com.example.App.HttpRequest" method="keepAlive" />
+    <pattern value="com.example.App.HttpRequest" method="lastModified" />
+    <pattern value="com.example.App.HttpRequest" method="location" />
+    <pattern value="com.example.App.options" method="masinfo" />
+    <pattern value="com.example.App.HttpRequest" method="maxConnections" />
+    <pattern value="com.example.App.HttpRequest" method="message" />
+    <pattern value="com.example.App.HttpRequest" method="method" />
+    <pattern value="com.example.App.motivoparo" />
+    <pattern value="com.example.App.motivoparo" method="motivoparo" />
+    <pattern value="com.example.App.HttpRequest" method="noContent" />
+    <pattern value="com.example.App.HttpRequest" method="nonProxyHosts" />
+    <pattern value="com.example.App.HttpRequest" method="notFound" />
+    <pattern value="com.example.App.HttpRequest" method="notModified" />
+    <pattern value="com.example.App.HttpRequest" method="ok" />
+    <pattern value="com.example.App.RegistroActivity" method="onCreate" />
+    <pattern value="com.example.App.HttpRequest.UploadProgress" method="onUpload" />
+    <pattern value="com.example.App.HttpRequest" method="openOutput" />
+    <pattern value="com.example.App.OperadorActivity" method="operador" />
+    <pattern value="com.example.App.OPS" />
+    <pattern value="com.example.App.OPS" method="OPS" />
+    <pattern value="com.example.App.HttpRequest" method="options" />
+    <pattern value="com.example.App.HttpRequest" method="parameter" />
+    <pattern value="com.example.App.HttpRequest" method="parameters" />
+    <pattern value="com.example.App.HttpRequest" method="part" />
+    <pattern value="com.example.App.HttpRequest" method="partHeader" />
+    <pattern value="com.example.App.HttpRequest" method="post" />
+    <pattern value="com.example.App.HttpRequest" method="progress" />
+    <pattern value="com.example.App.HttpRequest" method="proxyAuthorization" />
+    <pattern value="com.example.App.HttpRequest" method="proxyBasic" />
+    <pattern value="com.example.App.HttpRequest" method="proxyHost" />
+    <pattern value="com.example.App.HttpRequest" method="proxyPort" />
+    <pattern value="com.example.App.HttpRequest" method="put" />
+    <pattern value="com.example.App.HttpRequest" method="reader" />
+    <pattern value="com.example.App.HttpRequest" method="readTimeout" />
+    <pattern value="com.example.App.HttpRequest" method="receive" />
+    <pattern value="com.example.App.HttpRequest" method="referer" />
+    <pattern value="com.example.App.OperadorActivity" method="registrar" />
+    <pattern value="com.example.App.RegistroActivity" method="registrar" />
+    <pattern value="com.example.App.HttpRequest.RequestOutputStream" />
+    <pattern value="com.example.App.HttpRequest.RequestOutputStream" method="RequestOutputStream" />
+    <pattern value="com.example.App.roles" />
+    <pattern value="com.example.App.roles" method="roles" />
+    <pattern value="com.example.App.HttpRequest.Operation" method="run" />
+    <pattern value="com.example.App.OperadorActivity" method="salida" />
+    <pattern value="com.example.App.HttpRequest" method="send" />
+    <pattern value="com.example.App.HttpRequest" method="server" />
+    <pattern value="com.example.App.HttpRequest" method="serverError" />
+    <pattern value="com.example.App.roles" method="setCargo" />
+    <pattern value="com.example.App.HttpRequest" method="setConnectionFactory" />
+    <pattern value="com.example.App.cantidadfallas" method="setFallas" />
+    <pattern value="com.example.App.roles" method="setId" />
+    <pattern value="com.example.App.OPS" method="setOps" />
+    <pattern value="com.example.App.motivoparo" method="setParo" />
+    <pattern value="com.example.App.HttpRequest" method="setProperty" />
+    <pattern value="com.example.App.cantidades" method="setTarea" />
+    <pattern value="com.example.App.HttpRequest" method="startPart" />
+    <pattern value="com.example.App.OperadorActivity" method="stop" />
+    <pattern value="com.example.App.HttpRequest" method="stream" />
+    <pattern value="com.example.App.options" method="support" />
+    <pattern value="com.example.App.cantidades" method="toString" />
+    <pattern value="com.example.App.cantidadfallas" method="toString" />
+    <pattern value="com.example.App.HELPCOMP" method="toString" />
+    <pattern value="com.example.App.HttpRequest" method="toString" />
+    <pattern value="com.example.App.motivoparo" method="toString" />
+    <pattern value="com.example.App.OPS" method="toString" />
+    <pattern value="com.example.App.roles" method="toString" />
+    <pattern value="com.example.App.HttpRequest" method="trace" />
+    <pattern value="com.example.App.HttpRequest" method="trustAllCerts" />
+    <pattern value="com.example.App.HttpRequest" method="trustAllHosts" />
+    <pattern value="com.example.App.HttpRequest" method="uncompress" />
+    <pattern value="com.example.App.HttpRequest.UploadProgress" />
+    <pattern value="com.example.App.HttpRequest" method="url" />
+    <pattern value="com.example.App.ExampleInstrumentedTest" method="useAppContext" />
+    <pattern value="com.example.App.HttpRequest" method="useCaches" />
+    <pattern value="com.example.App.HttpRequest" method="useProxy" />
+    <pattern value="com.example.App.HttpRequest" method="userAgent" />
+    <pattern value="com.example.App.OperadorActivity" method="verificar" />
+    <pattern value="com.example.App.HttpRequest.RequestOutputStream" method="write" />
+    <pattern value="com.example.App.HttpRequest" method="writePartHeader" />
+    <pattern value="com.example.App.HttpRequest" method="writer" />
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="org.jetbrains.annotations.Nullable" />

@@ -82,52 +82,55 @@ public class options extends AppCompatActivity {
 
                         HELPCOMP H =comphelp.get( position );
 
-                        if (H.getNombre().equals( "INTRODUCCION A MAINCO APP" )){
+                        switch (H.getNombre()) {
+                            case "INTRODUCCION A MAINCO APP": {
 
-                            Intent e = new Intent(getApplicationContext(), INTRODUCCION.class);
-                            startActivity(e);
-                        }
+                                Intent e = new Intent( getApplicationContext(), INTRODUCCION.class );
+                                startActivity( e );
+                                break;
+                            }
+                            case "COMO CREO UN USUARIO ?": {
 
-                        else if (H.getNombre().equals( "COMO CREO UN USUARIO ?" )){
+                                Intent e = new Intent( getApplicationContext(), CREAR_USER.class );
+                                startActivity( e );
+                                break;
+                            }
+                            case "COMO RECUPERO MI CONTRASEÑA ?": {
 
-                            Intent e = new Intent(getApplicationContext(), CREAR_USER.class);
-                            startActivity(e);
-                        }
+                                Intent e = new Intent( getApplicationContext(), RECUPERAR_PASSWORD.class );
+                                startActivity( e );
+                                break;
+                            }
+                            case "COMO INGRESO AL SISTEMA ?": {
 
-                        else if (H.getNombre().equals( "COMO RECUPERO MI CONTRASEÑA ?" )){
+                                Intent e = new Intent( getApplicationContext(), SYSTEM.class );
+                                startActivity( e );
+                                break;
+                            }
+                            case "COMO EMPIEZO A REGISTRAR ?": {
 
-                            Intent e = new Intent(getApplicationContext(), RECUPERAR_PASSWORD.class);
-                            startActivity(e);
-                        }
+                                Intent e = new Intent( getApplicationContext(), REGISTRO_PRODUCIDO.class );
+                                startActivity( e );
+                                break;
+                            }
+                            case "COMO REGISTRO MIS PAUSAS ?": {
 
-                        else if (H.getNombre().equals( "COMO INGRESO AL SISTEMA ?" )){
+                                Intent e = new Intent( getApplicationContext(), PAUSE_ACTIVAS.class );
+                                startActivity( e );
+                                break;
+                            }
+                            case "COMO SABER SI SE CERRO LA O.P ?": {
 
-                            Intent e = new Intent(getApplicationContext(), SYSTEM.class);
-                            startActivity(e);
-                        }
+                                Intent e = new Intent( getApplicationContext(), CLOSE_OP.class );
+                                startActivity( e );
+                                break;
+                            }
+                            case "COMO SABER SI YA TERMINE ?": {
 
-                        else if (H.getNombre().equals( "COMO EMPIEZO A REGISTRAR ?" )){
-
-                            Intent e = new Intent(getApplicationContext(), REGISTRO_PRODUCIDO.class);
-                            startActivity(e);
-                        }
-
-                        else if (H.getNombre().equals( "COMO REGISTRO MIS PAUSAS ?" )){
-
-                            Intent e = new Intent(getApplicationContext(), PAUSE_ACTIVAS.class);
-                            startActivity(e);
-                        }
-
-                        else if (H.getNombre().equals( "COMO SABER SI SE CERRO LA O.P ?" )){
-
-                            Intent e = new Intent(getApplicationContext(), CLOSE_OP.class);
-                            startActivity(e);
-                        }
-
-                        else if (H.getNombre().equals( "COMO SABER SI YA TERMINE ?" )){
-
-                            Intent e = new Intent(getApplicationContext(), TERMINADO.class);
-                            startActivity(e);
+                                Intent e = new Intent( getApplicationContext(), TERMINADO.class );
+                                startActivity( e );
+                                break;
+                            }
                         }
                     }
                 } );

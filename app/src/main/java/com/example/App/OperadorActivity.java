@@ -39,8 +39,6 @@ import java.util.Locale;
 
 import cz.msebera.android.httpclient.Header;
 
-import static java.text.DateFormat.getDateInstance;
-
 public class OperadorActivity extends AppCompatActivity {
 
 
@@ -228,7 +226,8 @@ public class OperadorActivity extends AppCompatActivity {
                 builder.create().show();
                 break;
 
-            case R.id.ayuda:
+            case R.id.ayuda
+                    :
                 Intent e = new Intent( getApplicationContext(), options.class );
                 startActivity( e );
 
