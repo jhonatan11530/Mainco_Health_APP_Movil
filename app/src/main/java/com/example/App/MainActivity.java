@@ -32,12 +32,6 @@ public class MainActivity extends AppCompatActivity {
     class MyTask extends AsyncTask<String,Integer,String>{
 
         @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-        }
-
-        @Override
         protected void onProgressUpdate(Integer... values) {
             super.onProgressUpdate( values );
             pb.setProgress(values[0]);
@@ -48,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
 
             guardar();
-                Intent e = new Intent(getApplicationContext(), OperadorActivity.class);
+                Intent e = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(e);
         }
 

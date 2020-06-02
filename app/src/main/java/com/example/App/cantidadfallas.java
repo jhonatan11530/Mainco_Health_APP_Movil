@@ -12,10 +12,6 @@ public class cantidadfallas {
         this.fallas = fallas;
     }
 
-    public String getFallas() {
-        return fallas;
-    }
-
     public String toString(){
         return  fallas;
     }

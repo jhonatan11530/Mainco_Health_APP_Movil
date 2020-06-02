@@ -5,10 +5,11 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="250dp"
         android:layout_weight="0"
         android:orientation="horizontal"
-        android:weightSum="12">
+        android:weightSum="12"
+        android:baselineAligned="false">
 
         <LinearLayout
             android:id="@+id/linearLayout1"

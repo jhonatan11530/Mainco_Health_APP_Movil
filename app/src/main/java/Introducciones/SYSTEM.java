@@ -12,7 +12,7 @@ import com.example.App.R;
 
 public class SYSTEM extends AppCompatActivity {
 
-    Uri video=Uri.parse("");
+    final Uri video=Uri.parse("");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );

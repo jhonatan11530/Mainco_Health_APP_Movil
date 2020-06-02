@@ -27,8 +27,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.App.R;
-
 import java.util.List;
 
 
@@ -44,9 +42,9 @@ public class LoginActivity extends AppCompatActivity {
 
     /*String networkSSID = "WIFIMainco";
     String networkPass = "A125277935";*/
-    String networkSSID = "";
-    String networkPass = "";
-    WifiConfiguration conf = new WifiConfiguration();
+    final String networkSSID = "";
+    final String networkPass = "";
+    final WifiConfiguration conf = new WifiConfiguration();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -231,7 +229,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-        public void validartodo(View view){
+        public void validartodo(View v){
             if(pass.getText().toString().length() == 0 && login.getText().toString().length() == 0) {
 
                 pass.setError("CONTRASEÑA ES REQUERIDO !");
@@ -296,7 +294,7 @@ public void mostrarguardado(){
 
 
 
-    public void registro (View v) {
+    public void registro(View v) {
 
         Intent e = new Intent(getApplicationContext(), RegistroActivity.class);
         startActivity(e);
@@ -304,7 +302,7 @@ public void mostrarguardado(){
     }
 
 
-    public void olvidoC (View v){
+    public void olvidoC(View v){
         Intent e = new Intent(getApplicationContext(), OlvidoActivity.class);
         startActivity(e);
     }

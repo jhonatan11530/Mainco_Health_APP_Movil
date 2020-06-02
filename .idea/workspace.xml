@@ -15,11 +15,14 @@
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/jarAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/5.6.4/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/com/example/App/ExampleInstrumentedTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/androidTest/java/com/example/App/ExampleInstrumentedTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/Introducciones/CLOSE_OP.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Introducciones/CLOSE_OP.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/Introducciones/CREAR_USER.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Introducciones/CREAR_USER.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/Introducciones/INTRODUCCION.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Introducciones/INTRODUCCION.java" afterDir="false" />
@@ -28,19 +31,37 @@
       <change beforePath="$PROJECT_DIR$/app/src/main/java/Introducciones/REGISTRO_PRODUCIDO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Introducciones/REGISTRO_PRODUCIDO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/Introducciones/SYSTEM.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Introducciones/SYSTEM.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/Introducciones/TERMINADO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Introducciones/TERMINADO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/App/HELPCOMP.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/App/HELPCOMP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/App/HttpRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/App/HttpRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/App/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/App/LoginActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/App/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/App/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/App/OlvidoActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/App/OlvidoActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/App/OperadorActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/App/OperadorActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/App/RegistroActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/App/RegistroActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/App/options.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/App/options.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/App/cambiarIP.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/App/cambiarIP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/App/cantidades.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/App/cantidades.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/App/cantidadfallas.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/App/cantidadfallas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_launcher_background.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/login_redondo.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/login_redondo.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout-v17/dialog_spinner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/dialog_spinner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_olvido.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_olvido.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_operador.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_operador.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_options.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_options.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_registro.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_registro.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/ayuda.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/ayuda.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/cantidad_produccidas.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/cantidad_produccidas.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/tutorial.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/tutorial.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/arrays.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/arrays.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/com/example/App/ExampleUnitTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="HA0ZQHNP" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="PRUEBA_API_28" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -157,9 +178,33 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
+    <state x="413" y="114" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1591105860754">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="413" y="114" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.738@0.0.1366.738" timestamp="1591105860754" />
     <state x="430" y="205" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1591105286379">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="430" y="205" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1366.738@0.0.1366.738" timestamp="1591105286379" />
+    <state width="1322" height="305" key="GridCell.Tab.0.bottom" timestamp="1591107345011">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1322" height="305" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1591107345011" />
+    <state width="1322" height="305" key="GridCell.Tab.0.center" timestamp="1591107345011">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1322" height="305" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1591107345011" />
+    <state width="1322" height="305" key="GridCell.Tab.0.left" timestamp="1591107345011">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1322" height="305" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1591107345011" />
+    <state width="1322" height="305" key="GridCell.Tab.0.right" timestamp="1591107345011">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1322" height="305" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1591107345011" />
+    <state x="92" y="92" width="1182" height="554" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1591107544809">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="92" y="92" width="1182" height="554" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1366.738@0.0.1366.738" timestamp="1591107544809" />
   </component>
 </project>

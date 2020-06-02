@@ -2,7 +2,6 @@ package com.example.App;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -13,11 +12,9 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -62,7 +59,7 @@ public class OperadorActivity extends AppCompatActivity {
 
     private int minuto, i, hora, cantidadpro, volumencan, total, volumen;
 
-    private ArrayList<cantidadfallas> dato4 = new ArrayList<cantidadfallas>();
+    private final ArrayList<cantidadfallas> dato4 = new ArrayList<cantidadfallas>();
     private ArrayList<cantidades> dato3 = new ArrayList<cantidades>();
     private ArrayList<motivoparo> dato2 = new ArrayList<motivoparo>();
     private ArrayList<OPS> dato = new ArrayList<OPS>();
@@ -991,9 +988,6 @@ class Task extends AsyncTask<String, Void, String> {
     protected void onPostExecute(final String VaribleTOTAL) {
         super.onPostExecute( VaribleTOTAL );
 
-       /* Toast toast = Toast.makeText( getApplicationContext(),"CANTIDAD EN O.P : "+VaribleTOTAL,100000 );
-        toast.setGravity( Gravity.BOTTOM,0,0);
-        toast.show();*/
        runOnUiThread( new Runnable() {
            @Override
            public void run() {

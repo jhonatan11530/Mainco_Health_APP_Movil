@@ -19,7 +19,7 @@
             android:orientation="horizontal"
             android:weightSum="10"
             android:layout_weight="1"
-            >
+            android:baselineAligned="false">
 
             <LinearLayout android:id="@+id/linearLayout4"
                 android:layout_width="250dp"
@@ -91,7 +91,7 @@
             <EditText
                 android:id="@+id/item"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="30dp"
                 android:layout_marginVertical="3dp"
                 android:layout_marginHorizontal="10dp"
                 android:layout_weight="3.3"

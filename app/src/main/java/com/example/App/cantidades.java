@@ -14,9 +14,6 @@ public class cantidades {
         this.tarea = tarea;
     }
 
-    public String getTarea() {
-        return tarea;
-    }
     public String toString(){
         return  tarea;
     }

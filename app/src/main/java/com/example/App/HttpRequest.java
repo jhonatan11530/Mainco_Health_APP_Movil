@@ -2191,7 +2191,7 @@ public class HttpRequest {
 
         final List<String> values = headers.get(name);
         if (values != null && !values.isEmpty())
-            return values.toArray(new String[values.size()]);
+            return values.toArray( new String[0] );
         else
             return EMPTY_STRINGS;
     }
