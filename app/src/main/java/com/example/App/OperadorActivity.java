@@ -39,6 +39,7 @@ import java.util.Locale;
 
 import cz.msebera.android.httpclient.Header;
 
+@SuppressWarnings("ALL")
 public class OperadorActivity extends AppCompatActivity {
 
 
@@ -560,10 +561,10 @@ public class OperadorActivity extends AppCompatActivity {
                                 cantidadund.setBackgroundColor( Color.parseColor( "#919191" ) );
                                 salidaTIME.setBackgroundColor( Color.parseColor( "#919191" ) );
 
-                                desbloquear.setEnabled( false );
-                                registroTIME.setEnabled( false );
-                                salidaTIME.setEnabled( false );
-                                cantidadund.setEnabled( false );
+                                desbloquear.setEnabled( true );
+                                registroTIME.setEnabled( true );
+                                salidaTIME.setEnabled( true );
+                                cantidadund.setEnabled( true );
 
                                 ((TextView) resuldato.getSelectedView()).setTextColor( Color.RED );
 
