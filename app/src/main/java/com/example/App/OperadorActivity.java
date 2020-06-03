@@ -467,7 +467,6 @@ public class OperadorActivity extends AppCompatActivity {
 
     }
 
-
     public void operador(View v) {
 
         if (id.getText().toString().length() == 0) {
@@ -919,6 +918,7 @@ public class OperadorActivity extends AppCompatActivity {
 
                                 HttpRequest.get( "http://" + cambiarIP.ip + "/validar/cantidadmodifi.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + tarea + "&totales=" + RESTARCANTIDAD.getString( 0 ) ).body();
                                 cantidad();
+                                verificar();
                             }
                             if (validator > 0) {
                                 cantidad();
