@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-06-2020 a las 14:36:56
+-- Tiempo de generación: 04-06-2020 a las 15:53:21
 -- Versión del servidor: 10.4.10-MariaDB
 -- Versión de PHP: 7.3.12
 
@@ -168,7 +168,7 @@ CREATE TABLE `operador` (
 --
 
 INSERT INTO `operador` (`llaves`, `id`, `nombre`, `numero_op`, `tarea`, `cantidad`, `no_conforme`, `cantidad_fallas`, `inicial`, `hora_inicial`, `final`, `hora_final`, `eficencia`, `eficacia`) VALUES
-(1, 2, 'BENITEZ OVIEDO JUAN', '1', 'Cerrar Pu?Os', 0, 'maquina mala', '5', '04/06/2020', '7:21:30', '04/06/2020', '7:07:53', '0', '-INF'),
+(1, 2, 'BENITEZ OVIEDO JUAN', NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (2, 3, 'LERMA HINESTROZA ANA MERCEDES', NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (3, 4, 'QUINTERO LONDONO CARMEN ELISA', NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (4, 5, 'CASTANEDA LARA SONIA', NULL, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
@@ -4738,15 +4738,14 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `motivo_paro`
   ADD CONSTRAINT `id` FOREIGN KEY (`id`) REFERENCES `operador` (`id`),
-  ADD CONSTRAINT `motivo` FOREIGN KEY (`motivo_descanso`) REFERENCES `motivo` (`paro`),
-  ADD CONSTRAINT `op` FOREIGN KEY (`numero_op`) REFERENCES `operador` (`numero_op`);
+  ADD CONSTRAINT `moti` FOREIGN KEY (`motivo_descanso`) REFERENCES `motivo` (`paro`),
+  ADD CONSTRAINT `op` FOREIGN KEY (`numero_op`) REFERENCES `produccion` (`numero_op`);
 
 --
 -- Filtros para la tabla `operador`
 --
 ALTER TABLE `operador`
   ADD CONSTRAINT `motivo falla` FOREIGN KEY (`no_conforme`) REFERENCES `cantidaderror` (`fallas`),
-  ADD CONSTRAINT `ordendeproduccion` FOREIGN KEY (`numero_op`) REFERENCES `produccion` (`numero_op`),
   ADD CONSTRAINT `tarea` FOREIGN KEY (`tarea`) REFERENCES `tarea` (`tarea`);
 
 --
