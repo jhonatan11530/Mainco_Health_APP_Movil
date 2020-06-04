@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         pb = findViewById(R.id.progressBar);
 
-        splash();
         new MyTask().execute();
 
     }
@@ -40,8 +39,6 @@ public class MainActivity extends AppCompatActivity {
 
         protected void onPostExecute() {
 
-
-            guardar();
                 Intent e = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(e);
         }
@@ -74,30 +71,4 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void guardar(){
-
-        SharedPreferences preferences = getSharedPreferences("ARCHIVO_LOGIN", Context.MODE_PRIVATE );
-        SharedPreferences shared = getPreferences(Context.MODE_PRIVATE);
-        SharedPreferences.Editor usu = shared.edit();
-        int splash = 100;
-        usu.putString("Splash", String.valueOf( splash ));
-        usu.commit();
-
-    }
-    public void splash(){
-
-        SharedPreferences mostrardato = getPreferences( Context.MODE_PRIVATE );
-        final String user = mostrardato.getString( "Splash","" );
-
-        new Thread( new Runnable() {
-            @Override
-            public void run() {
-                if(user.equals( "100" )){
-                    Intent e = new Intent(getApplicationContext(), LoginActivity.class);
-                    startActivity(e);
-                }
-
-            }
-        } ).start();
-    }
 }

@@ -538,7 +538,7 @@ public class OperadorActivity extends AppCompatActivity {
                 try {
                     JSONArray nada = new JSONArray( cero );
                     int vacio = Integer.parseInt( nada.getString( 0 ) );
-                    if (vacio != 0) {
+                    if (vacio > 0) {
 
 
                         runOnUiThread( new Runnable() {
@@ -550,8 +550,8 @@ public class OperadorActivity extends AppCompatActivity {
                         } );
 
 
-                    } else {
-
+                    } else if (vacio == 0){
+                        ((TextView) resuldato.getSelectedView()).setTextColor( Color.RED );
                         runOnUiThread( new Runnable() {
                             @Override
                             public void run() {
@@ -561,12 +561,12 @@ public class OperadorActivity extends AppCompatActivity {
                                 cantidadund.setBackgroundColor( Color.parseColor( "#919191" ) );
                                 salidaTIME.setBackgroundColor( Color.parseColor( "#919191" ) );
 
-                                desbloquear.setEnabled( true );
-                                registroTIME.setEnabled( true );
-                                salidaTIME.setEnabled( true );
-                                cantidadund.setEnabled( true );
+                                desbloquear.setEnabled( false );
+                                registroTIME.setEnabled( false );
+                                salidaTIME.setEnabled( false );
+                                cantidadund.setEnabled( false );
 
-                                ((TextView) resuldato.getSelectedView()).setTextColor( Color.RED );
+
 
 
                                 AlertDialog.Builder builder = new AlertDialog.Builder( OperadorActivity.this );
