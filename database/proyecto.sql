@@ -1439,8 +1439,7 @@ INSERT INTO `produccion` (`id`, `numero_op`, `cod_producto`, `descripcion`, `can
 (500101, NULL, '500101', 'Bata Man.Japonesa T Xl Mt0A Cj*200', 0),
 (500249, NULL, '500249', 'Gorro Oruga Sd5A Cj*2500', 0),
 (500459, NULL, '500459', 'Gorro Oruga Promocion 12*13 Cj*2500', 0),
-(500460, NULL, '500460', 'Gorro Oruga Promocion 12*12 Cj*2500', 0),
-(500464, '1', '25', 'Puno 0.10*0.08 Tela Deportiva', 10);
+(500460, NULL, '500460', 'Gorro Oruga Promocion 12*12 Cj*2500', 0);
 
 -- --------------------------------------------------------
 
