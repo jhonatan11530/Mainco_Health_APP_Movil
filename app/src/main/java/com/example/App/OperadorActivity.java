@@ -546,8 +546,7 @@ public class OperadorActivity extends AppCompatActivity {
                         runOnUiThread( new Runnable() {
                             @Override
                             public void run() {
-
-
+                                
                                 registroTIME.setEnabled( false );
                                 salidaTIME.setEnabled( false );
                                 cantidadund.setEnabled( false );
