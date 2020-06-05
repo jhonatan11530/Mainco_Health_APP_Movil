@@ -4715,47 +4715,6 @@ ALTER TABLE `usuarios`
 -- Restricciones para tablas volcadas
 --
 
---
--- Filtros para la tabla `motivo_paro`
---
-ALTER TABLE `motivo_paro`
-  ADD CONSTRAINT `id` FOREIGN KEY (`id`) REFERENCES `operador` (`id`),
-  ADD CONSTRAINT `moti` FOREIGN KEY (`motivo_descanso`) REFERENCES `motivo` (`paro`),
-  ADD CONSTRAINT `op` FOREIGN KEY (`numero_op`) REFERENCES `produccion` (`numero_op`);
-
---
--- Filtros para la tabla `operador`
---
-ALTER TABLE `operador`
-  ADD CONSTRAINT `motivo falla` FOREIGN KEY (`no_conforme`) REFERENCES `cantidaderror` (`fallas`),
-  ADD CONSTRAINT `tarea` FOREIGN KEY (`tarea`) REFERENCES `tarea` (`tarea`);
-
---
--- Filtros para la tabla `produccion`
---
-ALTER TABLE `produccion`
-  ADD CONSTRAINT `item` FOREIGN KEY (`cod_producto`) REFERENCES `tarea` (`numero_op`);
-
---
--- Filtros para la tabla `promedio`
---
-ALTER TABLE `promedio`
-  ADD CONSTRAINT `operador` FOREIGN KEY (`cod_operador`) REFERENCES `operador` (`id`),
-  ADD CONSTRAINT `ops` FOREIGN KEY (`numero_op`) REFERENCES `produccion` (`numero_op`);
-
---
--- Filtros para la tabla `tarea`
---
-ALTER TABLE `tarea`
-  ADD CONSTRAINT `cod_item` FOREIGN KEY (`numero_op`) REFERENCES `produccion` (`cod_producto`);
-
---
--- Filtros para la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD CONSTRAINT `cargo` FOREIGN KEY (`cargo`) REFERENCES `roles` (`cargo`);
-COMMIT;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

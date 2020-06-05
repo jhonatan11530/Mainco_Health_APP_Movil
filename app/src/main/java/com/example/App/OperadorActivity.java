@@ -45,7 +45,7 @@ public class OperadorActivity extends AppCompatActivity {
 
     private EditText id, cantidad, paro, fallas, items;
     private String falla, error,VaribleTOTAL;
-    private TextView motivo, MOSTRAR, texto, autorizadoxop, resultados;
+    private TextView motivo, MOSTRAR, texto, resultados;
     private Spinner resuldato, resuldato2, resuldato4, resuldato3;
 
     private Button go;
@@ -141,15 +141,9 @@ public class OperadorActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) {
                 if(editable.toString().length() <1 ){
-                    items.setError( "EL CAMPO NO DEBE ESTAR VACIO !!" );
                     llenarSpinner();
+                    llenarOps();
                 }
-                    /*
-                    FiltrarOps();
-                    resuldato.setAdapter( null );
-                    filtraritem();
-                    */
-
             }
         } );
 
@@ -470,11 +464,20 @@ public class OperadorActivity extends AppCompatActivity {
 
     public void operador(View v) {
 
-        if (id.getText().toString().length() == 0) {
+        if (id.getText().toString().length() == 0 && items.getText().toString().length() == 0) {
 
             id.setError( "ID ES REQUERIDO !" );
+            items.setError( "O.P ES REQUERIDO !" );
 
-        }else {
+        }if(id.getText().toString().length() > 0 && items.getText().toString().length() == 0){
+
+            items.setError( "O.P ES REQUERIDO !" );
+
+        }if(id.getText().toString().length() == 0 && items.getText().toString().length() > 0){
+
+            id.setError( "ID ES REQUERIDO !" );
+        }
+        else{
 
             operador = new Thread( new Runnable() {
                 @Override
@@ -485,7 +488,6 @@ public class OperadorActivity extends AppCompatActivity {
 
                         JSONArray objecto = new JSONArray( response );
                         if (response.length()>0) {
-                            System.out.println( "EL USER NO EXISTE"+response.length() );
                             cantidad();
                             runOnUiThread( new Runnable() {
                                 @Override
@@ -529,32 +531,48 @@ public class OperadorActivity extends AppCompatActivity {
 
     public void verificar() {
 
+        final String Nitem = resuldato3.getSelectedItem().toString();
         final String nombretarea = resuldato.getSelectedItem().toString();
         eliminaOK = new Thread( new Runnable() {
             @Override
             public void run() {
-                String cero = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/eliminarcanok.php?id=" + nombretarea ).body();
-
+                String cero = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/eliminarcanok.php?tarea=" + nombretarea+"&numero="+Nitem.toString() ).body();
                 try {
                     JSONArray nada = new JSONArray( cero );
                     int vacio = Integer.parseInt( nada.getString( 0 ) );
-                    if (vacio > 0) {
 
+                    if (vacio > 0) {
 
                         runOnUiThread( new Runnable() {
                             @Override
                             public void run() {
-                                ((TextView) resuldato.getSelectedView()).setTextColor( Color.BLACK );
+
+
+                                registroTIME.setEnabled( false );
+                                salidaTIME.setEnabled( false );
+                                cantidadund.setEnabled( false );
+                                desbloquear.setEnabled( false );
+
+                                desbloquear.setBackgroundColor( Color.parseColor( "#B2C900" ) );
+                                registroTIME.setBackgroundColor( Color.parseColor( "#B2C900" ) );
+                                cantidadund.setBackgroundColor( Color.parseColor( "#2196F3" ) );
+                                salidaTIME.setBackgroundColor( Color.parseColor( "#2196F3" ) );
 
                             }
                         } );
 
 
-                    } else if (vacio == 0){
-                        ((TextView) resuldato.getSelectedView()).setTextColor( Color.RED );
+                    }
+
+                    if (vacio == 0) {
+
+
+
                         runOnUiThread( new Runnable() {
                             @Override
                             public void run() {
+
+                                ((TextView) resuldato.getSelectedView()).setTextColor(getResources().getColor(R.color.RED));
 
                                 desbloquear.setBackgroundColor( Color.parseColor( "#919191" ) );
                                 registroTIME.setBackgroundColor( Color.parseColor( "#919191" ) );
@@ -565,9 +583,6 @@ public class OperadorActivity extends AppCompatActivity {
                                 registroTIME.setEnabled( false );
                                 salidaTIME.setEnabled( false );
                                 cantidadund.setEnabled( false );
-
-
-
 
                                 AlertDialog.Builder builder = new AlertDialog.Builder( OperadorActivity.this );
                                 builder.setTitle( "LA OP FINALIZO " );
@@ -919,7 +934,7 @@ public class OperadorActivity extends AppCompatActivity {
 
                                 HttpRequest.get( "http://" + cambiarIP.ip + "/validar/cantidadmodifi.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + tarea + "&totales=" + RESTARCANTIDAD.getString( 0 ) ).body();
                                 cantidad();
-                                verificar();
+
                             }
                             if (validator > 0) {
                                 cantidad();
@@ -988,17 +1003,12 @@ class Task extends AsyncTask<String, Void, String> {
     @Override
     protected void onPostExecute(final String VaribleTOTAL) {
         super.onPostExecute( VaribleTOTAL );
-
-       runOnUiThread( new Runnable() {
-           @Override
-           public void run() {
-               Snackbar.make(findViewById(R.id.principal ),"CANTIDAD EN O.P : "+VaribleTOTAL,Snackbar.LENGTH_INDEFINITE).show();
-
-           }
-       } );
-
+        TextView MostrarCantidad = findViewById( R.id.MostrarCantidad );
+        MostrarCantidad.setText("CANTIDAD EN O.P : "+VaribleTOTAL);
     }
+
 }
+
     public void cantidad() {
        new Task().execute();
     }
@@ -1078,17 +1088,15 @@ class Task extends AsyncTask<String, Void, String> {
                                 int tool = volumencan + total;
                                 int end = cantidadpro - tool;
 
-                            System.out.println( "LA CANTIDAD DIGITADA ES "+volumencan );
-                            System.out.println( "LA CANTIDAD MALAS ES "+total );
+                            System.out.println( "LA CANTIDAD BUENAS "+volumencan );
+                            System.out.println( "LA CANTIDAD MALAS "+total );
                             System.out.println( "LA CANTIDAD EN MYSQL "+cantidadpro );
                             System.out.println( "LA CANTIDAD EN MYSQL RESTADA "+end );
 
 
-                            int valorCantOP = cantidadpro - total;
-
                             if(end >= 0){
 
-                                 HttpRequest.get("http://"+cambiarIP.ip+"/validar/canbiarAucOP.php?op="+items.getText().toString()+"&item="+resuldato3.getSelectedItem().toString()+"&cantidad="+valorCantOP).body();
+                                 HttpRequest.get("http://"+cambiarIP.ip+"/validar/canbiarAucOP.php?op="+items.getText().toString()+"&item="+resuldato3.getSelectedItem().toString()+"&cantidad="+end).body();
 
                                 HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+ nombretarea +"&totales="+end).body();
 
@@ -1170,7 +1178,6 @@ class Task extends AsyncTask<String, Void, String> {
 
         AlertDialog.Builder aplazarproduccion = new AlertDialog.Builder(OperadorActivity.this);
        adelanto = getLayoutInflater().inflate(R.layout.aplazar_produccion,null);
-        autorizadoxop = adelanto.findViewById(R.id.Cantidadops);
         resuldato4 = adelanto.findViewById(R.id.spinner2);
         fallas = adelanto.findViewById(R.id.fallas);
         Button btnconfir = adelanto.findViewById( R.id.CONFIRMARADE );
@@ -1241,10 +1248,14 @@ class Task extends AsyncTask<String, Void, String> {
                                 final int BuenasMalas = volumencan + cantmalas;
                                 final int totalade = cantidadpro - BuenasMalas;
 
-                                int valorCantOP = cantidadpro - cantmalas;
+                                System.out.println( "CANTIDAD EN MYSQL "+cantidadpro );
+                                System.out.println( "CANTIDAD BUENAS "+volumencan );
+                                System.out.println( "CANTIDAD MALAS "+cantmalas );
+                                System.out.println( "CANTIDAD BUENAS + MALAS "+BuenasMalas );
+                                System.out.println( "CANTIDAD TOTAL EN MYSQL "+totalade );
 
                                 if(totalade >= 0){
-                                    HttpRequest.get("http://"+cambiarIP.ip+"/validar/canbiarAucOP.php?op="+items.getText().toString()+"&item="+resuldato3.getSelectedItem().toString()+"&cantidad="+valorCantOP).body();
+                                    HttpRequest.get("http://"+cambiarIP.ip+"/validar/canbiarAucOP.php?op="+items.getText().toString()+"&item="+resuldato3.getSelectedItem().toString()+"&cantidad="+totalade).body();
 
                                   HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+ nombretarea +"&totales="+totalade).body();
 
@@ -1252,7 +1263,7 @@ class Task extends AsyncTask<String, Void, String> {
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            autorizadoxop.setText( "CANTIDAD RESTANTE : "+totalade );
+
                                             Toast.makeText(getApplicationContext(),"SE REGISTRO EL ADELANTO PRODUCCIDO ", Toast.LENGTH_SHORT).show();
 
                                             verificar();

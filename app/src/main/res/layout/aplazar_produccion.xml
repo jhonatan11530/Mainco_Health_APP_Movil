@@ -84,15 +84,6 @@
                 android:layout_height="75dp"
                 android:text="CONFIRMAR" />
 
-            <TextView
-                android:id="@+id/Cantidadops"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:gravity="center"
-                android:textColor="@color/colorAzulCRO"
-                android:textSize="28sp"
-                 android:text="cantidad restante : "/>
-
 
         </LinearLayout>
 

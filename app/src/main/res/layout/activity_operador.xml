@@ -50,7 +50,7 @@
                     android:layout_height="45dp"
                     android:layout_weight="5"
                     android:background="@color/colorAzulCLM"
-                        android:onClick="operador"
+                    android:onClick="operador"
                     android:text="VALIDAR"
                     android:textColor="#ffffff" />
 
@@ -145,7 +145,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2.5"
-
                 android:textColor="#ffffff"
                 android:onClick="registrar"
                 android:text="COMENZAR" />
@@ -157,7 +156,6 @@
                 android:layout_height="wrap_content"
                 android:textColor="#ffffff"
                 android:onClick="aplazo"
-
                 android:layout_weight="2.5"
                 android:text="APLAZAR PRODUCCION" />
 
@@ -178,14 +176,27 @@
                 android:layout_height="wrap_content"
                 android:textColor="#ffffff"
                 android:layout_weight="2.5"
-
                 android:onClick="salida"
                 android:text="FINALIZAR" />
 
         </LinearLayout>
+    <LinearLayout
 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="3.3"
+        android:orientation="vertical"
+        android:gravity="center">
 
-
+        <TextView
+            android:id="@+id/MostrarCantidad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#185BA3"
+            android:text="ESPERANDO VALIDACION"
+            android:textColor="#fff"
+            android:textSize="25sp" />
+    </LinearLayout>
 
 
     </LinearLayout>
