@@ -52,10 +52,9 @@ public class LoginActivity extends AppCompatActivity {
 
     CheckBox GUARDARUTO;
     ProgressDialog pd;
-    //
-    //
+
     String networkSSID = "WIFIMainco";
-    String networkPass = "A125277935 ";
+    String networkPass = "A125277935";
     final WifiConfiguration conf = new WifiConfiguration();
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +63,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
         mostrarguardado();
-
          GUARDARUTO = findViewById(R.id.OK);
 
       login = findViewById(R.id.estado);

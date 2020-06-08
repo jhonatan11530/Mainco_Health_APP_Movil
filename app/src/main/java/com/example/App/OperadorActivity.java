@@ -1079,25 +1079,25 @@ class Task extends AsyncTask<String, Void, String> {
                             total = Integer.parseInt( falla );
                             volumencan = Integer.parseInt(cantidad.getText().toString());
                              cantidadpro = Integer.parseInt(RESTARCANTIDAD.getString(0));
-                                int tool = volumencan + total;
-                                int end = cantidadpro - tool;
-                            System.out.println( "LA CANTIDAD BUENAS Y MALAS "+tool );
+
+                                int end = cantidadpro - total;
+                              //  int end = tool - cantidadpro;
 
                             System.out.println( "LA CANTIDAD BUENAS "+volumencan );
                             System.out.println( "LA CANTIDAD MALAS "+total );
                             System.out.println( "LA CANTIDAD EN MYSQL "+cantidadpro );
-                            System.out.println( "LA CANTIDAD EN MYSQL RESTADA "+end );
-
+                         //   System.out.println( "LA CANTIDAD EN MYSQL RESTADA "+tool );
+                            System.out.println( "LA CANTIDAD EN MYSQL REAL "+end );
 
                             if(end >= 0){
 
-                                 HttpRequest.get("http://"+cambiarIP.ip+"/validar/canbiarAucOP.php?op="+items.getText().toString()+"&item="+resuldato3.getSelectedItem().toString()+"&cantidad="+end).body();
+                               //  HttpRequest.get("http://"+cambiarIP.ip+"/validar/canbiarAucOP.php?op="+items.getText().toString()+"&item="+resuldato3.getSelectedItem().toString()+"&cantidad="+end).body();
 
                                 HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+ nombretarea +"&totales="+end).body();
 
                                 HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&cantidad="+volumen+"&Ffinal="+fechas+"&Hfinal="+horas+"&motivo="+error+"&conforme="+falla+"&tarea="+nombretarea+"&op="+items.getText().toString()).body();
 
-                                String cero = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/nuevoRegistro.php?id=" + id.getText().toString() ).body();
+                              //  String cero = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/nuevoRegistro.php?id=" + id.getText().toString() ).body();
 
                                 runOnUiThread(new Runnable() {
                                     @Override
