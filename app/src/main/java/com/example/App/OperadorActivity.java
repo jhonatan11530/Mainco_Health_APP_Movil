@@ -587,15 +587,10 @@ public class OperadorActivity extends AppCompatActivity {
                                 builder.setTitle( "LA OP FINALIZO " );
                                 builder.setMessage( "DEBE SELECCIONAR OTRA OP " );
 
-                                builder.setPositiveButton( "REGISTRAR OTRA OP", new DialogInterface.OnClickListener() {
+                                builder.setPositiveButton( "CAMBIAR O.P", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                        new Thread( new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                String cero = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/nuevoRegistro.php?id=" + id.getText().toString() ).body();
-                                            }
-                                        } ).start();
+
                                     }
                                 } );
                                 builder.create().show();
@@ -1086,6 +1081,7 @@ class Task extends AsyncTask<String, Void, String> {
                              cantidadpro = Integer.parseInt(RESTARCANTIDAD.getString(0));
                                 int tool = volumencan + total;
                                 int end = cantidadpro - tool;
+                            System.out.println( "LA CANTIDAD BUENAS Y MALAS "+tool );
 
                             System.out.println( "LA CANTIDAD BUENAS "+volumencan );
                             System.out.println( "LA CANTIDAD MALAS "+total );
@@ -1101,10 +1097,11 @@ class Task extends AsyncTask<String, Void, String> {
 
                                 HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&cantidad="+volumen+"&Ffinal="+fechas+"&Hfinal="+horas+"&motivo="+error+"&conforme="+falla+"&tarea="+nombretarea+"&op="+items.getText().toString()).body();
 
+                                String cero = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/nuevoRegistro.php?id=" + id.getText().toString() ).body();
+
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-
 
                                         Toast.makeText(getApplicationContext(),"DATOS VERIFICADOS", Toast.LENGTH_SHORT).show();
 
@@ -1231,7 +1228,7 @@ class Task extends AsyncTask<String, Void, String> {
                         error = resuldato4.getSelectedItem().toString();
 
 
-                        HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizarcantidad.php?numero="+ Nop +"&id="+id.getText().toString()+"&canpen="+volumencan+"&malo="+cantmalas+"&motivo="+error+"&Ffinal="+fechas+"&Hfinal="+horas+"&tarea="+ tarea ).body();
+                        HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizarcantidad.php?op="+ Nop +"&id="+id.getText().toString()+"&canpen="+volumencan+"&malo="+cantmalas+"&motivo="+error+"&Ffinal="+fechas+"&Hfinal="+horas+"&tarea="+ tarea ).body();
 
                         final String nombretarea = resuldato.getSelectedItem().toString();
                         try {
@@ -1258,6 +1255,7 @@ class Task extends AsyncTask<String, Void, String> {
 
                                   HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+ nombretarea +"&totales="+totalade).body();
 
+                                    String cero = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/nuevoRegistro.php?id=" + id.getText().toString() ).body();
 
                                     runOnUiThread(new Runnable() {
                                         @Override
@@ -1324,7 +1322,7 @@ class Task extends AsyncTask<String, Void, String> {
                 }
            }
         });
-        aplazarproduccion.setPositiveButton("SALIR", new DialogInterface.OnClickListener() {
+        aplazarproduccion.setPositiveButton("SALIR DE APLAZAR PRODUCCION", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 

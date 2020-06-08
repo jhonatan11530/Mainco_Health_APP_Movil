@@ -10,20 +10,14 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="ES" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="CANTIDAD" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7b6af788-212f-4cd2-8b4b-3791be3d9170" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/App/OperadorActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/App/OperadorActivity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -62,8 +56,14 @@
     <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-05-28T16:56:16.949Z" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="D:/sdk" />
+    <property name="project.structure.last.edited" value="Dependencies" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+  </component>
+  <component name="PsdUISettings">
+    <option name="LAST_EDITED_BUILD_TYPE" value="release" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
@@ -159,10 +159,18 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="275" y="26" key="#Gradle/0.0.1366.738@0.0.1366.738" timestamp="1591111454645" />
+    <state x="200" y="99" key="#PSD" timestamp="1591613858996">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="200" y="99" key="#PSD/0.0.1366.738@0.0.1366.738" timestamp="1591613858996" />
     <state x="275" y="26" key="#Updates" timestamp="1591114129708">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="275" y="26" key="#Updates/0.0.1366.738@0.0.1366.738" timestamp="1591114129708" />
+    <state x="363" y="95" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1591613835059">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="363" y="95" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1366.738@0.0.1366.738" timestamp="1591613835059" />
     <state x="413" y="114" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1591123897682">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -171,25 +179,25 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="430" y="205" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1366.738@0.0.1366.738" timestamp="1591192286423" />
-    <state width="1322" height="-40" key="GridCell.Tab.0.bottom" timestamp="1591369217901">
+    <state width="1322" height="-40" key="GridCell.Tab.0.bottom" timestamp="1591614314037">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1322" height="-40" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1591369217901" />
+    <state width="1322" height="-40" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1591614314037" />
     <state width="1981" height="545" key="GridCell.Tab.0.bottom/0.0.2049.1107@0.0.2049.1107" timestamp="1591301732015" />
-    <state width="1322" height="-40" key="GridCell.Tab.0.center" timestamp="1591369217900">
+    <state width="1322" height="-40" key="GridCell.Tab.0.center" timestamp="1591614314037">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1322" height="-40" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1591369217900" />
+    <state width="1322" height="-40" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1591614314037" />
     <state width="1981" height="545" key="GridCell.Tab.0.center/0.0.2049.1107@0.0.2049.1107" timestamp="1591301732015" />
-    <state width="1322" height="-40" key="GridCell.Tab.0.left" timestamp="1591369217900">
+    <state width="1322" height="-40" key="GridCell.Tab.0.left" timestamp="1591614314036">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1322" height="-40" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1591369217900" />
+    <state width="1322" height="-40" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1591614314036" />
     <state width="1981" height="545" key="GridCell.Tab.0.left/0.0.2049.1107@0.0.2049.1107" timestamp="1591301732015" />
-    <state width="1322" height="-40" key="GridCell.Tab.0.right" timestamp="1591369217900">
+    <state width="1322" height="-40" key="GridCell.Tab.0.right" timestamp="1591614314037">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1322" height="-40" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1591369217900" />
+    <state width="1322" height="-40" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1591614314037" />
     <state width="1981" height="545" key="GridCell.Tab.0.right/0.0.2049.1107@0.0.2049.1107" timestamp="1591301732015" />
     <state x="184" y="0" key="SettingsEditor" timestamp="1591114688361">
       <screen x="0" y="0" width="1366" height="738" />
