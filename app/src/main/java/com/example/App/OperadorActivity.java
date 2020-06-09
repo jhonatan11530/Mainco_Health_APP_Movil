@@ -1080,16 +1080,17 @@ class Task extends AsyncTask<String, Void, String> {
                             volumencan = Integer.parseInt(cantidad.getText().toString());
                              cantidadpro = Integer.parseInt(RESTARCANTIDAD.getString(0));
 
-                                int end = cantidadpro - total;
-                              //  int end = tool - cantidadpro;
+                                int end = cantidadpro - total; // BIEN
+                            int tool = cantidadpro - volumencan;
 
                             System.out.println( "LA CANTIDAD BUENAS "+volumencan );
                             System.out.println( "LA CANTIDAD MALAS "+total );
                             System.out.println( "LA CANTIDAD EN MYSQL "+cantidadpro );
-                         //   System.out.println( "LA CANTIDAD EN MYSQL RESTADA "+tool );
+                           System.out.println( "LA CANTIDAD EN MYSQL RESTADA "+tool );
                             System.out.println( "LA CANTIDAD EN MYSQL REAL "+end );
 
                             if(end >= 0){
+                                if(tool >= 0){
 
                                //  HttpRequest.get("http://"+cambiarIP.ip+"/validar/canbiarAucOP.php?op="+items.getText().toString()+"&item="+resuldato3.getSelectedItem().toString()+"&cantidad="+end).body();
 
@@ -1110,39 +1111,14 @@ class Task extends AsyncTask<String, Void, String> {
                                     }
                                 });
 
+                                }else{
 
+                                    EXEDIO();
+
+                                }
                             }else {
 
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-
-                                        String titleText = "EXEDIO LA CANTIDAD DE PRODUCCION AUTORIZADA";
-                                        ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan( Color.parseColor("#E82F2E"));
-                                        SpannableStringBuilder ssBuilder = new SpannableStringBuilder(titleText);
-                                        ssBuilder.setSpan(
-                                                foregroundColorSpan,
-                                                0,
-                                                titleText.length(),
-                                                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-                                        );
-                                        AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
-                                        builder.setTitle(ssBuilder);
-                                        builder.setIcon(R.drawable.peligro);
-                                        builder.setMessage("USTED EXEDIO LA CANTIDAD PERMITIDA POR LA O.P");
-                                        builder.setNegativeButton("VOLVER A REGISTRAR", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialogInterface, int i) {
-
-                                            }
-                                        });
-
-
-                                        builder.create().show();
-
-
-                                    }
-                                });
+                                EXEDIO();
 
                             }
 
@@ -1168,6 +1144,38 @@ class Task extends AsyncTask<String, Void, String> {
         alert.show();
         alert.setCanceledOnTouchOutside(false);
 
+    }
+    public void EXEDIO(){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+
+                String titleText = "EXEDIO LA CANTIDAD DE PRODUCCION AUTORIZADA";
+                ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan( Color.parseColor("#E82F2E"));
+                SpannableStringBuilder ssBuilder = new SpannableStringBuilder(titleText);
+                ssBuilder.setSpan(
+                        foregroundColorSpan,
+                        0,
+                        titleText.length(),
+                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                );
+                AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
+                builder.setTitle(ssBuilder);
+                builder.setIcon(R.drawable.peligro);
+                builder.setMessage("USTED EXEDIO LA CANTIDAD PERMITIDA POR LA O.P");
+                builder.setNegativeButton("VOLVER A REGISTRAR", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+
+
+                builder.create().show();
+
+
+            }
+        });
     }
 
     public void aplazo(View v){
@@ -1241,21 +1249,23 @@ class Task extends AsyncTask<String, Void, String> {
                                 JSONArray RESTARCANTIDAD = new JSONArray(responses);
                                 cantidadpro = Integer.parseInt(RESTARCANTIDAD.getString(0));
 
-                                final int BuenasMalas = volumencan + cantmalas;
-                                final int totalade = cantidadpro - BuenasMalas;
+                                final int BuenasMalas = cantidadpro - cantmalas;
+                                final int totalade = cantidadpro - volumencan;
 
                                 System.out.println( "CANTIDAD EN MYSQL "+cantidadpro );
                                 System.out.println( "CANTIDAD BUENAS "+volumencan );
                                 System.out.println( "CANTIDAD MALAS "+cantmalas );
-                                System.out.println( "CANTIDAD BUENAS + MALAS "+BuenasMalas );
-                                System.out.println( "CANTIDAD TOTAL EN MYSQL "+totalade );
+                                System.out.println( "CANTIDAD MALAS - MYSQL "+BuenasMalas );
+                                System.out.println( "CANTIDAD BUENAS - MYSQL "+totalade );
 
-                                if(totalade >= 0){
-                                    HttpRequest.get("http://"+cambiarIP.ip+"/validar/canbiarAucOP.php?op="+items.getText().toString()+"&item="+resuldato3.getSelectedItem().toString()+"&cantidad="+totalade).body();
+                                if(BuenasMalas >= 0){
+                                    if(totalade >= 0){
+
+                                  //  HttpRequest.get("http://"+cambiarIP.ip+"/validar/canbiarAucOP.php?op="+items.getText().toString()+"&item="+resuldato3.getSelectedItem().toString()+"&cantidad="+totalade).body();
  
-                                  HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+ nombretarea +"&totales="+totalade).body();
+                                  HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+ nombretarea +"&totales="+BuenasMalas).body();
 
-                                    String cero = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/nuevoRegistro.php?id=" + id.getText().toString() ).body();
+                                  //  String cero = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/nuevoRegistro.php?id=" + id.getText().toString() ).body();
 
                                     runOnUiThread(new Runnable() {
                                         @Override
@@ -1268,43 +1278,13 @@ class Task extends AsyncTask<String, Void, String> {
 
                                         }
                                     });
+
+                                    }else {
+                                        EXEDIO();
+                                    }
                                 }
                                 else {
-
-                                    runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            try {
-                                                Thread.sleep(500);
-                                                String titleText = "EXEDIO LA CANTIDAD DE PRODUCCION AUTORIZADA";
-                                                ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan( Color.parseColor("#E82F2E"));
-                                                SpannableStringBuilder ssBuilder = new SpannableStringBuilder(titleText);
-                                                ssBuilder.setSpan(
-                                                        foregroundColorSpan,
-                                                        0,
-                                                        titleText.length(),
-                                                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-                                                );
-                                                AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
-                                                builder.setTitle(ssBuilder);
-                                                builder.setIcon(R.drawable.peligro);
-                                                builder.setMessage("USTED EXEDIO LA CANTIDAD PERMITIDA POR LA O.P");
-                                                builder.setNegativeButton("VOLVER A REGISTRAR", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                                                    }
-                                                });
-
-
-                                                builder.create().show();
-                                            } catch (InterruptedException e) {
-                                                e.printStackTrace();
-                                            }
-
-                                        }
-                                    });
-
+                                    EXEDIO();
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
