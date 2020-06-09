@@ -584,10 +584,11 @@ public class OperadorActivity extends AppCompatActivity {
                                 cantidadund.setEnabled( false );
 
                                 AlertDialog.Builder builder = new AlertDialog.Builder( OperadorActivity.this );
+                                builder.setIcon( R.drawable.finish_op );
                                 builder.setTitle( "LA OP FINALIZO " );
                                 builder.setMessage( "DEBE SELECCIONAR OTRA OP " );
 
-                                builder.setPositiveButton( "CAMBIAR O.P", new DialogInterface.OnClickListener() {
+                                builder.setPositiveButton( "ACEPTAR", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
 

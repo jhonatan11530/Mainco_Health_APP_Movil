@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/salir"
-        android:title="ATRAS"
+        android:title=""
         android:icon="@drawable/atras"
         app:showAsAction="ifRoom|withText"
         >
