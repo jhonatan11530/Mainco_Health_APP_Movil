@@ -586,7 +586,7 @@ public class OperadorActivity extends AppCompatActivity {
                                 AlertDialog.Builder builder = new AlertDialog.Builder( OperadorActivity.this );
                                 builder.setIcon( R.drawable.finish_op );
                                 builder.setTitle( "LA OP FINALIZO " );
-                                builder.setMessage( "DEBE SELECCIONAR OTRA OP " );
+                                builder.setMessage( "DEBE SELECCIONAR OTRA OP" );
 
                                 builder.setPositiveButton( "ACEPTAR", new DialogInterface.OnClickListener() {
                                     @Override
@@ -1093,13 +1093,13 @@ class Task extends AsyncTask<String, Void, String> {
                             if(end >= 0){
                                 if(tool >= 0){
 
-                               //  HttpRequest.get("http://"+cambiarIP.ip+"/validar/canbiarAucOP.php?op="+items.getText().toString()+"&item="+resuldato3.getSelectedItem().toString()+"&cantidad="+end).body();
+                                 HttpRequest.get("http://"+cambiarIP.ip+"/validar/canbiarAucOP.php?op="+items.getText().toString()+"&item="+resuldato3.getSelectedItem().toString()+"&cantidad="+end).body();
 
                                 HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+ nombretarea +"&totales="+end).body();
 
                                 HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&cantidad="+volumen+"&Ffinal="+fechas+"&Hfinal="+horas+"&motivo="+error+"&conforme="+falla+"&tarea="+nombretarea+"&op="+items.getText().toString()).body();
 
-                              //  String cero = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/nuevoRegistro.php?id=" + id.getText().toString() ).body();
+                                String cero = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/nuevoRegistro.php?id=" + id.getText().toString() ).body();
 
                                 runOnUiThread(new Runnable() {
                                     @Override
@@ -1185,127 +1185,123 @@ class Task extends AsyncTask<String, Void, String> {
        adelanto = getLayoutInflater().inflate(R.layout.aplazar_produccion,null);
         resuldato4 = adelanto.findViewById(R.id.spinner2);
         fallas = adelanto.findViewById(R.id.fallas);
-        Button btnconfir = adelanto.findViewById( R.id.CONFIRMARADE );
+
         digito = adelanto.findViewById(R.id.digicantidad);
 
         digito.setVisibility( View.VISIBLE );
-        btnconfir.setVisibility( View.VISIBLE );
+
 
         motivofalla();
 
         ArrayAdapter <cantidadfallas> a = new ArrayAdapter<>( this, android.R.layout.simple_dropdown_item_1line, dato4 );
         resuldato4.setAdapter(a);
 
-        btnconfir.setOnClickListener( new View.OnClickListener() {
+        aplazarproduccion.setPositiveButton("VERIFICAR", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(DialogInterface dialogInterface, int i) {
+
                 if(digito.getText().toString().length() == 0){
                     digito.setError("DEBE LLENARSE");
                 }if(digito.getText().toString().length() != 0){
 
-                // imprime fecha
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-                Date date = new Date();
+                    // imprime fecha
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                    Date date = new Date();
 
-                //imprime hora
-                SimpleDateFormat hourFormat = new SimpleDateFormat("H:mm:ss");
+                    //imprime hora
+                    SimpleDateFormat hourFormat = new SimpleDateFormat("H:mm:ss");
 
-                //almacena los datos en una cadena
-                final	String horafinal = hourFormat.format(date);
-                final	String fechafinal = dateFormat.format(date);
+                    //almacena los datos en una cadena
+                    final	String horafinal = hourFormat.format(date);
+                    final	String fechafinal = dateFormat.format(date);
 
-               final EditText edit = new EditText(OperadorActivity.this);
-                edit.setEnabled(false);
-                edit.setText(fechafinal);
+                    final EditText edit = new EditText(OperadorActivity.this);
+                    edit.setEnabled(false);
+                    edit.setText(fechafinal);
 
-                final EditText editt = new EditText(OperadorActivity.this);
-                editt.setEnabled(false);
-                editt.setText(horafinal);
-
-
-
-                        final   String fechas =edit.getText().toString();
-                        final   String horas =editt.getText().toString();
-
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        final String tarea = resuldato.getSelectedItem().toString();
-                        final String Nop = items.getText().toString();
-                        volumencan = Integer.parseInt(digito.getText().toString());
-                        final int cantmalas = Integer.parseInt(fallas.getText().toString());
-                        error = resuldato4.getSelectedItem().toString();
+                    final EditText editt = new EditText(OperadorActivity.this);
+                    editt.setEnabled(false);
+                    editt.setText(horafinal);
 
 
-                        HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizarcantidad.php?op="+ Nop +"&id="+id.getText().toString()+"&canpen="+volumencan+"&malo="+cantmalas+"&motivo="+error+"&Ffinal="+fechas+"&Hfinal="+horas+"&tarea="+ tarea ).body();
 
-                        final String nombretarea = resuldato.getSelectedItem().toString();
-                        try {
-                            Thread.sleep(1000);
+                    final   String fechas =edit.getText().toString();
+                    final   String horas =editt.getText().toString();
 
-                            String responses = HttpRequest.get("http://"+cambiarIP.ip+"/validar/Sobrante.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+ nombretarea ).body();
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            final String tarea = resuldato.getSelectedItem().toString();
+                            final String Nop = items.getText().toString();
+                            volumencan = Integer.parseInt(digito.getText().toString());
+                            final int cantmalas = Integer.parseInt(fallas.getText().toString());
+                            error = resuldato4.getSelectedItem().toString();
 
 
+                            HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizarcantidad.php?op="+ Nop +"&id="+id.getText().toString()+"&canpen="+volumencan+"&malo="+cantmalas+"&motivo="+error+"&Ffinal="+fechas+"&Hfinal="+horas+"&tarea="+ tarea ).body();
+
+                            final String nombretarea = resuldato.getSelectedItem().toString();
                             try {
-                                JSONArray RESTARCANTIDAD = new JSONArray(responses);
-                                cantidadpro = Integer.parseInt(RESTARCANTIDAD.getString(0));
+                                Thread.sleep(1000);
 
-                                final int BuenasMalas = cantidadpro - cantmalas;
-                                final int totalade = cantidadpro - volumencan;
+                                String responses = HttpRequest.get("http://"+cambiarIP.ip+"/validar/Sobrante.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+ nombretarea ).body();
 
-                                System.out.println( "CANTIDAD EN MYSQL "+cantidadpro );
-                                System.out.println( "CANTIDAD BUENAS "+volumencan );
-                                System.out.println( "CANTIDAD MALAS "+cantmalas );
-                                System.out.println( "CANTIDAD MALAS - MYSQL "+BuenasMalas );
-                                System.out.println( "CANTIDAD BUENAS - MYSQL "+totalade );
 
-                                if(BuenasMalas >= 0){
-                                    if(totalade >= 0){
+                                try {
+                                    JSONArray RESTARCANTIDAD = new JSONArray(responses);
+                                    cantidadpro = Integer.parseInt(RESTARCANTIDAD.getString(0));
 
-                                  //  HttpRequest.get("http://"+cambiarIP.ip+"/validar/canbiarAucOP.php?op="+items.getText().toString()+"&item="+resuldato3.getSelectedItem().toString()+"&cantidad="+totalade).body();
- 
-                                  HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+ nombretarea +"&totales="+BuenasMalas).body();
+                                    final int BuenasMalas = cantidadpro - cantmalas;
+                                    final int totalade = cantidadpro - volumencan;
 
-                                  //  String cero = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/nuevoRegistro.php?id=" + id.getText().toString() ).body();
+                                    System.out.println( "CANTIDAD EN MYSQL "+cantidadpro );
+                                    System.out.println( "CANTIDAD BUENAS "+volumencan );
+                                    System.out.println( "CANTIDAD MALAS "+cantmalas );
+                                    System.out.println( "CANTIDAD MALAS - MYSQL "+BuenasMalas );
+                                    System.out.println( "CANTIDAD BUENAS - MYSQL "+totalade );
 
-                                    runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
+                                    if(BuenasMalas >= 0){
+                                        if(totalade >= 0){
 
-                                            Toast.makeText(getApplicationContext(),"SE REGISTRO EL ADELANTO PRODUCCIDO ", Toast.LENGTH_SHORT).show();
+                                            HttpRequest.get("http://"+cambiarIP.ip+"/validar/canbiarAucOP.php?op="+items.getText().toString()+"&item="+resuldato3.getSelectedItem().toString()+"&cantidad="+totalade).body();
 
-                                            verificar();
-                                            cantidad();
+                                            HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+ nombretarea +"&totales="+BuenasMalas).body();
 
+                                            HttpRequest.get( "http://" + cambiarIP.ip + "/validar/nuevoRegistro.php?id=" + id.getText().toString() ).body();
+
+                                            runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+
+                                                    Toast.makeText(getApplicationContext(),"SE REGISTRO EL ADELANTO PRODUCCIDO ", Toast.LENGTH_SHORT).show();
+
+                                                    verificar();
+                                                    cantidad();
+
+                                                }
+                                            });
+
+                                        }else {
+                                            EXEDIO();
                                         }
-                                    });
-
-                                    }else {
+                                    }
+                                    else {
                                         EXEDIO();
                                     }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
                                 }
-                                else {
-                                    EXEDIO();
-                                }
-                            } catch (JSONException e) {
+
+
+                            } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
 
-
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
                         }
-
-                    }
-                }).start();
-                Thread.interrupted();
+                    }).start();
+                    Thread.interrupted();
 
                 }
-           }
-        });
-        aplazarproduccion.setPositiveButton("SALIR DE APLAZAR PRODUCCION", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
 
             }
         });

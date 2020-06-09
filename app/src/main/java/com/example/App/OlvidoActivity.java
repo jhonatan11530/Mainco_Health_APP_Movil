@@ -19,13 +19,10 @@ public class OlvidoActivity extends AppCompatActivity {
 
     private EditText id,cedula;
 
-    ViewFlipper v_flipper;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_olvido);
-
-
 
 
         id = findViewById(R.id.CDUNICO);

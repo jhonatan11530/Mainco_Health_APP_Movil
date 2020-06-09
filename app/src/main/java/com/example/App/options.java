@@ -2,6 +2,7 @@ package com.example.App;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -159,12 +160,13 @@ public class options extends AppCompatActivity {
                 "NOMBRE : JHONATAN FERNANDEZ MUÑOZ \n\n" +
                 "TELEFONO : 3114360830\n\n" +
                 "CORREO : jhonatan1153@hotmail.com" );
-        builder.setPositiveButton( "aceptar", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton( "ACEPTAR", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
             }
         } );
+
         builder.create().show();
     }
 
@@ -180,12 +182,21 @@ public class options extends AppCompatActivity {
 
 
 
-        builder.setPositiveButton( "aceptar", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton( "ACEPTAR ", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
             }
         } );
+        builder.setNegativeButton("CONOCER LICENCIA", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                String url="http://192.168.20.9:8080/LICENSE.txt";
+                Uri uri = Uri.parse(url);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
         builder.create().show();
 
     }
