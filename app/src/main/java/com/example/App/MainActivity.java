@@ -36,9 +36,7 @@ public class MainActivity extends AppCompatActivity {
             pb.setProgress(values[0]);
         }
 
-
         protected void onPostExecute() {
-
                 Intent e = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(e);
         }
