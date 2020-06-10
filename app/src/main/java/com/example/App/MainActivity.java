@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         protected void onPostExecute() {
-                Intent e = new Intent(getApplicationContext(), OperadorActivity.class);
+                Intent e = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(e);
         }
 
