@@ -1099,7 +1099,7 @@ class Task extends AsyncTask<String, Void, String> {
 
                                 HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&cantidad="+volumen+"&Ffinal="+fechas+"&Hfinal="+horas+"&motivo="+error+"&conforme="+falla+"&tarea="+nombretarea+"&op="+items.getText().toString()).body();
 
-                                String cero = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/nuevoRegistro.php?id=" + id.getText().toString() ).body();
+                                HttpRequest.get( "http://" + cambiarIP.ip + "/validar/nuevoRegistro.php?id=" + id.getText().toString() ).body();
 
                                 runOnUiThread(new Runnable() {
                                     @Override
