@@ -34,7 +34,6 @@ $a->ejecutar($ID,$op,$tarea,$llave);
 else{
   echo "aqui no paso nada";
 }
-
 class ejemplo{
   function ejecutar($ID,$op,$tarea,$llave){
       sleep(1);
