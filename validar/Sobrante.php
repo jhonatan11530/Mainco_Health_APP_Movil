@@ -2,7 +2,7 @@
  $op = $_GET["op"];
  $tarea = $_GET["tarea"];
  $mysqli = mysqli_connect("127.0.0.1", "root", "", "proyecto");
- $res = "SELECT cantidadpentiente FROM tarea WHERE numero_op  = '".$op."' AND tarea='".$tarea."'";
+ $res = "SELECT * FROM tarea WHERE numero_op  = '".$op."' AND tarea='".$tarea."'";
  
  $result = mysqli_query($mysqli, $res);
  

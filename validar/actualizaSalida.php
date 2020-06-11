@@ -104,9 +104,10 @@ class HORA{
   function EFICACIA($cant,$extandar,$ID,$op,$llave,$cantFALLAS){
 
     /*CONVERTIDO A HORA EFICACIA */
-  $SegundosXhoras = 3600;
-  $listo = round($extandar * 3600);
-  $dato = $SegundosXhoras / $listo;
+   $SegundosXhoras = 3600;
+   $listo = round($extandar * 3600);
+   $dato = $listo * $cant;
+
  
 
     echo "TIEMPO EN HORAS QUE SE DEBE DEMORAR EN HACER LA OP: ".$dato;
@@ -120,7 +121,7 @@ class entradasalida{
   function totaltime($ID,$dato,$op,$cant,$llave,$cantFALLAS){
 
     $mysqli = mysqli_connect("127.0.0.1", "root", "", "proyecto");
-    $search = "SELECT * FROM operador WHERE id = '".$ID."'";
+    $search = "SELECT * FROM operador WHERE id = '".$ID."' AND llaves='".$llave."' ";
     $res = mysqli_query($mysqli, $search);  
     
     while($listo = mysqli_fetch_array($res)) {
@@ -140,19 +141,23 @@ class entradasalida{
 
     
     $e = new EFICIENCIA();
-    $e->eficiencias($inicial,$final,$dato,$ID,$op,$cant,$llave,$cantFALLAS);
+    $e->eficiencias($dato,$ID,$inicial,$final,$op,$cant,$llave,$cantFALLAS);
   }
 }
 
 class EFICIENCIA{
-  function eficiencias($inicial,$final,$dato,$ID,$op,$cant,$llave,$cantFALLAS){
+  function eficiencias($dato,$ID,$inicial,$final,$op,$cant,$llave,$cantFALLAS){
 
-    $sumer = $cant + $cantFALLAS;
+    $datetime1 = new DateTime($final);
+    $datetime2 = new DateTime($inicial);
+    $interval = $datetime1->diff($datetime2);
+    $hora = $interval->format('%H:%M:%S');
 
-    $validator = $sumer / $dato;
+    list($horas, $minutos, $segundos) = explode(':', $hora);
+    $hora_en_segundos = ($horas * 3600 ) + ($minutos * 60 ) + $segundos;
+    $dates = $dato / $hora_en_segundos;
+    $formula = round($dates * 100);
     
-    $formula = round($validator * 100);
-
     echo "<br>";
     echo "<br>";
     echo "EFICIENCIA : ".$formula;
@@ -163,12 +168,12 @@ class EFICIENCIA{
     $res = mysqli_query($mysqli, $search);
 
    $f = new EFICACIA();
-    $f->eficacias($ID,$dato,$inicial,$final,$op,$cant,$llave);
+    $f->eficacias($ID,$dato,$op,$cant,$llave);
   }
 }
 
 class EFICACIA{
-  function eficacias($ID,$dato,$inicial,$final,$op,$cant,$llave){
+  function eficacias($ID,$dato,$op,$cant,$llave){
 
     $mysqli = mysqli_connect("127.0.0.1", "root", "", "proyecto");
     $search = "SELECT * FROM operador WHERE id = '".$ID."'";
@@ -190,26 +195,10 @@ class EFICACIA{
     $mysqli = mysqli_connect("127.0.0.1", "root", "", "proyecto");
     $search = "UPDATE operador SET eficacia='".$eficacia."' WHERE id= '".$ID."' AND llaves='".$llave."'";
     $res = mysqli_query($mysqli, $search);
-
-    $f = new TIEMPO_PROMEDIO();
-    $f->promedio($ID,$dato,$inicial,$final,$op,$cant);
-    
-  }
-}
-class TIEMPO_PROMEDIO{
-  function promedio($ID,$dato,$inicial,$final,$op,$cant){
-
-     $newDate = ($inicial + $final) / 2;
-
-     $promedio = date("h:m:s", strtotime($newDate));  
-
-
-    $mysqli = mysqli_connect("127.0.0.1", "root", "", "proyecto");
-    $search = "INSERT INTO promedio (numero_op,cantidad_op,cod_operador,time_promedio) VALUES ('".$op."','".$cant."','".$ID."','".$promedio."')";
-    mysqli_query($mysqli, $search);
     $mysqli->close();	
   }
 }
+
 
 
 
