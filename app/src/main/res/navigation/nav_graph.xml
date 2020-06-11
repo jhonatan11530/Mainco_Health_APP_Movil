@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainActivity">
+
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.App.MainActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" >
+
+        <action
+            android:id="@+id/action_mainActivity_to_loginActivity2"
+            app:destination="@id/loginActivity" />
+
+    </activity>
+
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.example.App.LoginActivity"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" >
+        <action
+            android:id="@+id/action_loginActivity_to_operadorActivity"
+            app:destination="@id/operadorActivity" />
+        <action
+            android:id="@+id/action_loginActivity_to_options"
+            app:destination="@id/options" />
+        <action
+            android:id="@+id/action_loginActivity_to_olvidoActivity"
+            app:destination="@id/olvidoActivity" />
+        <action
+            android:id="@+id/action_loginActivity_to_registroActivity"
+            app:destination="@id/registroActivity" />
+    </activity>
+    <activity
+        android:id="@+id/operadorActivity"
+        android:name="com.example.App.OperadorActivity"
+        android:label="activity_operador"
+        tools:layout="@layout/activity_operador" >
+        <action
+            android:id="@+id/action_operadorActivity_to_loginActivity"
+            app:destination="@id/loginActivity" />
+        <action
+            android:id="@+id/action_operadorActivity_to_options"
+            app:destination="@id/options" />
+    </activity>
+    <activity
+        android:id="@+id/registroActivity"
+        android:name="com.example.App.RegistroActivity"
+        android:label="activity_registro"
+        tools:layout="@layout/activity_registro" >
+        <action
+            android:id="@+id/action_registroActivity_to_loginActivity"
+            app:destination="@id/loginActivity" />
+    </activity>
+    <activity
+        android:id="@+id/options"
+        android:name="com.example.App.options"
+        android:label="activity_options"
+        tools:layout="@layout/activity_options" >
+        <action
+            android:id="@+id/action_options_to_operadorActivity"
+            app:destination="@id/operadorActivity" />
+        <action
+            android:id="@+id/action_options_to_loginActivity"
+            app:destination="@id/loginActivity" />
+    </activity>
+    <activity
+        android:id="@+id/olvidoActivity"
+        android:name="com.example.App.OlvidoActivity"
+        android:label="activity_olvido"
+        tools:layout="@layout/activity_olvido" >
+        <action
+            android:id="@+id/action_olvidoActivity_to_loginActivity"
+            app:destination="@id/loginActivity" />
+    </activity>
+</navigation>
