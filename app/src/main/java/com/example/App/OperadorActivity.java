@@ -968,7 +968,8 @@ public class OperadorActivity extends AppCompatActivity {
                         runOnUiThread( new Runnable() {
                             @Override
                             public void run() {
-                                registroTIME.setEnabled( false );
+                                registroTIME.setEnabled( false ); 
+                                registroTIME.setBackgroundColor( Color.parseColor( "#919191" ) );
                             }
                         } );
 
