@@ -38,7 +38,7 @@ class ejemplo{
   function ejecutar($ID,$op,$tarea,$llave){
       sleep(1);
       $mysql = mysqli_connect("127.0.0.1", "root", "", "proyecto");
-      $sql_statements = "SELECT * FROM operador WHERE id='".$ID."' AND numero_op = '".$op."'";
+      $sql_statements = "SELECT * FROM operador WHERE id='".$ID."' AND numero_op = '".$op."' AND llaves='".$llave."' ";
       $llaves = mysqli_query($mysql, $sql_statements);
       while($row = mysqli_fetch_array($llaves)) {
         $cant = $row["cantidad"];
@@ -162,9 +162,9 @@ class EFICIENCIA{
     echo "EFICIENCIA : ".$formula;
 
 
-    $mysqli = mysqli_connect("127.0.0.1", "root", "", "proyecto");
-    $search = "UPDATE operador SET eficencia='".$formula."' WHERE id= '".$ID."' AND llaves='".$llave."'";
-    $res = mysqli_query($mysqli, $search);
+   $mysqli = mysqli_connect("127.0.0.1", "root", "", "proyecto");
+   $search = "UPDATE operador SET eficencia='".$formula."' WHERE id= '".$ID."' AND llaves='".$llave."'";
+   $res = mysqli_query($mysqli, $search);
 
    $f = new EFICACIA();
     $f->eficacias($ID,$dato,$op,$cant,$llave);

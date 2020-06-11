@@ -591,6 +591,12 @@ public class OperadorActivity extends AppCompatActivity {
                                 builder.setPositiveButton( "ACEPTAR", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
+                                        new Thread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/LimpiarValoresItems.php?op=" + resuldato3.getSelectedItem().toString()).body();
+                                            }
+                                        }).start();
 
                                     }
                                 } );
