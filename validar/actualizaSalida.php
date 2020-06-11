@@ -151,7 +151,7 @@ class EFICIENCIA{
     $datetime1 = new DateTime($final);
     $datetime2 = new DateTime($inicial);
     $interval = $datetime1->diff($datetime2);
-    $hora = $interval->format('%H:%M:%S');
+    $hora = $interval->format('%H:%I:%S');
 
     list($horas, $minutos, $segundos) = explode(':', $hora);
     $hora_en_segundos = ($horas * 3600 ) + ($minutos * 60 ) + $segundos;
