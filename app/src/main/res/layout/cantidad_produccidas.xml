@@ -53,6 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:ems="10"
+                android:background="@drawable/items"
                 android:gravity="center"
                 android:hint="CANTIDAD DE UNIDADES PRODUCCIDAS"
                 android:inputType="number" />
@@ -77,7 +78,7 @@
                 android:id="@+id/fallas"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-
+                android:background="@drawable/items"
                 android:ems="10"
                 android:gravity="center"
                 android:hint="CANTIDAD NO CONFORMES"

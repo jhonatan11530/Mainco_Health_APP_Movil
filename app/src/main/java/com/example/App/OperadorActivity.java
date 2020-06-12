@@ -32,6 +32,8 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -58,7 +60,7 @@ public class OperadorActivity extends AppCompatActivity {
     private Button validarinfo;
     private Button cantidadund;
 
-    private int minuto, i, hora, cantidadpro, volumencan, total, volumen;
+    private int minuto,segundo,horas, i, hora, cantidadpro, volumencan, total, volumen;
 
     private final ArrayList<cantidadfallas> dato4 = new ArrayList<>();
     private ArrayList<cantidades> dato3 = new ArrayList<>();
@@ -573,15 +575,17 @@ public class OperadorActivity extends AppCompatActivity {
 
                                 ((TextView) resuldato.getSelectedView()).setTextColor(getResources().getColor(R.color.RED));
 
+                                registroTIME.setEnabled( false );
+                                salidaTIME.setEnabled( false );
+                                cantidadund.setEnabled( false );
+                                desbloquear.setEnabled( false );
+
                                 desbloquear.setBackgroundColor( Color.parseColor( "#919191" ) );
                                 registroTIME.setBackgroundColor( Color.parseColor( "#919191" ) );
                                 cantidadund.setBackgroundColor( Color.parseColor( "#919191" ) );
                                 salidaTIME.setBackgroundColor( Color.parseColor( "#919191" ) );
 
-                                desbloquear.setEnabled( false );
-                                registroTIME.setEnabled( false );
-                                salidaTIME.setEnabled( false );
-                                cantidadund.setEnabled( false );
+
 
                                 AlertDialog.Builder builder = new AlertDialog.Builder( OperadorActivity.this );
                                 builder.setIcon( R.drawable.finish_op );
@@ -745,7 +749,7 @@ public class OperadorActivity extends AppCompatActivity {
                 resuldato2.setEnabled( true );
                 resuldato2.setVisibility( View.VISIBLE );
                 paro.setText( "" );
-                MOSTRAR.setText( "0:0:0" );
+                MOSTRAR.setText( "00:00:00" );
             }
         } );
 
@@ -807,6 +811,7 @@ public class OperadorActivity extends AppCompatActivity {
                     minuto = 0;
                     hora = 0;
 
+
                     for (i = 0; i <= 60; i++) {
                         System.out.println( i );
 
@@ -828,15 +833,20 @@ public class OperadorActivity extends AppCompatActivity {
 
                         }
 
-                        final String segundo = Integer.toString( i );
-                        final String minutos = Integer.toString( minuto );
-                        final String horas = Integer.toString( hora );
+                        NumberFormat formatter = new DecimalFormat("00");
+                        final String segund = formatter.format(i); // ----> 01
+
+                        NumberFormat formatterMinutes = new DecimalFormat("00");
+                        final String minute = formatterMinutes.format(minuto); // ----> 01
+
+                        NumberFormat formatterHoues = new DecimalFormat("00");
+                        final String hours = formatterHoues.format(hora); // ----> 01
 
                         runOnUiThread( new Runnable() {
                             @Override
                             public void run() {
 
-                                MOSTRAR.setText( horas + ":" + minuto + ":" + segundo );
+                                MOSTRAR.setText( hours + ":" + minute + ":" + segund );
 
                             }
                         } );
@@ -877,8 +887,7 @@ public class OperadorActivity extends AppCompatActivity {
 
         }
 
-        String d = Integer.toString( minuto );
-        paro.setText( d );
+        paro.setText(MOSTRAR.getText().toString());
 
     }
 

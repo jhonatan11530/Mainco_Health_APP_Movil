@@ -54,6 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:ems="10"
+                android:background="@drawable/items"
                 android:gravity="center"
                 android:hint="CANTIDAD DE UNIDADES PRODUCCIDAS"
                 android:inputType="number" />
@@ -73,12 +74,14 @@
                 android:textColor="#000000"
                 android:textSize="18sp"
                 />
+
             <EditText
                 android:id="@+id/fallas"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:ems="10"
                 android:gravity="center"
+                android:background="@drawable/items"
                 android:hint="CANTIDAD NO CONFORMES"
                 android:inputType="number" />
 

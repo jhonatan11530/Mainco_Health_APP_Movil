@@ -10,19 +10,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:weightSum="1"
 
         >
-
         <TextView
             android:id="@+id/MOSTRAR"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="0:0:0"
+            android:text="00:00:00"
             android:textColor="@color/colorAzulCRO"
             android:textSize="63sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#000"
+            android:layout_marginVertical="10dp"
+            />
+
     </LinearLayout>
 
     <LinearLayout
@@ -33,6 +40,7 @@
         android:orientation="horizontal"
         android:weightSum="1"
         android:baselineAligned="false">
+
 
 
         <LinearLayout
@@ -64,10 +72,9 @@
                 android:id="@+id/paro"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
                 android:enabled="false"
                 android:gravity="center"
-                android:inputType="number" />
+                />
 
         </LinearLayout>
 
