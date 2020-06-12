@@ -846,7 +846,7 @@ public class OperadorActivity extends AppCompatActivity {
                             @Override
                             public void run() {
 
-                                MOSTRAR.setText( hours + ":" + minute + ":" + segund );
+                                MOSTRAR.setText( hours + ":" + minute + ":" + segund  );
 
                             }
                         } );
