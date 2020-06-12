@@ -14,14 +14,6 @@
         android:orientation="vertical"
         android:weightSum="12"
         >
-
-        <LinearLayout
-            android:id="@+id/linearLayout1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:weightSum="12"
-            >
             <LinearLayout
                 android:id="@+id/linearLayout2"
                 android:layout_width="match_parent"
@@ -36,30 +28,58 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="DESEA ADELANTAR LO PRODUCCIDO ?"
+                    android:text="DIGITE LAS CANTIDADES A DELANTAR"
                     android:textColor="#000000"
                     android:textSize="25sp"
                     />
-
++
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#000"
+                    android:layout_marginVertical="10dp"
+                    />
             </LinearLayout>
 
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="DIGITE CANTIDAD PRODUCCIDA"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                />
             <EditText
                 android:id="@+id/digicantidad"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:ems="10"
                 android:gravity="center"
-                android:hint="CANTIDAD PRODUCCIDAS"
+                android:hint="CANTIDAD DE UNIDADES PRODUCCIDAS"
                 android:inputType="number" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#000"
+                android:layout_marginVertical="15dp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="DIGITE CANTIDAD NO CONFORMES"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                />
             <EditText
                 android:id="@+id/fallas"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:ems="10"
                 android:gravity="center"
-                android:hint="CANTIDAD DEFECTUOSA"
+                android:hint="CANTIDAD NO CONFORMES"
                 android:inputType="number" />
 
             <TextView
@@ -79,7 +99,7 @@
                 android:layout_height="60dp" />
 
 
-        </LinearLayout>
+
 
       </LinearLayout>
 </RelativeLayout>
