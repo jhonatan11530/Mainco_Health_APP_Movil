@@ -19,14 +19,14 @@ public class RegistroActivity extends AppCompatActivity {
     EditText id,nombre,apellido,cedula,pass;
     CheckBox resultado;
     Button registro;
-
+    AsyncHttpClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
 
-        AsyncHttpClient client = new AsyncHttpClient();
+         client = new AsyncHttpClient();
 
 
         nombre = findViewById(R.id.nombre);
@@ -96,7 +96,7 @@ public class RegistroActivity extends AppCompatActivity {
 
                         String ROL = "operador";
 
-                        String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/registro.php?nombre="+nombre.getText().toString()+"&apellido="+apellido.getText().toString()+"&cedula="+cedula.getText().toString()+"&pass="+pass.getText().toString()+"&rol="+ ROL ).body();
+                        HttpRequest.get("http://"+cambiarIP.ip+"/validar/registro.php?nombre="+nombre.getText().toString()+"&apellido="+apellido.getText().toString()+"&cedula="+cedula.getText().toString()+"&pass="+pass.getText().toString()+"&rol="+ ROL ).body();
 
 
 

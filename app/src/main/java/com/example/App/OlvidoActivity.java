@@ -80,7 +80,7 @@ public class OlvidoActivity extends AppCompatActivity {
                             new Thread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    String verifi = HttpRequest.get("http://"+cambiarIP.ip+"/validar/olvido.php?cedula="+id.getText().toString()+"&pass="+cedula.getText().toString()).body();
+                                    HttpRequest.get("http://"+cambiarIP.ip+"/validar/olvido.php?cedula="+id.getText().toString()+"&pass="+cedula.getText().toString()).body();
 
                                    try{
 

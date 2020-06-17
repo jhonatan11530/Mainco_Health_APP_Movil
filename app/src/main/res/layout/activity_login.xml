@@ -27,7 +27,8 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:src="@drawable/admin"
-                android:contentDescription="TODO" />
+                android:contentDescription="TODO"
+                tools:ignore="ContentDescription" />
 
         </LinearLayout>
 
