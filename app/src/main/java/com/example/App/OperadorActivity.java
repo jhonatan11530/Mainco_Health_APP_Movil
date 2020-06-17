@@ -849,7 +849,6 @@ public class OperadorActivity extends AppCompatActivity {
                         NumberFormat formatterHoues = new DecimalFormat("00");
                         final String hours = formatterHoues.format(hora); // ----> 01
 
-                        final String horas = hourFormat.format( date );
                         runOnUiThread( new Runnable() {
                             @Override
                             public void run() {
