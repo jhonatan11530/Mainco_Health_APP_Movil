@@ -116,6 +116,9 @@ public class OperadorActivity extends AppCompatActivity {
         resultados = findViewById( R.id.listar_operador );
 
 
+
+
+
         desbloquear.setEnabled( false );
         registroTIME.setEnabled( false );
         salidaTIME.setEnabled( false );
@@ -466,6 +469,7 @@ public class OperadorActivity extends AppCompatActivity {
 
     public void operador(View v) {
 
+
         if (id.getText().toString().length() == 0 && items.getText().toString().length() == 0) {
 
             id.setError( "ID ES REQUERIDO !" );
@@ -812,10 +816,13 @@ public class OperadorActivity extends AppCompatActivity {
                     hora = 0;
 
 
+
+
+
                     for (i = 0; i <= 60; i++) {
                         System.out.println( i );
 
-                        Thread.sleep( 1000 );
+                        Thread.sleep( 1000);
 
                         if (i == 60) {
                             i = 0;
@@ -842,11 +849,12 @@ public class OperadorActivity extends AppCompatActivity {
                         NumberFormat formatterHoues = new DecimalFormat("00");
                         final String hours = formatterHoues.format(hora); // ----> 01
 
+                        final String horas = hourFormat.format( date );
                         runOnUiThread( new Runnable() {
                             @Override
                             public void run() {
 
-                                MOSTRAR.setText( hours + ":" + minute + ":" + segund );
+                               MOSTRAR.setText( hours + ":" + minute + ":" + segund );
 
                             }
                         } );
