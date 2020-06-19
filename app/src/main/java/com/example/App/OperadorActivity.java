@@ -565,7 +565,7 @@ public class OperadorActivity extends AppCompatActivity {
                                 AlertDialog.Builder builder = new AlertDialog.Builder( OperadorActivity.this );
                                 builder.setIcon(R.drawable.finish_op);
                                 builder.setTitle( "FINALIZO LA ACTIVIDAD O TAREA" );
-                                builder.setMessage( "YA TERMINO LA TAREA CAMBIE A OTRA TAREA" );
+                                builder.setMessage( "YA TERMINO LA TAREA DEBERA REALIZAR OTRA TAREA" );
 
                                 builder.setPositiveButton( "ACEPTAR", new DialogInterface.OnClickListener() {
                                     @Override
