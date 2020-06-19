@@ -557,11 +557,22 @@ public class OperadorActivity extends AppCompatActivity {
                                 cantidadund.setEnabled( false );
                                 desbloquear.setEnabled( false );
 
-                                desbloquear.setBackgroundColor( Color.parseColor( "#B2C900" ) );
-                                registroTIME.setBackgroundColor( Color.parseColor( "#B2C900" ) );
-                                cantidadund.setBackgroundColor( Color.parseColor( "#2196F3" ) );
-                                salidaTIME.setBackgroundColor( Color.parseColor( "#2196F3" ) );
+                                desbloquear.setBackgroundColor( Color.parseColor( "#919191" ) );
+                                registroTIME.setBackgroundColor( Color.parseColor( "#919191" ) );
+                                cantidadund.setBackgroundColor( Color.parseColor( "#919191" ) );
+                                salidaTIME.setBackgroundColor( Color.parseColor( "#919191" ) );
 
+                                AlertDialog.Builder builder = new AlertDialog.Builder( OperadorActivity.this );
+                                builder.setIcon(R.drawable.finish_op);
+                                builder.setTitle( "FINALIZO LA ACTIVIDAD O TAREA" );
+                                builder.setMessage( "YA TERMINO LA TAREA CAMBIE A OTRA TAREA" );
+
+                                builder.setPositiveButton( "ACEPTAR", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                    }
+                                } );
+                                builder.create().show();
                             }
                         } );
 
