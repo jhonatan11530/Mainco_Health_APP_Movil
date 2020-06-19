@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="DIGITE LAS CANTIDADES PRODUCCIDAS"
+            android:text="REGISTRO DE TIEMPOS DE PARO EN PRODUCCION"
             android:textColor="#000000"
             android:textSize="25sp"
             />
