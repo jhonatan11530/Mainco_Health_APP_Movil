@@ -15,7 +15,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7b6af788-212f-4cd2-8b4b-3791be3d9170" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/App/OperadorActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/App/OperadorActivity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +74,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="D:/sdk" />
     <property name="last_opened_file_path" value="$APPLICATION_HOME_DIR$/jre/jre/LICENSE" />
-    <property name="project.structure.last.edited" value="Dependencies" />
+    <property name="project.structure.last.edited" value="Suggestions" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
@@ -182,14 +185,14 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="275" y="27" key="#Notifications/0.0.1366.738@0.0.1366.738" timestamp="1592403565967" />
-    <state x="200" y="99" key="#PSD" timestamp="1591890842660">
+    <state x="200" y="99" key="#PSD" timestamp="1592931244085">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="200" y="99" key="#PSD/0.0.1366.738@0.0.1366.738" timestamp="1591890842660" />
-    <state x="275" y="26" key="#Updates" timestamp="1591114129708">
+    <state x="200" y="99" key="#PSD/0.0.1366.738@0.0.1366.738" timestamp="1592931244085" />
+    <state x="275" y="26" key="#Updates" timestamp="1592930999674">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="275" y="26" key="#Updates/0.0.1366.738@0.0.1366.738" timestamp="1591114129708" />
+    <state x="275" y="26" key="#Updates/0.0.1366.738@0.0.1366.738" timestamp="1592930999674" />
     <state x="474" y="85" key="#com.intellij.ide.util.MemberChooser" timestamp="1591714191636">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -202,10 +205,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="263" y="24" key="#com.intellij.openapi.projectRoots.ui.ProjectJdksEditor/0.0.1366.738@0.0.1366.738" timestamp="1591891750082" />
-    <state x="363" y="95" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1591890872238">
+    <state x="363" y="95" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1592931000367">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="363" y="95" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1366.738@0.0.1366.738" timestamp="1591890872238" />
+    <state x="363" y="95" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1366.738@0.0.1366.738" timestamp="1592931000367" />
     <state x="413" y="114" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1591707104344">
       <screen x="0" y="0" width="1366" height="738" />
     </state>

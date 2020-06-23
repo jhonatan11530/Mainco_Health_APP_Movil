@@ -793,7 +793,7 @@ public class OperadorActivity extends AppCompatActivity {
                     @Override
                     public void run() {
 
-                        String response = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/RegistrarMotivo.php?op=" + items.getText().toString() + "&id=" + id.getText().toString() + "&paro=" + paro.getText().toString() + "&motivo=" + prueba + "&fecha=" + fechas + "&hora=" + horas ).body();
+                        String response = HttpRequest.get( "http://" + cambiarIP.ip + "/validar/RegistrarMotivo.php?op=" + items.getText().toString() + "&id=" + id.getText().toString() + "&paro=" + paro.getText().toString() + "&motivo=" + prueba + "&fecha=" + fechas + "&hora=" + horas+"&tarea="+resuldato.getSelectedItem().toString() ).body();
 
                     }
                 } ).start();
