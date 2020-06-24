@@ -166,12 +166,13 @@ class EFICIENCIA{
     }  
      $promedioSUM = substr($TIMEPAROSUM, 0, 8);
 
+    // RESTAR TIEMPO REAL PRODUCCIDA HORA INICIAL // HORA FINAL
     $datetime1 = new DateTime($final);
     $datetime2 = new DateTime($inicial);
     $interval = $datetime1->diff($datetime2);
     $hora = $interval->format('%H:%I:%S');
 
-
+    // RESTAR TIEMPO PARO - REAL
     $datetime1 = new DateTime($hora);
     $datetime2 = new DateTime($promedioSUM);
     $interval = $datetime1->diff($datetime2);
