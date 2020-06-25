@@ -18,9 +18,8 @@
         android:taskAffinity=".string"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
-        tools:ignore="GoogleAppIndexingWarning"
-  
-        >
+        tools:ignore="GoogleAppIndexingWarning">
+
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
@@ -31,26 +30,26 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".options"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_opciones"/>
+        <activity
+            android:name=".options"
+            android:label="@string/title_activity_opciones"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".LoginActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_login" />
+            android:label="@string/title_activity_login"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".OperadorActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_operador" />
+            android:label="@string/title_activity_operador"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".RegistroActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_registro" />
+            android:label="@string/title_activity_registro"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".OlvidoActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_olvido" />
+            android:label="@string/title_activity_olvido"
+            android:screenOrientation="portrait" />
         <activity
             android:name="Introducciones.INTRODUCCION"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
