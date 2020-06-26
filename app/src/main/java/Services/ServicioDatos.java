@@ -1,14 +1,13 @@
 package Services;
-
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
 
 
-
 public class ServicioDatos extends Service {
     private Thread workerThread = null;
+
     public ServicioDatos() {
         startService(new Intent(this, ServicioDatos.class));
 
@@ -17,7 +16,7 @@ public class ServicioDatos extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-       //
+ 
     }
 
     @Override

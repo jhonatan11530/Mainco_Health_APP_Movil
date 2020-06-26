@@ -251,6 +251,9 @@ public class OperadorActivity extends AppCompatActivity {
                     itemfiltre( new String( responseBody ) );
 
                 }
+                if(statusCode > 201){
+                    filtraritem();
+                }
             }
 
             @Override
@@ -289,6 +292,9 @@ public class OperadorActivity extends AppCompatActivity {
                 if (statusCode == 200) {
                     cargarops( new String( responseBody ) );
 
+                }
+                if(statusCode > 201){
+                    llenarOps();
                 }
             }
 
@@ -329,6 +335,9 @@ public class OperadorActivity extends AppCompatActivity {
                 if (statusCode == 200) {
                     filtroOPS( new String( responseBody ) );
 
+                }
+                if(statusCode > 201){
+                    llenarOps();
                 }
             }
 
@@ -372,6 +381,9 @@ public class OperadorActivity extends AppCompatActivity {
                     cargarSpinner( new String( responseBody ) );
 
                 }
+                if(statusCode > 201){
+                    llenarSpinner();
+                }
             }
 
             @Override
@@ -409,6 +421,9 @@ public class OperadorActivity extends AppCompatActivity {
                 if (statusCode == 200) {
                     filtrardescanso( new String( responseBody ) );
                 }
+                if(statusCode > 201){
+                    llenardescanso();
+                }
             }
 
             @Override
@@ -443,6 +458,9 @@ public class OperadorActivity extends AppCompatActivity {
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if (statusCode == 200) {
                     cargarmotivo( new String( responseBody ) );
+                }
+                if(statusCode > 201){
+                    motivofalla();
                 }
             }
 
@@ -553,7 +571,6 @@ public class OperadorActivity extends AppCompatActivity {
                     int vacio = Integer.parseInt( nada.getString( 0 ) );
 
                     if (vacio > 0) {
-
                         runOnUiThread( new Runnable() {
                             @Override
                             public void run() {
