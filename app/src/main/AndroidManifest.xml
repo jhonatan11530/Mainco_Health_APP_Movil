@@ -20,7 +20,7 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
         <service
-            android:name="Services.ServicioRegistroEntrada"
+            android:name="Services.ServicioDatos"
             android:enabled="true"
             android:exported="true"></service>
         <service

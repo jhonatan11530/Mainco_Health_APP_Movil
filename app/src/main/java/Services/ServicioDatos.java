@@ -4,27 +4,31 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
-import com.example.App.MainActivity;
 
 
-public class ServicioRegistroEntrada extends Service {
+
+public class ServicioDatos extends Service {
     private Thread workerThread = null;
-    public ServicioRegistroEntrada() {
+    public ServicioDatos() {
+        startService(new Intent(this, ServicioDatos.class));
+
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-       // startService(new Intent(MainActivity.this, ServicioRegistroEntrada.class));
+       //
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
          super.onStartCommand(intent, flags, startId);
+
         if(workerThread == null || !workerThread.isAlive()){
             workerThread = new Thread(new Runnable() {
                 @Override
                 public void run() {
+
 
 
 
@@ -35,7 +39,6 @@ public class ServicioRegistroEntrada extends Service {
         return START_STICKY;
 
     }
-
 
     @Override
     public IBinder onBind(Intent intent) {

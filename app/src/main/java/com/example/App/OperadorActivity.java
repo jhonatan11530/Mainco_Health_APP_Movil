@@ -35,9 +35,12 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
+import Services.ServicioDatos;
 import Services.ServicioRegistroSalida;
 import cz.msebera.android.httpclient.Header;
 
@@ -459,6 +462,7 @@ public class OperadorActivity extends AppCompatActivity {
                 c.setFallas( objecto.getJSONObject( i ).getString( "fallas" ) );
                 dato4.add( c );
             }
+
             ArrayAdapter<cantidadfallas> a = new ArrayAdapter<>( this, android.R.layout.simple_dropdown_item_1line, dato4 );
             resuldato4.setAdapter( a );
 
@@ -467,6 +471,7 @@ public class OperadorActivity extends AppCompatActivity {
         }
 
     }
+
 
     public void operador(View v) {
 
@@ -1045,9 +1050,8 @@ public class OperadorActivity extends AppCompatActivity {
 
     public void salida (View v) {
 
+
         motivofalla();
-
-
         id= findViewById(R.id.operador);
         View view = getLayoutInflater().inflate(R.layout.cantidad_produccidas,null);
         resuldato4 = view.findViewById(R.id.spinner2);
@@ -1071,8 +1075,6 @@ public class OperadorActivity extends AppCompatActivity {
         final AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
 
 
-        ArrayAdapter <cantidadfallas> a = new ArrayAdapter<>( this, android.R.layout.simple_dropdown_item_1line, dato4 );
-        resuldato4.setAdapter(a);
 
         EditText edit = new EditText(this);
         edit.setEnabled(false);
