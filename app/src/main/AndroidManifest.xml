@@ -19,6 +19,18 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
+        <service
+            android:name="Services.ServicioRegistroEntrada"
+            android:enabled="true"
+            android:exported="true"></service>
+        <service
+            android:name="Services.ServicioRegistroSalida"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name="Services.ServicioLogin"
+            android:enabled="true"
+            android:exported="true" />
 
         <activity
             android:name=".MainActivity"

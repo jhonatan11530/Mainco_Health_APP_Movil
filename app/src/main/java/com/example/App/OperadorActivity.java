@@ -38,6 +38,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
+import Services.ServicioRegistroSalida;
 import cz.msebera.android.httpclient.Header;
 
 @SuppressWarnings("ALL")
@@ -90,6 +91,7 @@ public class OperadorActivity extends AppCompatActivity {
 
         llenarSpinner();
         llenarOps();
+
 
         production = findViewById( R.id.principal );
 
@@ -209,7 +211,7 @@ public class OperadorActivity extends AppCompatActivity {
 
                         Intent e = new Intent( getApplicationContext(), LoginActivity.class );
                         startActivity( e );
-                        finish();
+
 
 
                     }
@@ -532,7 +534,6 @@ public class OperadorActivity extends AppCompatActivity {
         }
 
     }
-
 
     public void verificar() {
 
@@ -1011,7 +1012,8 @@ public class OperadorActivity extends AppCompatActivity {
         builder.create().show();
 
     }
-class Task extends AsyncTask<String, Void, String> {
+
+    class Task extends AsyncTask<String, Void, String> {
 
     @Override
     protected String doInBackground(String... strings) {
@@ -1095,11 +1097,13 @@ class Task extends AsyncTask<String, Void, String> {
 
 
             volumen = Integer.parseInt(cantidad.getText().toString());
+          final  String volumens = String.valueOf(volumen);
              falla = fallas.getText().toString();
             error = resuldato4.getSelectedItem().toString();
 
 
                 final String nombretarea = resuldato.getSelectedItem().toString();
+
 
                 new Thread(new Runnable() {
                     @Override
@@ -1114,26 +1118,35 @@ class Task extends AsyncTask<String, Void, String> {
                             volumencan = Integer.parseInt(cantidad.getText().toString());
                              cantidadpro = Integer.parseInt(RESTARCANTIDAD.getString(0));
 
-                                int end = cantidadpro - total; // BIEN
+                                int ends = cantidadpro - total; // BIEN
+                            String end = String.valueOf(ends);
                             int tool = cantidadpro - volumencan;
                             int sumatoria = volumencan + total;
                             System.out.println( "LA CANTIDAD BUENAS "+volumencan );
                             System.out.println( "LA CANTIDAD MALAS "+total );
                             System.out.println( "LA CANTIDAD EN MYSQL "+cantidadpro );
                            System.out.println( "LA CANTIDAD EN MYSQL RESTADA "+tool );
-                            System.out.println( "LA CANTIDAD EN MYSQL REAL "+end );
+                            System.out.println( "LA CANTIDAD EN MYSQL REAL "+ends );
 
-                            if(end >= 0){
+                            if(end.length() >= 0){
                                 if(tool >= 0){
                                     if(sumatoria == cantidadpro){
 
-                                 HttpRequest.get("http://"+cambiarIP.ip+"/validar/canbiarAucOP.php?op="+items.getText().toString()+"&item="+resuldato3.getSelectedItem().toString()+"&cantidad="+end).body();
 
-                                HttpRequest.get("http://"+cambiarIP.ip+"/validar/cantidadmodifi.php?op="+resuldato3.getSelectedItem().toString()+"&tarea="+ nombretarea +"&totales="+end).body();
 
-                                HttpRequest.get("http://"+cambiarIP.ip+"/validar/actualizaSalida.php?id="+id.getText().toString()+"&cantidad="+volumen+"&Ffinal="+fechas+"&Hfinal="+horas+"&motivo="+error+"&conforme="+falla+"&tarea="+nombretarea+"&op="+items.getText().toString()).body();
+                                        Intent Componente = new Intent(OperadorActivity.this, ServicioRegistroSalida.class);
+                                        Componente.putExtra("resuldato3",resuldato3.getSelectedItem().toString());
+                                        Componente.putExtra("tarea",nombretarea);
+                                        Componente.putExtra("items",items.getText().toString());
+                                        Componente.putExtra("end",end.toString());
+                                        Componente.putExtra("id", id.getText().toString());
+                                        Componente.putExtra("volumen",volumens.toString());
+                                        Componente.putExtra("fechas",fechas);
+                                        Componente.putExtra("horas",horas);
+                                        Componente.putExtra("error",error);
+                                        Componente.putExtra("falla",falla);
+                                        startService(Componente);
 
-                                HttpRequest.get( "http://" + cambiarIP.ip + "/validar/nuevoRegistro.php?id=" + id.getText().toString() ).body();
 
                                 runOnUiThread(new Runnable() {
                                     @Override
@@ -1178,6 +1191,7 @@ class Task extends AsyncTask<String, Void, String> {
         alert.setCanceledOnTouchOutside(false);
 
     }
+
     public void EXEDIO(){
         runOnUiThread(new Runnable() {
             @Override
