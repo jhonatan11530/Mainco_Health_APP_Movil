@@ -13,7 +13,6 @@ $hora_final = $_GET["Hfinal"];
 
 
 if(isset($ID,$op,$tarea,$cantidad,$no_conforme,$motivo,$final,$hora_final)){
-  usleep(1000000);
 
   $mysql = mysqli_connect("127.0.0.1", "root", "", "proyecto");
   $sql_statements = "SELECT llaves FROM operador WHERE id= '".$ID."'";
