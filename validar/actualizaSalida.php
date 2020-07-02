@@ -1,6 +1,6 @@
 <?php
 error_reporting(0);
-
+set_time_limit(0);
 
 $ID = $_GET["id"];
 $op = $_GET["op"];
@@ -13,7 +13,7 @@ $hora_final = $_GET["Hfinal"];
 
 
 if(isset($ID,$op,$tarea,$cantidad,$no_conforme,$motivo,$final,$hora_final)){
-
+  usleep(1000000);
 
   $mysql = mysqli_connect("127.0.0.1", "root", "", "proyecto");
   $sql_statements = "SELECT llaves FROM operador WHERE id= '".$ID."'";
@@ -34,19 +34,6 @@ $a->ejecutar($ID,$op,$tarea,$llave);
 else{
   echo "aqui no paso nada";
 }
-
-/*
-$mysql = mysqli_connect("127.0.0.1", "root", "", "proyecto");
-  $sql_statements = "SELECT llaves FROM operador WHERE id= '".$ID."'";
-  $llaves = mysqli_query($mysql, $sql_statements);
-  while($row = mysqli_fetch_array($llaves)) {
-    $llave = $row["llaves"];
-  }  
-
-  $a = new ejemplo();
-  $a->ejecutar($ID,$op,$tarea,$llave);
-  
-*/
 class ejemplo{
   function ejecutar($ID,$op,$tarea,$llave){
       sleep(1);
