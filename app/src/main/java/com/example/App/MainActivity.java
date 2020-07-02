@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
 
-            ;
         }, DURACION_SPLASH);
     }
 
