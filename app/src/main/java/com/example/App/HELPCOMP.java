@@ -4,7 +4,7 @@ package com.example.App;
 public class HELPCOMP {
     private final String nombres;
 
-    public HELPCOMP(String nombres){
+    public HELPCOMP(String nombres) {
         this.nombres = nombres;
     }
 
@@ -12,7 +12,7 @@ public class HELPCOMP {
         return nombres;
     }
 
-    public String toString(){
-        return  nombres;
+    public String toString() {
+        return nombres;
     }
 }

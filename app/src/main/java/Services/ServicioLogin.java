@@ -21,7 +21,7 @@ public class ServicioLogin extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
-        if(workerThread == null || !workerThread.isAlive()){
+        if (workerThread == null || !workerThread.isAlive()) {
             workerThread = new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -33,7 +33,7 @@ public class ServicioLogin extends Service {
             });
             workerThread.start();
         }
-            return START_STICKY;
+        return START_STICKY;
 
     }
 

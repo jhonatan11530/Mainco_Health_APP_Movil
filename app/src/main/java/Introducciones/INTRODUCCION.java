@@ -8,28 +8,30 @@ import android.widget.MediaController;
 import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.App.R;
 
 public class INTRODUCCION extends AppCompatActivity {
 
-    final Uri video=Uri.parse("");
+    final Uri video = Uri.parse("");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_videouno);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_videouno);
 
-        setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);
-        this.getWindow().setFlags( WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
-        VideoView mVideoView = findViewById( R.id.mp4 );
+        VideoView mVideoView = findViewById(R.id.mp4);
 
         mVideoView.setVideoURI(video);
 
-        MediaController media = new MediaController( this );
+        MediaController media = new MediaController(this);
 
-        media.setAnchorView( mVideoView );
-        mVideoView.setMediaController( media );
+        media.setAnchorView(mVideoView);
+        mVideoView.setMediaController(media);
         mVideoView.start();
     }
 }

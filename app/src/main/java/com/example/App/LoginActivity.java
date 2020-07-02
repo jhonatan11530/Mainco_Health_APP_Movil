@@ -52,10 +52,10 @@ public class LoginActivity extends AppCompatActivity {
 
 
         mostrarguardado();
-         GUARDARUTO = findViewById(R.id.OK);
+        GUARDARUTO = findViewById(R.id.OK);
 
-      login = findViewById(R.id.estado);
-         pass = findViewById(R.id.ID);
+        login = findViewById(R.id.estado);
+        pass = findViewById(R.id.ID);
 
         registre = findViewById(R.id.registre);
 
@@ -63,20 +63,20 @@ public class LoginActivity extends AppCompatActivity {
 
 
         conf.SSID = "\"" + networkSSID + "\"";
-        conf.preSharedKey = "\""+ networkPass +"\"";
+        conf.preSharedKey = "\"" + networkPass + "\"";
 
-        WifiManager wifiManager = (WifiManager)getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+        WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
 
         if ((!wifiManager.isWifiEnabled())) {
-            Toast.makeText( LoginActivity.this, "Conectando a Mainco.", Toast.LENGTH_LONG ).show();
-            wifiManager.setWifiEnabled( true );
+            Toast.makeText(LoginActivity.this, "Conectando a Mainco.", Toast.LENGTH_LONG).show();
+            wifiManager.setWifiEnabled(true);
 
         }
 
         wifiManager.addNetwork(conf);
         List<WifiConfiguration> list = wifiManager.getConfiguredNetworks();
-        for( WifiConfiguration i : list ) {
-            if(i.SSID != null && i.SSID.equals("\"" + networkSSID + "\"")) {
+        for (WifiConfiguration i : list) {
+            if (i.SSID != null && i.SSID.equals("\"" + networkSSID + "\"")) {
 
                 wifiManager.enableNetwork(i.networkId, true);
 
@@ -87,11 +87,11 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    class TASK extends AsyncTask<String,Void,String>{
+    class TASK extends AsyncTask<String, Void, String> {
 
         @Override
         protected void onPreExecute() {
-             pd = new ProgressDialog( LoginActivity.this);
+            pd = new ProgressDialog(LoginActivity.this);
             pd.setTitle("INICIANDO SESION");
             pd.setMessage("Porfavor espere");
 
@@ -102,17 +102,17 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected void onCancelled(String s) {
             try {
-                Thread.sleep( 500 );
+                Thread.sleep(500);
                 pd.cancel();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
-            runOnUiThread( new Runnable() {
+            runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     String titleText = "ERROR AL INICIAR SESSION";
-                    ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan( Color.parseColor("#E82F2E"));
+                    ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(Color.parseColor("#E82F2E"));
 
                     SpannableStringBuilder ssBuilder = new SpannableStringBuilder(titleText);
 
@@ -123,52 +123,52 @@ public class LoginActivity extends AppCompatActivity {
                             Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
                     );
 
-                   final AlertDialog.Builder builder = new AlertDialog.Builder( LoginActivity.this );
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                     builder.setTitle(ssBuilder);
                     builder.setIcon(R.drawable.peligro);
 
-                    builder.setMessage( "VERIFIQUE EL USUARIO Y CONTRASEÑA" );
-                    builder.setPositiveButton( "ACEPTAR", new DialogInterface.OnClickListener() {
+                    builder.setMessage("VERIFIQUE EL USUARIO Y CONTRASEÑA");
+                    builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             builder.setCancelable(true);
                         }
-                    } );
+                    });
                     builder.create().show();
 
                 }
-            } );
+            });
 
         }
 
         @Override
         protected String doInBackground(final String... strings) {
 
-            new Thread( new Runnable() {
+            new Thread(new Runnable() {
                 @Override
                 public void run() {
                     try {
-                    String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/validar.php?cedula="+login.getText().toString()+"&pass="+pass.getText().toString()).body();
+                        String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/validar.php?cedula=" + login.getText().toString() + "&pass=" + pass.getText().toString()).body();
 
-                        if(response.length() >0) {
+                        if (response.length() > 0) {
                             startService(new Intent(LoginActivity.this, ServicioLogin.class));
 
-                            if(GUARDARUTO.isChecked()){
+                            if (GUARDARUTO.isChecked()) {
 
-                                runOnUiThread( new Runnable() {
+                                runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        Toast.makeText( getApplicationContext(),"SE GUARDO EL USUARIO Y CONTRASEÑA",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), "SE GUARDO EL USUARIO Y CONTRASEÑA", Toast.LENGTH_SHORT).show();
 
                                         guardar();
 
                                     }
-                                } );
+                                });
 
 
                             }
 
-                        }else{
+                        } else {
 
 
                             onCancelled(null);
@@ -177,12 +177,11 @@ public class LoginActivity extends AppCompatActivity {
                         }
 
 
-
-                    }catch (Exception e) {
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
-            } ).start();
+            }).start();
 
             return strings[0];
         }
@@ -191,9 +190,10 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onBackPressed() {
 
-      //  Intent e = new Intent(getApplicationContext(), Modulos.class);
-       // startActivity(e);
+        //  Intent e = new Intent(getApplicationContext(), Modulos.class);
+        // startActivity(e);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -202,82 +202,83 @@ public class LoginActivity extends AppCompatActivity {
 
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         if (item.getItemId() == R.id.ayuda) {
-            Intent e = new Intent( getApplicationContext(), options.class );
-            startActivity( e );
+            Intent e = new Intent(getApplicationContext(), options.class);
+            startActivity(e);
         }
         return super.onOptionsItemSelected(item);
     }
 
 
-        public void validartodo(View v){
-            if(pass.getText().toString().length() == 0 && login.getText().toString().length() == 0) {
+    public void validartodo(View v) {
+        if (pass.getText().toString().length() == 0 && login.getText().toString().length() == 0) {
 
-                pass.setError("CONTRASEÑA ES REQUERIDO !");
+            pass.setError("CONTRASEÑA ES REQUERIDO !");
 
-                login.setError("ID ES REQUERIDO !");
+            login.setError("ID ES REQUERIDO !");
 
-            }else if (pass.getText().toString().length() != 0 && login.getText().toString().length() != 0){
-
-
-                ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-                NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-
-                if (networkInfo != null && networkInfo.isConnected()) {
+        } else if (pass.getText().toString().length() != 0 && login.getText().toString().length() != 0) {
 
 
-                    new TASK().execute( login.getText().toString(),pass.getText().toString() );
+            ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+            if (networkInfo != null && networkInfo.isConnected()) {
 
 
-                } else {
-                    AlertDialog.Builder builder = new AlertDialog.Builder( LoginActivity.this );
-                    builder.setTitle( "NO ESTAS CONECTADO A INTERNET" );
-                    builder.setMessage( "Porfavor verifica la conexion a internet" );
-                    builder.setPositiveButton( "ACEPTAR", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
+                new TASK().execute(login.getText().toString(), pass.getText().toString());
 
-                        }
-                    } );
 
-                    builder.create().show();
-                }
+            } else {
+                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                builder.setTitle("NO ESTAS CONECTADO A INTERNET");
+                builder.setMessage("Porfavor verifica la conexion a internet");
+                builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
 
-        }
-}
+                    }
+                });
 
-public void guardar(){
-
-    SharedPreferences preferences = getSharedPreferences("ARCHIVO_LOGIN", Context.MODE_PRIVATE );
-    SharedPreferences shared = getPreferences(Context.MODE_PRIVATE);
-    SharedPreferences.Editor usu = shared.edit();
-    usu.putString("usuario",login.getText().toString());
-    usu.commit();
-
-}
-public void mostrarguardado(){
-
-    SharedPreferences mostrardato = getPreferences( Context.MODE_PRIVATE );
-   final String user = mostrardato.getString( "usuario","" );
-
-    new Thread( new Runnable() {
-        @Override
-        public void run() {
-            try {
-                Thread.sleep( 1000 );
-            login.setText( user );
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                builder.create().show();
             }
-        }
-    } ).start();
-}
 
+        }
+    }
+
+    public void guardar() {
+
+        SharedPreferences preferences = getSharedPreferences("ARCHIVO_LOGIN", Context.MODE_PRIVATE);
+        SharedPreferences shared = getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor usu = shared.edit();
+        usu.putString("usuario", login.getText().toString());
+        usu.commit();
+
+    }
+
+    public void mostrarguardado() {
+
+        SharedPreferences mostrardato = getPreferences(Context.MODE_PRIVATE);
+        final String user = mostrardato.getString("usuario", "");
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(1000);
+                    login.setText(user);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
 
 
     public void registro(View v) {
@@ -288,7 +289,7 @@ public void mostrarguardado(){
     }
 
 
-    public void olvidoC(View v){
+    public void olvidoC(View v) {
         Intent e = new Intent(getApplicationContext(), OlvidoActivity.class);
         startActivity(e);
     }

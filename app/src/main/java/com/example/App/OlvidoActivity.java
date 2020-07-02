@@ -16,7 +16,7 @@ import org.json.JSONArray;
 
 public class OlvidoActivity extends AppCompatActivity {
 
-    private EditText id,cedula;
+    private EditText id, cedula;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +34,7 @@ public class OlvidoActivity extends AppCompatActivity {
 
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -42,94 +43,92 @@ public class OlvidoActivity extends AppCompatActivity {
 
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         if (item.getItemId() == R.id.salir) {
-            Intent e = new Intent( getApplicationContext(), LoginActivity.class );
-            startActivity( e );
+            Intent e = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(e);
         }
         return super.onOptionsItemSelected(item);
     }
 
-    public void comprobar (View v){
+    public void comprobar(View v) {
 
 
         id = findViewById(R.id.CDUNICO);
         cedula = findViewById(R.id.cc);
-        if( id.getText().toString().length() == 0 ){
-            id.setError( "ID ES REQUERIDO !" );
+        if (id.getText().toString().length() == 0) {
+            id.setError("ID ES REQUERIDO !");
         }
-        if( cedula.getText().toString().length() == 0 ){
-            cedula.setError( "CONTRASEÑA ES REQUERIDO !" );
-        }
-        else {
+        if (cedula.getText().toString().length() == 0) {
+            cedula.setError("CONTRASEÑA ES REQUERIDO !");
+        } else {
 
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    String response = HttpRequest.get("http://"+cambiarIP.ip+"/validar/olvido.php?cedula="+id.getText().toString()).body();
+                    String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/olvido.php?cedula=" + id.getText().toString()).body();
 
-                    try{
+                    try {
                         JSONArray objecto = new JSONArray(response);
 
-                        if(objecto.length()>0){
+                        if (objecto.length() > 0) {
 
                             new Thread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    HttpRequest.get("http://"+cambiarIP.ip+"/validar/olvido.php?cedula="+id.getText().toString()+"&pass="+cedula.getText().toString()).body();
+                                    HttpRequest.get("http://" + cambiarIP.ip + "/validar/olvido.php?cedula=" + id.getText().toString() + "&pass=" + cedula.getText().toString()).body();
 
-                                   try{
+                                    try {
 
-                                            runOnUiThread(new Runnable() {
-                                                @Override
-                                                public void run() {
+                                        runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
 
 
-                                               AlertDialog.Builder builder = new AlertDialog.Builder(OlvidoActivity.this);
+                                                AlertDialog.Builder builder = new AlertDialog.Builder(OlvidoActivity.this);
 
-                                               builder.setTitle("SE RESTAURO LA CONTRASEÑA");
-                                               builder.setMessage("Se cambio la contraseña exitosamente");
+                                                builder.setTitle("SE RESTAURO LA CONTRASEÑA");
+                                                builder.setMessage("Se cambio la contraseña exitosamente");
 
-                                               builder.setPositiveButton("Iniciar Sesiòn", new DialogInterface.OnClickListener() {
-                                                   @Override
-                                                   public void onClick(DialogInterface dialogInterface, int i) {
-                                                       Intent e = new Intent(getApplicationContext(), LoginActivity.class);
-                                                       startActivity(e);
-                                                       finish();
-                                                   }
-                                               });
-                                               builder.create().show();
+                                                builder.setPositiveButton("Iniciar Sesiòn", new DialogInterface.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                                        Intent e = new Intent(getApplicationContext(), LoginActivity.class);
+                                                        startActivity(e);
+                                                        finish();
+                                                    }
+                                                });
+                                                builder.create().show();
 
-                                                }
-                                            });
-                                   }
-                                   catch (Exception e){
-                                       e.printStackTrace();
-                                   }
+                                            }
+                                        });
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
 
 
                                 }
                             }).start();
 
+                        } else {
+
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(getApplicationContext(), "NO SE ENCUENTRA EL ID O USUARIO", Toast.LENGTH_SHORT).show();
+
+                                }
+                            });
+
+
                         }
-                        else{
 
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Toast.makeText(getApplicationContext(),"NO SE ENCUENTRA EL ID O USUARIO", Toast.LENGTH_SHORT).show();
-
-                                    }
-                                });
-
-
-                       }
-
-                    }catch (Exception e){
+                    } catch (Exception e) {
 
                         e.printStackTrace();
                     }

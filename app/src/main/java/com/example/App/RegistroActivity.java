@@ -14,9 +14,10 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.loopj.android.http.AsyncHttpClient;
+
 public class RegistroActivity extends AppCompatActivity {
 
-    EditText id,nombre,apellido,cedula,pass;
+    EditText id, nombre, apellido, cedula, pass;
     CheckBox resultado;
     Button registro;
     AsyncHttpClient client;
@@ -26,7 +27,7 @@ public class RegistroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
 
-         client = new AsyncHttpClient();
+        client = new AsyncHttpClient();
 
 
         nombre = findViewById(R.id.nombre);
@@ -39,11 +40,12 @@ public class RegistroActivity extends AppCompatActivity {
         registro = findViewById(R.id.registro);
 
 
-
     }
+
     public void onBackPressed() {
 
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -57,16 +59,14 @@ public class RegistroActivity extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         if (item.getItemId() == R.id.salir) {
-            Intent e = new Intent( getApplicationContext(), LoginActivity.class );
-            startActivity( e );
+            Intent e = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(e);
         }
         return super.onOptionsItemSelected(item);
     }
 
 
-
-
-    public void registrar (View v){
+    public void registrar(View v) {
 
         nombre = findViewById(R.id.nombre);
         apellido = findViewById(R.id.apellido);
@@ -74,69 +74,65 @@ public class RegistroActivity extends AppCompatActivity {
         pass = findViewById(R.id.pass);
         resultado = findViewById(R.id.rol);
 
-        if ( nombre.getText().toString().length() == 0 ){
-            nombre.setError( "NOMBRE ES REQUERIDO !" );
+        if (nombre.getText().toString().length() == 0) {
+            nombre.setError("NOMBRE ES REQUERIDO !");
         }
-        if ( apellido.getText().toString().length() == 0 ){
-            apellido.setError( "APELLIDO ES REQUERIDO !" );
+        if (apellido.getText().toString().length() == 0) {
+            apellido.setError("APELLIDO ES REQUERIDO !");
         }
-        if ( cedula.getText().toString().length() == 0 ){
-            cedula.setError( "CEDULA ES REQUERIDO !" );
+        if (cedula.getText().toString().length() == 0) {
+            cedula.setError("CEDULA ES REQUERIDO !");
         }
-        if ( pass.getText().toString().length() == 0 ){
-            pass.setError( "CONTRASEÑA ES REQUERIDO !" );
-        }
-        else{
+        if (pass.getText().toString().length() == 0) {
+            pass.setError("CONTRASEÑA ES REQUERIDO !");
+        } else {
 
             new Thread(new Runnable() {
                 @Override
                 public void run() {
 
-                    if(resultado.isChecked()){
+                    if (resultado.isChecked()) {
 
                         String ROL = "operador";
 
-                        HttpRequest.get("http://"+cambiarIP.ip+"/validar/registro.php?nombre="+nombre.getText().toString()+"&apellido="+apellido.getText().toString()+"&cedula="+cedula.getText().toString()+"&pass="+pass.getText().toString()+"&rol="+ ROL ).body();
+                        HttpRequest.get("http://" + cambiarIP.ip + "/validar/registro.php?nombre=" + nombre.getText().toString() + "&apellido=" + apellido.getText().toString() + "&cedula=" + cedula.getText().toString() + "&pass=" + pass.getText().toString() + "&rol=" + ROL).body();
 
 
+                        try {
 
-                try {
-
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-
-
-                            AlertDialog.Builder builder = new AlertDialog.Builder(RegistroActivity.this);
-
-                            builder.setTitle("REGISTRO DE USUARIO EXITOSO");
-
-                            builder.setMessage("Se completo el registro exitosamente");
-
-
-                            builder.setPositiveButton("Iniciar Sesiòn", new DialogInterface.OnClickListener() {
+                            runOnUiThread(new Runnable() {
                                 @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
+                                public void run() {
 
 
-                                    Intent e = new Intent(getApplicationContext(), LoginActivity.class);
-                                    startActivity(e);
-                                    finish();
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(RegistroActivity.this);
+
+                                    builder.setTitle("REGISTRO DE USUARIO EXITOSO");
+
+                                    builder.setMessage("Se completo el registro exitosamente");
+
+
+                                    builder.setPositiveButton("Iniciar Sesiòn", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+
+
+                                            Intent e = new Intent(getApplicationContext(), LoginActivity.class);
+                                            startActivity(e);
+                                            finish();
+                                        }
+                                    });
+
+                                    builder.create().show();
                                 }
                             });
 
-                            builder.create().show();
-                            }
-                        });
+                        } catch (Exception e) {
+                            // TODO: handle exception
+                            e.printStackTrace();
+                        }
 
-            }
-                catch (Exception e) {
-                // TODO: handle exception
-                e.printStackTrace();
-            }
-
-                    }
-                    else{
+                    } else {
 
                         runOnUiThread(new Runnable() {
                             @Override
@@ -168,7 +164,6 @@ public class RegistroActivity extends AppCompatActivity {
 
         }
     }
-
 
 
 }

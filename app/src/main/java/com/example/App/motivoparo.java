@@ -4,10 +4,11 @@ package com.example.App;
 public class motivoparo {
     private String paro;
 
-    public motivoparo (){
+    public motivoparo() {
 
     }
-    public motivoparo(String paro){
+
+    public motivoparo(String paro) {
         this.paro = paro;
     }
 
@@ -19,7 +20,7 @@ public class motivoparo {
         this.paro = paro;
     }
 
-    public String toString(){
-        return  paro;
+    public String toString() {
+        return paro;
     }
 }

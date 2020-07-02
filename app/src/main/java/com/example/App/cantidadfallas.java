@@ -5,7 +5,7 @@ public class cantidadfallas {
 
     private String fallas;
 
-    public cantidadfallas (){
+    public cantidadfallas() {
 
     }
 
@@ -13,7 +13,7 @@ public class cantidadfallas {
         this.fallas = fallas;
     }
 
-    public String toString(){
-        return  fallas;
+    public String toString() {
+        return fallas;
     }
 }

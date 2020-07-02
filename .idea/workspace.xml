@@ -15,7 +15,41 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b6af788-212f-4cd2-8b4b-3791be3d9170" name="Default Changelist" comment="" />
+    <list default="true" id="7b6af788-212f-4cd2-8b4b-3791be3d9170" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Introducciones/CLOSE_OP.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Introducciones/CLOSE_OP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Introducciones/CREAR_USER.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Introducciones/CREAR_USER.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Introducciones/INTRODUCCION.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Introducciones/INTRODUCCION.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Introducciones/PAUSE_ACTIVAS.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Introducciones/PAUSE_ACTIVAS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Introducciones/RECUPERAR_PASSWORD.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Introducciones/RECUPERAR_PASSWORD.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Introducciones/REGISTRO_PRODUCIDO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Introducciones/REGISTRO_PRODUCIDO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Introducciones/SYSTEM.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Introducciones/SYSTEM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Introducciones/TERMINADO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Introducciones/TERMINADO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Services/ServicioLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Services/ServicioLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Services/ServicioRegistroSalida.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Services/ServicioRegistroSalida.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/App/HELPCOMP.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/App/HELPCOMP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/App/HttpRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/App/HttpRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/App/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/App/LoginActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/App/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/App/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/App/OPS.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/App/OPS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/App/OlvidoActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/App/OlvidoActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/App/OperadorActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/App/OperadorActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/App/RegistroActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/App/RegistroActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/App/cambiarIP.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/App/cambiarIP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/App/cantidades.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/App/cantidades.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/App/cantidadfallas.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/App/cantidadfallas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/App/motivoparo.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/App/motivoparo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/App/options.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/App/options.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/App/roles.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/App/roles.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -86,7 +120,34 @@
       <recent name="Services" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Android JUnit.All in app (2)">
+    <configuration name="All in app (1)" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in app (2)" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in app" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="app" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -145,6 +206,13 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Android JUnit.All in app (2)" />
+        <item itemvalue="Android JUnit.All in app (1)" />
+        <item itemvalue="Android JUnit.All in app" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -235,9 +303,25 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="463" y="122" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1592583268089" />
+    <state width="1306" height="224" key="GridCell.Tab.0.bottom" timestamp="1593715495974">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1306" height="224" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1593715495974" />
     <state width="1981" height="545" key="GridCell.Tab.0.bottom/0.0.2049.1107@0.0.2049.1107" timestamp="1591301732015" />
+    <state width="1306" height="224" key="GridCell.Tab.0.center" timestamp="1593715495974">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1306" height="224" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1593715495974" />
     <state width="1981" height="545" key="GridCell.Tab.0.center/0.0.2049.1107@0.0.2049.1107" timestamp="1591301732015" />
+    <state width="1306" height="224" key="GridCell.Tab.0.left" timestamp="1593715495973">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1306" height="224" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1593715495973" />
     <state width="1981" height="545" key="GridCell.Tab.0.left/0.0.2049.1107@0.0.2049.1107" timestamp="1591301732015" />
+    <state width="1306" height="224" key="GridCell.Tab.0.right" timestamp="1593715495974">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1306" height="224" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1593715495974" />
     <state width="1981" height="545" key="GridCell.Tab.0.right/0.0.2049.1107@0.0.2049.1107" timestamp="1591301732015" />
     <state x="184" y="0" key="SettingsEditor" timestamp="1591891360290">
       <screen x="0" y="0" width="1366" height="738" />
@@ -255,10 +339,17 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="379" y="193" key="com.intellij.ide.util.TipDialog/0.0.1366.738@0.0.1366.738" timestamp="1591788637152" />
+    <state x="259" y="106" width="847" height="602" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1593715542475">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="259" y="106" width="847" height="602" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1366.738@0.0.1366.738" timestamp="1593715542475" />
     <state x="339" y="159" width="672" height="677" key="run.anything.popup" timestamp="1593111632338">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="339" y="159" width="672" height="677" key="run.anything.popup/0.0.1366.738@0.0.1366.738" timestamp="1593111632338" />
     <state x="509" y="239" key="run.anything.popup/0.0.2049.1107@0.0.2049.1107" timestamp="1591295403676" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/android$All_in_app.ic" NAME="All in app Coverage Results" MODIFIED="1593715343874" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

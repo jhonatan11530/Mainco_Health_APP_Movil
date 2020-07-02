@@ -4,10 +4,11 @@ package com.example.App;
 public class OPS {
     private String cod_producto;
 
-    public OPS (){
+    public OPS() {
 
     }
-    public OPS(String cod_producto){
+
+    public OPS(String cod_producto) {
         this.cod_producto = cod_producto;
     }
 
@@ -18,7 +19,8 @@ public class OPS {
     public String getOps() {
         return cod_producto;
     }
-    public String toString(){
-        return  cod_producto;
+
+    public String toString() {
+        return cod_producto;
     }
 }

@@ -4,7 +4,8 @@ package com.example.App;
 public class roles {
     private String id;
     private String cargo;
-    public roles (){
+
+    public roles() {
 
     }
 
@@ -24,8 +25,8 @@ public class roles {
         this.id = id;
     }
 
-    public String toString(){
+    public String toString() {
 
-        return  id;
+        return id;
     }
 }
