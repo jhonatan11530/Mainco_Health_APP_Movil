@@ -3,6 +3,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
+import com.example.App.OperadorActivity;
 
 
 public class ServicioDatos extends Service {
@@ -27,9 +28,7 @@ public class ServicioDatos extends Service {
             workerThread = new Thread(new Runnable() {
                 @Override
                 public void run() {
-
-
-
+                    
 
                 }
             });
