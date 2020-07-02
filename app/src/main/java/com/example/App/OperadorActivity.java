@@ -35,12 +35,9 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
-import Services.ServicioDatos;
 import Services.ServicioRegistroSalida;
 import cz.msebera.android.httpclient.Header;
 
