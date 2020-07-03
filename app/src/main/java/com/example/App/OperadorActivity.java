@@ -46,7 +46,7 @@ public class OperadorActivity extends AppCompatActivity {
 
 
     private EditText id, cantidad, paro, fallas, items;
-    private String falla, error, VaribleTOTAL;
+    private String falla, error, VaribleTOTAL,NOMBRE;
     private TextView motivo, MOSTRAR, texto, resultados;
     private Spinner resuldato, resuldato2, resuldato4, resuldato3;
 
@@ -530,7 +530,7 @@ public class OperadorActivity extends AppCompatActivity {
 
                                 }
                             });
-
+                            NOMBRE = objecto.getString(0);
 
                             resultados.setText(objecto.getString(0));
 
@@ -587,7 +587,7 @@ public class OperadorActivity extends AppCompatActivity {
                                 builder.setPositiveButton("FINALIZAR O.P", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                        HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?nombre==" + id).body();
+                                        HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?nombre=" + NOMBRE.toString()).body();
                                     }
                                 });
                                 builder.setNegativeButton("CONTINUAR ACTIVIDAD", new DialogInterface.OnClickListener() {
