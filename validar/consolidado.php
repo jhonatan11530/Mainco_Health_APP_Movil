@@ -52,7 +52,6 @@ $mysql = mysqli_connect("127.0.0.1", "root", "", "proyecto");
       foreach ($arrayResultados as $numero) {
         $suma += $numero;
     }
-    echo count($cant);
     //TOTAL SUMADO TIME SEGUNDOS CONSOLIDADO
      $totalSegund = round($suma / 60); 
    
