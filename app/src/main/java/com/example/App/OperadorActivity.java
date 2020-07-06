@@ -587,14 +587,7 @@ public class OperadorActivity extends AppCompatActivity {
                                 builder.setPositiveButton("FINALIZAR O.P", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                        Toast.makeText(getApplicationContext(),"EL NOMBRE ES : "+ NOMBRE.toString(),Toast.LENGTH_SHORT).show();
-                                        /* new Thread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?nombre=" + NOMBRE.toString()).body();
-                                            }
-                                        }).start();*/
-
+                                        HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?nombre="+NOMBRE.toString()).body();
                                     }
                                 });
                                 builder.setNegativeButton("CONTINUAR ACTIVIDAD", new DialogInterface.OnClickListener() {
