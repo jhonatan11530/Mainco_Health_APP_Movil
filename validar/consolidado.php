@@ -3,17 +3,15 @@ error_reporting(0);
 set_time_limit(10);
 $NOMBRE = $_GET["nombre"];
 
-if(isset($NOMBRE)){
+
 $mysqli = mysqli_connect("127.0.0.1", "root", "", "proyecto");
-$sql_statement = "SELECT DISTINCT id,numero_op,inicial,nombre FROM operador WHERE nombre = '".$NOMBRE."'";
+$sql_statement = "SELECT DISTINCT id,numero_op,inicial FROM operador WHERE nombre = '".$NOMBRE."' and numero_op is not null";
 $resultado = mysqli_query($mysqli, $sql_statement);
 while($row = mysqli_fetch_array($resultado)) {
    $ID = $row["id"];
-    $row["nombre"];
    $op = $row["numero_op"];
    $inicial = $row["inicial"];
 } 
-/*--------------------------------------------------------------*/
 
 $mysql = mysqli_connect("127.0.0.1", "root", "", "proyecto");
   $sql_statements = "SELECT *  FROM produccion WHERE numero_op='".$op."'";
@@ -48,17 +46,18 @@ $mysql = mysqli_connect("127.0.0.1", "root", "", "proyecto");
 
       for ($i = 0; $i < count($extand); $i++) {
         for ($i = 0; $i < count($cant); $i++) {
-           $arrayResultados[$i] = $extand[$i] * $cant[$i];
+            $arrayResultados[$i] = $extand[$i] * $cant[$i];
         }
       }
       foreach ($arrayResultados as $numero) {
         $suma += $numero;
     }
+    echo count($cant);
     //TOTAL SUMADO TIME SEGUNDOS CONSOLIDADO
      $totalSegund = round($suma / 60); 
    
       $mysql = mysqli_connect("127.0.0.1", "root", "", "proyecto");
-      $sql_statements = "SELECT TIMEDIFF(hora_final,hora_inicial) AS total FROM operador WHERE id='".$ID."' ";
+      $sql_statements = "SELECT TIMEDIFF(hora_final,hora_inicial) AS total FROM operador WHERE id='".$ID."' AND numero_op is not null ";
       $consutatime = mysqli_query($mysql, $sql_statements);
       $timerestan = array();
       while($row = mysqli_fetch_array($consutatime)) {
@@ -95,12 +94,11 @@ $mysql = mysqli_connect("127.0.0.1", "root", "", "proyecto");
       $matriz2 = array();
       if ( count($total) == count($NumeroOP) )
     for ($i=0; $i < count($total); $i++){
-        $matriz2[] = ($total[$i] - $NumeroOP[$i]);
+        $matriz2[] = $total[$i] - $NumeroOP[$i];
       }
        $sumartotal =  array_sum($matriz2);
      $sumarsengund = $sumartotal / 60; 
     $real =  number_format((float)$sumarsengund, 1, '.', ''); 
-     $rest = substr($real, 0,1);
 
     $horas = floor($sumartotal / 3600);
     $minutos = floor(($sumartotal - ($horas * 3600)) / 60);
@@ -132,6 +130,6 @@ $mysql = mysqli_connect("127.0.0.1", "root", "", "proyecto");
      
     
     
-   
+    if(isset($NOMBRE)){
 }
 ?>
