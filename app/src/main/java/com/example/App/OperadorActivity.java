@@ -532,7 +532,7 @@ public class OperadorActivity extends AppCompatActivity {
                             });
                             NOMBRE = objecto.getString(0);
 
-                            resultados.setText(objecto.getString(0));
+                            resultados.setText("OPERADOR : "+objecto.getString(0));
 
 
                         } else {
@@ -587,7 +587,16 @@ public class OperadorActivity extends AppCompatActivity {
                                 builder.setPositiveButton("FINALIZAR O.P", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                        HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?nombre="+NOMBRE.toString()).body();
+                                        Toast.makeText(getApplicationContext(),"FINALIZO LA O.P",Toast.LENGTH_SHORT).show();
+                                        new Thread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?nombre="+NOMBRE).body();
+                                            }
+                                        }).start();
+
+
+
                                     }
                                 });
                                 builder.setNegativeButton("CONTINUAR ACTIVIDAD", new DialogInterface.OnClickListener() {

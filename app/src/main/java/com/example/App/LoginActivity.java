@@ -29,8 +29,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.List;
 
-import Services.ServicioLogin;
-
 
 @SuppressWarnings("ALL")
 public class LoginActivity extends AppCompatActivity {
@@ -151,7 +149,9 @@ public class LoginActivity extends AppCompatActivity {
                         String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/validar.php?cedula=" + login.getText().toString() + "&pass=" + pass.getText().toString()).body();
 
                         if (response.length() > 0) {
-                            startService(new Intent(LoginActivity.this, ServicioLogin.class));
+
+                            Intent e = new Intent(getApplicationContext(), OperadorActivity.class);
+                            startActivity(e);
 
                             if (GUARDARUTO.isChecked()) {
 
