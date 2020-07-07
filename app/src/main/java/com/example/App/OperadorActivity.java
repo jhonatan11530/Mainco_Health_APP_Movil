@@ -591,12 +591,9 @@ public class OperadorActivity extends AppCompatActivity {
                                         new Thread(new Runnable() {
                                             @Override
                                             public void run() {
-                                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?nombre="+NOMBRE).body();
+                                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?nombre="+NOMBRE+"&op="+items.getText().toString()).body();
                                             }
                                         }).start();
-
-
-
                                     }
                                 });
                                 builder.setNegativeButton("CONTINUAR ACTIVIDAD", new DialogInterface.OnClickListener() {
