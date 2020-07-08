@@ -2,34 +2,36 @@
 error_reporting(0);
 set_time_limit(10);
 $NOMBRE = $_GET["nombre"];
+$numeroops = $_GET["op"];
 
+if (isset($NOMBRE,$numeroops)) {
 
-$mysqli = mysqli_connect("127.0.0.1", "root", "", "proyecto");
-$sql_statement = "SELECT DISTINCT id,numero_op,inicial FROM operador WHERE nombre = '".$NOMBRE."' and numero_op is not null";
-$resultado = mysqli_query($mysqli, $sql_statement);
-while($row = mysqli_fetch_array($resultado)) {
-   $ID = $row["id"];
-   $op = $row["numero_op"];
-   $inicial = $row["inicial"];
-} 
-
-$mysql = mysqli_connect("127.0.0.1", "root", "", "proyecto");
-  $sql_statements = "SELECT *  FROM produccion WHERE numero_op='".$op."'";
-  $llaves = mysqli_query($mysql, $sql_statements);
-  while($row = mysqli_fetch_array($llaves)) {
-    
-     $cod_producto =  $row["cod_producto"];
-    
-  }
-  $mysql = mysqli_connect("127.0.0.1", "root", "", "proyecto");
-  $sql_statements = "SELECT ROUND(`extandar`*3600) AS `extandar` FROM `tarea` WHERE `numero_op`='".$cod_producto."'";
-  $llaves = mysqli_query($mysql, $sql_statements);
-  $extand = array();
-  while($row = mysqli_fetch_array($llaves)) {
-    
-     $extand[] = $row["extandar"];
-     
+  $mysqli = mysqli_connect("127.0.0.1", "root", "", "proyecto");
+  $sql_statement = "SELECT DISTINCT id,numero_op,inicial FROM operador WHERE nombre = '".$NOMBRE."' AND numero_op = '".$numeroops."' ";
+  $resultado = mysqli_query($mysqli, $sql_statement);
+  while($row = mysqli_fetch_array($resultado)) {
+    $ID = $row["id"];
+    $op = $row["numero_op"];
+    $inicial = $row["inicial"];
   } 
+
+  $mysql = mysqli_connect("127.0.0.1", "root", "", "proyecto");
+    $sql_statements = "SELECT *  FROM produccion WHERE numero_op='".$op."'";
+    $llaves = mysqli_query($mysql, $sql_statements);
+    while($row = mysqli_fetch_array($llaves)) {
+      
+      $cod_producto =  $row["cod_producto"];
+      
+    }
+    $mysql = mysqli_connect("127.0.0.1", "root", "", "proyecto");
+    $sql_statements = "SELECT ROUND(`extandar`*3600) AS `extandar` FROM `tarea` WHERE `numero_op`='".$cod_producto."'";
+    $llaves = mysqli_query($mysql, $sql_statements);
+    $extand = array();
+    while($row = mysqli_fetch_array($llaves)) {
+      
+      $extand[] = $row["extandar"];
+      
+    } 
 
       $mysql = mysqli_connect("127.0.0.1", "root", "", "proyecto");
       $sql_statements = "SELECT cantidad FROM operador WHERE id='".$ID."' AND numero_op = '".$op."'";
@@ -56,7 +58,7 @@ $mysql = mysqli_connect("127.0.0.1", "root", "", "proyecto");
      $totalSegund = round($suma / 60); 
    
       $mysql = mysqli_connect("127.0.0.1", "root", "", "proyecto");
-      $sql_statements = "SELECT TIMEDIFF(hora_final,hora_inicial) AS total FROM operador WHERE id='".$ID."' AND numero_op is not null ";
+      $sql_statements = "SELECT TIMEDIFF(hora_final,hora_inicial) AS total FROM operador WHERE id='".$ID."' AND numero_op = '".$op."'  ";
       $consutatime = mysqli_query($mysql, $sql_statements);
       $timerestan = array();
       while($row = mysqli_fetch_array($consutatime)) {
@@ -108,14 +110,14 @@ $mysql = mysqli_connect("127.0.0.1", "root", "", "proyecto");
      $productividad = round($sumartotal / $tiempoPorduc *100) ;
      
      //TOTAL EFICIENCIA CONSOLIDADO
-       $eficiencias =  $totalSegund / $real * 100;
+      $eficiencias =  $totalSegund / $real * 100;
 
        if($eficiencias == INF && $productividad == 0){
 
         $productividad = 100;
         $eficiencia = 100;
         $mysqli = mysqli_connect("127.0.0.1", "root", "", "proyecto");
-        $res = "INSERT INTO promedio (fecha,Descripcion,tiempo_habil,timepo_estimado,tiempo_produccido,eficiencia,produccion) VALUES ('".$inicial."','".$NOMBRE."','".$tiempoPorduccido."','".$totalSegund."','".$resultadominuto."','".$eficiencia."','".$productividad."')";
+        $res = "INSERT INTO promedio (fecha,OP,Descripcion,tiempo_habil,timepo_estimado,tiempo_produccido,eficiencia,produccion) VALUES ('".$inicial."','".$numeroops."','".$NOMBRE."','".$tiempoPorduccido."','".$totalSegund."','".$resultadominuto."','".$eficiencia."','".$productividad."')";
         $resultado = mysqli_query($mysqli, $res);
         
     }
@@ -123,12 +125,8 @@ $mysql = mysqli_connect("127.0.0.1", "root", "", "proyecto");
 
         $eficiencia = round($eficiencias);
         $mysqli = mysqli_connect("127.0.0.1", "root", "", "proyecto");
-        $res = "INSERT INTO promedio (fecha,Descripcion,tiempo_habil,timepo_estimado,tiempo_produccido,eficiencia,produccion) VALUES ('".$inicial."','".$NOMBRE."','".$tiempoPorduccido."','".$totalSegund."','".$resultadominuto."','".$eficiencia."','".$productividad."')";
+        $res = "INSERT INTO promedio (fecha,OP,Descripcion,tiempo_habil,timepo_estimado,tiempo_produccido,eficiencia,produccion) VALUES ('".$inicial."','".$numeroops."','".$NOMBRE."','".$tiempoPorduccido."','".$totalSegund."','".$resultadominuto."','".$eficiencia."','".$productividad."')";
         $resultado = mysqli_query($mysqli, $res);
     }
-     
-    
-    
-    if(isset($NOMBRE)){
-}
+} 
 ?>
