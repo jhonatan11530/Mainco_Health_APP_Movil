@@ -105,6 +105,7 @@
       <entry_point TYPE="field" FQNAME="com.example.App.HttpRequest url" />
       <entry_point TYPE="field" FQNAME="com.example.App.OlvidoActivity v_flipper" />
       <entry_point TYPE="method" FQNAME="com.example.App.HttpRequest$2 boolean verify(java.lang.String hostname, javax.net.ssl.SSLSession session)" />
+      <entry_point TYPE="field" FQNAME="com.example.App.RegistroActivity client" />
     </entry_points>
     <pattern value="com.example.App.cantidades" method="cantidades" />
     <pattern value="com.example.App.LoginActivity" method="guardar" />
@@ -347,7 +348,7 @@
       </value>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" project-jdk-name="Android API 28 Platform" project-jdk-type="Android SDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

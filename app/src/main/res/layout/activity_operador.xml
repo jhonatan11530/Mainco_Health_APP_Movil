@@ -7,13 +7,12 @@
     tools:context=".OperadorActivity">
 
     <LinearLayout
-        android:id="@+id/linearLayout1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:weightSum="12"
-        >
-        <LinearLayout android:id="@+id/linearLayout3"
+        tools:ignore="UselessParent">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -21,7 +20,7 @@
             android:layout_weight="1"
             android:baselineAligned="false">
 
-            <LinearLayout android:id="@+id/linearLayout4"
+            <LinearLayout
                 android:layout_width="250dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
@@ -45,18 +44,18 @@
                     />
 
                 <Button
-                    android:id="@+id/btnoperador"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_weight="5"
                     android:background="@color/colorAzulCLM"
                     android:onClick="operador"
                     android:text="VALIDAR"
-                    android:textColor="#ffffff" />
+                    android:textColor="#ffffff"
+                     />
 
             </LinearLayout>
 
-            <LinearLayout android:id="@+id/linearLayout5"
+            <LinearLayout
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
@@ -78,7 +77,6 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayout6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -99,7 +97,8 @@
                 android:gravity="center"
                 android:hint="INGRESE EL O.P"
                 android:textColorHint="#000"
-                android:inputType="text" />
+                android:inputType="text"
+                tools:ignore="NestedWeights" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -115,7 +114,6 @@
                 />
 
             <TextView
-                android:id="@+id/textView1"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:gravity="center"
@@ -133,7 +131,6 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayout7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="6.6"
@@ -184,7 +181,6 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="3.3"
         android:orientation="vertical"
         android:gravity="center">
 

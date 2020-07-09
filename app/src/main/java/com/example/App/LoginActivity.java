@@ -30,6 +30,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.List;
 
 
+
 @SuppressWarnings("ALL")
 public class LoginActivity extends AppCompatActivity {
 
@@ -63,6 +64,8 @@ public class LoginActivity extends AppCompatActivity {
         conf.SSID = "\"" + networkSSID + "\"";
         conf.preSharedKey = "\"" + networkPass + "\"";
 
+
+
         WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
 
         if ((!wifiManager.isWifiEnabled())) {
@@ -83,7 +86,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     }
-
 
     class TASK extends AsyncTask<String, Void, String> {
 

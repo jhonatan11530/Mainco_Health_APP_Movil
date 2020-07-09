@@ -11,10 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:weightSum="12"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
 
         <LinearLayout
-            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
@@ -22,7 +22,6 @@
             android:layout_weight="3"
             >
             <ImageView
-                android:id="@+id/imageView1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -87,8 +86,6 @@
                 android:layout_marginHorizontal="25dp"
                 android:gravity="center"
                 android:textColor="#000"
-                android:editable="false"
-                android:id="@+id/olvido"
                 android:layout_width="wrap_content"
                 android:layout_height="80dp"
                 android:drawableLeft="@drawable/ic_lock_open_black_24dp"
@@ -123,7 +120,6 @@
             <TextView
                 android:gravity="center"
                 android:textColor="#000"
-                android:editable="false"
                 android:id="@+id/registre"
                 android:layout_width="350dp"
                 android:layout_height="80dp"

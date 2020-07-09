@@ -18,7 +18,8 @@
         android:taskAffinity=".string"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
-        tools:ignore="GoogleAppIndexingWarning">
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:targetApi="m">
         <service
             android:name="Services.ServicioRegistroSalida"
             android:enabled="true"

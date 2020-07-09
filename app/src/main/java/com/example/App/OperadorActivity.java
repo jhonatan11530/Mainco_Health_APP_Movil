@@ -553,7 +553,6 @@ public class OperadorActivity extends AppCompatActivity {
     }
 
     public void verificar() {
-
         final String Nitem = resuldato3.getSelectedItem().toString();
         final String nombretarea = resuldato.getSelectedItem().toString();
         eliminaOK = new Thread(new Runnable() {
@@ -592,6 +591,8 @@ public class OperadorActivity extends AppCompatActivity {
                                             @Override
                                             public void run() {
                                                 HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?nombre="+NOMBRE+"&op="+items.getText().toString()).body();
+                                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/LimpiarValoresItems.php?op=" + resuldato3.getSelectedItem().toString()).body();
+
                                             }
                                         }).start();
                                     }
@@ -1036,6 +1037,8 @@ public class OperadorActivity extends AppCompatActivity {
         builder.create().show();
 
     }
+
+
 
     class Task extends AsyncTask<String, Void, String> {
 
