@@ -8,7 +8,7 @@ $mysqli = mysqli_connect("localhost", "root", "", "proyecto");
   
 while ($row = mysqli_fetch_array($result)){ 
   $arreglito = array();
-    $arreglito[]="OPERADOR : ".$row["nombre"];
+    $arreglito[] = $row["nombre"];
 
   }
 

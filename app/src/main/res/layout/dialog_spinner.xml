@@ -7,7 +7,6 @@
     android:weightSum="9">
 
     <LinearLayout
-        android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
@@ -15,7 +14,6 @@
         android:weightSum="1"
         >
         <TextView
-            android:id="@+id/TEXT"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -52,7 +50,6 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0"
@@ -63,7 +60,6 @@
 
 
         <LinearLayout
-            android:id="@+id/linearLayout3.1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:weightSum="0.5"
@@ -74,14 +70,12 @@
                 android:id="@+id/textos"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:editable="false"
                 android:text="TIEMPO DE DESCANSO"
                 android:textSize="19sp" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayout3.2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -102,7 +96,6 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.5"
@@ -111,12 +104,12 @@
         android:baselineAligned="false">
 
         <LinearLayout
-            android:id="@+id/linearLayout5.1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
             android:orientation="horizontal"
-            android:weightSum="1">
+            android:weightSum="1"
+            tools:ignore="NestedWeights">
 
             <Button
                 android:id="@+id/go"
@@ -128,7 +121,6 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayout5.2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"

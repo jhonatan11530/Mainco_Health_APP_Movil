@@ -17,7 +17,7 @@ import com.loopj.android.http.AsyncHttpClient;
 
 public class RegistroActivity extends AppCompatActivity {
 
-    EditText id, nombre, apellido, cedula, pass;
+    EditText  nombre, apellido, cedula, pass;
     CheckBox resultado;
     Button registro;
     AsyncHttpClient client;
@@ -27,7 +27,7 @@ public class RegistroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
 
-        client = new AsyncHttpClient();
+          client = new AsyncHttpClient();
 
 
         nombre = findViewById(R.id.nombre);

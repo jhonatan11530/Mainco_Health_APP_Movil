@@ -1,11 +1,11 @@
 <?php
 error_reporting(0);
-set_time_limit(0);
+set_time_limit(10);
 
 $ID = $_GET["id"];
 $op = $_GET["op"];
 $tarea = $_GET["tarea"];
-$cantidad = $_GET["cantidad"];
+/**/$cantidad = $_GET["cantidad"];
 $no_conforme = $_GET["conforme"];
 $motivo = $_GET["motivo"];
 $final = $_GET["Ffinal"];
@@ -13,6 +13,7 @@ $hora_final = $_GET["Hfinal"];
 
 
 if(isset($ID,$op,$tarea,$cantidad,$no_conforme,$motivo,$final,$hora_final)){
+
 
   $mysql = mysqli_connect("127.0.0.1", "root", "", "proyecto");
   $sql_statements = "SELECT llaves FROM operador WHERE id= '".$ID."'";
@@ -33,6 +34,17 @@ $a->ejecutar($ID,$op,$tarea,$llave);
 else{
   echo "aqui no paso nada";
 }
+/*
+$mysql = mysqli_connect("127.0.0.1", "root", "", "proyecto");
+  $sql_statements = "SELECT llaves FROM operador WHERE id= '".$ID."'";
+  $llaves = mysqli_query($mysql, $sql_statements);
+  while($row = mysqli_fetch_array($llaves)) {
+    $llave = $row["llaves"];
+  }  
+  $a = new ejemplo();
+$a->ejecutar($ID,$op,$tarea,$llave);
+
+*/
 class ejemplo{
   function ejecutar($ID,$op,$tarea,$llave){
       sleep(1);
@@ -152,6 +164,8 @@ class EFICIENCIA{
     }  
      $promedioSUM = substr($TIMEPAROSUM, 0, 8);
 
+     if($promedioSUM == null){
+      $promedioSUM ="00:00:00";
     // RESTAR TIEMPO REAL PRODUCCIDA HORA INICIAL // HORA FINAL
     $datetime1 = new DateTime($final);
     $datetime2 = new DateTime($inicial);
@@ -168,7 +182,7 @@ class EFICIENCIA{
     list($horas, $minutos, $segundos) = explode(':', $totales);
     $dates = ($horas * 3600 ) + ($minutos * 60 ) + $segundos;
     $formula =  $dato / $dates * 100;
-    $formulas = round($formula);
+    $formulas = round($formula );
     echo "<br>";
     echo "<br>";
     if($formulas >= 0){
@@ -195,7 +209,52 @@ class EFICIENCIA{
        $f->eficacias($ID,$dato,$op,$cant,$llave,$cod,$tarea);
 
     }
-    
+  }else if($promedioSUM != null){
+
+    // RESTAR TIEMPO REAL PRODUCCIDA HORA INICIAL // HORA FINAL
+    $datetime1 = new DateTime($final);
+    $datetime2 = new DateTime($inicial);
+    $interval = $datetime1->diff($datetime2);
+    $hora = $interval->format('%H:%I:%S');
+
+    // RESTAR TIEMPO PARO - REAL
+    $datetime1 = new DateTime($hora);
+    $datetime2 = new DateTime($promedioSUM);
+    $interval = $datetime1->diff($datetime2);
+    $totales = $interval->format('%H:%I:%S');
+
+    // PASAR DE HORAS REALES LABORADAS A SEGUNDOS
+    list($horas, $minutos, $segundos) = explode(':', $totales);
+    $dates = ($horas * 3600 ) + ($minutos * 60 ) + $segundos;
+    $formula =  $dato / $dates * 100;
+    $formulas = round($formula );
+    echo "<br>";
+    echo "<br>";
+    if($formulas >= 0){
+
+      echo "EFICIENCIA : ".$formulas;
+
+      $mysqli = mysqli_connect("127.0.0.1", "root", "", "proyecto");
+      $search = "UPDATE operador SET eficencia='".$formulas."' WHERE id= '".$ID."' AND llaves='".$llave."'";
+      $res = mysqli_query($mysqli, $search);
+
+      $f = new EFICACIA();
+      $f->eficacias($ID,$dato,$op,$cant,$llave,$cod,$tarea);
+
+    }
+    if($formulas < 0){
+
+      $formulas = 0;
+      echo "EFICIENCIA : ".$formulas;
+      $mysqli = mysqli_connect("127.0.0.1", "root", "", "proyecto");
+      $search = "UPDATE operador SET eficencia='".$formulas."' WHERE id= '".$ID."' AND llaves='".$llave."'";
+      $res = mysqli_query($mysqli, $search);
+
+       $f = new EFICACIA();
+       $f->eficacias($ID,$dato,$op,$cant,$llave,$cod,$tarea);
+
+    }
+  }
   }
 }
 
@@ -217,7 +276,7 @@ class EFICACIA{
     $sql_statements = "SELECT SEC_TO_TIME(SUM(TIME_TO_SEC(tiempo_descanso))) AS tiempo_descanso FROM motivo_paro WHERE numero_op= '".$op."' AND id= '".$ID."' AND tarea= '".$tarea."'";
     $ensayo = mysqli_query($mysql, $sql_statements);
     while($row = mysqli_fetch_array($ensayo)) {
-    $TIMEPAROSUM= $row["tiempo_descanso"] ; 
+      $TIMEPAROSUM= $row["tiempo_descanso"] ; 
     }  
     $promedioSUM = substr($TIMEPAROSUM, 0, 8);
 

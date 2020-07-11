@@ -46,7 +46,7 @@ public class OperadorActivity extends AppCompatActivity {
 
 
     private EditText id, cantidad, paro, fallas, items;
-    private String falla, error, VaribleTOTAL;
+    private String falla, error, VaribleTOTAL,NOMBRE;
     private TextView motivo, MOSTRAR, texto, resultados;
     private Spinner resuldato, resuldato2, resuldato4, resuldato3;
 
@@ -530,9 +530,9 @@ public class OperadorActivity extends AppCompatActivity {
 
                                 }
                             });
+                            NOMBRE = objecto.getString(0);
 
-
-                            resultados.setText(objecto.getString(0));
+                            resultados.setText("OPERADOR : "+objecto.getString(0));
 
 
                         } else {
@@ -553,7 +553,6 @@ public class OperadorActivity extends AppCompatActivity {
     }
 
     public void verificar() {
-
         final String Nitem = resuldato3.getSelectedItem().toString();
         final String nombretarea = resuldato.getSelectedItem().toString();
         eliminaOK = new Thread(new Runnable() {
@@ -584,9 +583,24 @@ public class OperadorActivity extends AppCompatActivity {
                                 builder.setTitle("FINALIZO LA ACTIVIDAD O TAREA");
                                 builder.setMessage("YA TERMINO LA TAREA DEBERA REALIZAR OTRA TAREA");
 
-                                builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+                                builder.setPositiveButton("FINALIZAR O.P", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
+                                        Toast.makeText(getApplicationContext(),"FINALIZO LA O.P",Toast.LENGTH_SHORT).show();
+                                        new Thread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?nombre="+NOMBRE+"&op="+items.getText().toString()).body();
+                                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/LimpiarValoresItems.php?op=" + resuldato3.getSelectedItem().toString()).body();
+
+                                            }
+                                        }).start();
+                                    }
+                                });
+                                builder.setNegativeButton("CONTINUAR ACTIVIDAD", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                    Toast.makeText(getApplicationContext(),"SELECCIONE UNA NUEVA ACTIVIDAD",Toast.LENGTH_SHORT).show();
                                     }
                                 });
                                 builder.create().show();
@@ -798,7 +812,7 @@ public class OperadorActivity extends AppCompatActivity {
                 date = new Date();
 
                 //imprime hora
-                hourFormat = new SimpleDateFormat("H:mm:ss", Locale.getDefault());
+                hourFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
 
                 final String horas = hourFormat.format(date);
                 final String fechas = dateFormat.format(date);
@@ -930,7 +944,7 @@ public class OperadorActivity extends AppCompatActivity {
         date = new Date();
 
         //imprime hora
-        hourFormat = new SimpleDateFormat("H:mm:ss", Locale.getDefault());
+        hourFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
 
         //almacena los datos en una cadena
         final String hora = hourFormat.format(date);
@@ -1024,6 +1038,8 @@ public class OperadorActivity extends AppCompatActivity {
 
     }
 
+
+
     class Task extends AsyncTask<String, Void, String> {
 
         @Override
@@ -1072,7 +1088,7 @@ public class OperadorActivity extends AppCompatActivity {
         Date date = new Date();
 
         //imprime hora
-        SimpleDateFormat hourFormat = new SimpleDateFormat("H:mm:ss", Locale.getDefault());
+        SimpleDateFormat hourFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
 
         //almacena los datos en una cadena
         final String horafinal = hourFormat.format(date);
@@ -1259,7 +1275,7 @@ public class OperadorActivity extends AppCompatActivity {
                     Date date = new Date();
 
                     //imprime hora
-                    SimpleDateFormat hourFormat = new SimpleDateFormat("H:mm:ss", Locale.getDefault());
+                    SimpleDateFormat hourFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
 
                     //almacena los datos en una cadena
                     final String horafinal = hourFormat.format(date);
