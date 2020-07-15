@@ -147,6 +147,25 @@
         android:text="MOTIVO DE PARO"
         android:textSize="19sp" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="DIGITE EL CODIGO DE MOTIVO PARO"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        />
+
+    <EditText
+        android:id="@+id/codemotivo"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:ems="10"
+        android:background="@drawable/items"
+        android:gravity="center"
+        android:hint="DIGITE CODIGO MOTIVO PARO"
+        android:inputType="number" />
+
     <Spinner
         android:id="@+id/spinner2"
         android:layout_width="match_parent"

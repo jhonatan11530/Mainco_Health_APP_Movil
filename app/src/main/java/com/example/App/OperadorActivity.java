@@ -45,7 +45,7 @@ import cz.msebera.android.httpclient.Header;
 public class OperadorActivity extends AppCompatActivity {
 
 
-    private EditText id, cantidad, paro, fallas, items;
+    private EditText id, cantidad, paro, fallas, items,codemotivo;
     private String falla, error, VaribleTOTAL,NOMBRE;
     private TextView motivo, MOSTRAR, texto, resultados;
     private Spinner resuldato, resuldato2, resuldato4, resuldato3;
@@ -118,6 +118,8 @@ public class OperadorActivity extends AppCompatActivity {
         resultados = findViewById(R.id.listar_operador);
 
 
+
+
         desbloquear.setEnabled(false);
         registroTIME.setEnabled(false);
         salidaTIME.setEnabled(false);
@@ -127,6 +129,7 @@ public class OperadorActivity extends AppCompatActivity {
         registroTIME.setBackgroundColor(Color.parseColor("#919191"));
         salidaTIME.setBackgroundColor(Color.parseColor("#919191"));
         cantidadund.setBackgroundColor(Color.parseColor("#919191"));
+
 
 
         items.addTextChangedListener(new TextWatcher() {
@@ -444,6 +447,44 @@ public class OperadorActivity extends AppCompatActivity {
 
     }
 
+    public void llenardescansoMotivo() {
+        String url = "http://" + cambiarIP.ip + "/validar/motivofiltro.php?motivo="+codemotivo.getText().toString();
+        cliente4.post(url, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                if (statusCode == 200) {
+                    filtrardescansoMotivo(new String(responseBody));
+                }
+                if (statusCode > 201) {
+                    llenardescansoMotivo();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                llenardescansoMotivo();
+            }
+        });
+    }
+
+    public void filtrardescansoMotivo(String filtrardescansoMotivo) {
+        ArrayList<motivoparo> dato2 = new ArrayList<>();
+        try {
+            JSONArray objecto = new JSONArray(filtrardescansoMotivo);
+            for (int i = 0; i < objecto.length(); i++) {
+                motivoparo b = new motivoparo();
+                b.setParo(objecto.getJSONObject(i).getString("paro"));
+                dato2.add(b);
+            }
+            ArrayAdapter<motivoparo> a = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, dato2);
+            resuldato2.setAdapter(a);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public void motivofalla() {
         String url = "http://" + cambiarIP.ip + "/validar/motivocantidad.php";
         cliente5.post(url, new AsyncHttpResponseHandler() {
@@ -682,12 +723,32 @@ public class OperadorActivity extends AppCompatActivity {
         stop = tiempo1.findViewById(R.id.stop);
         go = tiempo1.findViewById(R.id.go);
         validarinfo = tiempo1.findViewById(R.id.validarinfo);
-
+        codemotivo = tiempo1.findViewById(R.id.codemotivo);
 
         motivo = tiempo1.findViewById(R.id.MOTIVO);
         resuldato2 = tiempo1.findViewById(R.id.spinner2);
 
 
+        codemotivo.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (codemotivo.getText().toString() != null) {
+                    llenardescansoMotivo();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (editable.toString().length() < 1) {
+                    llenardescanso();
+                }
+            }
+        });
         //botones
 
         MOSTRAR.setVisibility(View.INVISIBLE);
