@@ -1212,7 +1212,7 @@ public class OperadorActivity extends AppCompatActivity {
 
                                 if (end.length() >= 0) {
                                     if (tool >= 0) {
-                                        if (sumatoria == cantidadpro) {
+                                        if (sumatoria <= cantidadpro) {
 
 
                                             Intent Componente = new Intent(OperadorActivity.this, ServicioRegistroSalida.class);
@@ -1388,7 +1388,7 @@ public class OperadorActivity extends AppCompatActivity {
 
                                     if (BuenasMalas >= 0) {
                                         if (totalade >= 0) {
-                                            if (sumatoria == cantidadpro) {
+                                            if (sumatoria <= cantidadpro) {
 
                                                 HttpRequest.get("http://" + cambiarIP.ip + "/validar/canbiarAucOP.php?op=" + items.getText().toString() + "&item=" + resuldato3.getSelectedItem().toString() + "&cantidad=" + totalade).body();
 
