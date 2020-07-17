@@ -17,7 +17,6 @@
                 android:layout_height="80dp"
                 android:orientation="vertical"
                 android:weightSum="12"
-
                 tools:ignore="ExtraText">
 
                 <TextView
@@ -95,9 +94,6 @@
                 android:id="@+id/spinner2"
                 android:layout_width="match_parent"
                 android:layout_height="60dp" />
-
-
-
 
       </LinearLayout>
 </RelativeLayout>
