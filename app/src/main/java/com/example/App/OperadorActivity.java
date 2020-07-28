@@ -125,11 +125,6 @@ public class OperadorActivity extends AppCompatActivity {
         salidaTIME.setEnabled(false);
         cantidadund.setEnabled(false);
 
-        desbloquear.setBackgroundColor(Color.parseColor("#919191"));
-        registroTIME.setBackgroundColor(Color.parseColor("#919191"));
-        salidaTIME.setBackgroundColor(Color.parseColor("#919191"));
-        cantidadund.setBackgroundColor(Color.parseColor("#919191"));
-
 
 
         items.addTextChangedListener(new TextWatcher() {
@@ -614,10 +609,7 @@ public class OperadorActivity extends AppCompatActivity {
                                 cantidadund.setEnabled(false);
                                 desbloquear.setEnabled(false);
 
-                                desbloquear.setBackgroundColor(Color.parseColor("#919191"));
-                                registroTIME.setBackgroundColor(Color.parseColor("#919191"));
-                                cantidadund.setBackgroundColor(Color.parseColor("#919191"));
-                                salidaTIME.setBackgroundColor(Color.parseColor("#919191"));
+
 
                                 AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
                                 builder.setIcon(R.drawable.finish_op);
@@ -641,7 +633,13 @@ public class OperadorActivity extends AppCompatActivity {
                                 builder.setNegativeButton("CONTINUAR ACTIVIDAD", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                    Toast.makeText(getApplicationContext(),"SELECCIONE UNA NUEVA ACTIVIDAD",Toast.LENGTH_SHORT).show();
+                                        new Thread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                        HttpRequest.get("http://" + cambiarIP.ip + "/validar/nuevoRegistro.php?id=" + id.getText().toString()).body();
+                                            }
+                                        }).start();
+                                        Toast.makeText(getApplicationContext(),"SELECCIONE UNA NUEVA ACTIVIDAD",Toast.LENGTH_SHORT).show();
                                     }
                                 });
                                 builder.create().show();
@@ -665,10 +663,6 @@ public class OperadorActivity extends AppCompatActivity {
                                 cantidadund.setEnabled(false);
                                 desbloquear.setEnabled(false);
 
-                                desbloquear.setBackgroundColor(Color.parseColor("#919191"));
-                                registroTIME.setBackgroundColor(Color.parseColor("#919191"));
-                                cantidadund.setBackgroundColor(Color.parseColor("#919191"));
-                                salidaTIME.setBackgroundColor(Color.parseColor("#919191"));
 
 
                                 AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
@@ -883,7 +877,7 @@ public class OperadorActivity extends AppCompatActivity {
                     @Override
                     public void run() {
 
-                        String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/RegistrarMotivo.php?op=" + items.getText().toString() + "&id=" + id.getText().toString() + "&paro=" + paro.getText().toString() + "&motivo=" + prueba + "&fecha=" + fechas + "&hora=" + horas + "&tarea=" + resuldato.getSelectedItem().toString()).body();
+                        HttpRequest.get("http://" + cambiarIP.ip + "/validar/RegistrarMotivo.php?op=" + items.getText().toString() + "&id=" + id.getText().toString() + "&paro=" + paro.getText().toString() + "&motivo=" + prueba + "&fecha=" + fechas + "&hora=" + horas + "&tarea=" + resuldato.getSelectedItem().toString()).body();
 
                     }
                 }).start();

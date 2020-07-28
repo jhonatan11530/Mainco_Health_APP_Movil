@@ -1,4 +1,5 @@
 <?php
+require_once("ConexionSQL.php");
 $OP = $_GET["op"];
 $ID = $_GET["id"];
 $paro = $_GET["paro"];

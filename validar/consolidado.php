@@ -20,7 +20,7 @@ class comienzo{
   $resultado = sqlsrv_query($mysqli, $sql_statement);
   while($row = sqlsrv_fetch_array($resultado, SQLSRV_FETCH_ASSOC)) {
      $ID = $row["id"];
-     $op = $row["numero_op"];
+      $op = $row["numero_op"];
      $inicial = $row["inicial"];
 
   } 
@@ -35,12 +35,12 @@ class comienzo{
     }
     
     $mysql = sqlsrv_connect(Server() , connectionInfo());
-    $sql_statements = "SELECT ROUND(`extandar`*3600) AS extandar FROM proyecto.tarea WHERE `numero_op`='".$cod_producto."'";
+    $sql_statements = "SELECT ROUND(extandar,5)*3600 AS extandar FROM proyecto.tarea WHERE numero_op='".$cod_producto."'";
     $llaves = sqlsrv_query($mysql, $sql_statements);
     $extand = array();
     while($row = sqlsrv_fetch_array($llaves, SQLSRV_FETCH_ASSOC)) {
     
-      $extand[] = $row["extandar"];
+       $extand[] = $row["extandar"];
       
     } 
 
@@ -50,17 +50,15 @@ class comienzo{
       $cant = array();
       while($row = sqlsrv_fetch_array($consultas, SQLSRV_FETCH_ASSOC)) {
 
-      $cant[] = $row["cantidad"];
+         $cant[] = $row["cantidad"];
 
       }
       $arrayResultados  = array();
       $suma = 0;
-
       for ($i = 0; $i < count($extand); $i++) {
         for ($f = 0; $f < count($cant); $f++) {
           if($i == $f){
              $arrayResultados[$i] = $extand[$i] * $cant[$f];
-            
           break;
           
           }
@@ -69,33 +67,38 @@ class comienzo{
       }
       
       foreach ($arrayResultados as $numero) {
-          $suma += $numero;
+         $suma += $numero;
+        
     }
     
     //TOTAL SUMADO TIME SEGUNDOS CONSOLIDADO
-      $totalSegund = round($suma / 60); 
-
+     $totalSegund = round($suma / 60); 
+  
       $mysql = sqlsrv_connect(Server() , connectionInfo());
-      $sql_statements = "SELECT TIMEDIFF(hora_final,hora_inicial) AS total FROM proyecto.operador WHERE id='".$ID."' AND numero_op = '".$op."'  ";
+      $sql_statements = "SELECT DATEDIFF(SECOND,hora_inicial,hora_final) AS total  FROM proyecto.operador WHERE id='".$ID."' AND numero_op = '".$op."' ";
       $consutatime = sqlsrv_query($mysql, $sql_statements);
       $timerestan = array();
+      $timeresta = array();
       while($row = sqlsrv_fetch_array($consutatime, SQLSRV_FETCH_ASSOC)) {
 
-          $timerestan[] = $row["total"];
-
+         $timeresta[] = $row["total"];
+           
       }
+      for ($i = 0; $i < count($timeresta); $i++) {
+         $timerestan[] = gmdate("H:i:s", $timeresta[$i]);
        
+      }
+
+      
       $total = array();
       for ($i = 0; $i < count($timerestan); $i++) {
         list($horas, $minutos, $segundos) = explode(':', $timerestan[$i]);
-        $total[] = ($horas * 3600 ) + ($minutos * 60 ) + $segundos;
+         $total[] = ($horas * 3600 ) + ($minutos * 60 ) + $segundos;
       }
-       $tiempoPorduc = array_sum($total);
-      $hours = floor($tiempoPorduc / 3600);
-      $minutes = floor(($tiempoPorduc / 60) % 60);
-      $seconds = $tiempoPorduc % 60;
 
-         $tiempoPorduccido = $hours.":".$minutes.":".$seconds;
+        $tiempoPorduc = array_sum($total);
+
+       $tiempoPorduccido = gmdate("H:i:s", $tiempoPorduc);
 
       $mysql = sqlsrv_connect(Server() , connectionInfo());
       $sql_statements = "SELECT tiempo_descanso FROM proyecto.motivo_paro WHERE numero_op='".$op."' ";
@@ -118,21 +121,17 @@ class comienzo{
         $matriz2[] = $total[$i] - $NumeroOP[$i];
       }
 
-       $sumartotal =  array_sum($matriz2);
+        $sumartotal =  array_sum($matriz2);
          $sumarsengund = $sumartotal / 60; 
             $real =  number_format((float)$sumarsengund, 1, '.', ''); 
 
-    $horas = floor($sumartotal / 3600);
-    $minutos = floor(($sumartotal - ($horas * 3600)) / 60);
-    $segundos = $sumartotal - ($horas * 3600) - ($minutos * 60);
-      $resultadominuto = $horas . ':' . $minutos . ":" . $segundos;
+     $resultadominuto = gmdate("H:i:s", $sumartotal);
 
     // TOTAL PRODUCTIVIDAD 
     $productividad = round($sumartotal / $tiempoPorduc *100) ;
 
      //TOTAL EFICIENCIA CONSOLIDADO
-     $eficiencias =  $totalSegund / $real * 100;
-
+       $eficiencias =  $totalSegund / $real * 100;
   if($eficiencias == INF && $productividad == 0){
 
     $a = new menor();

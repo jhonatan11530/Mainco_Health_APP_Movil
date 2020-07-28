@@ -2,7 +2,7 @@
 require_once("ConexionSQL.php");
 $ID = $_GET["id"];
 $mysqli = sqlsrv_connect(Server() , connectionInfo());
-$sql_statement = "SELECT * FROM proyecto.operador  WHERE id= '.$ID.'";
+$sql_statement = "SELECT * FROM proyecto.operador  WHERE id= '".$ID."'";
 $result = sqlsrv_query($mysqli, $sql_statement);
 
 while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)){ 
@@ -19,13 +19,14 @@ while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)){
   $arreglito[9]= $row["hora_final"];
 
 }
- $can =json_encode($arreglito);
+ echo $can =json_encode($arreglito);
 
 
 $id = $arreglito[0];
 $nom = $arreglito[1];
 
-if($arreglito[2] != null && $arreglito[3] != null && $arreglito[4] != null && $arreglito[5] != null && $arreglito[6] != null && $arreglito[7] != null && $arreglito[8] != null && $arreglito[9] != null){
+if(isset($id,$nom)){
+  echo "asd";
   $workers=new nuevo();
   $workers->run($id,$nom);
 }
@@ -39,10 +40,12 @@ else{
 
 class nuevo{
   public function run($id,$nom){
-
+    
     sleep(1);
+    $cant = 0;
     $mysqli = sqlsrv_connect(Server() , connectionInfo());
-    $res = "INSERT INTO proyecto.operador (id,nombre) VALUES ('".$id."','".$nom."')";
+    
+    $res = "INSERT INTO proyecto.operador (id,nombre,cantidad) VALUES ('".$id."','".$nom."','".$cant."')";
    $resultado = sqlsrv_query($mysqli, $res);
  
   }
