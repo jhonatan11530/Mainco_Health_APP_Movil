@@ -544,10 +544,13 @@ public class OperadorActivity extends AppCompatActivity {
                 public void run() {
 
                     try {
-                        String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/operador.php?id=" + id.getText().toString()).body();
 
+
+                       String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/operador.php?id=" + id.getText().toString()).body();
                         JSONArray objecto = new JSONArray(response);
-                        if (response.length() > 0) {
+
+
+                        if (response.length() > 0 ) {
                             cantidad();
                             runOnUiThread(new Runnable() {
                                 @Override
@@ -571,8 +574,25 @@ public class OperadorActivity extends AppCompatActivity {
                             resultados.setText("OPERADOR : "+objecto.getString(0));
 
 
-                        } else {
-                            System.out.println("FALLO");
+                        }
+                        if (response.length() == 0)  {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
+                                    builder.setTitle("EL OPERADOR NO EXISTE");
+                                    builder.setIcon(R.drawable.informacion);
+                                    builder.setMessage("EL OPERARIO NO ESTA REGISTRADO ");
+
+                                    builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                                        }
+                                    });
+                                    builder.create().show();
+                                }
+                            });
                         }
 
                     } catch (Exception e) {
@@ -612,34 +632,20 @@ public class OperadorActivity extends AppCompatActivity {
 
 
                                 AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
-                                builder.setIcon(R.drawable.finish_op);
-                                builder.setTitle("FINALIZO LA ACTIVIDAD O TAREA");
-                                builder.setMessage("YA TERMINO LA TAREA DEBERA REALIZAR OTRA TAREA");
+                                builder.setIcon(R.drawable.informacion);
+                                builder.setTitle("REGISTRO LA ACTIVIDAD O TAREA");
+                                builder.setMessage("USTED REGISTRO SU PRODUCCIDO");
 
-                                builder.setPositiveButton("FINALIZAR O.P", new DialogInterface.OnClickListener() {
+                                builder.setPositiveButton("CONTINUAR ACTIVIDAD", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
                                         Toast.makeText(getApplicationContext(),"FINALIZO LA O.P",Toast.LENGTH_SHORT).show();
                                         new Thread(new Runnable() {
                                             @Override
                                             public void run() {
-                                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?nombre="+NOMBRE+"&op="+items.getText().toString()).body();
-                                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/LimpiarValoresItems.php?op=" + resuldato3.getSelectedItem().toString()).body();
-
+                                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/nuevoRegistro.php?id=" + id.getText().toString()).body();
                                             }
                                         }).start();
-                                    }
-                                });
-                                builder.setNegativeButton("CONTINUAR ACTIVIDAD", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        new Thread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                        HttpRequest.get("http://" + cambiarIP.ip + "/validar/nuevoRegistro.php?id=" + id.getText().toString()).body();
-                                            }
-                                        }).start();
-                                        Toast.makeText(getApplicationContext(),"SELECCIONE UNA NUEVA ACTIVIDAD",Toast.LENGTH_SHORT).show();
                                     }
                                 });
                                 builder.create().show();
@@ -664,25 +670,26 @@ public class OperadorActivity extends AppCompatActivity {
                                 desbloquear.setEnabled(false);
 
 
-
                                 AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
                                 builder.setIcon(R.drawable.finish_op);
-                                builder.setTitle("LA OP FINALIZO ");
-                                builder.setMessage("DEBE SELECCIONAR OTRA OP");
+                                builder.setTitle("FINALIZO LA ACTIVIDAD O TAREA");
+                                builder.setMessage("YA TERMINO LA TAREA DEBERA REALIZAR OTRA TAREA");
 
-                                builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+                                builder.setPositiveButton("FINALIZAR O.P", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
+                                        Toast.makeText(getApplicationContext(),"FINALIZO LA O.P",Toast.LENGTH_SHORT).show();
                                         new Thread(new Runnable() {
                                             @Override
                                             public void run() {
-                                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/LimpiarValoresItems.php?op=" + resuldato3.getSelectedItem().toString()).body();
+                                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?nombre="+NOMBRE+"&op="+items.getText().toString()).body();
                                             }
                                         }).start();
-
                                     }
                                 });
+
                                 builder.create().show();
+
 
 
                             }
@@ -764,7 +771,7 @@ public class OperadorActivity extends AppCompatActivity {
                 validarinfo.setVisibility(View.INVISIBLE);
                 resuldato2.setClickable(false);
                 resuldato2.setEnabled(false);
-
+                codemotivo.setEnabled(false);
 
                 MOSTRAR.setVisibility(View.VISIBLE);
                 paro.setVisibility(View.VISIBLE);
@@ -1040,7 +1047,7 @@ public class OperadorActivity extends AppCompatActivity {
 
                                 JSONArray RESTARCANTIDAD = new JSONArray(responses);
 
-                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodifi.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + tarea + "&totales=" + RESTARCANTIDAD.getString(0)).body();
+                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodifi.php?op=" + resuldato3.getSelectedItem().toString() +"&totales=" + RESTARCANTIDAD.getString(0)).body();
                                 cantidad();
 
                             }
@@ -1090,7 +1097,6 @@ public class OperadorActivity extends AppCompatActivity {
         });
 
         builder.create().show();
-
     }
 
 
@@ -1194,10 +1200,11 @@ public class OperadorActivity extends AppCompatActivity {
                                 volumencan = Integer.parseInt(cantidad.getText().toString());
                                 cantidadpro = Integer.parseInt(RESTARCANTIDAD.getString(0));
 
-                                int ends = cantidadpro - total; // BIEN
+                                int sumatoria = volumencan + total;
+                                int ends = cantidadpro - sumatoria; // BIEN
                                 String end = String.valueOf(ends);
                                 int tool = cantidadpro - volumencan;
-                                int sumatoria = volumencan + total;
+
                                 System.out.println("LA CANTIDAD BUENAS " + volumencan);
                                 System.out.println("LA CANTIDAD MALAS " + total);
                                 System.out.println("LA CANTIDAD EN MYSQL " + cantidadpro);
@@ -1386,7 +1393,7 @@ public class OperadorActivity extends AppCompatActivity {
 
                                                 HttpRequest.get("http://" + cambiarIP.ip + "/validar/canbiarAucOP.php?op=" + items.getText().toString() + "&item=" + resuldato3.getSelectedItem().toString() + "&cantidad=" + totalade).body();
 
-                                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodifi.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + nombretarea + "&totales=" + BuenasMalas).body();
+                                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodificar.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + nombretarea + "&totales=" + BuenasMalas).body();
 
                                                 HttpRequest.get("http://" + cambiarIP.ip + "/validar/nuevoRegistro.php?id=" + id.getText().toString()).body();
 
