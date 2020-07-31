@@ -46,7 +46,7 @@ public class OperadorActivity extends AppCompatActivity {
 
 
     private EditText id, cantidad, paro, fallas, items,codemotivo;
-    private String falla, error, VaribleTOTAL,NOMBRE;
+    private String falla, error, VaribleTOTA,NOMBRE;
     private TextView motivo, MOSTRAR, texto, resultados;
     private Spinner resuldato, resuldato2, resuldato4, resuldato3;
 
@@ -538,7 +538,7 @@ public class OperadorActivity extends AppCompatActivity {
 
             id.setError("ID ES REQUERIDO !");
         } else {
-            cantidad();
+
 
             operador = new Thread(new Runnable() {
                 @Override
@@ -552,7 +552,7 @@ public class OperadorActivity extends AppCompatActivity {
 
 
                         if (response.length() > 0 ) {
-                            cantidad();
+                            verificar();
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -610,6 +610,9 @@ public class OperadorActivity extends AppCompatActivity {
     }
 
     public void verificar() {
+
+        new Task().execute();
+
         final String Nitem = resuldato3.getSelectedItem().toString();
         final String nombretarea = resuldato.getSelectedItem().toString();
         eliminaOK = new Thread(new Runnable() {
@@ -1046,7 +1049,7 @@ public class OperadorActivity extends AppCompatActivity {
                 registrar = new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        cantidad();
+                        verificar();
                         try {
                             final String nombretarea = resuldato.getSelectedItem().toString();
                             String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/Sobrante.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + nombretarea).body();
@@ -1062,11 +1065,11 @@ public class OperadorActivity extends AppCompatActivity {
                                 JSONArray RESTARCANTIDAD = new JSONArray(responses);
 
                                 HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodifi.php?op=" + resuldato3.getSelectedItem().toString() +"&totales=" + RESTARCANTIDAD.getString(0)).body();
-                                cantidad();
+                                verificar();
 
                             }
                             if (validator > 0) {
-                                cantidad();
+                                verificar();
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
@@ -1124,34 +1127,24 @@ public class OperadorActivity extends AppCompatActivity {
 
             try {
                 JSONArray array = new JSONArray(response);
-                VaribleTOTAL = array.getString(0);
+                VaribleTOTA = array.getString(0);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
 
-            return VaribleTOTAL;
+            return VaribleTOTA;
         }
 
         @Override
-        protected void onPostExecute(final String VaribleTOTAL) {
-            super.onPostExecute(VaribleTOTAL);
+        protected void onPostExecute(final String VaribleTOTA) {
+            super.onPostExecute(VaribleTOTA);
+           int VaribleTOTAL = Integer.parseInt(VaribleTOTA);
             TextView MostrarCantidad = findViewById(R.id.MostrarCantidad);
-            if(VaribleTOTAL == "0"){
 
-                registroTIME.setEnabled(false);
-                salidaTIME.setEnabled(false);
-                cantidadund.setEnabled(false);
-                desbloquear.setEnabled(false);
                 MostrarCantidad.setText("CANTIDAD EN O.P : " + VaribleTOTAL);
-            }if(VaribleTOTAL != "0"){
-                MostrarCantidad.setText("CANTIDAD EN O.P : " + VaribleTOTAL);
-            }
+
         }
 
-    }
-
-    public void cantidad() {
-        new Task().execute();
     }
 
     public void salida(View v) {
@@ -1260,7 +1253,7 @@ public class OperadorActivity extends AppCompatActivity {
                                                     Toast.makeText(getApplicationContext(), "DATOS VERIFICADOS", Toast.LENGTH_SHORT).show();
 
                                                     verificar();
-                                                    cantidad();
+
                                                 }
                                             });
                                         } else {
@@ -1427,7 +1420,7 @@ public class OperadorActivity extends AppCompatActivity {
                                                         Toast.makeText(getApplicationContext(), "SE REGISTRO EL ADELANTO PRODUCCIDO ", Toast.LENGTH_SHORT).show();
 
                                                         verificar();
-                                                        cantidad();
+
 
                                                     }
                                                 });
