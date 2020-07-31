@@ -538,6 +538,7 @@ public class OperadorActivity extends AppCompatActivity {
 
             id.setError("ID ES REQUERIDO !");
         } else {
+            cantidad();
 
             operador = new Thread(new Runnable() {
                 @Override
@@ -639,7 +640,7 @@ public class OperadorActivity extends AppCompatActivity {
                                 builder.setPositiveButton("CONTINUAR ACTIVIDAD", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                        Toast.makeText(getApplicationContext(),"FINALIZO LA O.P",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(),"LA ACTIVIDAD FINALIZO",Toast.LENGTH_SHORT).show();
                                         new Thread(new Runnable() {
                                             @Override
                                             public void run() {
@@ -674,6 +675,19 @@ public class OperadorActivity extends AppCompatActivity {
                                 builder.setIcon(R.drawable.finish_op);
                                 builder.setTitle("FINALIZO LA ACTIVIDAD O TAREA");
                                 builder.setMessage("YA TERMINO LA TAREA DEBERA REALIZAR OTRA TAREA");
+
+                                builder.setNegativeButton("CONTINUAR CON OTRA ACTIVIDAD", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        Toast.makeText(getApplicationContext(),"LA ACTIVIDAD FINALIZO",Toast.LENGTH_SHORT).show();
+                                        new Thread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/nuevoRegistro.php?id=" + id.getText().toString()).body();
+                                            }
+                                        }).start();
+                                    }
+                                });
 
                                 builder.setPositiveButton("FINALIZAR O.P", new DialogInterface.OnClickListener() {
                                     @Override
@@ -1122,7 +1136,16 @@ public class OperadorActivity extends AppCompatActivity {
         protected void onPostExecute(final String VaribleTOTAL) {
             super.onPostExecute(VaribleTOTAL);
             TextView MostrarCantidad = findViewById(R.id.MostrarCantidad);
-            MostrarCantidad.setText("CANTIDAD EN O.P : " + VaribleTOTAL);
+            if(VaribleTOTAL == "0"){
+
+                registroTIME.setEnabled(false);
+                salidaTIME.setEnabled(false);
+                cantidadund.setEnabled(false);
+                desbloquear.setEnabled(false);
+                MostrarCantidad.setText("CANTIDAD EN O.P : " + VaribleTOTAL);
+            }if(VaribleTOTAL != "0"){
+                MostrarCantidad.setText("CANTIDAD EN O.P : " + VaribleTOTAL);
+            }
         }
 
     }
