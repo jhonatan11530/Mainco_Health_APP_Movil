@@ -10,7 +10,7 @@ $id = $_GET["numero"];
        
       $arreglo2= array();
     
-        $arreglo2[] = $row["cantidad"];
+        $arreglo2[] = $row["produccion"];
     
     
     

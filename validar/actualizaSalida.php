@@ -40,7 +40,7 @@ $mysql = sqlsrv_connect(Server() , connectionInfo());
   $sql_statements = "SELECT llaves FROM proyecto.operador WHERE id= '".$ID."' AND numero_op = '".$op."' AND tarea='".$tarea."'";
   $llaves = sqlsrv_query($mysql, $sql_statements);
   while($row = sqlsrv_fetch_array($llaves, SQLSRV_FETCH_ASSOC)) {
-    echo $llave = $row["llaves"];
+     $llave = $row["llaves"];
   }  
   $a = new ejemplo();
 $a->ejecutar($ID,$op,$tarea,$llave);
@@ -118,7 +118,7 @@ class HORA{
    $listo = $extandar * 3600;
    $dato = $listo * $cant;
 
-    echo "TIEMPO EN HORAS QUE SE DEBE DEMORAR EN HACER LA OP: ".$listo;
+    echo "TIEMPO EN HORAS QUE SE DEBE DEMORAR EN HACER LA OP: ".$dato;
      
     $d = new entradasalida();
     $d->totaltime($ID,$dato,$op,$cant,$llave,$cantFALLAS,$cod,$tarea);
@@ -128,13 +128,13 @@ class HORA{
 class entradasalida{
   function totaltime($ID,$dato,$op,$cant,$llave,$cantFALLAS,$cod,$tarea){
     $mysqli = sqlsrv_connect(Server() , connectionInfo());
-   $search = "SELECT * FROM proyecto.operador WHERE id = '".$ID."' AND numero_op = '".$op."' AND llaves='".$llave."' ";
+   $search = "SELECT hora_inicial,hora_final FROM proyecto.operador WHERE id = '".$ID."' AND numero_op = '".$op."' AND llaves='".$llave."' ";
     $res = sqlsrv_query($mysqli, $search);  
     
     while($listo = sqlsrv_fetch_array($res, SQLSRV_FETCH_ASSOC)) {
           
-      $inicial = $listo["hora_inicial"]->format('h:m:s');
-      $final = $listo["hora_final"]->format('h:m:s');
+      $inicial = $listo["hora_inicial"]->format('H:i:s');
+      $final = $listo["hora_final"]->format('H:i:s');
 
     }
 
@@ -162,7 +162,7 @@ class EFICIENCIA{
     while($row = sqlsrv_fetch_array($ensayo, SQLSRV_FETCH_ASSOC)) {
        $TIMEPAROSUM= $row["tiempo_descanso"] ;
     }  
-     $promedioSUM = substr($TIMEPAROSUM, 0, 8);
+      $promedioSUM = gmdate('H:i:s', $TIMEPAROSUM);
      if($promedioSUM == null){
       $promedioSUM ="00:00:00";
     // RESTAR TIEMPO REAL PRODUCCIDA HORA INICIAL // HORA FINAL
@@ -209,12 +209,13 @@ class EFICIENCIA{
 
     }
   }if($promedioSUM != null){
-    echo "<br>";
+  
+  
     // RESTAR TIEMPO REAL PRODUCCIDA HORA INICIAL // HORA FINAL
     $datetime1 = new DateTime($final);
     $datetime2 = new DateTime($inicial);
     $interval = $datetime1->diff($datetime2);
-    $hora = $interval->format('%H:%I:%S');echo "<br>";
+    $hora = $interval->format('%H:%I:%S');
     
     $promedioSUM = gmdate('H:i:s', $promedioSUM);
     // RESTAR TIEMPO PARO - REAL
@@ -222,10 +223,11 @@ class EFICIENCIA{
     $datetime2 = new DateTime($promedioSUM);
     $interval = $datetime1->diff($datetime2);
     $totales = $interval->format('%H:%I:%S');
-    
+   
     // PASAR DE HORAS REALES LABORADAS A SEGUNDOS
     list($horas, $minutos, $segundos) = explode(':', $totales);
     $dates = ($horas * 3600 ) + ($minutos * 60 ) + $segundos;
+    
     $formula =  $dato / $dates * 100;
     $formulas = round($formula );
 
@@ -272,16 +274,14 @@ class EFICACIA{
     /*------------------------------------------*/
 
     $mysql = sqlsrv_connect(Server() , connectionInfo());
-    $sql_statements = "SELECT SUM(DATEDIFF(SECOND, '00:00:00', CONVERT(time, tiempo_descanso))) AS tiempo_descanso FROM proyecto.motivo_paro WHERE numero_op= '".$op."' AND id= '".$ID."' AND tarea= '".$tarea."'";
+    $sql_statements = "SELECT SUM(DATEDIFF(SECOND, '00:00:00', CONVERT(time, tiempo_descanso))) AS tiempo_descanso FROM proyecto.motivo_paro WHERE numero_op= '".$op."' AND id= '".$ID."'";
     $ensayo = sqlsrv_query($mysql, $sql_statements);
     while($row = sqlsrv_fetch_array($ensayo, SQLSRV_FETCH_ASSOC)) {
-      $TIMEPAROSUM= $row["tiempo_descanso"] ; 
+       $TIMEPAROSUM= $row["tiempo_descanso"] ; 
     }  
-    $promedioSUM = substr($TIMEPAROSUM, 0, 8);
+    $promedioSUM = gmdate('H:i:s', $TIMEPAROSUM);
    
   /*------------------------------------------*/
-
-  $promedioSUM = gmdate('H:i:s', $promedioSUM);
 
     if($promedioSUM == null){
 
@@ -314,21 +314,19 @@ class EFICACIA{
 
     }
     else if($promedioSUM != null){
-
       $datetime1 = new DateTime($promedioSUM);
       $datetime2 = new DateTime($programado);
       $interval = $datetime1->diff($datetime2);
-      $diferencia = $interval->format('%H:%I:%S');
-
+       $diferencia = $interval->format('%H:%I:%S');
+      
         // TIEMPO EXTANDAR PROGRAMADA
       list($hours, $minutes, $segund) = explode(':', $programado);
-    $timeprogramado = ($hours * 3600 ) + ($minutes * 60 ) + $segund;
-
+       $timeprogramado = ($hours * 3600 ) + ($minutes * 60 ) + $segund;
     // TIEMPO REAL LABORADO
     list($hours, $minutes, $segund) = explode(':', $diferencia);
-    $timeproduccido = ($hours * 3600 ) + ($minutes * 60 ) + $segund;
- 
-      $eficacia = $timeproduccido / $timeprogramado  * 100;
+     $timeproduccido = ($hours * 3600 ) + ($minutes * 60 ) + $segund;
+
+     $eficacia = $timeproduccido / $timeprogramado  * 100;
       $eficacias = round($eficacia);
       echo "<br>";
       echo "<br>";

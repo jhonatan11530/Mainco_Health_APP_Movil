@@ -12,6 +12,5 @@ require_once("ConexionSQL.php");
   }	
 
   echo json_encode($output); 
-  $mysqli->close();	
 ?>
 

@@ -1,5 +1,6 @@
 <?php
 require_once("ConexionSQL.php");
+error_reporting(0);
  $op = $_GET["op"];
  $tarea = $_GET["tarea"];
  $mysqli = sqlsrv_connect(Server() , connectionInfo());

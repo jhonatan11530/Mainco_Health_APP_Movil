@@ -26,7 +26,6 @@ $id = $arreglito[0];
 $nom = $arreglito[1];
 
 if(isset($id,$nom)){
-  echo "asd";
   $workers=new nuevo();
   $workers->run($id,$nom);
 }
