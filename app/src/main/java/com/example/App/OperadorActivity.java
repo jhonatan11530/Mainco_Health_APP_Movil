@@ -1183,7 +1183,7 @@ public class OperadorActivity extends AppCompatActivity {
 
                         }
                     }).start();
-*////----
+*/
                 }
 
         }
