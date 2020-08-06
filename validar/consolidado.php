@@ -1,0 +1,183 @@
+<?php
+require_once("ConexionSQL.php");
+error_reporting(0);
+set_time_limit(1);
+ $numeroops = $_GET["op"];
+
+if (isset($numeroops)) { 
+
+$a = new comienzo();
+$a->inicio($numeroops);
+
+}
+
+class comienzo{
+  function inicio($numeroops){
+
+  $mysqli = sqlsrv_connect(Server() , connectionInfo());
+  $sql_statement = "SELECT DISTINCT id,numero_op,inicial,nombre FROM proyecto.operador WHERE  numero_op = '".$numeroops."' ";
+  $resultado = sqlsrv_query($mysqli, $sql_statement);
+  $ID = array();
+  $NOMBRE = array();
+  $inicial = array();
+  while($row = sqlsrv_fetch_array($resultado, SQLSRV_FETCH_ASSOC)) {
+     $ID[] = $row["id"];
+     $NOMBRE[] = $row["nombre"];
+      $op = $row["numero_op"];
+     $inicial[] = $row["inicial"];
+
+  } 
+
+  $mysql = sqlsrv_connect(Server() , connectionInfo());
+    $sql_statements = "SELECT *  FROM proyecto.produccion WHERE numero_op='".$op."'";
+    $llaves = sqlsrv_query($mysql, $sql_statements);
+    while($row = sqlsrv_fetch_array($llaves, SQLSRV_FETCH_ASSOC)) {
+
+       $cod_producto =  $row["cod_producto"];
+
+    }
+    
+    $mysql = sqlsrv_connect(Server() , connectionInfo());
+    $sql_statements = "SELECT ROUND(extandar,5)*3600 AS extandar FROM proyecto.tarea WHERE numero_op='".$cod_producto."'";
+    $llaves = sqlsrv_query($mysql, $sql_statements);
+    $extand = array();
+    while($row = sqlsrv_fetch_array($llaves, SQLSRV_FETCH_ASSOC)) {
+    
+       $extand[] = $row["extandar"];
+      
+    } 
+
+      $mysql = sqlsrv_connect(Server() , connectionInfo());
+      $sql_statements = "SELECT cantidad FROM proyecto.operador WHERE numero_op = '".$op."'";
+      $consultas = sqlsrv_query($mysql, $sql_statements);
+      $cant = array();
+      while($row = sqlsrv_fetch_array($consultas, SQLSRV_FETCH_ASSOC)) {
+
+         $cant[] = $row["cantidad"];
+
+      }
+      $arrayResultados  = array();
+      $suma = 0;
+      for ($i = 0; $i < count($extand); $i++) {
+        for ($f = 0; $f < count($cant); $f++) {
+          if($i == $f){
+             $arrayResultados[$i] = $extand[$i] * $cant[$f];
+          break;
+          
+          }
+          
+        }
+      }
+      
+      foreach ($arrayResultados as $numero) {
+         $suma += $numero;
+        
+    }
+    
+    //TOTAL SUMADO TIME SEGUNDOS CONSOLIDADO
+     $totalSegund = round($suma / 60); 
+     for ($i = 0; $i < count($NOMBRE); $i++) {
+      $id = $ID[$i];
+      $mysql = sqlsrv_connect(Server() , connectionInfo());
+      $sql_statements = "SELECT DATEDIFF(SECOND,hora_inicial,hora_final) AS total  FROM proyecto.operador WHERE  numero_op = '".$op."' AND id='".$id."' ";
+      $consutatime = sqlsrv_query($mysql, $sql_statements);
+      $timerestan = array();
+      $timeresta = array();
+      while($row = sqlsrv_fetch_array($consutatime, SQLSRV_FETCH_ASSOC)) {
+
+         $timeresta[] = $row["total"];
+           
+      }
+    } 
+      for ($i = 0; $i < count($timeresta); $i++) {
+         $timerestan[] = gmdate("H:i:s", $timeresta[$i]);
+       
+      }
+
+      
+      $total = array();
+      for ($i = 0; $i < count($timerestan); $i++) {
+        list($horas, $minutos, $segundos) = explode(':', $timerestan[$i]);
+         $total[] = ($horas * 3600 ) + ($minutos * 60 ) + $segundos;
+         
+      }
+      
+       $tiempoPorduc = array_sum($total);
+       $tiempoPorduccido = gmdate("H:i:s", $tiempoPorduc);
+       for ($i = 0; $i < count($NOMBRE); $i++) {
+         $id = $ID[$i];
+      $mysql = sqlsrv_connect(Server() , connectionInfo());
+      $sql_statements = "SELECT tiempo_descanso FROM proyecto.motivo_paro WHERE numero_op='".$op."' AND id='".$id."' ";
+      $consutatime = sqlsrv_query($mysql, $sql_statements);
+      $numeroop = array();
+      while($row = sqlsrv_fetch_array($consutatime, SQLSRV_FETCH_ASSOC)) {
+       
+         $numeroop[] = $row["tiempo_descanso"];
+     
+      }
+    }
+      $NumeroOP = array();
+      for ($i = 0; $i < count($numeroop); $i++) {
+        list($horas, $minutos, $segundos) = explode(':', $numeroop[$i]);
+          $NumeroOP[] = ($horas * 3600 ) + ($minutos * 60 ) + $segundos;
+      }
+      $matriz2 = array();
+      
+    for ($i=0; $i < count($total); $i++){
+        $matriz2[] = $total[$i] - $NumeroOP[$i];
+      } 
+        $sumartotal =  array_sum($matriz2);
+          $sumarsengund = $sumartotal / 60; 
+           $real =  number_format((float)$sumarsengund, 1, '.', ''); 
+            
+     $resultadominuto = gmdate("H:i:s", $sumartotal);
+    // TOTAL PRODUCTIVIDAD 
+     $productividad = round($sumartotal / $tiempoPorduc *100) ;
+     //TOTAL EFICIENCIA CONSOLIDADO
+      $eficiencias =  $totalSegund / $real * 100;
+  if($eficiencias == INF && $productividad == 0){
+
+  $a = new menor();
+  $a->run($inicial,$numeroops,$NOMBRE,$tiempoPorduccido,$totalSegund,$resultadominuto);
+
+  }
+  if($eficiencias > 0 && $productividad > 0){
+
+    $a = new mayor();
+    $a->run($inicial,$numeroops,$NOMBRE,$tiempoPorduccido,$totalSegund,$resultadominuto,$eficiencias,$productividad); 
+
+  }
+
+
+  }
+}
+
+class menor{
+  function run($inicial,$numeroops,$NOMBRE,$tiempoPorduccido,$totalSegund,$resultadominuto){
+    for ($i=0; $i < count($NOMBRE); $i++){
+      $nombre = $NOMBRE[$i];
+      $Inicial = $inicial[$i];
+      $productividad = 100;
+      $eficiencia = 100;
+      $mysqli = sqlsrv_connect(Server() , connectionInfo());
+      $res = "INSERT INTO proyecto.promedio (fecha,OP,Descripcion,tiempo_habil,timepo_estimado,tiempo_produccido,eficiencia,produccion) 
+      VALUES ('".$Inicial."','".$numeroops."','".$nombre."','".$tiempoPorduccido."','".$totalSegund."','".$resultadominuto."','".$eficiencia."','".$productividad."')";
+      $resultado = sqlsrv_query($mysqli, $res);
+    }
+  }
+}
+
+class mayor{
+  function run($inicial,$numeroops,$NOMBRE,$tiempoPorduccido,$totalSegund,$resultadominuto,$eficiencias,$productividad){
+    for ($i=0; $i < count($NOMBRE); $i++){
+      $nombre = $NOMBRE[$i];
+      $Inicial = $inicial[$i];
+    $eficiencia = round($eficiencias);
+    $mysqli = sqlsrv_connect(Server() , connectionInfo());
+    $res = "INSERT INTO proyecto.promedio (fecha,OP,Descripcion,tiempo_habil,timepo_estimado,tiempo_produccido,eficiencia,produccion) VALUES ('".$Inicial."','".$numeroops."','".$nombre."','".$tiempoPorduccido."','".$totalSegund."','".$resultadominuto."','".$eficiencia."','".$productividad."')";
+    $resultado = sqlsrv_query($mysqli, $res);
+  }
+  }
+}
+
+?>
