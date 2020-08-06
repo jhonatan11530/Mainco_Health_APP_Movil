@@ -695,7 +695,7 @@ public class OperadorActivity extends AppCompatActivity {
                                         hilo= new Thread(new Runnable() {
                                             @Override
                                             public void run() {
-                                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?nombre="+NOMBRE+"&op="+items.getText().toString()).body();
+                                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?op="+items.getText().toString()).body();
                                             }
                                         });
                                         hilo.start();
