@@ -34,7 +34,6 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="HA0ZS7FM" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -88,7 +87,7 @@
     <property name="android.sdk.path" value="D:/sdk" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/java" />
     <property name="last_opened_file_path" value="$APPLICATION_HOME_DIR$/jre/jre/LICENSE" />
-    <property name="project.structure.last.edited" value="Suggestions" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
@@ -238,9 +237,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="275" y="27" key="#Notifications/0.0.1366.738@0.0.1366.738" timestamp="1593520589184" />
-    <state x="200" y="99" key="#PSD" timestamp="1593520598294">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state x="200" y="98" key="#PSD" timestamp="1596673286852">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state x="200" y="98" key="#PSD/0.0.1366.728@0.0.1366.728" timestamp="1596673286852" />
     <state x="200" y="99" key="#PSD/0.0.1366.738@0.0.1366.738" timestamp="1593520598294" />
     <state x="275" y="26" key="#Updates" timestamp="1592930999674">
       <screen x="0" y="0" width="1366" height="738" />
@@ -254,13 +254,15 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="474" y="85" key="#com.intellij.ide.util.MemberChooser/0.0.1366.738@0.0.1366.738" timestamp="1593175012202" />
-    <state x="531" y="258" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1594305007997">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state x="531" y="255" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1596673243506">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state x="531" y="255" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1366.728@0.0.1366.728" timestamp="1596673243506" />
     <state x="531" y="258" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1366.738@0.0.1366.738" timestamp="1594305007997" />
-    <state x="263" y="24" key="#com.intellij.openapi.projectRoots.ui.ProjectJdksEditor" timestamp="1591891750082">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state x="263" y="24" key="#com.intellij.openapi.projectRoots.ui.ProjectJdksEditor" timestamp="1596673240406">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state x="263" y="24" key="#com.intellij.openapi.projectRoots.ui.ProjectJdksEditor/0.0.1366.728@0.0.1366.728" timestamp="1596673240406" />
     <state x="263" y="24" key="#com.intellij.openapi.projectRoots.ui.ProjectJdksEditor/0.0.1366.738@0.0.1366.738" timestamp="1591891750082" />
     <state x="363" y="95" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1592931000367">
       <screen x="0" y="0" width="1366" height="738" />
@@ -290,25 +292,9 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="463" y="122" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1596040054891" />
-    <state width="1323" height="-40" key="GridCell.Tab.0.bottom" timestamp="1596567208782">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state width="1323" height="-40" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1596567208782" />
     <state width="1981" height="545" key="GridCell.Tab.0.bottom/0.0.2049.1107@0.0.2049.1107" timestamp="1591301732015" />
-    <state width="1323" height="-40" key="GridCell.Tab.0.center" timestamp="1596567208781">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state width="1323" height="-40" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1596567208781" />
     <state width="1981" height="545" key="GridCell.Tab.0.center/0.0.2049.1107@0.0.2049.1107" timestamp="1591301732015" />
-    <state width="1323" height="-40" key="GridCell.Tab.0.left" timestamp="1596567208781">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state width="1323" height="-40" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1596567208781" />
     <state width="1981" height="545" key="GridCell.Tab.0.left/0.0.2049.1107@0.0.2049.1107" timestamp="1591301732015" />
-    <state width="1323" height="-40" key="GridCell.Tab.0.right" timestamp="1596567208782">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state width="1323" height="-40" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1596567208782" />
     <state width="1981" height="545" key="GridCell.Tab.0.right/0.0.2049.1107@0.0.2049.1107" timestamp="1591301732015" />
     <state width="1323" height="2" key="GridCell.Tab.1.bottom" timestamp="1593723611198">
       <screen x="0" y="0" width="1366" height="738" />
@@ -326,9 +312,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="1323" height="2" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1593723611198" />
-    <state x="184" y="0" key="SettingsEditor" timestamp="1594304808434">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state x="184" y="0" key="SettingsEditor" timestamp="1596673211095">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state x="184" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1596673211095" />
     <state x="184" y="0" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1594304808434" />
     <state x="499" y="147" key="chooseDestDirectoryDialog" timestamp="1593105975053">
       <screen x="0" y="0" width="1366" height="738" />
@@ -338,9 +325,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="92" y="92" width="1182" height="554" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1366.738@0.0.1366.738" timestamp="1595592153483" />
-    <state x="379" y="193" key="com.intellij.ide.util.TipDialog" timestamp="1591788637152">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state x="379" y="190" key="com.intellij.ide.util.TipDialog" timestamp="1596672511290">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state x="379" y="190" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1596672511290" />
     <state x="379" y="193" key="com.intellij.ide.util.TipDialog/0.0.1366.738@0.0.1366.738" timestamp="1591788637152" />
     <state x="492" y="286" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1596551382681">
       <screen x="0" y="0" width="1366" height="738" />

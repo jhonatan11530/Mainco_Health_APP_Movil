@@ -1147,6 +1147,7 @@ public class OperadorActivity extends AppCompatActivity {
 
                 MostrarCantidad.setText("CANTIDAD EN O.P : " + VaribleTOTAL);
                 if(VaribleTOTAL==0){
+                    /*
                    new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -1182,7 +1183,7 @@ public class OperadorActivity extends AppCompatActivity {
 
                         }
                     }).start();
-
+*/
                 }
 
         }
