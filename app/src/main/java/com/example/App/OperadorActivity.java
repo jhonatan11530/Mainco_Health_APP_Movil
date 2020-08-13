@@ -696,6 +696,7 @@ public class OperadorActivity extends AppCompatActivity {
                                             @Override
                                             public void run() {
                                                 HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?op="+items.getText().toString()).body();
+                                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/limpiar.php?id="+resuldato3.getSelectedItem().toString()).body();
                                             }
                                         });
                                         hilo.start();
@@ -830,7 +831,8 @@ public class OperadorActivity extends AppCompatActivity {
         registros.setNeutralButton("REGISTRAR OTRO MOTIVO DE PARO", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-
+                codemotivo.setEnabled(true);
+                codemotivo.setText("");
             }
         });
 

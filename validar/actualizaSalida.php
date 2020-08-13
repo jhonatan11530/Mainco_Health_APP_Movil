@@ -6,7 +6,7 @@ set_time_limit(10);
 $ID = $_GET["id"];
 $op = $_GET["op"];
 $tarea = $_GET["tarea"];
-$cantidad = $_GET["cantidad"];
+/**/$cantidad = $_GET["cantidad"];
 $no_conforme = $_GET["conforme"];
 $motivo = $_GET["motivo"];
 $final = $_GET["Ffinal"];
@@ -34,7 +34,7 @@ $a->ejecutar($ID,$op,$tarea,$llave);
 }
 else{
   echo "aqui no paso nada";
-}/**/
+}
 /*
 $mysql = sqlsrv_connect(Server() , connectionInfo());
   $sql_statements = "SELECT llaves FROM proyecto.operador WHERE id= '".$ID."' AND numero_op = '".$op."' AND tarea='".$tarea."'";
@@ -163,52 +163,7 @@ class EFICIENCIA{
        $TIMEPAROSUM= $row["tiempo_descanso"] ;
     }  
       $promedioSUM = gmdate('H:i:s', $TIMEPAROSUM);
-     if($promedioSUM == null){
-      $promedioSUM ="00:00:00";
-    // RESTAR TIEMPO REAL PRODUCCIDA HORA INICIAL // HORA FINAL
-    $datetime1 = new DateTime($final);
-    $datetime2 = new DateTime($inicial);
-    $interval = $datetime1->diff($datetime2);
-    $hora = $interval->format('%H:%I:%S');
-    
-    // RESTAR TIEMPO PARO - REAL
-    $datetime1 = new DateTime($hora);
-    $datetime2 = new DateTime($promedioSUM);
-    $interval = $datetime1->diff($datetime2);
-    $totales = $interval->format('%H:%I:%S');
-
-    // PASAR DE HORAS REALES LABORADAS A SEGUNDOS
-    list($horas, $minutos, $segundos) = explode(':', $totales);
-    $dates = ($horas * 3600 ) + ($minutos * 60 ) + $segundos;
-    $formula =  $dato / $dates * 100;
-
-    $formulas = round($formula );
-
-    if($formulas >= 0){
-
-      echo "EFICIENCIA : ".$formulas;
-
-      $mysqli = sqlsrv_connect(Server() , connectionInfo());
-      $search = "UPDATE proyecto.operador SET eficencia='".$formulas."' WHERE id= '".$ID."' AND llaves='".$llave."'";
-      $res = sqlsrv_query($mysqli, $search);
-
-      $f = new EFICACIA();
-      $f->eficacias($ID,$dato,$op,$cant,$llave,$cod,$tarea);
-
-    }
-    if($formulas < 0){
-
-      $formulas = 0;
-      echo "EFICIENCIA : ".$formulas;
-      $mysqli = sqlsrv_connect(Server() , connectionInfo());
-      $search = "UPDATE proyecto.operador SET eficencia='".$formulas."' WHERE id= '".$ID."' AND llaves='".$llave."'";
-      $res = sqlsrv_query($mysqli, $search);
-
-       $f = new EFICACIA();
-       $f->eficacias($ID,$dato,$op,$cant,$llave,$cod,$tarea);
-
-    }
-  }if($promedioSUM != null){
+    if($promedioSUM != null){
   
   
     // RESTAR TIEMPO REAL PRODUCCIDA HORA INICIAL // HORA FINAL
@@ -217,7 +172,6 @@ class EFICIENCIA{
     $interval = $datetime1->diff($datetime2);
     $hora = $interval->format('%H:%I:%S');
     
-    $promedioSUM = gmdate('H:i:s', $promedioSUM);
     // RESTAR TIEMPO PARO - REAL
     $datetime1 = new DateTime($hora);
     $datetime2 = new DateTime($promedioSUM);
@@ -228,24 +182,10 @@ class EFICIENCIA{
     list($horas, $minutos, $segundos) = explode(':', $totales);
     $dates = ($horas * 3600 ) + ($minutos * 60 ) + $segundos;
     
-    $formula =  $dato / $dates * 100;
-    $formulas = round($formula );
+    $formula =  $dato / $dates  * 100;
+    $formulas = round($formula);
 
-    if($formulas >= 0){
 
-      echo "EFICIENCIA : ".$formulas;
-
-      $mysqli = sqlsrv_connect(Server() , connectionInfo());
-      $search = "UPDATE proyecto.operador SET eficencia='".$formulas."' WHERE id= '".$ID."' AND llaves='".$llave."'";
-      $res = sqlsrv_query($mysqli, $search);
-
-      $f = new EFICACIA();
-      $f->eficacias($ID,$dato,$op,$cant,$llave,$cod,$tarea);
-
-    }
-    if($formulas < 0){
-
-      $formulas = 0;
       echo "EFICIENCIA : ".$formulas;
       $mysqli = sqlsrv_connect(Server() , connectionInfo());
       $search = "UPDATE proyecto.operador SET eficencia='".$formulas."' WHERE id= '".$ID."' AND llaves='".$llave."'";
@@ -254,7 +194,7 @@ class EFICIENCIA{
        $f = new EFICACIA();
        $f->eficacias($ID,$dato,$op,$cant,$llave,$cod,$tarea);
 
-    }
+   
   }
   }
 }
@@ -279,41 +219,13 @@ class EFICACIA{
     while($row = sqlsrv_fetch_array($ensayo, SQLSRV_FETCH_ASSOC)) {
        $TIMEPAROSUM= $row["tiempo_descanso"] ; 
     }  
-    $promedioSUM = gmdate('H:i:s', $TIMEPAROSUM);
    
   /*------------------------------------------*/
 
-    if($promedioSUM == null){
+    if($TIMEPAROSUM != null){
 
-      $promedioSUM ="00:00:00";
-      $datetime1 = new DateTime($promedioSUM);
-      $datetime2 = new DateTime($programado);
-      $interval = $datetime1->diff($datetime2);
-      $diferencia = $interval->format('%H:%I:%S');
-      
-      // TIEMPO EXTANDAR PROGRAMADA
-    list($hours, $minutes, $segund) = explode(':', $programado);
-    $timeprogramado = ($hours * 3600 ) + ($minutes * 60 ) + $segund;
+      $promedioSUM = gmdate('H:i:s', $TIMEPAROSUM);
 
-    // TIEMPO REAL LABORADO
-    list($hours, $minutes, $segund) = explode(':', $diferencia);
-    $timeproduccido = ($hours * 3600 ) + ($minutes * 60 ) + $segund;
- 
-    $eficacia = $timeproduccido / $timeprogramado  * 100;
-    $eficacias = round($eficacia);
-
-      echo "<br>";
-      echo "<br>";
-     echo "EFICACIA : ".$eficacia;
-
-    $mysqli = sqlsrv_connect(Server() , connectionInfo());
-    $search = "UPDATE proyecto.operador SET eficacia='".$eficacias."' WHERE id= '".$ID."' AND llaves='".$llave."'";
-    $res = sqlsrv_query($mysqli, $search);
-
-    $mysqli->close();	
-
-    }
-    else if($promedioSUM != null){
       $datetime1 = new DateTime($promedioSUM);
       $datetime2 = new DateTime($programado);
       $interval = $datetime1->diff($datetime2);
@@ -343,37 +255,38 @@ class EFICACIA{
 
   }
 }
+
 class registro{
   function NuevoRegistro($ID){
 
-$mysqli = sqlsrv_connect(Server() , connectionInfo());
-$sql_statement = "SELECT * FROM proyecto.operador  WHERE id= '.$ID.'";
-$result = sqlsrv_query($mysqli, $sql_statement);
-
-while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)){ 
-  $arreglito = array();
-  $arreglito[0]= $row["id"];
-  $arreglito[1]= $row["nombre"];
-  $arreglito[2]= $row["tarea"];
-  $arreglito[3]= $row["cantidad"];
-  $arreglito[4]= $row["no_conforme"];
-  $arreglito[5]= $row["cantidad_fallas"];
-  $arreglito[6]= $row["inicial"];
-  $arreglito[7]= $row["hora_inicial"];
-  $arreglito[8]= $row["final"];
-  $arreglito[9]= $row["hora_final"];
-
-}
-
-echo $id = $arreglito[0];
-echo $nom = $arreglito[1];
-
-if(isset($arreglito[2],$arreglito[3],$arreglito[4],$arreglito[5],$arreglito[6],$arreglito[7],$arreglito[8],$arreglito[9])){
-  
-  sleep(1);
   $mysqli = sqlsrv_connect(Server() , connectionInfo());
-  $res = "INSERT INTO proyecto.operador (id,nombre) VALUES ('".$id."','".$nom."')";
- $resultado = sqlsrv_query($mysqli, $res);
+  $sql_statement = "SELECT * FROM proyecto.operador  WHERE id= '.$ID.'";
+  $result = sqlsrv_query($mysqli, $sql_statement);
+
+  while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)){ 
+    $arreglito = array();
+    $arreglito[0]= $row["id"];
+    $arreglito[1]= $row["nombre"];
+    $arreglito[2]= $row["tarea"];
+    $arreglito[3]= $row["cantidad"];
+    $arreglito[4]= $row["no_conforme"];
+    $arreglito[5]= $row["cantidad_fallas"];
+    $arreglito[6]= $row["inicial"];
+    $arreglito[7]= $row["hora_inicial"];
+    $arreglito[8]= $row["final"];
+    $arreglito[9]= $row["hora_final"];
+
+  }
+
+  echo $id = $arreglito[0];
+  echo $nom = $arreglito[1];
+
+  if(isset($arreglito[2],$arreglito[3],$arreglito[4],$arreglito[5],$arreglito[6],$arreglito[7],$arreglito[8],$arreglito[9])){
+    
+    sleep(1);
+    $mysqli = sqlsrv_connect(Server() , connectionInfo());
+    $res = "INSERT INTO proyecto.operador (id,nombre) VALUES ('".$id."','".$nom."')";
+  $resultado = sqlsrv_query($mysqli, $res);
 }
 
   } 

@@ -107,7 +107,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [proyecto].[produccion](
-	[id] [int] IDENTITY(700110,1) NOT NULL,
+	[id] [nvarchar](7) NULL,
 	[numero_op] [nvarchar](12) NULL,
 	[cod_producto] [nvarchar](7) NULL,
 	[descripcion] [nvarchar](50) NULL,
