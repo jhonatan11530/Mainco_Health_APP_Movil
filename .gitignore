@@ -7,3 +7,12 @@
 .idea/workspace.xml
 *.xml
 *.xml
+*.bin
+*.bin
+*.lock
+*.lock
+*.bin
+*.ser
+.idea/workspace.xml
+app/app.iml
+local.properties

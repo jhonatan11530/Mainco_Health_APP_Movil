@@ -1274,7 +1274,7 @@ public class OperadorActivity extends AppCompatActivity {
 
                                 if (end.length() >= 0) {
                                     if (tool >= 0) {
-                                        if (total <= cantidadpro) {
+                                        if (sumatoria <= cantidadpro) {
 
 
                                             Intent Componente = new Intent(OperadorActivity.this, ServicioRegistroSalida.class);
