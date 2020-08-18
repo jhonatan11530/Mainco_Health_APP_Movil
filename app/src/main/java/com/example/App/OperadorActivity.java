@@ -1,12 +1,9 @@
 package com.example.App;
 
-import android.content.Intent;
-import android.view.View;
-import org.json.JSONArray;
-import org.json.JSONException;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -17,6 +14,7 @@ import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,15 +22,22 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+
 import Services.ServicioRegistroSalida;
 import cz.msebera.android.httpclient.Header;
 
@@ -40,8 +45,8 @@ import cz.msebera.android.httpclient.Header;
 public class OperadorActivity extends AppCompatActivity {
 
 
-    private EditText id, cantidad, paro, fallas, items,codemotivo;
-    private String falla, error, VaribleTOTA,NOMBRE;
+    private EditText id, cantidad, paro, fallas, items, codemotivo;
+    private String falla, error, VaribleTOTA, NOMBRE;
     private TextView motivo, MOSTRAR, texto, resultados;
     private Spinner resuldato, resuldato2, resuldato4, resuldato3;
 
@@ -113,13 +118,10 @@ public class OperadorActivity extends AppCompatActivity {
         resultados = findViewById(R.id.listar_operador);
 
 
-
-
         desbloquear.setEnabled(false);
         registroTIME.setEnabled(false);
         salidaTIME.setEnabled(false);
         cantidadund.setEnabled(false);
-
 
 
         items.addTextChangedListener(new TextWatcher() {
@@ -439,7 +441,7 @@ public class OperadorActivity extends AppCompatActivity {
     }
 
     public void llenardescansoMotivo() {
-        String url = "http://" + cambiarIP.ip + "/validar/motivofiltro.php?motivo="+codemotivo.getText().toString();
+        String url = "http://" + cambiarIP.ip + "/validar/motivofiltro.php?motivo=" + codemotivo.getText().toString();
         cliente4.post(url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -524,17 +526,14 @@ public class OperadorActivity extends AppCompatActivity {
             id.setError("ID ES REQUERIDO !");
             items.setError("O.P ES REQUERIDO !");
 
-        }
-        else if (id.getText().toString().length() > 0 && items.getText().toString().length() == 0) {
+        } else if (id.getText().toString().length() > 0 && items.getText().toString().length() == 0) {
 
             items.setError("O.P ES REQUERIDO !");
 
-        }
-        else if (id.getText().toString().length() == 0 && items.getText().toString().length() > 0) {
+        } else if (id.getText().toString().length() == 0 && items.getText().toString().length() > 0) {
 
             id.setError("ID ES REQUERIDO !");
-        }
-        else {
+        } else {
 
             new Task().execute();
 
@@ -545,11 +544,11 @@ public class OperadorActivity extends AppCompatActivity {
                     try {
 
 
-                       String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/operador.php?id=" + id.getText().toString()).body();
+                        String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/operador.php?id=" + id.getText().toString()).body();
                         JSONArray objecto = new JSONArray(response);
 
 
-                        if (response.length() > 0 ) {
+                        if (response.length() > 0) {
 
 
                             runOnUiThread(new Runnable() {
@@ -571,11 +570,11 @@ public class OperadorActivity extends AppCompatActivity {
                             });
                             NOMBRE = objecto.getString(0);
 
-                            resultados.setText("OPERADOR : "+objecto.getString(0));
+                            resultados.setText("OPERADOR : " + objecto.getString(0));
 
 
                         }
-                        if (response.length() == 0)  {
+                        if (response.length() == 0) {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -609,7 +608,6 @@ public class OperadorActivity extends AppCompatActivity {
     }
 
 
-
     public void verificar() {
         final String Nitem = resuldato3.getSelectedItem().toString();
         final String nombretarea = resuldato.getSelectedItem().toString();
@@ -636,7 +634,7 @@ public class OperadorActivity extends AppCompatActivity {
                                     public void onClick(DialogInterface dialogInterface, int i) {
                                         registroTIME.setBackgroundColor(Color.parseColor("#B2C900"));
                                         registroTIME.setEnabled(true);
-                                        hilo =new Thread(new Runnable() {
+                                        hilo = new Thread(new Runnable() {
                                             @Override
                                             public void run() {
 
@@ -680,7 +678,7 @@ public class OperadorActivity extends AppCompatActivity {
                                 builder.setNegativeButton("CONTINUAR CON OTRA ACTIVIDAD", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                        Toast.makeText(getApplicationContext(),"LA ACTIVIDAD FINALIZO",Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), "LA ACTIVIDAD FINALIZO", Toast.LENGTH_SHORT).show();
                                         hilo = new Thread(new Runnable() {
                                             @Override
                                             public void run() {
@@ -694,12 +692,12 @@ public class OperadorActivity extends AppCompatActivity {
                                 builder.setPositiveButton("FINALIZAR O.P", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                        Toast.makeText(getApplicationContext(),"FINALIZO LA O.P",Toast.LENGTH_SHORT).show();
-                                        hilo= new Thread(new Runnable() {
+                                        Toast.makeText(getApplicationContext(), "FINALIZO LA O.P", Toast.LENGTH_SHORT).show();
+                                        hilo = new Thread(new Runnable() {
                                             @Override
                                             public void run() {
-                                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?op="+items.getText().toString()).body();
-                                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/limpiar.php?id="+resuldato3.getSelectedItem().toString()).body();
+                                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?op=" + items.getText().toString()).body();
+                                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/limpiar.php?id=" + resuldato3.getSelectedItem().toString()).body();
                                             }
                                         });
                                         hilo.start();
@@ -900,12 +898,12 @@ public class OperadorActivity extends AppCompatActivity {
                 final String horas = hourFormat.format(date);
                 final String fechas = dateFormat.format(date);
 
-                hilo= new Thread(new Runnable() {
+                hilo = new Thread(new Runnable() {
 
                     @Override
                     public void run() {
 
-                        HttpRequest.get("http://" + cambiarIP.ip + "/validar/RegistrarMotivo.php?op=" + items.getText().toString() + "&id=" + id.getText().toString() + "&paro=" + paro.getText().toString() + "&motivo=" + prueba +"&code="+codemotivo.getText().toString()+ "&fecha=" + fechas + "&hora=" + horas + "&tarea=" + resuldato.getSelectedItem().toString()).body();
+                        HttpRequest.get("http://" + cambiarIP.ip + "/validar/RegistrarMotivo.php?op=" + items.getText().toString() + "&id=" + id.getText().toString() + "&paro=" + paro.getText().toString() + "&motivo=" + prueba + "&code=" + codemotivo.getText().toString() + "&fecha=" + fechas + "&hora=" + horas + "&tarea=" + resuldato.getSelectedItem().toString()).body();
 
                     }
                 });
@@ -1043,7 +1041,6 @@ public class OperadorActivity extends AppCompatActivity {
         edit.setText(fecha);
 
 
-
         final String fechas = edit.getText().toString();
         final String Nop = resuldato3.getSelectedItem().toString();
         final String tarea = resuldato.getSelectedItem().toString();
@@ -1070,7 +1067,7 @@ public class OperadorActivity extends AppCompatActivity {
                                 String responses = HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadedits.php?op=" + resuldato3.getSelectedItem().toString()).body();
 
                                 JSONArray RESTARCANTIDAD = new JSONArray(responses);
-                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodifi.php?op=" + resuldato3.getSelectedItem().toString()+"&totales=" + RESTARCANTIDAD.getString(0)).body();
+                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodifi.php?op=" + resuldato3.getSelectedItem().toString() + "&totales=" + RESTARCANTIDAD.getString(0)).body();
 
                                 new Task().execute();
                             }
@@ -1124,14 +1121,13 @@ public class OperadorActivity extends AppCompatActivity {
     }
 
 
-
     class Task extends AsyncTask<String, Void, String> {
 
         @Override
         protected String doInBackground(String... strings) {
             try {
-            String nombretarea = resuldato.getSelectedItem().toString();
-            String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/Sobrante.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + nombretarea).body();
+                String nombretarea = resuldato.getSelectedItem().toString();
+                String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/Sobrante.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + nombretarea).body();
                 JSONArray array = new JSONArray(response);
                 VaribleTOTA = array.getString(0);
 
@@ -1146,11 +1142,11 @@ public class OperadorActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(final String VaribleTOTA) {
             super.onPostExecute(VaribleTOTA);
-           int VaribleTOTAL = Integer.parseInt(VaribleTOTA);
+            int VaribleTOTAL = Integer.parseInt(VaribleTOTA);
             TextView MostrarCantidad = findViewById(R.id.MostrarCantidad);
 
-                MostrarCantidad.setText("CANTIDAD EN O.P : " + VaribleTOTAL);
-                if(VaribleTOTAL==0){
+            MostrarCantidad.setText("CANTIDAD EN O.P : " + VaribleTOTAL);
+            if (VaribleTOTAL == 0) {
                     /*
                    new Thread(new Runnable() {
                         @Override
@@ -1188,7 +1184,7 @@ public class OperadorActivity extends AppCompatActivity {
                         }
                     }).start();
 */
-                }
+            }
 
         }
 

@@ -1,17 +1,13 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android" >
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
         android:id="@+id/salir"
         android:title=""
         android:icon="@drawable/atras"
-        app:showAsAction="ifRoom|withText"
-        >
+        app:showAsAction="ifRoom|withText">
 
     </item>
 
-
-
-    
 
 </menu>

@@ -30,7 +30,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.List;
 
 
-
 @SuppressWarnings("ALL")
 public class LoginActivity extends AppCompatActivity {
 
@@ -63,7 +62,6 @@ public class LoginActivity extends AppCompatActivity {
 
         conf.SSID = "\"" + networkSSID + "\"";
         conf.preSharedKey = "\"" + networkPass + "\"";
-
 
 
         WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);

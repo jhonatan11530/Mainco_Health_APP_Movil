@@ -10,23 +10,23 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:weightSum="12"
         android:orientation="vertical"
+        android:weightSum="12"
         tools:ignore="UselessParent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="center"
             android:layout_weight="3"
-            >
+            android:gravity="center"
+            android:orientation="horizontal">
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:contentDescription="TODO"
                 android:gravity="center"
                 android:src="@drawable/admin"
-                android:contentDescription="TODO"
                 tools:ignore="ContentDescription" />
 
         </LinearLayout>
@@ -34,29 +34,28 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:gravity="center"
             android:layout_weight="3"
-            >
+            android:gravity="center"
+            android:orientation="vertical">
+
             <EditText
                 android:id="@+id/estado"
                 android:layout_width="350dp"
                 android:layout_height="60dp"
-                android:background="@drawable/lineas_login"
-                android:hint="INGRESE SU ID"
-                android:inputType="number"
-                android:gravity="center"
                 android:layout_marginVertical="12dp"
-                />
+                android:background="@drawable/lineas_login"
+                android:gravity="center"
+                android:hint="INGRESE SU ID"
+                android:inputType="number" />
 
             <EditText
                 android:id="@+id/ID"
                 android:layout_width="350dp"
                 android:layout_height="60dp"
                 android:background="@drawable/lineas_login"
+                android:gravity="center"
                 android:hint="INGRESE SU CONTRASEÑA"
                 android:inputType="textPassword"
-                android:gravity="center"
 
                 />
 
@@ -67,11 +66,11 @@
 
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:weightSum="10"
             android:layout_weight="3.5"
             android:gravity="center"
-            >
+            android:orientation="horizontal"
+            android:weightSum="10">
+
             <CheckBox
                 android:id="@+id/OK"
                 android:layout_width="wrap_content"
@@ -79,55 +78,50 @@
                 android:gravity="center"
                 android:text="RECORDAR USUARIO"
                 android:textColor="#000000"
-                android:textSize="15sp"
-                />
+                android:textSize="15sp" />
 
             <TextView
-                android:layout_marginHorizontal="25dp"
-                android:gravity="center"
-                android:textColor="#000"
                 android:layout_width="wrap_content"
                 android:layout_height="80dp"
-                android:drawableLeft="@drawable/ic_lock_open_black_24dp"
-                android:text="OLVIDADO SU CONTRASEÑA"
+                android:layout_marginHorizontal="25dp"
                 android:background="#FAFAFA"
-                android:onClick="olvidoC"/>
+                android:drawableLeft="@drawable/ic_lock_open_black_24dp"
+                android:gravity="center"
+                android:onClick="olvidoC"
+                android:text="OLVIDADO SU CONTRASEÑA"
+                android:textColor="#000" />
         </LinearLayout>
 
         <LinearLayout
 
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:weightSum="10"
             android:layout_weight="3"
             android:gravity="center"
-            >
+            android:orientation="vertical"
+            android:weightSum="10">
 
 
             <Button
                 android:id="@+id/login"
                 android:layout_width="350dp"
                 android:layout_height="80dp"
-                android:gravity="center"
-                android:textColor="#000000"
-                android:text="iniciar sesion"
-                android:onClick="validartodo"
+                android:layout_marginVertical="15dp"
                 android:background="@drawable/btn_redondo"
-                android:layout_marginVertical="15dp"/>
+                android:gravity="center"
+                android:onClick="validartodo"
+                android:text="iniciar sesion"
+                android:textColor="#000000" />
 
 
             <TextView
-                android:gravity="center"
-                android:textColor="#000"
                 android:id="@+id/registre"
                 android:layout_width="350dp"
                 android:layout_height="80dp"
+                android:gravity="center"
                 android:onClick="registro"
                 android:text="REGISTRARSE"
-                />
-
-
+                android:textColor="#000" />
 
 
         </LinearLayout>
