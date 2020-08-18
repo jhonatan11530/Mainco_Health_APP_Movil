@@ -1262,7 +1262,7 @@ public class OperadorActivity extends AppCompatActivity {
                                 cantidadpro = Integer.parseInt(RESTARCANTIDAD.getString(0));
 
                                 int sumatoria = volumencan + total;
-                                int ends = cantidadpro - sumatoria; // BIEN
+                                int ends = cantidadpro - total; // BIEN
                                 String end = String.valueOf(ends);
                                 int tool = cantidadpro - volumencan;
 
@@ -1446,7 +1446,7 @@ public class OperadorActivity extends AppCompatActivity {
                                 cantidadpro = Integer.parseInt(RESTARCANTIDAD.getString(0));
 
                                 int sumatoria = volumencan + total;
-                                int ends = cantidadpro - sumatoria; // BIEN
+                                int ends = cantidadpro - total; // BIEN
                                 String end = String.valueOf(ends);
                                 int tool = cantidadpro - volumencan;
 
