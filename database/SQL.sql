@@ -70,6 +70,7 @@ CREATE TABLE [proyecto].[motivo_paro](
 	[id] [int] NOT NULL,
 	[tarea] [nvarchar](40) NULL,
 	[tiempo_descanso] [nvarchar](8) NOT NULL,
+	[code] [nvarchar](6) NOT NULL,
 	[motivo_descanso] [nvarchar](50) NOT NULL,
 	[fecha] [nvarchar](12) NOT NULL,
 	[hora] [nvarchar](8) NOT NULL
