@@ -4,3 +4,6 @@
 *.lock
 *.xml
 .idea/libraries/Gradle__androidx_vectordrawable_vectordrawable_animated_1_1_0_aar.xml
+.idea/workspace.xml
+*.xml
+*.xml
