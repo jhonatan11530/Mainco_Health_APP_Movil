@@ -608,6 +608,8 @@ public class OperadorActivity extends AppCompatActivity {
 
     }
 
+   
+
     public void verificar() {
         final String Nitem = resuldato3.getSelectedItem().toString();
         final String nombretarea = resuldato.getSelectedItem().toString();
@@ -637,6 +639,7 @@ public class OperadorActivity extends AppCompatActivity {
                                         hilo =new Thread(new Runnable() {
                                             @Override
                                             public void run() {
+
                                                 HttpRequest.get("http://" + cambiarIP.ip + "/validar/nuevoRegistro.php?id=" + id.getText().toString()).body();
                                             }
                                         });
@@ -1067,8 +1070,7 @@ public class OperadorActivity extends AppCompatActivity {
                                 String responses = HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadedits.php?op=" + resuldato3.getSelectedItem().toString()).body();
 
                                 JSONArray RESTARCANTIDAD = new JSONArray(responses);
-
-                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodifi.php?op=" + resuldato3.getSelectedItem().toString() +"&totales=" + RESTARCANTIDAD.getString(0)).body();
+                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodifi.php?op=" + resuldato3.getSelectedItem().toString()+"&totales=" + RESTARCANTIDAD.getString(0)).body();
 
                                 new Task().execute();
                             }
@@ -1262,7 +1264,7 @@ public class OperadorActivity extends AppCompatActivity {
                                 cantidadpro = Integer.parseInt(RESTARCANTIDAD.getString(0));
 
                                 int sumatoria = volumencan + total;
-                                int ends = cantidadpro - total; // BIEN
+                                int ends = cantidadpro - sumatoria; // BIEN
                                 String end = String.valueOf(ends);
                                 int tool = cantidadpro - volumencan;
 
@@ -1309,6 +1311,7 @@ public class OperadorActivity extends AppCompatActivity {
                                                     Toast.makeText(getApplicationContext(), "DATOS VERIFICADOS", Toast.LENGTH_SHORT).show();
                                                 }
                                             });
+
                                         } else {
                                             EXEDIO();
                                         }
@@ -1491,12 +1494,10 @@ public class OperadorActivity extends AppCompatActivity {
                                             runOnUiThread(new Runnable() {
                                                 @Override
                                                 public void run() {
-
                                                     Toast.makeText(getApplicationContext(), "DATOS VERIFICADOS", Toast.LENGTH_SHORT).show();
-
-
                                                 }
                                             });
+
                                         } else {
                                             EXEDIO();
                                         }
