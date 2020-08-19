@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -40,7 +41,6 @@ import java.util.Locale;
 
 import Services.ServicioRegistroSalida;
 import cz.msebera.android.httpclient.Header;
-
 @SuppressWarnings("ALL")
 public class OperadorActivity extends AppCompatActivity {
 
@@ -74,9 +74,11 @@ public class OperadorActivity extends AppCompatActivity {
     SimpleDateFormat hourFormat;
     SimpleDateFormat dateFormat;
     RelativeLayout production;
-
     private AsyncHttpClient cliente, cliente1, cliente2, cliente3, cliente4, cliente5;
     public Thread hilo;
+    TextToSpeech textToSpeech;
+    private Thread workerThread = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +94,8 @@ public class OperadorActivity extends AppCompatActivity {
 
         llenarSpinner();
         llenarOps();
+
+        TSS();
 
 
 
@@ -149,6 +153,35 @@ public class OperadorActivity extends AppCompatActivity {
         });
 
     }
+    public void TSS(){
+     if (workerThread == null || !workerThread.isAlive()) {
+         workerThread = new Thread(new Runnable() {
+             @Override
+             public void run() {
+                 textToSpeech = new android.speech.tts.TextToSpeech(OperadorActivity.this, new android.speech.tts.TextToSpeech.OnInitListener() {
+                     @Override
+                     public void onInit(int status) {
+                         if (status == android.speech.tts.TextToSpeech.SUCCESS) {
+                             int result = textToSpeech.setLanguage(Locale.getDefault());
+                             if (result == android.speech.tts.TextToSpeech.LANG_MISSING_DATA ||
+                                     result == android.speech.tts.TextToSpeech.LANG_NOT_SUPPORTED) {
+                                 Toast.makeText(getApplicationContext(), "This language is not supported!",
+                                         Toast.LENGTH_SHORT);
+                             } else {
+
+                                 textToSpeech.setPitch(1.0f);
+                                 textToSpeech.setSpeechRate(1.0f);
+
+                             }
+                         }
+                     }
+                 });
+             }
+
+         });
+         workerThread.start();
+     }
+ }
 
     public void onBackPressed() {
     }
@@ -218,7 +251,9 @@ public class OperadorActivity extends AppCompatActivity {
                     }
                 });
 
-                builder.create().show();
+                AlertDialog alert = builder.create();
+                alert.show();
+                alert.setCanceledOnTouchOutside(false);
                 break;
 
             case R.id.ayuda:
@@ -518,8 +553,6 @@ public class OperadorActivity extends AppCompatActivity {
         }
 
     }
-
-
     public void operador(View v) {
 
         if (id.getText().toString().length() == 0 && items.getText().toString().length() == 0) {
@@ -590,7 +623,9 @@ public class OperadorActivity extends AppCompatActivity {
 
                                         }
                                     });
-                                    builder.create().show();
+                                    AlertDialog alert = builder.create();
+                                    alert.show();
+                                    alert.setCanceledOnTouchOutside(false);
                                 }
                             });
                         }
@@ -1040,7 +1075,7 @@ public class OperadorActivity extends AppCompatActivity {
         edit = new EditText(this);
         edit.setEnabled(false);
         edit.setText(fecha);
-
+        textToSpeech.speak("PUEDE EMPEZAR A REALIZAR SU LABOR", android.speech.tts.TextToSpeech.QUEUE_FLUSH, null, null);
 
         final String fechas = edit.getText().toString();
         final String Nop = resuldato3.getSelectedItem().toString();
@@ -1091,7 +1126,9 @@ public class OperadorActivity extends AppCompatActivity {
 
                                             }
                                         });
-                                        builder.create().show();
+                                        AlertDialog alert = builder.create();
+                                        alert.show();
+                                        alert.setCanceledOnTouchOutside(false);
                                     }
                                 });
 
@@ -1120,7 +1157,9 @@ public class OperadorActivity extends AppCompatActivity {
             }
         });
 
-        builder.create().show();
+        AlertDialog alert = builder.create();
+        alert.show();
+        alert.setCanceledOnTouchOutside(false);
     }
 
 
@@ -1311,7 +1350,7 @@ public class OperadorActivity extends AppCompatActivity {
                                                     }
                                                 }
                                             }).start();
-
+                                            textToSpeech.speak("SE REGISTRO LO PRODUCIDO", android.speech.tts.TextToSpeech.QUEUE_FLUSH, null, null);
                                             runOnUiThread(new Runnable() {
                                                 @Override
                                                 public void run() {
@@ -1379,7 +1418,9 @@ public class OperadorActivity extends AppCompatActivity {
                 });
 
 
-                builder.create().show();
+                AlertDialog alert = builder.create();
+                alert.show();
+                alert.setCanceledOnTouchOutside(false);
 
 
             }
@@ -1499,7 +1540,7 @@ public class OperadorActivity extends AppCompatActivity {
                                                 }
                                             }).start();
 
-
+                                            textToSpeech.speak("SE REGISTRO LAS CANTIDADES APLAZADAS", android.speech.tts.TextToSpeech.QUEUE_FLUSH, null, null);
                                             runOnUiThread(new Runnable() {
                                                 @Override
                                                 public void run() {

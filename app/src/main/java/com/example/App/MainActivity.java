@@ -3,9 +3,13 @@ package com.example.App;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.speech.tts.TextToSpeech;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     private final int DURACION_SPLASH = 3000;
@@ -27,6 +31,4 @@ public class MainActivity extends AppCompatActivity {
 
         }, DURACION_SPLASH);
     }
-
-
 }

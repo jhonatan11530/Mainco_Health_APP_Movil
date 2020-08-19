@@ -22,6 +22,10 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="m">
         <service
+            android:name="Services.TSS"
+            android:enabled="true"
+            android:exported="false"></service>
+        <service
             android:name="Services.ServicioRegistroSalida"
             android:enabled="true"
             android:exported="false" />
@@ -36,7 +40,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".options"
             android:label="@string/title_activity_opciones"
