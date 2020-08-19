@@ -60,7 +60,7 @@ public class OperadorActivity extends AppCompatActivity {
     private Button validarinfo;
     private Button cantidadund;
 
-    private int minuto, segundo, horas, i, hora, cantidadpro, volumencan, total, volumen;
+    private int minuto, segundo, horas, i, hora, cantidadpro,cantidadotra, volumencan, total, volumen;
 
     private final ArrayList<cantidadfallas> dato4 = new ArrayList<>();
     private ArrayList<cantidades> dato3 = new ArrayList<>();
@@ -92,6 +92,8 @@ public class OperadorActivity extends AppCompatActivity {
 
         llenarSpinner();
         llenarOps();
+
+
 
 
         production = findViewById(R.id.principal);
@@ -519,7 +521,6 @@ public class OperadorActivity extends AppCompatActivity {
 
 
     public void operador(View v) {
-
 
         if (id.getText().toString().length() == 0 && items.getText().toString().length() == 0) {
 
@@ -1073,6 +1074,8 @@ public class OperadorActivity extends AppCompatActivity {
                             }
                             if (validator > 0) {
 
+
+
                                 new Task().execute();
                                 runOnUiThread(new Runnable() {
                                     @Override
@@ -1259,27 +1262,35 @@ public class OperadorActivity extends AppCompatActivity {
                                 volumencan = Integer.parseInt(cantidad.getText().toString());
                                 cantidadpro = Integer.parseInt(RESTARCANTIDAD.getString(0));
 
+                                String respuesta = HttpRequest.get("http://" + cambiarIP.ip + "/validar/SobranteAct.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + nombretarea).body();
+                                JSONArray OTRACANTIDAD = new JSONArray(respuesta);
+
+                                cantidadotra = Integer.parseInt(OTRACANTIDAD.getString(0));
+
                                 int sumatoria = volumencan + total;
-                                int ends = cantidadpro - total; // BIEN
+                                int ends = cantidadpro - sumatoria; // BIEN
+                                int sqlmala = cantidadotra - total;
+                                String malo = String.valueOf(sqlmala);
                                 String end = String.valueOf(ends);
-                                int tool = cantidadpro - volumencan;
+                                int tool = cantidadpro - sumatoria;
 
                                 System.out.println("LA CANTIDAD BUENAS " + volumencan);
                                 System.out.println("LA CANTIDAD MALAS " + total);
-                                System.out.println("LA CANTIDAD EN MYSQL " + cantidadpro);
-                                System.out.println("LA CANTIDAD EN MYSQL RESTADA " + tool);
-                                System.out.println("LA CANTIDAD EN MYSQL REAL " + ends);
+                                System.out.println("LA CANTIDAD BUENAS + MALAS " + sumatoria);
+                                System.out.println("LA CANTIDAD EN SQL " + cantidadpro);
+                                System.out.println("LA CANTIDAD EN SQL RESTADA " + tool);
+                                System.out.println("LA CANTIDAD EN SQL REAL " + ends);
 
                                 if (end.length() >= 0) {
                                     if (tool >= 0) {
                                         if (sumatoria <= cantidadpro) {
 
-
                                             Intent Componente = new Intent(OperadorActivity.this, ServicioRegistroSalida.class);
                                             Componente.putExtra("resuldato3", resuldato3.getSelectedItem().toString());
                                             Componente.putExtra("tarea", nombretarea);
                                             Componente.putExtra("items", items.getText().toString());
-                                            Componente.putExtra("end", end.toString());
+                                            Componente.putExtra("mala", malo);
+                                            Componente.putExtra("restado", end.toString());
                                             Componente.putExtra("id", id.getText().toString());
                                             Componente.putExtra("volumen", volumens.toString());
                                             Componente.putExtra("fechas", fechas);
@@ -1446,7 +1457,7 @@ public class OperadorActivity extends AppCompatActivity {
 
                                 int sumatoria = volumencan + total;
                                 int ends = cantidadpro - total; // BIEN
-
+                                String malo = String.valueOf(total);
                                 String end = String.valueOf(ends);
                                 int tool = cantidadpro - volumencan;
 
@@ -1465,7 +1476,8 @@ public class OperadorActivity extends AppCompatActivity {
                                             Componente.putExtra("resuldato3", resuldato3.getSelectedItem().toString());
                                             Componente.putExtra("tarea", nombretarea);
                                             Componente.putExtra("items", items.getText().toString());
-                                            Componente.putExtra("end", end.toString());
+                                            Componente.putExtra("mala", malo.toString());
+                                            Componente.putExtra("restado", end.toString());
                                             Componente.putExtra("id", id.getText().toString());
                                             Componente.putExtra("volumen", volumens.toString());
                                             Componente.putExtra("fechas", fechas);

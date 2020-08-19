@@ -21,13 +21,15 @@ public class ServicioRegistroSalida extends Service {
         final String resuldato3 = intent.getStringExtra("resuldato3");
         final String nombretarea = intent.getStringExtra("tarea");
         final String items = intent.getStringExtra("items");
-        final String end = intent.getStringExtra("end");
+        final String malo = intent.getStringExtra("mala");
+        final String end = intent.getStringExtra("restado");
         final String id = intent.getStringExtra("id");
         final String volumen = intent.getStringExtra("volumen");
         final String fechas = intent.getStringExtra("fechas");
         final String horas = intent.getStringExtra("horas");
         final String error = intent.getStringExtra("error");
         final String falla = intent.getStringExtra("falla");
+
         if (workerThread == null || !workerThread.isAlive()) {
             workerThread = new Thread(new Runnable() {
                 @Override
@@ -35,7 +37,7 @@ public class ServicioRegistroSalida extends Service {
 
                     HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadupdate.php?op=" + resuldato3 + "&tarea=" + nombretarea + "&totales=" + end).body();
 
-                    HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodificar.php?op=" + resuldato3 + "&tarea=" + nombretarea + "&totales=" + end).body();
+                    HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodificar.php?op=" + resuldato3 + "&tarea=" + nombretarea + "&totales=" + malo).body();
 
                     HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizaSalida.php?id=" + id + "&cantidad=" + volumen + "&Ffinal=" + fechas + "&Hfinal=" + horas + "&motivo=" + error + "&conforme=" + falla + "&tarea=" + nombretarea + "&op=" + items).body();
 
