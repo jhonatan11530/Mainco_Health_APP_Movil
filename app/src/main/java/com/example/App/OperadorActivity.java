@@ -553,6 +553,54 @@ public class OperadorActivity extends AppCompatActivity {
         }
 
     }
+    public void validar(){
+    new Thread(new Runnable() {
+        @Override
+        public void run() {
+        String responses = HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadedits.php?op=" + resuldato3.getSelectedItem().toString()).body();
+        try {
+            JSONArray objecto = new JSONArray(responses);
+            int variable = Integer.parseInt(objecto.getString(0));
+
+            if (variable == 0){
+
+                textToSpeech.speak("LA ORDEN DE PRODU SION ESTA CERRADA", android.speech.tts.TextToSpeech.QUEUE_FLUSH, null, null);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
+                builder.setTitle("LA ORDEN DE PRODUCCION SE CERRO");
+                builder.setIcon(R.drawable.finish_op);
+                builder.setMessage("NO PODRA REGISTRAR ACTIVIDADES O CANTIDADES");
+
+                builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                AlertDialog alert = builder.create();
+                alert.show();
+                alert.setCanceledOnTouchOutside(false);
+
+
+                        desbloquear.setEnabled(false);
+                        registroTIME.setEnabled(false);
+                        salidaTIME.setEnabled(false);
+                        cantidadund.setEnabled(false);
+                    }
+                });
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        }
+    }).start();
+    }
+    
     public void operador(View v) {
 
         if (id.getText().toString().length() == 0 && items.getText().toString().length() == 0) {
@@ -568,7 +616,7 @@ public class OperadorActivity extends AppCompatActivity {
 
             id.setError("ID ES REQUERIDO !");
         } else {
-
+            validar();
             new Task().execute();
 
             hilo = new Thread(new Runnable() {
@@ -1168,8 +1216,7 @@ public class OperadorActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... strings) {
             try {
-                String nombretarea = resuldato.getSelectedItem().toString();
-                String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/Sobrante.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + nombretarea).body();
+                String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/Sobrante.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + resuldato.getSelectedItem().toString()).body();
                 JSONArray array = new JSONArray(response);
                 VaribleTOTA = array.getString(0);
 
@@ -1188,45 +1235,6 @@ public class OperadorActivity extends AppCompatActivity {
             TextView MostrarCantidad = findViewById(R.id.MostrarCantidad);
 
             MostrarCantidad.setText("CANTIDAD EN O.P : " + VaribleTOTAL);
-            if (VaribleTOTAL == 0) {
-                    /*
-                   new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/Autorizar.php?op="+resuldato3.getSelectedItem().toString() ).body();
-                            try {
-                                JSONArray objecto = new JSONArray(response);
-
-                                System.out.println("VerdaderoFalso "+objecto.getString(0));
-                                if(objecto.getString(0) == "true"){
-                                    runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            desbloquear.setEnabled(true);
-                                            salidaTIME.setEnabled(true);
-                                            cantidadund.setEnabled(true);
-                                        }
-                                    });
-                                }
-                                if(objecto.getString(0) == "false"){
-                                    runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            desbloquear.setEnabled(false);
-                                            registroTIME.setEnabled(false);
-                                            salidaTIME.setEnabled(false);
-                                            cantidadund.setEnabled(false);
-                                        }
-                                    });
-                                }
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-
-                        }
-                    }).start();
-*/
-            }
 
         }
 
