@@ -553,11 +553,55 @@ public class OperadorActivity extends AppCompatActivity {
         }
 
     }
+    public void validaractividad(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(1000);
+
+                    String responses = HttpRequest.get("http://" + cambiarIP.ip + "/validar/validarcantidad.php?numero=" + resuldato3.getSelectedItem().toString()+"&tarea="+resuldato.getSelectedItem().toString()).body();
+                    try {
+                        JSONArray objecto = new JSONArray(responses);
+                        int variable = Integer.parseInt(objecto.getString(0));
+
+                        if (variable == 0){
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    desbloquear.setBackgroundColor(Color.parseColor("#919191"));
+                                    registroTIME.setBackgroundColor(Color.parseColor("#919191"));
+                                    salidaTIME.setBackgroundColor(Color.parseColor("#919191"));
+                                    cantidadund.setBackgroundColor(Color.parseColor("#919191"));
+
+                                    desbloquear.setEnabled(false);
+                                    registroTIME.setEnabled(false);
+                                    salidaTIME.setEnabled(false);
+                                    cantidadund.setEnabled(false);
+                                }
+                            });
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }).start();
+    }
+
     public void validar(){
     new Thread(new Runnable() {
         @Override
         public void run() {
-        String responses = HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadedits.php?op=" + resuldato3.getSelectedItem().toString()).body();
+            try {
+                Thread.sleep(1000);
+
+            String responses = HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadedits.php?op=" + resuldato3.getSelectedItem().toString()).body();
         try {
             JSONArray objecto = new JSONArray(responses);
             int variable = Integer.parseInt(objecto.getString(0));
@@ -568,7 +612,6 @@ public class OperadorActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
                 builder.setTitle("LA ORDEN DE PRODUCCION SE CERRO");
@@ -585,6 +628,10 @@ public class OperadorActivity extends AppCompatActivity {
                 alert.show();
                 alert.setCanceledOnTouchOutside(false);
 
+                        desbloquear.setBackgroundColor(Color.parseColor("#919191"));
+                        registroTIME.setBackgroundColor(Color.parseColor("#919191"));
+                        salidaTIME.setBackgroundColor(Color.parseColor("#919191"));
+                        cantidadund.setBackgroundColor(Color.parseColor("#919191"));
 
                         desbloquear.setEnabled(false);
                         registroTIME.setEnabled(false);
@@ -596,6 +643,10 @@ public class OperadorActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
         }
     }).start();
@@ -618,6 +669,7 @@ public class OperadorActivity extends AppCompatActivity {
         } else {
             validar();
             new Task().execute();
+
 
             hilo = new Thread(new Runnable() {
                 @Override
@@ -752,6 +804,10 @@ public class OperadorActivity extends AppCompatActivity {
                                 salidaTIME.setEnabled(false);
                                 cantidadund.setEnabled(false);
                                 desbloquear.setEnabled(false);
+
+                                desbloquear.setBackgroundColor(Color.parseColor("#919191"));
+                                salidaTIME.setBackgroundColor(Color.parseColor("#919191"));
+                                cantidadund.setBackgroundColor(Color.parseColor("#919191"));
 
 
                                 AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
@@ -1208,6 +1264,7 @@ public class OperadorActivity extends AppCompatActivity {
         AlertDialog alert = builder.create();
         alert.show();
         alert.setCanceledOnTouchOutside(false);
+
     }
 
 
@@ -1491,7 +1548,7 @@ public class OperadorActivity extends AppCompatActivity {
                     final String nombretarea = resuldato.getSelectedItem().toString();
 
 
-                    new Thread(new Runnable() {
+                    hilo = new Thread(new Runnable() {
                         @Override
                         public void run() {
                             String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/Sobrante.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + nombretarea).body();
@@ -1504,28 +1561,34 @@ public class OperadorActivity extends AppCompatActivity {
                                 volumencan = Integer.parseInt(cantidad.getText().toString());
                                 cantidadpro = Integer.parseInt(RESTARCANTIDAD.getString(0));
 
+                                String respuesta = HttpRequest.get("http://" + cambiarIP.ip + "/validar/SobranteAct.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + nombretarea).body();
+                                JSONArray OTRACANTIDAD = new JSONArray(respuesta);
+
+                                cantidadotra = Integer.parseInt(OTRACANTIDAD.getString(0));
+
                                 int sumatoria = volumencan + total;
-                                int ends = cantidadpro - total; // BIEN
-                                String malo = String.valueOf(total);
+                                int ends = cantidadpro - sumatoria; // BIEN
+                                int sqlmala = cantidadotra - total;
+                                String malo = String.valueOf(sqlmala);
                                 String end = String.valueOf(ends);
-                                int tool = cantidadpro - volumencan;
+                                int tool = cantidadpro - sumatoria;
 
                                 System.out.println("LA CANTIDAD BUENAS " + volumencan);
                                 System.out.println("LA CANTIDAD MALAS " + total);
-                                System.out.println("LA CANTIDAD EN MYSQL " + cantidadpro);
-                                System.out.println("LA CANTIDAD EN MYSQL RESTADA " + tool);
-                                System.out.println("LA CANTIDAD EN MYSQL REAL " + ends);
+                                System.out.println("LA CANTIDAD BUENAS + MALAS " + sumatoria);
+                                System.out.println("LA CANTIDAD EN SQL " + cantidadpro);
+                                System.out.println("LA CANTIDAD EN SQL RESTADA " + tool);
+                                System.out.println("LA CANTIDAD EN SQL REAL " + ends);
 
                                 if (end.length() >= 0) {
                                     if (tool >= 0) {
                                         if (sumatoria <= cantidadpro) {
 
-
                                             Intent Componente = new Intent(OperadorActivity.this, ServicioRegistroSalida.class);
                                             Componente.putExtra("resuldato3", resuldato3.getSelectedItem().toString());
                                             Componente.putExtra("tarea", nombretarea);
                                             Componente.putExtra("items", items.getText().toString());
-                                            Componente.putExtra("mala", malo.toString());
+                                            Componente.putExtra("mala", malo);
                                             Componente.putExtra("restado", end.toString());
                                             Componente.putExtra("id", id.getText().toString());
                                             Componente.putExtra("volumen", volumens.toString());
@@ -1547,8 +1610,7 @@ public class OperadorActivity extends AppCompatActivity {
                                                     }
                                                 }
                                             }).start();
-
-                                            textToSpeech.speak("SE REGISTRO LAS CANTIDADES APLAZADAS", android.speech.tts.TextToSpeech.QUEUE_FLUSH, null, null);
+                                            textToSpeech.speak("SE REGISTRO LO PRODUCIDO", android.speech.tts.TextToSpeech.QUEUE_FLUSH, null, null);
                                             runOnUiThread(new Runnable() {
                                                 @Override
                                                 public void run() {
@@ -1573,8 +1635,9 @@ public class OperadorActivity extends AppCompatActivity {
 
 
                         }
-                    }).start();
-                    Thread.interrupted();
+                    });
+                    hilo.start();
+                    hilo.interrupted();
 
                 }
             }
