@@ -3,7 +3,6 @@ require_once("ConexionSQL.php");
  $op = $_GET["op"];
  $mysqli = sqlsrv_connect(Server() , connectionInfo());
  $res = "SELECT autorizado FROM  proyecto.produccion WHERE cod_producto = '".$op."'";
- 
  $result = sqlsrv_query($mysqli, $res);
  
  

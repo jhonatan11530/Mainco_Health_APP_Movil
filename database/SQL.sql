@@ -11,7 +11,7 @@
 
 USE [master]
 GO
-/****** Object:  Database [proyecto]    Script Date: 21/08/2020 2:25:16 p. m. ******/
+/****** Object:  Database [proyecto]    Script Date: 22/08/2020 8:35:27 a. m. ******/
 CREATE DATABASE [proyecto]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -86,18 +86,18 @@ ALTER DATABASE [proyecto] SET DELAYED_DURABILITY = DISABLED
 GO
 USE [proyecto]
 GO
-/****** Object:  User [proyecto]    Script Date: 21/08/2020 2:25:16 p. m. ******/
+/****** Object:  User [proyecto]    Script Date: 22/08/2020 8:35:27 a. m. ******/
 CREATE USER [proyecto] FOR LOGIN [proyecto] WITH DEFAULT_SCHEMA=[proyecto]
 GO
 ALTER ROLE [db_owner] ADD MEMBER [proyecto]
 GO
-/****** Object:  Schema [m2ss]    Script Date: 21/08/2020 2:25:16 p. m. ******/
+/****** Object:  Schema [m2ss]    Script Date: 22/08/2020 8:35:27 a. m. ******/
 CREATE SCHEMA [m2ss]
 GO
-/****** Object:  Schema [proyecto]    Script Date: 21/08/2020 2:25:16 p. m. ******/
+/****** Object:  Schema [proyecto]    Script Date: 22/08/2020 8:35:27 a. m. ******/
 CREATE SCHEMA [proyecto]
 GO
-/****** Object:  Table [proyecto].[cantidaderror]    Script Date: 21/08/2020 2:25:16 p. m. ******/
+/****** Object:  Table [proyecto].[cantidaderror]    Script Date: 22/08/2020 8:35:27 a. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -106,7 +106,7 @@ CREATE TABLE [proyecto].[cantidaderror](
 	[fallas] [nvarchar](70) NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [proyecto].[motivo]    Script Date: 21/08/2020 2:25:16 p. m. ******/
+/****** Object:  Table [proyecto].[motivo]    Script Date: 22/08/2020 8:35:27 a. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -120,7 +120,7 @@ CREATE TABLE [proyecto].[motivo](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [proyecto].[motivo_paro]    Script Date: 21/08/2020 2:25:16 p. m. ******/
+/****** Object:  Table [proyecto].[motivo_paro]    Script Date: 22/08/2020 8:35:27 a. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -130,13 +130,14 @@ CREATE TABLE [proyecto].[motivo_paro](
 	[id] [int] NOT NULL,
 	[tarea] [nvarchar](40) NULL,
 	[tiempo_descanso] [nvarchar](8) NOT NULL,
+	[cantidad] [int] NOT NULL,
 	[code] [nvarchar](6) NOT NULL,
 	[motivo_descanso] [nvarchar](50) NOT NULL,
 	[fecha] [nvarchar](12) NOT NULL,
 	[hora] [nvarchar](8) NOT NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [proyecto].[operador]    Script Date: 21/08/2020 2:25:16 p. m. ******/
+/****** Object:  Table [proyecto].[operador]    Script Date: 22/08/2020 8:35:27 a. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -162,7 +163,7 @@ CREATE TABLE [proyecto].[operador](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [proyecto].[produccion]    Script Date: 21/08/2020 2:25:16 p. m. ******/
+/****** Object:  Table [proyecto].[produccion]    Script Date: 22/08/2020 8:35:27 a. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -178,7 +179,7 @@ CREATE TABLE [proyecto].[produccion](
 	[autorizado] [int] NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [proyecto].[promedio]    Script Date: 21/08/2020 2:25:16 p. m. ******/
+/****** Object:  Table [proyecto].[promedio]    Script Date: 22/08/2020 8:35:27 a. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -194,7 +195,7 @@ CREATE TABLE [proyecto].[promedio](
 	[produccion] [int] NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [proyecto].[roles]    Script Date: 21/08/2020 2:25:16 p. m. ******/
+/****** Object:  Table [proyecto].[roles]    Script Date: 22/08/2020 8:35:27 a. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -208,7 +209,7 @@ CREATE TABLE [proyecto].[roles](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [proyecto].[tarea]    Script Date: 21/08/2020 2:25:16 p. m. ******/
+/****** Object:  Table [proyecto].[tarea]    Script Date: 22/08/2020 8:35:27 a. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -220,7 +221,7 @@ CREATE TABLE [proyecto].[tarea](
 	[extandar] [nvarchar](15) NOT NULL
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [proyecto].[usuarios]    Script Date: 21/08/2020 2:25:16 p. m. ******/
+/****** Object:  Table [proyecto].[usuarios]    Script Date: 22/08/2020 8:35:27 a. m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -379,20 +380,6 @@ INSERT [proyecto].[motivo] ([id], [paro]) VALUES (71, N'AISLAMIENTO PREVENTIVO C
 GO
 SET IDENTITY_INSERT [proyecto].[motivo] OFF
 GO
-INSERT [proyecto].[motivo_paro] ([numero_op], [id], [tarea], [tiempo_descanso], [code], [motivo_descanso], [fecha], [hora]) VALUES (N'27213', 18, N'CERRAR GORRO TRAUMA', N'00:00:08', N'10', N'PATINAR EN PLANTA', N'21/08/2020', N'13:41:40')
-GO
-INSERT [proyecto].[motivo_paro] ([numero_op], [id], [tarea], [tiempo_descanso], [code], [motivo_descanso], [fecha], [hora]) VALUES (N'27213', 18, N'CERRAR GORRO TRAUMA', N'00:00:32', N'14', N'REPROCESO', N'21/08/2020', N'13:44:03')
-GO
-INSERT [proyecto].[motivo_paro] ([numero_op], [id], [tarea], [tiempo_descanso], [code], [motivo_descanso], [fecha], [hora]) VALUES (N'27213', 18, N'CERRAR GORRO TRAUMA', N'00:00:06', N'22', N'PERMISO PERSONAL', N'21/08/2020', N'13:40:36')
-GO
-INSERT [proyecto].[motivo_paro] ([numero_op], [id], [tarea], [tiempo_descanso], [code], [motivo_descanso], [fecha], [hora]) VALUES (N'27213', 18, N'CERRAR GORRO TRAUMA', N'00:00:06', N'1', N'MANTENIMIENTO CORRECTIVO', N'21/08/2020', N'13:42:37')
-GO
-INSERT [proyecto].[motivo_paro] ([numero_op], [id], [tarea], [tiempo_descanso], [code], [motivo_descanso], [fecha], [hora]) VALUES (N'27213', 18, N'PULIR DOBLAR Y EMPACAR GORRO', N'00:00:12', N'25', N'PARO * PEGAS,ENRREDO O CALIDAD ELASTICO', N'21/08/2020', N'13:45:35')
-GO
-INSERT [proyecto].[motivo_paro] ([numero_op], [id], [tarea], [tiempo_descanso], [code], [motivo_descanso], [fecha], [hora]) VALUES (N'27213', 18, N'PULIR DOBLAR Y EMPACAR GORRO', N'00:00:10', N'14', N'REPROCESO', N'21/08/2020', N'13:46:48')
-GO
-INSERT [proyecto].[motivo_paro] ([numero_op], [id], [tarea], [tiempo_descanso], [code], [motivo_descanso], [fecha], [hora]) VALUES (N'27213', 18, N'PULIR DOBLAR Y EMPACAR GORRO', N'00:00:09', N'14', N'REPROCESO', N'21/08/2020', N'13:48:07')
-GO
 SET IDENTITY_INSERT [proyecto].[operador] ON 
 GO
 INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (1, 2, N'BENITEZ OVIEDO JUAN', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
@@ -427,7 +414,7 @@ INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [c
 GO
 INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (16, 17, N'PENA GOMEZ MARIA EVELLY', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
 GO
-INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (17, 18, N'OREJUELA BALCAZAR OFELIA', N'27213', N'CERRAR GORRO TRAUMA', 1, N'maquina mala', 1, N'21/08/2020', CAST(N'13:39:53' AS Time), N'21/08/2020', CAST(N'13:40:42' AS Time), N'84', N'100')
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (17, 18, N'OREJUELA BALCAZAR OFELIA', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
 GO
 INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (18, 19, N'QUINONEZ RINA OLEISA', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
 GO
@@ -954,18 +941,6 @@ GO
 INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (279, 285, N'NARVAEZ CASTILLO LORENA BETTY ', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
 GO
 INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (280, 286, N'RAMIREZ GIL EMELY', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
-GO
-INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (1732, 18, N'OREJUELA BALCAZAR OFELIA', N'27213', N'CERRAR GORRO TRAUMA', 2, N'maquina mala', 1, N'21/08/2020', CAST(N'13:40:52' AS Time), N'21/08/2020', CAST(N'13:41:44' AS Time), N'189', N'100')
-GO
-INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (1733, 18, N'OREJUELA BALCAZAR OFELIA', N'27213', N'CERRAR GORRO TRAUMA', 2, N'maquina mala', 1, N'21/08/2020', CAST(N'13:41:56' AS Time), N'21/08/2020', CAST(N'13:42:45' AS Time), N'248', N'100')
-GO
-INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (1734, 18, N'OREJUELA BALCAZAR OFELIA', N'27213', N'CERRAR GORRO TRAUMA', 2, N'maquina mala', 0, N'21/08/2020', CAST(N'13:42:57' AS Time), N'21/08/2020', CAST(N'13:44:23' AS Time), N'212', N'100')
-GO
-INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (1735, 18, N'OREJUELA BALCAZAR OFELIA', N'27213', N'PULIR DOBLAR Y EMPACAR GORRO', 2, N'maquina mala', 1, N'21/08/2020', CAST(N'13:44:37' AS Time), N'21/08/2020', CAST(N'13:45:45' AS Time), N'93', N'100')
-GO
-INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (1736, 18, N'OREJUELA BALCAZAR OFELIA', N'27213', N'PULIR DOBLAR Y EMPACAR GORRO', 1, N'maquina mala', 1, N'21/08/2020', CAST(N'13:45:53' AS Time), N'21/08/2020', CAST(N'13:46:57' AS Time), N'62', N'100')
-GO
-INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (1737, 18, N'OREJUELA BALCAZAR OFELIA', N'27213', N'PULIR DOBLAR Y EMPACAR GORRO', 2, N'maquina mala', 0, N'21/08/2020', CAST(N'13:47:10' AS Time), N'21/08/2020', CAST(N'13:52:07' AS Time), N'20', N'100')
 GO
 SET IDENTITY_INSERT [proyecto].[operador] OFF
 GO
@@ -8019,11 +7994,9 @@ INSERT [proyecto].[produccion] ([id], [numero_op], [cod_producto], [descripcion]
 GO
 INSERT [proyecto].[produccion] ([id], [numero_op], [cod_producto], [descripcion], [cantidad], [programadas], [autoincrement], [autorizado]) VALUES (700144, NULL, N'700144', N'KIT BIOSEGURIDAD HOGAR                  ', 0, NULL, 3524, 0)
 GO
-INSERT [proyecto].[produccion] ([id], [numero_op], [cod_producto], [descripcion], [cantidad], [programadas], [autoincrement], [autorizado]) VALUES (1339, N'27213', N'001453', N'GORRO ESCAFANDRA TIPO COBERTOR MT5A', 10, N'08:00:00', 3538, 0)
+INSERT [proyecto].[produccion] ([id], [numero_op], [cod_producto], [descripcion], [cantidad], [programadas], [autoincrement], [autorizado]) VALUES (1339, N'27213', N'001453', N'GORRO ESCAFANDRA TIPO COBERTOR MT5A', 10, N'08:00:00', 3538, 10)
 GO
 SET IDENTITY_INSERT [proyecto].[produccion] OFF
-GO
-INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'21/08/2020', N'27213', N'OREJUELA BALCAZAR OFELIA', N'00:11:05', N'00:05:11', N'00:09:42', 582, 88)
 GO
 INSERT [proyecto].[roles] ([id], [cargo]) VALUES (N'1', N'administrador')
 GO

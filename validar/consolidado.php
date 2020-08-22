@@ -149,7 +149,7 @@ class EFICIENCIA{
     $datest = ($horas * 3600 ) + ($minutos * 60 ) + $segundos;
     
     $formula =  $datosa / $datest  * 100;
-    $formulas = round($datest);
+    $formulas = round($formula);
 
     $dates = gmdate('H:i:s', $datest);
     $dato = gmdate('H:i:s', $datosa);
@@ -200,6 +200,8 @@ class CONSOLIDADO{
          echo "TIEMPO HABIL  + TIEMPO DE PARO : ".$inicia; echo "<br>";
          echo "TIEMPO ESTIMADO : ".$dato;echo "<br>";
          echo "TIEMPO PRODUCCIDO - TIEMPO DE PARO : ".$dates;echo "<br>";echo "<br>";
+
+
          echo "% EFICIENCIA : ".$formulas;echo "<br>";
          echo "% PRODUCTIVIDAD : ".$eficacias;echo "<br>";
          
