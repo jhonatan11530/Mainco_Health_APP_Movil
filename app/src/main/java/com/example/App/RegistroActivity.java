@@ -123,7 +123,9 @@ public class RegistroActivity extends AppCompatActivity {
                                         }
                                     });
 
-                                    builder.create().show();
+                                    AlertDialog alert = builder.create();
+                                    alert.show();
+                                    alert.setCanceledOnTouchOutside(false);
                                 }
                             });
 
@@ -153,7 +155,9 @@ public class RegistroActivity extends AppCompatActivity {
                                     }
                                 });
 
-                                builder.create().show();
+                                AlertDialog alert = builder.create();
+                                alert.show();
+                                alert.setCanceledOnTouchOutside(false);
                             }
                         });
                     }

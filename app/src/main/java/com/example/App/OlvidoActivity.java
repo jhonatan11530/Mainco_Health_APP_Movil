@@ -103,7 +103,9 @@ public class OlvidoActivity extends AppCompatActivity {
                                                         finish();
                                                     }
                                                 });
-                                                builder.create().show();
+                                                AlertDialog alert = builder.create();
+                                                alert.show();
+                                                alert.setCanceledOnTouchOutside(false);
 
                                             }
                                         });

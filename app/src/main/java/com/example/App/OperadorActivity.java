@@ -570,11 +570,6 @@ public class OperadorActivity extends AppCompatActivity {
                                 @Override
                                 public void run() {
 
-                                    desbloquear.setBackgroundColor(Color.parseColor("#919191"));
-                                    registroTIME.setBackgroundColor(Color.parseColor("#919191"));
-                                    salidaTIME.setBackgroundColor(Color.parseColor("#919191"));
-                                    cantidadund.setBackgroundColor(Color.parseColor("#919191"));
-
                                     desbloquear.setEnabled(false);
                                     registroTIME.setEnabled(false);
                                     salidaTIME.setEnabled(false);
@@ -627,11 +622,6 @@ public class OperadorActivity extends AppCompatActivity {
                 AlertDialog alert = builder.create();
                 alert.show();
                 alert.setCanceledOnTouchOutside(false);
-
-                        desbloquear.setBackgroundColor(Color.parseColor("#919191"));
-                        registroTIME.setBackgroundColor(Color.parseColor("#919191"));
-                        salidaTIME.setBackgroundColor(Color.parseColor("#919191"));
-                        cantidadund.setBackgroundColor(Color.parseColor("#919191"));
 
                         desbloquear.setEnabled(false);
                         registroTIME.setEnabled(false);

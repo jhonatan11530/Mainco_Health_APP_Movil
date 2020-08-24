@@ -132,7 +132,9 @@ public class LoginActivity extends AppCompatActivity {
                             builder.setCancelable(true);
                         }
                     });
-                    builder.create().show();
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                    alert.setCanceledOnTouchOutside(false);
 
                 }
             });
@@ -246,7 +248,9 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
 
-                builder.create().show();
+                AlertDialog alert = builder.create();
+                alert.show();
+                alert.setCanceledOnTouchOutside(false);
             }
 
         }
