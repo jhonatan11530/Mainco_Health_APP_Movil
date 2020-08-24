@@ -83,7 +83,7 @@ public class OperadorActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_operador);
+        setContentView(R.layout.operador);
 
         cliente = new AsyncHttpClient();
         cliente1 = new AsyncHttpClient();
@@ -871,7 +871,7 @@ public class OperadorActivity extends AppCompatActivity {
     public void hora(View v) {
 
         registros = new AlertDialog.Builder(OperadorActivity.this);
-        tiempo1 = getLayoutInflater().inflate(R.layout.dialog_spinner, null);
+        tiempo1 = getLayoutInflater().inflate(R.layout.motivo_paro, null);
 
         llenardescanso();
         id = findViewById(R.id.operador);
