@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/principal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.Mainco.asdasd.OperadorActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="12"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="10"
+            android:layout_weight="1"
+            android:baselineAligned="false">
+
+            <LinearLayout
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="10"
+                android:layout_weight="3.3"
+                android:layout_marginHorizontal="4dp">
+
+                <EditText
+                    android:id="@+id/operador"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_weight="3.3"
+                    android:gravity="center"
+                    android:background="@drawable/items"
+                    android:ems="10"
+                    android:hint="ID DEL OPERADOR"
+                    android:textColorHint="#000"
+                    android:inputType="number"
+                    android:layout_marginVertical="4dp" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_weight="5"
+                    android:background="@color/colorAzulCLM"
+                    android:onClick="operador"
+                    android:text="VALIDAR"
+                    android:textColor="#ffffff" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="150dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="10"
+                android:layout_weight="3.3">
+
+                <TextView
+                    android:id="@+id/listar_operador"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:weightSum="10">
+
+
+            <EditText
+                android:id="@+id/item"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginVertical="3dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_weight="3.3"
+                android:background="@drawable/items"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="INGRESE EL O.P"
+                android:textColorHint="#000"
+                android:inputType="text"
+                tools:ignore="NestedWeights" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:textColor="#000"
+                android:text="NUMERO DE ITEM"
+                android:textSize="20sp" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="40dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:gravity="center"
+                android:textColor="#000"
+                android:text="ACTIVIDAD"
+                android:textSize="20sp" />
+
+            <Spinner
+                android:id="@+id/spinner1"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textAlignment="center" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="6.6"
+            android:orientation="vertical"
+            android:weightSum="10">
+
+            <Button
+                android:id="@+id/insertar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2.5"
+                android:textColor="#ffffff"
+                android:onClick="registrar"
+                android:text="COMENZAR" />
+
+            <Button
+                android:id="@+id/aplazar"
+                android:layout_width="match_parent"
+                android:layout_marginVertical="5dp"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:onClick="aplazo"
+                android:layout_weight="2.5"
+                android:text="APLAZAR PRODUCCION" />
+
+
+            <Button
+                android:id="@+id/tiempo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:layout_weight="2.5"
+                android:onClick="hora"
+                android:text="REGISTRAR TIEMPO DE PARO" />
+
+            <Button
+                android:id="@+id/salida"
+                android:layout_width="match_parent"
+                android:layout_marginVertical="5dp"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:layout_weight="2.5"
+                android:onClick="salida"
+                android:text="FINALIZAR" />
+
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/MostrarCantidad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#185BA3"
+                android:text="ESPERANDO VALIDACION"
+                android:textColor="#fff"
+                android:textSize="25sp" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+</RelativeLayout>

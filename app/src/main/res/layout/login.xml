@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.Mainco.asdasd.LoginActivity"
+
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="12"
+        tools:ignore="UselessParent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="TODO"
+                android:gravity="center"
+                android:src="@drawable/admin"
+                tools:ignore="ContentDescription" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/estado"
+                android:layout_width="350dp"
+                android:layout_height="60dp"
+                android:layout_marginVertical="12dp"
+                android:background="@drawable/lineas_login"
+                android:gravity="center"
+                android:hint="INGRESE SU ID"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/ID"
+                android:layout_width="350dp"
+                android:layout_height="60dp"
+                android:background="@drawable/lineas_login"
+                android:gravity="center"
+                android:hint="INGRESE SU CONTRASEÑA"
+                android:inputType="textPassword"
+
+                />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3.5"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="10">
+
+            <CheckBox
+                android:id="@+id/OK"
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:gravity="center"
+                android:text="RECORDAR USUARIO"
+                android:textColor="#000000"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:layout_marginHorizontal="25dp"
+                android:background="#FAFAFA"
+                android:drawableLeft="@drawable/ic_lock_open_black_24dp"
+                android:gravity="center"
+                android:onClick="olvidoC"
+                android:text="OLVIDADO SU CONTRASEÑA"
+                android:textColor="#000" />
+        </LinearLayout>
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:weightSum="10">
+
+
+            <Button
+                android:id="@+id/login"
+                android:layout_width="350dp"
+                android:layout_height="80dp"
+                android:layout_marginVertical="15dp"
+                android:background="@drawable/btn_redondo"
+                android:gravity="center"
+                android:onClick="validartodo"
+                android:text="iniciar sesion"
+                android:textColor="#000000" />
+
+
+            <TextView
+                android:id="@+id/registre"
+                android:layout_width="350dp"
+                android:layout_height="80dp"
+                android:gravity="center"
+                android:onClick="registro"
+                android:text="REGISTRARSE"
+                android:textColor="#000" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

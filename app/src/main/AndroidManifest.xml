@@ -31,7 +31,7 @@
             android:exported="false" />
 
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.App.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
@@ -41,23 +41,23 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".options"
+            android:name="com.example.App.options"
             android:label="@string/title_activity_opciones"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".LoginActivity"
+            android:name="com.example.App.LoginActivity"
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".OperadorActivity"
+            android:name="com.example.App.OperadorActivity"
             android:label="@string/title_activity_operador"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".RegistroActivity"
+            android:name="com.example.App.RegistroActivity"
             android:label="@string/title_activity_registro"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".OlvidoActivity"
+            android:name="com.example.App.OlvidoActivity"
             android:label="@string/title_activity_olvido"
             android:screenOrientation="portrait" />
         <activity
