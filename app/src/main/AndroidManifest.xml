@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.App">
+    package="com.Mainco.App">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -20,18 +20,16 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
-        tools:targetApi="m">
-        <service
-            android:name="Services.TSS"
-            android:enabled="true"
-            android:exported="false"></service>
+        tools:targetApi="m"
+>
+
         <service
             android:name="Services.ServicioRegistroSalida"
             android:enabled="true"
             android:exported="false" />
 
         <activity
-            android:name="com.example.App.MainActivity"
+            android:name="com.Mainco.App.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
@@ -41,23 +39,23 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.App.options"
+            android:name="com.Mainco.App.options"
             android:label="@string/title_activity_opciones"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.App.LoginActivity"
+            android:name="com.Mainco.App.LoginActivity"
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.App.OperadorActivity"
+            android:name="com.Mainco.App.OperadorActivity"
             android:label="@string/title_activity_operador"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.App.RegistroActivity"
+            android:name="com.Mainco.App.RegistroActivity"
             android:label="@string/title_activity_registro"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.example.App.OlvidoActivity"
+            android:name="com.Mainco.App.OlvidoActivity"
             android:label="@string/title_activity_olvido"
             android:screenOrientation="portrait" />
         <activity

@@ -9,7 +9,7 @@ import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.App.R;
+import com.Mainco.App.R;
 
 public class TERMINADO extends AppCompatActivity {
 

@@ -1,5 +1,5 @@
 <menu xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.App.MainActivity"
+    tools:context="com.Mainco.App.MainActivity"
     tools:keep="@menu/main">
 
 
