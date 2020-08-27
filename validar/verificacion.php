@@ -5,9 +5,11 @@ require_once("ConexionSQL.php");
 
 /*while (true) {
   usleep(1000000);
-  
+
 }*/
 INICIO();
+
+
 function INICIO(){
 
         /* CONSULTAR Y INSERTAR PRODUCCION */
@@ -20,6 +22,8 @@ function INICIO(){
         while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
           $item[] = $row["ID_ITEM"];
           $descrip[] = $row["DESCRIPCION"];
+          echo $row["ID_ITEM"]." ".$row["DESCRIPCION"];
+          echo "<br>";
         }
         $ORACLE = count($item);
 
@@ -32,8 +36,9 @@ function INICIO(){
       }
       $SQLSERVER = count($id);
       if ($SQLSERVER < $ORACLE) {
-        echo "ESTO SE EJECUTA";
-       PRODUCCION($item,$descrip);
+        echo "ESTO SE EJECUTA ".$SQLSERVER." ".$ORACLE;
+        INICIO2($item);
+      // PRODUCCION($item,$descrip);
       }
       if ($SQLSERVER == $ORACLE) {
         echo "ESTO NO SE EJECUTA";
@@ -42,7 +47,7 @@ function INICIO(){
       /* CONSULTAR Y INSERTAR TAREA */
   /*-------------------------------------------*/
 
- // INICIO2($item);
+  
     
 }
 
@@ -69,7 +74,8 @@ function INICIO2($item){
         $item[] = $row["ID_ITEM"];
         $descrip[] = $row["DESCRIPCION_OPER"];
         $timeoper[] = number_format((float)$row["TIEMPO_OPERACION"], 8, ',', '');
-
+        echo $row["ID_ITEM"]." ".$row["DESCRIPCION_OPER"];
+        echo "<br>";
       }
 
       $SQL = sqlsrv_connect(Server() , connectionInfo());
@@ -84,7 +90,7 @@ function INICIO2($item){
      
       if ($SQLSERVER < $ORACLE) {
         echo "ESTO SE EJECUTA";
-       // TAREA($item,$descrip,$timeoper); 
+        TAREA($item,$descrip,$timeoper); 
       }
       if ($SQLSERVER == $ORACLE) {
         echo "ESTO NO SE EJECUTA";

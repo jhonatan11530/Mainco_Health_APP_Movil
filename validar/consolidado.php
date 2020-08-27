@@ -21,27 +21,35 @@ class comienzo{
         $fecha = $row["inicial"];
         $nombre = $row["nombre"];
       }  
-
+        /* CANTIDAD BUENAS SUMADAS */
       $mysql = sqlsrv_connect(Server() , connectionInfo());
-      // SUM(cantidad) AS cantidad
       $sql_statements = "SELECT SUM(cantidad) AS cantidad  FROM proyecto.operador WHERE  id='".$ID."' AND numero_op = '".$op."' ";
       $llaves = sqlsrv_query($mysql, $sql_statements);
       while($row = sqlsrv_fetch_array($llaves, SQLSRV_FETCH_ASSOC)) {
-        $cant = $row["cantidad"];
+        $can = $row["cantidad"];
       }  
+
+      /* CANTIDAD MALAS SUMADAS */
+      $mysql = sqlsrv_connect(Server() , connectionInfo());
+      $sql_statements = "SELECT SUM(cantidad_fallas) AS cantidad_fallas  FROM proyecto.operador WHERE  id='".$ID."' AND numero_op = '".$op."' ";
+      $llaves = sqlsrv_query($mysql, $sql_statements);
+      while($row = sqlsrv_fetch_array($llaves, SQLSRV_FETCH_ASSOC)) {
+        $mal = $row["cantidad_fallas"];
+      } 
+      $cant = $can + $mal;
 
       echo "CANTIDAD EN OP : ".$cant;
       echo "<br>";
       echo "<br>";
 
       $a = new produc();
-      $a->produccion($cant,$op,$ID,$tarea,$cantFALLAS,$fecha,$nombre);
+      $a->produccion($cant,$op,$ID,$tarea,$fecha,$nombre);
 
     }
 }
 
 class produc{
-  function produccion($cant,$op,$ID,$tarea,$cantFALLAS,$fecha,$nombre){
+  function produccion($cant,$op,$ID,$tarea,$fecha,$nombre){
 
       $mysqli = sqlsrv_connect(Server() , connectionInfo());
       $consulta = "SELECT cod_producto FROM proyecto.produccion WHERE numero_op = '".$op."'";
@@ -58,47 +66,62 @@ class produc{
 
 
       $b = new tarea();
-      $b->extand($cant,$cod,$ID,$tarea,$op,$cantFALLAS,$fecha,$nombre);
+      $b->extand($cant,$cod,$ID,$tarea,$op,$fecha,$nombre);
   }
 } 
   
 class tarea{
-  function extand($cant,$cod,$ID,$tarea,$op,$cantFALLAS,$fecha,$nombre){
+  function extand($cant,$cod,$ID,$tarea,$op,$fecha,$nombre){
 
     $mysqli = sqlsrv_connect(Server() , connectionInfo());
-    $search = "SELECT ROUND(extandar,5)*3600 AS extandar FROM proyecto.tarea WHERE numero_op = '".$cod."' AND tarea='".$tarea."' ";
+    //ROUND(extandar,5)*3600 AS extandar
+    $search = "SELECT  extandar FROM proyecto.tarea WHERE numero_op = '".$cod."' AND tarea='".$tarea."' ";
     $res = sqlsrv_query($mysqli, $search);  
     
     while($listo = sqlsrv_fetch_array($res, SQLSRV_FETCH_ASSOC)) {
           
-      $extandar = $listo["extandar"];
+      $extanda = $listo["extandar"];
     
     }
-    echo "TIEMPO ESTÁNDAR :".$extandar;
+    $extandar = round($extanda * 3600);
+    echo "TIEMPO ESTÁNDAR : ".$extandar;
     echo "<br>";
     echo "<br>";
 
 
     $c = new HORA();
-    $c->EFICACIA($cant,$extandar,$ID,$op,$cantFALLAS,$cod,$tarea,$fecha,$nombre);
+    $c->EFICACIA($ID,$op,$cod,$tarea,$fecha,$nombre);
   }
 }
 
 class HORA{
-  function EFICACIA($cant,$extandar,$ID,$op,$cantFALLAS,$cod,$tarea,$fecha,$nombre){
+  function EFICACIA($ID,$op,$cod,$tarea,$fecha,$nombre){
 
+    $mysqli = sqlsrv_connect(Server() , connectionInfo());
+    $search = "SELECT cantidad+cantidad_fallas as cantidad, extandar as extandar FROM proyecto.operador INNER JOIN proyecto.tarea ON proyecto.operador.tarea = proyecto.tarea.tarea WHERE proyecto.operador.numero_op='".$op."' AND proyecto.tarea.numero_op='".$cod."' ";
+    $res = sqlsrv_query($mysqli, $search);  
+    $cant = array();
+    $extandar = array();
+    while($listo = sqlsrv_fetch_array($res, SQLSRV_FETCH_ASSOC)) {
+      $cant[] = $listo["cantidad"];
+      $extandar[] = round($listo["extandar"] *3600);
+    
+    }
+    for ($i=0; $i < count($cant); $i++) { 
+       $array[] = $cant[$i] * $extandar[$i];
+    }
     /*CONVERTIDO A HORA EFICACIA */
-   $datosa = $extandar * $cant;
+   $datosa = array_sum($array);
    $dato = gmdate('H:i:s', $datosa);
     echo "TIEMPO EN HORAS QUE SE DEBE DEMORAR EN HACER LA OP: ".$dato;
      
     $d = new entradasalida();
-    $d->totaltime($ID,$datosa,$op,$cant,$cantFALLAS,$cod,$tarea,$fecha,$nombre);
+    $d->totaltime($ID,$dato,$datosa,$op,$cod,$tarea,$fecha,$nombre);
   }
 }
 
 class entradasalida{
-  function totaltime($ID,$datosa,$op,$cant,$cantFALLAS,$cod,$tarea,$fecha,$nombre){
+  function totaltime($ID,$dato,$datosa,$op,$cod,$tarea,$fecha,$nombre){
     $mysqli = sqlsrv_connect(Server() , connectionInfo());
     // hora_inicial,hora_final
     // SUM(DATEDIFF(SECOND,hora_inicial,hora_final)) AS total
@@ -117,12 +140,12 @@ class entradasalida{
     echo "<br>";  
 
     $e = new EFICIENCIA();
-    $e->eficiencias($datosa,$ID,$final,$op,$cant,$cantFALLAS,$cod,$tarea,$fecha,$nombre,$inicia);
+    $e->eficiencias($datosa,$dato,$ID,$final,$op,$cod,$tarea,$fecha,$nombre,$inicia);
   }
 }
 
 class EFICIENCIA{
-  function eficiencias($datosa,$ID,$final,$op,$cant,$cantFALLAS,$cod,$tarea,$fecha,$nombre,$inicia){
+  function eficiencias($datosa,$dato,$ID,$final,$op,$cod,$tarea,$fecha,$nombre,$inicia){
 
     /* YA ESTA LISTO */
     $mysql = sqlsrv_connect(Server() , connectionInfo());
@@ -148,16 +171,17 @@ class EFICIENCIA{
     list($horas, $minutos, $segundos) = explode(':', $real);
     $datest = ($horas * 3600 ) + ($minutos * 60 ) + $segundos;
     
+    //$datosat = $datosa + $promedioSUM;
     $formula =  $datosa / $datest  * 100;
     $formulas = round($formula);
-
+    
     $dates = gmdate('H:i:s', $datest);
-    $dato = gmdate('H:i:s', $datosa);
+
 
       echo "EFICIENCIA : ".$formulas;
       
        $f = new EFICACIA();
-       $f->eficacias($ID,$dato,$op,$cant,$cod,$tarea,$formulas,$dates,$fecha,$nombre,$inicia);
+       $f->eficacias($ID,$dato,$op,$cod,$tarea,$formulas,$dates,$fecha,$nombre,$inicia);
 
    
 
@@ -165,7 +189,7 @@ class EFICIENCIA{
 }
 
 class EFICACIA{
-    function eficacias($ID,$dato,$op,$cant,$cod,$tarea,$formulas,$dates,$fecha,$nombre,$inicia){
+    function eficacias($ID,$dato,$op,$cod,$tarea,$formulas,$dates,$fecha,$nombre,$inicia){
         
           // TIEMPO EXTANDAR PROGRAMADA
         list($hours, $minutes, $segund) = explode(':', $inicia);
