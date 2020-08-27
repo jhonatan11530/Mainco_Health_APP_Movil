@@ -38,10 +38,6 @@ class comienzo{
       } 
       $cant = $can + $mal;
 
-      echo "CANTIDAD EN OP : ".$cant;
-      echo "<br>";
-      echo "<br>";
-
       $a = new produc();
       $a->produccion($cant,$op,$ID,$tarea,$fecha,$nombre);
 
@@ -60,10 +56,6 @@ class produc{
         $cod = $row["cod_producto"];
 
       }
-      echo "CODIGO PRODUCTO :".$cod;
-      echo "<br>";
-      echo "<br>";
-
 
       $b = new tarea();
       $b->extand($cant,$cod,$ID,$tarea,$op,$fecha,$nombre);
@@ -84,10 +76,6 @@ class tarea{
     
     }
     $extandar = round($extanda * 3600);
-    echo "TIEMPO ESTÁNDAR : ".$extandar;
-    echo "<br>";
-    echo "<br>";
-
 
     $c = new HORA();
     $c->EFICACIA($ID,$op,$cod,$tarea,$fecha,$nombre);
@@ -113,8 +101,7 @@ class HORA{
     /*CONVERTIDO A HORA EFICACIA */
    $datosa = array_sum($array);
    $dato = gmdate('H:i:s', $datosa);
-    echo "TIEMPO EN HORAS QUE SE DEBE DEMORAR EN HACER LA OP: ".$dato;
-     
+
     $d = new entradasalida();
     $d->totaltime($ID,$dato,$datosa,$op,$cod,$tarea,$fecha,$nombre);
   }
@@ -134,10 +121,6 @@ class entradasalida{
       $inicia = gmdate("H:i:s", $inicia);
     }
 
-    echo "<br>";  
-    echo "<br>";
-    echo "TIEMPO HORA INICIAL - FINAL = RESULTADO : ".$inicia;
-    echo "<br>";  
 
     $e = new EFICIENCIA();
     $e->eficiencias($datosa,$dato,$ID,$final,$op,$cod,$tarea,$fecha,$nombre,$inicia);
@@ -177,9 +160,6 @@ class EFICIENCIA{
     
     $dates = gmdate('H:i:s', $datest);
 
-
-      echo "EFICIENCIA : ".$formulas;
-      
        $f = new EFICACIA();
        $f->eficacias($ID,$dato,$op,$cod,$tarea,$formulas,$dates,$fecha,$nombre,$inicia);
 
@@ -200,13 +180,7 @@ class EFICACIA{
   
        $eficacia = $timeproduccido / $timeprogramado  * 100;
         $eficacias = round($eficacia);
-        echo "<br>";
-        echo "<br>";
-       echo "EFICACIA : ".$eficacias;
-       echo "<br>";
-        echo "<br>";
-  
-  
+
       $a = new CONSOLIDADO();
       $a->run($eficacias,$formulas,$dato,$dates,$fecha,$nombre,$op,$inicia);
       $mysqli->close();	
@@ -217,7 +191,6 @@ class EFICACIA{
   
 class CONSOLIDADO{
     function run($eficacias,$formulas,$dato,$dates,$fecha,$nombre,$op,$inicia){
-     echo "!------------------------------------------------!";echo "<br>";
          echo "FECHA : ".$fecha;echo "<br>";
          echo "NUMERO OP : ".$op;echo "<br>";
          echo "NOMBRE : ".$nombre;echo "<br>";echo "<br>";
