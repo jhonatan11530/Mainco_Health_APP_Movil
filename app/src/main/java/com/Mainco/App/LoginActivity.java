@@ -1,11 +1,9 @@
 package com.Mainco.App;
 
 import android.app.ProgressDialog;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
@@ -28,7 +26,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.List;
 
 
@@ -63,6 +60,8 @@ public class LoginActivity extends AppCompatActivity {
 
         conf.SSID = "\"" + networkSSID + "\"";
         conf.preSharedKey = "\"" + networkPass + "\"";
+
+
 
 
         WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
@@ -147,6 +146,7 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(final String... strings) {
+
 
             new Thread(new Runnable() {
                 @Override
