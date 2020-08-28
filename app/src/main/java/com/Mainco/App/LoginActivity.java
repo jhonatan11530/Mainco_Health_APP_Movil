@@ -1,9 +1,11 @@
 package com.Mainco.App;
 
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
@@ -59,7 +61,6 @@ public class LoginActivity extends AppCompatActivity {
 
         validar = findViewById(R.id.login);
 
-
         conf.SSID = "\"" + networkSSID + "\"";
         conf.preSharedKey = "\"" + networkPass + "\"";
 
@@ -83,6 +84,7 @@ public class LoginActivity extends AppCompatActivity {
                 break;
             }
         }
+
     }
 
     class TASK extends AsyncTask<String, Void, String> {
