@@ -596,7 +596,7 @@ public class OperadorActivity extends AppCompatActivity {
             try {
                 Thread.sleep(1000);
 
-            String responses = HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadedits.php?op=" + resuldato3.getSelectedItem().toString()).body();
+            String responses = HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadedits.php?cod=" + resuldato3.getSelectedItem().toString()+"&op="+items.getText().toString()).body();
         try {
             JSONArray objecto = new JSONArray(responses);
             int variable = Integer.parseInt(objecto.getString(0));
@@ -1194,7 +1194,7 @@ public class OperadorActivity extends AppCompatActivity {
                             if (validator == 0) {
 
                                 System.out.println("ESTO SUCEDIO");
-                                String responses = HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadedits.php?op=" + resuldato3.getSelectedItem().toString()).body();
+                                String responses = HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadedits.php?cod=" + resuldato3.getSelectedItem().toString()+"&op="+items.getText().toString()).body();
 
                                 JSONArray RESTARCANTIDAD = new JSONArray(responses);
                                 HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodifi.php?op=" + resuldato3.getSelectedItem().toString() + "&totales=" + RESTARCANTIDAD.getString(0)).body();
