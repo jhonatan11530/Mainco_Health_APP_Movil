@@ -521,6 +521,7 @@ public class OperadorActivity extends AppCompatActivity {
                 llenardescansoMotivo();
             }
         });
+
     }
 
     public void filtrardescansoMotivo(String filtrardescansoMotivo) {
