@@ -286,6 +286,11 @@ public class OperadorActivity extends AppCompatActivity {
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 filtraritem();
             }
+
+            @Override
+            public void onRetry(int retryNo) {
+                filtraritem();
+            }
         });
     }
 
@@ -326,6 +331,10 @@ public class OperadorActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                llenarOps();
+            }
+            @Override
+            public void onRetry(int retryNo) {
                 llenarOps();
             }
         });
@@ -369,6 +378,11 @@ public class OperadorActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                llenarOps();
+            }
+
+            @Override
+            public void onRetry(int retryNo) {
                 llenarOps();
             }
         });
@@ -416,6 +430,10 @@ public class OperadorActivity extends AppCompatActivity {
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 llenarSpinner();
             }
+            @Override
+            public void onRetry(int retryNo) {
+                llenarSpinner();
+            }
         });
     }
 
@@ -456,6 +474,10 @@ public class OperadorActivity extends AppCompatActivity {
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 llenardescanso();
             }
+            @Override
+            public void onRetry(int retryNo) {
+                llenarSpinner();
+            }
         });
     }
 
@@ -494,6 +516,10 @@ public class OperadorActivity extends AppCompatActivity {
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 llenardescansoMotivo();
             }
+            @Override
+            public void onRetry(int retryNo) {
+                llenardescansoMotivo();
+            }
         });
     }
 
@@ -530,6 +556,11 @@ public class OperadorActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                motivofalla();
+            }
+
+            @Override
+            public void onRetry(int retryNo) {
                 motivofalla();
             }
         });
