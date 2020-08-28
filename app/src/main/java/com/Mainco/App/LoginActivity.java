@@ -94,6 +94,8 @@ public class LoginActivity extends AppCompatActivity {
             pd.setMessage("Porfavor espere");
 
             pd.show();
+            pd.setCancelable(false);
+            pd.setCanceledOnTouchOutside(false);
 
         }
 
