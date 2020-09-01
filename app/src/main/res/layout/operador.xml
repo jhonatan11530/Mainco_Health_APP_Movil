@@ -12,89 +12,58 @@
         android:weightSum="12"
         tools:ignore="UselessParent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="10"
-            android:layout_weight="1"
-            android:baselineAligned="false">
-
-            <LinearLayout
-                android:layout_width="250dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:weightSum="10"
-                android:layout_weight="3.3"
-                android:layout_marginHorizontal="4dp">
-
-                <EditText
-                    android:id="@+id/operador"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_weight="3.3"
-                    android:gravity="center"
-                    android:background="@drawable/items"
-                    android:ems="10"
-                    android:hint="ID DEL OPERADOR"
-                    android:textColorHint="#000"
-                    android:inputType="number"
-                    android:layout_marginVertical="4dp" />
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:layout_weight="5"
-                    android:background="@color/colorAzulCLM"
-                    android:onClick="operador"
-                    android:text="VALIDAR"
-                    android:textColor="#ffffff" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="150dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:weightSum="10"
-                android:layout_weight="3.3">
-
-                <TextView
-                    android:id="@+id/listar_operador"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:textColor="#000000"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-
-
-        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="5"
             android:orientation="vertical"
             android:gravity="center"
             android:weightSum="10">
 
+            <TextView
+                android:id="@+id/listar_operador"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:textColor="#000000"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/operador"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:background="@drawable/items"
+                android:ems="10"
+                android:hint="ID DEL OPERADOR"
+                android:textColorHint="#000"
+                android:inputType="number"
+                android:layout_marginVertical="4dp" />
 
             <EditText
                 android:id="@+id/item"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginVertical="3dp"
-                android:layout_marginHorizontal="10dp"
-                android:layout_weight="3.3"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:layout_marginVertical="4dp"
                 android:background="@drawable/items"
                 android:ems="10"
                 android:gravity="center"
-                android:hint="INGRESE EL O.P"
+                android:hint="INGRESE EL NUMERO DE O.P"
                 android:textColorHint="#000"
                 android:inputType="text"
                 tools:ignore="NestedWeights" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2.5"
+                android:background="@color/colorAzulCLM"
+                android:onClick="operador"
+                android:text="VALIDAR"
+                android:textColor="#ffffff" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -128,7 +97,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="6.6"
+            android:layout_weight="6"
             android:orientation="vertical"
             android:weightSum="10">
 
@@ -174,7 +143,6 @@
         </LinearLayout>
 
         <LinearLayout
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"

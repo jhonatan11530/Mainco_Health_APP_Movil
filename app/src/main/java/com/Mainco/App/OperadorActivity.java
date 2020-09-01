@@ -165,7 +165,7 @@ public class OperadorActivity extends AppCompatActivity {
                              int result = textToSpeech.setLanguage(Locale.getDefault());
                              if (result == android.speech.tts.TextToSpeech.LANG_MISSING_DATA ||
                                      result == android.speech.tts.TextToSpeech.LANG_NOT_SUPPORTED) {
-                                 Toast.makeText(getApplicationContext(), "This language is not supported!",
+                                 Toast.makeText(getApplicationContext(), "EL LENGUAJE NO ES SOPORTADO !",
                                          Toast.LENGTH_SHORT);
                              } else {
 
@@ -680,6 +680,7 @@ public class OperadorActivity extends AppCompatActivity {
 
             id.setError("ID ES REQUERIDO !");
             items.setError("O.P ES REQUERIDO !");
+            textToSpeech.speak("DEBE INGRESAR SU CODIGO Y EL NUMERO DE O P", android.speech.tts.TextToSpeech.QUEUE_FLUSH, null, null);
 
         } else if (id.getText().toString().length() > 0 && items.getText().toString().length() == 0) {
 
@@ -710,17 +711,12 @@ public class OperadorActivity extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-
                                     registroTIME.setEnabled(true);
-                                    salidaTIME.setEnabled(true);
-                                    cantidadund.setEnabled(true);
-                                    desbloquear.setEnabled(true);
-
-                                    desbloquear.setBackgroundColor(Color.parseColor("#B2C900"));
                                     registroTIME.setBackgroundColor(Color.parseColor("#B2C900"));
-                                    cantidadund.setBackgroundColor(Color.parseColor("#2196F3"));
-                                    salidaTIME.setBackgroundColor(Color.parseColor("#2196F3"));
 
+                                    salidaTIME.setEnabled(false);
+                                    cantidadund.setEnabled(false);
+                                    desbloquear.setEnabled(false);
 
                                 }
                             });
@@ -968,6 +964,7 @@ public class OperadorActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "USTED SELECCIÓNO " + mostrardatos, Toast.LENGTH_SHORT).show();
                     }
                 });
+                textToSpeech.speak(resuldato2.getSelectedItem().toString(), android.speech.tts.TextToSpeech.QUEUE_FLUSH, null, null);
 
             }
         });
@@ -1225,6 +1222,19 @@ public class OperadorActivity extends AppCompatActivity {
 
                             if (validator == 0) {
 
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        salidaTIME.setEnabled(true);
+                                        cantidadund.setEnabled(true);
+                                        desbloquear.setEnabled(true);
+
+                                        desbloquear.setBackgroundColor(Color.parseColor("#B2C900"));
+                                        cantidadund.setBackgroundColor(Color.parseColor("#2196F3"));
+                                        salidaTIME.setBackgroundColor(Color.parseColor("#2196F3"));
+                                    }
+                                });
+
                                 System.out.println("ESTO SUCEDIO");
                                 String responses = HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadedits.php?cod=" + resuldato3.getSelectedItem().toString()+"&op="+items.getText().toString()).body();
 
@@ -1232,10 +1242,23 @@ public class OperadorActivity extends AppCompatActivity {
                                 HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodifi.php?op=" + resuldato3.getSelectedItem().toString() + "&totales=" + RESTARCANTIDAD.getString(0)).body();
 
                                 new Task().execute();
+
+
                             }
                             if (validator > 0) {
 
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        salidaTIME.setEnabled(true);
+                                        cantidadund.setEnabled(true);
+                                        desbloquear.setEnabled(true);
 
+                                        desbloquear.setBackgroundColor(Color.parseColor("#B2C900"));
+                                        cantidadund.setBackgroundColor(Color.parseColor("#2196F3"));
+                                        salidaTIME.setBackgroundColor(Color.parseColor("#2196F3"));
+                                    }
+                                });
 
                                 new Task().execute();
                                 runOnUiThread(new Runnable() {
