@@ -3,13 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.Mainco.App">
 
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-
 
     <application
         android:allowBackup="true"
@@ -28,7 +26,7 @@
             android:exported="false" />
 
         <activity
-            android:name="com.Mainco.App.MainActivity"
+            android:name=".MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
@@ -38,23 +36,23 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.Mainco.App.options"
+            android:name=".options"
             android:label="@string/title_activity_opciones"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.Mainco.App.LoginActivity"
+            android:name=".LoginActivity"
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.Mainco.App.OperadorActivity"
+            android:name=".OperadorActivity"
             android:label="@string/title_activity_operador"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.Mainco.App.RegistroActivity"
+            android:name=".RegistroActivity"
             android:label="@string/title_activity_registro"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.Mainco.App.OlvidoActivity"
+            android:name=".OlvidoActivity"
             android:label="@string/title_activity_olvido"
             android:screenOrientation="portrait" />
         <activity
