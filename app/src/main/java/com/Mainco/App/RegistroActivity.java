@@ -22,7 +22,7 @@ public class RegistroActivity extends AppCompatActivity {
     CheckBox resultado;
     Button registro;
     AsyncHttpClient client;
-
+    TSS textToSpeech=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +30,8 @@ public class RegistroActivity extends AppCompatActivity {
 
         client = new AsyncHttpClient();
 
+        textToSpeech = new TSS();
+        textToSpeech.init(this);
 
         nombre = findViewById(R.id.nombre);
         apellido = findViewById(R.id.apellido);
@@ -109,7 +111,7 @@ public class RegistroActivity extends AppCompatActivity {
                                     AlertDialog.Builder builder = new AlertDialog.Builder(RegistroActivity.this);
                                     builder.setTitle("REGISTRO DE USUARIO EXITOSO");
                                     builder.setMessage("Se completo el registro exitosamente");
-
+                                    textToSpeech.speak("Se completo el registro exitosamente");
                                     builder.setPositiveButton("Iniciar Sesiòn", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {

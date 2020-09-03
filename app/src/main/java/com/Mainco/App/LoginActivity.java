@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText login, pass;
     Button validar;
     TextView registre;
-
+    TSS textToSpeech=null;
     CheckBox GUARDARUTO;
     ProgressDialog pd;
 
@@ -49,6 +49,10 @@ public class LoginActivity extends AppCompatActivity {
 
 
         mostrarguardado();
+
+        textToSpeech = new TSS();
+        textToSpeech.init(this);
+
         GUARDARUTO = findViewById(R.id.OK);
 
         login = findViewById(R.id.estado);
@@ -127,8 +131,8 @@ public class LoginActivity extends AppCompatActivity {
                     final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                     builder.setTitle(ssBuilder);
                     builder.setIcon(R.drawable.peligro);
-
                     builder.setMessage("VERIFIQUE EL USUARIO Y CONTRASEÑA");
+                    textToSpeech.speak("ERROR AL INICIAR SESIÓN. VERIFIQUE EL USUARIO Y CONTRASEÑA");
                     builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
@@ -155,7 +159,7 @@ public class LoginActivity extends AppCompatActivity {
                         String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/validar.php?cedula=" + login.getText().toString() + "&pass=" + pass.getText().toString()).body();
 
                         if (response.length() > 0) {
-
+                            textToSpeech.speak("BIENVENIDO");
                             Intent e = new Intent(getApplicationContext(), OperadorActivity.class);
                             startActivity(e);
 

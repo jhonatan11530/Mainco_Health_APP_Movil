@@ -17,12 +17,14 @@ import org.json.JSONArray;
 public class OlvidoActivity extends AppCompatActivity {
 
     private EditText id, cedula;
-
+    TSS textToSpeech=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.olvido);
 
+        textToSpeech = new TSS();
+        textToSpeech.init(this);
 
         id = findViewById(R.id.CDUNICO);
         cedula = findViewById(R.id.cc);
@@ -94,7 +96,7 @@ public class OlvidoActivity extends AppCompatActivity {
 
                                                 builder.setTitle("SE RESTAURO LA CONTRASEÑA");
                                                 builder.setMessage("Se cambio la contraseña exitosamente");
-
+                                                textToSpeech.speak("Se cambio la contraseña exitosamente");
                                                 builder.setPositiveButton("Iniciar Sesiòn", new DialogInterface.OnClickListener() {
                                                     @Override
                                                     public void onClick(DialogInterface dialogInterface, int i) {

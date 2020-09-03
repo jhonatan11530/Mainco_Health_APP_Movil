@@ -76,9 +76,8 @@ public class OperadorActivity extends AppCompatActivity {
     RelativeLayout production;
     private AsyncHttpClient cliente, cliente1, cliente2, cliente3, cliente4, cliente5;
     public Thread hilo;
-    TextToSpeech textToSpeech;
     private Thread workerThread = null;
-
+    TSS textToSpeech=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +94,8 @@ public class OperadorActivity extends AppCompatActivity {
         llenarSpinner();
         llenarOps();
 
-        TSS();
+        textToSpeech = new TSS();
+        textToSpeech.init(this);
 
 
 
@@ -153,35 +153,6 @@ public class OperadorActivity extends AppCompatActivity {
         });
 
     }
-    public void TSS(){
-     if (workerThread == null || !workerThread.isAlive()) {
-         workerThread = new Thread(new Runnable() {
-             @Override
-             public void run() {
-                 textToSpeech = new android.speech.tts.TextToSpeech(OperadorActivity.this, new android.speech.tts.TextToSpeech.OnInitListener() {
-                     @Override
-                     public void onInit(int status) {
-                         if (status == android.speech.tts.TextToSpeech.SUCCESS) {
-                             int result = textToSpeech.setLanguage(Locale.getDefault());
-                             if (result == android.speech.tts.TextToSpeech.LANG_MISSING_DATA ||
-                                     result == android.speech.tts.TextToSpeech.LANG_NOT_SUPPORTED) {
-                                 Toast.makeText(getApplicationContext(), "EL LENGUAJE NO ES SOPORTADO !",
-                                         Toast.LENGTH_SHORT);
-                             } else {
-
-                                 textToSpeech.setPitch(1.0f);
-                                 textToSpeech.setSpeechRate(1.0f);
-
-                             }
-                         }
-                     }
-                 });
-             }
-
-         });
-         workerThread.start();
-     }
- }
 
     public void onBackPressed() {
     }
@@ -635,7 +606,7 @@ public class OperadorActivity extends AppCompatActivity {
 
             if (variable == 0){
 
-                textToSpeech.speak("LA ORDEN DE PRODU SION ESTA CERRADA", android.speech.tts.TextToSpeech.QUEUE_FLUSH, null, null);
+                textToSpeech.speak("LA ORDEN DE PRODU SION ESTA CERRADA");
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -680,7 +651,7 @@ public class OperadorActivity extends AppCompatActivity {
 
             id.setError("ID ES REQUERIDO !");
             items.setError("O.P ES REQUERIDO !");
-            textToSpeech.speak("DEBE INGRESAR SU CODIGO Y EL NUMERO DE O P", android.speech.tts.TextToSpeech.QUEUE_FLUSH, null, null);
+            textToSpeech.speak("DEBE INGRESAR SU CODIGO Y EL NUMERO DE O P");
 
         } else if (id.getText().toString().length() > 0 && items.getText().toString().length() == 0) {
 
@@ -961,7 +932,7 @@ public class OperadorActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "USTED SELECCIÓNO " + mostrardatos, Toast.LENGTH_SHORT).show();
                     }
                 });
-                textToSpeech.speak(resuldato2.getSelectedItem().toString(), android.speech.tts.TextToSpeech.QUEUE_FLUSH, null, null);
+                textToSpeech.speak(resuldato2.getSelectedItem().toString());
 
             }
         });
@@ -1195,7 +1166,7 @@ public class OperadorActivity extends AppCompatActivity {
         edit = new EditText(this);
         edit.setEnabled(false);
         edit.setText(fecha);
-        textToSpeech.speak("PUEDE EMPEZAR A REALIZAR SU LABOR", android.speech.tts.TextToSpeech.QUEUE_FLUSH, null, null);
+        textToSpeech.speak("PUEDE EMPEZAR A REALIZAR SU LABOR");
 
         final String fechas = edit.getText().toString();
         final String Nop = resuldato3.getSelectedItem().toString();
@@ -1457,7 +1428,7 @@ public class OperadorActivity extends AppCompatActivity {
                                                     }
                                                 }
                                             }).start();
-                                            textToSpeech.speak("SE REGISTRO LO PRODUCIDO", android.speech.tts.TextToSpeech.QUEUE_FLUSH, null, null);
+                                            textToSpeech.speak("SE REGISTRO LO PRODUCIDO");
                                             runOnUiThread(new Runnable() {
                                                 @Override
                                                 public void run() {
@@ -1652,7 +1623,7 @@ public class OperadorActivity extends AppCompatActivity {
                                                     }
                                                 }
                                             }).start();
-                                            textToSpeech.speak("SE REGISTRO LO PRODUCIDO", android.speech.tts.TextToSpeech.QUEUE_FLUSH, null, null);
+                                            textToSpeech.speak("SE REGISTRO LO PRODUCIDO");
                                             runOnUiThread(new Runnable() {
                                                 @Override
                                                 public void run() {
