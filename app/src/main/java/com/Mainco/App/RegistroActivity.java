@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.loopj.android.http.AsyncHttpClient;
 
+import TextToSpeech.TSS;
+
 public class RegistroActivity extends AppCompatActivity {
 
     EditText nombre, apellido, cedula, pass;
@@ -110,7 +112,6 @@ public class RegistroActivity extends AppCompatActivity {
                                     builder.setTitle("REGISTRO DE USUARIO EXITOSO");
 
                                     builder.setMessage("Se completo el registro exitosamente");
-
 
                                     builder.setPositiveButton("Iniciar Sesiòn", new DialogInterface.OnClickListener() {
                                         @Override
