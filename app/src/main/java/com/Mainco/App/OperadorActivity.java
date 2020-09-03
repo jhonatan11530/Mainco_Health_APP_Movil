@@ -648,7 +648,14 @@ public class OperadorActivity extends AppCompatActivity {
                 builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-
+                        hilo = new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?op=" + items.getText().toString()).body();
+                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/limpiar.php?id=" + resuldato3.getSelectedItem().toString()).body();
+                            }
+                        });
+                        hilo.start();
                     }
                 });
                 AlertDialog alert = builder.create();
@@ -823,9 +830,6 @@ public class OperadorActivity extends AppCompatActivity {
                                 cantidadund.setEnabled(false);
                                 desbloquear.setEnabled(false);
 
-                                desbloquear.setBackgroundColor(Color.parseColor("#919191"));
-                                salidaTIME.setBackgroundColor(Color.parseColor("#919191"));
-                                cantidadund.setBackgroundColor(Color.parseColor("#919191"));
 
 
                                 AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
@@ -841,21 +845,6 @@ public class OperadorActivity extends AppCompatActivity {
                                             @Override
                                             public void run() {
                                                 HttpRequest.get("http://" + cambiarIP.ip + "/validar/nuevoRegistro.php?id=" + id.getText().toString()).body();
-                                            }
-                                        });
-                                        hilo.start();
-                                    }
-                                });
-
-                                builder.setPositiveButton("FINALIZAR O.P", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        Toast.makeText(getApplicationContext(), "FINALIZO LA O.P", Toast.LENGTH_SHORT).show();
-                                        hilo = new Thread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?op=" + items.getText().toString()).body();
-                                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/limpiar.php?id=" + resuldato3.getSelectedItem().toString()).body();
                                             }
                                         });
                                         hilo.start();
