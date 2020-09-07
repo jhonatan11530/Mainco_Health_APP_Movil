@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.Mainco.App">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
@@ -21,7 +23,7 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="m">
         <service
-            android:name="Services.ServicioError"
+            android:name="Services.ServicioConnecting"
             android:enabled="true"
             android:exported="false"></service>
         <service

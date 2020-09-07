@@ -28,7 +28,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.List;
 
-import Services.ServicioError;
+import Services.ServicioConnecting;
+import Services.ServicioRegistroSalida;
 
 
 @SuppressWarnings("ALL")
@@ -64,33 +65,7 @@ public class LoginActivity extends AppCompatActivity {
 
         validar = findViewById(R.id.login);
 
-        conf.SSID = "\"" + networkSSID + "\"";
-        conf.preSharedKey = "\"" + networkPass + "\"";
 
-
-        Intent Componente = new Intent(LoginActivity.this, ServicioError.class);
-        startService(Componente);
-
-
-        WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-
-        if ((!wifiManager.isWifiEnabled())) {
-            Toast.makeText(LoginActivity.this, "Conectando a Mainco.", Toast.LENGTH_LONG).show();
-            wifiManager.setWifiEnabled(true);
-
-        }
-
-        wifiManager.addNetwork(conf);
-        List<WifiConfiguration> list = wifiManager.getConfiguredNetworks();
-        for (WifiConfiguration i : list) {
-            if (i.SSID != null && i.SSID.equals("\"" + networkSSID + "\"")) {
-
-                wifiManager.enableNetwork(i.networkId, true);
-
-
-                break;
-            }
-        }
 
     }
 

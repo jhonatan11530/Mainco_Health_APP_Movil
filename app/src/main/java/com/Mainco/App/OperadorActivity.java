@@ -5,7 +5,9 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.IpSecManager;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.text.Editable;
@@ -37,18 +39,22 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.net.Inet4Address;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import Services.ServicioRegistroSalida;
 import cz.msebera.android.httpclient.Header;
 @SuppressWarnings("ALL")
 public class OperadorActivity extends AppCompatActivity implements LifecycleObserver {
-
 
     private EditText id, cantidad, paro, fallas, items, codemotivo;
     private String falla, error, VaribleTOTA, NOMBRE;
@@ -128,7 +134,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
         resultados = findViewById(R.id.listar_operador);
 
-        getLifecycle().addObserver(new Observardor());
+       getLifecycle().addObserver(new Observardor());
 
         desbloquear.setEnabled(false);
         registroTIME.setEnabled(false);
@@ -190,10 +196,69 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
         @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
         public void onDestroy() {
-            Log.i(LOG_TAG, "onDestroy");
+            // imprime fecha
+             dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+             date = new Date();
+            //imprime hora
+              hourFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+            final String fecha = dateFormat.format(date);
+            final String hora = hourFormat.format(date);
+            
+            // se obtiene el name-model,ip,fecha,hora
+            Log.i(LOG_TAG, "onDestroy "+obtenerNombreDeDispositivo()+" "+getIP()+" "+hora+" "+fecha);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                HttpRequest.get("http://" + cambiarIP.ip + "/validar/RegistroERROR.php?nombre="+obtenerNombreDeDispositivo()+"&ip="+getIP()+"&hora="+hora.toString()+"&fecha="+fecha.toString()).body();
+                }
+            }).start();
+            Thread.interrupted();
+
+        }
+
+    }
+
+    public static String getIP(){
+        List<InetAddress> addrs;
+        String address = "";
+        try{
+            List<NetworkInterface> interfaces = Collections.list(NetworkInterface.getNetworkInterfaces());
+            for(NetworkInterface intf : interfaces){
+                addrs = Collections.list(intf.getInetAddresses());
+                for(InetAddress addr : addrs){
+                    if(!addr.isLoopbackAddress() && addr instanceof Inet4Address){
+                        address = addr.getHostAddress().toUpperCase(new Locale("es", "MX"));
+                    }
+                }
+            }
+        }catch (Exception e){
+            System.out.println("Ex getting IP value " + e.getMessage());
+
+        }
+        return address;
+    }
+    public String obtenerNombreDeDispositivo() {
+        String fabricante = Build.MANUFACTURER;
+        String modelo = Build.MODEL;
+        if (modelo.startsWith(fabricante)) {
+            return primeraLetraMayuscula(modelo);
+        } else {
+            return primeraLetraMayuscula(fabricante) + " " + modelo;
         }
     }
 
+
+    private String primeraLetraMayuscula(String cadena) {
+        if (cadena == null || cadena.length() == 0) {
+            return "";
+        }
+        char primeraLetra = cadena.charAt(0);
+        if (Character.isUpperCase(primeraLetra)) {
+            return cadena;
+        } else {
+            return Character.toUpperCase(primeraLetra) + cadena.substring(1);
+        }
+    }
     public void onBackPressed() {
     }
 
@@ -1738,7 +1803,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         alert.show();
         alert.setCanceledOnTouchOutside(false);
 
-        Button Verificar = alert.getButton(AlertDialog.BUTTON_POSITIVE);
+        /*Button Verificar = alert.getButton(AlertDialog.BUTTON_POSITIVE);
         Verificar.setEnabled(false);
 
         resuldato4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -1756,7 +1821,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-        });
+        });*/
 
     }
 }
