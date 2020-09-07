@@ -13,9 +13,11 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,6 +27,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.OnLifecycleEvent;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -42,7 +47,7 @@ import java.util.Locale;
 import Services.ServicioRegistroSalida;
 import cz.msebera.android.httpclient.Header;
 @SuppressWarnings("ALL")
-public class OperadorActivity extends AppCompatActivity {
+public class OperadorActivity extends AppCompatActivity implements LifecycleObserver {
 
 
     private EditText id, cantidad, paro, fallas, items, codemotivo;
@@ -123,6 +128,7 @@ public class OperadorActivity extends AppCompatActivity {
 
         resultados = findViewById(R.id.listar_operador);
 
+        getLifecycle().addObserver(new Observardor());
 
         desbloquear.setEnabled(false);
         registroTIME.setEnabled(false);
@@ -152,6 +158,40 @@ public class OperadorActivity extends AppCompatActivity {
             }
         });
 
+    }
+    public class Observardor implements LifecycleObserver {
+
+        private String LOG_TAG = "Observardor";
+
+        @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+        public void onResume() {
+            Log.i(LOG_TAG, "onResume");
+        }
+
+        @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+        public void onPause() {
+            Log.i(LOG_TAG, "onPause");
+        }
+
+        @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+        public void onCreate() {
+            Log.i(LOG_TAG, "onCreate");
+        }
+
+        @OnLifecycleEvent(Lifecycle.Event.ON_START)
+        public void onStart() {
+            Log.i(LOG_TAG, "onStart");
+        }
+
+        @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+        public void onStop() {
+            Log.i(LOG_TAG, "onStop");
+        }
+
+        @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+        public void onDestroy() {
+            Log.i(LOG_TAG, "onDestroy");
+        }
     }
 
     public void onBackPressed() {
@@ -969,10 +1009,27 @@ public class OperadorActivity extends AppCompatActivity {
 
         registros.setView(tiempo1);
         registros.create();
-        AlertDialog alert = registros.create();
+         AlertDialog alert = registros.create();
         alert.show();
 
         alert.setCanceledOnTouchOutside(false);
+        validarinfo.setEnabled(false);
+        resuldato2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(resuldato4.getSelectedItem().toString().length()!=0){
+                    System.out.println("EL SPINNER NO ESTA VACIO");
+                    validarinfo.setEnabled(true);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
         desbloquear = alert.getButton(AlertDialog.BUTTON_NEGATIVE);
         neutrar = alert.getButton(AlertDialog.BUTTON_NEUTRAL);
@@ -1464,10 +1521,29 @@ public class OperadorActivity extends AppCompatActivity {
 
         builder.setView(view);
         builder.create();
-        AlertDialog alert = builder.create();
+        final AlertDialog alert = builder.create();
         alert.show();
         alert.setCanceledOnTouchOutside(false);
 
+        Button Verificar = alert.getButton(AlertDialog.BUTTON_POSITIVE);
+        Verificar.setEnabled(false);
+
+        resuldato4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(resuldato4.getSelectedItem().toString().length()!=0){
+                    System.out.println("EL SPINNER NO ESTA VACIO");
+                    desbloquear = alert.getButton(AlertDialog.BUTTON_POSITIVE);
+                    desbloquear.setEnabled(true);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     public void EXEDIO() {
@@ -1542,6 +1618,7 @@ public class OperadorActivity extends AppCompatActivity {
 
         final String fechas = edit.getText().toString();
         final String horas = editt.getText().toString();
+
         builder.setPositiveButton("VERIFICAR", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -1655,13 +1732,31 @@ public class OperadorActivity extends AppCompatActivity {
                 }
             }
         });
-
-
         builder.setView(view);
         builder.create();
-        AlertDialog alert = builder.create();
+        final AlertDialog alert = builder.create();
         alert.show();
         alert.setCanceledOnTouchOutside(false);
+
+        Button Verificar = alert.getButton(AlertDialog.BUTTON_POSITIVE);
+        Verificar.setEnabled(false);
+
+        resuldato4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(resuldato4.getSelectedItem().toString().length()!=0){
+                    System.out.println("EL SPINNER NO ESTA VACIO");
+                    desbloquear = alert.getButton(AlertDialog.BUTTON_POSITIVE);
+                    desbloquear.setEnabled(true);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
     }
 }

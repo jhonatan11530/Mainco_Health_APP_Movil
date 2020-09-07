@@ -3,9 +3,17 @@ package com.Mainco.App;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleObserver;
+import androidx.lifecycle.OnLifecycleEvent;
+import androidx.lifecycle.ProcessLifecycleOwner;
+
+import Services.ServicioError;
 
 public class MainActivity extends AppCompatActivity {
     private final int DURACION_SPLASH = 3000;
@@ -27,4 +35,6 @@ public class MainActivity extends AppCompatActivity {
 
         }, DURACION_SPLASH);
     }
+
+
 }

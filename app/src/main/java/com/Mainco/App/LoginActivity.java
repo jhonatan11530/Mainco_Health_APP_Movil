@@ -28,6 +28,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import java.util.List;
 
+import Services.ServicioError;
+
 
 @SuppressWarnings("ALL")
 public class LoginActivity extends AppCompatActivity {
@@ -66,6 +68,8 @@ public class LoginActivity extends AppCompatActivity {
         conf.preSharedKey = "\"" + networkPass + "\"";
 
 
+        Intent Componente = new Intent(LoginActivity.this, ServicioError.class);
+        startService(Componente);
 
 
         WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
@@ -162,6 +166,7 @@ public class LoginActivity extends AppCompatActivity {
                             textToSpeech.speak("BIENVENIDO");
                             Intent e = new Intent(getApplicationContext(), OperadorActivity.class);
                             startActivity(e);
+
 
                             if (GUARDARUTO.isChecked()) {
 
