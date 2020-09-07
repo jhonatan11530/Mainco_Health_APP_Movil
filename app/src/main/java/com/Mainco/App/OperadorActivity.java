@@ -203,13 +203,12 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
               hourFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
             final String fecha = dateFormat.format(date);
             final String hora = hourFormat.format(date);
-            
             // se obtiene el name-model,ip,fecha,hora
-            Log.i(LOG_TAG, "onDestroy "+obtenerNombreDeDispositivo()+" "+getIP()+" "+hora+" "+fecha);
+            Log.i(LOG_TAG, "onDestroy "+id.getText().toString()+" "+items.getText().toString()+" "+obtenerNombreDeDispositivo()+" "+getIP()+" "+hora+" "+fecha);
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                HttpRequest.get("http://" + cambiarIP.ip + "/validar/RegistroERROR.php?nombre="+obtenerNombreDeDispositivo()+"&ip="+getIP()+"&hora="+hora.toString()+"&fecha="+fecha.toString()).body();
+                HttpRequest.get("http://" + cambiarIP.ip + "/validar/RegistroERROR.php?id="+id.getText().toString()+"&op="+items.getText().toString()+"&nombre="+obtenerNombreDeDispositivo()+"&ip="+getIP()+"&hora="+hora.toString()+"&fecha="+fecha.toString()).body();
                 }
             }).start();
             Thread.interrupted();
