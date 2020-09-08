@@ -1,29 +1,30 @@
 package Services;
 
 import android.annotation.SuppressLint;
-import android.app.Service;
+import android.app.IntentService;
 import android.content.Context;
 import android.content.Intent;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
-import android.os.IBinder;
 import android.widget.Toast;
 
-import com.Mainco.App.LoginActivity;
+import androidx.annotation.Nullable;
 
 import java.util.List;
 
-public class ServicioConnecting extends Service {
+
+public class ServicioConnecting extends IntentService {
     final WifiConfiguration conf = new WifiConfiguration();
     String networkSSID = "WIFIMainco";
     String networkPass = "A125277935";
-    public ServicioConnecting() {
 
+    public ServicioConnecting() {
+        super("SERVICIO");
     }
 
+
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-         super.onStartCommand(intent, flags, startId);
+    protected void onHandleIntent(@Nullable Intent intent) {
 
         conf.SSID = "\"" + networkSSID + "\"";
         conf.preSharedKey = "\"" + networkPass + "\"";
@@ -48,12 +49,5 @@ public class ServicioConnecting extends Service {
                 break;
             }
         }
-        return START_STICKY;
-    }
-
-    @Override
-    public IBinder onBind(Intent intent) {
-        // TODO: Return the communication channel to the service.
-        throw new UnsupportedOperationException("Not yet implemented");
     }
 }

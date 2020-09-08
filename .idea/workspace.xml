@@ -23,8 +23,13 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Services/ServicioConnecting.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Services/ServicioConnecting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Services/ServicioRegistroSalida.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Services/ServicioRegistroSalida.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/LoginActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/OperadorActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/OperadorActivity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,7 +37,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_2_API_28" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="HA0ZS7FM" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -276,10 +281,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="137" y="24" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738@0.0.1366.738" timestamp="1596555359590" />
-    <state x="474" y="85" key="#com.intellij.ide.util.MemberChooser" timestamp="1599165546218">
+    <state x="474" y="85" key="#com.intellij.ide.util.MemberChooser" timestamp="1599596760760">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="474" y="85" key="#com.intellij.ide.util.MemberChooser/0.0.1366.738@0.0.1366.738" timestamp="1599165546218" />
+    <state x="474" y="85" key="#com.intellij.ide.util.MemberChooser/0.0.1366.738@0.0.1366.738" timestamp="1599596760760" />
     <state x="413" y="145" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1597865132624">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -298,10 +303,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="363" y="95" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1366.738@0.0.1366.738" timestamp="1592931000367" />
-    <state x="413" y="114" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1599512327824">
+    <state x="413" y="114" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1599597159145">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="413" y="114" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.738@0.0.1366.738" timestamp="1599512327824" />
+    <state x="413" y="114" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.738@0.0.1366.738" timestamp="1599597159145" />
     <state x="413" y="116" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1593114760534">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -339,25 +344,25 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="553" y="257" key="Github.ShareDialog/0.0.1366.728@0.0.1366.728" timestamp="1596674572787" />
-    <state width="1367" height="209" key="GridCell.Tab.0.bottom" timestamp="1599493311508">
+    <state width="1367" height="137" key="GridCell.Tab.0.bottom" timestamp="1599596323629">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1367" height="209" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1599493311508" />
+    <state width="1367" height="137" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1599596323629" />
     <state width="1981" height="545" key="GridCell.Tab.0.bottom/0.0.2049.1107@0.0.2049.1107" timestamp="1591301732015" />
-    <state width="1367" height="209" key="GridCell.Tab.0.center" timestamp="1599493311508">
+    <state width="1367" height="137" key="GridCell.Tab.0.center" timestamp="1599596323629">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1367" height="209" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1599493311508" />
+    <state width="1367" height="137" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1599596323629" />
     <state width="1981" height="545" key="GridCell.Tab.0.center/0.0.2049.1107@0.0.2049.1107" timestamp="1591301732015" />
-    <state width="1367" height="209" key="GridCell.Tab.0.left" timestamp="1599493311508">
+    <state width="1367" height="137" key="GridCell.Tab.0.left" timestamp="1599596323629">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1367" height="209" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1599493311508" />
+    <state width="1367" height="137" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1599596323629" />
     <state width="1981" height="545" key="GridCell.Tab.0.left/0.0.2049.1107@0.0.2049.1107" timestamp="1591301732015" />
-    <state width="1367" height="209" key="GridCell.Tab.0.right" timestamp="1599493311508">
+    <state width="1367" height="137" key="GridCell.Tab.0.right" timestamp="1599596323629">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1367" height="209" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1599493311508" />
+    <state width="1367" height="137" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1599596323629" />
     <state width="1981" height="545" key="GridCell.Tab.0.right/0.0.2049.1107@0.0.2049.1107" timestamp="1591301732015" />
     <state width="1367" height="2" key="GridCell.Tab.1.bottom" timestamp="1597784125781">
       <screen x="0" y="0" width="1366" height="738" />
@@ -415,6 +420,10 @@
     </state>
     <state x="339" y="159" width="672" height="677" key="run.anything.popup/0.0.1366.738@0.0.1366.738" timestamp="1593111632338" />
     <state x="509" y="239" key="run.anything.popup/0.0.2049.1107@0.0.2049.1107" timestamp="1591295403676" />
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup" timestamp="1599595633807">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1599595633807" />
     <state x="513" y="155" key="svn.repositoryBrowser" timestamp="1596676114293">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

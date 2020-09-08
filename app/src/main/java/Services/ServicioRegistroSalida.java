@@ -4,20 +4,19 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
+import androidx.annotation.Nullable;
+
 import com.Mainco.App.HttpRequest;
 import com.Mainco.App.cambiarIP;
 
-
 public class ServicioRegistroSalida extends Service {
     private Thread workerThread = null;
-
     public ServicioRegistroSalida() {
     }
 
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
+    public int onStartCommand(@Nullable Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
-
         final String resuldato3 = intent.getStringExtra("resuldato3");
         final String nombretarea = intent.getStringExtra("tarea");
         final String items = intent.getStringExtra("items");
@@ -50,8 +49,6 @@ public class ServicioRegistroSalida extends Service {
         }
         return START_STICKY;
     }
-
-
     @Override
     public IBinder onBind(Intent intent) {
         // TODO: Return the communication channel to the service.

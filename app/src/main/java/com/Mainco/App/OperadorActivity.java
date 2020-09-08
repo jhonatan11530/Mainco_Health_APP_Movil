@@ -5,11 +5,9 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.net.IpSecManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.speech.tts.TextToSpeech;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -1011,7 +1009,10 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         //TEXTVIEW Y SPINNER
         motivo.setVisibility(View.VISIBLE);
         resuldato2.setVisibility(View.VISIBLE);
-
+        if(codemotivo.getText().toString() =="NULL"){
+            codemotivo.setError("DEBE DE INGRESAR EL CODIGO DEL MOTIVO");
+            textToSpeech.speak("DEBE DE INGRESAR EL CODIGO DEL MOTIVO");
+        }else{
         validarinfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -1040,7 +1041,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
             }
         });
-
+        }
 
         registros.setPositiveButton("REGISTRAR", new DialogInterface.OnClickListener() {
             @Override
