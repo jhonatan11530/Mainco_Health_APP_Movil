@@ -25,19 +25,15 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/Services/ServicioConnecting.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Services/ServicioConnecting.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Services/ServicioRegistroSalida.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Services/ServicioRegistroSalida.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/LoginActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/OperadorActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/OperadorActivity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="HA0ZS7FM" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="HGT45AJX" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -281,10 +277,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="137" y="24" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738@0.0.1366.738" timestamp="1596555359590" />
-    <state x="474" y="85" key="#com.intellij.ide.util.MemberChooser" timestamp="1599596760760">
+    <state x="474" y="85" key="#com.intellij.ide.util.MemberChooser" timestamp="1599598106482">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="474" y="85" key="#com.intellij.ide.util.MemberChooser/0.0.1366.738@0.0.1366.738" timestamp="1599596760760" />
+    <state x="474" y="85" key="#com.intellij.ide.util.MemberChooser/0.0.1366.738@0.0.1366.738" timestamp="1599598106482" />
     <state x="413" y="145" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1597865132624">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -303,10 +299,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="363" y="95" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1366.738@0.0.1366.738" timestamp="1592931000367" />
-    <state x="413" y="114" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1599597159145">
+    <state x="413" y="114" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1599598134772">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="413" y="114" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.738@0.0.1366.738" timestamp="1599597159145" />
+    <state x="413" y="114" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.738@0.0.1366.738" timestamp="1599598134772" />
     <state x="413" y="116" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1593114760534">
       <screen x="0" y="0" width="1366" height="738" />
     </state>

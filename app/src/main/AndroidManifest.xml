@@ -23,11 +23,11 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="m">
         <service
-            android:name="Services.ServicioRegistroSalida"
-            android:enabled="true"
+            android:name="Services.ServicioConnecting"
             android:exported="false"></service>
         <service
-            android:name="Services.ServicioConnecting"
+            android:name="Services.ServicioRegistroSalida"
+            android:enabled="true"
             android:exported="false" />
 
         <activity
