@@ -25,7 +25,7 @@
         <service
             android:name="Services.ServicioConnecting"
             android:enabled="true"
-            android:exported="false"></service>
+            android:exported="false" />
         <service
             android:name="Services.ServicioRegistroSalida"
             android:enabled="true"

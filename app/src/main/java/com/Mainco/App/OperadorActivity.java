@@ -723,6 +723,14 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                 builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?op=" + items.getText().toString()).body();
+                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/limpiar.php?id=" + resuldato3.getSelectedItem().toString()).body();
+
+                            }
+                        }).start();
 
                     }
                 });
@@ -909,25 +917,17 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
                                         Toast.makeText(getApplicationContext(), "LA ACTIVIDAD FINALIZO", Toast.LENGTH_SHORT).show();
+                                        runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                registroTIME.setEnabled(true);
+                                                registroTIME.setBackgroundColor(Color.parseColor("#B2C900"));
+                                            }
+                                        });
                                         hilo = new Thread(new Runnable() {
                                             @Override
                                             public void run() {
                                                 HttpRequest.get("http://" + cambiarIP.ip + "/validar/nuevoRegistro.php?id=" + id.getText().toString()).body();
-                                            }
-                                        });
-                                        hilo.start();
-                                    }
-                                });
-
-                                builder.setPositiveButton("FINALIZAR O.P", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        Toast.makeText(getApplicationContext(), "FINALIZO LA O.P", Toast.LENGTH_SHORT).show();
-                                        hilo = new Thread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?op=" + items.getText().toString()).body();
-                                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/limpiar.php?id=" + resuldato3.getSelectedItem().toString()).body();
                                             }
                                         });
                                         hilo.start();
@@ -1042,38 +1042,20 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         });
 
 
-        registros.setPositiveButton("FINALIZAR", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(getApplicationContext(), "LOS DATOS FUERON GUARDADOS CORRECTAMENTE", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-        registros.setNegativeButton("REGISTRAR", new DialogInterface.OnClickListener() {
+        registros.setPositiveButton("REGISTRAR", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
 
-
-                Toast.makeText(getApplicationContext(), "DATOS VERIFICADOS", Toast.LENGTH_SHORT).show();
-
-
             }
         });
-        registros.setNeutralButton("REGISTRAR OTRO MOTIVO DE PARO", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                codemotivo.setEnabled(true);
-                codemotivo.setText("");
-            }
-        });
+
 
 
         stop.setEnabled(false);
 
         registros.setView(tiempo1);
         registros.create();
-         AlertDialog alert = registros.create();
+        final AlertDialog alert = registros.create();
         alert.show();
 
         alert.setCanceledOnTouchOutside(false);
@@ -1082,9 +1064,16 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(resuldato4.getSelectedItem().toString().length()!=0){
+
+                if(resuldato4.getSelectedItem().toString()!=""){
                     System.out.println("EL SPINNER NO ESTA VACIO");
-                    validarinfo.setEnabled(true);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            validarinfo.setEnabled(true);
+                        }
+                    });
+
                 }
             }
 
@@ -1095,35 +1084,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         });
 
 
-        desbloquear = alert.getButton(AlertDialog.BUTTON_NEGATIVE);
-        neutrar = alert.getButton(AlertDialog.BUTTON_NEUTRAL);
-        positivo = alert.getButton(AlertDialog.BUTTON_POSITIVE);
-
-        neutrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                positivo.setEnabled(false);
-                neutrar.setEnabled(false);
-                desbloquear.setEnabled(false);
-                go.setEnabled(true);
-
-                MOSTRAR.setVisibility(View.INVISIBLE);
-                paro.setVisibility(View.INVISIBLE);
-                stop.setVisibility(View.INVISIBLE);
-                go.setVisibility(View.INVISIBLE);
-                texto.setVisibility(View.INVISIBLE);
-
-
-                validarinfo.setVisibility(View.VISIBLE);
-                motivo.setVisibility(View.VISIBLE);
-                resuldato2.setClickable(true);
-                resuldato2.setEnabled(true);
-                resuldato2.setVisibility(View.VISIBLE);
-                paro.setText("");
-                MOSTRAR.setText("00:00:00");
-            }
-        });
+        desbloquear = alert.getButton(AlertDialog.BUTTON_POSITIVE);
 
 
         desbloquear.setOnClickListener(new View.OnClickListener() {
@@ -1131,8 +1092,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             public void onClick(View view) {
 
                 desbloquear.setEnabled(false);
-                neutrar.setEnabled(true);
-                positivo.setEnabled(true);
 
                 final String prueba = resuldato2.getSelectedItem().toString();
 
@@ -1160,11 +1119,13 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                 minuto = 0;
                 hora = 0;
 
+                Toast.makeText(getApplicationContext(), "LOS DATOS FUERON GUARDADOS CORRECTAMENTE", Toast.LENGTH_SHORT).show();
+
+                alert.dismiss();
+                paro.setText("");
+                MOSTRAR.setText("00:00:00");
             }
         });
-
-        positivo.setEnabled(false);
-        neutrar.setEnabled(false);
         desbloquear.setEnabled(false);
     }
 
@@ -1802,7 +1763,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         alert.show();
         alert.setCanceledOnTouchOutside(false);
 
-        /*Button Verificar = alert.getButton(AlertDialog.BUTTON_POSITIVE);
+        Button Verificar = alert.getButton(AlertDialog.BUTTON_POSITIVE);
         Verificar.setEnabled(false);
 
         resuldato4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -1820,7 +1781,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-        });*/
+        });
 
     }
 }
