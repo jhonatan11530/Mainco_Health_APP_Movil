@@ -1059,29 +1059,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         alert.show();
 
         alert.setCanceledOnTouchOutside(false);
-        validarinfo.setEnabled(false);
-        resuldato2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                if(resuldato4.getSelectedItem().toString()!=""){
-                    System.out.println("EL SPINNER NO ESTA VACIO");
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            validarinfo.setEnabled(true);
-                        }
-                    });
-
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
 
 
         desbloquear = alert.getButton(AlertDialog.BUTTON_POSITIVE);
