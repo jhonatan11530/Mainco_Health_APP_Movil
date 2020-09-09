@@ -24,7 +24,7 @@
         tools:targetApi="m">
         <service
             android:name="Services.ServicioConnecting"
-            android:exported="false"></service>
+            android:exported="false" />
         <service
             android:name="Services.ServicioRegistroSalida"
             android:enabled="true"
