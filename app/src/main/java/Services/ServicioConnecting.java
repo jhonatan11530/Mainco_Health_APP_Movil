@@ -46,9 +46,9 @@ public class ServicioConnecting extends IntentService {
         @SuppressLint("MissingPermission") List<WifiConfiguration> list = wifiManager.getConfiguredNetworks();
         for (WifiConfiguration i : list) {
             if (i.SSID != null && i.SSID.equals("\"" + networkSSID + "\"")) {
-
+                wifiManager.disconnect();
                 wifiManager.enableNetwork(i.networkId, true);
-
+                wifiManager.reconnect();
 
                 break;
             }
