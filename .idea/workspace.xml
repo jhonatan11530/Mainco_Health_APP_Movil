@@ -11,21 +11,36 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="DIGITE CODIGO MOTIVO" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7b6af788-212f-4cd2-8b4b-3791be3d9170" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/jarAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Services/ServicioConnecting.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Services/ServicioConnecting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/OperadorActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/OperadorActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/motivo_paro.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/motivo_paro.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/operador.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/operador.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_2_API_28" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="HGT45AJX" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -72,12 +87,13 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ApkExportedModule" value="app" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="HGT45AJX" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-09-07T18:46:56.890Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="14330766" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-09-14T16:52:17.757Z" />
     <property name="ResourceManagerPrefKey.ResourceType" value="DRAWABLE" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SelectDeploymentTargetsDialog.selectedDevices" value="Pixel_2_API_28" />
+    <property name="ToolWindowServices.ShowToolbar" value="false" />
     <property name="android.sdk.path" value="D:/sdk" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/java" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/RemoteSalesDev.apk" />
@@ -99,6 +115,13 @@
     <key name="CreateClassDialog.RecentsKey">
       <recent name="TextToSpeech" />
     </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="AndroidRunConfigurationType" />
+      </set>
+    </option>
   </component>
   <component name="RunManager" selected="Android App.app">
     <configuration name="All in app (1)" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
@@ -198,12 +221,23 @@
       <list>
         <serviceView>
           <treeState>
-            <expand />
+            <expand>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Android App" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Android App" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Finished" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
+            </expand>
             <select />
           </treeState>
         </serviceView>
       </list>
     </option>
+    <option name="showServicesTree" value="false" />
   </component>
   <component name="SvnConfiguration">
     <configuration>C:\Users\USUARIO\AppData\Roaming\Subversion</configuration>
@@ -248,10 +282,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="asd" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="275" y="26" key="#Gradle" timestamp="1591111454645">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="275" y="26" key="#Gradle/0.0.1366.738@0.0.1366.738" timestamp="1591111454645" />
     <state x="275" y="27" key="#Notifications" timestamp="1593520589184">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -269,10 +299,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="137" y="24" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738@0.0.1366.738" timestamp="1596555359590" />
-    <state x="474" y="85" key="#com.intellij.ide.util.MemberChooser" timestamp="1599598106482">
+    <state x="474" y="85" key="#com.intellij.ide.util.MemberChooser" timestamp="1600180106182">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="474" y="85" key="#com.intellij.ide.util.MemberChooser/0.0.1366.738@0.0.1366.738" timestamp="1599598106482" />
+    <state x="474" y="85" key="#com.intellij.ide.util.MemberChooser/0.0.1366.738@0.0.1366.738" timestamp="1600180106182" />
     <state x="413" y="145" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1597865132624">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -291,10 +321,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="363" y="95" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1366.738@0.0.1366.738" timestamp="1592931000367" />
-    <state x="413" y="114" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1599679502972">
+    <state x="413" y="114" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1600179754492">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="413" y="114" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.738@0.0.1366.738" timestamp="1599679502972" />
+    <state x="413" y="114" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.738@0.0.1366.738" timestamp="1600179754492" />
     <state x="413" y="116" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1593114760534">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -332,26 +362,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="553" y="257" key="Github.ShareDialog/0.0.1366.728@0.0.1366.728" timestamp="1596674572787" />
-    <state width="1367" height="137" key="GridCell.Tab.0.bottom" timestamp="1599596323629">
+    <state width="266" height="189" key="GridCell.Tab.0.bottom" timestamp="1600189320581">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1367" height="137" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1599596323629" />
-    <state width="1981" height="545" key="GridCell.Tab.0.bottom/0.0.2049.1107@0.0.2049.1107" timestamp="1591301732015" />
-    <state width="1367" height="137" key="GridCell.Tab.0.center" timestamp="1599596323629">
+    <state width="266" height="189" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1600189320581" />
+    <state width="266" height="189" key="GridCell.Tab.0.center" timestamp="1600189320581">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1367" height="137" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1599596323629" />
-    <state width="1981" height="545" key="GridCell.Tab.0.center/0.0.2049.1107@0.0.2049.1107" timestamp="1591301732015" />
-    <state width="1367" height="137" key="GridCell.Tab.0.left" timestamp="1599596323629">
+    <state width="266" height="189" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1600189320581" />
+    <state width="266" height="189" key="GridCell.Tab.0.left" timestamp="1600189320581">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1367" height="137" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1599596323629" />
-    <state width="1981" height="545" key="GridCell.Tab.0.left/0.0.2049.1107@0.0.2049.1107" timestamp="1591301732015" />
-    <state width="1367" height="137" key="GridCell.Tab.0.right" timestamp="1599596323629">
+    <state width="266" height="189" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1600189320581" />
+    <state width="266" height="189" key="GridCell.Tab.0.right" timestamp="1600189320581">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1367" height="137" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1599596323629" />
-    <state width="1981" height="545" key="GridCell.Tab.0.right/0.0.2049.1107@0.0.2049.1107" timestamp="1591301732015" />
+    <state width="266" height="189" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1600189320581" />
     <state width="1367" height="2" key="GridCell.Tab.1.bottom" timestamp="1597784125781">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -381,11 +407,11 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="499" y="147" key="chooseDestDirectoryDialog/0.0.1366.738@0.0.1366.738" timestamp="1599162546520" />
-    <state x="92" y="92" width="1182" height="554" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1598975974267">
+    <state x="92" y="92" width="1182" height="554" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1600171757604">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="92" y="91" width="1182" height="547" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1366.728@0.0.1366.728" timestamp="1597685212664" />
-    <state x="92" y="92" width="1182" height="554" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1366.738@0.0.1366.738" timestamp="1598975974267" />
+    <state x="92" y="92" width="1182" height="554" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1366.738@0.0.1366.738" timestamp="1600171757604" />
     <state x="379" y="190" key="com.intellij.ide.util.TipDialog" timestamp="1597681433236">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -407,7 +433,6 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="339" y="159" width="672" height="677" key="run.anything.popup/0.0.1366.738@0.0.1366.738" timestamp="1593111632338" />
-    <state x="509" y="239" key="run.anything.popup/0.0.2049.1107@0.0.2049.1107" timestamp="1591295403676" />
     <state x="346" y="59" width="672" height="678" key="search.everywhere.popup" timestamp="1599595633807">
       <screen x="0" y="0" width="1366" height="738" />
     </state>

@@ -1,18 +1,22 @@
 package com.Mainco.App;
 
 import android.app.AlertDialog;
+import android.app.IntentService;
 import android.app.ProgressDialog;
+import android.app.Service;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
+import android.util.JsonReader;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,6 +30,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
@@ -54,23 +60,12 @@ import cz.msebera.android.httpclient.Header;
 @SuppressWarnings("ALL")
 public class OperadorActivity extends AppCompatActivity implements LifecycleObserver {
 
-    private EditText id, cantidad, paro, fallas, items, codemotivo;
+    private EditText id, cantidad, paro, fallas, op, codemotivo;
     private String falla, error, VaribleTOTA, NOMBRE;
     private TextView motivo, MOSTRAR, texto, resultados;
     private Spinner resuldato, resuldato2, resuldato4, resuldato3;
-
-    private Button go;
-    private Button stop;
-    private Button desbloquear;
-    private Button positivo;
-    private Button neutrar;
-    private Button registroTIME;
-    private Button salidaTIME;
-    private Button validarinfo;
-    private Button cantidadund;
-
+    private Button go,stop,desbloquear,positivo,neutrar,registroTIME,salidaTIME,validarinfo,cantidadund,Validar;
     private int minuto, segundo, horas, i, hora, cantidadpro,cantidadotra, volumencan, total, volumen;
-
     private final ArrayList<cantidadfallas> dato4 = new ArrayList<>();
     private ArrayList<cantidades> dato3 = new ArrayList<>();
     private ArrayList<motivoparo> dato2 = new ArrayList<>();
@@ -83,7 +78,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
     SimpleDateFormat hourFormat;
     SimpleDateFormat dateFormat;
     RelativeLayout production;
-    private AsyncHttpClient cliente, cliente1, cliente2, cliente3, cliente4, cliente5;
+    private AsyncHttpClient cliente, cliente1, cliente2, cliente3, cliente4, cliente5, cliente6;
     public Thread hilo;
     private Thread workerThread = null;
     TSS textToSpeech=null;
@@ -93,24 +88,39 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         super.onCreate(savedInstanceState);
         setContentView(R.layout.operador);
 
+        // CONEXIONES TOTALES
         cliente = new AsyncHttpClient();
         cliente1 = new AsyncHttpClient();
         cliente2 = new AsyncHttpClient();
         cliente3 = new AsyncHttpClient();
         cliente4 = new AsyncHttpClient();
         cliente5 = new AsyncHttpClient();
+        cliente6 = new AsyncHttpClient();
+
+        // MAXIMO DE CONEXIONES
+        cliente.setMaxConnections(1);
+        cliente1.setMaxConnections(1);
+        cliente2.setMaxConnections(1);
+        cliente3.setMaxConnections(1);
+        cliente4.setMaxConnections(1);
+        cliente5.setMaxConnections(1);
+        cliente6.setMaxConnections(1);
 
         llenarSpinner();
         llenarOps();
 
+
+
         textToSpeech = new TSS();
         textToSpeech.init(this);
 
-
+        if(savedInstanceState!=null){
+            id.setText(savedInstanceState.getInt("ID"));
+            op.setText(savedInstanceState.getString("OP"));
+        }
 
 
         production = findViewById(R.id.principal);
-
 
         resuldato = findViewById(R.id.spinner1);
 
@@ -118,7 +128,9 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
         resuldato3 = findViewById(R.id.spinner);
 
-        items = findViewById(R.id.item);
+        op = findViewById(R.id.OP);
+
+        Validar = findViewById(R.id.Validar);
 
         cantidadund = findViewById(R.id.aplazar);
 
@@ -139,15 +151,16 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         salidaTIME.setEnabled(false);
         cantidadund.setEnabled(false);
 
+        Validar.setEnabled(false);
 
-        items.addTextChangedListener(new TextWatcher() {
+        op.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence limpio, int start, int count, int after) {
             }
 
             @Override
             public void onTextChanged(CharSequence escribio, int start, int before, int count) {
-                if (items.getText().toString() != null) {
+                if (op.getText().toString() != null) {
                     FiltrarOps();
                 }
 
@@ -158,11 +171,28 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                 if (editable.toString().length() < 1) {
                     llenarSpinner();
                     llenarOps();
+                    Validar.setEnabled(false);
                 }
             }
         });
 
     }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle ID_OP) {
+        super.onSaveInstanceState(ID_OP);
+
+        ID_OP.putString("ID",id.getText().toString());
+        ID_OP.putString("OP",op.getText().toString());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        id.setText(savedInstanceState.getInt("ID"));
+        op.setText(savedInstanceState.getString("OP"));
+    }
+
     public class Observardor implements LifecycleObserver {
 
         private String LOG_TAG = "Observardor";
@@ -170,6 +200,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
         public void onResume() {
             Log.i(LOG_TAG, "onResume");
+
         }
 
         @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
@@ -194,6 +225,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
         @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
         public void onDestroy() {
+
             // imprime fecha
              dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
              date = new Date();
@@ -202,14 +234,18 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             final String fecha = dateFormat.format(date);
             final String hora = hourFormat.format(date);
             // se obtiene el name-model,ip,fecha,hora
-            Log.i(LOG_TAG, "onDestroy "+id.getText().toString()+" "+items.getText().toString()+" "+obtenerNombreDeDispositivo()+" "+getIP()+" "+hora+" "+fecha);
+            Log.i(LOG_TAG, "onDestroy "+id.getText().toString()+" "+op.getText().toString()+" "+obtenerNombreDeDispositivo()+" "+getIP()+" "+hora+" "+fecha);
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                HttpRequest.get("http://" + cambiarIP.ip + "/validar/RegistroERROR.php?id="+id.getText().toString()+"&op="+items.getText().toString()+"&nombre="+obtenerNombreDeDispositivo()+"&ip="+getIP()+"&hora="+hora.toString()+"&fecha="+fecha.toString()).body();
+                HttpRequest.get("http://" + cambiarIP.ip + "/validar/RegistroERROR.php?id="+id.getText().toString()+"&op="+op.getText().toString()+"&nombre="+obtenerNombreDeDispositivo()+"&ip="+getIP()+"&hora="+hora.toString()+"&fecha="+fecha.toString()).body();
                 }
             }).start();
             Thread.interrupted();
+
+            finish();
+            Intent e = new Intent(getApplicationContext(), OperadorActivity.class);
+            startActivity(e);
 
         }
 
@@ -378,7 +414,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             }
             ArrayAdapter<cantidades> a = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, dato3);
             resuldato.setAdapter(a);
-
+            Validar.setEnabled(true);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -390,7 +426,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
     public void llenarOps() {
 
         String url = "http://" + cambiarIP.ip + "/validar/OPS.php";
-        cliente2.post(url, new AsyncHttpResponseHandler() {
+        cliente1.post(url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if (statusCode == 200) {
@@ -436,15 +472,15 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
     public void FiltrarOps() {
 
-        String url = "http://" + cambiarIP.ip + "/validar/FiltroOPS.php?op=" + items.getText().toString();
-        cliente1.post(url, new AsyncHttpResponseHandler() {
+        String url = "http://" + cambiarIP.ip + "/validar/FiltroOPS.php?op=" + op.getText().toString();
+        cliente2.post(url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if (statusCode == 200) {
                     filtroOPS(new String(responseBody));
-
                 }
                 if (statusCode > 201) {
+
                     llenarOps();
                 }
             }
@@ -474,7 +510,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             ArrayAdapter<OPS> a = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, dato);
             resuldato3.setAdapter(a);
 
-            resuldato3.getSelectedItem().toString();
             filtraritem();
 
         } catch (Exception e) {
@@ -485,7 +520,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
     }
 
     public void llenarSpinner() {
-
         String url = "http://" + cambiarIP.ip + "/validar/cantidad.php";
         cliente3.post(url, new AsyncHttpResponseHandler() {
             @Override
@@ -574,7 +608,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
     public void llenardescansoMotivo() {
         String url = "http://" + cambiarIP.ip + "/validar/motivofiltro.php?motivo=" + codemotivo.getText().toString();
-        cliente4.post(url, new AsyncHttpResponseHandler() {
+        cliente5.post(url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if (statusCode == 200) {
@@ -617,7 +651,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
     public void motivofalla() {
         String url = "http://" + cambiarIP.ip + "/validar/motivocantidad.php";
-        cliente5.post(url, new AsyncHttpResponseHandler() {
+        cliente6.post(url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if (statusCode == 200) {
@@ -701,7 +735,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             try {
                 Thread.sleep(1000);
 
-            String responses = HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadedits.php?cod=" + resuldato3.getSelectedItem().toString()+"&op="+items.getText().toString()).body();
+            String responses = HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadedits.php?cod=" + resuldato3.getSelectedItem().toString()+"&op="+op.getText().toString()).body();
         try {
             JSONArray objecto = new JSONArray(responses);
             int variable = Integer.parseInt(objecto.getString(0));
@@ -724,7 +758,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                         new Thread(new Runnable() {
                             @Override
                             public void run() {
-                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?op=" + items.getText().toString()).body();
+                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?op=" + op.getText().toString()).body();
                                 HttpRequest.get("http://" + cambiarIP.ip + "/validar/limpiar.php?id=" + resuldato3.getSelectedItem().toString()).body();
 
                             }
@@ -757,17 +791,17 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
     
     public void operador(View v) {
 
-        if (id.getText().toString().length() == 0 && items.getText().toString().length() == 0) {
+        if (id.getText().toString().length() == 0 && op.getText().toString().length() == 0) {
 
             id.setError("ID ES REQUERIDO !");
-            items.setError("O.P ES REQUERIDO !");
+            op.setError("O.P ES REQUERIDO !");
             textToSpeech.speak("DEBE INGRESAR SU CODIGO Y EL NUMERO DE O P");
 
-        } else if (id.getText().toString().length() > 0 && items.getText().toString().length() == 0) {
+        } else if (id.getText().toString().length() > 0 && op.getText().toString().length() == 0) {
 
-            items.setError("O.P ES REQUERIDO !");
+            op.setError("O.P ES REQUERIDO !");
 
-        } else if (id.getText().toString().length() == 0 && items.getText().toString().length() > 0) {
+        } else if (id.getText().toString().length() == 0 && op.getText().toString().length() > 0) {
 
             id.setError("ID ES REQUERIDO !");
         } else {
@@ -778,6 +812,9 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             hilo = new Thread(new Runnable() {
                 @Override
                 public void run() {
+
+
+
 
                     try {
 
@@ -963,7 +1000,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
         llenardescanso();
         id = findViewById(R.id.operador);
-
         paro = tiempo1.findViewById(R.id.paro);
         MOSTRAR = tiempo1.findViewById(R.id.MOSTRAR);
         texto = tiempo1.findViewById(R.id.textos);
@@ -976,6 +1012,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         resuldato2 = tiempo1.findViewById(R.id.spinner2);
 
 
+        validarinfo.setEnabled(false);
         codemotivo.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -986,6 +1023,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 if (codemotivo.getText().toString() != null) {
                     llenardescansoMotivo();
+                    validarinfo.setEnabled(true);
                 }
             }
 
@@ -993,6 +1031,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             public void afterTextChanged(Editable editable) {
                 if (editable.toString().length() < 1) {
                     llenardescanso();
+                    validarinfo.setEnabled(false);
                 }
             }
         });
@@ -1009,39 +1048,36 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         //TEXTVIEW Y SPINNER
         motivo.setVisibility(View.VISIBLE);
         resuldato2.setVisibility(View.VISIBLE);
-        if(codemotivo.getText().toString() =="NULL"){
-            codemotivo.setError("DEBE DE INGRESAR EL CODIGO DEL MOTIVO");
-            textToSpeech.speak("DEBE DE INGRESAR EL CODIGO DEL MOTIVO");
-        }else{
-        validarinfo.setOnClickListener(new View.OnClickListener() {
+  validarinfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                validarinfo.setVisibility(View.INVISIBLE);
-                resuldato2.setClickable(false);
-                resuldato2.setEnabled(false);
-                codemotivo.setEnabled(false);
+                    validarinfo.setVisibility(View.INVISIBLE);
+                    resuldato2.setClickable(false);
+                    resuldato2.setEnabled(false);
+                    codemotivo.setEnabled(false);
 
-                MOSTRAR.setVisibility(View.VISIBLE);
-                paro.setVisibility(View.VISIBLE);
-                stop.setVisibility(View.VISIBLE);
-                go.setVisibility(View.VISIBLE);
-                texto.setVisibility(View.VISIBLE);
-                resuldato2.setVisibility(View.VISIBLE);
+                    MOSTRAR.setVisibility(View.VISIBLE);
+                    paro.setVisibility(View.VISIBLE);
+                    stop.setVisibility(View.VISIBLE);
+                    go.setVisibility(View.VISIBLE);
+                    texto.setVisibility(View.VISIBLE);
+                    resuldato2.setVisibility(View.VISIBLE);
 
 
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        String mostrardatos = resuldato2.getSelectedItem().toString();
-                        Toast.makeText(getApplicationContext(), "USTED SELECCIÓNO " + mostrardatos, Toast.LENGTH_SHORT).show();
-                    }
-                });
-                textToSpeech.speak(resuldato2.getSelectedItem().toString());
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            String mostrardatos = resuldato2.getSelectedItem().toString();
+                            Toast.makeText(getApplicationContext(), "USTED SELECCIÓNO " + mostrardatos, Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    textToSpeech.speak(resuldato2.getSelectedItem().toString());
 
             }
         });
-        }
+
+
 
         registros.setPositiveButton("REGISTRAR", new DialogInterface.OnClickListener() {
             @Override
@@ -1049,8 +1085,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
             }
         });
-
-
 
         stop.setEnabled(false);
 
@@ -1088,7 +1122,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                     @Override
                     public void run() {
 
-                        HttpRequest.get("http://" + cambiarIP.ip + "/validar/RegistrarMotivo.php?op=" + items.getText().toString() + "&id=" + id.getText().toString() + "&paro=" + paro.getText().toString() + "&motivo=" + prueba + "&code=" + codemotivo.getText().toString() + "&fecha=" + fechas + "&hora=" + horas + "&tarea=" + resuldato.getSelectedItem().toString()).body();
+                        HttpRequest.get("http://" + cambiarIP.ip + "/validar/RegistrarMotivo.php?op=" + op.getText().toString() + "&id=" + id.getText().toString() + "&paro=" + paro.getText().toString() + "&motivo=" + prueba + "&code=" + codemotivo.getText().toString() + "&fecha=" + fechas + "&hora=" + horas + "&tarea=" + resuldato.getSelectedItem().toString()).body();
 
                     }
                 });
@@ -1106,7 +1140,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         });
         desbloquear.setEnabled(false);
     }
-
     public void go(View v) {
 
 
@@ -1264,7 +1297,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                 });
 
                                 System.out.println("ESTO SUCEDIO");
-                                String responses = HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadedits.php?cod=" + resuldato3.getSelectedItem().toString()+"&op="+items.getText().toString()).body();
+                                String responses = HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadedits.php?cod=" + resuldato3.getSelectedItem().toString()+"&op="+op.getText().toString()).body();
 
                                 JSONArray RESTARCANTIDAD = new JSONArray(responses);
                                 HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodifi.php?op=" + resuldato3.getSelectedItem().toString() + "&totales=" + RESTARCANTIDAD.getString(0)).body();
@@ -1315,7 +1348,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                             e.printStackTrace();
                         }
 
-                        HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizaEntrada.php?id=" + id.getText().toString() + "&Finicial=" + fechas + "&Hinicial=" + hora + "&op=" + items.getText().toString()).body();
+                        HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizaEntrada.php?id=" + id.getText().toString() + "&Finicial=" + fechas + "&Hinicial=" + hora + "&op=" + op.getText().toString()).body();
 
                         runOnUiThread(new Runnable() {
                             @Override
@@ -1465,7 +1498,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                             Intent Componente = new Intent(OperadorActivity.this, ServicioRegistroSalida.class);
                                             Componente.putExtra("resuldato3", resuldato3.getSelectedItem().toString());
                                             Componente.putExtra("tarea", nombretarea);
-                                            Componente.putExtra("items", items.getText().toString());
+                                            Componente.putExtra("items", op.getText().toString());
                                             Componente.putExtra("mala", malo);
                                             Componente.putExtra("restado", end.toString());
                                             Componente.putExtra("id", id.getText().toString());
@@ -1680,7 +1713,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                             Intent Componente = new Intent(OperadorActivity.this, ServicioRegistroSalida.class);
                                             Componente.putExtra("resuldato3", resuldato3.getSelectedItem().toString());
                                             Componente.putExtra("tarea", nombretarea);
-                                            Componente.putExtra("items", items.getText().toString());
+                                            Componente.putExtra("items", op.getText().toString());
                                             Componente.putExtra("mala", malo);
                                             Componente.putExtra("restado", end.toString());
                                             Componente.putExtra("id", id.getText().toString());

@@ -84,6 +84,7 @@
         <activity
             android:name="Introducciones.CREAR_USER"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity android:name="Services.MyService" />
     </application>
 
 </manifest>

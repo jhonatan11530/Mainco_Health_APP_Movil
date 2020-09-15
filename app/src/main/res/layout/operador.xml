@@ -43,7 +43,7 @@
                 android:layout_marginVertical="4dp" />
 
             <EditText
-                android:id="@+id/item"
+                android:id="@+id/OP"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
@@ -57,6 +57,7 @@
                 tools:ignore="NestedWeights" />
 
             <Button
+                android:id="@+id/Validar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2.5"
