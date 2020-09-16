@@ -1037,13 +1037,8 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         });
         //botones
 
-        MOSTRAR.setVisibility(View.INVISIBLE);
-        paro.setVisibility(View.INVISIBLE);
-        stop.setVisibility(View.INVISIBLE);
-        go.setVisibility(View.INVISIBLE);
-        texto.setVisibility(View.INVISIBLE);
-        resuldato2.setVisibility(View.INVISIBLE);
-
+        stop.setEnabled(false);
+        go.setEnabled(false);
 
         //TEXTVIEW Y SPINNER
         motivo.setVisibility(View.VISIBLE);
@@ -1052,18 +1047,11 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             @Override
             public void onClick(View view) {
 
-                    validarinfo.setVisibility(View.INVISIBLE);
-                    resuldato2.setClickable(false);
+                validarinfo.setEnabled(false);
                     resuldato2.setEnabled(false);
                     codemotivo.setEnabled(false);
 
-                    MOSTRAR.setVisibility(View.VISIBLE);
-                    paro.setVisibility(View.VISIBLE);
-                    stop.setVisibility(View.VISIBLE);
-                    go.setVisibility(View.VISIBLE);
-                    texto.setVisibility(View.VISIBLE);
-                    resuldato2.setVisibility(View.VISIBLE);
-
+                    go.setEnabled(true);
 
                     runOnUiThread(new Runnable() {
                         @Override
@@ -1086,7 +1074,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             }
         });
 
-        stop.setEnabled(false);
+
 
         registros.setView(tiempo1);
         registros.create();
