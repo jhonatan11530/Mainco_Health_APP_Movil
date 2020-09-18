@@ -1,22 +1,21 @@
 package com.Mainco.App;
 
 import android.app.AlertDialog;
-import android.app.IntentService;
 import android.app.ProgressDialog;
-import android.app.Service;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
-import android.util.JsonReader;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,7 +30,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
@@ -55,15 +53,17 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import Services.ServiciollenarSpinner;
 import Services.ServicioRegistroSalida;
 import cz.msebera.android.httpclient.Header;
+
 @SuppressWarnings("ALL")
 public class OperadorActivity extends AppCompatActivity implements LifecycleObserver {
 
     private EditText id, cantidad, paro, fallas, op, codemotivo;
     private String falla, error, VaribleTOTA, NOMBRE;
     private TextView motivo, MOSTRAR, texto, resultados;
-    private Spinner resuldato, resuldato2, resuldato4, resuldato3;
+    public static Spinner resuldato, resuldato2, resuldato4, resuldato3;
     private Button go,stop,desbloquear,positivo,neutrar,registroTIME,salidaTIME,validarinfo,cantidadund,Validar;
     private int minuto, segundo, horas, i, hora, cantidadpro,cantidadotra, volumencan, total, volumen;
     private final ArrayList<cantidadfallas> dato4 = new ArrayList<>();
@@ -97,18 +97,15 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         cliente5 = new AsyncHttpClient();
         cliente6 = new AsyncHttpClient();
 
-        // MAXIMO DE CONEXIONES
-        cliente.setMaxConnections(1);
-        cliente1.setMaxConnections(1);
-        cliente2.setMaxConnections(1);
-        cliente3.setMaxConnections(1);
-        cliente4.setMaxConnections(1);
-        cliente5.setMaxConnections(1);
-        cliente6.setMaxConnections(1);
 
-        llenarSpinner();
+
         llenarOps();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("llenarSpinner");
+        registerReceiver(broadcastReceiver,intentFilter);
 
+        Intent Componente = new Intent(OperadorActivity.this, ServiciollenarSpinner.class);
+        startService(Componente);
 
 
         textToSpeech = new TSS();
@@ -169,7 +166,9 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             @Override
             public void afterTextChanged(Editable editable) {
                 if (editable.toString().length() < 1) {
-                    llenarSpinner();
+                    Intent Componente = new Intent(OperadorActivity.this, ServiciollenarSpinner.class);
+                    startService(Componente);
+
                     llenarOps();
                     Validar.setEnabled(false);
                 }
@@ -177,6 +176,15 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         });
 
     }
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+        String cargarSpinner = intent.getStringExtra("hola");
+            cargarSpinner(new String(cargarSpinner));
+            System.out.println("MENSAJE "+cargarSpinner);
+
+        }
+    };
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle ID_OP) {
@@ -518,32 +526,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         }
 
     }
-
-    public void llenarSpinner() {
-        String url = "http://" + cambiarIP.ip + "/validar/cantidad.php";
-        cliente3.post(url, new AsyncHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                if (statusCode == 200) {
-                    cargarSpinner(new String(responseBody));
-
-                }
-                if (statusCode > 201) {
-                    llenarSpinner();
-                }
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                llenarSpinner();
-            }
-            @Override
-            public void onRetry(int retryNo) {
-                llenarSpinner();
-            }
-        });
-    }
-
+    
     public void cargarSpinner(String cargarSpinner) {
         ArrayList<cantidades> dato3 = new ArrayList<>();
         try {
@@ -1051,7 +1034,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                     resuldato2.setEnabled(false);
                     codemotivo.setEnabled(false);
 
-                    go.setEnabled(true);
+                     go.setEnabled(true);
 
                     runOnUiThread(new Runnable() {
                         @Override

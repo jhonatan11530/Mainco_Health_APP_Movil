@@ -24,7 +24,7 @@ public class ServicioConnecting extends IntentService {
     String networkSSID = "WIFIMainco";
     String networkPass = "A125277935";
     public ServicioConnecting() {
-        super("MyIntentService");
+        super("ServicioConnecting");
     }
 
 
