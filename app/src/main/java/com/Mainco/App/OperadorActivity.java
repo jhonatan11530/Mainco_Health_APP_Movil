@@ -53,7 +53,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import Services.ServiciollenarSpinner;
+import Services.MyIntentService;
+import Services.ServicioItems;
+import Services.ServicioActividad;
+import Services.ServicioMotivoParo;
 import Services.ServicioRegistroSalida;
 import cz.msebera.android.httpclient.Header;
 
@@ -82,7 +85,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
     public Thread hilo;
     private Thread workerThread = null;
     TSS textToSpeech=null;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,13 +101,25 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
 
 
-        llenarOps();
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction("llenarSpinner");
-        registerReceiver(broadcastReceiver,intentFilter);
+       // llenarOps();
+        IntentFilter llenarSpinner = new IntentFilter();
+        llenarSpinner.addAction("llenarSpinner");
+        registerReceiver(LlenarSpinner,llenarSpinner);
 
-        Intent Componente = new Intent(OperadorActivity.this, ServiciollenarSpinner.class);
-        startService(Componente);
+        IntentFilter llenarItem = new IntentFilter();
+        llenarItem.addAction("llenarItem");
+        registerReceiver(LlenarItem,llenarItem);
+
+        IntentFilter llenarParo = new IntentFilter();
+        llenarParo.addAction("llenarParo");
+        registerReceiver(LlenarMotivoParo,llenarParo);
+
+        Intent llenarspinner = new Intent(OperadorActivity.this, MyIntentService.class);
+        startService(llenarspinner);
+
+        Intent llenaritem = new Intent(OperadorActivity.this, ServicioItems.class);
+        startService(llenaritem);
+
 
 
         textToSpeech = new TSS();
@@ -166,23 +180,45 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             @Override
             public void afterTextChanged(Editable editable) {
                 if (editable.toString().length() < 1) {
-                    Intent Componente = new Intent(OperadorActivity.this, ServiciollenarSpinner.class);
-                    startService(Componente);
 
-                    llenarOps();
+                    Intent actividad = new Intent(OperadorActivity.this, ServicioActividad.class);
+                    startService(actividad);
+                    //llama el intentService de item
+                    Intent item = new Intent(OperadorActivity.this, ServicioItems.class);
+                    startService(item);
                     Validar.setEnabled(false);
                 }
             }
         });
 
     }
-    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+    private BroadcastReceiver LlenarSpinner = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-        String cargarSpinner = intent.getStringExtra("hola");
+            // LLENA SPINNER ACTIVIDAD
+            String cargarSpinner = intent.getStringExtra("llenarSpinner");
             cargarSpinner(new String(cargarSpinner));
             System.out.println("MENSAJE "+cargarSpinner);
 
+
+        }
+    };
+    private BroadcastReceiver LlenarItem = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //LLENA SPINNER ITEM
+            String llenarOps = intent.getStringExtra("llenarOps");
+            cargarops(new String(llenarOps));
+            System.out.println("MENSAJE "+llenarOps);
+        }
+    };
+    private BroadcastReceiver LlenarMotivoParo = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //LLENA SPINNER ITEM
+            String filtrardescanso = intent.getStringExtra("filtrardescanso");
+            filtrardescanso(new String(filtrardescanso));
+            System.out.println("MENSAJE "+filtrardescanso);
         }
     };
 
@@ -278,6 +314,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         }
         return address;
     }
+
     public String obtenerNombreDeDispositivo() {
         String fabricante = Build.MANUFACTURER;
         String modelo = Build.MODEL;
@@ -287,7 +324,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             return primeraLetraMayuscula(fabricante) + " " + modelo;
         }
     }
-
 
     private String primeraLetraMayuscula(String cadena) {
         if (cadena == null || cadena.length() == 0) {
@@ -300,6 +336,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             return Character.toUpperCase(primeraLetra) + cadena.substring(1);
         }
     }
+
     public void onBackPressed() {
     }
 
@@ -431,32 +468,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
     }
 
-    public void llenarOps() {
-
-        String url = "http://" + cambiarIP.ip + "/validar/OPS.php";
-        cliente1.post(url, new AsyncHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                if (statusCode == 200) {
-                    cargarops(new String(responseBody));
-
-                }
-                if (statusCode > 201) {
-                    llenarOps();
-                }
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                llenarOps();
-            }
-            @Override
-            public void onRetry(int retryNo) {
-                llenarOps();
-            }
-        });
-    }
-
     public void cargarops(String cargarops) {
         ArrayList<OPS> dato = new ArrayList<>();
         try {
@@ -487,20 +498,18 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                 if (statusCode == 200) {
                     filtroOPS(new String(responseBody));
                 }
-                if (statusCode > 201) {
-
-                    llenarOps();
-                }
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                llenarOps();
+                Intent llenarspinner = new Intent(OperadorActivity.this, ServicioActividad.class);
+                startService(llenarspinner);
             }
 
             @Override
             public void onRetry(int retryNo) {
-                llenarOps();
+                Intent llenarspinner = new Intent(OperadorActivity.this, ServicioActividad.class);
+                startService(llenarspinner);
             }
         });
     }
@@ -526,7 +535,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         }
 
     }
-    
+
     public void cargarSpinner(String cargarSpinner) {
         ArrayList<cantidades> dato3 = new ArrayList<>();
         try {
@@ -548,27 +557,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
     }
 
     public void llenardescanso() {
-        String url = "http://" + cambiarIP.ip + "/validar/motivo.php";
-        cliente4.post(url, new AsyncHttpResponseHandler() {
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-                if (statusCode == 200) {
-                    filtrardescanso(new String(responseBody));
-                }
-                if (statusCode > 201) {
-                    llenardescanso();
-                }
-            }
 
-            @Override
-            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                llenardescanso();
-            }
-            @Override
-            public void onRetry(int retryNo) {
-                llenarSpinner();
-            }
-        });
     }
 
     public void filtrardescanso(String filtrardescanso) {
@@ -675,6 +664,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         }
 
     }
+
     public void validaractividad(){
         new Thread(new Runnable() {
             @Override
@@ -981,7 +971,9 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         registros = new AlertDialog.Builder(OperadorActivity.this);
         tiempo1 = getLayoutInflater().inflate(R.layout.motivo_paro, null);
 
-        llenardescanso();
+        Intent actividad = new Intent(OperadorActivity.this, ServicioMotivoParo.class);
+        startService(actividad);
+
         id = findViewById(R.id.operador);
         paro = tiempo1.findViewById(R.id.paro);
         MOSTRAR = tiempo1.findViewById(R.id.MOSTRAR);
@@ -1013,7 +1005,9 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             @Override
             public void afterTextChanged(Editable editable) {
                 if (editable.toString().length() < 1) {
-                    llenardescanso();
+                    Intent actividad = new Intent(OperadorActivity.this, ServicioActividad.class);
+                    startService(actividad);
+
                     validarinfo.setEnabled(false);
                 }
             }

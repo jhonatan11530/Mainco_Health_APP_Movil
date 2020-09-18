@@ -22,15 +22,23 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="m">
-
-        <service
-            android:name="Services.ServiciollenarSpinner"
-            android:exported="false" />
         <service
             android:name="Services.MyIntentService"
+            android:exported="false"></service>
+        <service
+            android:name="Services.ServicioItems"
+            android:enabled="true"
+            android:exported="false" />
+        <service
+            android:name="Services.ServicioActividad"
+            android:enabled="true"
+            android:exported="false" />
+        <service
+            android:name="Services.ServicioMotivoParo"
             android:exported="false" />
         <service
             android:name="Services.ServicioConnecting"
+            android:enabled="true"
             android:exported="false" />
         <service
             android:name="Services.ServicioRegistroSalida"
@@ -91,7 +99,6 @@
         <activity
             android:name="Introducciones.CREAR_USER"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name="Services.MyService" />
     </application>
 
 </manifest>
