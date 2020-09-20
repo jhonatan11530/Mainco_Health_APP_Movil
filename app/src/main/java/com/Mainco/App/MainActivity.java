@@ -11,16 +11,12 @@ import Services.ServicioConnecting;
 
 public class MainActivity extends AppCompatActivity {
     private final int DURACION_SPLASH = 3000;
-
+    private static final int TTS_CHECK_CODE = 101;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-
-        Intent Componente = new Intent(MainActivity.this, ServicioConnecting.class);
-        startService(Componente);
+        startService(new Intent(getBaseContext(), ServicioConnecting.class));
 
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 

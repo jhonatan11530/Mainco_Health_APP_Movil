@@ -23,12 +23,10 @@ public class OlvidoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.olvido);
 
-        textToSpeech = new TSS();
-        textToSpeech.init(this);
-
         id = findViewById(R.id.CDUNICO);
         cedula = findViewById(R.id.cc);
-
+        textToSpeech = new TSS();
+        textToSpeech.init(this);
 
     }
 

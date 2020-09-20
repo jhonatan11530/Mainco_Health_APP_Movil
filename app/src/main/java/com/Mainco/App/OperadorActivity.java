@@ -53,7 +53,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import Services.MyIntentService;
 import Services.ServicioItems;
 import Services.ServicioActividad;
 import Services.ServicioMotivoParo;
@@ -99,7 +98,8 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         cliente5 = new AsyncHttpClient();
         cliente6 = new AsyncHttpClient();
 
-
+        textToSpeech = new TSS();
+        textToSpeech.init(this);
 
        // llenarOps();
         IntentFilter llenarSpinner = new IntentFilter();
@@ -114,16 +114,13 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         llenarParo.addAction("llenarParo");
         registerReceiver(LlenarMotivoParo,llenarParo);
 
-        Intent llenarspinner = new Intent(OperadorActivity.this, MyIntentService.class);
+        Intent llenarspinner = new Intent(OperadorActivity.this, ServicioActividad.class);
         startService(llenarspinner);
 
         Intent llenaritem = new Intent(OperadorActivity.this, ServicioItems.class);
         startService(llenaritem);
 
 
-
-        textToSpeech = new TSS();
-        textToSpeech.init(this);
 
         if(savedInstanceState!=null){
             id.setText(savedInstanceState.getInt("ID"));
@@ -379,8 +376,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                 builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-
-
                         ProgressDialog pd = new ProgressDialog(OperadorActivity.this);
 
                         pd.setTitle("CERRANDO SESION");
@@ -1202,7 +1197,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
     }
 
     public void registrar(View v) {
-
         id = findViewById(R.id.operador);
 
 

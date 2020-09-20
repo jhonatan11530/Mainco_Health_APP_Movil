@@ -23,9 +23,6 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="m">
         <service
-            android:name="Services.MyIntentService"
-            android:exported="false"></service>
-        <service
             android:name="Services.ServicioItems"
             android:enabled="true"
             android:exported="false" />

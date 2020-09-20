@@ -67,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
+
             pd = new ProgressDialog(LoginActivity.this);
             pd.setTitle("INICIANDO SESION");
             pd.setMessage("Porfavor espere");
@@ -74,6 +75,8 @@ public class LoginActivity extends AppCompatActivity {
             pd.show();
             pd.setCancelable(false);
             pd.setCanceledOnTouchOutside(false);
+
+
 
         }
 
@@ -135,7 +138,6 @@ public class LoginActivity extends AppCompatActivity {
                             textToSpeech.speak("BIENVENIDO");
                             Intent e = new Intent(getApplicationContext(), OperadorActivity.class);
                             startActivity(e);
-
 
                             if (GUARDARUTO.isChecked()) {
 
