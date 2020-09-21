@@ -161,6 +161,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
         Validar.setEnabled(false);
 
+
         op.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence limpio, int start, int count, int after) {
@@ -285,8 +286,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             Thread.interrupted();
 
             finish();
-            Intent e = new Intent(getApplicationContext(), OperadorActivity.class);
-            startActivity(e);
 
         }
 
@@ -780,11 +779,14 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             hilo = new Thread(new Runnable() {
                 @Override
                 public void run() {
-
-
-
-
+                    String respuesta = HttpRequest.get("http://" + cambiarIP.ip + "/validar/validaroperador.php?id=" + id.getText().toString()).body();
                     try {
+                        JSONArray status = new JSONArray(respuesta);
+
+                        if (status.getString(0) == "null") {
+                            System.out.println("ESTO SE EJECUTO PERMITE INGRESAR HORA ENTRADA "+status.length());
+
+                            try {
 
 
                         String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/operador.php?id=" + id.getText().toString()).body();
@@ -798,11 +800,15 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                 @Override
                                 public void run() {
                                     registroTIME.setEnabled(true);
-                                    registroTIME.setBackgroundColor(Color.parseColor("#B2C900"));
+                                    registroTIME.setBackgroundColor(Color.parseColor("#2196F3"));
 
                                     salidaTIME.setEnabled(false);
                                     cantidadund.setEnabled(false);
                                     desbloquear.setEnabled(false);
+
+
+
+
 
                                 }
                             });
@@ -838,6 +844,48 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                         // TODO: handle exception
 
                     }
+
+                             runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    registroTIME.setEnabled(true);
+                                    registroTIME.setBackgroundColor(Color.parseColor("#2196F3"));
+
+                                    salidaTIME.setEnabled(false);
+                                    cantidadund.setEnabled(false);
+                                    desbloquear.setEnabled(false);
+
+
+                                }
+                            });
+                        }if (status.getString(0) != "null"){
+                            System.out.println("ESTO SE EJECUTO NO PERMITE INGRESAR HORA ENTRADA "+status.length());
+
+
+
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    registroTIME.setEnabled(false);
+                                    registroTIME.setBackgroundColor(Color.parseColor("#919191"));
+
+                                    salidaTIME.setEnabled(true);
+                                    cantidadund.setEnabled(true);
+                                    desbloquear.setEnabled(true);
+
+                                    desbloquear.setBackgroundColor(Color.parseColor("#2196F3"));
+                                    cantidadund.setBackgroundColor(Color.parseColor("#2196F3"));
+                                    salidaTIME.setBackgroundColor(Color.parseColor("#2196F3"));
+                                }
+                            });
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+
                 }
             });
             hilo.start();
@@ -849,6 +897,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
 
     public void verificar() {
+
         final String Nitem = resuldato3.getSelectedItem().toString();
         final String nombretarea = resuldato.getSelectedItem().toString();
         hilo = new Thread(new Runnable() {
@@ -864,6 +913,11 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                             @Override
                             public void run() {
 
+                                salidaTIME.setEnabled(false);
+                                cantidadund.setEnabled(false);
+                                desbloquear.setEnabled(false);
+
+
                                 AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
                                 builder.setIcon(R.drawable.informacion);
                                 builder.setTitle("REGISTRO LA ACTIVIDAD O TAREA");
@@ -872,11 +926,12 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                 builder.setPositiveButton("CONTINUAR ACTIVIDAD", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                        registroTIME.setBackgroundColor(Color.parseColor("#B2C900"));
+                                        registroTIME.setBackgroundColor(Color.parseColor("#2196F3"));
                                         registroTIME.setEnabled(true);
                                         hilo = new Thread(new Runnable() {
                                             @Override
                                             public void run() {
+
 
                                                 HttpRequest.get("http://" + cambiarIP.ip + "/validar/nuevoRegistro.php?id=" + id.getText().toString()).body();
                                             }
@@ -888,6 +943,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                 AlertDialog alert = builder.create();
                                 alert.show();
                                 alert.setCanceledOnTouchOutside(false);
+
 
                             }
                         });
@@ -924,7 +980,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                             @Override
                                             public void run() {
                                                 registroTIME.setEnabled(true);
-                                                registroTIME.setBackgroundColor(Color.parseColor("#B2C900"));
+                                                registroTIME.setBackgroundColor(Color.parseColor("#2196F3"));
                                             }
                                         });
                                         hilo = new Thread(new Runnable() {
@@ -1249,7 +1305,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                         cantidadund.setEnabled(true);
                                         desbloquear.setEnabled(true);
 
-                                        desbloquear.setBackgroundColor(Color.parseColor("#B2C900"));
+                                        desbloquear.setBackgroundColor(Color.parseColor("#2196F3"));
                                         cantidadund.setBackgroundColor(Color.parseColor("#2196F3"));
                                         salidaTIME.setBackgroundColor(Color.parseColor("#2196F3"));
                                     }
@@ -1274,7 +1330,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                         cantidadund.setEnabled(true);
                                         desbloquear.setEnabled(true);
 
-                                        desbloquear.setBackgroundColor(Color.parseColor("#B2C900"));
+                                        desbloquear.setBackgroundColor(Color.parseColor("#2196F3"));
                                         cantidadund.setBackgroundColor(Color.parseColor("#2196F3"));
                                         salidaTIME.setBackgroundColor(Color.parseColor("#2196F3"));
                                     }

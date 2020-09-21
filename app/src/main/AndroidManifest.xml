@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
+        android:name="androidx.multidex.MultiDexApplication"
         android:allowBackup="true"
         android:icon="@mipmap/mainco"
         android:label="@string/MAIN"
@@ -23,15 +24,16 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="m">
         <service
+            android:name="Services.ServicioMotivoParo"
+            android:enabled="true"
+            android:exported="false"></service>
+        <service
             android:name="Services.ServicioItems"
             android:enabled="true"
             android:exported="false" />
         <service
             android:name="Services.ServicioActividad"
             android:enabled="true"
-            android:exported="false" />
-        <service
-            android:name="Services.ServicioMotivoParo"
             android:exported="false" />
         <service
             android:name="Services.ServicioConnecting"

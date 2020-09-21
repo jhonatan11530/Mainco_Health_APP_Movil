@@ -11,6 +11,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="ESTO SE EJECUTO" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
@@ -25,10 +26,6 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_activity_activity_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_activity_activity_1_1_0_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_activity_activity_ktx_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_activity_activity_ktx_1_1_0_aar.xml" afterDir="false" />
@@ -97,14 +94,10 @@
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__me_dm7_barcodescanner_core_1_9_13_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__me_dm7_barcodescanner_core_1_9_13_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__me_dm7_barcodescanner_zxing_1_9_13_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__me_dm7_barcodescanner_zxing_1_9_13_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Services/MyIntentService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Services/ServicioActividad.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Services/ServicioActividad.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/LoginActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/OlvidoActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/OlvidoActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Services/ServicioMotivoParo.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Services/ServicioMotivoParo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/OperadorActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/OperadorActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/TSS.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/TSS.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -112,7 +105,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="J6_PLUS" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="HGT45AJX" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -170,7 +163,7 @@
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/java" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/RemoteSalesDev.apk" />
     <property name="memory.settings.postsync.last.time.stamp" value="1600527808767" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Dependencies" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
@@ -358,11 +351,11 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="275" y="27" key="#Notifications/0.0.1366.738@0.0.1366.738" timestamp="1593520589184" />
-    <state x="200" y="99" key="#PSD" timestamp="1599072104642">
+    <state x="134" y="202" key="#PSD" timestamp="1600695017031">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="200" y="98" key="#PSD/0.0.1366.728@0.0.1366.728" timestamp="1596673286852" />
-    <state x="200" y="99" key="#PSD/0.0.1366.738@0.0.1366.738" timestamp="1599072104642" />
+    <state x="134" y="202" key="#PSD/0.0.1366.738@0.0.1366.738" timestamp="1600695017031" />
     <state x="275" y="26" key="#Updates" timestamp="1592930999674">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -398,11 +391,11 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="133" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1366.728@0.0.1366.728" timestamp="1600622256241" />
-    <state x="413" y="112" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1600624003672">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="413" y="114" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1600695447308">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="413" y="112" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1600624003672" />
-    <state x="413" y="114" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.738@0.0.1366.738" timestamp="1600462340238" />
+    <state x="413" y="114" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.738@0.0.1366.738" timestamp="1600695447308" />
     <state x="413" y="116" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1593114760534">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -436,26 +429,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="553" y="257" key="Github.ShareDialog/0.0.1366.728@0.0.1366.728" timestamp="1596674572787" />
-    <state width="1323" height="-23" key="GridCell.Tab.0.bottom" timestamp="1600629189305">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="732" height="-23" key="GridCell.Tab.0.bottom" timestamp="1600709755737">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="-23" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1600629189305" />
-    <state width="747" height="576" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1600462839123" />
-    <state width="1323" height="-23" key="GridCell.Tab.0.center" timestamp="1600629189305">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="732" height="-23" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1600709755737" />
+    <state width="732" height="-23" key="GridCell.Tab.0.center" timestamp="1600709755737">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="-23" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1600629189305" />
-    <state width="747" height="576" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1600462839123" />
-    <state width="1323" height="-23" key="GridCell.Tab.0.left" timestamp="1600629189304">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="732" height="-23" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1600709755737" />
+    <state width="732" height="-23" key="GridCell.Tab.0.left" timestamp="1600709755737">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="-23" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1600629189304" />
-    <state width="747" height="576" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1600462839122" />
-    <state width="1323" height="-23" key="GridCell.Tab.0.right" timestamp="1600629189305">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state width="732" height="-23" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1600709755737" />
+    <state width="732" height="-23" key="GridCell.Tab.0.right" timestamp="1600709755737">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="-23" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1600629189305" />
-    <state width="747" height="576" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1600462839123" />
+    <state width="732" height="-23" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1600709755737" />
     <state width="1367" height="2" key="GridCell.Tab.1.bottom" timestamp="1597784125781">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -472,11 +461,11 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="1367" height="2" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1597784125781" />
-    <state x="184" y="0" key="SettingsEditor" timestamp="1600615448889">
-      <screen x="0" y="0" width="1366" height="728" />
+    <state x="184" y="0" key="SettingsEditor" timestamp="1600694001275">
+      <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="184" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1600615448889" />
-    <state x="184" y="0" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1597750585817" />
+    <state x="184" y="0" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1600694001275" />
     <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1596676296706">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -506,6 +495,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="259" y="106" width="847" height="602" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1366.738@0.0.1366.738" timestamp="1593715542475" />
+    <state x="206" y="225" key="psd.add.library.dependency.panel.dimension" timestamp="1600694996676">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state x="206" y="225" key="psd.add.library.dependency.panel.dimension/0.0.1366.738@0.0.1366.738" timestamp="1600694996676" />
     <state x="389" y="0" key="refactoring.ChangeSignatureDialog" timestamp="1596553812821">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
