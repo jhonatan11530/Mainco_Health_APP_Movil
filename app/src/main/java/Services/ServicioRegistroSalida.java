@@ -42,7 +42,7 @@ public class ServicioRegistroSalida extends Service {
 
                     HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizaSalida.php?id=" + id + "&cantidad=" + volumen + "&Ffinal=" + fechas + "&Hfinal=" + horas + "&motivo=" + error + "&conforme=" + falla + "&tarea=" + nombretarea + "&op=" + items).body();
 
-                    HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?op=" + items.toString()).body();
+                    HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?op=" + items).body();
 
                 }
             });
