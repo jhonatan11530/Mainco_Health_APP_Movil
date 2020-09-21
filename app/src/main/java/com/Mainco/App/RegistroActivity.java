@@ -22,7 +22,8 @@ public class RegistroActivity extends AppCompatActivity {
     CheckBox resultado;
     Button registro;
     AsyncHttpClient client;
-    TSS textToSpeech=null;
+    TSS textToSpeech = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

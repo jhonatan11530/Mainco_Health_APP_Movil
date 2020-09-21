@@ -10,16 +10,18 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 
 public class ServicioItems extends Service {
     private AsyncHttpClient cliente1;
+
     public ServicioItems() {
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-         super.onStartCommand(intent, flags, startId);
+        super.onStartCommand(intent, flags, startId);
         ejecutar();
         return START_STICKY;
     }
-    public void ejecutar(){
+
+    public void ejecutar() {
         cliente1 = new AsyncHttpClient();
         // LLENA EL SPINNER DE ACTIVIDAD
         String url = "http://" + cambiarIP.ip + "/validar/OPS.php";
@@ -31,7 +33,7 @@ public class ServicioItems extends Service {
                     String llenarOps = new String(responseBody);
 
                     Intent intent1 = new Intent("llenarItem");
-                    intent1.putExtra("llenarOps",llenarOps);
+                    intent1.putExtra("llenarOps", llenarOps);
                     sendBroadcast(intent1);
 
                 }

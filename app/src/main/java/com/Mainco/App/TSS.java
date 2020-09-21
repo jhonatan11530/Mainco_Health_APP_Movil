@@ -8,16 +8,17 @@ import java.util.Locale;
 
 public class TSS {
     private TextToSpeech textToSpeech;
-    private  boolean cargado=false;
-    public void init(Context context){
-      final  TextToSpeech.OnInitListener onInitListener = new TextToSpeech.OnInitListener() {
+    private boolean cargado = false;
+
+    public void init(Context context) {
+        final TextToSpeech.OnInitListener onInitListener = new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {
                 if (status == android.speech.tts.TextToSpeech.SUCCESS) {
                     int result = textToSpeech.setLanguage(Locale.getDefault());
-                    cargado =true;
+                    cargado = true;
                     if (result == android.speech.tts.TextToSpeech.LANG_MISSING_DATA || result == android.speech.tts.TextToSpeech.LANG_NOT_SUPPORTED) {
-                        Log.e("erro","ESTE LENGUAJE NO ES PERMITIDO");
+                        Log.e("erro", "ESTE LENGUAJE NO ES PERMITIDO");
                     } else {
 
                         textToSpeech.setPitch(1.0f);
@@ -28,21 +29,21 @@ public class TSS {
             }
         };
 
-        textToSpeech = new TextToSpeech(context,onInitListener);
+        textToSpeech = new TextToSpeech(context, onInitListener);
 
     }
 
 
     public void onStop() {
         if (textToSpeech != null) {
-            System.out.println("ESTO SE DETUBO "+textToSpeech.stop());
+            System.out.println("ESTO SE DETUBO " + textToSpeech.stop());
             textToSpeech.stop();
         }
     }
 
-    public void speak(String text){
-        if(cargado){
-            textToSpeech.speak(text,TextToSpeech.QUEUE_FLUSH,null);
+    public void speak(String text) {
+        if (cargado) {
+            textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
         }
     }
 }

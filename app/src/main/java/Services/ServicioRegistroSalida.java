@@ -11,6 +11,7 @@ import com.Mainco.App.cambiarIP;
 
 public class ServicioRegistroSalida extends Service {
     private Thread workerThread = null;
+
     public ServicioRegistroSalida() {
     }
 
@@ -34,11 +35,11 @@ public class ServicioRegistroSalida extends Service {
                 @Override
                 public void run() {
 
-                    HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizarop.php?op=" + resuldato3 + "&totales=" + malo+"&codigo="+items).body();
+                    HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizarop.php?op=" + resuldato3 + "&totales=" + malo + "&codigo=" + items).body();
 
                     HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadupdate.php?op=" + resuldato3 + "&tarea=" + nombretarea + "&totales=" + end).body();
 
-                    HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodificar.php?op=" + resuldato3 + "&tarea=" + nombretarea + "&totales=" + malo+"&codigo="+items).body();
+                    HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodificar.php?op=" + resuldato3 + "&tarea=" + nombretarea + "&totales=" + malo + "&codigo=" + items).body();
 
                     HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizaSalida.php?id=" + id + "&cantidad=" + volumen + "&Ffinal=" + fechas + "&Hfinal=" + horas + "&motivo=" + error + "&conforme=" + falla + "&tarea=" + nombretarea + "&op=" + items).body();
 
@@ -50,6 +51,7 @@ public class ServicioRegistroSalida extends Service {
         }
         return START_STICKY;
     }
+
     @Override
     public IBinder onBind(Intent intent) {
         // TODO: Return the communication channel to the service.

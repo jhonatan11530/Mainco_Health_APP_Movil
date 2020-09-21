@@ -1,10 +1,10 @@
-<vector xmlns:tools="http://schemas.android.com/tools"
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:width="240dp"
     android:height="240dp"
     android:tint="#FFFFFF"
-    android:viewportHeight="20"
     android:viewportWidth="20"
-    android:width="240dp"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:viewportHeight="20"
     tools:ignore="VectorRaster">
     <path
         android:fillColor="@android:color/white"

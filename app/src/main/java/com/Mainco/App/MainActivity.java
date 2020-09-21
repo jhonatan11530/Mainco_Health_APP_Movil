@@ -10,8 +10,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import Services.ServicioConnecting;
 
 public class MainActivity extends AppCompatActivity {
-    private final int DURACION_SPLASH = 3000;
     private static final int TTS_CHECK_CODE = 101;
+    private final int DURACION_SPLASH = 3000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -12,12 +12,12 @@ public class OPS {
         this.cod_producto = cod_producto;
     }
 
-    public void setOps(String cod_producto) {
-        this.cod_producto = cod_producto;
-    }
-
     public String getOps() {
         return cod_producto;
+    }
+
+    public void setOps(String cod_producto) {
+        this.cod_producto = cod_producto;
     }
 
     public String toString() {

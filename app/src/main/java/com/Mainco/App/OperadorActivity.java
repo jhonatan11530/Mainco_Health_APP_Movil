@@ -62,17 +62,9 @@ import cz.msebera.android.httpclient.Header;
 @SuppressWarnings("ALL")
 public class OperadorActivity extends AppCompatActivity implements LifecycleObserver {
 
-    private EditText id, cantidad, paro, fallas, op, codemotivo;
-    private String falla, error, VaribleTOTA, NOMBRE;
-    private TextView motivo, MOSTRAR, texto, resultados;
     public static Spinner resuldato, resuldato2, resuldato4, resuldato3;
-    private Button go,stop,BtnParo,positivo,neutrar,BtnIngreso,Btnsalida,validarinfo,BtnAplazo,Validar,BtnHora;
-    private int minuto, segundo, horas, i, hora, cantidadpro,cantidadotra, volumencan, total, volumen;
     private final ArrayList<cantidadfallas> dato4 = new ArrayList<>();
-    private ArrayList<cantidades> dato3 = new ArrayList<>();
-    private ArrayList<motivoparo> dato2 = new ArrayList<>();
-    private ArrayList<OPS> dato = new ArrayList<>();
-
+    public Thread hilo;
     EditText edit, digito;
     View tiempo1, adelanto;
     AlertDialog.Builder registros;
@@ -80,10 +72,67 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
     SimpleDateFormat hourFormat;
     SimpleDateFormat dateFormat;
     RelativeLayout production;
-    private AsyncHttpClient cliente,cliente1,cliente2, cliente3;
-    public Thread hilo;
+    TSS textToSpeech = null;
+    private EditText id, cantidad, paro, fallas, op, codemotivo;
+    private String falla, error, VaribleTOTA, NOMBRE;
+    private TextView motivo, MOSTRAR, texto, resultados;
+    private Button go, stop, BtnParo, positivo, neutrar, BtnIngreso, Btnsalida, validarinfo, BtnAplazo, Validar, BtnHora;
+    private int minuto, segundo, horas, i, hora, cantidadpro, cantidadotra, volumencan, total, volumen;
+    private ArrayList<cantidades> dato3 = new ArrayList<>();
+    private ArrayList<motivoparo> dato2 = new ArrayList<>();
+    private ArrayList<OPS> dato = new ArrayList<>();
+    private AsyncHttpClient cliente, cliente1, cliente2, cliente3;
     private Thread workerThread = null;
-    TSS textToSpeech=null;
+    private BroadcastReceiver LlenarSpinner = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            // LLENA SPINNER ACTIVIDAD
+            String cargarSpinner = intent.getStringExtra("llenarSpinner");
+            cargarSpinner(new String(cargarSpinner));
+            System.out.println("MENSAJE " + cargarSpinner);
+
+
+        }
+    };
+    private BroadcastReceiver LlenarItem = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //LLENA SPINNER ITEM
+            String llenarOps = intent.getStringExtra("llenarOps");
+            cargarops(new String(llenarOps));
+            System.out.println("MENSAJE " + llenarOps);
+        }
+    };
+    private BroadcastReceiver LlenarMotivoParo = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //LLENA SPINNER ITEM
+            String filtrardescanso = intent.getStringExtra("filtrardescanso");
+            filtrardescanso(new String(filtrardescanso));
+            System.out.println("MENSAJE " + filtrardescanso);
+        }
+    };
+
+    public static String getIP() {
+        List<InetAddress> addrs;
+        String address = "";
+        try {
+            List<NetworkInterface> interfaces = Collections.list(NetworkInterface.getNetworkInterfaces());
+            for (NetworkInterface intf : interfaces) {
+                addrs = Collections.list(intf.getInetAddresses());
+                for (InetAddress addr : addrs) {
+                    if (!addr.isLoopbackAddress() && addr instanceof Inet4Address) {
+                        address = addr.getHostAddress().toUpperCase(new Locale("es", "MX"));
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Ex getting IP value " + e.getMessage());
+
+        }
+        return address;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,15 +149,15 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
         IntentFilter llenarSpinner = new IntentFilter();
         llenarSpinner.addAction("llenarSpinner");
-        registerReceiver(LlenarSpinner,llenarSpinner);
+        registerReceiver(LlenarSpinner, llenarSpinner);
 
         IntentFilter llenarItem = new IntentFilter();
         llenarItem.addAction("llenarItem");
-        registerReceiver(LlenarItem,llenarItem);
+        registerReceiver(LlenarItem, llenarItem);
 
         IntentFilter llenarParo = new IntentFilter();
         llenarParo.addAction("llenarParo");
-        registerReceiver(LlenarMotivoParo,llenarParo);
+        registerReceiver(LlenarMotivoParo, llenarParo);
 
         Intent llenarspinner = new Intent(OperadorActivity.this, ServicioActividad.class);
         startService(llenarspinner);
@@ -117,8 +166,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         startService(llenaritem);
 
 
-
-        if(savedInstanceState!=null){
+        if (savedInstanceState != null) {
             id.setText(savedInstanceState.getInt("ID"));
             op.setText(savedInstanceState.getString("OP"));
         }
@@ -140,7 +188,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
         BtnParo = findViewById(R.id.tiempo);
 
-        BtnIngreso= findViewById(R.id.insertar);
+        BtnIngreso = findViewById(R.id.insertar);
 
         Btnsalida = findViewById(R.id.salida);
 
@@ -148,7 +196,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
         resultados = findViewById(R.id.listar_operador);
 
-       getLifecycle().addObserver(new Observardor());
+        getLifecycle().addObserver(new Observardor());
 
         BtnParo.setEnabled(false);
         BtnIngreso.setEnabled(false);
@@ -186,42 +234,13 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         });
 
     }
-    private BroadcastReceiver LlenarSpinner = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            // LLENA SPINNER ACTIVIDAD
-            String cargarSpinner = intent.getStringExtra("llenarSpinner");
-            cargarSpinner(new String(cargarSpinner));
-            System.out.println("MENSAJE "+cargarSpinner);
-
-
-        }
-    };
-    private BroadcastReceiver LlenarItem = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            //LLENA SPINNER ITEM
-            String llenarOps = intent.getStringExtra("llenarOps");
-            cargarops(new String(llenarOps));
-            System.out.println("MENSAJE "+llenarOps);
-        }
-    };
-    private BroadcastReceiver LlenarMotivoParo = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            //LLENA SPINNER ITEM
-            String filtrardescanso = intent.getStringExtra("filtrardescanso");
-            filtrardescanso(new String(filtrardescanso));
-            System.out.println("MENSAJE "+filtrardescanso);
-        }
-    };
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle ID_OP) {
         super.onSaveInstanceState(ID_OP);
 
-        ID_OP.putString("ID",id.getText().toString());
-        ID_OP.putString("OP",op.getText().toString());
+        ID_OP.putString("ID", id.getText().toString());
+        ID_OP.putString("OP", op.getText().toString());
     }
 
     @Override
@@ -229,82 +248,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         super.onRestoreInstanceState(savedInstanceState);
         id.setText(savedInstanceState.getInt("ID"));
         op.setText(savedInstanceState.getString("OP"));
-    }
-
-    public class Observardor implements LifecycleObserver {
-
-        private String LOG_TAG = "Observardor";
-
-        @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-        public void onResume() {
-            Log.i(LOG_TAG, "onResume");
-
-        }
-
-        @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
-        public void onPause() {
-            Log.i(LOG_TAG, "onPause");
-        }
-
-        @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-        public void onCreate() {
-            Log.i(LOG_TAG, "onCreate");
-        }
-
-        @OnLifecycleEvent(Lifecycle.Event.ON_START)
-        public void onStart() {
-            Log.i(LOG_TAG, "onStart");
-        }
-
-        @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
-        public void onStop() {
-            Log.i(LOG_TAG, "onStop");
-        }
-
-        @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-        public void onDestroy() {
-
-            // imprime fecha
-             dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-             date = new Date();
-            //imprime hora
-              hourFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
-            final String fecha = dateFormat.format(date);
-            final String hora = hourFormat.format(date);
-            // se obtiene el name-model,ip,fecha,hora
-            Log.i(LOG_TAG, "onDestroy "+id.getText().toString()+" "+op.getText().toString()+" "+obtenerNombreDeDispositivo()+" "+getIP()+" "+hora+" "+fecha);
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                HttpRequest.get("http://" + cambiarIP.ip + "/validar/RegistroERROR.php?id="+id.getText().toString()+"&op="+op.getText().toString()+"&nombre="+obtenerNombreDeDispositivo()+"&ip="+getIP()+"&hora="+hora.toString()+"&fecha="+fecha.toString()).body();
-                }
-            }).start();
-            Thread.interrupted();
-
-            finish();
-
-        }
-
-    }
-
-    public static String getIP(){
-        List<InetAddress> addrs;
-        String address = "";
-        try{
-            List<NetworkInterface> interfaces = Collections.list(NetworkInterface.getNetworkInterfaces());
-            for(NetworkInterface intf : interfaces){
-                addrs = Collections.list(intf.getInetAddresses());
-                for(InetAddress addr : addrs){
-                    if(!addr.isLoopbackAddress() && addr instanceof Inet4Address){
-                        address = addr.getHostAddress().toUpperCase(new Locale("es", "MX"));
-                    }
-                }
-            }
-        }catch (Exception e){
-            System.out.println("Ex getting IP value " + e.getMessage());
-
-        }
-        return address;
     }
 
     public String obtenerNombreDeDispositivo() {
@@ -585,6 +528,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
                 llenardescansoMotivo();
             }
+
             @Override
             public void onRetry(int retryNo) {
                 llenardescansoMotivo();
@@ -655,19 +599,19 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
     }
 
-    public void validaractividad(){
+    public void validaractividad() {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
                     Thread.sleep(1000);
 
-                    String responses = HttpRequest.get("http://" + cambiarIP.ip + "/validar/validarcantidad.php?numero=" + resuldato3.getSelectedItem().toString()+"&tarea="+resuldato.getSelectedItem().toString()).body();
+                    String responses = HttpRequest.get("http://" + cambiarIP.ip + "/validar/validarcantidad.php?numero=" + resuldato3.getSelectedItem().toString() + "&tarea=" + resuldato.getSelectedItem().toString()).body();
                     try {
                         JSONArray objecto = new JSONArray(responses);
                         int variable = Integer.parseInt(objecto.getString(0));
 
-                        if (variable == 0){
+                        if (variable == 0) {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -691,67 +635,67 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         }).start();
     }
 
-    public void validar(){
-    new Thread(new Runnable() {
-        @Override
-        public void run() {
-            try {
-                Thread.sleep(1000);
+    public void validar() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(1000);
 
-            String responses = HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadedits.php?cod=" + resuldato3.getSelectedItem().toString()+"&op="+op.getText().toString()).body();
-        try {
-            JSONArray objecto = new JSONArray(responses);
-            int variable = Integer.parseInt(objecto.getString(0));
+                    String responses = HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadedits.php?cod=" + resuldato3.getSelectedItem().toString() + "&op=" + op.getText().toString()).body();
+                    try {
+                        JSONArray objecto = new JSONArray(responses);
+                        int variable = Integer.parseInt(objecto.getString(0));
 
-            if (variable == 0){
+                        if (variable == 0) {
 
-                textToSpeech.speak("LA ORDEN DE PRODU SION ESTA CERRADA");
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
+                            textToSpeech.speak("LA ORDEN DE PRODU SION ESTA CERRADA");
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
-                builder.setTitle("LA ORDEN DE PRODUCCION SE CERRO");
-                builder.setIcon(R.drawable.finish_op);
-                builder.setMessage("NO PODRA REGISTRAR ACTIVIDADES O CANTIDADES");
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
+                                    builder.setTitle("LA ORDEN DE PRODUCCION SE CERRO");
+                                    builder.setIcon(R.drawable.finish_op);
+                                    builder.setMessage("NO PODRA REGISTRAR ACTIVIDADES O CANTIDADES");
 
-                builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        new Thread(new Runnable() {
-                            @Override
-                            public void run() {
-                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?op=" + op.getText().toString()).body();
-                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/limpiar.php?id=" + resuldato3.getSelectedItem().toString()).body();
+                                    builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            new Thread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?op=" + op.getText().toString()).body();
+                                                    HttpRequest.get("http://" + cambiarIP.ip + "/validar/limpiar.php?id=" + resuldato3.getSelectedItem().toString()).body();
 
-                            }
-                        }).start();
+                                                }
+                                            }).start();
 
+                                        }
+                                    });
+                                    AlertDialog alert = builder.create();
+                                    alert.show();
+                                    alert.setCanceledOnTouchOutside(false);
+
+                                    BtnParo.setEnabled(false);
+                                    BtnIngreso.setEnabled(false);
+                                    Btnsalida.setEnabled(false);
+                                    BtnAplazo.setEnabled(false);
+                                }
+                            });
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                });
-                AlertDialog alert = builder.create();
-                alert.show();
-                alert.setCanceledOnTouchOutside(false);
 
-                        BtnParo.setEnabled(false);
-                        BtnIngreso.setEnabled(false);
-                        Btnsalida.setEnabled(false);
-                        BtnAplazo.setEnabled(false);
-                    }
-                });
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-        }
-    }).start();
+        }).start();
     }
-    
+
     public void operador(View v) {
 
         if (id.getText().toString().length() == 0 && op.getText().toString().length() == 0) {
@@ -780,63 +724,63 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                         JSONArray status = new JSONArray(respuesta);
 
                         if (status.getString(0) == "null") {
-                            System.out.println("ESTO SE EJECUTO PERMITE INGRESAR HORA ENTRADA "+status.length());
+                            System.out.println("ESTO SE EJECUTO PERMITE INGRESAR HORA ENTRADA " + status.length());
 
-                        try {
-
-
-                            String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/operador.php?id=" + id.getText().toString()).body();
-                            JSONArray objecto = new JSONArray(response);
+                            try {
 
 
-                            if (response.length() > 0) {
+                                String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/operador.php?id=" + id.getText().toString()).body();
+                                JSONArray objecto = new JSONArray(response);
 
 
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        BtnIngreso.setEnabled(true);
-                                        BtnIngreso.setBackgroundColor(Color.parseColor("#B2C900"));
+                                if (response.length() > 0) {
 
-                                        Btnsalida.setEnabled(false);
-                                        BtnAplazo.setEnabled(false);
-                                        BtnParo.setEnabled(false);
 
-                                    }
-                                });
-                                NOMBRE = objecto.getString(0);
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            BtnIngreso.setEnabled(true);
+                                            BtnIngreso.setBackgroundColor(Color.parseColor("#B2C900"));
 
-                                resultados.setText("OPERADOR : " + objecto.getString(0));
+                                            Btnsalida.setEnabled(false);
+                                            BtnAplazo.setEnabled(false);
+                                            BtnParo.setEnabled(false);
 
+                                        }
+                                    });
+                                    NOMBRE = objecto.getString(0);
+
+                                    resultados.setText("OPERADOR : " + objecto.getString(0));
+
+                                }
+                                if (response.length() == 0) {
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
+                                            builder.setTitle("EL OPERADOR NO EXISTE");
+                                            builder.setIcon(R.drawable.informacion);
+                                            builder.setMessage("EL OPERARIO NO ESTA REGISTRADO ");
+
+                                            builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialogInterface, int i) {
+
+                                                }
+                                            });
+                                            AlertDialog alert = builder.create();
+                                            alert.show();
+                                            alert.setCanceledOnTouchOutside(false);
+                                        }
+                                    });
+                                }
+
+                            } catch (Exception e) {
                             }
-                            if (response.length() == 0) {
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
-                                        builder.setTitle("EL OPERADOR NO EXISTE");
-                                        builder.setIcon(R.drawable.informacion);
-                                        builder.setMessage("EL OPERARIO NO ESTA REGISTRADO ");
 
-                                        builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialogInterface, int i) {
-
-                                            }
-                                        });
-                                        AlertDialog alert = builder.create();
-                                        alert.show();
-                                        alert.setCanceledOnTouchOutside(false);
-                                    }
-                                });
-                            }
-
-                    } catch (Exception e) {
-                         }
-
-                        }if (status.getString(0) != "null"){
-                            System.out.println("ESTO SE EJECUTO NO PERMITE INGRESAR HORA ENTRADA "+status.length());
-
+                        }
+                        if (status.getString(0) != "null") {
+                            System.out.println("ESTO SE EJECUTO NO PERMITE INGRESAR HORA ENTRADA " + status.length());
 
 
                             runOnUiThread(new Runnable() {
@@ -858,7 +802,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                     }
 
 
-
                 }
             });
             hilo.start();
@@ -867,7 +810,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         }
 
     }
-
 
     public void verificar() {
 
@@ -935,7 +877,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                 Btnsalida.setEnabled(false);
                                 BtnAplazo.setEnabled(false);
                                 BtnParo.setEnabled(false);
-
 
 
                                 AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
@@ -1043,28 +984,27 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         //TEXTVIEW Y SPINNER
         motivo.setVisibility(View.VISIBLE);
         resuldato2.setVisibility(View.VISIBLE);
-  validarinfo.setOnClickListener(new View.OnClickListener() {
+        validarinfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 validarinfo.setEnabled(false);
-                    resuldato2.setEnabled(false);
-                    codemotivo.setEnabled(false);
+                resuldato2.setEnabled(false);
+                codemotivo.setEnabled(false);
 
-                     go.setEnabled(true);
+                go.setEnabled(true);
 
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            String mostrardatos = resuldato2.getSelectedItem().toString();
-                            Toast.makeText(getApplicationContext(), "USTED SELECCIÓNO " + mostrardatos, Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                    textToSpeech.speak(resuldato2.getSelectedItem().toString());
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String mostrardatos = resuldato2.getSelectedItem().toString();
+                        Toast.makeText(getApplicationContext(), "USTED SELECCIÓNO " + mostrardatos, Toast.LENGTH_SHORT).show();
+                    }
+                });
+                textToSpeech.speak(resuldato2.getSelectedItem().toString());
 
             }
         });
-
 
 
         registros.setPositiveButton("REGISTRAR", new DialogInterface.OnClickListener() {
@@ -1073,7 +1013,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
             }
         });
-
 
 
         registros.setView(tiempo1);
@@ -1126,6 +1065,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         });
         BtnHora.setEnabled(false);
     }
+
     public void go(View v) {
 
 
@@ -1282,7 +1222,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                 });
 
                                 System.out.println("ESTO SUCEDIO");
-                                String responses = HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadedits.php?cod=" + resuldato3.getSelectedItem().toString()+"&op="+op.getText().toString()).body();
+                                String responses = HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadedits.php?cod=" + resuldato3.getSelectedItem().toString() + "&op=" + op.getText().toString()).body();
 
                                 JSONArray RESTARCANTIDAD = new JSONArray(responses);
                                 HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodifi.php?op=" + resuldato3.getSelectedItem().toString() + "&totales=" + RESTARCANTIDAD.getString(0)).body();
@@ -1356,36 +1296,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         AlertDialog alert = builder.create();
         alert.show();
         alert.setCanceledOnTouchOutside(false);
-
-    }
-
-
-    class Task extends AsyncTask<String, Void, String> {
-
-        @Override
-        protected String doInBackground(String... strings) {
-            try {
-                String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/Sobrante.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + resuldato.getSelectedItem().toString()).body();
-                JSONArray array = new JSONArray(response);
-                VaribleTOTA = array.getString(0);
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            return VaribleTOTA;
-
-        }
-
-        @Override
-        protected void onPostExecute(final String VaribleTOTA) {
-            super.onPostExecute(VaribleTOTA);
-            int VaribleTOTAL = Integer.parseInt(VaribleTOTA);
-            TextView MostrarCantidad = findViewById(R.id.MostrarCantidad);
-
-            MostrarCantidad.setText("CANTIDAD EN O.P : " + VaribleTOTAL);
-
-        }
 
     }
 
@@ -1554,7 +1464,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(resuldato4.getSelectedItem().toString().length()!=0){
+                if (resuldato4.getSelectedItem().toString().length() != 0) {
                     System.out.println("EL SPINNER NO ESTA VACIO");
                     BtnHora = alert.getButton(AlertDialog.BUTTON_POSITIVE);
                     BtnHora.setEnabled(true);
@@ -1767,7 +1677,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(resuldato4.getSelectedItem().toString().length()!=0){
+                if (resuldato4.getSelectedItem().toString().length() != 0) {
                     System.out.println("EL SPINNER NO ESTA VACIO");
                     BtnHora = alert.getButton(AlertDialog.BUTTON_POSITIVE);
                     BtnHora.setEnabled(true);
@@ -1779,6 +1689,91 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
             }
         });
+
+    }
+
+    public class Observardor implements LifecycleObserver {
+
+        private String LOG_TAG = "Observardor";
+
+        @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
+        public void onResume() {
+            Log.i(LOG_TAG, "onResume");
+
+        }
+
+        @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+        public void onPause() {
+            Log.i(LOG_TAG, "onPause");
+        }
+
+        @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+        public void onCreate() {
+            Log.i(LOG_TAG, "onCreate");
+        }
+
+        @OnLifecycleEvent(Lifecycle.Event.ON_START)
+        public void onStart() {
+            Log.i(LOG_TAG, "onStart");
+        }
+
+        @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
+        public void onStop() {
+            Log.i(LOG_TAG, "onStop");
+        }
+
+        @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+        public void onDestroy() {
+
+            // imprime fecha
+            dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+            date = new Date();
+            //imprime hora
+            hourFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+            final String fecha = dateFormat.format(date);
+            final String hora = hourFormat.format(date);
+            // se obtiene el name-model,ip,fecha,hora
+            Log.i(LOG_TAG, "onDestroy " + id.getText().toString() + " " + op.getText().toString() + " " + obtenerNombreDeDispositivo() + " " + getIP() + " " + hora + " " + fecha);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    HttpRequest.get("http://" + cambiarIP.ip + "/validar/RegistroERROR.php?id=" + id.getText().toString() + "&op=" + op.getText().toString() + "&nombre=" + obtenerNombreDeDispositivo() + "&ip=" + getIP() + "&hora=" + hora.toString() + "&fecha=" + fecha.toString()).body();
+                }
+            }).start();
+            Thread.interrupted();
+
+            finish();
+
+        }
+
+    }
+
+    class Task extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... strings) {
+            try {
+                String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/Sobrante.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + resuldato.getSelectedItem().toString()).body();
+                JSONArray array = new JSONArray(response);
+                VaribleTOTA = array.getString(0);
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return VaribleTOTA;
+
+        }
+
+        @Override
+        protected void onPostExecute(final String VaribleTOTA) {
+            super.onPostExecute(VaribleTOTA);
+            int VaribleTOTAL = Integer.parseInt(VaribleTOTA);
+            TextView MostrarCantidad = findViewById(R.id.MostrarCantidad);
+
+            MostrarCantidad.setText("CANTIDAD EN O.P : " + VaribleTOTAL);
+
+        }
 
     }
 }

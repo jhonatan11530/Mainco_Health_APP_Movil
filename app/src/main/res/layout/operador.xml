@@ -17,8 +17,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="5"
-            android:orientation="vertical"
             android:gravity="center"
+            android:orientation="vertical"
             android:weightSum="10">
 
             <TextView
@@ -33,27 +33,27 @@
                 android:id="@+id/operador"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginVertical="4dp"
                 android:layout_weight="2"
-                android:gravity="center"
                 android:background="@drawable/items"
                 android:ems="10"
+                android:gravity="center"
                 android:hint="ID DEL OPERADOR"
-                android:textColorHint="#000"
                 android:inputType="text"
-                android:layout_marginVertical="4dp" />
+                android:textColorHint="#000" />
 
             <EditText
                 android:id="@+id/OP"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
                 android:layout_marginVertical="4dp"
+                android:layout_weight="2"
                 android:background="@drawable/items"
                 android:ems="10"
                 android:gravity="center"
                 android:hint="INGRESE EL NUMERO DE O.P"
-                android:textColorHint="#000"
                 android:inputType="text"
+                android:textColorHint="#000"
                 tools:ignore="NestedWeights" />
 
             <Button
@@ -70,8 +70,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:gravity="center"
-                android:textColor="#000"
                 android:text="NUMERO DE ITEM"
+                android:textColor="#000"
                 android:textSize="20sp" />
 
             <Spinner
@@ -83,8 +83,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:gravity="center"
-                android:textColor="#000"
                 android:text="ACTIVIDAD"
+                android:textColor="#000"
                 android:textSize="20sp" />
 
             <Spinner
@@ -107,51 +107,51 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="2.5"
-                android:textColor="#ffffff"
+                android:background="#B2C900"
                 android:onClick="registrar"
                 android:text="COMENZAR"
-                android:background="#B2C900"/>
+                android:textColor="#ffffff" />
 
             <Button
                 android:id="@+id/aplazar"
                 android:layout_width="match_parent"
-                android:layout_marginVertical="5dp"
                 android:layout_height="wrap_content"
-                android:textColor="#ffffff"
-                android:onClick="aplazo"
+                android:layout_marginVertical="5dp"
                 android:layout_weight="2.5"
+                android:background="#2196F3"
+                android:onClick="aplazo"
                 android:text="APLAZAR PRODUCCION"
-                android:background="#2196F3"/>
+                android:textColor="#ffffff" />
 
 
             <Button
                 android:id="@+id/tiempo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#ffffff"
                 android:layout_weight="2.5"
+                android:background="#B2C900"
                 android:onClick="hora"
                 android:text="REGISTRAR TIEMPO DE PARO"
-                android:background="#B2C900"/>
+                android:textColor="#ffffff" />
 
             <Button
                 android:id="@+id/salida"
                 android:layout_width="match_parent"
-                android:layout_marginVertical="5dp"
                 android:layout_height="wrap_content"
-                android:textColor="#ffffff"
+                android:layout_marginVertical="5dp"
                 android:layout_weight="2.5"
+                android:background="#2196F3"
                 android:onClick="salida"
                 android:text="FINALIZAR"
-                android:background="#2196F3"/>
+                android:textColor="#ffffff" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/MostrarCantidad"

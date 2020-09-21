@@ -30,16 +30,15 @@ import androidx.appcompat.app.AppCompatActivity;
 @SuppressWarnings("ALL")
 public class LoginActivity extends AppCompatActivity {
 
+    final WifiConfiguration conf = new WifiConfiguration();
     EditText login, pass;
     Button validar;
     TextView registre;
-    TSS textToSpeech=null;
+    TSS textToSpeech = null;
     CheckBox GUARDARUTO;
     ProgressDialog pd;
-
     String networkSSID = "WIFIMainco";
     String networkPass = "A125277935";
-    final WifiConfiguration conf = new WifiConfiguration();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,114 +58,6 @@ public class LoginActivity extends AppCompatActivity {
 
         validar = findViewById(R.id.login);
 
-
-
-    }
-
-    class TASK extends AsyncTask<String, Void, String> {
-
-        @Override
-        protected void onPreExecute() {
-
-            pd = new ProgressDialog(LoginActivity.this);
-            pd.setTitle("INICIANDO SESION");
-            pd.setMessage("Porfavor espere");
-
-            pd.show();
-            pd.setCancelable(false);
-            pd.setCanceledOnTouchOutside(false);
-
-
-
-        }
-
-        @Override
-        protected void onCancelled(String s) {
-                pd.cancel();
-
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-
-                    String titleText = "ERROR AL INICIAR SESSION";
-                    ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(Color.parseColor("#E82F2E"));
-
-                    SpannableStringBuilder ssBuilder = new SpannableStringBuilder(titleText);
-
-                    ssBuilder.setSpan(
-                            foregroundColorSpan,
-                            0,
-                            titleText.length(),
-                            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-                    );
-
-                    final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                    builder.setTitle(ssBuilder);
-                    builder.setIcon(R.drawable.peligro);
-                    builder.setMessage("VERIFIQUE EL USUARIO Y CONTRASEÑA");
-                    textToSpeech.speak("ERROR AL INICIAR SESIÓN. VERIFIQUE EL USUARIO Y CONTRASEÑA");
-                    builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            builder.setCancelable(true);
-                        }
-                    });
-                    AlertDialog alert = builder.create();
-                    alert.show();
-                    alert.setCanceledOnTouchOutside(false);
-
-                }
-            });
-
-        }
-
-        @Override
-        protected String doInBackground(final String... strings) {
-
-
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/validar.php?cedula=" + login.getText().toString() + "&pass=" + pass.getText().toString()).body();
-                        System.out.println("NO SE "+response.length());
-                        if (response.length() > 0) {
-                            textToSpeech.speak("BIENVENIDO");
-                            Intent e = new Intent(getApplicationContext(), OperadorActivity.class);
-                            startActivity(e);
-
-                            if (GUARDARUTO.isChecked()) {
-
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Toast.makeText(getApplicationContext(), "SE GUARDO EL USUARIO Y CONTRASEÑA", Toast.LENGTH_SHORT).show();
-
-                                        guardar();
-
-                                    }
-                                });
-
-
-                            }
-
-                        } else {
-
-
-                            onCancelled(null);
-
-
-                        }
-
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            }).start();
-
-            return strings[0];
-        }
 
     }
 
@@ -196,7 +87,6 @@ public class LoginActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 
     public void validartodo(View v) {
         if (pass.getText().toString().length() == 0 && login.getText().toString().length() == 0) {
@@ -264,7 +154,6 @@ public class LoginActivity extends AppCompatActivity {
         }).start();
     }
 
-
     public void registro(View v) {
 
         Intent e = new Intent(getApplicationContext(), RegistroActivity.class);
@@ -272,10 +161,115 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-
     public void olvidoC(View v) {
         Intent e = new Intent(getApplicationContext(), OlvidoActivity.class);
         startActivity(e);
+    }
+
+    class TASK extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected void onPreExecute() {
+
+            pd = new ProgressDialog(LoginActivity.this);
+            pd.setTitle("INICIANDO SESION");
+            pd.setMessage("Porfavor espere");
+
+            pd.show();
+            pd.setCancelable(false);
+            pd.setCanceledOnTouchOutside(false);
+
+
+        }
+
+        @Override
+        protected void onCancelled(String s) {
+            pd.cancel();
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+
+                    String titleText = "ERROR AL INICIAR SESSION";
+                    ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(Color.parseColor("#E82F2E"));
+
+                    SpannableStringBuilder ssBuilder = new SpannableStringBuilder(titleText);
+
+                    ssBuilder.setSpan(
+                            foregroundColorSpan,
+                            0,
+                            titleText.length(),
+                            Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                    );
+
+                    final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                    builder.setTitle(ssBuilder);
+                    builder.setIcon(R.drawable.peligro);
+                    builder.setMessage("VERIFIQUE EL USUARIO Y CONTRASEÑA");
+                    textToSpeech.speak("ERROR AL INICIAR SESIÓN. VERIFIQUE EL USUARIO Y CONTRASEÑA");
+                    builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            builder.setCancelable(true);
+                        }
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                    alert.setCanceledOnTouchOutside(false);
+
+                }
+            });
+
+        }
+
+        @Override
+        protected String doInBackground(final String... strings) {
+
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/validar.php?cedula=" + login.getText().toString() + "&pass=" + pass.getText().toString()).body();
+                        System.out.println("NO SE " + response.length());
+                        if (response.length() > 0) {
+                            textToSpeech.speak("BIENVENIDO");
+                            Intent e = new Intent(getApplicationContext(), OperadorActivity.class);
+                            startActivity(e);
+
+                            if (GUARDARUTO.isChecked()) {
+
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Toast.makeText(getApplicationContext(), "SE GUARDO EL USUARIO Y CONTRASEÑA", Toast.LENGTH_SHORT).show();
+
+                                        guardar();
+
+                                    }
+                                });
+
+
+                            }
+
+                        } else {
+
+
+                            onCancelled(null);
+
+
+                        }
+
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
+
+            return strings[0];
+        }
+
     }
 
 }

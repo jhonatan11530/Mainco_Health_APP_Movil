@@ -16,8 +16,9 @@ import org.json.JSONArray;
 
 public class OlvidoActivity extends AppCompatActivity {
 
+    TSS textToSpeech = null;
     private EditText id, cedula;
-    TSS textToSpeech=null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

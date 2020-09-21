@@ -12,6 +12,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class ServicioMotivoParo extends Service {
     private AsyncHttpClient cliente4;
+
     public ServicioMotivoParo() {
         cliente4 = new AsyncHttpClient();
     }
@@ -23,40 +24,41 @@ public class ServicioMotivoParo extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-         super.onStartCommand(intent, flags, startId);
+        super.onStartCommand(intent, flags, startId);
 
         ejecutar();
 
         return START_STICKY;
     }
 
-public void ejecutar(){
-    String url = "http://" + cambiarIP.ip + "/validar/motivo.php";
-    cliente4.post(url, new AsyncHttpResponseHandler() {
-        @Override
-        public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
-            if (statusCode == 200) {
-                String filtrardescanso = new String(responseBody);
+    public void ejecutar() {
+        String url = "http://" + cambiarIP.ip + "/validar/motivo.php";
+        cliente4.post(url, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                if (statusCode == 200) {
+                    String filtrardescanso = new String(responseBody);
 
-                Intent intent1 = new Intent("llenarParo");
-                intent1.putExtra("filtrardescanso",filtrardescanso);
-                sendBroadcast(intent1);
+                    Intent intent1 = new Intent("llenarParo");
+                    intent1.putExtra("filtrardescanso", filtrardescanso);
+                    sendBroadcast(intent1);
+                }
             }
-        }
 
-        @Override
-        public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-            if (statusCode > 201) {
-                Intent llenarspinner = new Intent(ServicioMotivoParo.this, ServicioMotivoParo.class);
-                startService(llenarspinner);
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                if (statusCode > 201) {
+                    Intent llenarspinner = new Intent(ServicioMotivoParo.this, ServicioMotivoParo.class);
+                    startService(llenarspinner);
+                }
             }
-        }
-        @Override
-        public void onRetry(int retryNo) {
-        }
-    });
 
-}
+            @Override
+            public void onRetry(int retryNo) {
+            }
+        });
+
+    }
 
     @Override
     public void onDestroy() {
