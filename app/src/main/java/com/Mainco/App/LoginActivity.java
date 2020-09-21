@@ -47,8 +47,8 @@ public class LoginActivity extends AppCompatActivity {
 
         mostrarguardado();
 
-        textToSpeech = new TSS();
-        textToSpeech.init(this);
+       /* textToSpeech = new TSS();
+        textToSpeech.init(this);*/
 
         GUARDARUTO = findViewById(R.id.OK);
 

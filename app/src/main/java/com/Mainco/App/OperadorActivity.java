@@ -98,10 +98,9 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         cliente5 = new AsyncHttpClient();
         cliente6 = new AsyncHttpClient();
 
-        textToSpeech = new TSS();
-        textToSpeech.init(this);
+        /*textToSpeech = new TSS();
+        textToSpeech.init(this);*/
 
-       // llenarOps();
         IntentFilter llenarSpinner = new IntentFilter();
         llenarSpinner.addAction("llenarSpinner");
         registerReceiver(LlenarSpinner,llenarSpinner);
