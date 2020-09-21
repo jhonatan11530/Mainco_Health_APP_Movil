@@ -109,7 +109,8 @@
                 android:layout_weight="2.5"
                 android:textColor="#ffffff"
                 android:onClick="registrar"
-                android:text="COMENZAR" />
+                android:text="COMENZAR"
+                android:background="#B2C900"/>
 
             <Button
                 android:id="@+id/aplazar"
@@ -119,7 +120,8 @@
                 android:textColor="#ffffff"
                 android:onClick="aplazo"
                 android:layout_weight="2.5"
-                android:text="APLAZAR PRODUCCION" />
+                android:text="APLAZAR PRODUCCION"
+                android:background="#2196F3"/>
 
 
             <Button
@@ -129,7 +131,8 @@
                 android:textColor="#ffffff"
                 android:layout_weight="2.5"
                 android:onClick="hora"
-                android:text="REGISTRAR TIEMPO DE PARO" />
+                android:text="REGISTRAR TIEMPO DE PARO"
+                android:background="#B2C900"/>
 
             <Button
                 android:id="@+id/salida"
@@ -139,7 +142,8 @@
                 android:textColor="#ffffff"
                 android:layout_weight="2.5"
                 android:onClick="salida"
-                android:text="FINALIZAR" />
+                android:text="FINALIZAR"
+                android:background="#2196F3"/>
 
         </LinearLayout>
 
