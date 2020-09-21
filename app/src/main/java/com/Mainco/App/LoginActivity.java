@@ -47,8 +47,8 @@ public class LoginActivity extends AppCompatActivity {
 
         mostrarguardado();
 
-       /* textToSpeech = new TSS();
-        textToSpeech.init(this);*/
+        textToSpeech = new TSS();
+        textToSpeech.init(this);
 
         GUARDARUTO = findViewById(R.id.OK);
 
@@ -82,16 +82,12 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         protected void onCancelled(String s) {
-            try {
-                Thread.sleep(500);
                 pd.cancel();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
 
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+
                     String titleText = "ERROR AL INICIAR SESSION";
                     ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(Color.parseColor("#E82F2E"));
 
@@ -133,7 +129,7 @@ public class LoginActivity extends AppCompatActivity {
                 public void run() {
                     try {
                         String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/validar.php?cedula=" + login.getText().toString() + "&pass=" + pass.getText().toString()).body();
-
+                        System.out.println("NO SE "+response.length());
                         if (response.length() > 0) {
                             textToSpeech.speak("BIENVENIDO");
                             Intent e = new Intent(getApplicationContext(), OperadorActivity.class);

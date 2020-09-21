@@ -80,7 +80,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
     SimpleDateFormat hourFormat;
     SimpleDateFormat dateFormat;
     RelativeLayout production;
-    private AsyncHttpClient cliente, cliente1, cliente2, cliente3, cliente4, cliente5, cliente6;
+    private AsyncHttpClient cliente,cliente1,cliente2, cliente3;
     public Thread hilo;
     private Thread workerThread = null;
     TSS textToSpeech=null;
@@ -94,12 +94,9 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         cliente1 = new AsyncHttpClient();
         cliente2 = new AsyncHttpClient();
         cliente3 = new AsyncHttpClient();
-        cliente4 = new AsyncHttpClient();
-        cliente5 = new AsyncHttpClient();
-        cliente6 = new AsyncHttpClient();
 
-        /*textToSpeech = new TSS();
-        textToSpeech.init(this);*/
+        textToSpeech = new TSS();
+        textToSpeech.init(this);
 
         IntentFilter llenarSpinner = new IntentFilter();
         llenarSpinner.addAction("llenarSpinner");
@@ -485,7 +482,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
     public void FiltrarOps() {
 
         String url = "http://" + cambiarIP.ip + "/validar/FiltroOPS.php?op=" + op.getText().toString();
-        cliente2.post(url, new AsyncHttpResponseHandler() {
+        cliente1.post(url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if (statusCode == 200) {
@@ -573,7 +570,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
     public void llenardescansoMotivo() {
         String url = "http://" + cambiarIP.ip + "/validar/motivofiltro.php?motivo=" + codemotivo.getText().toString();
-        cliente5.post(url, new AsyncHttpResponseHandler() {
+        cliente2.post(url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if (statusCode == 200) {
@@ -616,7 +613,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
     public void motivofalla() {
         String url = "http://" + cambiarIP.ip + "/validar/motivocantidad.php";
-        cliente6.post(url, new AsyncHttpResponseHandler() {
+        cliente3.post(url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if (statusCode == 200) {
@@ -897,12 +894,12 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                 builder.setPositiveButton("CONTINUAR ACTIVIDAD", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                       // BtnIngreso.setBackgroundColor(Color.parseColor("#2196F3"));
+                                        BtnIngreso.setBackgroundColor(Color.parseColor("#B2C900"));
                                         BtnIngreso.setEnabled(true);
                                         hilo = new Thread(new Runnable() {
                                             @Override
                                             public void run() {
-
+                                                textToSpeech.onStop();
 
                                                 HttpRequest.get("http://" + cambiarIP.ip + "/validar/nuevoRegistro.php?id=" + id.getText().toString()).body();
                                             }
@@ -954,12 +951,13 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                             @Override
                                             public void run() {
                                                 BtnIngreso.setEnabled(true);
-                                              //  BtnIngreso.setBackgroundColor(Color.parseColor("#2196F3"));
+
                                             }
                                         });
                                         hilo = new Thread(new Runnable() {
                                             @Override
                                             public void run() {
+                                                textToSpeech.onStop();
                                                 HttpRequest.get("http://" + cambiarIP.ip + "/validar/nuevoRegistro.php?id=" + id.getText().toString()).body();
                                             }
                                         });
