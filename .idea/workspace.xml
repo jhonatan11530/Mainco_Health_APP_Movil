@@ -21,20 +21,27 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/md5-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/sha1-checksums.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/StartAppOnBoot.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/LoginActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/operador.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/operador.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="J6_PLUS_API_29" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="HA0ZS7FM" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -226,7 +233,7 @@
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Android App" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Finished" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Running" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
             </expand>
             <select />
@@ -285,11 +292,11 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="275" y="27" key="#Notifications/0.0.1366.738@0.0.1366.738" timestamp="1593520589184" />
-    <state x="134" y="202" key="#PSD" timestamp="1600695017031">
+    <state x="134" y="202" key="#PSD" timestamp="1600805824811">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="200" y="98" key="#PSD/0.0.1366.728@0.0.1366.728" timestamp="1596673286852" />
-    <state x="134" y="202" key="#PSD/0.0.1366.738@0.0.1366.738" timestamp="1600695017031" />
+    <state x="134" y="202" key="#PSD/0.0.1366.738@0.0.1366.738" timestamp="1600805824811" />
     <state x="275" y="26" key="#Updates" timestamp="1592930999674">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -363,22 +370,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="553" y="257" key="Github.ShareDialog/0.0.1366.728@0.0.1366.728" timestamp="1596674572787" />
-    <state width="956" height="29" key="GridCell.Tab.0.bottom" timestamp="1600802118748">
+    <state width="956" height="29" key="GridCell.Tab.0.bottom" timestamp="1600806340159">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="956" height="29" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1600802118748" />
-    <state width="956" height="29" key="GridCell.Tab.0.center" timestamp="1600802118748">
+    <state width="956" height="29" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1600806340159" />
+    <state width="956" height="29" key="GridCell.Tab.0.center" timestamp="1600806340159">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="956" height="29" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1600802118748" />
-    <state width="956" height="29" key="GridCell.Tab.0.left" timestamp="1600802118748">
+    <state width="956" height="29" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1600806340159" />
+    <state width="956" height="29" key="GridCell.Tab.0.left" timestamp="1600806340158">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="956" height="29" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1600802118748" />
-    <state width="956" height="29" key="GridCell.Tab.0.right" timestamp="1600802118748">
+    <state width="956" height="29" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1600806340158" />
+    <state width="956" height="29" key="GridCell.Tab.0.right" timestamp="1600806340159">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="956" height="29" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1600802118748" />
+    <state width="956" height="29" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1600806340159" />
     <state width="1367" height="2" key="GridCell.Tab.1.bottom" timestamp="1597784125781">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -429,10 +436,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="259" y="106" width="847" height="602" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1366.738@0.0.1366.738" timestamp="1593715542475" />
-    <state x="206" y="225" key="psd.add.library.dependency.panel.dimension" timestamp="1600694996676">
+    <state x="206" y="225" key="psd.add.library.dependency.panel.dimension" timestamp="1600805803472">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="206" y="225" key="psd.add.library.dependency.panel.dimension/0.0.1366.738@0.0.1366.738" timestamp="1600694996676" />
+    <state x="206" y="225" key="psd.add.library.dependency.panel.dimension/0.0.1366.738@0.0.1366.738" timestamp="1600805803472" />
     <state x="389" y="0" key="refactoring.ChangeSignatureDialog" timestamp="1596553812821">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
