@@ -9,7 +9,6 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiConfiguration;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -162,7 +161,7 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(e);
     }
 
-    public void Login(){
+    public void Login() {
 
         pd = new ProgressDialog(LoginActivity.this);
         pd.setTitle("INICIANDO SESION");
