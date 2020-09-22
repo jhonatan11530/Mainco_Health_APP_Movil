@@ -1,10 +1,12 @@
 package com.Mainco.App;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -26,6 +28,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @SuppressWarnings("ALL")
 public class LoginActivity extends AppCompatActivity {
@@ -37,12 +42,15 @@ public class LoginActivity extends AppCompatActivity {
     TSS textToSpeech = null;
     CheckBox GUARDARUTO;
     ProgressDialog pd;
-    String networkSSID = "WIFIMainco";
-    String networkPass = "A125277935";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+
+        List<String> permissions = new ArrayList<String>();
+        if(getApplicationContext().checkCallingOrSelfPermission(Manifest.permission.RECEIVE_BOOT_COMPLETED) != PackageManager.PERMISSION_GRANTED){
+            permissions.add(Manifest.permission.RECEIVE_BOOT_COMPLETED);
+        }
 
         mostrarguardado();
 

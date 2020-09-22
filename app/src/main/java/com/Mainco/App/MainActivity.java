@@ -7,16 +7,20 @@ import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+
+
 import Services.ServicioConnecting;
 
 public class MainActivity extends AppCompatActivity {
-    private static final int TTS_CHECK_CODE = 101;
     private final int DURACION_SPLASH = 3000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
         startService(new Intent(getBaseContext(), ServicioConnecting.class));
 
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -31,6 +35,5 @@ public class MainActivity extends AppCompatActivity {
 
         }, DURACION_SPLASH);
     }
-
 
 }
