@@ -29,9 +29,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
-
 
 @SuppressWarnings("ALL")
 public class LoginActivity extends AppCompatActivity {
@@ -43,8 +40,6 @@ public class LoginActivity extends AppCompatActivity {
     TSS textToSpeech = null;
     CheckBox GUARDARUTO;
     ProgressDialog pd;
-    private BatteryReceiver mBatteryReceiver = new BatteryReceiver();
-    private IntentFilter mIntentFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,17 +61,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
-    @Override
-    protected void onResume() {
-        super.onResume();
-        registerReceiver(mBatteryReceiver, mIntentFilter);
-    }
 
-    @Override
-    protected void onPause() {
-        unregisterReceiver(mBatteryReceiver);
-        super.onPause();
-    }
     public void onBackPressed() {
 
         //  Intent e = new Intent(getApplicationContext(), Modulos.class);

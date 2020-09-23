@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.BatteryManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -82,6 +83,10 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
     private ArrayList<OPS> dato = new ArrayList<>();
     private AsyncHttpClient cliente, cliente1, cliente2, cliente3;
     private Thread workerThread = null;
+
+    private BatteryReceiver mBatteryReceiver = new BatteryReceiver();
+    private IntentFilter mIntentFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+
     private BroadcastReceiver LlenarSpinner = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -89,8 +94,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             String cargarSpinner = intent.getStringExtra("llenarSpinner");
             cargarSpinner(new String(cargarSpinner));
             System.out.println("MENSAJE " + cargarSpinner);
-
-
         }
     };
     private BroadcastReceiver LlenarItem = new BroadcastReceiver() {
@@ -100,6 +103,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             String llenarOps = intent.getStringExtra("llenarOps");
             cargarops(new String(llenarOps));
             System.out.println("MENSAJE " + llenarOps);
+
         }
     };
     private BroadcastReceiver LlenarMotivoParo = new BroadcastReceiver() {
@@ -163,6 +167,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
         Intent llenaritem = new Intent(OperadorActivity.this, ServicioItems.class);
         startService(llenaritem);
+
 
 
         if (savedInstanceState != null) {
@@ -232,6 +237,17 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             }
         });
 
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        registerReceiver(mBatteryReceiver, mIntentFilter);
+    }
+
+    @Override
+    protected void onPause() {
+        unregisterReceiver(mBatteryReceiver);
+        super.onPause();
     }
 
     @Override
@@ -1390,13 +1406,13 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                     if (tool >= 0) {
                                         if (sumatoria <= cantidadpro) {
 
-                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizarop.php?op=" + resuldato3 + "&totales=" + malo + "&codigo=" + op.getText().toString()).body();
+                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizarop.php?op=" + resuldato3.getSelectedItem().toString() + "&totales=" + malo.toString() + "&codigo=" + op.getText().toString()).body();
 
-                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadupdate.php?op=" + resuldato3 + "&tarea=" + nombretarea + "&totales=" + end).body();
+                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadupdate.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + nombretarea.toString() + "&totales=" + end).body();
 
-                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodificar.php?op=" + resuldato3 + "&tarea=" + nombretarea + "&totales=" + malo + "&codigo=" + op.getText().toString()).body();
+                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodificar.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + nombretarea.toString() + "&totales=" + malo + "&codigo=" + op.getText().toString()).body();
 
-                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizaSalida.php?id=" + id + "&cantidad=" + volumen + "&Ffinal=" + fechas + "&Hfinal=" + horas + "&motivo=" + error + "&conforme=" + falla + "&tarea=" + nombretarea + "&op=" + op.getText().toString()).body();
+                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizaSalida.php?id=" + id.getText().toString() + "&cantidad=" + volumen + "&Ffinal=" + fechas.toString() + "&Hfinal=" + horas.toString() + "&motivo=" + error.toString() + "&conforme=" + falla.toString() + "&tarea=" + nombretarea.toString() + "&op=" + op.getText().toString()).body();
 
                                             HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?op=" + op.getText().toString()).body();
 
@@ -1601,13 +1617,13 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                     if (tool >= 0) {
                                         if (sumatoria <= cantidadpro) {
 
-                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizarop.php?op=" + resuldato3 + "&totales=" + malo + "&codigo=" + op.getText().toString()).body();
+                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizarop.php?op=" + resuldato3.getSelectedItem().toString() + "&totales=" + malo.toString() + "&codigo=" + op.getText().toString()).body();
 
-                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadupdate.php?op=" + resuldato3 + "&tarea=" + nombretarea + "&totales=" + end).body();
+                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadupdate.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + nombretarea.toString() + "&totales=" + end).body();
 
-                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodificar.php?op=" + resuldato3 + "&tarea=" + nombretarea + "&totales=" + malo + "&codigo=" + op.getText().toString()).body();
+                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodificar.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + nombretarea.toString() + "&totales=" + malo + "&codigo=" + op.getText().toString()).body();
 
-                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizaSalida.php?id=" + id + "&cantidad=" + volumen + "&Ffinal=" + fechas + "&Hfinal=" + horas + "&motivo=" + error + "&conforme=" + falla + "&tarea=" + nombretarea + "&op=" + op.getText().toString()).body();
+                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizaSalida.php?id=" + id.getText().toString() + "&cantidad=" + volumen + "&Ffinal=" + fechas.toString() + "&Hfinal=" + horas.toString() + "&motivo=" + error.toString() + "&conforme=" + falla.toString() + "&tarea=" + nombretarea.toString() + "&op=" + op.getText().toString()).body();
 
                                             HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?op=" + op.getText().toString()).body();
 
