@@ -1,6 +1,7 @@
 package com.Mainco.App;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
@@ -11,6 +12,9 @@ import Services.ServicioConnecting;
 
 public class MainActivity extends AppCompatActivity {
     private final int DURACION_SPLASH = 3000;
+
+    private BatteryReceiver mBatteryReceiver = new BatteryReceiver();
+    private IntentFilter mIntentFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,5 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         }, DURACION_SPLASH);
     }
+
+
 
 }

@@ -56,7 +56,6 @@ import java.util.Locale;
 import Services.ServicioActividad;
 import Services.ServicioItems;
 import Services.ServicioMotivoParo;
-import Services.ServicioRegistroSalida;
 import cz.msebera.android.httpclient.Header;
 
 @SuppressWarnings("ALL")
@@ -1391,19 +1390,15 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                     if (tool >= 0) {
                                         if (sumatoria <= cantidadpro) {
 
-                                            Intent Componente = new Intent(OperadorActivity.this, ServicioRegistroSalida.class);
-                                            Componente.putExtra("resuldato3", resuldato3.getSelectedItem().toString());
-                                            Componente.putExtra("tarea", nombretarea);
-                                            Componente.putExtra("items", op.getText().toString());
-                                            Componente.putExtra("mala", malo);
-                                            Componente.putExtra("restado", end.toString());
-                                            Componente.putExtra("id", id.getText().toString());
-                                            Componente.putExtra("volumen", volumens.toString());
-                                            Componente.putExtra("fechas", fechas);
-                                            Componente.putExtra("horas", horas);
-                                            Componente.putExtra("error", error);
-                                            Componente.putExtra("falla", falla);
-                                            startService(Componente);
+                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizarop.php?op=" + resuldato3 + "&totales=" + malo + "&codigo=" + op.getText().toString()).body();
+
+                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadupdate.php?op=" + resuldato3 + "&tarea=" + nombretarea + "&totales=" + end).body();
+
+                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodificar.php?op=" + resuldato3 + "&tarea=" + nombretarea + "&totales=" + malo + "&codigo=" + op.getText().toString()).body();
+
+                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizaSalida.php?id=" + id + "&cantidad=" + volumen + "&Ffinal=" + fechas + "&Hfinal=" + horas + "&motivo=" + error + "&conforme=" + falla + "&tarea=" + nombretarea + "&op=" + op.getText().toString()).body();
+
+                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?op=" + op.getText().toString()).body();
 
                                             new Thread(new Runnable() {
                                                 @Override
@@ -1606,19 +1601,15 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                     if (tool >= 0) {
                                         if (sumatoria <= cantidadpro) {
 
-                                            Intent Componente = new Intent(OperadorActivity.this, ServicioRegistroSalida.class);
-                                            Componente.putExtra("resuldato3", resuldato3.getSelectedItem().toString());
-                                            Componente.putExtra("tarea", nombretarea);
-                                            Componente.putExtra("items", op.getText().toString());
-                                            Componente.putExtra("mala", malo);
-                                            Componente.putExtra("restado", end.toString());
-                                            Componente.putExtra("id", id.getText().toString());
-                                            Componente.putExtra("volumen", volumens.toString());
-                                            Componente.putExtra("fechas", fechas);
-                                            Componente.putExtra("horas", horas);
-                                            Componente.putExtra("error", error);
-                                            Componente.putExtra("falla", falla);
-                                            startService(Componente);
+                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizarop.php?op=" + resuldato3 + "&totales=" + malo + "&codigo=" + op.getText().toString()).body();
+
+                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadupdate.php?op=" + resuldato3 + "&tarea=" + nombretarea + "&totales=" + end).body();
+
+                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodificar.php?op=" + resuldato3 + "&tarea=" + nombretarea + "&totales=" + malo + "&codigo=" + op.getText().toString()).body();
+
+                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizaSalida.php?id=" + id + "&cantidad=" + volumen + "&Ffinal=" + fechas + "&Hfinal=" + horas + "&motivo=" + error + "&conforme=" + falla + "&tarea=" + nombretarea + "&op=" + op.getText().toString()).body();
+
+                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?op=" + op.getText().toString()).body();
 
                                             new Thread(new Runnable() {
                                                 @Override

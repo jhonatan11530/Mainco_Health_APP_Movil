@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
@@ -42,16 +43,12 @@ public class LoginActivity extends AppCompatActivity {
     TSS textToSpeech = null;
     CheckBox GUARDARUTO;
     ProgressDialog pd;
-
-
-    private static final int NOTIF_ALERTA_ID = 1;
+    private BatteryReceiver mBatteryReceiver = new BatteryReceiver();
+    private IntentFilter mIntentFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
-
-
-
 
         mostrarguardado();
 
@@ -69,7 +66,17 @@ public class LoginActivity extends AppCompatActivity {
 
 
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        registerReceiver(mBatteryReceiver, mIntentFilter);
+    }
 
+    @Override
+    protected void onPause() {
+        unregisterReceiver(mBatteryReceiver);
+        super.onPause();
+    }
     public void onBackPressed() {
 
         //  Intent e = new Intent(getApplicationContext(), Modulos.class);
