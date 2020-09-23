@@ -329,6 +329,11 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                 builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        stopService(new Intent(OperadorActivity.this,ServicioActividad.class));
+                        stopService(new Intent(OperadorActivity.this,ServicioMotivoParo.class));
+                        stopService(new Intent(OperadorActivity.this,ServicioItems.class));
+
+
                         ProgressDialog pd = new ProgressDialog(OperadorActivity.this);
 
                         pd.setTitle("CERRANDO SESION");
