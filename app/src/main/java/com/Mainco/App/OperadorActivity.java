@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.AsyncTask;
-import android.os.BatteryManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -169,7 +168,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         startService(llenaritem);
 
 
-
         if (savedInstanceState != null) {
             id.setText(savedInstanceState.getInt("ID"));
             op.setText(savedInstanceState.getString("OP"));
@@ -238,6 +236,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         });
 
     }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -329,9 +328,9 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                 builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        stopService(new Intent(OperadorActivity.this,ServicioActividad.class));
-                        stopService(new Intent(OperadorActivity.this,ServicioMotivoParo.class));
-                        stopService(new Intent(OperadorActivity.this,ServicioItems.class));
+                        stopService(new Intent(OperadorActivity.this, ServicioActividad.class));
+                        stopService(new Intent(OperadorActivity.this, ServicioMotivoParo.class));
+                        stopService(new Intent(OperadorActivity.this, ServicioItems.class));
 
 
                         ProgressDialog pd = new ProgressDialog(OperadorActivity.this);
