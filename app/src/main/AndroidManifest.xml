@@ -23,7 +23,7 @@
         <receiver
             android:name=".BatteryReceiver"
             android:enabled="true"
-            android:exported="false"></receiver>
+            android:exported="false"/>
 
         <activity
             android:name=".MainActivity"
