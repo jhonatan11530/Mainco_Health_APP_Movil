@@ -9,7 +9,7 @@ $output[]=$e;
 }	
 
 print_r(json_encode($output)); 
-$mysqli->close();	
+sqlsrv_close( $mysqli );
 
 
 ?>

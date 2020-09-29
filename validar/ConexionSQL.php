@@ -1,6 +1,6 @@
 <?php
 function Server(){
-    $serverName = "srv2008";
+    $serverName = "srv2008,1433";
     return $serverName;
 }
 function connectionInfo(){
@@ -16,5 +16,4 @@ function ServerNameOracle(){
     $serverName = "xe";
     return $serverName;
 }
-
 ?>

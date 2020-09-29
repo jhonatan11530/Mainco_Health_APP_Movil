@@ -7,18 +7,13 @@ error_reporting(0);
 
 
 $mysqli = sqlsrv_connect(Server() , connectionInfo());
-
 $res = "SELECT cedula FROM proyecto.usuarios WHERE cedula = '".$id."'";
-
-
-  $result = sqlsrv_query($mysqli, $res);
+$result = sqlsrv_query($mysqli, $res);
 
   if($id != null){
 
     $mysqli = sqlsrv_connect(Server() , connectionInfo());
-
     $res = "SELECT cedula FROM proyecto.usuarios WHERE cedula = '".$id."'";
-    
       $result = sqlsrv_query($mysqli, $res);
 
         while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
@@ -33,7 +28,6 @@ $res = "SELECT cedula FROM proyecto.usuarios WHERE cedula = '".$id."'";
 
 
             $dato = password_hash($pass, PASSWORD_BCRYPT);
-            
         $mysqli = sqlsrv_connect(Server() , connectionInfo());
         $res = "UPDATE proyecto.usuarios SET password = '".$dato."' WHERE cedula = '".$id."'";
         $result = sqlsrv_query($mysqli, $res); 
@@ -57,5 +51,5 @@ $res = "SELECT cedula FROM proyecto.usuarios WHERE cedula = '".$id."'";
         }
         echo json_encode($arreglo);
 }
-    
+sqlsrv_close( $mysqli );
 ?>

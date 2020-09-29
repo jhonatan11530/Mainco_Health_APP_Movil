@@ -43,10 +43,10 @@ class nuevo{
     sleep(1);
     $cant = 0;
     $mysqli = sqlsrv_connect(Server() , connectionInfo());
-    
     $res = "INSERT INTO proyecto.operador (id,nombre,cantidad,cantidad_fallas) VALUES ('".$id."','".$nom."','".$cant."','".$cant."')";
    $resultado = sqlsrv_query($mysqli, $res);
  
   }
 }
+sqlsrv_close( $mysqli );
 ?>

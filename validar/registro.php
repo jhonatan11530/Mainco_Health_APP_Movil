@@ -23,4 +23,6 @@ $mysqli = sqlsrv_connect(Server() , connectionInfo());
 $res = "INSERT INTO proyecto.usuarios (nomusuario,apeusuario,password,cedula,rol,cargo) VALUES ('".$nombre."','".$apellido."','".$dato."','".$cedula."','".$rol."','".$cargo."')";
 $resultado = sqlsrv_query($mysqli, $res);
 
+sqlsrv_close( $mysqli );
+
 ?>

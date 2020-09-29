@@ -17,15 +17,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7b6af788-212f-4cd2-8b4b-3791be3d9170" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/validar/RegistroERROR.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/validar/validaroperador.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validar/Autorizar.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/Autorizar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validar/ConexionSQL.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/ConexionSQL.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validar/FiltroOPS.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/FiltroOPS.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validar/OPS.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/OPS.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validar/RegistrarMotivo.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/RegistrarMotivo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validar/Sobrante.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/Sobrante.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validar/SobranteAct.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/SobranteAct.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validar/actualizaEntrada.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/actualizaEntrada.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validar/actualizaSalida.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/actualizaSalida.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validar/actualizarop.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/actualizarop.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validar/cantidad.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/cantidad.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validar/cantidadedits.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/cantidadedits.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validar/cantidadfiltre.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/cantidadfiltre.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validar/cantidadmodifi.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/cantidadmodifi.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validar/cantidadmodificar.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/cantidadmodificar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validar/cantidadupdate.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/cantidadupdate.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validar/consolidado.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/consolidado.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validar/limpiar.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/limpiar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validar/motivo.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/motivo.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validar/motivocantidad.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/motivocantidad.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validar/motivofiltro.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/motivofiltro.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validar/nuevoRegistro.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/nuevoRegistro.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validar/olvido.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/olvido.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validar/operador.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/operador.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validar/registro.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/registro.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validar/validar.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/validar.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validar/validarcantidad.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/validarcantidad.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validar/verificacion.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/verificacion.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -221,11 +251,6 @@
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Android App" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Android App" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Finished" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
             </expand>
             <select />
           </treeState>
@@ -361,22 +386,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="553" y="257" key="Github.ShareDialog/0.0.1366.728@0.0.1366.728" timestamp="1596674572787" />
-    <state width="956" height="2" key="GridCell.Tab.0.bottom" timestamp="1600976461025">
+    <state width="944" height="2" key="GridCell.Tab.0.bottom" timestamp="1601037412139">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="956" height="2" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1600976461025" />
-    <state width="956" height="2" key="GridCell.Tab.0.center" timestamp="1600976461025">
+    <state width="944" height="2" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1601037412139" />
+    <state width="944" height="2" key="GridCell.Tab.0.center" timestamp="1601037412139">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="956" height="2" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1600976461025" />
-    <state width="956" height="2" key="GridCell.Tab.0.left" timestamp="1600976461025">
+    <state width="944" height="2" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1601037412139" />
+    <state width="944" height="2" key="GridCell.Tab.0.left" timestamp="1601037412139">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="956" height="2" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1600976461025" />
-    <state width="956" height="2" key="GridCell.Tab.0.right" timestamp="1600976461025">
+    <state width="944" height="2" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1601037412139" />
+    <state width="944" height="2" key="GridCell.Tab.0.right" timestamp="1601037412139">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="956" height="2" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1600976461025" />
+    <state width="944" height="2" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1601037412139" />
     <state width="1367" height="2" key="GridCell.Tab.1.bottom" timestamp="1597784125781">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -393,11 +418,11 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="1367" height="2" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1597784125781" />
-    <state x="184" y="0" key="SettingsEditor" timestamp="1600976348355">
+    <state x="184" y="0" key="SettingsEditor" timestamp="1601040775592">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="184" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1600615448889" />
-    <state x="184" y="0" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1600976348355" />
+    <state x="184" y="0" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1601040775592" />
     <state x="275" y="97" key="Vcs.Push.Dialog.v2" timestamp="1596676296706">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

@@ -3,7 +3,7 @@ require_once("ConexionSQL.php");
  $op = $_GET["op"];
 
   $mysqli = sqlsrv_connect(Server() , connectionInfo());
-  $sql_statement = "SELECT DISTINCT tarea FROM proyecto.tarea WHERE numero_op = '".$op."' ";
+  $sql_statement = "SELECT DISTINCT tarea FROM proyecto.tarea WHERE numero_op = '".$op."' ORDER BY tarea ASC";
   $result = sqlsrv_query($mysqli, $sql_statement);
 
   $output = array();
@@ -12,5 +12,5 @@ require_once("ConexionSQL.php");
   }	
 
   echo json_encode($output); 
-  $mysqli->close();	
+  sqlsrv_close( $mysqli );
 ?>

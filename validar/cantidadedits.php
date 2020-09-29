@@ -1,8 +1,9 @@
 <?php
 require_once("ConexionSQL.php");
+ $cod = $_GET["cod"];
  $op = $_GET["op"];
  $mysqli = sqlsrv_connect(Server() , connectionInfo());
- $res = "SELECT autorizado FROM  proyecto.produccion WHERE cod_producto = '".$op."'";
+ $res = "SELECT autorizado FROM  proyecto.produccion WHERE cod_producto = '".$cod."' AND numero_op='".$op."' ";
  $result = sqlsrv_query($mysqli, $res);
  
  
@@ -16,4 +17,5 @@ require_once("ConexionSQL.php");
          
      }
      echo json_encode($arreglo2);
+     sqlsrv_close( $mysqli );
 ?>

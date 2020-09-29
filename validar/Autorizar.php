@@ -18,6 +18,7 @@ if($verifica > 0){
    $falso[] = FALSE;
  echo json_encode($falso);
 }
+sqlsrv_close( $mysqli );
 }  
 
 ?>

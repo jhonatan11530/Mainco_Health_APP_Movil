@@ -23,10 +23,10 @@ if(isset($ID,$op,$tarea,$cantidad,$no_conforme,$motivo,$final,$hora_final)){
     $llave = $row["llaves"];
   }  
 
-  $mysqli = sqlsrv_connect(Server() , connectionInfo());
+  $mysql = sqlsrv_connect(Server() , connectionInfo());
   $sql_statement = "UPDATE proyecto.operador SET final='".$final."',cantidad='".$cantidad."',hora_final='".$hora_final."',tarea='".$tarea."',cantidad_fallas='".$no_conforme."',no_conforme='".$motivo."' 
   WHERE id= '".$ID."' AND numero_op = '".$op."' AND llaves='".$llave."' ";
-  $result = sqlsrv_query($mysqli, $sql_statement);
+  $result = sqlsrv_query($mysql, $sql_statement);
 
 
   $mysql = sqlsrv_connect(Server() , connectionInfo());
@@ -56,7 +56,8 @@ $mysql = sqlsrv_connect(Server() , connectionInfo());
   }  
   $a = new ejemplo();
 $a->ejecutar($ID,$op,$tarea,$llave);
-
+   
+ 
 */
 
 class MOTIVO{
@@ -70,9 +71,9 @@ class MOTIVO{
         $cant = $row["cantidad"];
       } 
       if($cant ==0){
-        $mysqli = sqlsrv_connect(Server() , connectionInfo());
+        $mysql = sqlsrv_connect(Server() , connectionInfo());
         $sql_statement = "UPDATE proyecto.motivo_paro SET cantidad='".$cantidad."' WHERE id= '".$ID."' AND numero_op = '".$op."' AND AUTO='".$llaveS."' ";
-        $result = sqlsrv_query($mysqli, $sql_statement);
+        $result = sqlsrv_query($mysql, $sql_statement);
       }else{
 
       }
@@ -105,9 +106,9 @@ class ejemplo{
 class produc{
   function produccion($cant,$op,$ID,$tarea,$llave,$cantFALLAS){
 
-      $mysqli = sqlsrv_connect(Server() , connectionInfo());
+    $mysql = sqlsrv_connect(Server() , connectionInfo());
       $consulta = "SELECT cod_producto FROM proyecto.produccion WHERE numero_op = '".$op."'";
-      $result = sqlsrv_query($mysqli, $consulta);  
+      $result = sqlsrv_query($mysql, $consulta);  
   
       while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
         
@@ -126,10 +127,9 @@ class produc{
   
 class tarea{
   function extand($cant,$cod,$ID,$tarea,$op,$llave,$cantFALLAS){
-
-    $mysqli = sqlsrv_connect(Server() , connectionInfo());
+    $mysql = sqlsrv_connect(Server() , connectionInfo());
     $search = "SELECT extandar FROM proyecto.tarea WHERE numero_op = '".$cod."' AND tarea='".$tarea."' ";
-    $res = sqlsrv_query($mysqli, $search);  
+    $res = sqlsrv_query($mysql, $search);  
     
     while($listo = sqlsrv_fetch_array($res, SQLSRV_FETCH_ASSOC)) {
           
@@ -162,9 +162,9 @@ class HORA{
 
 class entradasalida{
   function totaltime($ID,$dato,$op,$cant,$llave,$cantFALLAS,$cod,$tarea){
-    $mysqli = sqlsrv_connect(Server() , connectionInfo());
+    $mysql = sqlsrv_connect(Server() , connectionInfo());
    $search = "SELECT hora_inicial,hora_final FROM proyecto.operador WHERE id = '".$ID."' AND numero_op = '".$op."' AND llaves='".$llave."' ";
-    $res = sqlsrv_query($mysqli, $search);  
+    $res = sqlsrv_query($mysql, $search);  
     
     while($listo = sqlsrv_fetch_array($res, SQLSRV_FETCH_ASSOC)) {
           
@@ -222,9 +222,9 @@ class EFICIENCIA{
 
 
       echo "EFICIENCIA : ".$formulas;
-      $mysqli = sqlsrv_connect(Server() , connectionInfo());
+
       $search = "UPDATE proyecto.operador SET eficencia='".$formulas."' WHERE id= '".$ID."' AND llaves='".$llave."'";
-      $res = sqlsrv_query($mysqli, $search);
+      $res = sqlsrv_query($mysql, $search);
 
        $f = new EFICACIA();
        $f->eficacias($ID,$dato,$op,$cant,$llave,$cod,$tarea);
@@ -237,9 +237,9 @@ class EFICIENCIA{
 class EFICACIA{
   function eficacias($ID,$dato,$op,$cant,$llave,$cod,$tarea){
     /* YA ESTA LISTO NO MODIFICAR */
-    $mysqli = sqlsrv_connect(Server() , connectionInfo());
+    $mysql = sqlsrv_connect(Server() , connectionInfo());
     $search = "SELECT programadas FROM proyecto.produccion WHERE numero_op = '".$op."' AND cod_producto='".$cod."' ";
-    $res = sqlsrv_query($mysqli, $search);  
+    $res = sqlsrv_query($mysql, $search);  
     
     while($listo = sqlsrv_fetch_array($res, SQLSRV_FETCH_ASSOC)) {
           
@@ -247,7 +247,6 @@ class EFICACIA{
     }
 
     /*------------------------------------------*/
-
     $mysql = sqlsrv_connect(Server() , connectionInfo());
     $sql_statements = "SELECT SUM(DATEDIFF(SECOND, '00:00:00', CONVERT(time, tiempo_descanso))) AS tiempo_descanso FROM proyecto.motivo_paro WHERE numero_op= '".$op."' AND id= '".$ID."'";
     $ensayo = sqlsrv_query($mysql, $sql_statements);
@@ -278,12 +277,11 @@ class EFICACIA{
       echo "<br>";
       echo "<br>";
      echo "EFICACIA : ".$eficacias ;
-     
-    $mysqli = sqlsrv_connect(Server() , connectionInfo());
+     $mysql = sqlsrv_connect(Server() , connectionInfo());
     $search = "UPDATE proyecto.operador SET eficacia='".$eficacias."' WHERE id= '".$ID."' AND llaves='".$llave."'";
-    $res = sqlsrv_query($mysqli, $search);
+    $res = sqlsrv_query($mysql, $search);
 
-    $mysqli->close();	
+    $mysql->close();	
     
     $g = new registro();
      $g->NuevoRegistro($ID);
@@ -294,9 +292,9 @@ class EFICACIA{
 class registro{
   function NuevoRegistro($ID){
 
-  $mysqli = sqlsrv_connect(Server() , connectionInfo());
+
   $sql_statement = "SELECT * FROM proyecto.operador  WHERE id= '.$ID.'";
-  $result = sqlsrv_query($mysqli, $sql_statement);
+  $result = sqlsrv_query($mysql, $sql_statement);
 
   while ($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)){ 
     $arreglito = array();
@@ -319,9 +317,9 @@ class registro{
   if(isset($arreglito[2],$arreglito[3],$arreglito[4],$arreglito[5],$arreglito[6],$arreglito[7],$arreglito[8],$arreglito[9])){
     
     sleep(1);
-    $mysqli = sqlsrv_connect(Server() , connectionInfo());
+    $mysql = sqlsrv_connect(Server() , connectionInfo());
     $res = "INSERT INTO proyecto.operador (id,nombre) VALUES ('".$id."','".$nom."')";
-  $resultado = sqlsrv_query($mysqli, $res);
+  $resultado = sqlsrv_query($mysql, $res);
 }
 
   } 

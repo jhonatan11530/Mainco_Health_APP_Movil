@@ -11,9 +11,9 @@ $a->inicio($op);
 class comienzo{
   function inicio($op){
       sleep(1);
-      $mysql = sqlsrv_connect(Server() , connectionInfo());
+      $mysqli = sqlsrv_connect(Server() , connectionInfo());
       $sql_statements = "SELECT id,tarea,cantidad_fallas,inicial,nombre FROM proyecto.operador WHERE numero_op = '".$op."'  ";
-      $llaves = sqlsrv_query($mysql, $sql_statements);
+      $llaves = sqlsrv_query($mysqli, $sql_statements);
       while($row = sqlsrv_fetch_array($llaves, SQLSRV_FETCH_ASSOC)) {
         $ID = $row["id"];
         $tarea = $row["tarea"];
@@ -22,17 +22,17 @@ class comienzo{
         $nombre = $row["nombre"];
       }  
         /* CANTIDAD BUENAS SUMADAS */
-      $mysql = sqlsrv_connect(Server() , connectionInfo());
+        $mysqli = sqlsrv_connect(Server() , connectionInfo());
       $sql_statements = "SELECT SUM(cantidad) AS cantidad  FROM proyecto.operador WHERE  id='".$ID."' AND numero_op = '".$op."' ";
-      $llaves = sqlsrv_query($mysql, $sql_statements);
+      $llaves = sqlsrv_query($mysqli, $sql_statements);
       while($row = sqlsrv_fetch_array($llaves, SQLSRV_FETCH_ASSOC)) {
         $can = $row["cantidad"];
       }  
 
       /* CANTIDAD MALAS SUMADAS */
-      $mysql = sqlsrv_connect(Server() , connectionInfo());
+      $mysqli = sqlsrv_connect(Server() , connectionInfo());
       $sql_statements = "SELECT SUM(cantidad_fallas) AS cantidad_fallas  FROM proyecto.operador WHERE  id='".$ID."' AND numero_op = '".$op."' ";
-      $llaves = sqlsrv_query($mysql, $sql_statements);
+      $llaves = sqlsrv_query($mysqli, $sql_statements);
       while($row = sqlsrv_fetch_array($llaves, SQLSRV_FETCH_ASSOC)) {
         $mal = $row["cantidad_fallas"];
       } 
@@ -47,7 +47,7 @@ class comienzo{
 class produc{
   function produccion($cant,$op,$ID,$tarea,$fecha,$nombre){
 
-      $mysqli = sqlsrv_connect(Server() , connectionInfo());
+    $mysqli = sqlsrv_connect(Server() , connectionInfo());
       $consulta = "SELECT cod_producto FROM proyecto.produccion WHERE numero_op = '".$op."'";
       $result = sqlsrv_query($mysqli, $consulta);  
   
@@ -65,8 +65,9 @@ class produc{
 class tarea{
   function extand($cant,$cod,$ID,$tarea,$op,$fecha,$nombre){
 
-    $mysqli = sqlsrv_connect(Server() , connectionInfo());
+
     //ROUND(extandar,5)*3600 AS extandar
+    $mysqli = sqlsrv_connect(Server() , connectionInfo());
     $search = "SELECT  extandar FROM proyecto.tarea WHERE numero_op = '".$cod."' AND tarea='".$tarea."' ";
     $res = sqlsrv_query($mysqli, $search);  
     
@@ -109,9 +110,9 @@ class HORA{
 
 class entradasalida{
   function totaltime($ID,$dato,$datosa,$op,$cod,$tarea,$fecha,$nombre){
-    $mysqli = sqlsrv_connect(Server() , connectionInfo());
     // hora_inicial,hora_final
     // SUM(DATEDIFF(SECOND,hora_inicial,hora_final)) AS total
+    $mysqli = sqlsrv_connect(Server() , connectionInfo());
    $search = " SELECT SUM(DATEDIFF(SECOND,hora_inicial,hora_final)) AS total FROM proyecto.operador WHERE id = '".$ID."' AND numero_op = '".$op."'  ";
     $res = sqlsrv_query($mysqli, $search);  
     
@@ -131,9 +132,9 @@ class EFICIENCIA{
   function eficiencias($datosa,$dato,$ID,$final,$op,$cod,$tarea,$fecha,$nombre,$inicia){
 
     /* YA ESTA LISTO */
-    $mysql = sqlsrv_connect(Server() , connectionInfo());
+    $mysqli = sqlsrv_connect(Server() , connectionInfo());
     $sql_statements = "SELECT SUM(DATEDIFF(SECOND, '00:00:00', CONVERT(time, tiempo_descanso))) AS tiempo_descanso FROM proyecto.motivo_paro WHERE  numero_op= '".$op."'";
-    $ensayo = sqlsrv_query($mysql, $sql_statements);
+    $ensayo = sqlsrv_query($mysqli, $sql_statements);
     while($row = sqlsrv_fetch_array($ensayo, SQLSRV_FETCH_ASSOC)) {
        $TIMEPAROSUM= $row["tiempo_descanso"] ;
        
@@ -183,7 +184,7 @@ class EFICACIA{
 
       $a = new CONSOLIDADO();
       $a->run($eficacias,$formulas,$dato,$dates,$fecha,$nombre,$op,$inicia);
-      $mysqli->close();	
+
     }
 }
 
@@ -208,4 +209,5 @@ class CONSOLIDADO{
          $resultado = sqlsrv_query($mysqli, $res);
     }
 }
+sqlsrv_close( $mysqli );
 ?>

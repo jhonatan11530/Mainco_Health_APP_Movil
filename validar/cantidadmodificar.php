@@ -24,4 +24,5 @@ require_once("ConexionSQL.php");
  $res = "UPDATE proyecto.tarea SET cantidadpentiente='". $totales."' WHERE tarea !='".$tarea."' AND  numero_op = '".$op."' AND cantidadpentiente !='". $totales."' ";
  $result = sqlsrv_query($mysqli, $res);
 }
+sqlsrv_close( $mysqli );
 ?>

@@ -19,4 +19,5 @@ while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
     }
     echo json_encode($arreglo2);
 
+    sqlsrv_close( $mysqli );
 ?>

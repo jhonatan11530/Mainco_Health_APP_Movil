@@ -5,10 +5,7 @@ error_reporting(0);
  $tarea = $_GET["tarea"];
  $mysqli = sqlsrv_connect(Server() , connectionInfo());
  $res = "SELECT * FROM proyecto.tarea WHERE numero_op  = '".$op."' AND tarea ='".$tarea."'";
- 
  $result = sqlsrv_query($mysqli, $res);
- 
- 
  while($row = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
    $arreglo2= array();
        
@@ -19,4 +16,6 @@ error_reporting(0);
          
      }
      echo json_encode($arreglo2);
+
+     sqlsrv_close( $mysqli );
 ?>

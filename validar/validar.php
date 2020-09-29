@@ -6,18 +6,14 @@ error_reporting(0);
 
  $dato = password_hash($pass, PASSWORD_BCRYPT);
 
-$mysqli = sqlsrv_connect(Server() , connectionInfo());
-
-$res = "SELECT cedula,password FROM proyecto.usuarios WHERE cedula = '".$id."' AND password = '".$dato."'";
-
+  $mysqli = sqlsrv_connect(Server() , connectionInfo());
+  $res = "SELECT cedula,password FROM proyecto.usuarios WHERE cedula = '".$id."' AND password = '".$dato."'";
   $result = sqlsrv_query($mysqli, $res);
 
   if($id != null && $dato != null){
 
-    $mysqli = sqlsrv_connect(Server() , connectionInfo());
-
-    $res = "SELECT password FROM proyecto.usuarios WHERE cedula = '".$id."'";
-    
+      $mysqli = sqlsrv_connect(Server() , connectionInfo());
+      $res = "SELECT password FROM proyecto.usuarios WHERE cedula = '".$id."'";
       $result = sqlsrv_query($mysqli, $res);
     
     
@@ -31,11 +27,9 @@ $res = "SELECT cedula,password FROM proyecto.usuarios WHERE cedula = '".$id."' A
 
 if (password_verify($pass, $arreglo2[0])) {
   
-  
+
   $mysqli = sqlsrv_connect(Server() , connectionInfo());
-
-$res = "SELECT * FROM proyecto.usuarios ";
-
+  $res = "SELECT * FROM proyecto.usuarios ";
   $result = sqlsrv_query($mysqli, $res);
 
 
@@ -55,6 +49,7 @@ $res = "SELECT * FROM proyecto.usuarios ";
     echo json_encode($arreglo2); 
  
 }
+sqlsrv_close( $mysqli );
 
   }
 

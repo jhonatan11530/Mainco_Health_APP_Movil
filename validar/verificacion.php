@@ -28,14 +28,14 @@ function INICIO(){
         $ORACLE = count($item);
 
       $SQL = sqlsrv_connect(Server() , connectionInfo());
-      $sql_consulta = "SELECT  cod_producto,descripcion FROM  proyecto.produccion ";
+      $sql_consulta = "SELECT DISTINCT cod_producto,descripcion FROM  proyecto.produccion ";
       $result = sqlsrv_query($SQL, $sql_consulta);
       $id = array();
       while($sql = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
         $id[] = $sql["cod_producto"];
       }
       $SQLSERVER = count($id);
-
+     // PRODUCCION($item,$descrip);
       if ($SQLSERVER < $ORACLE) {
        //  PRODUCCION($item,$descrip);
       }
@@ -44,8 +44,8 @@ function INICIO(){
       /* CONSULTAR Y INSERTAR TAREA */
   /*-------------------------------------------*/
 
-  INICIO2($item);
-    
+  //INICIO2($item);
+
 }
 
 function PRODUCCION($item,$descrip){
@@ -84,9 +84,9 @@ function INICIO2($item){
       while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
         $item[] = $row["ID_ITEM"];
         $descrip[] = $row["DESCRIPCION_OPER"];
-        $timeoper[] = number_format((float)$row["TIEMPO_OPERACION"], 8, ',', '');
+        $timeoper[] = number_format((float)$row["TIEMPO_OPERACION"], 8, '.', '');
         
-        echo $row["ID_ITEM"]." ".$row["DESCRIPCION_OPER"]." ".number_format((float)$row["TIEMPO_OPERACION"], 8, ',', '');
+        echo $row["ID_ITEM"]." ".$row["DESCRIPCION_OPER"]." ".number_format((float)$row["TIEMPO_OPERACION"], 8, '.', '');
          echo "<br>";
       }
       $ORACLE = count($item);
@@ -124,41 +124,32 @@ function TAREA($item,$descrip,$timeoper){
             
 }
 
-function EMPLEADOS(){
+function MOTIVOS()
 
-    /* CONSULTAR Y INSERTAR PRODUCCION */
-  /*-------------------------------------------*/
+{
     $conn = oci_connect(ServerOracle(),ServerOracle(),ServerNameOracle());
-    $stid = oci_parse($conn, "SELECT DISTINCT ID_ITEM,DESCRIPCION FROM ITEMS WHERE ID_PROCEDENCIA ='M' ORDER BY ID_ITEM ASC ");
-    oci_execute($stid);
-    $item = array();
-    $descrip = array();
-    while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
-      $item[] = $row["ID_ITEM"];
-      $descrip[] = $row["DESCRIPCION"];
-    // echo $row["ID_ITEM"]." ".$row["DESCRIPCION"];
-    // echo "<br>";
-    }
-    $ORACLE = count($item);
-
-  $SQL = sqlsrv_connect(Server() , connectionInfo());
-  $sql_consulta = "SELECT nombre FROM  proyecto.operador ";
-  $result = sqlsrv_query($SQL, $sql_consulta);
-  $id = array();
-  while($sql = sqlsrv_fetch_array($result, SQLSRV_FETCH_ASSOC)) {
-    $id[] = $sql["cod_producto"];
-  }
-  $SQLSERVER = count($id);
-
-  if ($SQLSERVER < $ORACLE) {
-  //  PRODUCCION($item,$descrip);
-  }
-
-
-  /* CONSULTAR Y INSERTAR TAREA */
-  /*-------------------------------------------*/
-
-
-
+      $stid = oci_parse($conn, "SELECT DISTINCT ID_MOTIVO,DESC_MOTIVO FROM MNTIEMPOS_DE_PARO ORDER BY ID_MOTIVO ASC");
+      oci_execute($stid);
+      $item = array();
+      $descrip = array();
+      while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
+        $item[] = $row["ID_MOTIVO"];
+        $descrip[] = $row["DESC_MOTIVO"];
+       echo $row["ID_MOTIVO"]." ".$row["DESC_MOTIVO"];
+       echo "<br>";
+      }
+       MOTIVO_PARO($item,$descrip);
 }
+  function MOTIVO_PARO($item,$descrip){
+  
+    for ($i=0; $i < count($item); $i++) { 
+       $iten = $item[$i];
+       $descripcion = $descrip[$i];
+  $SQL = sqlsrv_connect(Server() , connectionInfo());
+  $sql_consulta = "INSERT INTO proyecto.motivo(id,paro) VALUES('".$iten."','".$descripcion."')";
+  $result = sqlsrv_query($SQL, $sql_consulta);
+    }
+      
+}
+
 ?>

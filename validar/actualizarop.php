@@ -17,4 +17,5 @@ require_once("ConexionSQL.php");
     $res = "UPDATE proyecto.produccion SET autorizado='". $totales."' WHERE cod_producto= '".$op."' AND numero_op = '".$cod."' ";
     $result = sqlsrv_query($mysqli, $res);
 }
+sqlsrv_close( $mysqli );
 ?>
