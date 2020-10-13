@@ -508,10 +508,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
     }
 
-    public void llenardescanso() {
-
-    }
-
     public void filtrardescanso(String filtrardescanso) {
         ArrayList<motivoparo> dato2 = new ArrayList<>();
         try {
@@ -769,7 +765,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                     });
                                     NOMBRE = objecto.getString(0);
 
-                                    resultados.setText("OPERADOR : " + objecto.getString(0));
+                                    resultados.setText("OPERADOR : " + NOMBRE.toString());
 
                                 }
                                 if (response.length() == 0) {
@@ -842,6 +838,14 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                     JSONArray nada = new JSONArray(cero);
                     int vacio = Integer.parseInt(nada.getString(0));
 
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                    Date date = new Date();
+                    final String fechafinal = dateFormat.format(date);
+
+                    final EditText edit = new EditText(OperadorActivity.this);
+                    edit.setEnabled(false);
+                   edit.setText(fechafinal);
+
                     if (vacio > 0) {
                         runOnUiThread(new Runnable() {
                             @Override
@@ -860,6 +864,9 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                         hilo = new Thread(new Runnable() {
                                             @Override
                                             public void run() {
+
+                                                System.out.println("EL NUMERO OP "+op.getText().toString()+" NOMBRE "+NOMBRE.toString()+" FECHA "+edit.getText().toString());
+                                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?op=" + op.getText().toString()+"&nombre="+NOMBRE.toString()+"&fecha="+edit.getText().toString()).body();
                                                 textToSpeech.onStop();
 
                                                 HttpRequest.get("http://" + cambiarIP.ip + "/validar/nuevoRegistro.php?id=" + id.getText().toString()).body();
@@ -1234,9 +1241,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                         BtnAplazo.setEnabled(true);
                                         BtnParo.setEnabled(true);
 
-                                     /*   desbloquear.setBackgroundColor(Color.parseColor("#2196F3"));
-                                        BtnAplazo.setBackgroundColor(Color.parseColor("#2196F3"));
-                                        Btnsalida.setBackgroundColor(Color.parseColor("#2196F3")); */
                                     }
                                 });
 
@@ -1259,10 +1263,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                         BtnAplazo.setEnabled(true);
                                         BtnParo.setEnabled(true);
 
-                                        /*
-                                        desbloquear.setBackgroundColor(Color.parseColor("#2196F3"));
-                                        BtnAplazo.setBackgroundColor(Color.parseColor("#2196F3"));
-                                        Btnsalida.setBackgroundColor(Color.parseColor("#2196F3")); */
                                     }
                                 });
 
@@ -1417,8 +1417,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                             HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodificar.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + nombretarea.toString() + "&totales=" + malo + "&codigo=" + op.getText().toString()).body();
 
                                             HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizaSalida.php?id=" + id.getText().toString() + "&cantidad=" + volumen + "&Ffinal=" + fechas.toString() + "&Hfinal=" + horas.toString() + "&motivo=" + error.toString() + "&conforme=" + falla.toString() + "&tarea=" + nombretarea.toString() + "&op=" + op.getText().toString()).body();
-
-                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?op=" + op.getText().toString()).body();
 
                                             new Thread(new Runnable() {
                                                 @Override

@@ -11,51 +11,25 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="EL ESTADO ES" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="EL NUMERO OP" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7b6af788-212f-4cd2-8b4b-3791be3d9170" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/validar/RegistroERROR.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/validar/validaroperador.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.1.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validar/Autorizar.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/Autorizar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validar/ConexionSQL.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/ConexionSQL.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validar/FiltroOPS.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/FiltroOPS.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validar/OPS.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/OPS.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validar/RegistrarMotivo.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/RegistrarMotivo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validar/Sobrante.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/Sobrante.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validar/SobranteAct.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/SobranteAct.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validar/actualizaEntrada.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/actualizaEntrada.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validar/actualizaSalida.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/actualizaSalida.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validar/actualizarop.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/actualizarop.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validar/cantidad.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/cantidad.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validar/cantidadedits.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/cantidadedits.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validar/cantidadfiltre.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/cantidadfiltre.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validar/cantidadmodifi.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/cantidadmodifi.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validar/cantidadmodificar.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/cantidadmodificar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validar/cantidadupdate.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/cantidadupdate.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validar/consolidado.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/consolidado.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validar/limpiar.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/limpiar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validar/motivo.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/motivo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validar/motivocantidad.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/motivocantidad.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validar/motivofiltro.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/motivofiltro.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validar/nuevoRegistro.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/nuevoRegistro.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validar/olvido.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/olvido.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validar/operador.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/operador.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validar/registro.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/registro.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validar/validar.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/validar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validar/validarcantidad.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/validarcantidad.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/validar/verificacion.php" beforeDir="false" afterPath="$PROJECT_DIR$/validar/verificacion.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/OperadorActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/OperadorActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/SQL.sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/SQL.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -134,11 +108,11 @@
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="Services" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="TextToSpeech" />
-    </key>
     <key name="android.template.823841162">
       <recent name="com.Mainco.App" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="TextToSpeech" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -251,6 +225,11 @@
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Android App" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
+              <path>
+                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+                <item name="Android App" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Finished" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              </path>
             </expand>
             <select />
           </treeState>
@@ -304,19 +283,11 @@
     <option name="LAST_COMMIT_MESSAGE" value="asd" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="275" y="27" key="#Notifications" timestamp="1593520589184">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="275" y="27" key="#Notifications/0.0.1366.738@0.0.1366.738" timestamp="1593520589184" />
     <state x="134" y="202" key="#PSD" timestamp="1600976427087">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="200" y="98" key="#PSD/0.0.1366.728@0.0.1366.728" timestamp="1596673286852" />
     <state x="134" y="202" key="#PSD/0.0.1366.738@0.0.1366.738" timestamp="1600976427087" />
-    <state x="275" y="26" key="#Updates" timestamp="1592930999674">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="275" y="26" key="#Updates/0.0.1366.738@0.0.1366.738" timestamp="1592930999674" />
     <state x="137" y="24" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596555359590">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -343,7 +314,6 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="363" y="94" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1366.728@0.0.1366.728" timestamp="1600613709822" />
-    <state x="363" y="95" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1366.738@0.0.1366.738" timestamp="1592931000367" />
     <state x="133" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1600622256241">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -353,10 +323,6 @@
     </state>
     <state x="413" y="112" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1600624003672" />
     <state x="413" y="114" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.738@0.0.1366.738" timestamp="1600871566816" />
-    <state x="413" y="116" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1593114760534">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="413" y="116" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1366.738@0.0.1366.738" timestamp="1593114760534" />
     <state x="363" y="28" key="#com.intellij.unscramble.UnscrambleDialog" timestamp="1600801242880">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -386,22 +352,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="553" y="257" key="Github.ShareDialog/0.0.1366.728@0.0.1366.728" timestamp="1596674572787" />
-    <state width="944" height="2" key="GridCell.Tab.0.bottom" timestamp="1601037412139">
+    <state width="497" height="245" key="GridCell.Tab.0.bottom" timestamp="1602273100626">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="944" height="2" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1601037412139" />
-    <state width="944" height="2" key="GridCell.Tab.0.center" timestamp="1601037412139">
+    <state width="497" height="245" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1602273100626" />
+    <state width="497" height="245" key="GridCell.Tab.0.center" timestamp="1602273100626">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="944" height="2" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1601037412139" />
-    <state width="944" height="2" key="GridCell.Tab.0.left" timestamp="1601037412139">
+    <state width="497" height="245" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1602273100626" />
+    <state width="497" height="245" key="GridCell.Tab.0.left" timestamp="1602273100626">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="944" height="2" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1601037412139" />
-    <state width="944" height="2" key="GridCell.Tab.0.right" timestamp="1601037412139">
+    <state width="497" height="245" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1602273100626" />
+    <state width="497" height="245" key="GridCell.Tab.0.right" timestamp="1602273100626">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="944" height="2" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1601037412139" />
+    <state width="497" height="245" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1602273100626" />
     <state width="1367" height="2" key="GridCell.Tab.1.bottom" timestamp="1597784125781">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -431,11 +397,11 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="499" y="147" key="chooseDestDirectoryDialog/0.0.1366.738@0.0.1366.738" timestamp="1599162546520" />
-    <state x="92" y="92" width="1182" height="554" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1600976348795">
+    <state x="92" y="92" width="1182" height="554" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1602247112755">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="92" y="91" width="1182" height="547" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1366.728@0.0.1366.728" timestamp="1600615459087" />
-    <state x="92" y="92" width="1182" height="554" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1366.738@0.0.1366.738" timestamp="1600976348795" />
+    <state x="92" y="92" width="1182" height="554" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1366.738@0.0.1366.738" timestamp="1602247112755" />
     <state x="379" y="190" key="com.intellij.ide.util.TipDialog" timestamp="1597681433236">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

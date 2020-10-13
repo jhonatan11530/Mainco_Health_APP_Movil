@@ -9,241 +9,7 @@
     TargetDatabaseEngineType : SQL Server independiente
 */
 
-USE [master]
-GO
-/****** Object:  Database [proyecto]    Script Date: 3/09/2020 2:23:24 p. m. ******/
-CREATE DATABASE [proyecto]
- CONTAINMENT = NONE
- ON  PRIMARY 
-( NAME = N'proyecto', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER\MSSQL\DATA\proyecto.mdf' , SIZE = 5120KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
- LOG ON 
-( NAME = N'proyecto_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL12.MSSQLSERVER\MSSQL\DATA\proyecto_log.ldf' , SIZE = 3840KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
-GO
-ALTER DATABASE [proyecto] SET COMPATIBILITY_LEVEL = 120
-GO
-IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
-begin
-EXEC [proyecto].[dbo].[sp_fulltext_database] @action = 'enable'
-end
-GO
-ALTER DATABASE [proyecto] SET ANSI_NULL_DEFAULT OFF 
-GO
-ALTER DATABASE [proyecto] SET ANSI_NULLS OFF 
-GO
-ALTER DATABASE [proyecto] SET ANSI_PADDING OFF 
-GO
-ALTER DATABASE [proyecto] SET ANSI_WARNINGS OFF 
-GO
-ALTER DATABASE [proyecto] SET ARITHABORT OFF 
-GO
-ALTER DATABASE [proyecto] SET AUTO_CLOSE OFF 
-GO
-ALTER DATABASE [proyecto] SET AUTO_SHRINK OFF 
-GO
-ALTER DATABASE [proyecto] SET AUTO_UPDATE_STATISTICS ON 
-GO
-ALTER DATABASE [proyecto] SET CURSOR_CLOSE_ON_COMMIT OFF 
-GO
-ALTER DATABASE [proyecto] SET CURSOR_DEFAULT  GLOBAL 
-GO
-ALTER DATABASE [proyecto] SET CONCAT_NULL_YIELDS_NULL OFF 
-GO
-ALTER DATABASE [proyecto] SET NUMERIC_ROUNDABORT OFF 
-GO
-ALTER DATABASE [proyecto] SET QUOTED_IDENTIFIER OFF 
-GO
-ALTER DATABASE [proyecto] SET RECURSIVE_TRIGGERS OFF 
-GO
-ALTER DATABASE [proyecto] SET  DISABLE_BROKER 
-GO
-ALTER DATABASE [proyecto] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
-GO
-ALTER DATABASE [proyecto] SET DATE_CORRELATION_OPTIMIZATION OFF 
-GO
-ALTER DATABASE [proyecto] SET TRUSTWORTHY OFF 
-GO
-ALTER DATABASE [proyecto] SET ALLOW_SNAPSHOT_ISOLATION OFF 
-GO
-ALTER DATABASE [proyecto] SET PARAMETERIZATION SIMPLE 
-GO
-ALTER DATABASE [proyecto] SET READ_COMMITTED_SNAPSHOT OFF 
-GO
-ALTER DATABASE [proyecto] SET HONOR_BROKER_PRIORITY OFF 
-GO
-ALTER DATABASE [proyecto] SET RECOVERY SIMPLE 
-GO
-ALTER DATABASE [proyecto] SET  MULTI_USER 
-GO
-ALTER DATABASE [proyecto] SET PAGE_VERIFY CHECKSUM  
-GO
-ALTER DATABASE [proyecto] SET DB_CHAINING OFF 
-GO
-ALTER DATABASE [proyecto] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
-GO
-ALTER DATABASE [proyecto] SET TARGET_RECOVERY_TIME = 0 SECONDS 
-GO
-ALTER DATABASE [proyecto] SET DELAYED_DURABILITY = DISABLED 
-GO
 USE [proyecto]
-GO
-/****** Object:  User [proyecto]    Script Date: 3/09/2020 2:23:24 p. m. ******/
-CREATE USER [proyecto] FOR LOGIN [proyecto] WITH DEFAULT_SCHEMA=[proyecto]
-GO
-ALTER ROLE [db_owner] ADD MEMBER [proyecto]
-GO
-/****** Object:  Schema [m2ss]    Script Date: 3/09/2020 2:23:24 p. m. ******/
-CREATE SCHEMA [m2ss]
-GO
-/****** Object:  Schema [proyecto]    Script Date: 3/09/2020 2:23:24 p. m. ******/
-CREATE SCHEMA [proyecto]
-GO
-/****** Object:  Table [proyecto].[cantidaderror]    Script Date: 3/09/2020 2:23:24 p. m. ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [proyecto].[cantidaderror](
-	[fallas] [nvarchar](70) NULL
-) ON [PRIMARY]
-GO
-/****** Object:  Table [proyecto].[motivo]    Script Date: 3/09/2020 2:23:24 p. m. ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [proyecto].[motivo](
-	[id] [int] IDENTITY(72,1) NOT NULL,
-	[paro] [nvarchar](40) NULL,
- CONSTRAINT [PK_motivo_id] PRIMARY KEY CLUSTERED 
-(
-	[id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [proyecto].[motivo_paro]    Script Date: 3/09/2020 2:23:24 p. m. ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [proyecto].[motivo_paro](
-	[AUTO] [int] IDENTITY(1,1) NOT NULL,
-	[numero_op] [nvarchar](8) NOT NULL,
-	[id] [int] NOT NULL,
-	[tarea] [nvarchar](40) NULL,
-	[tiempo_descanso] [nvarchar](8) NOT NULL,
-	[cantidad] [int] NOT NULL,
-	[code] [nvarchar](6) NOT NULL,
-	[motivo_descanso] [nvarchar](50) NOT NULL,
-	[fecha] [nvarchar](12) NOT NULL,
-	[hora] [nvarchar](8) NOT NULL,
- CONSTRAINT [PK_motivo_paro_AUTO] PRIMARY KEY CLUSTERED 
-(
-	[AUTO] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [proyecto].[operador]    Script Date: 3/09/2020 2:23:24 p. m. ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [proyecto].[operador](
-	[llaves] [int] IDENTITY(462,1) NOT NULL,
-	[id] [int] NOT NULL,
-	[nombre] [nvarchar](70) NULL,
-	[numero_op] [nvarchar](11) NULL,
-	[tarea] [nvarchar](50) NULL,
-	[cantidad] [int] NOT NULL,
-	[no_conforme] [nvarchar](35) NULL,
-	[cantidad_fallas] [int] NOT NULL,
-	[inicial] [nvarchar](10) NULL,
-	[hora_inicial] [time](7) NULL,
-	[final] [nvarchar](10) NULL,
-	[hora_final] [time](7) NULL,
-	[eficencia] [nvarchar](12) NULL,
-	[eficacia] [nvarchar](12) NULL,
- CONSTRAINT [PK_operador_llaves] PRIMARY KEY CLUSTERED 
-(
-	[llaves] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [proyecto].[produccion]    Script Date: 3/09/2020 2:23:24 p. m. ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [proyecto].[produccion](
-	[id] [int] NULL,
-	[numero_op] [nchar](12) NULL,
-	[cod_producto] [nvarchar](7) NULL,
-	[descripcion] [nvarchar](50) NULL,
-	[cantidad] [int] NULL,
-	[programadas] [nvarchar](8) NULL,
-	[autoincrement] [int] IDENTITY(1,1) NOT NULL,
-	[autorizado] [int] NULL
-) ON [PRIMARY]
-GO
-/****** Object:  Table [proyecto].[promedio]    Script Date: 3/09/2020 2:23:24 p. m. ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [proyecto].[promedio](
-	[fecha] [varchar](10) NULL,
-	[OP] [varchar](10) NULL,
-	[Descripcion] [varchar](35) NULL,
-	[tiempo_habil] [varchar](10) NULL,
-	[timepo_estimado] [varchar](10) NULL,
-	[tiempo_produccido] [nvarchar](10) NULL,
-	[eficiencia] [int] NULL,
-	[produccion] [int] NULL
-) ON [PRIMARY]
-GO
-/****** Object:  Table [proyecto].[roles]    Script Date: 3/09/2020 2:23:24 p. m. ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [proyecto].[roles](
-	[id] [nvarchar](15) NOT NULL,
-	[cargo] [nvarchar](15) NOT NULL,
- CONSTRAINT [PK_roles_cargo] PRIMARY KEY CLUSTERED 
-(
-	[cargo] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-/****** Object:  Table [proyecto].[tarea]    Script Date: 3/09/2020 2:23:24 p. m. ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [proyecto].[tarea](
-	[numero_op] [varchar](50) NOT NULL,
-	[tarea] [nvarchar](40) NOT NULL,
-	[cantidadpentiente] [int] NOT NULL,
-	[extandar] [nvarchar](15) NOT NULL
-) ON [PRIMARY]
-GO
-/****** Object:  Table [proyecto].[usuarios]    Script Date: 3/09/2020 2:23:24 p. m. ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [proyecto].[usuarios](
-	[id] [int] IDENTITY(4,1) NOT NULL,
-	[nomusuario] [nvarchar](50) NULL,
-	[apeusuario] [nvarchar](50) NULL,
-	[password] [nvarchar](100) NULL,
-	[cedula] [nvarchar](50) NULL,
-	[rol] [nvarchar](15) NULL,
-	[cargo] [nvarchar](20) NULL,
- CONSTRAINT [PK_usuarios_id] PRIMARY KEY CLUSTERED 
-(
-	[id] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
 GO
 INSERT [proyecto].[cantidaderror] ([fallas]) VALUES (N'maquina mala')
 GO
@@ -251,139 +17,339 @@ INSERT [proyecto].[cantidaderror] ([fallas]) VALUES (N'no hay producto defectuos
 GO
 INSERT [proyecto].[cantidaderror] ([fallas]) VALUES (N'producto defectuoso')
 GO
-SET IDENTITY_INSERT [proyecto].[motivo] ON 
+SET IDENTITY_INSERT [proyecto].[error] ON 
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (1, N'MANTENIMIENTO CORRECTIVO')
+INSERT [proyecto].[error] ([id], [code], [op], [nombre_dispositivo], [dirrecion_ip], [hora], [fecha]) VALUES (71, N'', N'', N'LENOVO Lenovo TB-7104F', N'192.168.20.125', N'15:38:38', N'22/09/2020')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (2, N'REUNION DE PRODUCCION')
+INSERT [proyecto].[error] ([id], [code], [op], [nombre_dispositivo], [dirrecion_ip], [hora], [fecha]) VALUES (73, N'252', N'6397-1', N'LENOVO Lenovo TB-7104F', N'192.168.20.125', N'14:05:53', N'23/09/2020')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (3, N'CAPACITACION METODOS DE INGENIERIA')
+INSERT [proyecto].[error] ([id], [code], [op], [nombre_dispositivo], [dirrecion_ip], [hora], [fecha]) VALUES (76, N'2', N'503-6', N'LENOVO Lenovo TB-X505F', N'192.168.20.171', N'06:49:12', N'25/09/2020')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (4, N'AUSENCIA DE FLUIDO ELECTRICO')
+INSERT [proyecto].[error] ([id], [code], [op], [nombre_dispositivo], [dirrecion_ip], [hora], [fecha]) VALUES (77, N'299', N'503-9', N'LENOVO Lenovo TB-7104F', N'192.168.20.125', N'14:01:02', N'25/09/2020')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (5, N'ELABORACION DE MUESTRAS')
+INSERT [proyecto].[error] ([id], [code], [op], [nombre_dispositivo], [dirrecion_ip], [hora], [fecha]) VALUES (68, N'134', N'6411-1', N'LENOVO Lenovo TB-7104F', N'192.168.20.125', N'12:07:29', N'22/09/2020')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (6, N'FALTA DE TRABAJO E INSUMOS PLANTA')
+INSERT [proyecto].[error] ([id], [code], [op], [nombre_dispositivo], [dirrecion_ip], [hora], [fecha]) VALUES (69, N'2', N'', N'LENOVO Lenovo TB-X505F', N'192.168.20.171', N'14:12:31', N'22/09/2020')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (8, N'INDUCCION PROCESO PRODUCTIVO')
+INSERT [proyecto].[error] ([id], [code], [op], [nombre_dispositivo], [dirrecion_ip], [hora], [fecha]) VALUES (70, N'252', N'6398-1', N'LENOVO Lenovo TB-X505F', N'192.168.20.171', N'14:12:31', N'22/09/2020')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (9, N'ACCIDENTE DE TRABAJO')
+INSERT [proyecto].[error] ([id], [code], [op], [nombre_dispositivo], [dirrecion_ip], [hora], [fecha]) VALUES (72, N'', N'', N'LENOVO Lenovo TB-X505F', N'192.168.20.171', N'15:38:01', N'22/09/2020')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (10, N'PATINAR EN PLANTA')
+INSERT [proyecto].[error] ([id], [code], [op], [nombre_dispositivo], [dirrecion_ip], [hora], [fecha]) VALUES (74, N'2', N'503-6', N'LENOVO Lenovo TB-X505F', N'192.168.20.171', N'15:33:30', N'23/09/2020')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (11, N'VALIDACION-MUESTREO DE PRODUCTO')
+INSERT [proyecto].[error] ([id], [code], [op], [nombre_dispositivo], [dirrecion_ip], [hora], [fecha]) VALUES (75, N'', N'', N'LENOVO Lenovo TB-X505F', N'192.168.20.171', N'15:36:05', N'23/09/2020')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (12, N'REALIZAR INVENTARIO')
+SET IDENTITY_INSERT [proyecto].[error] OFF
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (13, N'TIEMPOS DE INGENIERIA')
+SET IDENTITY_INSERT [proyecto].[gestion] ON 
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (14, N'REPROCESO')
+INSERT [proyecto].[gestion] ([id], [nombre], [inicial], [final], [motivo], [tiempo], [fecha], [observacion]) VALUES (7, N'BENITEZ OVIEDO JUAN', N'14:43:12', N'14:43:13', N'LLAMADAS TELEFONICAS', N'00:00:01', N'17/09/2020', NULL)
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (15, N'5S')
+INSERT [proyecto].[gestion] ([id], [nombre], [inicial], [final], [motivo], [tiempo], [fecha], [observacion]) VALUES (8, N'AVILA RODRIGUEZ LINDA YULIANA', N'11:42:13', N'12:15:27', N'REQUERIMIENTO DE GH', N'01:03:14', N'28/09/2020', NULL)
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (16, N'ASISTENCIA MEDICA')
+INSERT [proyecto].[gestion] ([id], [nombre], [inicial], [final], [motivo], [tiempo], [fecha], [observacion]) VALUES (9, N'BUELVAS BOLANO GLERIS JUDITH', N'12:48:20', N'13:07:28', N'REQUERIMIENTO DE GH', N'00:19:08', N'28/09/2020', NULL)
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (17, N'TIEMPO HIDRATACION')
+INSERT [proyecto].[gestion] ([id], [nombre], [inicial], [final], [motivo], [tiempo], [fecha], [observacion]) VALUES (10, N'CORTES ARBOLEDA CARMEN VICTORI', N'13:12:51', N'13:25:22', N'REQUERIMIENTO DE GH', N'00:12:31', N'28/09/2020', NULL)
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (18, N'PAUSAS ACTIVAS')
+INSERT [proyecto].[gestion] ([id], [nombre], [inicial], [final], [motivo], [tiempo], [fecha], [observacion]) VALUES (11, N'VARGAS CARDONA ANA LUCIA', N'13:27:02', N'13:36:18', N'REQUERIMIENTO DE GH', N'00:09:16', N'28/09/2020', NULL)
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (19, N'RECESO - HIDRATACION Y ALIMENTACION')
+INSERT [proyecto].[gestion] ([id], [nombre], [inicial], [final], [motivo], [tiempo], [fecha], [observacion]) VALUES (12, N'GIRALDO HURTADO YENNY PAOLA', N'13:31:00', N'13:41:04', N'REQUERIMIENTO DE GH', N'00:10:04', N'28/09/2020', NULL)
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (20, N'INCAPACIDAD POR ENFERMEDAD GENERAL')
+INSERT [proyecto].[gestion] ([id], [nombre], [inicial], [final], [motivo], [tiempo], [fecha], [observacion]) VALUES (13, N'OSPINA RINCON KATHERINE', N'13:38:54', N'13:52:12', N'REQUERIMIENTO DE GH', N'00:13:18', N'28/09/2020', NULL)
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (21, N'INCAPACIDAD POR ACCIDENTE DE TRABAJO')
+INSERT [proyecto].[gestion] ([id], [nombre], [inicial], [final], [motivo], [tiempo], [fecha], [observacion]) VALUES (14, N'VARGAS MURILLO DANIELA', N'13:41:22', N'13:56:42', N'REQUERIMIENTO DE GH', N'00:15:20', N'28/09/2020', NULL)
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (22, N'PERMISO PERSONAL')
+INSERT [proyecto].[gestion] ([id], [nombre], [inicial], [final], [motivo], [tiempo], [fecha], [observacion]) VALUES (22, N'VARGAS CARDONA ANA LUCIA', N'07:51:41', N'07:55:11', N'ENFERMERIA', N'00:03:30', N'30/09/2020', N'INGRESA A TOMA DE PRESION ARTERIAL, LA CUAL DEBE DE SER DIARIA POR PRESCRIPCION MEDICA T/A  140/90')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (23, N'PERMISO EPS')
+INSERT [proyecto].[gestion] ([id], [nombre], [inicial], [final], [motivo], [tiempo], [fecha], [observacion]) VALUES (23, N'BANGUERO RENGIFO GLORIA ISABEL', N'07:56:35', N'07:58:00', N'DUDAS NOVEDADES NOMINA', N'00:01:25', N'30/09/2020', N'COLABORADA QE INGRESA A ENFERMERIA, REFIERE DOLOR DE CABEZA, SE LE TOMAN SIGNOS VITALES LOS CUALES NO TIENE NINGUNA ALTERACION T/A 110/90 SE LE RECOMIENDA QUE SI CONTINUA CON EL MALESTAR ASISTA A SU EPS DADO QUE YA HOY SERIA EL 2 DIA QUE PRESENTA EL MISMO SINTOMA.')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (24, N'TIEMPO PROCESO GESTION HUMANA')
+SET IDENTITY_INSERT [proyecto].[gestion] OFF
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (25, N'PARO * PEGAS,ENRREDO O CALIDAD ELASTICO')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'02', N'REUNION DE PRODUCCION                   ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (26, N'REUNION COPASST')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'04', N'AUSENCIA DE FLUIDO ELECTRICO            ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (27, N'FALTA ENTREGA INSUMOS ABASTECIMIENTO')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'05', N'ELABORACION DE MUESTRAS                 ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (28, N'REEMPLAZO PERSONAL EN OTRO PROCESO')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'08', N'INDUCCION PROCESO PRODUCTIVO            ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (29, N'LICENCIA POR LUTO')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'10', N'PATINAR EN PLANTA                       ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (30, N'TRANSPORTE INTERNO LLEGA TARDE')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'12', N'REALIZAR INVENTARIO                     ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (31, N'ALMACENAR PRODUCTO EN ESTIBA')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'13', N'TIEMPOS DE INGENIERIA                   ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (33, N'LICENCIA NO REMUNERADA')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'15', N'5S                                      ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (34, N'DESCANSO REMUNERADO')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'17', N'TIEMPO HIDRATACION                      ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (35, N'LICENCIA POR MATERNIDAD')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'19', N'RECESO - HIDRATACION Y ALIMENTACION     ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (36, N'VACACIONES')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'21', N'INCAPACIDAD POR ACCIDENTE DE TRABAJO    ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (37, N'DESCANSO POR VOTACION')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'23', N'PERMISO EPS                             ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (38, N'COMISION POR LA EMPRESA')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'25', N'PARO * PEGAS,ENRREDO O CALIDAD ELASTICO ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (39, N'CAPACITACION EMPRESA')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'27', N'FALTA ENTREGA INSUMOS ABASTECIMIENTO    ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (40, N'PERMISO DE LACTANCIA')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'29', N'LICENCIA POR LUTO                       ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (41, N'SUSPENSION')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'31', N'ALMACENAR PRODUCTO EN ESTIBA            ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (42, N'FUMIGACION')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'34', N'DESCANSO REMUNERADO                     ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (43, N'MOVIMIENTO MAQUINAS CONFECCION-MODULO')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'36', N'VACACIONES                              ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (44, N'CALAMIDAD DOMESTICA')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'38', N'COMISION POR LA EMPRESA                 ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (45, N'PERSONAL TRABAJA EN ABASTECIMIENTO')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'40', N'PERMISO DE LACTANCIA                    ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (46, N'REUNION COMITE CONVIVENCIA')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'42', N'FUMIGACION                              ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (47, N'REUNION SEGURIDAD Y SALUD EN EL TRABAJO')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'44', N'CALAMIDAD DOMESTICA                     ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (48, N'RECEPCION DE MATERIAS PRIMAS')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'46', N'REUNION COMITE CONVIVENCIA              ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (52, N'HORAS COMPENSATORIAS')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'48', N'RECEPCION DE MATERIAS PRIMAS            ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (53, N'REEMPLAZO EN MAQUINA SEMIAUTOMATICA')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'53', N'REEMPLAZO EN MAQUINA SEMIAUTOMATICA     ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (54, N'REALIZAR PREINVENTARIO')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'55', N'PUERTA INTERNA ABIERTA TARDE            ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (55, N'PUERTA INTERNA ABIERTA TARDE')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'58', N'CAMPANA DE BIENESTAR SOCIAL             ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (56, N'REUNION DE BRIGADA')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'60', N'TEMBLOR                                 ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (58, N'CAMPANA DE BIENESTAR SOCIAL')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'62', N'CAMBIO DE BATERIA AYUDA MECANICA        ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (59, N'LLEGADA TARDE DEL PERSONAL')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'64', N'SIMULACRO DE EVACUACION                 ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (60, N'TEMBLOR')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'66', N'AUSENTISMO POR DIA DE CUMPLEANOS        ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (61, N'DESMONTE DE ROLLO POR CALIDAD')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'68', N'LAVADO DE MANOS                         ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (62, N'CAMBIO DE BATERIA AYUDA MECANICA')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'70', N'DESINFECCION AL INGRESO A LA EMPRESA    ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (63, N'AYUDA MECANICA EN OTRO PROCESO')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'01', N'MANTENIMIENTO CORRECTIVO                ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (64, N'SIMULACRO DE EVACUACION')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'03', N'CAPACITACION METODOS DE INGENIERIA      ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (65, N'NOVENA DEL NINO DIOS')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'04', N'AUSENCIA DE FLUIDO ELECTRICO Y/0 AGUA   ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (66, N'AUSENTISMO POR DIA DE CUMPLEANOS')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'06', N'FALTA DE TRABAJO E INSUMOS PLANTA       ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (67, N'PERMISO PERSONAL GESTION HUMANA')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'09', N'ACCIDENTE DE TRABAJO                    ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (68, N'LAVADO DE MANOS')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'11', N'VALIDACION-MUESTREO DE PRODUCTO         ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (69, N'TOMAR TE')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'13', N'DESMONTE DE ROLLOS CORTE                ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (70, N'DESINFECCION AL INGRESO A LA EMPRESA')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'14', N'REPROCESO                               ')
 GO
-INSERT [proyecto].[motivo] ([id], [paro]) VALUES (71, N'AISLAMIENTO PREVENTIVO COVID-19')
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'16', N'ASISTENCIA MEDICA                       ')
 GO
-SET IDENTITY_INSERT [proyecto].[motivo] OFF
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'18', N'PAUSAS ACTIVAS                          ')
+GO
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'20', N'INCAPACIDAD POR ENFERMEDAD GENERAL      ')
+GO
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'22', N'PERMISO PERSONAL                        ')
+GO
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'24', N'TIEMPO PROCESO GESTION HUMANA           ')
+GO
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'26', N'REUNION COPASST                         ')
+GO
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'28', N'REEMPLAZO PERSONAL EN OTRO PROCESO      ')
+GO
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'30', N'TRANSPORTE INTERNO LLEGA TARDE          ')
+GO
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'33', N'LICENCIA NO REMUNERADA                  ')
+GO
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'35', N'LICENCIA POR MATERNIDAD                 ')
+GO
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'37', N'DESCANSO POR VOTACION                   ')
+GO
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'39', N'CAPACITACION EMPRESA                    ')
+GO
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'41', N'SUSPENSION                              ')
+GO
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'43', N'MOVIMIENTO MAQUINAS CONFECCION-MODULO   ')
+GO
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'45', N'PERSONAL TRABAJA EN ABASTECIMIENTO      ')
+GO
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'47', N'REUNION SEGURIDAD Y SALUD EN EL TRABAJO ')
+GO
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'52', N'HORAS COMPENSATORIAS                    ')
+GO
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'54', N'REALIZAR PREINVENTARIO                  ')
+GO
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'56', N'REUNION DE BRIGADA                      ')
+GO
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'59', N'LLEGADA TARDE DEL PERSONAL              ')
+GO
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'61', N'DESMONTE DE ROLLO POR CALIDAD           ')
+GO
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'63', N'AYUDA MECANICA EN OTRO PROCESO          ')
+GO
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'65', N'NOVENA DEL NINO DIOS                    ')
+GO
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'67', N'PERMISO PERSONAL GESTION HUMANA         ')
+GO
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'69', N'TOMAR TE                                ')
+GO
+INSERT [proyecto].[motivo] ([id], [paro]) VALUES (N'71', N'AISLAMIENTO PREVENTIVO COVID-19         ')
+GO
+SET IDENTITY_INSERT [proyecto].[motivo_paro] ON 
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (46, N'6356-1', 223, N'POSIC ABS CAMPO,ABRIR FEN DOBLAR P.CINTA', N'00:18:48', 187, N'19', N'RECESO - HIDRATACION Y ALIMENTACION', N'08/09/2020', N'10:04:23')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (47, N'6356-1', 260, N'POSIC ABS CAMPO,ABRIR FEN DOBLAR P.CINTA', N'00:15:05', 0, N'19', N'RECESO - HIDRATACION Y ALIMENTACION', N'08/09/2020', N'10:09:50')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (48, N'6356-1', 260, N'POSIC ABS CAMPO,ABRIR FEN DOBLAR P.CINTA', N'00:05:14', 267, N'17', N'TIEMPO HIDRATACION', N'08/09/2020', N'12:14:09')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (52, N'6356-1', 223, N'POSIC ABS CAMPO,ABRIR FEN DOBLAR P.CINTA', N'00:18:07', 152, N'19', N'RECESO - HIDRATACION Y ALIMENTACION', N'09/09/2020', N'10:03:07')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (53, N'6356-1', 260, N'POSIC ABS CAMPO,ABRIR FEN DOBLAR P.CINTA', N'00:17:41', 0, N'19', N'RECESO - HIDRATACION Y ALIMENTACION', N'09/09/2020', N'10:05:20')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (54, N'6356-1', 260, N'POSIC ABS CAMPO,ABRIR FEN DOBLAR P.CINTA', N'00:05:10', 190, N'17', N'TIEMPO HIDRATACION', N'09/09/2020', N'12:11:23')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (58, N'6373-1', 212, N'ARMAR CONTENIDO', N'00:01:55', 110, N'06', N'FALTA DE TRABAJO E INSUMOS PLANTA       ', N'11/09/2020', N'08:03:35')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (60, N'6373-1', 275, N'ENVOLVER PAQUETE', N'00:05:00', 0, N'9', N'PAUSAS ACTIVAS                          ', N'11/09/2020', N'11:04:48')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (61, N'6373-1', 212, N'ARMAR CONTENIDO', N'00:05:36', 89, N'18', N'PAUSAS ACTIVAS                          ', N'11/09/2020', N'11:06:34')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (62, N'6373-1', 275, N'ENVOLVER PAQUETE', N'00:05:31', 180, N'17', N'TIEMPO HIDRATACION', N'11/09/2020', N'12:06:07')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (63, N'6373-1', 212, N'ENVOLVER PAQUETE', N'00:15:31', 110, N'19', N'RECESO - HIDRATACION Y ALIMENTACION', N'11/09/2020', N'10:00:00')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (65, N'6349-4', 284, N'ENVOLVER 2.00*1.50 CUBREMESA', N'00:13:20', 0, N'19', N'RECESO - HIDRATACION Y ALIMENTACION     ', N'14/09/2020', N'09:59:54')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (66, N'6349-4', 275, N'ENVOLVER 2.50*1.40 CUBREMESA', N'00:11:04', 0, N'19', N'RECESO - HIDRATACION Y ALIMENTACION     ', N'14/09/2020', N'10:03:27')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (67, N'6349-4', 284, N'ENVOLVER 2.00*1.50 CUBREMESA', N'00:04:00', 345, N'', N'PAUSAS ACTIVAS                          ', N'14/09/2020', N'11:06:18')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (68, N'6349-4', 275, N'ENVOLVER 2.50*1.40 CUBREMESA', N'00:04:02', 345, N'18', N'PAUSAS ACTIVAS                          ', N'14/09/2020', N'11:06:48')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (76, N'847-5', 201, N'PEGAR CINTA REFUERZO', N'00:00:25', 800, N'18', N'PAUSAS ACTIVAS                          ', N'16/09/2020', N'07:02:06')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (77, N'847-5', 40, N'PULIR, DOBLAR Y EMPACAR', N'00:04:06', 0, N'18', N'PAUSAS ACTIVAS                          ', N'16/09/2020', N'08:06:21')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (78, N'847-5', 201, N'PEGAR PUNOS', N'00:04:09', 0, N'18', N'PAUSAS ACTIVAS                          ', N'16/09/2020', N'08:05:50')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (79, N'847-5', 201, N'PEGAR PUNOS', N'00:00:38', 0, N'19', N'RECESO - HIDRATACION Y ALIMENTACION     ', N'16/09/2020', N'09:17:36')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (80, N'847-5', 40, N'PULIR, DOBLAR Y EMPACAR', N'00:15:07', 0, N'19', N'RECESO - HIDRATACION Y ALIMENTACION     ', N'16/09/2020', N'09:25:45')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (82, N'847-5', 40, N'PEGAR CINTA REFUERZO', N'00:19:35', 0, N'19', N'RECESO - HIDRATACION Y ALIMENTACION     ', N'16/09/2020', N'10:30:08')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (83, N'847-5', 201, N'PEGAR PUNOS', N'00:03:37', 300, N'18', N'PAUSAS ACTIVAS                          ', N'16/09/2020', N'10:43:16')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (84, N'847-5', 40, N'PEGAR CINTA REFUERZO', N'00:04:40', 0, N'18', N'5S                                      ', N'16/09/2020', N'11:08:12')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (85, N'847-5', 40, N'PULIR, DOBLAR Y EMPACAR', N'00:04:01', 0, N'18', N'PAUSAS ACTIVAS                          ', N'17/09/2020', N'07:11:06')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (86, N'847-5', 201, N'PEGAR Y CERRAR MANGAS CON REFUERZO', N'00:05:38', 54, N'18', N'PAUSAS ACTIVAS                          ', N'17/09/2020', N'07:15:03')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (87, N'847-5', 40, N'PULIR, DOBLAR Y EMPACAR', N'00:04:02', 0, N'18', N'PAUSAS ACTIVAS                          ', N'17/09/2020', N'08:11:24')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (88, N'847-5', 201, N'PEGAR PUNOS', N'00:04:31', 0, N'18', N'PAUSAS ACTIVAS                          ', N'17/09/2020', N'08:16:38')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (89, N'847-5', 201, N'PEGAR PUNOS', N'00:15:16', 0, N'19', N'RECESO - HIDRATACION Y ALIMENTACION     ', N'17/09/2020', N'09:16:42')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (90, N'847-5', 40, N'PEGAR CINTA REFUERZO', N'00:16:37', 0, N'19', N'RECESO - HIDRATACION Y ALIMENTACION     ', N'17/09/2020', N'09:21:29')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (91, N'847-5', 201, N'PEGAR PUNOS', N'00:04:52', 0, N'18', N'PAUSAS ACTIVAS                          ', N'17/09/2020', N'10:06:22')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (92, N'3839-1', 40, N'PEGAR CINTA REFUERZO', N'00:05:32', 0, N'18', N'PAUSAS ACTIVAS                          ', N'17/09/2020', N'10:11:13')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (93, N'3839-1', 40, N'PEGAR CINTA REFUERZO', N'00:03:20', 0, N'18', N'PAUSAS ACTIVAS                          ', N'17/09/2020', N'11:08:29')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (94, N'847-5', 201, N'PEGAR PUNOS', N'00:04:16', 0, N'18', N'PAUSAS ACTIVAS                          ', N'17/09/2020', N'11:08:01')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (95, N'847-5', 201, N'PEGAR PUNOS', N'00:04:44', 285, N'18', N'PAUSAS ACTIVAS                          ', N'17/09/2020', N'12:07:58')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (96, N'3839-1', 40, N'PEGAR CINTA REFUERZO', N'00:07:51', 90, N'19', N'RECESO - HIDRATACION Y ALIMENTACION     ', N'17/09/2020', N'12:14:49')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (97, N'847-5', 201, N'PEGAR Y CERRAR MANGAS CON REFUERZO', N'00:02:39', 45, N'18', N'PAUSAS ACTIVAS                          ', N'17/09/2020', N'13:04:14')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (105, N'6411-1', 134, N'ABRIR FENESTRACION,PEGAR CINTA DOBLAR', N'00:17:07', 0, N'19', N'5S                                      ', N'22/09/2020', N'10:03:31')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (106, N'6411-1', 134, N'ABRIR FENESTRACION,PEGAR CINTA DOBLAR', N'00:05:00', 0, N'17', N'TIEMPO HIDRATACION                      ', N'22/09/2020', N'12:06:30')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (110, N'6406-1', 279, N'PEGAR CINTA AL REFUERZO', N'00:00:58', 0, N'68', N'LAVADO DE MANOS                         ', N'24/09/2020', N'08:03:25')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (111, N'6401-2', 262, N'PEGAR CINTA A LA U Y DOBLAR', N'00:00:30', 0, N'68', N'LAVADO DE MANOS                         ', N'24/09/2020', N'08:07:35')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (112, N'6406-1', 279, N'PEGAR CINTA AL REFUERZO', N'00:03:29', 0, N'24', N'TIEMPO PROCESO GESTION HUMANA           ', N'24/09/2020', N'08:21:43')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (113, N'6406-1', 279, N'PEGAR CINTA AL REFUERZO', N'00:17:56', 0, N'19', N'RECESO - HIDRATACION Y ALIMENTACION     ', N'24/09/2020', N'10:02:27')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (114, N'6401-2', 262, N'PEGAR CINTA A LA U Y DOBLAR', N'00:19:51', 50, N'19', N'RECESO - HIDRATACION Y ALIMENTACION     ', N'24/09/2020', N'10:07:01')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (115, N'6406-1', 279, N'PEGAR CINTA AL REFUERZO', N'00:05:00', 0, N'18', N'PAUSAS ACTIVAS                          ', N'24/09/2020', N'11:05:07')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (116, N'6401-2', 262, N'ENVOLVER CAMPO EN U Y EMPACAR DOBLE BOLS', N'00:05:00', 50, N'18', N'5S                                      ', N'24/09/2020', N'11:06:52')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (117, N'6406-1', 279, N' DOBLAR', N'00:05:03', 0, N'17', N'TIEMPO HIDRATACION                      ', N'24/09/2020', N'12:07:09')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (118, N'6401-2', 262, N'PEGAR CINTA A LA U Y DOBLAR', N'00:03:53', 25, N'17', N'TIEMPO HIDRATACION                      ', N'24/09/2020', N'12:10:13')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (122, N'502-24', 181, N'EMPACAR POLAINA CALIDAD', N'00:15:00', 0, N'15', N'5S                                      ', N'25/09/2020', N'09:46:04')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (123, N'503-9', 299, N'EMPACAR TAPABOCA POR UNIDAD', N'00:13:47', 0, N'15', N'5S                                      ', N'25/09/2020', N'09:49:39')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (124, N'502-24', 181, N'EMPACAR POLAINA CALIDAD', N'00:05:00', 0, N'5', N'PAUSAS ACTIVAS                          ', N'25/09/2020', N'11:07:50')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (125, N'503-9', 299, N'EMPACAR TAPABOCA POR UNIDAD', N'00:05:00', 0, N'5', N'PAUSAS ACTIVAS                          ', N'25/09/2020', N'11:09:42')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (126, N'503-9', 299, N'EMPACAR TAPABOCA POR UNIDAD', N'00:05:00', 4900, N'5', N'RECESO - HIDRATACION Y ALIMENTACION     ', N'25/09/2020', N'12:06:57')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (127, N'502-24', 181, N'EMPACAR POLAINA CALIDAD', N'00:05:00', 2300, N'5', N'RECESO - HIDRATACION Y ALIMENTACION     ', N'25/09/2020', N'12:05:31')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (128, N'503-6', 2, N'EMPACAR TAPABOCA POR UNIDAD', N'00:00:11', 0, N'18', N'PAUSAS ACTIVAS                          ', N'28/09/2020', N'06:44:02')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (129, N'499-10', 299, N'EMPACAR GORRO CALIDAD', N'00:12:58', 0, N'15', N'5S                                      ', N'28/09/2020', N'09:29:05')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (130, N'499-10', 301, N'EMPACAR GORRO CALIDAD', N'00:09:37', 0, N'15', N'5S                                      ', N'28/09/2020', N'09:31:08')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (131, N'499-10', 299, N'EMPACAR GORRO CALIDAD', N'00:03:04', 0, N'5', N'PAUSAS ACTIVAS                          ', N'28/09/2020', N'10:37:23')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (132, N'499-10', 301, N'EMPACAR GORRO CALIDAD', N'00:03:17', 0, N'5', N'PAUSAS ACTIVAS                          ', N'28/09/2020', N'10:39:27')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (133, N'499-10', 299, N'EMPACAR GORRO CALIDAD', N'00:04:14', 3100, N'5', N'TOMAR TE                                ', N'28/09/2020', N'12:05:49')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (134, N'499-10', 301, N'EMPACAR GORRO CALIDAD', N'00:04:26', 3500, N'5', N'TOMAR TE                                ', N'28/09/2020', N'12:07:54')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (135, N'503-6', 2, N'EMPACAR TAPABOCA POR UNIDAD', N'00:00:20', 10, N'18', N'PAUSAS ACTIVAS                          ', N'29/09/2020', N'06:30:03')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (136, N'483-2', 147, N'EMPACAR POLAINA CALIDAD', N'00:00:26', 0, N'18', N'PAUSAS ACTIVAS                          ', N'29/09/2020', N'06:47:46')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (137, N'483-3', 147, N' DOBLAR', N'00:00:02', 0, N'19', N'RECESO - HIDRATACION Y ALIMENTACION     ', N'29/09/2020', N'08:32:27')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (138, N'483-3', 297, N' DOBLAR', N'00:00:15', 0, N'2', N'TIEMPO HIDRATACION                      ', N'29/09/2020', N'08:31:42')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (139, N'483-3', 297, N' DOBLAR', N'00:54:40', 0, N'08', N'INDUCCION PROCESO PRODUCTIVO            ', N'29/09/2020', N'09:30:58')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (140, N'483-3', 297, N' DOBLAR', N'00:15:24', 0, N'15', N'5S                                      ', N'29/09/2020', N'09:47:23')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (141, N'483-3', 147, N' DOBLAR', N'00:04:52', 1050, N'08', N'INDUCCION PROCESO PRODUCTIVO            ', N'29/09/2020', N'10:04:41')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (142, N'483-3', 297, N' DOBLAR', N'00:03:05', 2700, N'5', N'PAUSAS ACTIVAS                          ', N'29/09/2020', N'10:38:55')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (143, N'3722-1', 40, N'PULIR DOBLAR POLAINA', N'00:05:00', 0, N'18', N'PAUSAS ACTIVAS                          ', N'30/09/2020', N'07:10:46')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (144, N'3722-1', 40, N'PULIR DOBLAR POLAINA', N'00:05:00', 0, N'18', N'PAUSAS ACTIVAS                          ', N'30/09/2020', N'08:10:10')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (145, N'3722-1', 40, N'PULIR DOBLAR POLAINA', N'00:17:38', 0, N'19', N'RECESO - HIDRATACION Y ALIMENTACION     ', N'30/09/2020', N'09:17:11')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (146, N'3722-1', 40, N'PULIR DOBLAR POLAINA', N'00:04:03', 0, N'18', N'PAUSAS ACTIVAS                          ', N'30/09/2020', N'10:41:26')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (147, N'3722-1', 40, N'PULIR DOBLAR POLAINA', N'00:05:00', 0, N'19', N'RECESO - HIDRATACION Y ALIMENTACION     ', N'30/09/2020', N'12:12:50')
+GO
+INSERT [proyecto].[motivo_paro] ([AUTO], [numero_op], [id], [tarea], [tiempo_descanso], [cantidad], [code], [motivo_descanso], [fecha], [hora]) VALUES (148, N'3722-1', 40, N'PULIR DOBLAR POLAINA', N'00:05:43', 665, N'18', N'PAUSAS ACTIVAS                          ', N'30/09/2020', N'13:07:40')
+GO
+SET IDENTITY_INSERT [proyecto].[motivo_paro] OFF
 GO
 SET IDENTITY_INSERT [proyecto].[operador] ON 
 GO
@@ -479,7 +445,7 @@ INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [c
 GO
 INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (47, 133, N'CORREA SAMARIA', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
 GO
-INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (48, 134, N' AGUDELO VALENCIA DIANA PATRICI', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (48, 134, N' AGUDELO VALENCIA DIANA PATRICI', N'6412-1', N'PEGAR CNTA                              ', 160, N'maquina mala', 0, N'22/09/2020', CAST(N'06:33:40' AS Time), N'22/09/2020', CAST(N'08:29:17' AS Time), N'97', N'100')
 GO
 INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (49, 135, N'ANGEL ERAZO MELISSA', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
 GO
@@ -507,7 +473,7 @@ INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [c
 GO
 INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (61, 146, N'FRANCO SIERRA SAR YURI', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
 GO
-INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (62, 147, N'LUCUMI CRUZ DIANA', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (62, 147, N'LUCUMI CRUZ DIANA', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, N'NAN', N'99')
 GO
 INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (63, 148, N'GOMEZ USMA WILLIAM ANTONIO', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
 GO
@@ -583,7 +549,7 @@ INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [c
 GO
 INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (99, 180, N'OSPINA RINCON KATHERINE', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
 GO
-INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (100, 181, N'MENESES CALVACHE CAROL VIVIANA', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (100, 181, N'MENESES CALVACHE CAROL VIVIANA', N'502-24', N'EMPACAR POLAINA CALIDAD                 ', 2300, N'producto defectuoso', 208, N'25/09/2020', CAST(N'06:00:49' AS Time), N'25/09/2020', CAST(N'14:03:20' AS Time), N'37704', N'95')
 GO
 INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (101, 182, N'BASTIDAS BENAVIDES JAIME BRYAN', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
 GO
@@ -621,7 +587,7 @@ INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [c
 GO
 INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (118, 200, N'OLIVEROS SUAZA ANGELA BIBIANA', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
 GO
-INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (119, 201, N'BUELVAS BOLANO GLERIS JUDITH', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (119, 201, N'BUELVAS BOLANO GLERIS JUDITH', N'847-5', N'PEGAR Y CERRAR MANGAS CON REFUERZO      ', 18, N'maquina mala', 0, N'16/09/2020', CAST(N'07:10:19' AS Time), N'16/09/2020', CAST(N'07:39:28' AS Time), N'105', N'100')
 GO
 INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (120, 202, N'MOSQUERA MINA MARIA CRUZ', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
 GO
@@ -645,7 +611,7 @@ INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [c
 GO
 INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (130, 211, N'GARCES ORTIZ YEINSON ANDRES', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
 GO
-INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (131, 212, N'GOMEZ CASTRO MARISOL', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (131, 212, N'GOMEZ CASTRO MARISOL', N'6373-1', N'ARMAR CONTENIDO', 110, N'no hay producto defectuoso', 0, N'11/09/2020', CAST(N'07:56:54' AS Time), N'11/09/2020', CAST(N'10:00:00' AS Time), N'76', N'100')
 GO
 INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (132, 214, N'CORTES GARCIA MONICA MARIA', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
 GO
@@ -667,7 +633,7 @@ INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [c
 GO
 INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (141, 222, N'GIRALDO SANDRA PATRICIA', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
 GO
-INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (142, 223, N' QUINONEZ MARTINEZ VICTOR HUGO', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (142, 223, N' QUINONEZ MARTINEZ VICTOR HUGO', N'6356-1', N'PEGAR CINTA AL BORDE DE LA FENESTRA     ', 100, N'no hay producto defectuoso', 0, N'08/09/2020', CAST(N'06:34:40' AS Time), N'08/09/2020', CAST(N'08:27:49' AS Time), N'125', N'100')
 GO
 INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (143, 224, N'VASQUEZ BURBANO BETTY LORENA', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
 GO
@@ -747,11 +713,11 @@ INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [c
 GO
 INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (181, 26, N'SALGADO RAIGOZA SANDRA MARIA', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
 GO
-INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (182, 260, N'MARTINEZ RESTREPO KENNY FERNEL', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (182, 260, N'MARTINEZ RESTREPO KENNY FERNEL', N'6356-1', N'POSIC ABS CAMPO,ABRIR FEN DOBLAR P.CINTA', 267, N'no hay producto defectuoso', 0, N'08/09/2020', CAST(N'06:35:21' AS Time), N'08/09/2020', CAST(N'14:00:58' AS Time), N'99', N'96')
 GO
 INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (183, 261, N'MATALLANA CAMACHO JUAN PABLO', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
 GO
-INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (184, 262, N'URPIN RUIZ YOXANA MARGARITA', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (184, 262, N'URPIN RUIZ YOXANA MARGARITA', N'6401-2', N'PEGAR CINTA A LA U Y DOBLAR             ', 50, N'no hay producto defectuoso', 0, N'24/09/2020', CAST(N'07:25:49' AS Time), N'24/09/2020', CAST(N'10:41:59' AS Time), N'74', N'96')
 GO
 INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (185, 263, N'QUINTERO PAREDES CATERINE QUIN', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
 GO
@@ -779,7 +745,7 @@ INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [c
 GO
 INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (197, 274, N'SATIZABAL RIVAS MEILY ANDREINA', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
 GO
-INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (198, 275, N'DELGADO CAMPO NOHRA CRISTINA', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (198, 275, N'DELGADO CAMPO NOHRA CRISTINA', N'6373-1', N'ENVOLVER PAQUETE                        ', 180, N'maquina mala', 0, N'11/09/2020', CAST(N'09:02:19' AS Time), N'11/09/2020', CAST(N'13:57:11' AS Time), N'105', N'98')
 GO
 INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (199, 276, N'CABRERA ESCOBAR GLADYS EDITH', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
 GO
@@ -823,21 +789,21 @@ INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [c
 GO
 INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (219, 294, N'AMAYA BERMUDEZ SANDRA MILENA', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
 GO
-INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (220, 295, N'YATACUE CARDONA JULIO CESAR', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (220, 295, N'YATACUE CARDONA JULIO CESAR', N'503-6', N'HACER TAPABOCA CON TIRA                 ', 2422, N'producto defectuoso', 8, N'18/09/2020', CAST(N'06:00:00' AS Time), N'18/09/2020', CAST(N'10:00:00' AS Time), N'121201', N'100')
 GO
 INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (221, 296, N'RODRIGUEZ ORDONEZ ANGIE MARCEL', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
 GO
-INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (222, 297, N'OLIVA PANTOJA LIZETH', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (222, 297, N'OLIVA PANTOJA LIZETH', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, N'NAN', N'85')
 GO
 INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (223, 298, N'LARGACHA CALLE EDIER', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
 GO
-INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (224, 299, N'HERNANDEZ POLANCO RICARDO', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (224, 299, N'HERNANDEZ POLANCO RICARDO', N'503-9', N'EMPACAR TAPABOCA POR UNIDAD             ', 4900, N'producto defectuoso', 30, N'25/09/2020', CAST(N'06:00:00' AS Time), N'25/09/2020', CAST(N'14:08:24' AS Time), N'341701', N'95')
 GO
 INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (225, 30, N' CASTELLANOS RIVAS LUZ KARIME', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
 GO
 INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (226, 300, N' MATUTE FRANCO WILDER JULIAN', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
 GO
-INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (227, 301, N'RODRIGUEZ CARRILLO LINDA CAROL', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (227, 301, N'RODRIGUEZ CARRILLO LINDA CAROL', N'499-10', N'EMPACAR GORRO CALIDAD                   ', 3500, N'producto defectuoso', 10, N'28/09/2020', CAST(N'06:00:18' AS Time), N'28/09/2020', CAST(N'14:00:11' AS Time), N'45400', N'96')
 GO
 INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (228, 302, N'GONZALEZ CEPEDA YUDY ANDREA', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
 GO
@@ -965,7 +931,7 @@ INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [c
 GO
 INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (290, 92, N'PEREZ VARGAS CARMEN JANETH', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
 GO
-INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (291, 93, N'ARGAS RODAS LUIS ENRIQUE', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (291, 93, N'ARGAS RODAS LUIS ENRIQUE', N'502-12', N'ALISTAMIENTO Y MONTAJE DE ROLLO         ', 7441, N'maquina mala', 123, N'18/09/2020', CAST(N'07:13:54' AS Time), N'18/09/2020', CAST(N'14:08:21' AS Time), N'12567', N'100')
 GO
 INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (292, 94, N' CASTANEDA ALVAREZ ANDRES FELIP', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
 GO
@@ -978,6 +944,80 @@ GO
 INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (296, 98, N'ZUNIGA JANSASOY CIELO', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
 GO
 INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (297, 99, N'BENAVIDES YAMA GUIDO ALEXANDER', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
+GO
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (506, 223, N' QUINONEZ MARTINEZ VICTOR HUGO', N'6356-1', N'POSIC ABS CAMPO,ABRIR FEN DOBLAR P.CINTA', 187, N'no hay producto defectuoso', 0, N'08/09/2020', CAST(N'08:28:15' AS Time), N'08/09/2020', CAST(N'14:00:41' AS Time), N'94', N'96')
+GO
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (507, 223, N' QUINONEZ MARTINEZ VICTOR HUGO', N'6356-1', N'PEGAR CINTA AL BORDE DE LA FENESTRA     ', 20, N'no hay producto defectuoso', 0, N'09/09/2020', CAST(N'06:07:57' AS Time), N'09/09/2020', CAST(N'06:30:22' AS Time), N'126', N'96')
+GO
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (508, 260, N'MARTINEZ RESTREPO KENNY FERNEL', N'6388-1', N'REVISAR,MARCAR Y ABRIR ABSORBENTE       ', 100, N'no hay producto defectuoso', 0, N'09/09/2020', CAST(N'06:12:43' AS Time), N'09/09/2020', CAST(N'06:24:36' AS Time), N'168', N'100')
+GO
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (510, 260, N'MARTINEZ RESTREPO KENNY FERNEL', N'6388-1', N'POSIC ABS CAMPO,ABRIR FEN DOBLAR P.CINTA', 50, N'no hay producto defectuoso', 0, N'09/09/2020', CAST(N'06:24:57' AS Time), N'09/09/2020', CAST(N'07:38:35' AS Time), N'85', N'100')
+GO
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (511, 223, N' QUINONEZ MARTINEZ VICTOR HUGO', N'6388-1', N'POSIC ABS CAMPO,ABRIR FEN DOBLAR P.CINTA', 50, N'no hay producto defectuoso', 0, N'09/09/2020', CAST(N'06:31:18' AS Time), N'09/09/2020', CAST(N'07:33:36' AS Time), N'100', N'100')
+GO
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (512, 223, N' QUINONEZ MARTINEZ VICTOR HUGO', N'6388-1', N'PEGAR CINTA AL BORDE DE LA FENESTRA     ', 49, N'producto defectuoso', 1, N'09/09/2020', CAST(N'07:33:53' AS Time), N'09/09/2020', CAST(N'08:53:52' AS Time), N'87', N'100')
+GO
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (513, 260, N'MARTINEZ RESTREPO KENNY FERNEL', N'6388-1', N'PEGAR CINTA AL BORDE DE LA FENESTRA     ', 50, N'no hay producto defectuoso', 0, N'09/09/2020', CAST(N'07:38:59' AS Time), N'09/09/2020', CAST(N'08:53:38' AS Time), N'95', N'100')
+GO
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (514, 223, N' QUINONEZ MARTINEZ VICTOR HUGO', N'6356-1', N'POSIC ABS CAMPO,ABRIR FEN DOBLAR P.CINTA', 152, N'no hay producto defectuoso', 0, N'09/09/2020', CAST(N'08:55:03' AS Time), N'09/09/2020', CAST(N'13:16:37' AS Time), N'107', N'92')
+GO
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (515, 260, N'MARTINEZ RESTREPO KENNY FERNEL', N'6356-1', N'POSIC ABS CAMPO,ABRIR FEN DOBLAR P.CINTA', 190, N'no hay producto defectuoso', 0, N'09/09/2020', CAST(N'08:59:03' AS Time), N'09/09/2020', CAST(N'14:00:09' AS Time), N'117', N'91')
+GO
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (516, 223, N' QUINONEZ MARTINEZ VICTOR HUGO', N'6356-1', N'PEGAR CINTA AL BORDE DE LA FENESTRA     ', 31, N'no hay producto defectuoso', 0, N'09/09/2020', CAST(N'13:17:08' AS Time), N'09/09/2020', CAST(N'14:00:43' AS Time), N'101', N'92')
+GO
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (522, 212, N'GOMEZ CASTRO MARISOL', N'6373-1', N'ARMAR CONTENIDO                         ', 89, N'no hay producto defectuoso', 0, N'11/09/2020', CAST(N'10:00:00' AS Time), N'11/09/2020', CAST(N'11:24:45' AS Time), N'96', N'95')
+GO
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (523, 275, N'DELGADO CAMPO NOHRA CRISTINA', N'6349-4', N'ENVOLVER 2.50*1.40 CUBREMESA            ', 345, N'maquina mala', 0, N'14/09/2020', CAST(N'07:01:21' AS Time), N'14/09/2020', CAST(N'11:06:51' AS Time), N'100', N'97')
+GO
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (524, 284, N'TORO AVILA DAHYAN', N'6349-4', N'ENVOLVER 2.00*1.50 CUBREMESA            ', 190, N'maquina mala', 0, N'15/09/2020', CAST(N'07:05:01' AS Time), N'15/09/2020', CAST(N'09:10:13' AS Time), N'117', N'96')
+GO
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (525, 275, N'DELGADO CAMPO NOHRA CRISTINA', N'6349-4', N'ENVOLVER 2.50*1.40 CUBREMESA            ', 190, N'maquina mala', 0, N'15/09/2020', CAST(N'07:05:02' AS Time), N'15/09/2020', CAST(N'09:10:26' AS Time), N'115', N'97')
+GO
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (529, 40, N'VARGAS MURILLO DANIELA', N'847-5', N'PULIR, DOBLAR Y EMPACAR                 ', 90, N'maquina mala', 0, N'17/09/2020', CAST(N'06:01:57' AS Time), N'17/09/2020', CAST(N'09:38:29' AS Time), N'610', N'82')
+GO
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (533, 201, N'BUELVAS BOLANO GLERIS JUDITH', N'847-5', N'PEGAR PUNOS                             ', 300, N'maquina mala', 0, N'16/09/2020', CAST(N'09:44:51' AS Time), N'16/09/2020', CAST(N'11:51:53' AS Time), N'118', N'98')
+GO
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (534, 201, N'BUELVAS BOLANO GLERIS JUDITH', N'847-5', N'PEGAR Y CERRAR MANGAS CON REFUERZO      ', 54, N'maquina mala', 0, N'17/09/2020', CAST(N'06:34:54' AS Time), N'17/09/2020', CAST(N'07:57:10' AS Time), N'120', N'97')
+GO
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (535, 201, N'BUELVAS BOLANO GLERIS JUDITH', N'847-5', N'PEGAR PUNOS                             ', 285, N'maquina mala', 0, N'17/09/2020', CAST(N'07:57:52' AS Time), N'17/09/2020', CAST(N'12:25:02' AS Time), N'59', N'90')
+GO
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (536, 40, N'VARGAS MURILLO DANIELA', N'3839-1', N'PEGAR CINTA REFUERZO                    ', 120, N'maquina mala', 0, N'17/09/2020', CAST(N'09:38:50' AS Time), N'17/09/2020', CAST(N'14:01:11' AS Time), N'11', N'97')
+GO
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (537, 201, N'BUELVAS BOLANO GLERIS JUDITH', N'847-5', N'PEGAR Y CERRAR MANGAS CON REFUERZO      ', 45, N'maquina mala', 0, N'17/09/2020', CAST(N'12:25:38' AS Time), N'17/09/2020', CAST(N'14:00:52' AS Time), N'88', N'89')
+GO
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (538, 40, N'VARGAS MURILLO DANIELA', N'3722-1', N'PULIR DOBLAR POLAINA                    ', 665, N'producto defectuoso', 40, N'30/09/2020', CAST(N'06:00:15' AS Time), N'30/09/2020', CAST(N'13:08:03' AS Time), N'57', N'91')
+GO
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (539, 201, N'BUELVAS BOLANO GLERIS JUDITH', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
+GO
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (542, 295, N'YATACUE CARDONA JULIO CESAR', N'503-7', N'EMPACAR TAPABOCA POR UNIDAD             ', 3003, N'producto defectuoso', 10, N'18/09/2020', CAST(N'10:00:00' AS Time), N'18/09/2020', CAST(N'14:02:46' AS Time), N'400785', N'100')
+GO
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (543, 295, N'YATACUE CARDONA JULIO CESAR', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
+GO
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (544, 93, N'ARGAS RODAS LUIS ENRIQUE', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
+GO
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (584, 134, N' AGUDELO VALENCIA DIANA PATRICI', N'6412-1', N'DOBLAR CAMPO EN ACORDEON                ', 160, N'maquina mala', 0, N'22/09/2020', CAST(N'08:29:40' AS Time), N'22/09/2020', CAST(N'09:08:15' AS Time), N'117', N'100')
+GO
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (585, 134, N' AGUDELO VALENCIA DIANA PATRICI', N'6411-1', N'ABRIR FENESTRACION,PEGAR CINTA DOBLAR', 50, N'maquina mala', 0, N'22/09/2020', CAST(N'09:09:08' AS Time), N'22/09/2020', CAST(N'11:30:00' AS Time), N'126', N'95')
+GO
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (587, 134, N' AGUDELO VALENCIA DIANA PATRICI', N'6397-1', N'ARMAR CONTENIDO PAQUETE                 ', 46, N'maquina mala', 0, N'23/09/2020', CAST(N'06:30:36' AS Time), N'23/09/2020', CAST(N'08:46:37' AS Time), N'42', N'100')
+GO
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (597, 262, N'URPIN RUIZ YOXANA MARGARITA', N'6401-2', N'PEGAR ETIQUETA                          ', 50, N'no hay producto defectuoso', 0, N'24/09/2020', CAST(N'10:43:33' AS Time), N'24/09/2020', CAST(N'10:52:14' AS Time), N'57', N'96')
+GO
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (598, 262, N'URPIN RUIZ YOXANA MARGARITA', N'6401-2', N'ENVOLVER CAMPO EN U Y EMPACAR DOBLE BOLS', 50, N'no hay producto defectuoso', 0, N'24/09/2020', CAST(N'10:54:33' AS Time), N'24/09/2020', CAST(N'11:23:15' AS Time), N'141', N'95')
+GO
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (599, 262, N'URPIN RUIZ YOXANA MARGARITA', N'6401-2', N'SELLAR PAQUETE DOBLE BOLSA              ', 50, N'no hay producto defectuoso', 0, N'24/09/2020', CAST(N'11:23:53' AS Time), N'24/09/2020', CAST(N'11:40:03' AS Time), N'62', N'95')
+GO
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (600, 262, N'URPIN RUIZ YOXANA MARGARITA', N'6401-2', N'PEGAR CINTA A LA U Y DOBLAR             ', 25, N'no hay producto defectuoso', 0, N'24/09/2020', CAST(N'11:41:03' AS Time), N'24/09/2020', CAST(N'13:09:14' AS Time), N'102', N'94')
+GO
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (603, 181, N'MENESES CALVACHE CAROL VIVIANA', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
+GO
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (604, 299, N'HERNANDEZ POLANCO RICARDO', N'499-10', N'EMPACAR GORRO CALIDAD                   ', 3100, N'maquina mala', 8, N'28/09/2020', CAST(N'06:00:50' AS Time), N'28/09/2020', CAST(N'13:58:09' AS Time), N'40696', N'96')
+GO
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (605, 299, N'HERNANDEZ POLANCO RICARDO', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
+GO
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (606, 2, N'BENITEZ OVIEDO JUAN', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
+GO
+INSERT [proyecto].[operador] ([llaves], [id], [nombre], [numero_op], [tarea], [cantidad], [no_conforme], [cantidad_fallas], [inicial], [hora_inicial], [final], [hora_final], [eficencia], [eficacia]) VALUES (608, 297, N'OLIVA PANTOJA LIZETH', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL, NULL, NULL, NULL)
 GO
 SET IDENTITY_INSERT [proyecto].[operador] OFF
 GO
@@ -2149,7 +2189,57 @@ INSERT [proyecto].[produccion] ([id], [numero_op], [cod_producto], [descripcion]
 GO
 INSERT [proyecto].[produccion] ([id], [numero_op], [cod_producto], [descripcion], [cantidad], [programadas], [autoincrement], [autorizado]) VALUES (700107, NULL, N'700107', N'BIO ENZIMATIC HIGH 120ML                ', 0, NULL, 7000, 0)
 GO
-INSERT [proyecto].[produccion] ([id], [numero_op], [cod_producto], [descripcion], [cantidad], [programadas], [autoincrement], [autorizado]) VALUES (3667, N'6346-1      ', N'000147', N'CAMPO OPERATORIO 2.40*1.40/REF(PAQ)MT5A', 1600, N'08:00:00', 7111, 1600)
+INSERT [proyecto].[produccion] ([id], [numero_op], [cod_producto], [descripcion], [cantidad], [programadas], [autoincrement], [autorizado]) VALUES (3667, N'6356-1      ', N'000147', N'CAMPO OPERATORIO 2.40*1.40/REF(PAQ)MT5A', 1600, N'08:00:00', 7115, 1449)
+GO
+INSERT [proyecto].[produccion] ([id], [numero_op], [cod_producto], [descripcion], [cantidad], [programadas], [autoincrement], [autorizado]) VALUES (4404, N'6388-1      ', N'001108', N'CAMPO OPERATORIO 2.50*1.30/REF(PAQ)LC0A', 100, N'08:00:00', 7117, 0)
+GO
+INSERT [proyecto].[produccion] ([id], [numero_op], [cod_producto], [descripcion], [cantidad], [programadas], [autoincrement], [autorizado]) VALUES (3817, N'6373-1      ', N'000303', N'PAQ.HEMODINAMIA NO.7 NO EST (200302)', 312, N'08:00:00', 7122, 312)
+GO
+INSERT [proyecto].[produccion] ([id], [numero_op], [cod_producto], [descripcion], [cantidad], [programadas], [autoincrement], [autorizado]) VALUES (5007, N'6349-4      ', N'001640', N'PAQ.CIRUGIA GENERAL NO.14 NO EST(201641)', 535, N'08:00:00', 7123, 535)
+GO
+INSERT [proyecto].[produccion] ([id], [numero_op], [cod_producto], [descripcion], [cantidad], [programadas], [autoincrement], [autorizado]) VALUES (4705, N'847-5       ', N'001185', N'BATON AMER.P.A.MAN.REF.LC0A/MT5A', 1000, N'08:00:00', 7126, 715)
+GO
+INSERT [proyecto].[produccion] ([id], [numero_op], [cod_producto], [descripcion], [cantidad], [programadas], [autoincrement], [autorizado]) VALUES (4734, N'502-12      ', N'001226', N'POLAINA RECTA RESORTADA FUSIONADA SST0A', 7595, N'08:00:00', 7128, 7472)
+GO
+INSERT [proyecto].[produccion] ([id], [numero_op], [cod_producto], [descripcion], [cantidad], [programadas], [autoincrement], [autorizado]) VALUES (5016, N'503-7       ', N'001652', N'TAPABOCA TIRAS SD3A MC0B SD3A ADAPTADOR', 18000, N'08:00:00', 7129, 17990)
+GO
+INSERT [proyecto].[produccion] ([id], [numero_op], [cod_producto], [descripcion], [cantidad], [programadas], [autoincrement], [autorizado]) VALUES (5016, N'503-6       ', N'001652', N'TAPABOCA TIRAS SD3A MC0B SD3A ADAPTADOR', 2430, N'08:00:00', 7130, 17725)
+GO
+INSERT [proyecto].[produccion] ([id], [numero_op], [cod_producto], [descripcion], [cantidad], [programadas], [autoincrement], [autorizado]) VALUES (5048, N'6412-1      ', N'001717', N'CAMPO OJO 0.80*0.65 S/REF.ADH.F10(PAQ)', 410, N'08:00:00', 7131, 250)
+GO
+INSERT [proyecto].[produccion] ([id], [numero_op], [cod_producto], [descripcion], [cantidad], [programadas], [autoincrement], [autorizado]) VALUES (4188, N'6398-1      ', N'000790', N'PAQ.ANESTESIA NO EST (200789)', 350, N'08:00:00', 7132, 348)
+GO
+INSERT [proyecto].[produccion] ([id], [numero_op], [cod_producto], [descripcion], [cantidad], [programadas], [autoincrement], [autorizado]) VALUES (4744, N'6411-1      ', N'001238', N'CAMPO OPERATORIO 2.50*1.90 S/REF(PAQ)LCO', 172, N'08:00:00', 7133, 172)
+GO
+INSERT [proyecto].[produccion] ([id], [numero_op], [cod_producto], [descripcion], [cantidad], [programadas], [autoincrement], [autorizado]) VALUES (5161, N'6397-1      ', N'002205', N'PAQ.CIRUGIA GENERAL NO.16 NO EST(202206)', 180, N'08:00:00', 7134, 180)
+GO
+INSERT [proyecto].[produccion] ([id], [numero_op], [cod_producto], [descripcion], [cantidad], [programadas], [autoincrement], [autorizado]) VALUES (3661, N'6391-2      ', N'000140', N'CAMPO EN U 2.00*1.50 NO ESTERIL LC0A', 280, N'08:00:00', 7138, 280)
+GO
+INSERT [proyecto].[produccion] ([id], [numero_op], [cod_producto], [descripcion], [cantidad], [programadas], [autoincrement], [autorizado]) VALUES (4734, N'502-24      ', N'001226', N'POLAINA RECTA RESORTADA FUSIONADA SST0A', 7595, N'08:00:00', 7140, 7387)
+GO
+INSERT [proyecto].[produccion] ([id], [numero_op], [cod_producto], [descripcion], [cantidad], [programadas], [autoincrement], [autorizado]) VALUES (5016, N'503-9       ', N'001652', N'TAPABOCA TIRAS SD3A MC0B SD3A ADAPTADOR', 18000, N'08:00:00', 7143, 17725)
+GO
+INSERT [proyecto].[produccion] ([id], [numero_op], [cod_producto], [descripcion], [cantidad], [programadas], [autoincrement], [autorizado]) VALUES (4370, N'483-2       ', N'001057', N'POLAINA RECTA RESORTADA FUSIONADA SST0A', 7350, N'08:00:00', 7145, 7350)
+GO
+INSERT [proyecto].[produccion] ([id], [numero_op], [cod_producto], [descripcion], [cantidad], [programadas], [autoincrement], [autorizado]) VALUES (4370, N'483-3       ', N'001057', N'POLAINA RECTA RESORTADA FUSIONADA SST0A', 7350, N'08:00:00', 7146, 6285)
+GO
+INSERT [proyecto].[produccion] ([id], [numero_op], [cod_producto], [descripcion], [cantidad], [programadas], [autoincrement], [autorizado]) VALUES (3578, N'3722-1      ', N'000053', N'POLAINA RECTA RESORTADA SC0B', 16969, N'08:00:00', 7147, 16929)
+GO
+INSERT [proyecto].[produccion] ([id], [numero_op], [cod_producto], [descripcion], [cantidad], [programadas], [autoincrement], [autorizado]) VALUES (3702, N'3853-1      ', N'000182', N'FUNDA AMERICANA 1.30*0.60(PAQ)LC0A', 400, N'08:00:00', 7148, 400)
+GO
+INSERT [proyecto].[produccion] ([id], [numero_op], [cod_producto], [descripcion], [cantidad], [programadas], [autoincrement], [autorizado]) VALUES (4898, N'3745-6      ', N'001453', N'GORRO ESCAFANDRA TIPO COBERTOR MT5A', 3000, N'08:00:00', 7149, 3000)
+GO
+INSERT [proyecto].[produccion] ([id], [numero_op], [cod_producto], [descripcion], [cantidad], [programadas], [autoincrement], [autorizado]) VALUES (6571, N'499-10      ', N'200459', N'GORRO ORUGA SD5A CJ*2500', 15000, N'08:00:00', 7144, 14982)
+GO
+INSERT [proyecto].[produccion] ([id], [numero_op], [cod_producto], [descripcion], [cantidad], [programadas], [autoincrement], [autorizado]) VALUES (5476, N'6301-2      ', N'002770', N'CAMPO EN U 3.00*2.00 2BOLSA NO ESTE LC0A', 320, N'08:00:00', 7136, 320)
+GO
+INSERT [proyecto].[produccion] ([id], [numero_op], [cod_producto], [descripcion], [cantidad], [programadas], [autoincrement], [autorizado]) VALUES (5476, N'6401-2      ', N'002770', N'CAMPO EN U 3.00*2.00 2BOLSA NO ESTE LC0A', 320, N'08:00:00', 7137, 270)
+GO
+INSERT [proyecto].[produccion] ([id], [numero_op], [cod_producto], [descripcion], [cantidad], [programadas], [autoincrement], [autorizado]) VALUES (3699, N'6406-1      ', N'000179', N'FUNDA AMERICANA 1.30*0.60 P2GA(PAQ)LC0A', 2000, N'08:00:00', 7139, 2000)
+GO
+INSERT [proyecto].[produccion] ([id], [numero_op], [cod_producto], [descripcion], [cantidad], [programadas], [autoincrement], [autorizado]) VALUES (4705, N'3839-1      ', N'001185', N'BATON AMER.P.A.MAN.REF.LC0A/MT5A', 1000, N'08:00:00', 7127, 715)
+GO
+INSERT [proyecto].[produccion] ([id], [numero_op], [cod_producto], [descripcion], [cantidad], [programadas], [autoincrement], [autorizado]) VALUES (5476, N'4601-2      ', N'002770', N'CAMPO EN U 3.00*2.00 2BOLSA NO ESTE LC0A', 320, N'08:00:00', 7135, 320)
 GO
 INSERT [proyecto].[produccion] ([id], [numero_op], [cod_producto], [descripcion], [cantidad], [programadas], [autoincrement], [autorizado]) VALUES (2778, NULL, N'002778', N'PAQ.INTERVENCIONISMO NO EST (202779)    ', 0, NULL, 5482, 0)
 GO
@@ -8097,9 +8187,95 @@ INSERT [proyecto].[produccion] ([id], [numero_op], [cod_producto], [descripcion]
 GO
 SET IDENTITY_INSERT [proyecto].[produccion] OFF
 GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'25/09/2020', N'502-24', N'MENESES CALVACHE CAROL VIVIANA', N'08:02:31', N'15:00:00', N'07:37:31', N'411', N'95')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'17/09/2020', N'847-5', N'BUELVAS BOLANO GLERIS JUDITH', N'10:00:51', N'03:06:54', N'08:01:58', N'338', N'80')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'11/09/2020', N'6373-1', N'GOMEZ CASTRO MARISOL', N'03:27:51', N'07:45:50', N'02:54:18', N'267', N'84')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'09/09/2020', N'6356-1', N' QUINONEZ MARTINEZ VICTOR HUGO', N'12:53:09', N'00:34:15', N'11:33:04', N'213', N'90')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'09/09/2020', N'6356-1', N' QUINONEZ MARTINEZ VICTOR HUGO', N'12:53:09', N'00:34:15', N'11:33:04', N'213', N'90')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'24/09/2020', N'6401-2', N'URPIN RUIZ YOXANA MARGARITA', N'05:37:54', N'04:03:20', N'05:08:40', N'79', N'91')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'11/09/2020', N'6373-1', N'GOMEZ CASTRO MARISOL', N'03:27:51', N'07:45:50', N'02:54:18', N'267', N'84')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'18/09/2020', N'503-6', N'YATACUE CARDONA JULIO CESAR', N'04:00:00', N'16:03:00', N'03:59:29', N'121', N'100')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'25/09/2020', N'503-9', N'HERNANDEZ POLANCO RICARDO', N'08:08:24', N'06:00:00', N'07:44:37', N'343', N'95')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'28/09/2020', N'499-10', N'HERNANDEZ POLANCO RICARDO', N'07:57:19', N'18:00:00', N'07:19:43', N'903', N'92')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'18/09/2020', N'502-12', N'ARGAS RODAS LUIS ENRIQUE', N'06:54:27', N'18:28:00', N'06:54:27', N'127', N'100')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'09/09/2020', N'6356-1', N' QUINONEZ MARTINEZ VICTOR HUGO', N'12:53:09', N'00:34:15', N'11:33:04', N'213', N'90')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'09/09/2020', N'6356-1', N' QUINONEZ MARTINEZ VICTOR HUGO', N'12:53:09', N'00:34:15', N'11:33:04', N'213', N'90')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'09/09/2020', N'6388-1', N'MARTINEZ RESTREPO KENNY FERNEL', N'02:40:10', N'04:46:40', N'02:40:10', N'179', N'100')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'09/09/2020', N'6388-1', N'MARTINEZ RESTREPO KENNY FERNEL', N'02:40:10', N'04:46:40', N'02:40:10', N'179', N'100')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'09/09/2020', N'6388-1', N'MARTINEZ RESTREPO KENNY FERNEL', N'02:40:10', N'04:46:40', N'02:40:10', N'179', N'100')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'09/09/2020', N'6388-1', N'MARTINEZ RESTREPO KENNY FERNEL', N'02:40:10', N'04:46:40', N'02:40:10', N'179', N'100')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'09/09/2020', N'6388-1', N'MARTINEZ RESTREPO KENNY FERNEL', N'02:40:10', N'04:46:40', N'02:40:10', N'179', N'100')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'09/09/2020', N'6356-1', N' QUINONEZ MARTINEZ VICTOR HUGO', N'12:53:09', N'00:34:15', N'11:33:04', N'213', N'90')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'09/09/2020', N'6356-1', N' QUINONEZ MARTINEZ VICTOR HUGO', N'12:53:09', N'00:34:15', N'11:33:04', N'213', N'90')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'09/09/2020', N'6356-1', N' QUINONEZ MARTINEZ VICTOR HUGO', N'12:53:09', N'00:34:15', N'11:33:04', N'213', N'90')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'11/09/2020', N'6373-1', N'GOMEZ CASTRO MARISOL', N'03:27:51', N'07:45:50', N'02:54:18', N'267', N'84')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'15/09/2020', N'6349-4', N'DELGADO CAMPO NOHRA CRISTINA', N'06:10:54', N'08:03:20', N'05:38:28', N'143', N'91')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'15/09/2020', N'6349-4', N'DELGADO CAMPO NOHRA CRISTINA', N'06:10:54', N'08:03:20', N'05:38:28', N'143', N'91')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'15/09/2020', N'6349-4', N'DELGADO CAMPO NOHRA CRISTINA', N'06:10:54', N'08:03:20', N'05:38:28', N'143', N'91')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'17/09/2020', N'847-5', N'BUELVAS BOLANO GLERIS JUDITH', N'10:00:51', N'03:06:54', N'08:01:58', N'338', N'80')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'17/09/2020', N'847-5', N'BUELVAS BOLANO GLERIS JUDITH', N'10:00:51', N'03:06:54', N'08:01:58', N'338', N'80')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'17/09/2020', N'847-5', N'BUELVAS BOLANO GLERIS JUDITH', N'10:00:51', N'03:06:54', N'08:01:58', N'338', N'80')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'17/09/2020', N'847-5', N'BUELVAS BOLANO GLERIS JUDITH', N'10:00:51', N'03:06:54', N'08:01:58', N'338', N'80')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'17/09/2020', N'3839-1', N'VARGAS MURILLO DANIELA', N'04:22:21', N'00:26:00', N'04:05:38', N'11', N'94')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'17/09/2020', N'847-5', N'BUELVAS BOLANO GLERIS JUDITH', N'10:00:51', N'03:06:54', N'08:01:58', N'338', N'80')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'30/09/2020', N'3722-1', N'VARGAS MURILLO DANIELA', N'07:07:48', N'03:55:00', N'06:25:24', N'61', N'90')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'18/09/2020', N'503-7', N'YATACUE CARDONA JULIO CESAR', N'04:02:46', N'22:12:00', N'04:02:46', N'402', N'100')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'22/09/2020', N'6412-1', N' AGUDELO VALENCIA DIANA PATRICI', N'02:34:12', N'02:37:20', N'02:34:12', N'102', N'100')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'22/09/2020', N'6411-1', N' AGUDELO VALENCIA DIANA PATRICI', N'02:20:52', N'02:30:00', N'01:58:45', N'126', N'84')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'23/09/2020', N'6397-1', N' AGUDELO VALENCIA DIANA PATRICI', N'02:16:01', N'00:57:30', N'02:16:01', N'42', N'100')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'24/09/2020', N'6401-2', N'URPIN RUIZ YOXANA MARGARITA', N'05:37:54', N'04:03:20', N'05:08:40', N'79', N'91')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'24/09/2020', N'6401-2', N'URPIN RUIZ YOXANA MARGARITA', N'05:37:54', N'04:03:20', N'05:08:40', N'79', N'91')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'24/09/2020', N'6401-2', N'URPIN RUIZ YOXANA MARGARITA', N'05:37:54', N'04:03:20', N'05:08:40', N'79', N'91')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'24/09/2020', N'6401-2', N'URPIN RUIZ YOXANA MARGARITA', N'05:37:54', N'04:03:20', N'05:08:40', N'79', N'91')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'28/09/2020', N'499-10', N'HERNANDEZ POLANCO RICARDO', N'07:57:19', N'18:00:00', N'07:19:43', N'903', N'92')
+GO
+INSERT [proyecto].[promedio] ([fecha], [OP], [Descripcion], [tiempo_habil], [timepo_estimado], [tiempo_produccido], [eficiencia], [produccion]) VALUES (N'22/09/2020', N'6412-1', N' AGUDELO VALENCIA DIANA PATRICI', N'02:34:12', N'02:37:20', N'02:34:12', N'102', N'100')
+GO
 INSERT [proyecto].[roles] ([id], [cargo]) VALUES (N'1', N'administrador')
 GO
 INSERT [proyecto].[roles] ([id], [cargo]) VALUES (N'2', N'analista')
+GO
+INSERT [proyecto].[roles] ([id], [cargo]) VALUES (N'4', N'Gestion humana')
 GO
 INSERT [proyecto].[roles] ([id], [cargo]) VALUES (N'3', N'operador')
 GO
@@ -11011,7 +11187,7 @@ INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'001651', N'HACER FRONTAL PARA TAPABOCA             ', 0, N'1.00000000')
 GO
-INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'001652', N'HACER TAPABOCA CON TIRA                 ', 0, N'2.00166000')
+INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'001652', N'HACER TAPABOCA CON TIRA                 ', 17725, N'2.00166000')
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'001653', N'EMPACAR TAPABOCA POR UNIDAD             ', 0, N'1.00000000')
 GO
@@ -11103,9 +11279,9 @@ INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'001716', N'DOBLAR CAMPO                            ', 0, N'0.00277000')
 GO
-INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'001717', N'ABRIR FENESTRA F10 AL CAMPO             ', 0, N'0.00361000')
+INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'001717', N'ABRIR FENESTRA F10 AL CAMPO             ', 250, N'0.00361000')
 GO
-INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'001717', N'DOBLAR CAMPO EN ACORDEON                ', 0, N'0.00472000')
+INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'001717', N'DOBLAR CAMPO EN ACORDEON                ', 250, N'0.00472000')
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'001645', N'TIEMPO DE ALISTAMIENTO DEL EQUIPO       ', 0, N'0.66666000')
 GO
@@ -11135,7 +11311,7 @@ INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'001650', N'EMBALAR PRODUCTO ESTERIL                ', 0, N'0.05000000')
 GO
-INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'001652', N'EMPACAR TAPABOCA POR UNIDAD             ', 0, N'5.40000000')
+INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'001652', N'EMPACAR TAPABOCA POR UNIDAD             ', 12797, N'5.40000000')
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'001653', N'HACER TAPABOCA CON TIRA                 ', 0, N'2.00166000')
 GO
@@ -11217,7 +11393,7 @@ INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'001716', N'PEGAR CINTA AL CAMPO                    ', 0, N'0.00361000')
 GO
-INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'001717', N'PEGAR CNTA                              ', 0, N'0.01166000')
+INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'001717', N'PEGAR CNTA                              ', 250, N'0.01166000')
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'002375', N'PULIR , DOBLAR OVEROL                   ', 0, N'0.03333000')
 GO
@@ -11265,9 +11441,9 @@ INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'002165', N'ENVOLVER Y EMPACAR PAQ.CUBREME          ', 0, N'0.02499000')
 GO
-INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'002205', N'ARMAR CONTENIDO PAQUETE                 ', 0, N'0.02083000')
+INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'002205', N'ARMAR CONTENIDO PAQUETE                 ', 134, N'0.02083000')
 GO
-INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'002205', N'SELLAR PAQUETE                          ', 0, N'0.00472000')
+INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'002205', N'SELLAR PAQUETE                          ', 180, N'0.00472000')
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'002206', N'TIEMPO DE ALISTAMIENTO DEL CARRO        ', 0, N'0.00333000')
 GO
@@ -11375,9 +11551,9 @@ INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'002166', N'ESTERILIZAR PAQUETE HEMODINAMIA         ', 0, N'0.00000000')
 GO
-INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'002205', N'PEGAR ETIQUETA EN EL EMPAQUE            ', 0, N'0.00166000')
+INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'002205', N'PEGAR ETIQUETA EN EL EMPAQUE            ', 180, N'0.00166000')
 GO
-INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'002205', N'ENVOLVER Y EMPACAR PAQUETE              ', 0, N'0.03249000')
+INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'002205', N'ENVOLVER Y EMPACAR PAQUETE              ', 180, N'0.03249000')
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'002206', N'CONTROLAR PARAMETROS DEL EQUIPO         ', 0, N'0.00250000')
 GO
@@ -15111,7 +15287,7 @@ INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'001223', N'DOBLAR FUNDA                            ', 0, N'0.00277000')
 GO
-INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'001226', N'ALISTAMIENTO Y MONTAJE DE ROLLO         ', 0, N'0.11666000')
+INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'001226', N'ALISTAMIENTO Y MONTAJE DE ROLLO         ', 7387, N'0.11666000')
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'001227', N'POSICIONAR CONTAC Y SILI,ABRIR Y DOBLAR ', 0, N'0.07138000')
 GO
@@ -15239,7 +15415,7 @@ INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'001214', N'ALISTAMIENTO Y MONTAJE DE ROLLO         ', 0, N'0.11666000')
 GO
-INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'001226', N'EMPACAR POLAINA CALIDAD                 ', 0, N'1.25000000')
+INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'001226', N'EMPACAR POLAINA CALIDAD                 ', 5087, N'1.25000000')
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'001227', N'POSICIONAR PLASTICO AL BORDE DEL CAMPO  ', 0, N'0.03888000')
 GO
@@ -15277,7 +15453,7 @@ INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'001237', N'CORTE Y RECOGIDO                        ', 0, N'17.66666000')
 GO
-INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'001238', N'ABRIR FENESTRACION,PEGAR CINTA DOBLAR   ', 0, N'0.05000000')
+INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'001238', N'ABRIR FENESTRACION,PEGAR CINTA DOBLAR   ', 172, N'0.05000000')
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'001239', N'PEGAR ETIQUETA                          ', 0, N'0.00166000')
 GO
@@ -16861,7 +17037,7 @@ INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'001055', N'ALISTAMIENTO                            ', 0, N'0.52805000')
 GO
-INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'001057', N'EMPACAR POLAINA CALIDAD                 ', 0, N'1.25000000')
+INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'001057', N'EMPACAR POLAINA CALIDAD                 ', 6285, N'1.25000000')
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'001061', N'PEGAR BOLSILLO BLUSA MARQUILLA          ', 0, N'0.00833000')
 GO
@@ -16983,7 +17159,7 @@ INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'001055', N'CORTE                                   ', 0, N'0.20000000')
 GO
-INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'001057', N'ALISTAMIENTO Y MONTAJE DE ROLLO         ', 0, N'0.11666000')
+INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'001057', N'ALISTAMIENTO Y MONTAJE DE ROLLO         ', 4635, N'0.11666000')
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'001061', N'CERRAR BLUSA                            ', 0, N'0.01000000')
 GO
@@ -17625,7 +17801,7 @@ INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'000052', N'DOBLADILLAR  FRENTE *2 FIJANDO VELCRO   ', 0, N'0.04555000')
 GO
-INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'000053', N'PULIR DOBLAR POLAINA                    ', 0, N'0.00555000')
+INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'000053', N'PULIR DOBLAR POLAINA                    ', 16264, N'0.00555000')
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'000054', N'CERRAR HOMBROS BATA                     ', 0, N'0.00500000')
 GO
@@ -17741,9 +17917,9 @@ INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'000052', N'PULIR DOBLAR Y EMPACAR BATA 3/4         ', 0, N'0.02499000')
 GO
-INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'000053', N'RESORTAR POLAINA                        ', 0, N'0.00555000')
+INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'000053', N'RESORTAR POLAINA                        ', 16929, N'0.00555000')
 GO
-INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'000053', N'SELLAR EMPAQUE                          ', 0, N'0.00305000')
+INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'000053', N'SELLAR EMPAQUE                          ', 16929, N'0.00305000')
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'000054', N'PEGAR TIRAS CON SILICONA                ', 0, N'0.00250000')
 GO
@@ -17871,7 +18047,7 @@ INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'000178', N'PULIR,DOBLAR FUNDA PARA TUBO            ', 0, N'0.01250000')
 GO
-INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'000179', N'PEGAR CINTA AL REFUERZO                 ', 0, N'0.00555000')
+INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'000179', N'PEGAR CINTA AL REFUERZO                 ', 2000, N'0.00555000')
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'000180', N'VOLTEAR,PULIR Y DOBLAR                  ', 0, N'0.01305000')
 GO
@@ -17993,7 +18169,7 @@ INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'000178', N'RESORTAR FUNDA PARA TUBO                ', 0, N'0.00833000')
 GO
-INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'000179', N'POSIC REF Y DOBLAR                      ', 0, N'0.01805000')
+INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'000179', N'POSIC REF Y DOBLAR                      ', 2000, N'0.01805000')
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'000180', N'CERRAR FUNDA                            ', 0, N'0.01527000')
 GO
@@ -18637,9 +18813,9 @@ INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'000789', N'TIEMPO DE ALISTAMIENTO DEL EQUIPO       ', 0, N'0.66666000')
 GO
-INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'000790', N'PEGAR ETIQUETA                          ', 0, N'0.00166000')
+INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'000790', N'PEGAR ETIQUETA                          ', 348, N'0.00166000')
 GO
-INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'000790', N'ENVOLVER Y EMPACAR                      ', 0, N'0.00833000')
+INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'000790', N'ENVOLVER Y EMPACAR                      ', 348, N'0.00833000')
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'000791', N'CONTROLAR PARAMENTROS DEL EQUIPO        ', 0, N'6.00000000')
 GO
@@ -18763,9 +18939,9 @@ INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'000789', N'EMBALAR PRODUCTO ESTERIL                ', 0, N'0.05000000')
 GO
-INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'000790', N'ARMAR CONTENIDO                         ', 0, N'0.00555000')
+INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'000790', N'ARMAR CONTENIDO                         ', 198, N'0.00555000')
 GO
-INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'000790', N'SELLAR PAQUETE                          ', 0, N'0.00166000')
+INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'000790', N'SELLAR PAQUETE                          ', 348, N'0.00166000')
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'000791', N'TIEMPO DE ALISTAMIENTO DEL CARRO        ', 0, N'0.05000000')
 GO
@@ -21281,13 +21457,13 @@ INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'002769', N'PULIR DOBLAR Y EMPACAR PANTY            ', 0, N'0.01250000')
 GO
-INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'002770', N'PEGAR ETIQUETA                          ', 0, N'0.00166000')
+INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'002770', N'PEGAR ETIQUETA                          ', 270, N'0.00166000')
 GO
-INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'002770', N'PEGAR CINTA A LA U Y DOBLAR             ', 0, N'0.04333000')
+INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'002770', N'PEGAR CINTA A LA U Y DOBLAR             ', 245, N'0.04333000')
 GO
-INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'002770', N'ENVOLVER CAMPO EN U Y EMPACAR DOBLE BOLS', 0, N'0.01111000')
+INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'002770', N'ENVOLVER CAMPO EN U Y EMPACAR DOBLE BOLS', 270, N'0.01111000')
 GO
-INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'002770', N'SELLAR PAQUETE DOBLE BOLSA              ', 0, N'0.00333000')
+INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'002770', N'SELLAR PAQUETE DOBLE BOLSA              ', 270, N'0.00333000')
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'002771', N'CERRAR MANGA                            ', 0, N'0.02499000')
 GO
@@ -24061,7 +24237,7 @@ INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'200456', N'PULIR,DOBLAR Y EMPACAR SABANA           ', 0, N'0.01111000')
 GO
-INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'200459', N'ALISTAMIENTO Y MONTAJE DE ROLLO         ', 0, N'0.11666000')
+INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'200459', N'ALISTAMIENTO Y MONTAJE DE ROLLO         ', 14982, N'0.11666000')
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'200460', N'EMPACAR GORRO CALIDAD                   ', 0, N'1.00000000')
 GO
@@ -24197,7 +24373,7 @@ INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'200456', N'RESORTAR SABANA                         ', 0, N'0.00500000')
 GO
-INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'200459', N'EMPACAR GORRO CALIDAD                   ', 0, N'1.00000000')
+INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'200459', N'EMPACAR GORRO CALIDAD                   ', 8382, N'1.00000000')
 GO
 INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]) VALUES (N'200460', N'ALISTAMIENTO Y MONTAJE DE ROLLO         ', 0, N'0.11666000')
 GO
@@ -25587,35 +25763,13 @@ INSERT [proyecto].[tarea] ([numero_op], [tarea], [cantidadpentiente], [extandar]
 GO
 SET IDENTITY_INSERT [proyecto].[usuarios] ON 
 GO
-INSERT [proyecto].[usuarios] ([id], [nomusuario], [apeusuario], [password], [cedula], [rol], [cargo]) VALUES (1, N'Mainco', N'Health Care', N'$2y$10$l9Pe1svL.1ucCRRRBnoE7ORhb3w9Vp6RYV6tF7lyeTyenZyNx.kOa', N'123', N'1', N'administrador')
+INSERT [proyecto].[usuarios] ([id], [nomusuario], [apeusuario], [password], [cedula], [rol], [cargo]) VALUES (1, N'Mainco', N'Health Care', N'$2y$10$uVXvE30hizXsEDNZT.egvujUMioYG1l447fRsIMd5usC9pH7rfoYG', N'123', N'1', N'administrador')
+GO
+INSERT [proyecto].[usuarios] ([id], [nomusuario], [apeusuario], [password], [cedula], [rol], [cargo]) VALUES (21, N'Gestión Humana', N'Mainco Health Care', N'$2y$10$RMa8A3.3lihmJkBuc.Ica.VEEIr9yXdNLlPGmoWJIsqy0mocFuxK2', N'124654', N'4', N'Gestion humana')
+GO
+INSERT [proyecto].[usuarios] ([id], [nomusuario], [apeusuario], [password], [cedula], [rol], [cargo]) VALUES (34, N'JOHN FABIO', N'MORALES ECHEVERRY', N'$2y$10$8iumeIk9MqFNzolxQqZqd.hak..5P2cjVxkQOzQECqPf151oIZ9E6', N'6390994', N'4', N'Gestion humana')
+GO
+INSERT [proyecto].[usuarios] ([id], [nomusuario], [apeusuario], [password], [cedula], [rol], [cargo]) VALUES (35, N'Lizeth', N'oliva', N'$2y$10$GbRJAO2i3XrNXhX4Js96SupksTnYKuY1z3XLAQ6KhraQNBy/EpWvK', N'297', N'3', N'operador')
 GO
 SET IDENTITY_INSERT [proyecto].[usuarios] OFF
-GO
-ALTER TABLE [proyecto].[cantidaderror] ADD  DEFAULT (NULL) FOR [fallas]
-GO
-ALTER TABLE [proyecto].[motivo] ADD  DEFAULT (NULL) FOR [paro]
-GO
-ALTER TABLE [proyecto].[usuarios] ADD  DEFAULT (NULL) FOR [nomusuario]
-GO
-ALTER TABLE [proyecto].[usuarios] ADD  DEFAULT (NULL) FOR [apeusuario]
-GO
-ALTER TABLE [proyecto].[usuarios] ADD  DEFAULT (NULL) FOR [password]
-GO
-ALTER TABLE [proyecto].[usuarios] ADD  DEFAULT (NULL) FOR [cedula]
-GO
-ALTER TABLE [proyecto].[usuarios] ADD  DEFAULT (NULL) FOR [rol]
-GO
-ALTER TABLE [proyecto].[usuarios] ADD  DEFAULT (NULL) FOR [cargo]
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_SSMA_SOURCE', @value=N'proyecto.cantidaderror' , @level0type=N'SCHEMA',@level0name=N'proyecto', @level1type=N'TABLE',@level1name=N'cantidaderror'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_SSMA_SOURCE', @value=N'proyecto.motivo' , @level0type=N'SCHEMA',@level0name=N'proyecto', @level1type=N'TABLE',@level1name=N'motivo'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_SSMA_SOURCE', @value=N'proyecto.roles' , @level0type=N'SCHEMA',@level0name=N'proyecto', @level1type=N'TABLE',@level1name=N'roles'
-GO
-EXEC sys.sp_addextendedproperty @name=N'MS_SSMA_SOURCE', @value=N'proyecto.usuarios' , @level0type=N'SCHEMA',@level0name=N'proyecto', @level1type=N'TABLE',@level1name=N'usuarios'
-GO
-USE [master]
-GO
-ALTER DATABASE [proyecto] SET  READ_WRITE 
 GO
