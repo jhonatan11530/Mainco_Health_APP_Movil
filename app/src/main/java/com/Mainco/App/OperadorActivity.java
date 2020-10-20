@@ -75,7 +75,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
     private EditText id, cantidad, paro, fallas, op, codemotivo;
     private String falla, error, VaribleTOTA, NOMBRE;
     private TextView motivo, MOSTRAR, texto, resultados;
-    private Button go, stop, BtnParo, positivo, neutrar, BtnIngreso, Btnsalida, validarinfo, BtnAplazo, Validar, BtnHora;
+    private Button go, stop, BtnParo, positivo, neutrar, BtnIngreso, Btnsalida, validarinfo, Validar, BtnHora;
     private int minuto, segundo, horas, i, hora, cantidadpro, cantidadotra, volumencan, total, volumen;
     private ArrayList<cantidades> dato3 = new ArrayList<>();
     private ArrayList<motivoparo> dato2 = new ArrayList<>();
@@ -186,7 +186,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
         Validar = findViewById(R.id.Validar);
 
-        BtnAplazo = findViewById(R.id.aplazar);
+
 
         BtnParo = findViewById(R.id.tiempo);
 
@@ -203,7 +203,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         BtnParo.setEnabled(false);
         BtnIngreso.setEnabled(false);
         Btnsalida.setEnabled(false);
-        BtnAplazo.setEnabled(false);
+
 
         Validar.setEnabled(false);
 
@@ -634,7 +634,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                     BtnParo.setEnabled(false);
                                     BtnIngreso.setEnabled(false);
                                     Btnsalida.setEnabled(false);
-                                    BtnAplazo.setEnabled(false);
+
                                 }
                             });
                         }
@@ -693,7 +693,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                     BtnParo.setEnabled(false);
                                     BtnIngreso.setEnabled(false);
                                     Btnsalida.setEnabled(false);
-                                    BtnAplazo.setEnabled(false);
+
                                 }
                             });
                         }
@@ -743,10 +743,9 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                         @Override
                                         public void run() {
                                             BtnIngreso.setEnabled(true);
-                                            BtnIngreso.setBackgroundColor(Color.parseColor("#B2C900"));
+                                            BtnIngreso.setBackgroundColor(Color.parseColor("#2196F3"));
 
                                             Btnsalida.setEnabled(false);
-                                            BtnAplazo.setEnabled(false);
                                             BtnParo.setEnabled(false);
 
                                         }
@@ -823,7 +822,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                 builder.setPositiveButton("CONTINUAR ACTIVIDAD", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {
-                                        BtnIngreso.setBackgroundColor(Color.parseColor("#B2C900"));
+                                        BtnIngreso.setBackgroundColor(Color.parseColor("#2196F3"));
                                         BtnIngreso.setEnabled(true);
                                         hilo = new Thread(new Runnable() {
                                             @Override
@@ -842,7 +841,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                 alert.setCanceledOnTouchOutside(false);
 
                                 Btnsalida.setEnabled(false);
-                                BtnAplazo.setEnabled(false);
                                 BtnParo.setEnabled(false);
 
                             }
@@ -862,7 +860,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
                                 BtnIngreso.setEnabled(false);
                                 Btnsalida.setEnabled(false);
-                                BtnAplazo.setEnabled(false);
                                 BtnParo.setEnabled(false);
 
 
@@ -940,7 +937,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
     }
 
     public void hora(View v) {
-
         registros = new AlertDialog.Builder(OperadorActivity.this);
         tiempo1 = getLayoutInflater().inflate(R.layout.motivo_paro, null);
 
@@ -1073,6 +1069,8 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             }
         });
         BtnHora.setEnabled(false);
+
+
     }
 
     public void go(View v) {
@@ -1221,7 +1219,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                     @Override
                                     public void run() {
                                         Btnsalida.setEnabled(true);
-                                        BtnAplazo.setEnabled(true);
                                         BtnParo.setEnabled(true);
 
                                     }
@@ -1243,7 +1240,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                     @Override
                                     public void run() {
                                         Btnsalida.setEnabled(true);
-                                        BtnAplazo.setEnabled(true);
                                         BtnParo.setEnabled(true);
 
                                     }
@@ -1302,7 +1298,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
     }
 
     public void salida(View v) {
-
 
         motivofalla();
         id = findViewById(R.id.operador);
@@ -1497,170 +1492,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
             }
         });
-    }
-
-    public void aplazo(View v) {
-
-
-        motivofalla();
-        id = findViewById(R.id.operador);
-        View view = getLayoutInflater().inflate(R.layout.aplazar_produccion, null);
-        resuldato4 = view.findViewById(R.id.spinner2);
-        fallas = view.findViewById(R.id.fallas);
-        cantidad = view.findViewById(R.id.digicantidad);
-
-
-        final String tarea = resuldato.getSelectedItem().toString(); //**
-
-        // imprime fecha
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-        Date date = new Date();
-
-        //imprime hora
-        SimpleDateFormat hourFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
-
-        //almacena los datos en una cadena
-        final String horafinal = hourFormat.format(date);
-        final String fechafinal = dateFormat.format(date);
-
-        final AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
-
-
-        EditText edit = new EditText(this);
-        edit.setEnabled(false);
-        edit.setText(fechafinal);
-
-        EditText editt = new EditText(this);
-        editt.setEnabled(false);
-        editt.setText(horafinal);
-
-        final String fechas = edit.getText().toString();
-        final String horas = editt.getText().toString();
-
-        builder.setPositiveButton("VERIFICAR", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-
-                if (fallas.getText().toString().length() == 0 && cantidad.getText().toString().length() == 0) {
-                    fallas.setError("DEBE LLENARSE");
-                    cantidad.setError("DEBE LLENARSE");
-                } else {
-
-
-                    volumen = Integer.parseInt(cantidad.getText().toString());
-                    final String volumens = String.valueOf(volumen);
-                    falla = fallas.getText().toString();
-                    error = resuldato4.getSelectedItem().toString();
-
-
-                    final String nombretarea = resuldato.getSelectedItem().toString();
-
-
-                    hilo = new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/Sobrante.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + nombretarea).body();
-
-                            try {
-
-                                JSONArray RESTARCANTIDAD = new JSONArray(response);
-
-                                total = Integer.parseInt(falla);
-                                volumencan = Integer.parseInt(cantidad.getText().toString());
-                                cantidadpro = Integer.parseInt(RESTARCANTIDAD.getString(0));
-
-                                String respuesta = HttpRequest.get("http://" + cambiarIP.ip + "/validar/SobranteAct.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + nombretarea).body();
-                                JSONArray OTRACANTIDAD = new JSONArray(respuesta);
-
-                                cantidadotra = Integer.parseInt(OTRACANTIDAD.getString(0));
-
-                                int sumatoria = volumencan + total;
-                                int ends = cantidadpro - sumatoria; // BIEN
-                                int sqlmala = cantidadotra - total;
-                                String malo = String.valueOf(sqlmala);
-                                String end = String.valueOf(ends);
-                                int tool = cantidadpro - sumatoria;
-
-                                System.out.println("LA CANTIDAD BUENAS " + volumencan);
-                                System.out.println("LA CANTIDAD MALAS " + total);
-                                System.out.println("LA CANTIDAD BUENAS + MALAS " + sumatoria);
-                                System.out.println("LA CANTIDAD EN SQL " + cantidadpro);
-                                System.out.println("LA CANTIDAD EN SQL RESTADA " + tool);
-                                System.out.println("LA CANTIDAD EN SQL REAL " + ends);
-
-                                if (end.length() >= 0) {
-                                    if (tool >= 0) {
-                                        if (sumatoria <= cantidadpro) {
-
-                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizarop.php?op=" + resuldato3.getSelectedItem().toString() + "&totales=" + malo.toString() + "&codigo=" + op.getText().toString()).body();
-
-                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadupdate.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + nombretarea.toString() + "&totales=" + end).body();
-
-                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodificar.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + nombretarea.toString() + "&totales=" + malo + "&codigo=" + op.getText().toString()).body();
-
-                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizaSalida.php?id=" + id.getText().toString() + "&cantidad=" + volumen + "&Ffinal=" + fechas.toString() + "&Hfinal=" + horas.toString() + "&motivo=" + error.toString() + "&conforme=" + falla.toString() + "&tarea=" + nombretarea.toString() + "&op=" + op.getText().toString()).body();
-
-                                                        new Task().execute();
-                                                        verificar();
-
-                                            textToSpeech.speak("SE REGISTRO LO PRODUCIDO");
-                                            runOnUiThread(new Runnable() {
-                                                @Override
-                                                public void run() {
-                                                    Toast.makeText(getApplicationContext(), "DATOS VERIFICADOS", Toast.LENGTH_SHORT).show();
-                                                }
-                                            });
-
-                                        } else {
-                                            EXEDIO();
-                                        }
-                                    } else {
-                                        EXEDIO();
-                                    }
-                                } else {
-                                    EXEDIO();
-                                }
-
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-
-
-                        }
-                    });
-                    hilo.start();
-                    hilo.interrupted();
-
-                }
-            }
-        });
-        builder.setView(view);
-        builder.create();
-        final AlertDialog alert = builder.create();
-        alert.show();
-        alert.setCanceledOnTouchOutside(false);
-
-        Button Verificar = alert.getButton(AlertDialog.BUTTON_POSITIVE);
-        Verificar.setEnabled(false);
-
-        resuldato4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (resuldato4.getSelectedItem().toString().length() != 0) {
-                    System.out.println("EL SPINNER NO ESTA VACIO");
-                    BtnHora = alert.getButton(AlertDialog.BUTTON_POSITIVE);
-                    BtnHora.setEnabled(true);
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
     }
 
     public class Observardor implements LifecycleObserver {
