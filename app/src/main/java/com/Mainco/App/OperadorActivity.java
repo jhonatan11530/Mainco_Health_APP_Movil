@@ -654,8 +654,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         new Thread(new Runnable() {
             @Override
             public void run() {
-                try {
-                    Thread.sleep(1000);
+
 
                     String responses = HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadedits.php?cod=" + resuldato3.getSelectedItem().toString() + "&op=" + op.getText().toString()).body();
                     try {
@@ -680,9 +679,8 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                             new Thread(new Runnable() {
                                                 @Override
                                                 public void run() {
-                                                    HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?op=" + op.getText().toString()).body();
-                                                    HttpRequest.get("http://" + cambiarIP.ip + "/validar/limpiar.php?id=" + resuldato3.getSelectedItem().toString()).body();
-
+                                                   HttpRequest.get("http://" + cambiarIP.ip + "/validar/limpiar.php?id=" + resuldato3.getSelectedItem().toString()).body();
+                                                    Consolidado();
                                                 }
                                             }).start();
 
@@ -703,9 +701,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                         e.printStackTrace();
                     }
 
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
 
             }
         }).start();
@@ -730,16 +725,9 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             validar();
             new Task().execute();
 
-
             hilo = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    String respuesta = HttpRequest.get("http://" + cambiarIP.ip + "/validar/validaroperador.php?id=" + id.getText().toString()).body();
-                    try {
-                        JSONArray status = new JSONArray(respuesta);
-
-                        if (status.getString(0) == "null") {
-                            System.out.println("ESTO SE EJECUTO PERMITE INGRESAR HORA ENTRADA " + status.length());
 
                             try {
 
@@ -793,28 +781,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                             } catch (Exception e) {
                             }
 
-                        }
-                        if (status.getString(0) != "null") {
-                            System.out.println("ESTO SE EJECUTO NO PERMITE INGRESAR HORA ENTRADA " + status.length());
 
-
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-
-                                    BtnIngreso.setEnabled(false);
-                                    BtnIngreso.setBackgroundColor(Color.parseColor("#919191"));
-
-                                    Btnsalida.setEnabled(true);
-                                    BtnAplazo.setEnabled(true);
-                                    BtnParo.setEnabled(true);
-
-                                }
-                            });
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
 
 
                 }
@@ -833,18 +800,15 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         hilo = new Thread(new Runnable() {
             @Override
             public void run() {
+                try {
+                    hilo.sleep(1000);
+
                 String cero = HttpRequest.get("http://" + cambiarIP.ip + "/validar/Sobrante.php?op=" + Nitem.toString() + "&tarea=" + nombretarea).body();
                 try {
                     JSONArray nada = new JSONArray(cero);
                     int vacio = Integer.parseInt(nada.getString(0));
 
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-                    Date date = new Date();
-                    final String fechafinal = dateFormat.format(date);
 
-                    final EditText edit = new EditText(OperadorActivity.this);
-                    edit.setEnabled(false);
-                   edit.setText(fechafinal);
 
                     if (vacio > 0) {
                         runOnUiThread(new Runnable() {
@@ -864,12 +828,9 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                         hilo = new Thread(new Runnable() {
                                             @Override
                                             public void run() {
-
-                                                System.out.println("EL NUMERO OP "+op.getText().toString()+" NOMBRE "+NOMBRE.toString()+" FECHA "+edit.getText().toString());
-                                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?op=" + op.getText().toString()+"&nombre="+NOMBRE.toString()+"&fecha="+edit.getText().toString()).body();
-                                                textToSpeech.onStop();
-
                                                 HttpRequest.get("http://" + cambiarIP.ip + "/validar/nuevoRegistro.php?id=" + id.getText().toString()).body();
+                                                textToSpeech.onStop();
+                                                Consolidado();
                                             }
                                         });
                                         hilo.start();
@@ -949,10 +910,32 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                     e.printStackTrace();
                 }
 
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         });
         hilo.start();
         hilo.interrupted();
+
+    }
+    public void Consolidado(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                Date date = new Date();
+                final String fechafinal = dateFormat.format(date);
+
+                final EditText editar = new EditText(OperadorActivity.this);
+                editar.setEnabled(false);
+                editar.setText(fechafinal);
+
+                System.out.println("EL NUMERO OP "+op.getText().toString()+" NOMBRE "+NOMBRE.toString()+" FECHA "+edit.getText().toString());
+                HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?op=" + op.getText().toString()+"&nombre="+NOMBRE.toString()+"&fecha="+editar.getText().toString()).body();
+            }
+        }).start();
+        Thread.interrupted();
 
     }
 
@@ -1418,18 +1401,8 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
                                             HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizaSalida.php?id=" + id.getText().toString() + "&cantidad=" + volumen + "&Ffinal=" + fechas.toString() + "&Hfinal=" + horas.toString() + "&motivo=" + error.toString() + "&conforme=" + falla.toString() + "&tarea=" + nombretarea.toString() + "&op=" + op.getText().toString()).body();
 
-                                            new Thread(new Runnable() {
-                                                @Override
-                                                public void run() {
-                                                    try {
-                                                        Thread.sleep(2000);
                                                         new Task().execute();
                                                         verificar();
-                                                    } catch (InterruptedException e) {
-                                                        e.printStackTrace();
-                                                    }
-                                                }
-                                            }).start();
                                             textToSpeech.speak("SE REGISTRO LO PRODUCIDO");
                                             runOnUiThread(new Runnable() {
                                                 @Override
@@ -1627,20 +1600,9 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
                                             HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizaSalida.php?id=" + id.getText().toString() + "&cantidad=" + volumen + "&Ffinal=" + fechas.toString() + "&Hfinal=" + horas.toString() + "&motivo=" + error.toString() + "&conforme=" + falla.toString() + "&tarea=" + nombretarea.toString() + "&op=" + op.getText().toString()).body();
 
-                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?op=" + op.getText().toString()).body();
-
-                                            new Thread(new Runnable() {
-                                                @Override
-                                                public void run() {
-                                                    try {
-                                                        Thread.sleep(2000);
                                                         new Task().execute();
                                                         verificar();
-                                                    } catch (InterruptedException e) {
-                                                        e.printStackTrace();
-                                                    }
-                                                }
-                                            }).start();
+
                                             textToSpeech.speak("SE REGISTRO LO PRODUCIDO");
                                             runOnUiThread(new Runnable() {
                                                 @Override
