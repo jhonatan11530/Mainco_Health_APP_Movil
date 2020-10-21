@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -7,6 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/header"
         android:orientation="vertical"
         android:weightSum="4.5"
         tools:ignore="UselessParent">
@@ -16,7 +18,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="REGISTRO DE USUARIO"
-            android:textColor="#000"
+            android:textColor="@color/white"
             android:textSize="25sp" />
 
         <TextView
@@ -25,7 +27,7 @@
             android:layout_marginVertical="5dp"
             android:gravity="center"
             android:text="DEBE REGISTRARSE PARA PODER ENTRAR AL SISTEMA"
-            android:textColor="#000"
+            android:textColor="@color/white"
             android:textSize="15sp" />
 
         <LinearLayout
@@ -36,45 +38,75 @@
             android:orientation="vertical"
             android:weightSum="10">
 
-            <EditText
-                android:id="@+id/nombre"
-                android:layout_width="350dp"
-                android:layout_height="50dp"
-                android:layout_marginVertical="3dp"
-                android:background="@drawable/lineas_login"
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
                 android:gravity="center"
                 android:hint="INGRESE SU NOMBRE"
-                android:inputType="textPersonName" />
+                android:textColorHint="#fff"
+                app:hintTextAppearance="@color/white"
+                app:startIconDrawable="@drawable/identificacion">
 
-            <EditText
-                android:id="@+id/apellido"
-                android:layout_width="350dp"
-                android:layout_height="50dp"
-                android:layout_marginVertical="3dp"
-                android:background="@drawable/lineas_login"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nombre"
+                    android:layout_width="350dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/lineas_login"
+                    android:inputType="textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
                 android:gravity="center"
                 android:hint="INGRESE SU APELLIDO"
-                android:inputType="textPersonName" />
+                android:textColorHint="#fff"
+                app:hintTextAppearance="@color/white"
+                app:startIconDrawable="@drawable/identificacion">
 
-            <EditText
-                android:id="@+id/cedula"
-                android:layout_width="350dp"
-                android:layout_height="50dp"
-                android:layout_marginVertical="3dp"
-                android:background="@drawable/lineas_login"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/apellido"
+                    android:layout_width="350dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/lineas_login"
+                    android:inputType="textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
                 android:gravity="center"
                 android:hint="USUARIO"
-                android:inputType="number" />
+                android:textColorHint="#fff"
+                app:hintTextAppearance="@color/white"
+                app:startIconDrawable="@drawable/cuenta">
 
-            <EditText
-                android:id="@+id/pass"
-                android:layout_width="350dp"
-                android:layout_height="50dp"
-                android:layout_marginVertical="6dp"
-                android:background="@drawable/lineas_login"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/cedula"
+                    android:layout_width="350dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/lineas_login"
+                    android:inputType="textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
                 android:gravity="center"
                 android:hint="CONTRASEÑA"
-                android:inputType="textPassword" />
+                android:textColorHint="#fff"
+                app:hintTextAppearance="@color/white"
+                app:startIconDrawable="@drawable/candado">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/pass"
+                    android:layout_width="350dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/lineas_login"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
 
         </LinearLayout>
 
@@ -90,10 +122,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="3dp"
-                android:background="#fafafa"
                 android:gravity="center"
                 android:text="SELECIONE EL CARGO ASIGNADO"
-                android:textColor="#000"
+                android:textColor="@color/white"
                 android:textSize="20sp" />
 
             <CheckBox
@@ -104,7 +135,7 @@
                 android:layout_weight="1.3"
                 android:gravity="center"
                 android:text="OPERADOR"
-                android:textColor="#000"
+                android:textColor="@color/white"
                 android:textSize="20sp"
                 tools:ignore="NestedWeights" />
 
@@ -115,7 +146,7 @@
                 android:background="@drawable/btn_redondo"
                 android:onClick="registrar"
                 android:text="REGISTRAR"
-                android:textColor="#000" />
+                android:textColor="@color/white" />
         </LinearLayout>
     </LinearLayout>
 

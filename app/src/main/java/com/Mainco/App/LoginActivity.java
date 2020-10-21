@@ -18,18 +18,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 @SuppressWarnings("ALL")
 public class LoginActivity extends AppCompatActivity {
 
     final WifiConfiguration conf = new WifiConfiguration();
-    EditText login, pass;
+    TextInputEditText login, pass;
     Button validar;
     TextView registre;
     TSS textToSpeech = null;
@@ -140,7 +141,7 @@ public class LoginActivity extends AppCompatActivity {
             public void run() {
                 try {
                     Thread.sleep(1000);
-                    login.setText(user);
+                    // login.setText(user);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

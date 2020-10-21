@@ -2,7 +2,13 @@
 <resources>
     <color name="colorVerdeM">#B2C900</color>
     <color name="colorAzulCLM">#3DA7CF</color>
-    <color name="colorAzulCRO">#2196F3</color>
     <color name="colorAccent">#D81B60</color>
     <color name="RED">#FF0000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="bordeblanco">#66ffffff</color>
+
+
+    <color name="colorAzulCRO">#2196F3</color>
+    <color name="colorAzulCRO1">#005073</color>
+    <color name="colorAzulCRO2">#189AD3</color>
 </resources>

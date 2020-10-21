@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -7,6 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/header"
         android:orientation="vertical"
         android:weightSum="12"
         tools:ignore="UselessParent">
@@ -32,29 +34,45 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="3"
-            android:gravity="center"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/estado"
-                android:layout_width="350dp"
-                android:layout_height="60dp"
-                android:layout_marginVertical="12dp"
-                android:background="@drawable/lineas_login"
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:hint="INGRESE SU ID"
-                android:inputType="number" />
+                android:orientation="vertical"
+                android:textColorHint="#fff"
+                app:hintTextAppearance="@color/white">
 
-            <EditText
-                android:id="@+id/ID"
-                android:layout_width="350dp"
-                android:layout_height="60dp"
-                android:background="@drawable/lineas_login"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/estado"
+                    android:layout_width="350dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/lineas_login"
+                    android:inputType="text" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:hint="INGRESE SU CONTRASEÑA"
-                android:inputType="textPassword"
+                android:orientation="vertical"
+                android:textColorHint="#fff"
+                app:hintTextAppearance="@color/white"
 
-                />
+                app:passwordToggleEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/ID"
+                    android:layout_width="350dp"
+                    android:layout_height="60dp"
+                    android:background="@drawable/lineas_login"
+                    android:inputType="textPassword" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>
 
@@ -74,26 +92,25 @@
                 android:layout_height="80dp"
                 android:gravity="center"
                 android:text="RECORDAR USUARIO"
-                android:textColor="#000000"
+                android:textColor="#FFF"
                 android:textSize="15sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="80dp"
                 android:layout_marginHorizontal="25dp"
-                android:background="#FAFAFA"
-                android:drawableLeft="@drawable/ic_lock_open_black_24dp"
+                android:drawableLeft="@drawable/candado"
                 android:gravity="center"
                 android:onClick="olvidoC"
                 android:text="OLVIDADO SU CONTRASEÑA"
-                android:textColor="#000" />
+                android:textColor="#FFF" />
         </LinearLayout>
 
         <LinearLayout
 
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="3"
+            android:layout_weight="2.5"
             android:gravity="center"
             android:orientation="vertical"
             android:weightSum="10">
@@ -102,13 +119,13 @@
             <Button
                 android:id="@+id/login"
                 android:layout_width="350dp"
-                android:layout_height="80dp"
+                android:layout_height="70dp"
                 android:layout_marginVertical="15dp"
                 android:background="@drawable/btn_redondo"
                 android:gravity="center"
                 android:onClick="validartodo"
                 android:text="iniciar sesion"
-                android:textColor="#000000" />
+                android:textColor="#FFF" />
 
 
             <TextView
@@ -118,7 +135,7 @@
                 android:gravity="center"
                 android:onClick="registro"
                 android:text="REGISTRARSE"
-                android:textColor="#000" />
+                android:textColor="#FFF" />
 
 
         </LinearLayout>

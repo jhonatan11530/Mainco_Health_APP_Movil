@@ -9,16 +9,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.loopj.android.http.AsyncHttpClient;
 
 
 public class RegistroActivity extends AppCompatActivity {
 
-    EditText nombre, apellido, cedula, pass;
+    TextInputEditText nombre, apellido, cedula, pass;
     CheckBox resultado;
     Button registro;
     AsyncHttpClient client;

@@ -27,7 +27,7 @@
                 android:layout_height="50dp"
                 android:gravity="center"
                 android:textColor="#000000"
-                    android:textSize="25sp" />
+                android:textSize="25sp" />
 
             <EditText
                 android:id="@+id/operador"
@@ -63,9 +63,9 @@
                 android:layout_weight="2.5"
                 android:background="@color/colorAzulCLM"
                 android:onClick="operador"
-                android:textSize="20sp"
                 android:text="VALIDAR INFORMACION"
-                android:textColor="#ffffff" />
+                android:textColor="#ffffff"
+                android:textSize="20sp" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -107,13 +107,13 @@
                 android:id="@+id/insertar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2.5"
                 android:layout_marginVertical="5dp"
+                android:layout_weight="2.5"
                 android:background="#2196F3"
                 android:onClick="registrar"
-                android:textSize="20sp"
                 android:text="COMENZAR PRODUCCION"
-                android:textColor="#ffffff" />
+                android:textColor="#ffffff"
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/tiempo"
@@ -122,9 +122,9 @@
                 android:layout_weight="2.5"
                 android:background="#B2C900"
                 android:onClick="hora"
-                android:textSize="20sp"
                 android:text="REGISTRAR TIEMPO DE PARO"
-                android:textColor="#ffffff" />
+                android:textColor="#ffffff"
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/salida"
@@ -135,8 +135,8 @@
                 android:background="#2196F3"
                 android:onClick="salida"
                 android:text="REGISTRAR PRODUCCION"
-                android:textSize="20sp"
-                android:textColor="#ffffff" />
+                android:textColor="#ffffff"
+                android:textSize="20sp" />
 
         </LinearLayout>
 
