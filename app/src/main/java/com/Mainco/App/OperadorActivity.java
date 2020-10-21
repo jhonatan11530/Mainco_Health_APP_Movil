@@ -115,6 +115,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         }
     };
 
+
     public static String getIP() {
         List<InetAddress> addrs;
         String address = "";
@@ -187,7 +188,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         Validar = findViewById(R.id.Validar);
 
 
-
         BtnParo = findViewById(R.id.tiempo);
 
         BtnIngreso = findViewById(R.id.insertar);
@@ -235,6 +235,35 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             }
         });
 
+    }
+
+    public void Consolidado() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                try {
+                    Date date = new Date();
+
+                    SimpleDateFormat hourFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+                    String hora = hourFormat.format(date);
+
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                    final String fechafinal = dateFormat.format(date);
+                    final EditText editar = new EditText(OperadorActivity.this);
+                    editar.setEnabled(false);
+                    editar.setText(fechafinal);
+
+                    HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?op=" + op.toString() + "&nombre=" + NOMBRE.toString() + "&fecha=" + editar.getText().toString() + "&hora=" + hora.toString()).body();
+
+                } catch (Exception e) {
+                    // TODO: handle exception
+                    e.printStackTrace();
+
+                }
+
+            }
+        }).start();
     }
 
     @Override
@@ -656,50 +685,50 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             public void run() {
 
 
-                    String responses = HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadedits.php?cod=" + resuldato3.getSelectedItem().toString() + "&op=" + op.getText().toString()).body();
-                    try {
-                        JSONArray objecto = new JSONArray(responses);
-                        int variable = Integer.parseInt(objecto.getString(0));
+                String responses = HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadedits.php?cod=" + resuldato3.getSelectedItem().toString() + "&op=" + op.getText().toString()).body();
+                try {
+                    JSONArray objecto = new JSONArray(responses);
+                    int variable = Integer.parseInt(objecto.getString(0));
 
-                        if (variable == 0) {
+                    if (variable == 0) {
 
-                            textToSpeech.speak("LA ORDEN DE PRODU SION ESTA CERRADA");
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
+                        textToSpeech.speak("LA ORDEN DE PRODU SION ESTA CERRADA");
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
 
-                                    AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
-                                    builder.setTitle("LA ORDEN DE PRODUCCION SE CERRO");
-                                    builder.setIcon(R.drawable.finish_op);
-                                    builder.setMessage("NO PODRA REGISTRAR ACTIVIDADES O CANTIDADES");
+                                AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
+                                builder.setTitle("LA ORDEN DE PRODUCCION SE CERRO");
+                                builder.setIcon(R.drawable.finish_op);
+                                builder.setMessage("NO PODRA REGISTRAR ACTIVIDADES O CANTIDADES");
 
-                                    builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                            new Thread(new Runnable() {
-                                                @Override
-                                                public void run() {
-                                                   HttpRequest.get("http://" + cambiarIP.ip + "/validar/limpiar.php?id=" + resuldato3.getSelectedItem().toString()).body();
-                                                    Consolidado();
-                                                }
-                                            }).start();
+                                builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        new Thread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/limpiar.php?id=" + resuldato3.getSelectedItem().toString()).body();
 
-                                        }
-                                    });
-                                    AlertDialog alert = builder.create();
-                                    alert.show();
-                                    alert.setCanceledOnTouchOutside(false);
+                                            }
+                                        }).start();
 
-                                    BtnParo.setEnabled(false);
-                                    BtnIngreso.setEnabled(false);
-                                    Btnsalida.setEnabled(false);
+                                    }
+                                });
+                                AlertDialog alert = builder.create();
+                                alert.show();
+                                alert.setCanceledOnTouchOutside(false);
 
-                                }
-                            });
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                                BtnParo.setEnabled(false);
+                                BtnIngreso.setEnabled(false);
+                                Btnsalida.setEnabled(false);
+
+                            }
+                        });
                     }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
 
             }
@@ -729,58 +758,56 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                 @Override
                 public void run() {
 
-                            try {
+                    try {
 
 
-                                String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/operador.php?id=" + id.getText().toString()).body();
-                                JSONArray objecto = new JSONArray(response);
+                        String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/operador.php?id=" + id.getText().toString()).body();
+                        JSONArray objecto = new JSONArray(response);
 
 
-                                if (response.length() > 0) {
+                        if (response.length() > 0) {
 
 
-                                    runOnUiThread(new Runnable() {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    BtnIngreso.setEnabled(true);
+                                    BtnIngreso.setBackgroundColor(Color.parseColor("#2196F3"));
+
+                                    Btnsalida.setEnabled(false);
+                                    BtnParo.setEnabled(false);
+
+                                }
+                            });
+                            NOMBRE = objecto.getString(0);
+
+                            resultados.setText("OPERADOR : " + NOMBRE.toString());
+
+                        }
+                        if (response.length() == 0) {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
+                                    builder.setTitle("EL OPERADOR NO EXISTE");
+                                    builder.setIcon(R.drawable.informacion);
+                                    builder.setMessage("EL OPERARIO NO ESTA REGISTRADO ");
+
+                                    builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
                                         @Override
-                                        public void run() {
-                                            BtnIngreso.setEnabled(true);
-                                            BtnIngreso.setBackgroundColor(Color.parseColor("#2196F3"));
-
-                                            Btnsalida.setEnabled(false);
-                                            BtnParo.setEnabled(false);
+                                        public void onClick(DialogInterface dialogInterface, int i) {
 
                                         }
                                     });
-                                    NOMBRE = objecto.getString(0);
-
-                                    resultados.setText("OPERADOR : " + NOMBRE.toString());
-
+                                    AlertDialog alert = builder.create();
+                                    alert.show();
+                                    alert.setCanceledOnTouchOutside(false);
                                 }
-                                if (response.length() == 0) {
-                                    runOnUiThread(new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
-                                            builder.setTitle("EL OPERADOR NO EXISTE");
-                                            builder.setIcon(R.drawable.informacion);
-                                            builder.setMessage("EL OPERARIO NO ESTA REGISTRADO ");
+                            });
+                        }
 
-                                            builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
-                                                @Override
-                                                public void onClick(DialogInterface dialogInterface, int i) {
-
-                                                }
-                                            });
-                                            AlertDialog alert = builder.create();
-                                            alert.show();
-                                            alert.setCanceledOnTouchOutside(false);
-                                        }
-                                    });
-                                }
-
-                            } catch (Exception e) {
-                            }
-
-
+                    } catch (Exception e) {
+                    }
 
 
                 }
@@ -802,110 +829,109 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                 try {
                     hilo.sleep(1000);
 
-                String cero = HttpRequest.get("http://" + cambiarIP.ip + "/validar/Sobrante.php?op=" + Nitem.toString() + "&tarea=" + nombretarea).body();
-                try {
-                    JSONArray nada = new JSONArray(cero);
-                    int vacio = Integer.parseInt(nada.getString(0));
+                    String cero = HttpRequest.get("http://" + cambiarIP.ip + "/validar/Sobrante.php?op=" + Nitem.toString() + "&tarea=" + nombretarea).body();
+                    try {
+                        JSONArray nada = new JSONArray(cero);
+                        int vacio = Integer.parseInt(nada.getString(0));
 
 
+                        if (vacio > 0) {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
 
-                    if (vacio > 0) {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
+                                    builder.setIcon(R.drawable.informacion);
+                                    builder.setTitle("REGISTRO LA ACTIVIDAD O TAREA");
+                                    builder.setMessage("USTED REGISTRO SU PRODUCCIDO");
 
-                                AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
-                                builder.setIcon(R.drawable.informacion);
-                                builder.setTitle("REGISTRO LA ACTIVIDAD O TAREA");
-                                builder.setMessage("USTED REGISTRO SU PRODUCCIDO");
+                                    builder.setPositiveButton("CONTINUAR ACTIVIDAD", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            BtnIngreso.setBackgroundColor(Color.parseColor("#2196F3"));
+                                            BtnIngreso.setEnabled(true);
+                                            hilo = new Thread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    HttpRequest.get("http://" + cambiarIP.ip + "/validar/nuevoRegistro.php?id=" + id.getText().toString()).body();
+                                                    textToSpeech.onStop();
 
-                                builder.setPositiveButton("CONTINUAR ACTIVIDAD", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        BtnIngreso.setBackgroundColor(Color.parseColor("#2196F3"));
-                                        BtnIngreso.setEnabled(true);
-                                        hilo = new Thread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/nuevoRegistro.php?id=" + id.getText().toString()).body();
-                                                textToSpeech.onStop();
-                                                Consolidado();
-                                            }
-                                        });
-                                        hilo.start();
-                                    }
-                                });
-                                builder.create();
-                                AlertDialog alert = builder.create();
-                                alert.show();
-                                alert.setCanceledOnTouchOutside(false);
+                                                }
+                                            });
+                                            hilo.start();
+                                        }
+                                    });
+                                    builder.create();
+                                    AlertDialog alert = builder.create();
+                                    alert.show();
+                                    alert.setCanceledOnTouchOutside(false);
 
-                                Btnsalida.setEnabled(false);
-                                BtnParo.setEnabled(false);
+                                    Btnsalida.setEnabled(false);
+                                    BtnParo.setEnabled(false);
 
-                            }
-                        });
+                                }
+                            });
 
 
+                        }
+
+                        if (vacio == 0) {
+
+
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+
+                                    ((TextView) resuldato.getSelectedView()).setTextColor(getResources().getColor(R.color.RED));
+
+                                    BtnIngreso.setEnabled(false);
+                                    Btnsalida.setEnabled(false);
+                                    BtnParo.setEnabled(false);
+
+
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
+                                    builder.setIcon(R.drawable.finish_op);
+                                    builder.setTitle("FINALIZO LA ACTIVIDAD O TAREA");
+                                    builder.setMessage("YA TERMINO LA TAREA DEBERA REALIZAR OTRA TAREA");
+
+                                    builder.setNegativeButton("CONTINUAR CON OTRA ACTIVIDAD", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            Toast.makeText(getApplicationContext(), "LA ACTIVIDAD FINALIZO", Toast.LENGTH_SHORT).show();
+                                            runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    BtnIngreso.setEnabled(true);
+
+                                                }
+                                            });
+                                            hilo = new Thread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    textToSpeech.onStop();
+                                                    HttpRequest.get("http://" + cambiarIP.ip + "/validar/nuevoRegistro.php?id=" + id.getText().toString()).body();
+                                                }
+                                            });
+                                            hilo.start();
+                                        }
+                                    });
+
+                                    builder.create();
+                                    AlertDialog alert = builder.create();
+                                    alert.show();
+                                    alert.setCanceledOnTouchOutside(false);
+
+
+                                }
+                            });
+
+
+                        }
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-
-                    if (vacio == 0) {
-
-
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-
-                                ((TextView) resuldato.getSelectedView()).setTextColor(getResources().getColor(R.color.RED));
-
-                                BtnIngreso.setEnabled(false);
-                                Btnsalida.setEnabled(false);
-                                BtnParo.setEnabled(false);
-
-
-                                AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
-                                builder.setIcon(R.drawable.finish_op);
-                                builder.setTitle("FINALIZO LA ACTIVIDAD O TAREA");
-                                builder.setMessage("YA TERMINO LA TAREA DEBERA REALIZAR OTRA TAREA");
-
-                                builder.setNegativeButton("CONTINUAR CON OTRA ACTIVIDAD", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        Toast.makeText(getApplicationContext(), "LA ACTIVIDAD FINALIZO", Toast.LENGTH_SHORT).show();
-                                        runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                BtnIngreso.setEnabled(true);
-
-                                            }
-                                        });
-                                        hilo = new Thread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                textToSpeech.onStop();
-                                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/nuevoRegistro.php?id=" + id.getText().toString()).body();
-                                            }
-                                        });
-                                        hilo.start();
-                                    }
-                                });
-
-                                builder.create();
-                                AlertDialog alert = builder.create();
-                                alert.show();
-                                alert.setCanceledOnTouchOutside(false);
-
-
-                            }
-                        });
-
-
-                    }
-
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -916,25 +942,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         hilo.interrupted();
 
     }
-    public void Consolidado(){
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-                Date date = new Date();
-                final String fechafinal = dateFormat.format(date);
 
-                final EditText editar = new EditText(OperadorActivity.this);
-                editar.setEnabled(false);
-                editar.setText(fechafinal);
-
-                System.out.println("EL NUMERO OP "+op.getText().toString()+" NOMBRE "+NOMBRE.toString()+" FECHA "+edit.getText().toString());
-                HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?op=" + op.getText().toString()+"&nombre="+NOMBRE.toString()+"&fecha="+editar.getText().toString()).body();
-            }
-        }).start();
-        Thread.interrupted();
-
-    }
 
     public void hora(View v) {
         registros = new AlertDialog.Builder(OperadorActivity.this);
@@ -1172,7 +1180,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
     public void registrar(View v) {
         id = findViewById(R.id.operador);
 
-
         // imprime fecha
         dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         date = new Date();
@@ -1396,8 +1403,9 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
                                             HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizaSalida.php?id=" + id.getText().toString() + "&cantidad=" + volumen + "&Ffinal=" + fechas.toString() + "&Hfinal=" + horas.toString() + "&motivo=" + error.toString() + "&conforme=" + falla.toString() + "&tarea=" + nombretarea.toString() + "&op=" + op.getText().toString()).body();
 
-                                                        new Task().execute();
-                                                        verificar();
+                                            new Task().execute();
+                                            verificar();
+                                            Consolidado();
                                             textToSpeech.speak("SE REGISTRO LO PRODUCIDO");
                                             runOnUiThread(new Runnable() {
                                                 @Override

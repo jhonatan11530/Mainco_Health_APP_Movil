@@ -134,7 +134,7 @@
                 android:layout_weight="2.5"
                 android:background="#2196F3"
                 android:onClick="salida"
-                android:text="FINALIZAR PRODUCCION"
+                android:text="REGISTRAR PRODUCCION"
                 android:textSize="20sp"
                 android:textColor="#ffffff" />
 
