@@ -11,29 +11,20 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import cz.msebera.android.httpclient.Header;
 
 public class ServicioMotivoParo extends Service {
-    private AsyncHttpClient cliente4;
-
+    private AsyncHttpClient Service;
     public ServicioMotivoParo() {
-        cliente4 = new AsyncHttpClient();
-    }
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        super.onStartCommand(intent, flags, startId);
-
+         super.onStartCommand(intent, flags, startId);
         ejecutar();
-
         return START_STICKY;
     }
-
     public void ejecutar() {
-        String url = "http://" + cambiarIP.ip + "/validar/motivo.php";
-        cliente4.post(url, new AsyncHttpResponseHandler() {
+        Service = new AsyncHttpClient();
+        String url = "http://" + cambiarIP.ip + "/validar/llenarSpinner/MotivoParo.php";
+        Service.post(url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if (statusCode == 200) {
@@ -58,11 +49,6 @@ public class ServicioMotivoParo extends Service {
             }
         });
 
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
     }
 
     @Override

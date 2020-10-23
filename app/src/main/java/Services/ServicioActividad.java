@@ -11,35 +11,21 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import cz.msebera.android.httpclient.Header;
 
 public class ServicioActividad extends Service {
-    private AsyncHttpClient cliente3;
-
+    private AsyncHttpClient Service;
     public ServicioActividad() {
-        cliente3 = new AsyncHttpClient();
-    }
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        System.out.println("MENSAJE EL INTENTSERVICE SE ESTA CREANDO");
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        super.onStartCommand(intent, flags, startId);
-
+         super.onStartCommand(intent, flags, startId);
         ejecutar();
         return START_STICKY;
     }
-
     public void ejecutar() {
+        Service = new AsyncHttpClient();
         // LLENA EL SPINNER DE ACTIVIDAD
-        String url = "http://" + cambiarIP.ip + "/validar/cantidad.php";
-        cliente3.post(url, new AsyncHttpResponseHandler() {
-            @Override
-            public void onStart() {
-                // Initiated the request
-            }
-
+        String url = "http://" + cambiarIP.ip + "/validar/llenarSpinner/tarea.php";
+        Service.post(url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if (statusCode == 200) {
@@ -68,9 +54,8 @@ public class ServicioActividad extends Service {
     }
 
     @Override
-    public void onDestroy() {
-
-        super.onDestroy();
+    public void onCreate() {
+        super.onCreate();
     }
 
     @Override

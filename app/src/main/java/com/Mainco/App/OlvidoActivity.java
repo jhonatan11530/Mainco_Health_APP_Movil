@@ -27,8 +27,6 @@ public class OlvidoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.olvido);
 
-        id = findViewById(R.id.CDUNICO);
-        cedula = findViewById(R.id.cc);
         textToSpeech = new TSS();
         textToSpeech.init(this);
 
@@ -60,6 +58,7 @@ public class OlvidoActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @SuppressLint("WrongViewCast")
     public void comprobar(View v) {
 
 

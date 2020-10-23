@@ -25,6 +25,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 @SuppressWarnings("ALL")
 public class LoginActivity extends AppCompatActivity {
@@ -141,7 +142,9 @@ public class LoginActivity extends AppCompatActivity {
             public void run() {
                 try {
                     Thread.sleep(1000);
-                    // login.setText(user);
+
+                  //   login.setText("user");
+
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

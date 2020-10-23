@@ -20,6 +20,25 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="m">
+        <service
+            android:name="Services.ServicioProductoMalo"
+            android:enabled="true"
+            android:exported="false"></service>
+        <service
+            android:name="Services.ServicioMotivoParo"
+            android:enabled="true"
+            android:exported="false" />
+        <service
+            android:name="Services.ServicioItems"
+            android:enabled="true"
+            android:exported="false" />
+        <service
+            android:name="Services.ServicioActividad"
+            android:enabled="true"
+            android:exported="false" />
+        <service
+            android:name="Services.ServicioCantidad"
+            android:exported="false" />
 
         <receiver
             android:name=".BatteryReceiver"
@@ -37,18 +56,6 @@
             </intent-filter>
         </activity>
 
-        <service
-            android:name="Services.ServicioMotivoParo"
-            android:enabled="true"
-            android:exported="false" />
-        <service
-            android:name="Services.ServicioItems"
-            android:enabled="true"
-            android:exported="false" />
-        <service
-            android:name="Services.ServicioActividad"
-            android:enabled="true"
-            android:exported="false" />
         <service
             android:name="Services.ServicioConnecting"
             android:enabled="true"
