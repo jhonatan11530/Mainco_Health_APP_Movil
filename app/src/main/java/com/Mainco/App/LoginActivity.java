@@ -25,7 +25,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 
 @SuppressWarnings("ALL")
 public class LoginActivity extends AppCompatActivity {
@@ -34,9 +33,9 @@ public class LoginActivity extends AppCompatActivity {
     TextInputEditText login, pass;
     Button validar;
     TextView registre;
-    TSS textToSpeech = null;
     CheckBox GUARDARUTO;
     ProgressDialog pd;
+    TSS textToSpeech = null;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +45,7 @@ public class LoginActivity extends AppCompatActivity {
 
         textToSpeech = new TSS();
         textToSpeech.init(this);
+
 
         GUARDARUTO = findViewById(R.id.OK);
 
@@ -224,7 +224,10 @@ public class LoginActivity extends AppCompatActivity {
                                 builder.setTitle(ssBuilder);
                                 builder.setIcon(R.drawable.peligro);
                                 builder.setMessage("VERIFIQUE EL USUARIO Y CONTRASEÑA");
-                                textToSpeech.speak("ERROR AL INICIAR SESIÓN. VERIFIQUE EL USUARIO Y CONTRASEÑA");
+
+                                Intent textToSpeech = new Intent(LoginActivity.this, TSS.class);
+                                textToSpeech.putExtra("habla","ERROR AL INICIAR SESIÓN. VERIFIQUE EL USUARIO Y CONTRASEÑA");
+                                startService(textToSpeech);
                                 builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialogInterface, int i) {

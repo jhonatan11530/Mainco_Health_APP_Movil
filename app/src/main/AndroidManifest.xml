@@ -23,7 +23,7 @@
         <service
             android:name="Services.ServicioProductoMalo"
             android:enabled="true"
-            android:exported="false"></service>
+            android:exported="false" />
         <service
             android:name="Services.ServicioMotivoParo"
             android:enabled="true"

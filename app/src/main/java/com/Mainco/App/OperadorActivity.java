@@ -752,7 +752,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
             id.setError("ID ES REQUERIDO !");
             op.setError("O.P ES REQUERIDO !");
-            textToSpeech.speak("DEBE INGRESAR SU CODIGO Y EL NUMERO DE O P");
+           textToSpeech .speak("DEBE INGRESAR SU CODIGO Y EL NUMERO DE O P");
 
         } else if (id.getText().toString().length() > 0 && op.getText().toString().length() == 0) {
 
@@ -870,7 +870,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                                 @Override
                                                 public void run() {
                                                     HttpRequest.get("http://" + cambiarIP.ip + "/validar/nuevoRegistro.php?id=" + id.getText().toString()).body();
-                                                    textToSpeech.onStop();
+                                                   textToSpeech.onStop();
 
                                                 }
                                             });
@@ -924,7 +924,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                             hilo = new Thread(new Runnable() {
                                                 @Override
                                                 public void run() {
-                                                    textToSpeech.onStop();
+                                                   textToSpeech.onStop();
                                                     HttpRequest.get("http://" + cambiarIP.ip + "/validar/nuevoRegistro.php?id=" + id.getText().toString()).body();
                                                 }
                                             });

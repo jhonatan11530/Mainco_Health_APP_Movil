@@ -9,7 +9,6 @@ import java.util.Locale;
 public class TSS {
     private TextToSpeech textToSpeech;
     private boolean cargado = false;
-
     public void init(Context context) {
         final TextToSpeech.OnInitListener onInitListener = new TextToSpeech.OnInitListener() {
             @Override
@@ -42,6 +41,7 @@ public class TSS {
     }
 
     public void speak(String text) {
+
         if (cargado) {
             textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
         }

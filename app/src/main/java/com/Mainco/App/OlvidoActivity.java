@@ -27,8 +27,8 @@ public class OlvidoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.olvido);
 
-        textToSpeech = new TSS();
-        textToSpeech.init(this);
+       textToSpeech = new TSS();
+       textToSpeech.init(this);
 
     }
 
@@ -97,7 +97,7 @@ public class OlvidoActivity extends AppCompatActivity {
 
                                                 builder.setTitle("SE RESTAURO LA CONTRASEÑA");
                                                 builder.setMessage("Se cambio la contraseña exitosamente");
-                                                textToSpeech.speak("Se cambio la contraseña exitosamente");
+                                                 textToSpeech.speak("Se cambio la contraseña exitosamente");
                                                 builder.setPositiveButton("Iniciar Sesiòn", new DialogInterface.OnClickListener() {
                                                     @Override
                                                     public void onClick(DialogInterface dialogInterface, int i) {

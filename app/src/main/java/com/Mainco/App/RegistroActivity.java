@@ -111,7 +111,7 @@ public class RegistroActivity extends AppCompatActivity {
                                     AlertDialog.Builder builder = new AlertDialog.Builder(RegistroActivity.this);
                                     builder.setTitle("REGISTRO DE USUARIO EXITOSO");
                                     builder.setMessage("Se completo el registro exitosamente");
-                                    textToSpeech.speak("Se completo el registro exitosamente");
+                                     textToSpeech.speak("Se completo el registro exitosamente");
                                     builder.setPositiveButton("Iniciar Sesiòn", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {
