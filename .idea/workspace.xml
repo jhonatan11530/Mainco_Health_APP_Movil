@@ -29,11 +29,8 @@
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/LoginActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/OlvidoActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/OlvidoActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Services/ServicioCantidad.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Services/ServicioCantidad.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/OperadorActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/OperadorActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/RegistroActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/RegistroActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/TSS.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/TSS.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -234,7 +231,7 @@
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Android App" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Finished" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+                <item name="Running" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
             </expand>
             <select />
@@ -323,11 +320,11 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="133" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1366.728@0.0.1366.728" timestamp="1600622256241" />
-    <state x="413" y="114" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1603486634688">
+    <state x="413" y="114" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1603538989891">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="413" y="112" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1600624003672" />
-    <state x="413" y="114" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.738@0.0.1366.738" timestamp="1603486634688" />
+    <state x="413" y="114" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.738@0.0.1366.738" timestamp="1603538989891" />
     <state x="363" y="28" key="#com.intellij.unscramble.UnscrambleDialog" timestamp="1600801242880">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -361,22 +358,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="553" y="257" key="Github.ShareDialog/0.0.1366.728@0.0.1366.728" timestamp="1596674572787" />
-    <state width="564" height="49" key="GridCell.Tab.0.bottom" timestamp="1603486811631">
+    <state width="560" height="125" key="GridCell.Tab.0.bottom" timestamp="1603565971704">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="564" height="49" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1603486811631" />
-    <state width="564" height="49" key="GridCell.Tab.0.center" timestamp="1603486811630">
+    <state width="560" height="125" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1603565971704" />
+    <state width="560" height="125" key="GridCell.Tab.0.center" timestamp="1603565971704">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="564" height="49" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1603486811630" />
-    <state width="564" height="49" key="GridCell.Tab.0.left" timestamp="1603486811630">
+    <state width="560" height="125" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1603565971704" />
+    <state width="560" height="125" key="GridCell.Tab.0.left" timestamp="1603565971704">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="564" height="49" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1603486811630" />
-    <state width="564" height="49" key="GridCell.Tab.0.right" timestamp="1603486811630">
+    <state width="560" height="125" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1603565971704" />
+    <state width="560" height="125" key="GridCell.Tab.0.right" timestamp="1603565971704">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="564" height="49" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1603486811630" />
+    <state width="560" height="125" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1603565971704" />
     <state width="1367" height="2" key="GridCell.Tab.1.bottom" timestamp="1597784125781">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -406,11 +403,11 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="499" y="147" key="chooseDestDirectoryDialog/0.0.1366.738@0.0.1366.738" timestamp="1599162546520" />
-    <state x="92" y="92" width="1182" height="554" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1603471336042">
+    <state x="92" y="92" width="1182" height="554" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1603538516099">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="92" y="91" width="1182" height="547" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1366.728@0.0.1366.728" timestamp="1600615459087" />
-    <state x="92" y="92" width="1182" height="554" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1366.738@0.0.1366.738" timestamp="1603471336042" />
+    <state x="92" y="92" width="1182" height="554" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1366.738@0.0.1366.738" timestamp="1603538516098" />
     <state x="379" y="190" key="com.intellij.ide.util.TipDialog" timestamp="1597681433236">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

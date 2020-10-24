@@ -1,5 +1,6 @@
 package com.Mainco.App;
 
+import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
@@ -127,11 +128,11 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         }
     };
 
-    private BroadcastReceiver MostrarCantidadReal = new BroadcastReceiver() {
+    private BroadcastReceiver ServicioCantidad = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             //LLENA SPINNER DESCANSO
-            String MostrarCantidadTotal = intent.getStringExtra("MostrarCantidadReal");
+            String MostrarCantidadTotal = intent.getStringExtra("ServicioCantidad");
             System.out.println("MENSAJE " + MostrarCantidadTotal);
             TextView MostrarPantalla = findViewById(R.id.MostrarCantidad);
             MostrarPantalla.setText("CANTIDAD EN O.P : " + MostrarCantidadTotal);
@@ -189,8 +190,8 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         registerReceiver(ProductoMalo, malo);
 
         IntentFilter cantidadReal = new IntentFilter();
-        cantidadReal.addAction("MostrarCantidadReal");
-        registerReceiver(MostrarCantidadReal, cantidadReal);
+        cantidadReal.addAction("ServicioCantidad");
+        registerReceiver(ServicioCantidad, cantidadReal);
 
         Intent llenarspinner = new Intent(OperadorActivity.this, ServicioActividad.class);
         startService(llenarspinner);
@@ -385,8 +386,10 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                 builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        stopService(new Intent(OperadorActivity.this, ServicioCantidad.class));
                         stopService(new Intent(OperadorActivity.this, ServicioActividad.class));
                         stopService(new Intent(OperadorActivity.this, ServicioMotivoParo.class));
+                        stopService(new Intent(OperadorActivity.this, ServicioProductoMalo.class));
                         stopService(new Intent(OperadorActivity.this, ServicioItems.class));
 
 
@@ -745,6 +748,23 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             }
         }).start();
     }
+    private boolean isMyServiceRunning(Class<?> serviceClass) {
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                System.out.println("EL SERVICIOCANTIDAD SE ESTA EJECUTANDO");
+                return true;
+
+            }
+
+        }
+         Intent cantidad = new Intent(OperadorActivity.this, ServicioCantidad.class);
+            cantidad.putExtra("OP",resuldato3.getSelectedItem().toString());
+            cantidad.putExtra("tarea",resuldato.getSelectedItem().toString());
+            startService(cantidad);
+        System.out.println("EL SERVICIOCANTIDAD NO SE ESTA EJECUTANDO");
+        return false;
+    }
 
     public void operador(View v) {
 
@@ -763,13 +783,8 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             id.setError("ID ES REQUERIDO !");
         } else {
 
-
+            isMyServiceRunning(ServicioCantidad.class);
             validar();
-
-            Intent cantidad = new Intent(OperadorActivity.this, ServicioCantidad.class);
-            cantidad.putExtra("OP",resuldato3.getSelectedItem().toString());
-            cantidad.putExtra("tarea",resuldato.getSelectedItem().toString());
-            startService(cantidad);
 
             hilo = new Thread(new Runnable() {
                 @Override
@@ -1259,10 +1274,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                 JSONArray RESTARCANTIDAD = new JSONArray(responses);
                                 HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodifi.php?op=" + resuldato3.getSelectedItem().toString() + "&totales=" + RESTARCANTIDAD.getString(0)).body();
 
-                                Intent cantidad = new Intent(OperadorActivity.this, ServicioCantidad.class);
-                                cantidad.putExtra("OP",resuldato3.getSelectedItem().toString());
-                                cantidad.putExtra("tarea",resuldato.getSelectedItem().toString());
-                                startService(cantidad);
 
                             }
                             if (validator > 0) {
@@ -1276,10 +1287,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                     }
                                 });
 
-                                Intent cantidad = new Intent(OperadorActivity.this, ServicioCantidad.class);
-                                cantidad.putExtra("OP",resuldato3.getSelectedItem().toString());
-                                cantidad.putExtra("tarea",resuldato.getSelectedItem().toString());
-                                startService(cantidad);
 
                                 runOnUiThread(new Runnable() {
                                     @Override
@@ -1433,11 +1440,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
                                             HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizaSalida.php?id=" + id.getText().toString() + "&cantidad=" + volumen + "&Ffinal=" + fechas.toString() + "&Hfinal=" + horas.toString() + "&motivo=" + error.toString() + "&conforme=" + falla.toString() + "&tarea=" + nombretarea.toString() + "&op=" + op.getText().toString()).body();
 
-
-                                            Intent cantidad = new Intent(OperadorActivity.this, ServicioCantidad.class);
-                                            cantidad.putExtra("OP",resuldato3.getSelectedItem().toString());
-                                            cantidad.putExtra("tarea",resuldato.getSelectedItem().toString());
-                                            startService(cantidad);
 
                                             verificar();
                                             Consolidado(horafinal);
