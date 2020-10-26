@@ -6,7 +6,7 @@ import android.util.Log;
 
 import java.util.Locale;
 
-public class TSS {
+public class TTS {
     private TextToSpeech textToSpeech;
     private boolean cargado = false;
     public void init(Context context) {
@@ -20,8 +20,8 @@ public class TSS {
                         Log.e("erro", "ESTE LENGUAJE NO ES PERMITIDO");
                     } else {
 
-                        textToSpeech.setPitch(1.0f);
-                        textToSpeech.setSpeechRate(1.0f);
+                        textToSpeech.setPitch(0.8f);
+                        textToSpeech.setSpeechRate(1.1f);
 
                     }
                 }
@@ -47,3 +47,4 @@ public class TSS {
         }
     }
 }
+

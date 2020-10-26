@@ -74,7 +74,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
     SimpleDateFormat hourFormat;
     SimpleDateFormat dateFormat;
     RelativeLayout production;
-    TSS textToSpeech = null;
+    TTS textToSpeech = null;
     private EditText id, cantidad, paro, fallas, op, codemotivo;
     private String falla, error, VaribleTOTA, NOMBRE;
     private TextView motivo, MOSTRAR, texto, resultados;
@@ -88,6 +88,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
     private BatteryReceiver mBatteryReceiver = new BatteryReceiver();
     private IntentFilter mIntentFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+
 
     private BroadcastReceiver LlenarSpinner = new BroadcastReceiver() {
         @Override
@@ -170,7 +171,8 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         cliente2 = new AsyncHttpClient();
         cliente3 = new AsyncHttpClient();
 
-        textToSpeech = new TSS();
+
+        textToSpeech = new TTS();
         textToSpeech.init(this);
 
         IntentFilter llenarSpinner = new IntentFilter();
@@ -193,12 +195,12 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         cantidadReal.addAction("ServicioCantidad");
         registerReceiver(ServicioCantidad, cantidadReal);
 
+
         Intent llenarspinner = new Intent(OperadorActivity.this, ServicioActividad.class);
         startService(llenarspinner);
 
         Intent llenaritem = new Intent(OperadorActivity.this, ServicioItems.class);
         startService(llenaritem);
-
 
 
         if (savedInstanceState != null) {
@@ -268,6 +270,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         });
 
     }
+
 
     public void Consolidado(final String horafinal) {
         new Thread(new Runnable() {
@@ -885,7 +888,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                                 @Override
                                                 public void run() {
                                                     HttpRequest.get("http://" + cambiarIP.ip + "/validar/nuevoRegistro.php?id=" + id.getText().toString()).body();
-                                                   textToSpeech.onStop();
+
 
                                                 }
                                             });
@@ -939,7 +942,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                             hilo = new Thread(new Runnable() {
                                                 @Override
                                                 public void run() {
-                                                   textToSpeech.onStop();
+
                                                     HttpRequest.get("http://" + cambiarIP.ip + "/validar/nuevoRegistro.php?id=" + id.getText().toString()).body();
                                                 }
                                             });

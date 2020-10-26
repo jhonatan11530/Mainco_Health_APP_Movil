@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,7 +23,7 @@ public class RegistroActivity extends AppCompatActivity {
     CheckBox resultado;
     Button registro;
     AsyncHttpClient client;
-    TSS textToSpeech = null;
+    TTS textToSpeech = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +32,8 @@ public class RegistroActivity extends AppCompatActivity {
 
         client = new AsyncHttpClient();
 
-        textToSpeech = new TSS();
+        textToSpeech = new TTS();
         textToSpeech.init(this);
-
         nombre = findViewById(R.id.nombre);
         apellido = findViewById(R.id.apellido);
         cedula = findViewById(R.id.cedula);

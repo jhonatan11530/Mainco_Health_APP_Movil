@@ -10,6 +10,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiConfiguration;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
@@ -35,18 +36,15 @@ public class LoginActivity extends AppCompatActivity {
     TextView registre;
     CheckBox GUARDARUTO;
     ProgressDialog pd;
-    TSS textToSpeech = null;
+    TTS textToSpeech;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
         mostrarguardado();
-
-        textToSpeech = new TSS();
+        textToSpeech = new TTS();
         textToSpeech.init(this);
-
-
         GUARDARUTO = findViewById(R.id.OK);
 
         login = findViewById(R.id.estado);
@@ -55,6 +53,7 @@ public class LoginActivity extends AppCompatActivity {
         registre = findViewById(R.id.registre);
 
         validar = findViewById(R.id.login);
+
 
 
     }
@@ -225,7 +224,7 @@ public class LoginActivity extends AppCompatActivity {
                                 builder.setIcon(R.drawable.peligro);
                                 builder.setMessage("VERIFIQUE EL USUARIO Y CONTRASEÑA");
 
-                                Intent textToSpeech = new Intent(LoginActivity.this, TSS.class);
+                                Intent textToSpeech = new Intent(LoginActivity.this, TTS.class);
                                 textToSpeech.putExtra("habla","ERROR AL INICIAR SESIÓN. VERIFIQUE EL USUARIO Y CONTRASEÑA");
                                 startService(textToSpeech);
                                 builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {

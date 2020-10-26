@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,7 +19,7 @@ import org.json.JSONArray;
 
 public class OlvidoActivity extends AppCompatActivity {
 
-    TSS textToSpeech = null;
+    TTS textToSpeech = null;
     private TextInputEditText id, cedula;
 
     @SuppressLint("WrongViewCast")
@@ -27,8 +28,10 @@ public class OlvidoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.olvido);
 
-       textToSpeech = new TSS();
-       textToSpeech.init(this);
+        textToSpeech = new TTS();
+        textToSpeech.init(this);
+
+
 
     }
 
