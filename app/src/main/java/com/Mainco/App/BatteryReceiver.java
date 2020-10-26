@@ -37,7 +37,7 @@ public class BatteryReceiver extends BroadcastReceiver {
                 Toast toast = Toast.makeText(context.getApplicationContext(), "POR FAVOR CONECTE EL CARGADOR", Toast.LENGTH_SHORT);
                 toast.getView().setPadding(50, 10, 50, 10);
                 toast.getView().setBackgroundColor(Color.RED);
-                TextView text = (TextView) toast.getView().findViewById(android.R.id.message);
+                TextView text = toast.getView().findViewById(android.R.id.message);
                 text.setTextColor(Color.WHITE);
                 text.setTextSize(25);
                 toast.show();

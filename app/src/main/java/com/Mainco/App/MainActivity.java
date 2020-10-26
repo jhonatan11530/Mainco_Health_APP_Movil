@@ -13,8 +13,8 @@ import Services.ServicioConnecting;
 public class MainActivity extends AppCompatActivity {
     private final int DURACION_SPLASH = 3000;
 
-    private BatteryReceiver mBatteryReceiver = new BatteryReceiver();
-    private IntentFilter mIntentFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+    private final BatteryReceiver mBatteryReceiver = new BatteryReceiver();
+    private final IntentFilter mIntentFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

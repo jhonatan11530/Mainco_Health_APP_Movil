@@ -1,6 +1,5 @@
 package com.Mainco.App;
 
-import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,8 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.loopj.android.http.AsyncHttpClient;
-
-import java.util.Objects;
 
 import Http_Conexion.HttpRequest;
 

@@ -97,8 +97,8 @@
                 android:hint="CONTRASEÑA"
                 android:textColorHint="#fff"
                 app:hintTextAppearance="@color/white"
-                app:startIconDrawable="@drawable/candado"
-                app:passwordToggleEnabled="true">
+                app:passwordToggleEnabled="true"
+                app:startIconDrawable="@drawable/candado">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/pass"

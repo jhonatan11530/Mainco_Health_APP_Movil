@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -70,6 +70,7 @@
                 android:textColorHint="#fff"
                 app:hintTextAppearance="@color/white"
                 app:startIconDrawable="@drawable/candado">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/CDUNICO"
                     android:layout_width="350dp"
@@ -86,8 +87,9 @@
                 android:hint="INGRESE SU CONTRASEÑA"
                 android:textColorHint="#fff"
                 app:hintTextAppearance="@color/white"
-                app:startIconDrawable="@drawable/candado"
-                app:passwordToggleEnabled="true">
+                app:passwordToggleEnabled="true"
+                app:startIconDrawable="@drawable/candado">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/cc"
                     android:layout_width="350dp"
@@ -103,9 +105,9 @@
                 android:background="@drawable/btn_redondo"
                 android:gravity="center"
                 android:onClick="comprobar"
-                tools:ignore="UsingOnClickInXml"
                 android:text="Recuperar Contraseña"
-                android:textColor="#000" />
+                android:textColor="#000"
+                tools:ignore="UsingOnClickInXml" />
 
 
         </LinearLayout>
