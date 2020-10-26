@@ -10,7 +10,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiConfiguration;
 import android.os.Bundle;
-import android.speech.tts.TextToSpeech;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
@@ -26,6 +25,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
+
+import Http_Conexion.HttpRequest;
 
 @SuppressWarnings("ALL")
 public class LoginActivity extends AppCompatActivity {
@@ -53,7 +54,6 @@ public class LoginActivity extends AppCompatActivity {
         registre = findViewById(R.id.registre);
 
         validar = findViewById(R.id.login);
-
 
 
     }
@@ -142,7 +142,7 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     Thread.sleep(1000);
 
-                  //   login.setText("user");
+                    //   login.setText("user");
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -225,7 +225,7 @@ public class LoginActivity extends AppCompatActivity {
                                 builder.setMessage("VERIFIQUE EL USUARIO Y CONTRASEÑA");
 
                                 Intent textToSpeech = new Intent(LoginActivity.this, TTS.class);
-                                textToSpeech.putExtra("habla","ERROR AL INICIAR SESIÓN. VERIFIQUE EL USUARIO Y CONTRASEÑA");
+                                textToSpeech.putExtra("habla", "ERROR AL INICIAR SESIÓN. VERIFIQUE EL USUARIO Y CONTRASEÑA");
                                 startService(textToSpeech);
                                 builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
                                     @Override

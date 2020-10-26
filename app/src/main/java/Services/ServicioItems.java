@@ -9,22 +9,22 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
 public class ServicioItems extends Service {
-    private AsyncHttpClient Service;
 
     public ServicioItems() {
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-         super.onStartCommand(intent, flags, startId);
+        super.onStartCommand(intent, flags, startId);
         ejecutar();
         return START_STICKY;
     }
+
     public void ejecutar() {
-        Service = new AsyncHttpClient();
+        AsyncHttpClient service = new AsyncHttpClient();
         // LLENA EL SPINNER DE ACTIVIDAD
         String url = "http://" + cambiarIP.ip + "/validar/llenarSpinner/NumeroItem.php";
-        Service.post(url, new AsyncHttpResponseHandler() {
+        service.post(url, new AsyncHttpResponseHandler() {
 
             @Override
             public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, byte[] responseBody) {
@@ -51,6 +51,7 @@ public class ServicioItems extends Service {
             }
         });
     }
+
     @Override
     public IBinder onBind(Intent intent) {
         // TODO: Return the communication channel to the service.

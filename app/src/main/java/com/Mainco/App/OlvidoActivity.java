@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.speech.tts.TextToSpeech;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONArray;
+
+import Http_Conexion.HttpRequest;
 
 public class OlvidoActivity extends AppCompatActivity {
 
@@ -31,7 +32,8 @@ public class OlvidoActivity extends AppCompatActivity {
         textToSpeech = new TTS();
         textToSpeech.init(this);
 
-
+        id = findViewById(R.id.CDUNICO);
+        cedula = findViewById(R.id.cc);
 
     }
 
@@ -61,12 +63,8 @@ public class OlvidoActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressLint("WrongViewCast")
     public void comprobar(View v) {
 
-
-        id = findViewById(R.id.CDUNICO);
-        cedula = findViewById(R.id.cc);
         if (id.getText().toString().length() == 0) {
             id.setError("ID ES REQUERIDO !");
         }
@@ -100,7 +98,7 @@ public class OlvidoActivity extends AppCompatActivity {
 
                                                 builder.setTitle("SE RESTAURO LA CONTRASEÑA");
                                                 builder.setMessage("Se cambio la contraseña exitosamente");
-                                                 textToSpeech.speak("Se cambio la contraseña exitosamente");
+                                                textToSpeech.speak("Se cambio la contraseña exitosamente");
                                                 builder.setPositiveButton("Iniciar Sesiòn", new DialogInterface.OnClickListener() {
                                                     @Override
                                                     public void onClick(DialogInterface dialogInterface, int i) {

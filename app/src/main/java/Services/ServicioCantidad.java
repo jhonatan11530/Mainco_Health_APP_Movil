@@ -4,11 +4,12 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
-import com.Mainco.App.HttpRequest;
 import com.Mainco.App.cambiarIP;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+
+import Http_Conexion.HttpRequest;
 
 public class ServicioCantidad extends Service {
     public ServicioCantidad() {
@@ -33,7 +34,7 @@ public class ServicioCantidad extends Service {
                 try {
                     String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/Sobrante.php?op=" + resuldato3 + "&tarea=" + resuldato).body();
                     JSONArray array = new JSONArray(response);
-                
+
                     String VaribleTOTA = array.getString(0);
 
                     Intent intent1 = new Intent("ServicioCantidad");
@@ -48,11 +49,6 @@ public class ServicioCantidad extends Service {
 
             }
         }).start();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
     }
 
     @Override

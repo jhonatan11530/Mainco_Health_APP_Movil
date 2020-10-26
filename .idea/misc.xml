@@ -106,6 +106,7 @@
       <entry_point TYPE="field" FQNAME="com.example.App.OlvidoActivity v_flipper" />
       <entry_point TYPE="method" FQNAME="com.example.App.HttpRequest$2 boolean verify(java.lang.String hostname, javax.net.ssl.SSLSession session)" />
       <entry_point TYPE="field" FQNAME="com.example.App.RegistroActivity client" />
+      <entry_point TYPE="field" FQNAME="com.Mainco.App.RegistroActivity client" />
     </entry_points>
     <pattern value="com.example.App.cantidades" method="cantidades" />
     <pattern value="com.example.App.LoginActivity" method="guardar" />
@@ -314,7 +315,7 @@
     <option name="myDefaultNotNull" value="androidx.annotation.RecentlyNonNull" />
     <option name="myNullables">
       <value>
-        <list size="12">
+        <list size="15">
           <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.Nullable" />
           <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nullable" />
           <item index="2" class="java.lang.String" itemvalue="javax.annotation.CheckForNull" />
@@ -327,12 +328,15 @@
           <item index="9" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.compatqual.NullableDecl" />
           <item index="10" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.compatqual.NullableType" />
           <item index="11" class="java.lang.String" itemvalue="com.android.annotations.Nullable" />
+          <item index="12" class="java.lang.String" itemvalue="org.eclipse.jdt.annotation.Nullable" />
+          <item index="13" class="java.lang.String" itemvalue="io.reactivex.annotations.Nullable" />
+          <item index="14" class="java.lang.String" itemvalue="io.reactivex.rxjava3.annotations.Nullable" />
         </list>
       </value>
     </option>
     <option name="myNotNulls">
       <value>
-        <list size="11">
+        <list size="14">
           <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.NotNull" />
           <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nonnull" />
           <item index="2" class="java.lang.String" itemvalue="edu.umd.cs.findbugs.annotations.NonNull" />
@@ -344,6 +348,9 @@
           <item index="8" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.compatqual.NonNullDecl" />
           <item index="9" class="java.lang.String" itemvalue="org.checkerframework.checker.nullness.compatqual.NonNullType" />
           <item index="10" class="java.lang.String" itemvalue="com.android.annotations.NonNull" />
+          <item index="11" class="java.lang.String" itemvalue="org.eclipse.jdt.annotation.NonNull" />
+          <item index="12" class="java.lang.String" itemvalue="io.reactivex.annotations.NonNull" />
+          <item index="13" class="java.lang.String" itemvalue="io.reactivex.rxjava3.annotations.NonNull" />
         </list>
       </value>
     </option>

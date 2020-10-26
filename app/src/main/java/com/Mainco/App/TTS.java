@@ -9,6 +9,7 @@ import java.util.Locale;
 public class TTS {
     private TextToSpeech textToSpeech;
     private boolean cargado = false;
+
     public void init(Context context) {
         final TextToSpeech.OnInitListener onInitListener = new TextToSpeech.OnInitListener() {
             @Override
@@ -33,12 +34,14 @@ public class TTS {
     }
 
 
-    public void onStop() {
-        if (textToSpeech != null) {
-            System.out.println("ESTO SE DETUBO " + textToSpeech.stop());
-            textToSpeech.stop();
-        }
-    }
+// --Commented out by Inspection START (26/10/2020 11:22 AM):
+//    public void onStop() {
+//        if (textToSpeech != null) {
+//            System.out.println("ESTO SE DETUBO " + textToSpeech.stop());
+//            textToSpeech.stop();
+//        }
+//    }
+// --Commented out by Inspection STOP (26/10/2020 11:22 AM)
 
     public void speak(String text) {
 

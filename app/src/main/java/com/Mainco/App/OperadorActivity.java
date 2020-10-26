@@ -53,12 +53,16 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import GET_SET.OPS;
+import GET_SET.cantidades;
+import GET_SET.cantidadfallas;
+import GET_SET.motivoparo;
+import Http_Conexion.HttpRequest;
 import Services.ServicioActividad;
 import Services.ServicioCantidad;
 import Services.ServicioItems;
 import Services.ServicioMotivoParo;
 import Services.ServicioProductoMalo;
-
 import cz.msebera.android.httpclient.Header;
 
 @SuppressWarnings("ALL")
@@ -285,7 +289,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                     final EditText editar = new EditText(OperadorActivity.this);
                     editar.setEnabled(false);
                     editar.setText(fechafinal);
-                    System.out.println("LA HORA ES "+horafinal.toString());
+                    System.out.println("LA HORA ES " + horafinal.toString());
                     HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?op=" + op.getText().toString() + "&nombre=" + NOMBRE.toString() + "&fecha=" + editar.getText().toString() + "&hora=" + horafinal.toString()).body();
 
                 } catch (Exception e) {
@@ -634,7 +638,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
     }
 
 
-
     public void cargarmotivo(String cargarmotivo) {
         ArrayList<cantidadfallas> dato4 = new ArrayList<>();
         try {
@@ -751,6 +754,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             }
         }).start();
     }
+
     private boolean isMyServiceRunning(Class<?> serviceClass) {
         ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
         for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
@@ -761,10 +765,10 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             }
 
         }
-         Intent cantidad = new Intent(OperadorActivity.this, ServicioCantidad.class);
-            cantidad.putExtra("OP",resuldato3.getSelectedItem().toString());
-            cantidad.putExtra("tarea",resuldato.getSelectedItem().toString());
-            startService(cantidad);
+        Intent cantidad = new Intent(OperadorActivity.this, ServicioCantidad.class);
+        cantidad.putExtra("OP", resuldato3.getSelectedItem().toString());
+        cantidad.putExtra("tarea", resuldato.getSelectedItem().toString());
+        startService(cantidad);
         System.out.println("EL SERVICIOCANTIDAD NO SE ESTA EJECUTANDO");
         return false;
     }
@@ -775,7 +779,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
             id.setError("ID ES REQUERIDO !");
             op.setError("O.P ES REQUERIDO !");
-           textToSpeech .speak("DEBE INGRESAR SU CODIGO Y EL NUMERO DE O P");
+            textToSpeech.speak("DEBE INGRESAR SU CODIGO Y EL NUMERO DE O P");
 
         } else if (id.getText().toString().length() > 0 && op.getText().toString().length() == 0) {
 

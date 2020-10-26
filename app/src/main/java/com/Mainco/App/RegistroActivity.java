@@ -1,10 +1,10 @@
 package com.Mainco.App;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.speech.tts.TextToSpeech;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,6 +15,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.loopj.android.http.AsyncHttpClient;
+
+import java.util.Objects;
+
+import Http_Conexion.HttpRequest;
 
 
 public class RegistroActivity extends AppCompatActivity {
@@ -69,8 +73,7 @@ public class RegistroActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
-    public void registrar(View v) {
+    public void registro(View v) {
 
         nombre = findViewById(R.id.nombre);
         apellido = findViewById(R.id.apellido);
@@ -111,7 +114,7 @@ public class RegistroActivity extends AppCompatActivity {
                                     AlertDialog.Builder builder = new AlertDialog.Builder(RegistroActivity.this);
                                     builder.setTitle("REGISTRO DE USUARIO EXITOSO");
                                     builder.setMessage("Se completo el registro exitosamente");
-                                     textToSpeech.speak("Se completo el registro exitosamente");
+                                    textToSpeech.speak("Se completo el registro exitosamente");
                                     builder.setPositiveButton("Iniciar Sesiòn", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialogInterface, int i) {

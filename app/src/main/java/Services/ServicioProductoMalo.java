@@ -11,20 +11,21 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import cz.msebera.android.httpclient.Header;
 
 public class ServicioProductoMalo extends Service {
-    private AsyncHttpClient Service;
+
     public ServicioProductoMalo() {
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-         super.onStartCommand(intent, flags, startId);
+        super.onStartCommand(intent, flags, startId);
         motivofalla();
         return START_STICKY;
     }
+
     public void motivofalla() {
-        Service = new AsyncHttpClient();
+        AsyncHttpClient service = new AsyncHttpClient();
         String url = "http://" + cambiarIP.ip + "/validar/llenarSpinner/MotivoProductoDefectuoso.php";
-        Service.post(url, new AsyncHttpResponseHandler() {
+        service.post(url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
                 if (statusCode == 200) {

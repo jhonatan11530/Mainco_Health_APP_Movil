@@ -97,7 +97,8 @@
                 android:hint="CONTRASEÑA"
                 android:textColorHint="#fff"
                 app:hintTextAppearance="@color/white"
-                app:startIconDrawable="@drawable/candado">
+                app:startIconDrawable="@drawable/candado"
+                app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/pass"
@@ -144,9 +145,10 @@
                 android:layout_width="350dp"
                 android:layout_height="65dp"
                 android:background="@drawable/btn_redondo"
-                android:onClick="registrar"
+                android:onClick="registro"
                 android:text="REGISTRAR"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                tools:ignore="UsingOnClickInXml" />
         </LinearLayout>
     </LinearLayout>
 
