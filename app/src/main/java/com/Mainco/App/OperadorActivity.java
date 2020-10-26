@@ -1,6 +1,5 @@
 package com.Mainco.App;
 
-import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
@@ -26,6 +25,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -79,12 +79,13 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
     SimpleDateFormat dateFormat;
     RelativeLayout production;
     TTS textToSpeech = null;
+
     private EditText id, cantidad, paro, fallas, op, codemotivo;
     private String falla, error, VaribleTOTA, NOMBRE;
     private TextView motivo, MOSTRAR, texto, resultados;
     private Button go, stop, BtnParo, positivo, neutrar, BtnIngreso, Btnsalida, validarinfo, Validar, BtnHora;
     private int minuto, segundo, horas, i, hora, cantidadpro, cantidadotra, volumencan, total, volumen;
-    private ArrayList<cantidades> dato3 = new ArrayList<>();
+    private ArrayList dato3 = new ArrayList<>();
     private ArrayList<motivoparo> dato2 = new ArrayList<>();
     private ArrayList<OPS> dato = new ArrayList<>();
     private AsyncHttpClient cliente, cliente1, cliente2, cliente3;
@@ -241,9 +242,8 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         BtnParo.setEnabled(false);
         BtnIngreso.setEnabled(false);
         Btnsalida.setEnabled(false);
-
-
         Validar.setEnabled(false);
+
 
 
         op.addTextChangedListener(new TextWatcher() {
@@ -255,6 +255,8 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             public void onTextChanged(CharSequence escribio, int start, int before, int count) {
                 if (op.getText().toString() != null) {
                     FiltrarOps();
+
+
                 }
 
             }
@@ -468,7 +470,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
     }
 
     public void itemfiltre(String itemfiltre) {
-        ArrayList<cantidades> dato3 = new ArrayList<>();
         try {
             JSONArray objecto = new JSONArray(itemfiltre);
             for (int i = 0; i < objecto.length(); i++) {
@@ -478,7 +479,13 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             }
             ArrayAdapter<cantidades> a = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, dato3);
             resuldato.setAdapter(a);
+
             Validar.setEnabled(true);
+
+            Intent cantidad = new Intent(OperadorActivity.this, ServicioCantidad.class);
+            cantidad.putExtra("OP", resuldato3.getSelectedItem().toString());
+            cantidad.putExtra("tarea", resuldato.getSelectedItem().toString());
+            startService(cantidad);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -755,23 +762,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         }).start();
     }
 
-    private boolean isMyServiceRunning(Class<?> serviceClass) {
-        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
-        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
-            if (serviceClass.getName().equals(service.service.getClassName())) {
-                System.out.println("EL SERVICIOCANTIDAD SE ESTA EJECUTANDO");
-                return true;
-
-            }
-
-        }
-        Intent cantidad = new Intent(OperadorActivity.this, ServicioCantidad.class);
-        cantidad.putExtra("OP", resuldato3.getSelectedItem().toString());
-        cantidad.putExtra("tarea", resuldato.getSelectedItem().toString());
-        startService(cantidad);
-        System.out.println("EL SERVICIOCANTIDAD NO SE ESTA EJECUTANDO");
-        return false;
-    }
 
     public void operador(View v) {
 
@@ -790,7 +780,9 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             id.setError("ID ES REQUERIDO !");
         } else {
 
-            isMyServiceRunning(ServicioCantidad.class);
+
+
+
             validar();
 
             hilo = new Thread(new Runnable() {
@@ -914,11 +906,10 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                         }
 
                         if (vacio == 0) {
-
-
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
+
 
                                     ((TextView) resuldato.getSelectedView()).setTextColor(getResources().getColor(R.color.RED));
 
@@ -1217,6 +1208,10 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
     public void registrar(View v) {
 
+        Intent cantidad = new Intent(OperadorActivity.this, ServicioCantidad.class);
+        cantidad.putExtra("OP", resuldato3.getSelectedItem().toString());
+        cantidad.putExtra("tarea", resuldato.getSelectedItem().toString());
+        startService(cantidad);
 
         id = findViewById(R.id.operador);
 
@@ -1344,6 +1339,9 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         alert.show();
         alert.setCanceledOnTouchOutside(false);
 
+
+
+
     }
 
     public void salida(View v) {
@@ -1416,16 +1414,15 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                 volumencan = Integer.parseInt(cantidad.getText().toString());
                                 cantidadpro = Integer.parseInt(RESTARCANTIDAD.getString(0));
 
-                                String respuesta = HttpRequest.get("http://" + cambiarIP.ip + "/validar/SobranteAct.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + nombretarea).body();
+                                String respuesta = HttpRequest.get("http://" + cambiarIP.ip + "/validar/SobranteOP.php?op=" +op.getText().toString()+ "&cod=" +resuldato3.getSelectedItem().toString() ).body();
                                 JSONArray OTRACANTIDAD = new JSONArray(respuesta);
 
                                 cantidadotra = Integer.parseInt(OTRACANTIDAD.getString(0));
 
                                 int sumatoria = volumencan + total;
                                 int ends = cantidadpro - sumatoria; // BIEN
-                                int sqlmala = cantidadotra - total;
-                                String malo = String.valueOf(sqlmala);
-                                String end = String.valueOf(ends);
+                                int sqlmala = cantidadotra - total; // TOTAL EN OP - MALAS
+
                                 int tool = cantidadpro - sumatoria;
 
                                 System.out.println("LA CANTIDAD BUENAS " + volumencan);
@@ -1434,19 +1431,24 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                 System.out.println("LA CANTIDAD EN SQL " + cantidadpro);
                                 System.out.println("LA CANTIDAD EN SQL RESTADA " + tool);
                                 System.out.println("LA CANTIDAD EN SQL REAL " + ends);
+                                System.out.println("LA CANTIDAD MALO " + sqlmala);
 
-                                if (end.length() >= 0) {
+                                if (ends >= 0) {
                                     if (tool >= 0) {
                                         if (sumatoria <= cantidadpro) {
 
-                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizarop.php?op=" + resuldato3.getSelectedItem().toString() + "&totales=" + malo.toString() + "&codigo=" + op.getText().toString()).body();
+                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizarop.php?op=" + op.getText().toString()+ "&totales=" + sqlmala + "&codigo=" +resuldato3.getSelectedItem().toString()).body();
 
-                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadupdate.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + nombretarea.toString() + "&totales=" + end).body();
+                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadupdate.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + nombretarea.toString() + "&totales=" + ends).body();
 
-                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodificar.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + nombretarea.toString() + "&totales=" + malo + "&codigo=" + op.getText().toString()).body();
+                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodificar.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + nombretarea.toString() + "&totales=" + sqlmala + "&codigo=" + op.getText().toString()).body();
 
                                             HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizaSalida.php?id=" + id.getText().toString() + "&cantidad=" + volumen + "&Ffinal=" + fechas.toString() + "&Hfinal=" + horas.toString() + "&motivo=" + error.toString() + "&conforme=" + falla.toString() + "&tarea=" + nombretarea.toString() + "&op=" + op.getText().toString()).body();
 
+                                            Intent cantidad = new Intent(OperadorActivity.this, ServicioCantidad.class);
+                                            cantidad.putExtra("OP", resuldato3.getSelectedItem().toString());
+                                            cantidad.putExtra("tarea", resuldato.getSelectedItem().toString());
+                                            startService(cantidad);
 
                                             verificar();
                                             Consolidado(horafinal);

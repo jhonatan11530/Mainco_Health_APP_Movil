@@ -20,7 +20,7 @@ public class ServicioCantidad extends Service {
         super.onStartCommand(intent, flags, startId);
         final String resuldato3 = intent.getStringExtra("OP");
         final String resuldato = intent.getStringExtra("tarea");
-
+        System.out.println("MENSAJE "+resuldato3+" "+resuldato);
         ejecutar(resuldato3, resuldato);
 
         return START_STICKY;
@@ -40,8 +40,6 @@ public class ServicioCantidad extends Service {
                     Intent intent1 = new Intent("ServicioCantidad");
                     intent1.putExtra("ServicioCantidad", VaribleTOTA);
                     sendBroadcast(intent1);
-
-                    ejecutar(resuldato3, resuldato);
 
                 } catch (JSONException e) {
                     e.printStackTrace();

@@ -17,6 +17,7 @@ public class BatteryReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
+
         String action = intent.getAction();
 
         if (action != null && action.equals(Intent.ACTION_BATTERY_CHANGED)) {
@@ -34,6 +35,7 @@ public class BatteryReceiver extends BroadcastReceiver {
 
             } else if (25 > percentage && percentage >= 0 && status == 3) {
                 // MUESTRA EL PORCENTAJE DE LA BACTERIA
+
                 Toast toast = Toast.makeText(context.getApplicationContext(), "POR FAVOR CONECTE EL CARGADOR", Toast.LENGTH_SHORT);
                 toast.getView().setPadding(50, 10, 50, 10);
                 toast.getView().setBackgroundColor(Color.RED);
@@ -41,6 +43,7 @@ public class BatteryReceiver extends BroadcastReceiver {
                 text.setTextColor(Color.WHITE);
                 text.setTextSize(25);
                 toast.show();
+
             }
 
         }

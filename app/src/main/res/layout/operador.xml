@@ -27,7 +27,7 @@
                 android:layout_height="50dp"
                 android:gravity="center"
                 android:textColor="#000000"
-                android:textSize="25sp" />
+                android:textSize="15sp" />
 
             <EditText
                 android:id="@+id/operador"
