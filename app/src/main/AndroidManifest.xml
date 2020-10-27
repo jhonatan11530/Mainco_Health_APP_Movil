@@ -20,7 +20,10 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="m">
-
+        <service
+            android:name="Services.ServicioContador"
+            android:enabled="true"
+            android:exported="false"></service>
         <service
             android:name="Services.ServicioCantidad"
             android:enabled="true"

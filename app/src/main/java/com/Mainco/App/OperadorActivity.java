@@ -61,6 +61,7 @@ import IP.cambiarIP;
 import Receiver.BatteryReceiver;
 import Services.ServicioActividad;
 import Services.ServicioCantidad;
+import Services.ServicioContador;
 import Services.ServicioItems;
 import Services.ServicioMotivoParo;
 import Services.ServicioProductoMalo;
@@ -70,7 +71,7 @@ import cz.msebera.android.httpclient.Header;
 @SuppressWarnings("ALL")
 public class OperadorActivity extends AppCompatActivity implements LifecycleObserver {
 
-    public static Spinner resuldato, resuldato2, resuldato4, resuldato3;
+    public static Spinner Actividad, NombreParo, resuldato4, NumeroItem;
     private final ArrayList<cantidadfallas> dato4 = new ArrayList<>();
     public Thread hilo;
     EditText edit, digito;
@@ -84,7 +85,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
     private EditText id, cantidad, paro, fallas, op, codemotivo;
     private String falla, error, VaribleTOTA, NOMBRE;
-    private TextView motivo, MOSTRAR, texto, resultados;
+    private TextView motivo, MOSTRAR, texto, resultados,MostrarCantidadOP;
     private Button go, stop, BtnParo, positivo, neutrar, BtnIngreso, Btnsalida, validarinfo, Validar, BtnHora;
     private int minuto, segundo, horas, i, hora, cantidadpro, cantidadotra, volumencan, total, volumen;
     private ArrayList dato3 = new ArrayList<>();
@@ -147,6 +148,25 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         }
     };
 
+    private BroadcastReceiver ServicioContador = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //LLENA SPINNER DESCANSO
+            final String hours = intent.getStringExtra("hours");
+            final String minute = intent.getStringExtra("minute");
+            final String segund = intent.getStringExtra("segund");
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+
+                    MOSTRAR.setText(hours + ":" + minute + ":" + segund);
+                }
+            });
+
+        }
+    };
+
     public static String getIP() {
         List<InetAddress> addrs;
         String address = "";
@@ -202,6 +222,10 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         cantidadReal.addAction("ServicioCantidad");
         registerReceiver(ServicioCantidad, cantidadReal);
 
+        IntentFilter Serviciocontador = new IntentFilter();
+        Serviciocontador.addAction("ServicioContador");
+        registerReceiver(ServicioContador, Serviciocontador);
+
 
         Intent llenarspinner = new Intent(OperadorActivity.this, ServicioActividad.class);
         startService(llenarspinner);
@@ -218,11 +242,11 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
         production = findViewById(R.id.principal);
 
-        resuldato = findViewById(R.id.spinner1);
+        Actividad = findViewById(R.id.NameActividad);
 
-        resuldato2 = findViewById(R.id.spinner2);
+        NombreParo = findViewById(R.id.NameParo);
 
-        resuldato3 = findViewById(R.id.spinner);
+        NumeroItem = findViewById(R.id.NItem);
 
         op = findViewById(R.id.OP);
 
@@ -238,6 +262,9 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         id = findViewById(R.id.operador);
 
         resultados = findViewById(R.id.listar_operador);
+
+        MostrarCantidadOP = findViewById(R.id.MostrarCantidad);
+
 
         getLifecycle().addObserver(new Observardor());
 
@@ -445,7 +472,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
     public void filtraritem() {
 
-        String url = "http://" + cambiarIP.ip + "/validar/cantidadfiltre.php?op=" + resuldato3.getSelectedItem().toString(); // SE DEBE CAMBIAR
+        String url = "http://" + cambiarIP.ip + "/validar/cantidadfiltre.php?op=" + NumeroItem.getSelectedItem().toString(); // SE DEBE CAMBIAR
         cliente.post(url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -479,13 +506,13 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                 dato3.add(a);
             }
             ArrayAdapter<cantidades> a = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, dato3);
-            resuldato.setAdapter(a);
+            Actividad.setAdapter(a);
 
             Validar.setEnabled(true);
 
             Intent cantidad = new Intent(OperadorActivity.this, ServicioCantidad.class);
-            cantidad.putExtra("OP", resuldato3.getSelectedItem().toString());
-            cantidad.putExtra("tarea", resuldato.getSelectedItem().toString());
+            cantidad.putExtra("OP", NumeroItem.getSelectedItem().toString());
+            cantidad.putExtra("tarea", Actividad.getSelectedItem().toString());
             startService(cantidad);
 
         } catch (Exception e) {
@@ -506,7 +533,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                 dato.add(a);
             }
             ArrayAdapter<OPS> a = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, dato);
-            resuldato3.setAdapter(a);
+            NumeroItem.setAdapter(a);
 
 
         } catch (Exception e) {
@@ -552,7 +579,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                 dato.add(a);
             }
             ArrayAdapter<OPS> a = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, dato);
-            resuldato3.setAdapter(a);
+            NumeroItem.setAdapter(a);
 
             filtraritem();
 
@@ -573,7 +600,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                 dato3.add(a);
             }
             ArrayAdapter<cantidades> a = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, dato3);
-            resuldato.setAdapter(a);
+            Actividad.setAdapter(a);
 
 
         } catch (Exception e) {
@@ -593,7 +620,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                 dato2.add(b);
             }
             ArrayAdapter<motivoparo> a = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, dato2);
-            resuldato2.setAdapter(a);
+            NombreParo.setAdapter(a);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -637,7 +664,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                 dato2.add(b);
             }
             ArrayAdapter<motivoparo> a = new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, dato2);
-            resuldato2.setAdapter(a);
+            NombreParo.setAdapter(a);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -672,7 +699,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                 try {
                     Thread.sleep(1000);
 
-                    String responses = HttpRequest.get("http://" + cambiarIP.ip + "/validar/validarcantidad.php?numero=" + resuldato3.getSelectedItem().toString() + "&tarea=" + resuldato.getSelectedItem().toString()).body();
+                    String responses = HttpRequest.get("http://" + cambiarIP.ip + "/validar/validarcantidad.php?numero=" + NumeroItem.getSelectedItem().toString() + "&tarea=" + Actividad.getSelectedItem().toString()).body();
                     try {
                         JSONArray objecto = new JSONArray(responses);
                         int variable = Integer.parseInt(objecto.getString(0));
@@ -706,10 +733,10 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             @Override
             public void run() {
 
-                String responses = HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidad_en_op.php?cod=" + resuldato3.getSelectedItem().toString() + "&op=" + op.getText().toString()).body();
+                String responses = HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidad_en_op.php?cod=" + NumeroItem.getSelectedItem().toString() + "&op=" + op.getText().toString()).body();
                 try {
                     JSONArray objecto = new JSONArray(responses);
-                    int variable = Integer.parseInt(objecto.getString(0));
+                     int variable = Integer.parseInt(objecto.getString(0));
 
                     if (variable == 0) {
 
@@ -729,7 +756,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                         new Thread(new Runnable() {
                                             @Override
                                             public void run() {
-                                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/limpiar.php?id=" + resuldato3.getSelectedItem().toString()).body();
+                                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/limpiar.php?id=" + NumeroItem.getSelectedItem().toString()).body();
 
                                             }
                                         }).start();
@@ -753,14 +780,14 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                             }
                         });
                     }else{
+
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-
                                 AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
-                                builder.setTitle("NO HAY DATOS DE LA ORDEN DE PRODUCCION");
-                                builder.setIcon(R.drawable.finish_op);
-                                builder.setMessage("LA ORDEN DE PRODUCCION NO EXISTE O AUN NO HA SIDO REGISTRADA");
+                                builder.setTitle("LA ORDEN DE PRODUCCION EXISTE");
+                                builder.setIcon(R.drawable.checker);
+                                    builder.setMessage("EXISTEN CANTIDADES DE LA ORDEN DE PRODUCCION");
 
                                 builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
                                     @Override
@@ -809,14 +836,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                 @Override
                 public void run() {
                     try {
-                       /* String respuesta = HttpRequest.get("http://" + cambiarIP.ip + "/validarOperador/ValidarOperador.php?id=" + id.getText().toString()).body();
-                        JSONArray respuestaobjecto = new JSONArray(respuesta);
-                        if (respuestaobjecto.length() > 0) {
-
-                            BtnIngreso.setEnabled(false);
-                            BtnIngreso.setBackgroundColor(Color.parseColor("#919191"));
-                        }
-                        if(respuestaobjecto.length() == 0){}*/
 
                             String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/operador.php?id=" + id.getText().toString()).body();
                             JSONArray objecto = new JSONArray(response);
@@ -883,8 +902,8 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
     public void verificar() {
 
-        final String Nitem = resuldato3.getSelectedItem().toString();
-        final String nombretarea = resuldato.getSelectedItem().toString();
+        final String Nitem = NumeroItem.getSelectedItem().toString();
+        final String nombretarea = Actividad.getSelectedItem().toString();
         hilo = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -942,8 +961,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                 @Override
                                 public void run() {
 
-
-                                    ((TextView) resuldato.getSelectedView()).setTextColor(getResources().getColor(R.color.RED));
+                                     ((TextView) Actividad.getSelectedView()).setTextColor(getResources().getColor(R.color.RED));
 
                                     BtnIngreso.setEnabled(false);
                                     Btnsalida.setEnabled(false);
@@ -1022,7 +1040,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         codemotivo = tiempo1.findViewById(R.id.codemotivo);
 
         motivo = tiempo1.findViewById(R.id.MOTIVO);
-        resuldato2 = tiempo1.findViewById(R.id.spinner2);
+        NombreParo = tiempo1.findViewById(R.id.NameParo);
 
 
         validarinfo.setEnabled(false);
@@ -1057,13 +1075,13 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
         //TEXTVIEW Y SPINNER
         motivo.setVisibility(View.VISIBLE);
-        resuldato2.setVisibility(View.VISIBLE);
+        NombreParo.setVisibility(View.VISIBLE);
         validarinfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 validarinfo.setEnabled(false);
-                resuldato2.setEnabled(false);
+                NombreParo.setEnabled(false);
                 codemotivo.setEnabled(false);
 
                 go.setEnabled(true);
@@ -1071,11 +1089,11 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        String mostrardatos = resuldato2.getSelectedItem().toString();
+                        String mostrardatos = NombreParo.getSelectedItem().toString();
                         Toast.makeText(getApplicationContext(), "USTED SELECCIÓNO " + mostrardatos, Toast.LENGTH_SHORT).show();
                     }
                 });
-                textToSpeech.speak(resuldato2.getSelectedItem().toString());
+                textToSpeech.speak(NombreParo.getSelectedItem().toString());
 
             }
         });
@@ -1104,7 +1122,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             @Override
             public void onClick(View view) {
 
-                final String prueba = resuldato2.getSelectedItem().toString();
+                final String prueba = NombreParo.getSelectedItem().toString();
 
                 // imprime fecha
                 dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
@@ -1121,7 +1139,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                     @Override
                     public void run() {
 
-                        HttpRequest.get("http://" + cambiarIP.ip + "/validar/RegistrarMotivo.php?op=" + op.getText().toString() + "&id=" + id.getText().toString() + "&paro=" + paro.getText().toString() + "&motivo=" + prueba + "&code=" + codemotivo.getText().toString() + "&fecha=" + fechas + "&hora=" + horas + "&tarea=" + resuldato.getSelectedItem().toString()).body();
+                        HttpRequest.get("http://" + cambiarIP.ip + "/validar/RegistrarMotivo.php?op=" + op.getText().toString() + "&id=" + id.getText().toString() + "&paro=" + paro.getText().toString() + "&motivo=" + prueba + "&code=" + codemotivo.getText().toString() + "&fecha=" + fechas + "&hora=" + horas + "&tarea=" + Actividad.getSelectedItem().toString()).body();
 
                     }
                 });
@@ -1147,90 +1165,24 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
         go.setEnabled(false);
 
-        hilo = new Thread(new Runnable() {
+        Intent cantidad = new Intent(OperadorActivity.this, ServicioContador.class);
+        startService(cantidad);
 
-            @Override
-            public void run() {
-
-                try {
-
-                    i = 0;
-                    minuto = 0;
-                    hora = 0;
-
-
-                    for (i = 0; i <= 60; i++) {
-                        System.out.println(i);
-
-                        Thread.sleep(1000);
-
-                        if (i == 60) {
-                            i = 0;
-                            minuto++;
-
-                        }
-
-                        if (minuto == 59) {
-                            minuto = 0;
-                            hora++;
-                        }
-
-                        if (hora == 12) {
-                            hora = 0;
-
-                        }
-
-                        NumberFormat formatter = new DecimalFormat("00");
-                        final String segund = formatter.format(i); // ----> 01
-
-                        NumberFormat formatterMinutes = new DecimalFormat("00");
-                        final String minute = formatterMinutes.format(minuto); // ----> 01
-
-                        NumberFormat formatterHoues = new DecimalFormat("00");
-                        final String hours = formatterHoues.format(hora); // ----> 01
-
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-
-                                MOSTRAR.setText(hours + ":" + minute + ":" + segund);
-
-                            }
-                        });
-
-                    }
-
-                } catch (Exception e) {
-                    // TODO: handle exception
-                    e.printStackTrace();
-
-
-                }
-
-
-            }
-
-
-        });
-        hilo.start();
-        hilo.setPriority(Thread.NORM_PRIORITY);
-        if (hilo != null) {
-            stop.setEnabled(true);
-
-
-        }
+        stop.setEnabled(true);
 
     }
 
     public void stop(View v) {
+        stopService(new Intent(OperadorActivity.this, ServicioContador.class));
+
         stop.setEnabled(false);
+
         go.setEnabled(false);
         BtnHora.setEnabled(true);
         if (paro != null) {
 
             motivo.setVisibility(View.VISIBLE);
-            resuldato2.setVisibility(View.VISIBLE);
-            hilo.interrupt();
+            NombreParo.setVisibility(View.VISIBLE);
 
         }
 
@@ -1263,8 +1215,8 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         textToSpeech.speak("PUEDE EMPEZAR A REALIZAR SU LABOR");
 
         final String fechas = edit.getText().toString();
-        final String Nop = resuldato3.getSelectedItem().toString();
-        final String tarea = resuldato.getSelectedItem().toString();
+        final String Nop = NumeroItem.getSelectedItem().toString();
+        final String tarea = Actividad.getSelectedItem().toString();
         builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
 
             @Override
@@ -1276,18 +1228,12 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                     public void run() {
 
                         try {
-                            final String nombretarea = resuldato.getSelectedItem().toString();
-                            String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/Sobrante.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + nombretarea).body();
+                            final String nombretarea = Actividad.getSelectedItem().toString();
+                            String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/Sobrante.php?op=" + NumeroItem.getSelectedItem().toString() + "&tarea=" + nombretarea).body();
                             JSONArray validar = new JSONArray(response);
                             int validator = Integer.parseInt(validar.getString(0));
-                            System.out.println("EL VALOR " + validator);
 
                             if (validator == 0) {
-
-                                Intent cantidad = new Intent(OperadorActivity.this, ServicioCantidad.class);
-                                cantidad.putExtra("OP", resuldato3.getSelectedItem().toString());
-                                cantidad.putExtra("tarea", resuldato.getSelectedItem().toString());
-                                startService(cantidad);
 
                                 runOnUiThread(new Runnable() {
                                     @Override
@@ -1298,24 +1244,18 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                     }
                                 });
 
-                                String respuesta = HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadedits.php?cod=" + resuldato3.getSelectedItem().toString() + "&op=" + op.getText().toString()).body();
+                                String respuesta = HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidad_en_op.php?cod=" + NumeroItem.getSelectedItem().toString() + "&op=" + op.getText().toString()).body();
                                 JSONArray validartor = new JSONArray(respuesta);
                                 int real = Integer.parseInt(validartor.getString(0));
+                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodifi.php?op=" + NumeroItem.getSelectedItem().toString() + "&totales=" + real).body();
 
-                                System.out.println("ESTO SUCEDIO");
-                                String responses = HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadedits.php?cod=" + resuldato3.getSelectedItem().toString() + "&op=" + op.getText().toString()).body();
-
-                                JSONArray RESTARCANTIDAD = new JSONArray(responses);
-                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodifi.php?op=" + resuldato3.getSelectedItem().toString() + "&totales=" + RESTARCANTIDAD.getString(0)).body();
-
+                                Intent cantidad = new Intent(OperadorActivity.this, ServicioCantidad.class);
+                                cantidad.putExtra("OP", NumeroItem.getSelectedItem().toString());
+                                cantidad.putExtra("tarea", Actividad.getSelectedItem().toString());
+                                startService(cantidad);
 
                             }
                             if (validator > 0) {
-
-                                Intent cantidad = new Intent(OperadorActivity.this, ServicioCantidad.class);
-                                cantidad.putExtra("OP", resuldato3.getSelectedItem().toString());
-                                cantidad.putExtra("tarea", resuldato.getSelectedItem().toString());
-                                startService(cantidad);
 
                                 runOnUiThread(new Runnable() {
                                     @Override
@@ -1346,6 +1286,11 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                         alert.setCanceledOnTouchOutside(false);
                                     }
                                 });
+
+                                Intent cantidad = new Intent(OperadorActivity.this, ServicioCantidad.class);
+                                cantidad.putExtra("OP", NumeroItem.getSelectedItem().toString());
+                                cantidad.putExtra("tarea", Actividad.getSelectedItem().toString());
+                                startService(cantidad);
 
                             }
 
@@ -1391,7 +1336,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         cantidad = view.findViewById(R.id.digicantidad);
 
 
-        final String tarea = resuldato.getSelectedItem().toString(); //**
+        final String tarea = Actividad.getSelectedItem().toString(); //**
 
         // imprime fecha
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
@@ -1433,13 +1378,13 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                     error = resuldato4.getSelectedItem().toString();
 
 
-                    final String nombretarea = resuldato.getSelectedItem().toString();
+                    final String nombretarea = Actividad.getSelectedItem().toString();
 
 
                     hilo = new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/Sobrante.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + nombretarea).body();
+                            String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/Sobrante.php?op=" + NumeroItem.getSelectedItem().toString() + "&tarea=" + nombretarea).body();
 
                             try {
 
@@ -1449,7 +1394,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                 volumencan = Integer.parseInt(cantidad.getText().toString());
                                 cantidadpro = Integer.parseInt(RESTARCANTIDAD.getString(0));
 
-                                String respuesta = HttpRequest.get("http://" + cambiarIP.ip + "/validar/SobranteOP.php?op=" + op.getText().toString() + "&cod=" + resuldato3.getSelectedItem().toString()).body();
+                                String respuesta = HttpRequest.get("http://" + cambiarIP.ip + "/validar/SobranteOP.php?op=" + op.getText().toString() + "&cod=" + NumeroItem.getSelectedItem().toString()).body();
                                 JSONArray OTRACANTIDAD = new JSONArray(respuesta);
 
                                 cantidadotra = Integer.parseInt(OTRACANTIDAD.getString(0));
@@ -1472,17 +1417,17 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                     if (tool >= 0) {
                                         if (sumatoria <= cantidadpro) {
 
-                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizarop.php?op=" + op.getText().toString() + "&totales=" + sqlmala + "&codigo=" + resuldato3.getSelectedItem().toString()).body();
+                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizarop.php?op=" + op.getText().toString() + "&totales=" + sqlmala + "&codigo=" + NumeroItem.getSelectedItem().toString()).body();
 
-                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadupdate.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + nombretarea.toString() + "&totales=" + ends).body();
+                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadupdate.php?op=" + NumeroItem.getSelectedItem().toString() + "&tarea=" + nombretarea.toString() + "&totales=" + ends).body();
 
-                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodificar.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + nombretarea.toString() + "&totales=" + sqlmala + "&codigo=" + op.getText().toString()).body();
+                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodificar.php?op=" + NumeroItem.getSelectedItem().toString() + "&tarea=" + nombretarea.toString() + "&totales=" + sqlmala + "&codigo=" + op.getText().toString()).body();
 
                                             HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizaSalida.php?id=" + id.getText().toString() + "&cantidad=" + volumen + "&Ffinal=" + fechas.toString() + "&Hfinal=" + horas.toString() + "&motivo=" + error.toString() + "&conforme=" + falla.toString() + "&tarea=" + nombretarea.toString() + "&op=" + op.getText().toString()).body();
 
                                             Intent cantidad = new Intent(OperadorActivity.this, ServicioCantidad.class);
-                                            cantidad.putExtra("OP", resuldato3.getSelectedItem().toString());
-                                            cantidad.putExtra("tarea", resuldato.getSelectedItem().toString());
+                                            cantidad.putExtra("OP", NumeroItem.getSelectedItem().toString());
+                                            cantidad.putExtra("tarea", Actividad.getSelectedItem().toString());
                                             startService(cantidad);
 
                                             verificar();

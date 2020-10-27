@@ -21,9 +21,6 @@ public class TTS {
                         Log.e("erro", "ESTE LENGUAJE NO ES PERMITIDO");
                     } else {
 
-                        textToSpeech.setPitch(0.8f);
-                        textToSpeech.setSpeechRate(1.1f);
-
                     }
                 }
             }
@@ -34,14 +31,6 @@ public class TTS {
     }
 
 
-// --Commented out by Inspection START (26/10/2020 11:22 AM):
-//    public void onStop() {
-//        if (textToSpeech != null) {
-//            System.out.println("ESTO SE DETUBO " + textToSpeech.stop());
-//            textToSpeech.stop();
-//        }
-//    }
-// --Commented out by Inspection STOP (26/10/2020 11:22 AM)
 
     public void speak(String text) {
 
