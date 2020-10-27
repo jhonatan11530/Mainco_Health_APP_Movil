@@ -25,7 +25,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -154,7 +153,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                 addrs = Collections.list(intf.getInetAddresses());
                 for (InetAddress addr : addrs) {
                     if (!addr.isLoopbackAddress() && addr instanceof Inet4Address) {
-                        address = addr.getHostAddress().toUpperCase(new Locale("es", "MX"));
+                        address = addr.getHostAddress().toUpperCase(new Locale("es", "CO"));
                     }
                 }
             }
@@ -243,7 +242,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         BtnIngreso.setEnabled(false);
         Btnsalida.setEnabled(false);
         Validar.setEnabled(false);
-
 
 
         op.addTextChangedListener(new TextWatcher() {
@@ -779,8 +777,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
             id.setError("ID ES REQUERIDO !");
         } else {
-
-
 
 
             validar();
@@ -1340,8 +1336,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         alert.setCanceledOnTouchOutside(false);
 
 
-
-
     }
 
     public void salida(View v) {
@@ -1414,7 +1408,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                 volumencan = Integer.parseInt(cantidad.getText().toString());
                                 cantidadpro = Integer.parseInt(RESTARCANTIDAD.getString(0));
 
-                                String respuesta = HttpRequest.get("http://" + cambiarIP.ip + "/validar/SobranteOP.php?op=" +op.getText().toString()+ "&cod=" +resuldato3.getSelectedItem().toString() ).body();
+                                String respuesta = HttpRequest.get("http://" + cambiarIP.ip + "/validar/SobranteOP.php?op=" + op.getText().toString() + "&cod=" + resuldato3.getSelectedItem().toString()).body();
                                 JSONArray OTRACANTIDAD = new JSONArray(respuesta);
 
                                 cantidadotra = Integer.parseInt(OTRACANTIDAD.getString(0));
@@ -1437,7 +1431,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                     if (tool >= 0) {
                                         if (sumatoria <= cantidadpro) {
 
-                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizarop.php?op=" + op.getText().toString()+ "&totales=" + sqlmala + "&codigo=" +resuldato3.getSelectedItem().toString()).body();
+                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizarop.php?op=" + op.getText().toString() + "&totales=" + sqlmala + "&codigo=" + resuldato3.getSelectedItem().toString()).body();
 
                                             HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadupdate.php?op=" + resuldato3.getSelectedItem().toString() + "&tarea=" + nombretarea.toString() + "&totales=" + ends).body();
 
