@@ -26,23 +26,7 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Services/ServicioActividad.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Services/ServicioActividad.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Services/ServicioCantidad.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Services/ServicioCantidad.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Services/ServicioItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Services/ServicioItems.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Services/ServicioMotivoParo.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Services/ServicioMotivoParo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/Services/ServicioProductoMalo.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Services/ServicioProductoMalo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/BatteryReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Receiver/BatteryReceiver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/HELPCOMP.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/GET_SET/HELPCOMP.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/LoginActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/OlvidoActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/OlvidoActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/OperadorActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/OperadorActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/RegistroActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/RegistroActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/TTS.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/TSS/TTS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/cambiarIP.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/IP/cambiarIP.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/options.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/options.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/roles.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/GET_SET/roles.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -353,22 +337,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="553" y="257" key="Github.ShareDialog/0.0.1366.728@0.0.1366.728" timestamp="1596674572787" />
-    <state width="1350" height="2" key="GridCell.Tab.0.bottom" timestamp="1603796788831">
+    <state width="559" height="2" key="GridCell.Tab.0.bottom" timestamp="1603805336181">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1350" height="2" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1603796788831" />
-    <state width="1350" height="2" key="GridCell.Tab.0.center" timestamp="1603796788831">
+    <state width="559" height="2" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1603805336181" />
+    <state width="559" height="2" key="GridCell.Tab.0.center" timestamp="1603805336180">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1350" height="2" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1603796788831" />
-    <state width="1350" height="2" key="GridCell.Tab.0.left" timestamp="1603796788831">
+    <state width="559" height="2" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1603805336180" />
+    <state width="559" height="2" key="GridCell.Tab.0.left" timestamp="1603805336180">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1350" height="2" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1603796788831" />
-    <state width="1350" height="2" key="GridCell.Tab.0.right" timestamp="1603796788831">
+    <state width="559" height="2" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1603805336180" />
+    <state width="559" height="2" key="GridCell.Tab.0.right" timestamp="1603805336180">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1350" height="2" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1603796788831" />
+    <state width="559" height="2" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1603805336180" />
     <state width="1367" height="230" key="GridCell.Tab.1.bottom" timestamp="1603746081984">
       <screen x="0" y="0" width="1366" height="738" />
     </state>

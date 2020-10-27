@@ -706,8 +706,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             @Override
             public void run() {
 
-
-                String responses = HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadedits.php?cod=" + resuldato3.getSelectedItem().toString() + "&op=" + op.getText().toString()).body();
+                String responses = HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidad_en_op.php?cod=" + resuldato3.getSelectedItem().toString() + "&op=" + op.getText().toString()).body();
                 try {
                     JSONArray objecto = new JSONArray(responses);
                     int variable = Integer.parseInt(objecto.getString(0));
@@ -753,6 +752,28 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
                             }
                         });
+                    }else{
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+                                AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
+                                builder.setTitle("NO HAY DATOS DE LA ORDEN DE PRODUCCION");
+                                builder.setIcon(R.drawable.finish_op);
+                                builder.setMessage("LA ORDEN DE PRODUCCION NO EXISTE O AUN NO HA SIDO REGISTRADA");
+
+                                builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                                    }
+                                });
+                                AlertDialog alert = builder.create();
+                                alert.show();
+                                alert.setCanceledOnTouchOutside(false);
+
+                            }
+                        });
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -788,52 +809,64 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                 @Override
                 public void run() {
                     try {
+                       /* String respuesta = HttpRequest.get("http://" + cambiarIP.ip + "/validarOperador/ValidarOperador.php?id=" + id.getText().toString()).body();
+                        JSONArray respuestaobjecto = new JSONArray(respuesta);
+                        if (respuestaobjecto.length() > 0) {
 
-
-                        String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/operador.php?id=" + id.getText().toString()).body();
-                        JSONArray objecto = new JSONArray(response);
-
-
-                        if (response.length() > 0) {
-
-
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    BtnIngreso.setEnabled(true);
-                                    BtnIngreso.setBackgroundColor(Color.parseColor("#2196F3"));
-
-                                    Btnsalida.setEnabled(false);
-                                    BtnParo.setEnabled(false);
-
-                                }
-                            });
-                            NOMBRE = objecto.getString(0);
-
-                            resultados.setText("OPERADOR : " + NOMBRE.toString());
-
+                            BtnIngreso.setEnabled(false);
+                            BtnIngreso.setBackgroundColor(Color.parseColor("#919191"));
                         }
-                        if (response.length() == 0) {
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
-                                    builder.setTitle("EL OPERADOR NO EXISTE");
-                                    builder.setIcon(R.drawable.informacion);
-                                    builder.setMessage("EL OPERARIO NO ESTA REGISTRADO ");
+                        if(respuestaobjecto.length() == 0){}*/
 
-                                    builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
+                            String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/operador.php?id=" + id.getText().toString()).body();
+                            JSONArray objecto = new JSONArray(response);
 
-                                        }
-                                    });
-                                    AlertDialog alert = builder.create();
-                                    alert.show();
-                                    alert.setCanceledOnTouchOutside(false);
-                                }
-                            });
-                        }
+                            if (response.length() > 0) {
+
+
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        BtnIngreso.setEnabled(true);
+                                        BtnIngreso.setBackgroundColor(Color.parseColor("#2196F3"));
+
+                                        Btnsalida.setEnabled(false);
+                                        BtnParo.setEnabled(false);
+
+                                    }
+                                });
+                                NOMBRE = objecto.getString(0);
+
+                                resultados.setText("OPERADOR : " + NOMBRE.toString());
+
+                            }
+
+                            if (response.length() == 0) {
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
+                                        builder.setTitle("EL OPERADOR NO EXISTE");
+                                        builder.setIcon(R.drawable.informacion);
+                                        builder.setMessage("EL OPERARIO NO ESTA REGISTRADO ");
+
+                                        builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                                            }
+                                        });
+                                        AlertDialog alert = builder.create();
+                                        alert.show();
+                                        alert.setCanceledOnTouchOutside(false);
+                                    }
+                                });
+                            }
+
+
+
+
+
 
                     } catch (Exception e) {
                     }
@@ -1207,11 +1240,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
     public void registrar(View v) {
 
-        Intent cantidad = new Intent(OperadorActivity.this, ServicioCantidad.class);
-        cantidad.putExtra("OP", resuldato3.getSelectedItem().toString());
-        cantidad.putExtra("tarea", resuldato.getSelectedItem().toString());
-        startService(cantidad);
-
         id = findViewById(R.id.operador);
 
         // imprime fecha
@@ -1256,6 +1284,11 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
                             if (validator == 0) {
 
+                                Intent cantidad = new Intent(OperadorActivity.this, ServicioCantidad.class);
+                                cantidad.putExtra("OP", resuldato3.getSelectedItem().toString());
+                                cantidad.putExtra("tarea", resuldato.getSelectedItem().toString());
+                                startService(cantidad);
+
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
@@ -1278,6 +1311,11 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
                             }
                             if (validator > 0) {
+
+                                Intent cantidad = new Intent(OperadorActivity.this, ServicioCantidad.class);
+                                cantidad.putExtra("OP", resuldato3.getSelectedItem().toString());
+                                cantidad.putExtra("tarea", resuldato.getSelectedItem().toString());
+                                startService(cantidad);
 
                                 runOnUiThread(new Runnable() {
                                     @Override
