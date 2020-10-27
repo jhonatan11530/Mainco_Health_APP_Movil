@@ -8,6 +8,7 @@ import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import Receiver.BatteryReceiver;
 import Services.ServicioConnecting;
 
 public class MainActivity extends AppCompatActivity {

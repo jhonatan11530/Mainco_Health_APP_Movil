@@ -16,6 +16,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.loopj.android.http.AsyncHttpClient;
 
 import Http_Conexion.HttpRequest;
+import IP.cambiarIP;
+import TSS.TTS;
 
 
 public class RegistroActivity extends AppCompatActivity {

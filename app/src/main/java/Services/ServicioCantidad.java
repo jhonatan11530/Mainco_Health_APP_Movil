@@ -4,7 +4,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
-import com.Mainco.App.cambiarIP;
+import IP.cambiarIP;
 
 import org.json.JSONArray;
 import org.json.JSONException;

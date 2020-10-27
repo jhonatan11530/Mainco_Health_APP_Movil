@@ -26,14 +26,30 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Services/ServicioActividad.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Services/ServicioActividad.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Services/ServicioCantidad.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Services/ServicioCantidad.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Services/ServicioItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Services/ServicioItems.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Services/ServicioMotivoParo.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Services/ServicioMotivoParo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/Services/ServicioProductoMalo.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Services/ServicioProductoMalo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/BatteryReceiver.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/Receiver/BatteryReceiver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/HELPCOMP.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/GET_SET/HELPCOMP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/LoginActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/OlvidoActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/OlvidoActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/OperadorActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/OperadorActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/RegistroActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/RegistroActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/TTS.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/TSS/TTS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/cambiarIP.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/IP/cambiarIP.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/options.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/options.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/roles.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/GET_SET/roles.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[J6_PLUS_API_28]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -312,10 +328,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="430" y="166" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1366.738@0.0.1366.738" timestamp="1603797643680" />
-    <state x="92" y="92" width="1182" height="554" key="AVDManager" timestamp="1603722306875">
+    <state x="92" y="92" width="1182" height="554" key="AVDManager" timestamp="1603798991362">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="92" y="92" width="1182" height="554" key="AVDManager/0.0.1366.738@0.0.1366.738" timestamp="1603722306875" />
+    <state x="92" y="92" width="1182" height="554" key="AVDManager/0.0.1366.738@0.0.1366.738" timestamp="1603798991362" />
     <state x="263" y="124" key="AndroidCreateResourceDirectoryDialog" timestamp="1597864817826">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -382,10 +398,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="267" y="117" key="caller.chooser.dialog/0.0.1366.738@0.0.1366.738" timestamp="1603724231435" />
-    <state x="499" y="147" key="chooseDestDirectoryDialog" timestamp="1603729135862">
+    <state x="499" y="147" key="chooseDestDirectoryDialog" timestamp="1603798594984">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="499" y="147" key="chooseDestDirectoryDialog/0.0.1366.738@0.0.1366.738" timestamp="1603729135862" />
+    <state x="499" y="147" key="chooseDestDirectoryDialog/0.0.1366.738@0.0.1366.738" timestamp="1603798594984" />
     <state x="92" y="92" width="1182" height="554" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1603538516099">
       <screen x="0" y="0" width="1366" height="738" />
     </state>

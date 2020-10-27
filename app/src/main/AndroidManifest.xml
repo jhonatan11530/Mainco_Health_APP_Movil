@@ -43,7 +43,7 @@
             android:exported="false" />
 
         <receiver
-            android:name=".BatteryReceiver"
+            android:name="Receiver.BatteryReceiver"
             android:enabled="true"
             android:exported="false" />
 

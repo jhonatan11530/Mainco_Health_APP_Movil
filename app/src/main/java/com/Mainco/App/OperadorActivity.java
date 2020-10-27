@@ -57,11 +57,14 @@ import GET_SET.cantidades;
 import GET_SET.cantidadfallas;
 import GET_SET.motivoparo;
 import Http_Conexion.HttpRequest;
+import IP.cambiarIP;
+import Receiver.BatteryReceiver;
 import Services.ServicioActividad;
 import Services.ServicioCantidad;
 import Services.ServicioItems;
 import Services.ServicioMotivoParo;
 import Services.ServicioProductoMalo;
+import TSS.TTS;
 import cz.msebera.android.httpclient.Header;
 
 @SuppressWarnings("ALL")

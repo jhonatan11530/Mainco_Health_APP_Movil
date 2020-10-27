@@ -1,4 +1,4 @@
-package com.Mainco.App;
+package Receiver;
 
 
 import android.annotation.SuppressLint;

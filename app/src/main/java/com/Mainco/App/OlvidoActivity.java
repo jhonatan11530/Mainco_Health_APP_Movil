@@ -17,6 +17,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import org.json.JSONArray;
 
 import Http_Conexion.HttpRequest;
+import IP.cambiarIP;
+import TSS.TTS;
 
 public class OlvidoActivity extends AppCompatActivity {
 
