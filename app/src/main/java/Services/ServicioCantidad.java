@@ -4,12 +4,11 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
-import IP.cambiarIP;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 
 import Http_Conexion.HttpRequest;
+import IP.cambiarIP;
 
 public class ServicioCantidad extends Service {
     public ServicioCantidad() {
@@ -20,7 +19,7 @@ public class ServicioCantidad extends Service {
         super.onStartCommand(intent, flags, startId);
         final String resuldato3 = intent.getStringExtra("OP");
         final String resuldato = intent.getStringExtra("tarea");
-        System.out.println("MENSAJE "+resuldato3+" "+resuldato);
+        System.out.println("MENSAJE " + resuldato3 + " " + resuldato);
         ejecutar(resuldato3, resuldato);
 
         return START_STICKY;

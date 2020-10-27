@@ -43,8 +43,6 @@ import org.json.JSONException;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -85,7 +83,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
     private EditText id, cantidad, paro, fallas, op, codemotivo;
     private String falla, error, VaribleTOTA, NOMBRE;
-    private TextView motivo, MOSTRAR, texto, resultados,MostrarCantidadOP;
+    private TextView motivo, MOSTRAR, texto, resultados, MostrarCantidadOP;
     private Button go, stop, BtnParo, positivo, neutrar, BtnIngreso, Btnsalida, validarinfo, Validar, BtnHora;
     private int minuto, segundo, horas, i, hora, cantidadpro, cantidadotra, volumencan, total, volumen;
     private ArrayList dato3 = new ArrayList<>();
@@ -736,7 +734,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                 String responses = HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidad_en_op.php?cod=" + NumeroItem.getSelectedItem().toString() + "&op=" + op.getText().toString()).body();
                 try {
                     JSONArray objecto = new JSONArray(responses);
-                     int variable = Integer.parseInt(objecto.getString(0));
+                    int variable = Integer.parseInt(objecto.getString(0));
 
                     if (variable == 0) {
 
@@ -779,7 +777,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
                             }
                         });
-                    }else{
+                    } else {
 
                         runOnUiThread(new Runnable() {
                             @Override
@@ -787,7 +785,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                 AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
                                 builder.setTitle("LA ORDEN DE PRODUCCION EXISTE");
                                 builder.setIcon(R.drawable.checker);
-                                    builder.setMessage("EXISTEN CANTIDADES DE LA ORDEN DE PRODUCCION");
+                                builder.setMessage("EXISTEN CANTIDADES DE LA ORDEN DE PRODUCCION");
 
                                 builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
                                     @Override
@@ -837,54 +835,50 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                 public void run() {
                     try {
 
-                            String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/operador.php?id=" + id.getText().toString()).body();
-                            JSONArray objecto = new JSONArray(response);
+                        String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/operador.php?id=" + id.getText().toString()).body();
+                        JSONArray objecto = new JSONArray(response);
 
-                            if (response.length() > 0) {
-
-
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        BtnIngreso.setEnabled(true);
-                                        BtnIngreso.setBackgroundColor(Color.parseColor("#2196F3"));
-
-                                        Btnsalida.setEnabled(false);
-                                        BtnParo.setEnabled(false);
-
-                                    }
-                                });
-                                NOMBRE = objecto.getString(0);
-
-                                resultados.setText("OPERADOR : " + NOMBRE.toString());
-
-                            }
-
-                            if (response.length() == 0) {
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
-                                        builder.setTitle("EL OPERADOR NO EXISTE");
-                                        builder.setIcon(R.drawable.informacion);
-                                        builder.setMessage("EL OPERARIO NO ESTA REGISTRADO ");
-
-                                        builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialogInterface, int i) {
-
-                                            }
-                                        });
-                                        AlertDialog alert = builder.create();
-                                        alert.show();
-                                        alert.setCanceledOnTouchOutside(false);
-                                    }
-                                });
-                            }
+                        if (response.length() > 0) {
 
 
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    BtnIngreso.setEnabled(true);
+                                    BtnIngreso.setBackgroundColor(Color.parseColor("#2196F3"));
 
+                                    Btnsalida.setEnabled(false);
+                                    BtnParo.setEnabled(false);
 
+                                }
+                            });
+                            NOMBRE = objecto.getString(0);
+
+                            resultados.setText("OPERADOR : " + NOMBRE.toString());
+
+                        }
+
+                        if (response.length() == 0) {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
+                                    builder.setTitle("EL OPERADOR NO EXISTE");
+                                    builder.setIcon(R.drawable.informacion);
+                                    builder.setMessage("EL OPERARIO NO ESTA REGISTRADO ");
+
+                                    builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                                        }
+                                    });
+                                    AlertDialog alert = builder.create();
+                                    alert.show();
+                                    alert.setCanceledOnTouchOutside(false);
+                                }
+                            });
+                        }
 
 
                     } catch (Exception e) {
@@ -961,7 +955,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                 @Override
                                 public void run() {
 
-                                     ((TextView) Actividad.getSelectedView()).setTextColor(getResources().getColor(R.color.RED));
+                                    ((TextView) Actividad.getSelectedView()).setTextColor(getResources().getColor(R.color.RED));
 
                                     BtnIngreso.setEnabled(false);
                                     Btnsalida.setEnabled(false);

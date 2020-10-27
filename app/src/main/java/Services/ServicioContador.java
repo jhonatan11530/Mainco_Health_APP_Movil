@@ -1,7 +1,6 @@
 package Services;
 
 import android.app.Service;
-import android.content.ComponentName;
 import android.content.Intent;
 import android.os.IBinder;
 
@@ -9,14 +8,15 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 public class ServicioContador extends Service {
-    private int i,minuto,hora;
+    private int i, minuto, hora;
     private boolean running;
+
     public ServicioContador() {
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-         super.onStartCommand(intent, flags, startId);
+        super.onStartCommand(intent, flags, startId);
 
         running = true;
         Thread hilo = new Thread(new Runnable() {
@@ -31,7 +31,7 @@ public class ServicioContador extends Service {
                     hora = 0;
 
 
-                    while(running)  {
+                    while (running) {
                         i++;
                         Thread.sleep(1000);
 
