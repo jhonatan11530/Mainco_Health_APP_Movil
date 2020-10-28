@@ -509,7 +509,8 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             Validar.setEnabled(true);
 
             Intent cantidad = new Intent(OperadorActivity.this, ServicioCantidad.class);
-            cantidad.putExtra("OP", NumeroItem.getSelectedItem().toString());
+            cantidad.putExtra("op", op.getText().toString());
+            cantidad.putExtra("cod", NumeroItem.getSelectedItem().toString());
             cantidad.putExtra("tarea", Actividad.getSelectedItem().toString());
             startService(cantidad);
 
@@ -1243,10 +1244,11 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                 int real = Integer.parseInt(validartor.getString(0));
                                 HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodifi.php?cod=" + NumeroItem.getSelectedItem().toString() + "&totales=" + real+"&op="+op.getText().toString()).body();
 
-                               /* Intent cantidad = new Intent(OperadorActivity.this, ServicioCantidad.class);
-                                cantidad.putExtra("OP", NumeroItem.getSelectedItem().toString());
+                                Intent cantidad = new Intent(OperadorActivity.this, ServicioCantidad.class);
+                                cantidad.putExtra("op", op.getText().toString());
+                                cantidad.putExtra("cod", NumeroItem.getSelectedItem().toString());
                                 cantidad.putExtra("tarea", Actividad.getSelectedItem().toString());
-                                startService(cantidad);*/
+                                startService(cantidad);
 
                             }
                             if (validator > 0) {
@@ -1278,10 +1280,11 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                     }
                                 });
 
-                               /* Intent cantidad = new Intent(OperadorActivity.this, ServicioCantidad.class);
-                                cantidad.putExtra("OP", NumeroItem.getSelectedItem().toString());
+                                Intent cantidad = new Intent(OperadorActivity.this, ServicioCantidad.class);
+                                cantidad.putExtra("op", op.getText().toString());
+                                cantidad.putExtra("cod", NumeroItem.getSelectedItem().toString());
                                 cantidad.putExtra("tarea", Actividad.getSelectedItem().toString());
-                                startService(cantidad);*/
+                                startService(cantidad);
 
                             }
 
@@ -1417,7 +1420,8 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                             HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizaSalida.php?id=" + id.getText().toString() + "&cantidad=" + volumen + "&Ffinal=" + fechas.toString() + "&Hfinal=" + horas.toString() + "&motivo=" + error.toString() + "&conforme=" + falla.toString() + "&tarea=" + nombretarea.toString() + "&op=" + op.getText().toString()).body();
 
                                             Intent cantidad = new Intent(OperadorActivity.this, ServicioCantidad.class);
-                                            cantidad.putExtra("OP", NumeroItem.getSelectedItem().toString());
+                                            cantidad.putExtra("op", op.getText().toString());
+                                            cantidad.putExtra("cod", NumeroItem.getSelectedItem().toString());
                                             cantidad.putExtra("tarea", Actividad.getSelectedItem().toString());
                                             startService(cantidad);
 

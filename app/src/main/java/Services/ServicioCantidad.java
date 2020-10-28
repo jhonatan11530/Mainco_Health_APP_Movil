@@ -17,21 +17,22 @@ public class ServicioCantidad extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
-        final String resuldato3 = intent.getStringExtra("OP");
+        final String op = intent.getStringExtra("op");
+        final String resuldato3 = intent.getStringExtra("cod");
         final String resuldato = intent.getStringExtra("tarea");
         System.out.println("MENSAJE " + resuldato3 + " " + resuldato);
-        ejecutar(resuldato3, resuldato);
+        ejecutar(resuldato3, resuldato,op);
 
         return START_STICKY;
     }
 
-    public void ejecutar(final String resuldato3, final String resuldato) {
+    public void ejecutar(final String resuldato3, final String resuldato, final String op) {
         new Thread(new Runnable() {
             @Override
             public void run() {
 
                 try {
-                    String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/Sobrante.php?op=" + resuldato3 + "&tarea=" + resuldato).body();
+                    String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/Sobrante.php?cod=" + resuldato3 + "&tarea=" + resuldato+"&op="+op).body();
                     JSONArray array = new JSONArray(response);
 
                     String VaribleTOTA = array.getString(0);
