@@ -470,7 +470,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
     public void filtraritem() {
 
-        String url = "http://" + cambiarIP.ip + "/validar/cantidadfiltre.php?op=" + NumeroItem.getSelectedItem().toString(); // SE DEBE CAMBIAR
+        String url = "http://" + cambiarIP.ip + "/validar/cantidadfiltre.php?cod=" + NumeroItem.getSelectedItem().toString()+"&op="+op.getText().toString(); // SE DEBE CAMBIAR
         cliente.post(url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -754,7 +754,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                         new Thread(new Runnable() {
                                             @Override
                                             public void run() {
-                                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/limpiar.php?id=" + NumeroItem.getSelectedItem().toString()).body();
+                                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/limpiar.php?id=" + NumeroItem.getSelectedItem().toString()+"&op="+op.getText().toString()).body();
 
                                             }
                                         }).start();
@@ -904,7 +904,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                 try {
                     hilo.sleep(1000);
 
-                    String cero = HttpRequest.get("http://" + cambiarIP.ip + "/validar/Sobrante.php?op=" + Nitem.toString() + "&tarea=" + nombretarea).body();
+                    String cero = HttpRequest.get("http://" + cambiarIP.ip + "/validar/Sobrante.php?cod=" + Nitem.toString() + "&tarea=" + nombretarea+"&op="+op.getText().toString()).body();
                     try {
                         JSONArray nada = new JSONArray(cero);
                         int vacio = Integer.parseInt(nada.getString(0));
@@ -1223,7 +1223,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
                         try {
                             final String nombretarea = Actividad.getSelectedItem().toString();
-                            String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/Sobrante.php?op=" + NumeroItem.getSelectedItem().toString() + "&tarea=" + nombretarea).body();
+                            String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/Sobrante.php?cod=" + NumeroItem.getSelectedItem().toString() + "&tarea=" + nombretarea+"&op="+op.getText().toString()).body();
                             JSONArray validar = new JSONArray(response);
                             int validator = Integer.parseInt(validar.getString(0));
 
@@ -1241,12 +1241,12 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                 String respuesta = HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidad_en_op.php?cod=" + NumeroItem.getSelectedItem().toString() + "&op=" + op.getText().toString()).body();
                                 JSONArray validartor = new JSONArray(respuesta);
                                 int real = Integer.parseInt(validartor.getString(0));
-                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodifi.php?op=" + NumeroItem.getSelectedItem().toString() + "&totales=" + real).body();
+                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodifi.php?cod=" + NumeroItem.getSelectedItem().toString() + "&totales=" + real+"&op="+op.getText().toString()).body();
 
-                                Intent cantidad = new Intent(OperadorActivity.this, ServicioCantidad.class);
+                               /* Intent cantidad = new Intent(OperadorActivity.this, ServicioCantidad.class);
                                 cantidad.putExtra("OP", NumeroItem.getSelectedItem().toString());
                                 cantidad.putExtra("tarea", Actividad.getSelectedItem().toString());
-                                startService(cantidad);
+                                startService(cantidad);*/
 
                             }
                             if (validator > 0) {
@@ -1278,10 +1278,10 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                     }
                                 });
 
-                                Intent cantidad = new Intent(OperadorActivity.this, ServicioCantidad.class);
+                               /* Intent cantidad = new Intent(OperadorActivity.this, ServicioCantidad.class);
                                 cantidad.putExtra("OP", NumeroItem.getSelectedItem().toString());
                                 cantidad.putExtra("tarea", Actividad.getSelectedItem().toString());
-                                startService(cantidad);
+                                startService(cantidad);*/
 
                             }
 
@@ -1375,7 +1375,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                     hilo = new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/Sobrante.php?op=" + NumeroItem.getSelectedItem().toString() + "&tarea=" + nombretarea).body();
+                            String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/Sobrante.php?cod=" + NumeroItem.getSelectedItem().toString() + "&tarea=" + nombretarea+"&op="+op.getText().toString()).body();
 
                             try {
 
@@ -1410,7 +1410,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
                                             HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizarop.php?op=" + op.getText().toString() + "&totales=" + sqlmala + "&codigo=" + NumeroItem.getSelectedItem().toString()).body();
 
-                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadupdate.php?op=" + NumeroItem.getSelectedItem().toString() + "&tarea=" + nombretarea.toString() + "&totales=" + ends).body();
+                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadupdate.php?cod=" + NumeroItem.getSelectedItem().toString() + "&tarea=" + nombretarea.toString() + "&totales=" + ends+"&op="+op.getText().toString()).body();
 
                                             HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodificar.php?op=" + NumeroItem.getSelectedItem().toString() + "&tarea=" + nombretarea.toString() + "&totales=" + sqlmala + "&codigo=" + op.getText().toString()).body();
 

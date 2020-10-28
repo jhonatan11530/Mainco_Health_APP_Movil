@@ -6,7 +6,8 @@
         android:id="@+id/ayuda"
         android:icon="@drawable/help"
         android:title=""
-        app:showAsAction="ifRoom|withText">
+        app:showAsAction="ifRoom|withText"
+        >
 
 
     </item>
