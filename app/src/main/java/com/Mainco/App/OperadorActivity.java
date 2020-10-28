@@ -1228,15 +1228,15 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                             int validator = Integer.parseInt(validar.getString(0));
 
                             if (validator == 0) {
-
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
                                         Btnsalida.setEnabled(true);
                                         BtnParo.setEnabled(true);
-
                                     }
                                 });
+
+
 
                                 String respuesta = HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidad_en_op.php?cod=" + NumeroItem.getSelectedItem().toString() + "&op=" + op.getText().toString()).body();
                                 JSONArray validartor = new JSONArray(respuesta);
@@ -1250,16 +1250,13 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
                             }
                             if (validator > 0) {
-
                                 runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
                                         Btnsalida.setEnabled(true);
                                         BtnParo.setEnabled(true);
-
                                     }
                                 });
-
 
                                 runOnUiThread(new Runnable() {
                                     @Override

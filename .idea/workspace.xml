@@ -29,14 +29,14 @@
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/OperadorActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/Mainco/App/OperadorActivity.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[HGT45AJX]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[J6_PLUS_API_28]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -83,6 +83,7 @@
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="14330766" />
     <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-09-14T16:52:17.757Z" />
     <property name="ResourceManagerPrefKey.ResourceType" value="DRAWABLE" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SelectDeploymentTargetsDialog.selectedDevices" value="Pixel_2_API_28" />
@@ -317,10 +318,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="430" y="166" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1366.738@0.0.1366.738" timestamp="1603830871211" />
-    <state x="92" y="92" width="1182" height="554" key="AVDManager" timestamp="1603829505614">
+    <state x="92" y="92" width="1182" height="554" key="AVDManager" timestamp="1603895053677">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="92" y="92" width="1182" height="554" key="AVDManager/0.0.1366.738@0.0.1366.738" timestamp="1603829505614" />
+    <state x="92" y="92" width="1182" height="554" key="AVDManager/0.0.1366.738@0.0.1366.738" timestamp="1603895053677" />
     <state x="263" y="124" key="AndroidCreateResourceDirectoryDialog" timestamp="1597864817826">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -342,22 +343,22 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="553" y="257" key="Github.ShareDialog/0.0.1366.728@0.0.1366.728" timestamp="1596674572787" />
-    <state width="559" height="169" key="GridCell.Tab.0.bottom" timestamp="1603831495254">
+    <state width="1119" height="55" key="GridCell.Tab.0.bottom" timestamp="1603895279528">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="559" height="169" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1603831495254" />
-    <state width="559" height="169" key="GridCell.Tab.0.center" timestamp="1603831495254">
+    <state width="1119" height="55" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1603895279528" />
+    <state width="1119" height="55" key="GridCell.Tab.0.center" timestamp="1603895279528">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="559" height="169" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1603831495254" />
-    <state width="559" height="169" key="GridCell.Tab.0.left" timestamp="1603831495254">
+    <state width="1119" height="55" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1603895279528" />
+    <state width="1119" height="55" key="GridCell.Tab.0.left" timestamp="1603895279528">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="559" height="169" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1603831495254" />
-    <state width="559" height="169" key="GridCell.Tab.0.right" timestamp="1603831495254">
+    <state width="1119" height="55" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1603895279528" />
+    <state width="1119" height="55" key="GridCell.Tab.0.right" timestamp="1603895279528">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="559" height="169" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1603831495254" />
+    <state width="1119" height="55" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1603895279528" />
     <state width="1367" height="230" key="GridCell.Tab.1.bottom" timestamp="1603746081984">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
