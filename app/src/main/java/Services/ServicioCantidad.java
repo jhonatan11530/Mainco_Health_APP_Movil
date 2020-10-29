@@ -21,7 +21,7 @@ public class ServicioCantidad extends Service {
         final String resuldato3 = intent.getStringExtra("cod");
         final String resuldato = intent.getStringExtra("tarea");
         System.out.println("MENSAJE " + resuldato3 + " " + resuldato);
-        ejecutar(resuldato3, resuldato,op);
+        ejecutar(resuldato3, resuldato, op);
 
         return START_STICKY;
     }
@@ -32,7 +32,7 @@ public class ServicioCantidad extends Service {
             public void run() {
 
                 try {
-                    String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/Sobrante.php?cod=" + resuldato3 + "&tarea=" + resuldato+"&op="+op).body();
+                    String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/Sobrante.php?cod=" + resuldato3 + "&tarea=" + resuldato + "&op=" + op).body();
                     JSONArray array = new JSONArray(response);
 
                     String VaribleTOTA = array.getString(0);

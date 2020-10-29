@@ -3,12 +3,8 @@ package com.Mainco.App;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.style.ForegroundColorSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,13 +17,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-
 import java.util.ArrayList;
 
 import GET_SET.HELPCOMP;
-import Http_Conexion.HttpRequest;
 import IP.cambiarIP;
 import Introducciones.CLOSE_OP;
 import Introducciones.CREAR_USER;
@@ -37,7 +29,6 @@ import Introducciones.RECUPERAR_PASSWORD;
 import Introducciones.REGISTRO_PRODUCIDO;
 import Introducciones.SYSTEM;
 import Introducciones.TERMINADO;
-import Services.ServicioMotivoParo;
 import cz.msebera.android.httpclient.Header;
 
 public class options extends AppCompatActivity {
@@ -70,7 +61,6 @@ public class options extends AppCompatActivity {
     }
 
 
-
     public void dianostico(View v) {
 
         AsyncHttpClient service = new AsyncHttpClient();
@@ -85,7 +75,7 @@ public class options extends AppCompatActivity {
                             AlertDialog.Builder builder = new AlertDialog.Builder(options.this);
                             builder.setTitle("Dianostico de la aplicacion");
                             builder.setIcon(R.drawable.dianostico);
-                            builder.setMessage("CONEXION CON EL SERVIDOR : CONECTADO \n\n CODIGO HTTP : "+statusCode+" \n\n TIEMPO DE RESPUESTA : 1MS");
+                            builder.setMessage("CONEXION CON EL SERVIDOR : CONECTADO \n\n CODIGO HTTP : " + statusCode + " \n\n TIEMPO DE RESPUESTA : 1MS");
 
                             builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
                                 @Override
@@ -116,7 +106,7 @@ public class options extends AppCompatActivity {
                             AlertDialog.Builder builder = new AlertDialog.Builder(options.this);
                             builder.setTitle("Dianostico de la aplicacion");
                             builder.setIcon(R.drawable.dianostico);
-                            builder.setMessage("CONEXION CON EL SERVIDOR : NO CONECTADO \n\n CODIGO HTTP : "+statusCode+" \n\n TIEMPO DE RESPUESTA : DESCONOCIDO !! ");
+                            builder.setMessage("CONEXION CON EL SERVIDOR : NO CONECTADO \n\n CODIGO HTTP : " + statusCode + " \n\n TIEMPO DE RESPUESTA : DESCONOCIDO !! ");
 
                             builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
                                 @Override
