@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
@@ -41,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
     ProgressDialog pd;
     TTS textToSpeech;
 
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
@@ -57,13 +59,12 @@ public class LoginActivity extends AppCompatActivity {
 
         validar = findViewById(R.id.login);
 
-
     }
 
     public void onBackPressed() {
 
-        //  Intent e = new Intent(getApplicationContext(), Modulos.class);
-        // startActivity(e);
+        textToSpeech.speak("NO PUEDES CERRAR LA APLICACION DEBES TERMINAR TU LABOR");
+
     }
 
     @Override

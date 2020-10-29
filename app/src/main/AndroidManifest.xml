@@ -3,6 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.Mainco.App">
 
+    <uses-feature
+        android:name="android.hardware.wifi"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
@@ -20,35 +24,32 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="m">
+
+        <service
+            android:name="Services.ServicioConnecting"
+            android:enabled="true" />
         <service
             android:name="Services.ServicioContador"
-            android:enabled="true"
-            android:exported="false"></service>
+            android:enabled="true" />
         <service
             android:name="Services.ServicioCantidad"
-            android:enabled="true"
-            android:exported="false" />
+            android:enabled="true" />
         <service
             android:name="Services.ServicioProductoMalo"
-            android:enabled="true"
-            android:exported="false" />
+            android:enabled="true" />
         <service
             android:name="Services.ServicioMotivoParo"
-            android:enabled="true"
-            android:exported="false" />
+            android:enabled="true" />
         <service
             android:name="Services.ServicioItems"
-            android:enabled="true"
-            android:exported="false" />
+            android:enabled="true" />
         <service
             android:name="Services.ServicioActividad"
-            android:enabled="true"
-            android:exported="false" />
+            android:enabled="true" />
 
         <receiver
             android:name="Receiver.BatteryReceiver"
-            android:enabled="true"
-            android:exported="false" />
+            android:enabled="true" />
 
         <activity
             android:name=".MainActivity"
@@ -60,12 +61,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <service
-            android:name="Services.ServicioConnecting"
-            android:enabled="true"
-            android:exported="false" />
-
         <activity
             android:name=".options"
             android:label="@string/title_activity_opciones"

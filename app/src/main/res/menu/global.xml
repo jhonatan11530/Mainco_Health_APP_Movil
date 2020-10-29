@@ -2,7 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/atras"
+        android:id="@+id/salir"
         android:icon="@drawable/salir"
         android:title="@string/SALIR"
         app:showAsAction="ifRoom|withText">

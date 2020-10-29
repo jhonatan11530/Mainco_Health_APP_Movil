@@ -48,7 +48,7 @@ public class OlvidoActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
 
-        getMenuInflater().inflate(R.menu.salir, menu);
+        getMenuInflater().inflate(R.menu.atras, menu);
 
         return true;
     }
@@ -58,7 +58,7 @@ public class OlvidoActivity extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        if (item.getItemId() == R.id.salir) {
+        if (item.getItemId() == R.id.atras) {
             Intent e = new Intent(getApplicationContext(), LoginActivity.class);
             startActivity(e);
         }

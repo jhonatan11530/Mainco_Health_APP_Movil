@@ -6,7 +6,7 @@ import android.util.Log;
 
 import java.util.Locale;
 
-public class TTS {
+public class TTS{
     private TextToSpeech textToSpeech;
     private boolean cargado = false;
 
@@ -20,14 +20,26 @@ public class TTS {
                     if (result == android.speech.tts.TextToSpeech.LANG_MISSING_DATA || result == android.speech.tts.TextToSpeech.LANG_NOT_SUPPORTED) {
                         Log.e("erro", "ESTE LENGUAJE NO ES PERMITIDO");
                     } else {
+                        textToSpeech.setPitch(1f);
+                        textToSpeech.setSpeechRate(1f);
 
                     }
                 }
             }
+
         };
 
         textToSpeech = new TextToSpeech(context, onInitListener);
 
+
+    }
+
+
+    public void onPause() {
+        if(textToSpeech != null){
+            textToSpeech.stop();
+            textToSpeech.shutdown();
+        }
     }
 
 
@@ -37,5 +49,6 @@ public class TTS {
             textToSpeech.speak(text, TextToSpeech.QUEUE_FLUSH, null);
         }
     }
+
 }
 

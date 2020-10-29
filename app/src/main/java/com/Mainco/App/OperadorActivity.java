@@ -397,7 +397,10 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
 
-            case R.id.atras:
+            case R.id.salir:
+
+
+                textToSpeech.speak("ESTAS SEGURO QUE DESEAS CERRAR LA SE SION");
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
 
@@ -416,18 +419,19 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
                 builder.setTitle(ssBuilder);
 
-                builder.setMessage("¿ ESTAS SEGURO QUE DESEA CERRAR SESIÒN ?");
+                builder.setMessage("¿ ESTAS SEGURO QUE DESEAS LA CERRAR SESIÒN ?");
 
                 builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+
                         stopService(new Intent(OperadorActivity.this, ServicioCantidad.class));
                         stopService(new Intent(OperadorActivity.this, ServicioActividad.class));
                         stopService(new Intent(OperadorActivity.this, ServicioMotivoParo.class));
                         stopService(new Intent(OperadorActivity.this, ServicioProductoMalo.class));
                         stopService(new Intent(OperadorActivity.this, ServicioItems.class));
 
-
+                        textToSpeech.onPause();
                         ProgressDialog pd = new ProgressDialog(OperadorActivity.this);
 
                         pd.setTitle("CERRANDO SESION");
@@ -740,6 +744,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                     if (variable == 0) {
 
                         textToSpeech.speak("LA ORDEN DE PRODU SION ESTA CERRADA");
+
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -778,6 +783,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
                             }
                         });
+
                     } else {
 
                         runOnUiThread(new Runnable() {
@@ -1427,6 +1433,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                             verificar();
                                             Consolidado(horafinal);
                                             textToSpeech.speak("SE REGISTRO LO PRODUCIDO");
+
                                             runOnUiThread(new Runnable() {
                                                 @Override
                                                 public void run() {
