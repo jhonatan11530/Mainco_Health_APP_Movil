@@ -13,6 +13,7 @@ import cz.msebera.android.httpclient.Header;
 public class ServicioMotivoParo extends Service {
 
     public ServicioMotivoParo() {
+
     }
 
     @Override
@@ -57,4 +58,6 @@ public class ServicioMotivoParo extends Service {
         // TODO: Return the communication channel to the service.
         throw new UnsupportedOperationException("Not yet implemented");
     }
+
+
 }

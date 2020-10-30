@@ -12,6 +12,7 @@ import IP.cambiarIP;
 public class ServicioItems extends Service {
 
     public ServicioItems() {
+
     }
 
     @Override
@@ -58,4 +59,6 @@ public class ServicioItems extends Service {
         // TODO: Return the communication channel to the service.
         throw new UnsupportedOperationException("Not yet implemented");
     }
+
+
 }

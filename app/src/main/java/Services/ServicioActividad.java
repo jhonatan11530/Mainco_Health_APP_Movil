@@ -4,6 +4,8 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
+import androidx.annotation.Nullable;
+
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -13,10 +15,11 @@ import cz.msebera.android.httpclient.Header;
 public class ServicioActividad extends Service {
 
     public ServicioActividad() {
+
     }
 
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
+    public int onStartCommand(@Nullable Intent intent, int flags, int startId) {
         super.onStartCommand(intent, flags, startId);
         ejecutar();
         return START_STICKY;
@@ -59,4 +62,6 @@ public class ServicioActividad extends Service {
         // TODO: Return the communication channel to the service.
         throw new UnsupportedOperationException("Not yet implemented");
     }
+
+
 }

@@ -1,5 +1,6 @@
 package Services;
 
+
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
@@ -12,6 +13,7 @@ import IP.cambiarIP;
 
 public class ServicioCantidad extends Service {
     public ServicioCantidad() {
+
     }
 
     @Override
@@ -22,7 +24,6 @@ public class ServicioCantidad extends Service {
         final String resuldato = intent.getStringExtra("tarea");
         System.out.println("MENSAJE " + resuldato3 + " " + resuldato);
         ejecutar(resuldato3, resuldato, op);
-
         return START_STICKY;
     }
 
@@ -54,4 +55,6 @@ public class ServicioCantidad extends Service {
         // TODO: Return the communication channel to the service.
         throw new UnsupportedOperationException("Not yet implemented");
     }
+
+
 }

@@ -13,6 +13,7 @@ import cz.msebera.android.httpclient.Header;
 public class ServicioProductoMalo extends Service {
 
     public ServicioProductoMalo() {
+
     }
 
     @Override
@@ -54,4 +55,6 @@ public class ServicioProductoMalo extends Service {
         // TODO: Return the communication channel to the service.
         throw new UnsupportedOperationException("Not yet implemented");
     }
+
+
 }

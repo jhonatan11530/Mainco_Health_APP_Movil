@@ -6,7 +6,7 @@ import android.util.Log;
 
 import java.util.Locale;
 
-public class TTS{
+public class TTS {
     private TextToSpeech textToSpeech;
     private boolean cargado = false;
 
@@ -36,7 +36,7 @@ public class TTS{
 
 
     public void onPause() {
-        if(textToSpeech != null){
+        if (textToSpeech != null) {
             textToSpeech.stop();
             textToSpeech.shutdown();
         }

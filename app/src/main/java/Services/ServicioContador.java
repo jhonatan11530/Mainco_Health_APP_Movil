@@ -1,5 +1,6 @@
 package Services;
 
+
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
@@ -12,6 +13,7 @@ public class ServicioContador extends Service {
     private boolean running;
 
     public ServicioContador() {
+
     }
 
     @Override
@@ -84,7 +86,6 @@ public class ServicioContador extends Service {
         });
         hilo.start();
         hilo.setPriority(Thread.NORM_PRIORITY);
-
         return START_STICKY;
     }
 
@@ -99,4 +100,6 @@ public class ServicioContador extends Service {
         // TODO: Return the communication channel to the service.
         throw new UnsupportedOperationException("Not yet implemented");
     }
+
+
 }

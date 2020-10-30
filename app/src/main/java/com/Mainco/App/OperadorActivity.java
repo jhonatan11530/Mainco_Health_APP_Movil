@@ -89,7 +89,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
     private ArrayList<motivoparo> dato2 = new ArrayList<>();
     private ArrayList<OPS> dato = new ArrayList<>();
-    private AsyncHttpClient cliente, cliente1, cliente2, cliente3;
+    private AsyncHttpClient cliente, cliente1, cliente2;
     private Thread workerThread = null;
 
     private BatteryReceiver mBatteryReceiver = new BatteryReceiver();
@@ -194,32 +194,36 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         cliente = new AsyncHttpClient();
         cliente1 = new AsyncHttpClient();
         cliente2 = new AsyncHttpClient();
-        cliente3 = new AsyncHttpClient();
-
 
         textToSpeech = new TTS();
         textToSpeech.init(this);
 
+        // Registrar ServiciollenarSpinner
         IntentFilter llenarSpinner = new IntentFilter();
         llenarSpinner.addAction("llenarSpinner");
         registerReceiver(LlenarSpinner, llenarSpinner);
 
+        // Registrar ServiciollenarItem
         IntentFilter llenarItem = new IntentFilter();
         llenarItem.addAction("llenarItem");
         registerReceiver(LlenarItem, llenarItem);
 
+        // Registrar ServiciollenarParo
         IntentFilter llenarParo = new IntentFilter();
         llenarParo.addAction("llenarParo");
         registerReceiver(LlenarMotivoParo, llenarParo);
 
+        // Registrar ServicioProductoMalo
         IntentFilter malo = new IntentFilter();
         malo.addAction("MALO");
         registerReceiver(ProductoMalo, malo);
 
+        // Registrar ServicioContador
         IntentFilter cantidadReal = new IntentFilter();
         cantidadReal.addAction("ServicioCantidad");
         registerReceiver(ServicioCantidad, cantidadReal);
 
+        // Registrar ServicioContador
         IntentFilter Serviciocontador = new IntentFilter();
         Serviciocontador.addAction("ServicioContador");
         registerReceiver(ServicioContador, Serviciocontador);
