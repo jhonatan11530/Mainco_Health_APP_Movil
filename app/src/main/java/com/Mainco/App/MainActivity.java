@@ -2,27 +2,26 @@ package com.Mainco.App;
 
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import Receiver.BatteryReceiver;
-import Services.ServicioConnecting;
+import Receiver.ConnectingReceiver;
 
 public class MainActivity extends AppCompatActivity {
     private final int DURACION_SPLASH = 3000;
 
-    private final BatteryReceiver mBatteryReceiver = new BatteryReceiver();
-    private final IntentFilter mIntentFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-
+    private ConnectingReceiver connectingReceiver = new ConnectingReceiver();
+    private IntentFilter mIntentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        startService(new Intent(getBaseContext(), ServicioConnecting.class));
+        registerReceiver(connectingReceiver, mIntentFilter);
 
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 

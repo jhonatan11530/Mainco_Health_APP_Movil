@@ -24,10 +24,11 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="m">
+        <receiver
+            android:name="Receiver.ConnectingReceiver"
+            android:enabled="true"
+            android:exported="false"></receiver>
 
-        <service
-            android:name="Services.ServicioConnecting"
-            android:enabled="true" />
         <service
             android:name="Services.ServicioContador"
             android:enabled="true" />
