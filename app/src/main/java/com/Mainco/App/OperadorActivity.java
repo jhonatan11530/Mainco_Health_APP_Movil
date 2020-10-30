@@ -86,7 +86,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
     private TextView motivo, MOSTRAR, texto, resultados, MostrarCantidadOP;
     private Button go, stop, BtnParo, positivo, neutrar, BtnIngreso, Btnsalida, validarinfo, Validar, BtnHora;
     private int minuto, segundo, horas, i, hora, cantidadpro, cantidadotra, volumencan, total, volumen;
-    private ArrayList dato3 = new ArrayList<>();
+
     private ArrayList<motivoparo> dato2 = new ArrayList<>();
     private ArrayList<OPS> dato = new ArrayList<>();
     private AsyncHttpClient cliente, cliente1, cliente2, cliente3;
@@ -482,9 +482,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                     itemfiltre(new String(responseBody));
 
                 }
-                if (statusCode > 201) {
-                    filtraritem();
-                }
             }
 
             @Override
@@ -500,6 +497,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
     }
 
     public void itemfiltre(String itemfiltre) {
+        ArrayList<cantidades> dato3 = new ArrayList<>();
         try {
             JSONArray objecto = new JSONArray(itemfiltre);
             for (int i = 0; i < objecto.length(); i++) {
