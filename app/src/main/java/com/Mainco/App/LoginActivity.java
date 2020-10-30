@@ -43,7 +43,6 @@ public class LoginActivity extends AppCompatActivity {
     ProgressDialog pd;
     TTS textToSpeech;
 
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
@@ -59,9 +58,6 @@ public class LoginActivity extends AppCompatActivity {
         registre = findViewById(R.id.registre);
 
         validar = findViewById(R.id.login);
-
-
-
     }
 
     public void onBackPressed() {

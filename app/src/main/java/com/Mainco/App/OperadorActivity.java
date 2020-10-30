@@ -70,7 +70,6 @@ import cz.msebera.android.httpclient.Header;
 public class OperadorActivity extends AppCompatActivity implements LifecycleObserver {
 
     public static Spinner Actividad, NombreParo, resuldato4, NumeroItem;
-    private final ArrayList<cantidadfallas> dato4 = new ArrayList<>();
     public Thread hilo;
     EditText edit, digito;
     View tiempo1, adelanto;
@@ -86,9 +85,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
     private TextView motivo, MOSTRAR, texto, resultados, MostrarCantidadOP;
     private Button go, stop, BtnParo, positivo, neutrar, BtnIngreso, Btnsalida, validarinfo, Validar, BtnHora;
     private int minuto, segundo, horas, i, hora, cantidadpro, cantidadotra, volumencan, total, volumen;
-
-    private ArrayList<motivoparo> dato2 = new ArrayList<>();
-    private ArrayList<OPS> dato = new ArrayList<>();
     private AsyncHttpClient cliente, cliente1, cliente2;
     private Thread workerThread = null;
 
