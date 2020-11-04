@@ -8,12 +8,9 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiConfiguration;
 import android.net.wifi.WifiManager;
-import android.speech.tts.TextToSpeech;
 import android.widget.Toast;
 
 import java.util.List;
-
-import TSS.TTS;
 
 public class ConnectingReceiver extends BroadcastReceiver {
     final WifiConfiguration conf = new WifiConfiguration();
@@ -22,8 +19,7 @@ public class ConnectingReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        try
-        {
+        try {
 
             conf.SSID = "\"" + networkSSID + "\"";
             conf.preSharedKey = "\"" + networkPass + "\"";
@@ -58,6 +54,7 @@ public class ConnectingReceiver extends BroadcastReceiver {
             e.printStackTrace();
         }
     }
+
     private boolean isOnline(Context context) {
         try {
             ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);

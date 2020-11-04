@@ -36,7 +36,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[HGT45AJX]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -265,6 +265,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="asd" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="568" y="227" key="#Notifications" timestamp="1604508218281">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="568" y="227" key="#Notifications/0.0.1366.728@0.0.1366.728" timestamp="1604508218281" />
     <state x="134" y="202" key="#PSD" timestamp="1603300084500">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -332,10 +336,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="337" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1596676243503" />
-    <state x="463" y="122" key="FileChooserDialogImpl" timestamp="1604085101946">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state x="463" y="120" key="FileChooserDialogImpl" timestamp="1604507396114">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="120" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1600611400205" />
+    <state x="463" y="120" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1604507396114" />
     <state x="463" y="122" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1604085101946" />
     <state x="553" y="257" key="Github.ShareDialog" timestamp="1596674572787">
       <screen x="0" y="0" width="1366" height="728" />

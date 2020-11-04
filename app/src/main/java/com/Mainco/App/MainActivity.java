@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ConnectingReceiver connectingReceiver = new ConnectingReceiver();
     private IntentFilter mIntentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
