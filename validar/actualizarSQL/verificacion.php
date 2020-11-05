@@ -1,14 +1,9 @@
 <?php
 set_time_limit(0);
-require_once("ConexionSQL.php");
+require_once("../ConexionSQL.php");
 //error_reporting(0);
-
-/*while (true) {
-  usleep(1000000);
-
-}*/
-INICIO();
-
+//INICIO();
+//MOTIVOS();
 
 function INICIO(){
 
@@ -22,8 +17,8 @@ function INICIO(){
         while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
           $item[] = $row["ID_ITEM"];
           $descrip[] = $row["DESCRIPCION"];
-         // echo $row["ID_ITEM"]." ".$row["DESCRIPCION"];
-         // echo "<br>";
+          echo $row["ID_ITEM"]." ".$row["DESCRIPCION"];
+          echo "<br>";
         }
         $ORACLE = count($item);
 
@@ -35,11 +30,7 @@ function INICIO(){
         $id[] = $sql["cod_producto"];
       }
       $SQLSERVER = count($id);
-     // PRODUCCION($item,$descrip);
-      if ($SQLSERVER < $ORACLE) {
-       //  PRODUCCION($item,$descrip);
-      }
-      
+      PRODUCCION($item,$descrip);
 
       /* CONSULTAR Y INSERTAR TAREA */
   /*-------------------------------------------*/
@@ -76,14 +67,16 @@ function INICIO2($item){
     function new($items){
       
       $conn = oci_connect(ServerOracle(),ServerOracle(),ServerNameOracle());
-      $stid = oci_parse($conn, "SELECT ID_ITEM,DESCRIPCION_OPER,TIEMPO_OPERACION FROM MNRUTAS_PRODUCCION WHERE ID_ITEM ='".$items."' ORDER BY ID_ITEM ASC");
+      $stid = oci_parse($conn, "SELECT ID_ITEM,DESCRIPCION_OPER,CANTIDAD_BASE,TIEMPO_OPERACION FROM MNRUTAS_PRODUCCION WHERE ID_ITEM ='".$items."' ORDER BY ID_ITEM ASC");
       oci_execute($stid);
       $item = array();
       $descrip = array();
+      $cant = array();
       $timeoper = array();
       while ($row = oci_fetch_array($stid, OCI_ASSOC)) {
         $item[] = $row["ID_ITEM"];
         $descrip[] = $row["DESCRIPCION_OPER"];
+        $cant[] = $row["CANTIDAD_BASE"];
         $timeoper[] = number_format((float)$row["TIEMPO_OPERACION"], 8, '.', '');
         
         echo $row["ID_ITEM"]." ".$row["DESCRIPCION_OPER"]." ".number_format((float)$row["TIEMPO_OPERACION"], 8, '.', '');
@@ -102,23 +95,24 @@ function INICIO2($item){
        $SQLSERVER = count($id);
       
 
-        TAREA($item,$descrip,$timeoper); 
+        TAREA($item,$descrip,$timeoper,$cant); 
 
       
 
     }
   }
 
-function TAREA($item,$descrip,$timeoper){
+function TAREA($item,$descrip,$timeoper,$cant){
   
           for ($i=0; $i < count($item); $i++) { 
            echo $iten = $item[$i];
            echo $descripcion = $descrip[$i];
            echo $time = $timeoper[$i];
+           echo $base = $cant[$i];
            echo "<br>";
         $SQL = sqlsrv_connect(Server() , connectionInfo());
-        $sql_consulta = "INSERT INTO proyecto.tarea(numero_op,tarea,cantidadpentiente,extandar) 
-        VALUES('".$iten."','".$descripcion."',0,'".$time."')";
+        $sql_consulta = "INSERT INTO proyecto.tarea(numero_op,tarea,cantidadpentiente,cantidadbase,extandar) 
+        VALUES('".$iten."','".$descripcion."',0,'".$base."','".$time."')";
         $result = sqlsrv_query($SQL, $sql_consulta);
           }
             

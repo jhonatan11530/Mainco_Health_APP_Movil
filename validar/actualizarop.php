@@ -6,7 +6,7 @@ require_once("ConexionSQL.php");
  if($totales >= 0){
 
  $mysqli = sqlsrv_connect(Server() , connectionInfo());
- $res = "UPDATE proyecto.produccion SET autorizado='". $totales."' WHERE cod_producto= '".$op."' AND numero_op = '".$cod."' ";
+ $res = "UPDATE proyecto.produccion SET autorizado='". $totales."' WHERE cod_producto= '".$cod."' AND numero_op = '".$op."' ";
  $result = sqlsrv_query($mysqli, $res);
 
 }else if($totales < 0){
@@ -14,7 +14,7 @@ require_once("ConexionSQL.php");
     $totales =0;
     
     $mysqli = sqlsrv_connect(Server() , connectionInfo());
-    $res = "UPDATE proyecto.produccion SET autorizado='". $totales."' WHERE cod_producto= '".$op."' AND numero_op = '".$cod."' ";
+    $res = "UPDATE proyecto.produccion SET autorizado='". $totales."' WHERE cod_producto= '".$cod."' AND numero_op = '".$op."' ";
     $result = sqlsrv_query($mysqli, $res);
 }
 sqlsrv_close( $mysqli );

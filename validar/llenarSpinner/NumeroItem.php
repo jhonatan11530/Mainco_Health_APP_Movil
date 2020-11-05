@@ -1,5 +1,5 @@
 <?php
-require_once("ConexionSQL.php");
+require_once("../ConexionSQL.php");
   $mysqli = sqlsrv_connect(Server() , connectionInfo());
   $sql_statement = "SELECT DISTINCT cod_producto FROM  proyecto.produccion ORDER BY cod_producto ASC ";
   $result = sqlsrv_query($mysqli, $sql_statement);

@@ -6,10 +6,9 @@ require_once("ConexionSQL.php");
  $totales = $_GET["totales"];
 
  if($totales >= 0){
-     $cero = 0;
-     
+    $cero = 0;
  $mysqli = sqlsrv_connect(Server() , connectionInfo());
- $res = "UPDATE proyecto.tarea SET cantidadpentiente='". $totales."' WHERE tarea !='".$tarea."' AND  numero_op = '".$op."' AND cantidadpentiente !='". $cero."' ";
+ $res = "UPDATE proyecto.tarea SET cantidadpentiente='". $totales."' WHERE  tarea !='".$tarea."' AND  numero_op = '".$cod."' AND cantidadpentiente !='". $cero."' ";
  $result = sqlsrv_query($mysqli, $res);
 
  $mysqli = sqlsrv_connect(Server() , connectionInfo());
@@ -18,10 +17,10 @@ require_once("ConexionSQL.php");
 
 }else if($totales < 0){
  
- $totales =0;
+ $cero =0;
 
  $mysqli = sqlsrv_connect(Server() , connectionInfo());
- $res = "UPDATE proyecto.tarea SET cantidadpentiente='". $totales."' WHERE tarea !='".$tarea."' AND  numero_op = '".$op."' AND cantidadpentiente !='". $totales."' ";
+ $res = "UPDATE proyecto.tarea SET cantidadpentiente='". $cero."' WHERE  tarea !='".$tarea."' AND  numero_op = '".$cod."' AND cantidadpentiente !='". $totales."' ";
  $result = sqlsrv_query($mysqli, $res);
 }
 sqlsrv_close( $mysqli );

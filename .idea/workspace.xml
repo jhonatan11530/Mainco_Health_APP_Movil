@@ -265,10 +265,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="asd" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="568" y="227" key="#Notifications" timestamp="1604508218281">
+    <state x="568" y="227" key="#Notifications" timestamp="1604514198686">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="568" y="227" key="#Notifications/0.0.1366.728@0.0.1366.728" timestamp="1604508218281" />
+    <state x="568" y="227" key="#Notifications/0.0.1366.728@0.0.1366.728" timestamp="1604514198686" />
     <state x="134" y="202" key="#PSD" timestamp="1603300084500">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -299,6 +299,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="363" y="94" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1366.728@0.0.1366.728" timestamp="1600613709822" />
+    <state x="433" y="288" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1604515290113">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="433" y="288" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1366.728@0.0.1366.728" timestamp="1604515290113" />
     <state x="133" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1600622256241">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -316,9 +320,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="438" y="72" key="#xdebugger.evaluate/0.0.1366.738@0.0.1366.738" timestamp="1597783347393" />
-    <state x="430" y="166" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1604083460925">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state x="430" y="164" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1604513986459">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state x="430" y="164" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1366.728@0.0.1366.728" timestamp="1604513986459" />
     <state x="430" y="166" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1366.738@0.0.1366.738" timestamp="1604083460925" />
     <state x="92" y="92" width="1182" height="554" key="AVDManager" timestamp="1604085678824">
       <screen x="0" y="0" width="1366" height="738" />

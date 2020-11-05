@@ -13,7 +13,7 @@ $tarea = $_GET["tarea"];
 if(isset($OP,$ID,$paro,$motivo,$fecha,$hora,$tarea)){
 
 $mysqli = sqlsrv_connect(Server() , connectionInfo());
-$sql_statement = "INSERT INTO proyecto.motivo_paro(numero_op,id,tarea,tiempo_descanso,cantidad,code,motivo_descanso,fecha,hora) VALUES ('".$OP."','".$ID."','".$tarea."','".$paro."',0,'".$code."','".$motivo."','".$fecha."','".$hora."')";
+$sql_statement = "INSERT INTO proyecto.motivo_paro(numero_op,id,tarea,tiempo_descanso,code,cantidad,motivo_descanso,fecha,hora) VALUES ('".$OP."','".$ID."','".$tarea."','".$paro."','".$code."',0,'".$motivo."','".$fecha."','".$hora."')";
 $result = sqlsrv_query($mysqli, $sql_statement);
 sqlsrv_close( $mysqli );
 }
