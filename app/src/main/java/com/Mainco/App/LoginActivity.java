@@ -33,6 +33,7 @@ import TSS.TTS;
 @SuppressWarnings("ALL")
 public class LoginActivity extends AppCompatActivity {
 
+    private static final int CODE_DRAW_OVER_OTHER_APP_PERMISSION = 2084;
     final WifiConfiguration conf = new WifiConfiguration();
     TextInputEditText login, pass;
     Button validar;

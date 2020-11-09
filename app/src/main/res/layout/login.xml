@@ -127,7 +127,6 @@
                 android:text="iniciar sesion"
                 android:textColor="#FFF" />
 
-
             <TextView
                 android:id="@+id/registre"
                 android:layout_width="350dp"

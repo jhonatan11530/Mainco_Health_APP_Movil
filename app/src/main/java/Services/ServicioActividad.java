@@ -27,6 +27,12 @@ public class ServicioActividad extends Service {
 
     public void ejecutar() {
         AsyncHttpClient service = new AsyncHttpClient();
+
+        // CONFIGURACION HTTP SERVICE
+        service.setConnectTimeout(28800000);
+        service.setMaxConnections(1);
+        service.setResponseTimeout(10000);
+
         // LLENA EL SPINNER DE ACTIVIDAD
         String url = "http://" + cambiarIP.ip + "/validar/llenarSpinner/tarea.php";
         service.post(url, new AsyncHttpResponseHandler() {

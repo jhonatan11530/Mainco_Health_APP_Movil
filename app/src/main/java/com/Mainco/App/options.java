@@ -79,6 +79,8 @@ public class options extends AppCompatActivity {
         builder.setCanceledOnTouchOutside(false);
 
         AsyncHttpClient service = new AsyncHttpClient();
+        service.setConnectTimeout(28800000);
+        service.setResponseTimeout(10000);
         String url = "http://" + cambiarIP.ip + "/validar/ConectarServer/conexion_al_servidor.php";
         service.post(url, new AsyncHttpResponseHandler() {
             @Override

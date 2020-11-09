@@ -25,6 +25,11 @@ public class ServicioMotivoParo extends Service {
 
     public void ejecutar() {
         AsyncHttpClient service = new AsyncHttpClient();
+
+        // CONFIGURACION HTTP SERVICE
+        service.setConnectTimeout(28800000);
+        service.setResponseTimeout(10000);
+
         String url = "http://" + cambiarIP.ip + "/validar/llenarSpinner/MotivoParo.php";
         service.post(url, new AsyncHttpResponseHandler() {
             @Override

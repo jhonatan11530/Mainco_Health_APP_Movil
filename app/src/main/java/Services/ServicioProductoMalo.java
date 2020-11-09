@@ -25,6 +25,11 @@ public class ServicioProductoMalo extends Service {
 
     public void motivofalla() {
         AsyncHttpClient service = new AsyncHttpClient();
+
+        // CONFIGURACION HTTP SERVICE
+        service.setConnectTimeout(28800000);
+        service.setResponseTimeout(10000);
+
         String url = "http://" + cambiarIP.ip + "/validar/llenarSpinner/MotivoProductoDefectuoso.php";
         service.post(url, new AsyncHttpResponseHandler() {
             @Override

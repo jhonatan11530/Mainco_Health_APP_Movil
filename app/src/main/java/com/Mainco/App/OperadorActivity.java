@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -186,10 +187,23 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         super.onCreate(savedInstanceState);
         setContentView(R.layout.operador);
 
+
         // CONEXIONES TOTALES
         cliente = new AsyncHttpClient();
         cliente1 = new AsyncHttpClient();
         cliente2 = new AsyncHttpClient();
+
+        // CONFIGURACION HTTP CLIENTE
+        cliente.setConnectTimeout(28800000);
+        cliente.setResponseTimeout(10000);
+
+        // CONFIGURACION HTTP CLIENTE 1
+        cliente1.setConnectTimeout(28800000);
+        cliente1.setResponseTimeout(10000);
+
+        // CONFIGURACION HTTP CLIENTE 2
+        cliente2.setConnectTimeout(28800000);
+        cliente2.setResponseTimeout(10000);
 
         textToSpeech = new TTS();
         textToSpeech.init(this);
@@ -1206,8 +1220,9 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         final String fecha = dateFormat.format(date);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
-        builder.setTitle("DATOS INSERTADOS");
-        builder.setMessage("PORFAVOR EMPIECE SU LABOR");
+        builder.setTitle("HA EMPEZADO A SU ACTIVIDAD");
+        builder.setIcon(R.drawable.checker);
+        builder.setMessage("PORFAVOR EMPIECE HA RELIZAR SU LABOR O ACTIVIDAD ASIGNADA");
         edit = new EditText(this);
         edit.setEnabled(false);
         edit.setText(fecha);

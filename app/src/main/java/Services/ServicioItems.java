@@ -24,6 +24,11 @@ public class ServicioItems extends Service {
 
     public void ejecutar() {
         AsyncHttpClient service = new AsyncHttpClient();
+
+        // CONFIGURACION HTTP SERVICE
+        service.setConnectTimeout(28800000);
+        service.setResponseTimeout(10000);
+
         // LLENA EL SPINNER DE ACTIVIDAD
         String url = "http://" + cambiarIP.ip + "/validar/llenarSpinner/NumeroItem.php";
         service.post(url, new AsyncHttpResponseHandler() {
