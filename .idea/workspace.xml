@@ -36,7 +36,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[Pixel_XL_API_28]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -78,8 +78,8 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ApkExportedModule" value="android.app" />
     <property name="BundleExportedModule" value="android.app" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="14330766" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-09-14T16:52:17.757Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_3a_API_30_x86" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-11-06T13:36:52.674Z" />
     <property name="ResourceManagerPrefKey.ResourceType" value="DRAWABLE" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -107,11 +107,11 @@
       <recent name="com.Mainco.App" />
       <recent name="Services" />
     </key>
-    <key name="android.template.823841162">
-      <recent name="com.Mainco.App" />
-    </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="TextToSpeech" />
+    </key>
+    <key name="android.template.823841162">
+      <recent name="com.Mainco.App" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -303,6 +303,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="433" y="288" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1366.728@0.0.1366.728" timestamp="1604515290113" />
+    <state x="466" y="245" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1604670154287">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="466" y="245" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1366.728@0.0.1366.728" timestamp="1604670154287" />
     <state x="133" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1600622256241">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -325,9 +329,10 @@
     </state>
     <state x="430" y="164" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1366.728@0.0.1366.728" timestamp="1604513986459" />
     <state x="430" y="166" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1366.738@0.0.1366.738" timestamp="1604083460925" />
-    <state x="92" y="92" width="1182" height="554" key="AVDManager" timestamp="1604085678824">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state x="92" y="91" width="1182" height="547" key="AVDManager" timestamp="1604693489553">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state x="92" y="91" width="1182" height="547" key="AVDManager/0.0.1366.728@0.0.1366.728" timestamp="1604693489553" />
     <state x="92" y="92" width="1182" height="554" key="AVDManager/0.0.1366.738@0.0.1366.738" timestamp="1604085678824" />
     <state x="263" y="124" key="AndroidCreateResourceDirectoryDialog" timestamp="1597864817826">
       <screen x="0" y="0" width="1366" height="738" />
@@ -350,21 +355,25 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="553" y="257" key="Github.ShareDialog/0.0.1366.728@0.0.1366.728" timestamp="1596674572787" />
-    <state width="557" height="48" key="GridCell.Tab.0.bottom" timestamp="1604091472897">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state width="1323" height="-2" key="GridCell.Tab.0.bottom" timestamp="1604693525303">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state width="1323" height="-2" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1604693525303" />
     <state width="557" height="48" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1604091472897" />
-    <state width="557" height="48" key="GridCell.Tab.0.center" timestamp="1604091472896">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state width="1323" height="-2" key="GridCell.Tab.0.center" timestamp="1604693525303">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state width="1323" height="-2" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1604693525303" />
     <state width="557" height="48" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1604091472896" />
-    <state width="557" height="48" key="GridCell.Tab.0.left" timestamp="1604091472896">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state width="1323" height="-2" key="GridCell.Tab.0.left" timestamp="1604693525301">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state width="1323" height="-2" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1604693525301" />
     <state width="557" height="48" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1604091472896" />
-    <state width="557" height="48" key="GridCell.Tab.0.right" timestamp="1604091472897">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state width="1323" height="-2" key="GridCell.Tab.0.right" timestamp="1604693525303">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state width="1323" height="-2" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1604693525303" />
     <state width="557" height="48" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1604091472897" />
     <state width="1367" height="230" key="GridCell.Tab.1.bottom" timestamp="1603746081984">
       <screen x="0" y="0" width="1366" height="738" />
@@ -429,9 +438,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="389" y="0" key="refactoring.ChangeSignatureDialog/0.0.1366.738@0.0.1366.738" timestamp="1603730510205" />
-    <state x="339" y="159" width="672" height="677" key="run.anything.popup" timestamp="1600871550972">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state x="339" y="157" width="672" height="668" key="run.anything.popup" timestamp="1604671010875">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
+    <state x="339" y="157" width="672" height="668" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1604671010875" />
     <state x="339" y="159" width="672" height="677" key="run.anything.popup/0.0.1366.738@0.0.1366.738" timestamp="1600871550972" />
     <state x="275" y="27" key="scopes" timestamp="1600795947426">
       <screen x="0" y="0" width="1366" height="738" />

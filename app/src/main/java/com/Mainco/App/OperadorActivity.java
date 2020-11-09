@@ -304,7 +304,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
     }
 
 
-    public void Consolidado(final String horafinal) {
+    public void Consolidado() {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -317,8 +317,8 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                     final EditText editar = new EditText(OperadorActivity.this);
                     editar.setEnabled(false);
                     editar.setText(fechafinal);
-                    System.out.println("LA HORA ES " + horafinal.toString());
-                    HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?op=" + op.getText().toString() + "&nombre=" + NOMBRE.toString() + "&fecha=" + editar.getText().toString() + "&hora=" + horafinal.toString()).body();
+
+                    HttpRequest.get("http://" + cambiarIP.ip + "/validar/consolidado.php?op=" + op.getText().toString() + "&nombre=" + NOMBRE.toString() + "&fecha=" + editar.getText().toString()).body();
 
                 } catch (Exception e) {
                     // TODO: handle exception
@@ -1429,7 +1429,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                             startService(cantidad);
 
                                             verificar();
-                                            Consolidado(horafinal);
+                                            Consolidado();
                                             textToSpeech.speak("SE REGISTRO LO PRODUCIDO");
 
                                             runOnUiThread(new Runnable() {

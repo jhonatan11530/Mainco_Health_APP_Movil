@@ -1,6 +1,7 @@
 package com.Mainco.App;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -10,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,11 +36,16 @@ import cz.msebera.android.httpclient.Header;
 public class options extends AppCompatActivity {
 
     private ListView componentes;
+    private Button button;
+    private boolean activar = true;
+    private ProgressDialog builder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.options);
+
+        button = (Button) findViewById(R.id.chequear);
 
     }
 
@@ -62,31 +69,34 @@ public class options extends AppCompatActivity {
 
 
     public void dianostico(View v) {
+        button.setEnabled(false);
+
+        builder = new ProgressDialog(options.this);
+        builder.setTitle("ESPERANDO CONEXION");
+        builder.setMessage("PORFAVOR ESPERE");
+        builder.show();
+        builder.setCancelable(true);
+        builder.setCanceledOnTouchOutside(false);
 
         AsyncHttpClient service = new AsyncHttpClient();
         String url = "http://" + cambiarIP.ip + "/validar/ConectarServer/conexion_al_servidor.php";
         service.post(url, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(final int statusCode, Header[] headers, byte[] responseBody) {
-                if (statusCode == 200) {
+                if (activar) {
+                    builder.cancel();
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             AlertDialog.Builder builder = new AlertDialog.Builder(options.this);
                             builder.setTitle("Dianostico de la aplicacion");
                             builder.setIcon(R.drawable.dianostico);
-                            builder.setMessage("CONEXION CON EL SERVIDOR : CONECTADO \n\n CODIGO HTTP : " + statusCode + " \n\n TIEMPO DE RESPUESTA : 1MS");
+                            builder.setMessage("ESTADO DE LA CONEXIÓN : CONECTADO \n\n CODIGO HTTP : " + statusCode + " \n\n TIEMPO DE RESPUESTA : 1MS");
 
                             builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-                                    new Thread(new Runnable() {
-                                        @Override
-                                        public void run() {
-
-                                        }
-                                    }).start();
-
+                                    button.setEnabled(true);
                                 }
                             });
                             AlertDialog alert = builder.create();
@@ -98,25 +108,21 @@ public class options extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(final int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                if (statusCode > 201) {
+            public void onFailure(final int statusCode, Header[] headers, final byte[] responseBody, Throwable error) {
+                if (activar) {
+                    builder.cancel();
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             AlertDialog.Builder builder = new AlertDialog.Builder(options.this);
                             builder.setTitle("Dianostico de la aplicacion");
                             builder.setIcon(R.drawable.dianostico);
-                            builder.setMessage("CONEXION CON EL SERVIDOR : NO CONECTADO \n\n CODIGO HTTP : " + statusCode + " \n\n TIEMPO DE RESPUESTA : DESCONOCIDO !! ");
+                            builder.setMessage("ESTADO DE LA CONEXIÓN : FALLO LA CONEXIÓN CON EL SERVIDOR \n\n CODIGO HTTP : 500 \n\n TIEMPO DE RESPUESTA : 10000MS");
 
                             builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-                                    new Thread(new Runnable() {
-                                        @Override
-                                        public void run() {
-
-                                        }
-                                    }).start();
+                                    button.setEnabled(true);
 
                                 }
                             });
@@ -130,10 +136,12 @@ public class options extends AppCompatActivity {
 
             @Override
             public void onRetry(int retryNo) {
+                System.out.println("ESTO PASO # INTENTOS " + retryNo);
             }
         });
 
     }
+
 
     public void masinfo(View v) {
 

@@ -37,7 +37,6 @@ public class ConnectingReceiver extends BroadcastReceiver {
                 Toast.makeText(context.getApplicationContext(), "Conectando a Mainco.", Toast.LENGTH_LONG).show();
                 System.out.println("Conectivity ");
             } else {
-
                 @SuppressLint("MissingPermission") List<WifiConfiguration> list = wifiManager.getConfiguredNetworks();
                 for (WifiConfiguration i : list) {
                     if (i.SSID != null && i.SSID.equals("\"" + networkSSID + "\"")) {
