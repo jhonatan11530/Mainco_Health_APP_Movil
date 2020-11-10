@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 public class BatteryReceiver extends BroadcastReceiver {
 
+    @SuppressWarnings("StatementWithEmptyBody")
     @SuppressLint("WrongConstant")
     @Override
     public void onReceive(Context context, Intent intent) {

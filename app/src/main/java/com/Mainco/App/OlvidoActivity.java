@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -65,7 +64,7 @@ public class OlvidoActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void comprobar(View v) {
+    public void comprobar() {
 
         if (id.getText().toString().length() == 0) {
             id.setError("ID ES REQUERIDO !");

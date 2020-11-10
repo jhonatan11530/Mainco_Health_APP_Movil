@@ -14,8 +14,8 @@ import java.util.List;
 
 public class ConnectingReceiver extends BroadcastReceiver {
     final WifiConfiguration conf = new WifiConfiguration();
-    String networkSSID = "WIFIMainco";
-    String networkPass = "A125277935";
+    final String networkSSID = "WIFIMainco";
+    final String networkPass = "A125277935";
 
     @Override
     public void onReceive(Context context, Intent intent) {

@@ -37,7 +37,7 @@ public class options extends AppCompatActivity {
 
     private ListView componentes;
     private Button button;
-    private boolean activar = true;
+    private final boolean activar = true;
     private ProgressDialog builder;
 
     @Override
@@ -45,7 +45,7 @@ public class options extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.options);
 
-        button = (Button) findViewById(R.id.chequear);
+        button = findViewById(R.id.chequear);
 
     }
 
@@ -68,7 +68,7 @@ public class options extends AppCompatActivity {
     }
 
 
-    public void dianostico(View v) {
+    public void dianostico() {
         button.setEnabled(false);
 
         builder = new ProgressDialog(options.this);
@@ -145,7 +145,7 @@ public class options extends AppCompatActivity {
     }
 
 
-    public void masinfo(View v) {
+    public void masinfo() {
 
         runOnUiThread(new Runnable() {
             @Override
@@ -244,7 +244,7 @@ public class options extends AppCompatActivity {
 
     }
 
-    public void support(View v) {
+    public void support() {
         androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(options.this);
         builder.setTitle("CONTACTO");
         builder.setMessage("si desea soporte o comunicarte con el desarrollador de la aplicacion Mainco Health app.\n\n" +
@@ -262,7 +262,7 @@ public class options extends AppCompatActivity {
         builder.create().show();
     }
 
-    public void info(View v) {
+    public void info() {
 
         androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(options.this);
         builder.setTitle("APLICACION MAINCO HEALTH CARE");

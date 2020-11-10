@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 
@@ -72,7 +71,7 @@ public class RegistroActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void registro(View v) {
+    public void registro() {
 
         nombre = findViewById(R.id.nombre);
         apellido = findViewById(R.id.apellido);

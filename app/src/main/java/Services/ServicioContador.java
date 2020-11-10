@@ -8,6 +8,7 @@ import android.os.IBinder;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
+@SuppressWarnings("BusyWait")
 public class ServicioContador extends Service {
     private int i, minuto, hora;
     private boolean running;

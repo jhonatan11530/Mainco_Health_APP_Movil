@@ -12,10 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import Receiver.ConnectingReceiver;
 
 public class MainActivity extends AppCompatActivity {
-    private final int DURACION_SPLASH = 3000;
 
-    private ConnectingReceiver connectingReceiver = new ConnectingReceiver();
-    private IntentFilter mIntentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+    private final ConnectingReceiver connectingReceiver = new ConnectingReceiver();
+    private final IntentFilter mIntentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        int DURACION_SPLASH = 3000;
         new Handler().postDelayed(new Runnable() {
             public void run() {
                 // Cuando pasen los 3 segundos, pasamos a la actividad principal de la aplicación
