@@ -99,11 +99,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="80dp"
                 android:layout_marginHorizontal="25dp"
-                android:drawableLeft="@drawable/candado"
                 android:gravity="center"
                 android:onClick="olvidoC"
                 android:text="OLVIDADO SU CONTRASEÑA"
-                android:textColor="#FFF" />
+                android:textColor="#FFF"
+                app:drawableLeftCompat="@drawable/candado" />
         </LinearLayout>
 
         <LinearLayout

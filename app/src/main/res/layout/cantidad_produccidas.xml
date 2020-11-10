@@ -17,7 +17,8 @@
             android:layout_width="150dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
-            android:background="@drawable/produccion" />
+            android:background="@drawable/produccion"
+            android:contentDescription="TODO" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -51,7 +52,8 @@
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:background="@drawable/checker" />
+                android:background="@drawable/checker"
+                android:contentDescription="TODO" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -87,7 +89,8 @@
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:background="@drawable/peligro" />
+                android:background="@drawable/peligro"
+                android:contentDescription="TODO" />
 
             <TextView
                 android:layout_width="match_parent"

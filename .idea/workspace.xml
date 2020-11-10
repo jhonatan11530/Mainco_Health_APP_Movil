@@ -36,7 +36,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7b6af788-212f-4cd2-8b4b-3791be3d9170" name="Default Changelist" comment="">
+    <list default="true" id="7b6af788-212f-4cd2-8b4b-3791be3d9170" name="Default Changelist" comment="asd">
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
@@ -53,7 +53,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[HGT45AJX]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -113,7 +113,7 @@
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.20050761" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.notifications" />
   </component>
   <component name="PsdUISettings">
     <option name="MODULE_TAB" value="Signing Configs" />
@@ -124,14 +124,14 @@
       <recent name="com.Mainco.App" />
       <recent name="Services" />
     </key>
-    <key name="android.template.823841162">
-      <recent name="com.Mainco.App" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="TextToSpeech" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\android\app\src\main\res\drawable" />
     </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="TextToSpeech" />
+    <key name="android.template.823841162">
+      <recent name="com.Mainco.App" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -294,6 +294,10 @@
     </state>
     <state x="200" y="98" key="#PSD/0.0.1366.728@0.0.1366.728" timestamp="1596673286852" />
     <state x="134" y="202" key="#PSD/0.0.1366.738@0.0.1366.738" timestamp="1603300084500" />
+    <state x="492" y="231" key="#Updates" timestamp="1605022837591">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="492" y="231" key="#Updates/0.0.1366.728@0.0.1366.728" timestamp="1605022837591" />
     <state x="137" y="24" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603483406298">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -344,10 +348,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="438" y="72" key="#xdebugger.evaluate/0.0.1366.738@0.0.1366.738" timestamp="1597783347393" />
-    <state x="430" y="164" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1604513986459">
+    <state x="430" y="164" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1605025331139">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="430" y="164" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1366.728@0.0.1366.728" timestamp="1604513986459" />
+    <state x="430" y="164" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1366.728@0.0.1366.728" timestamp="1605025331139" />
     <state x="430" y="166" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1366.738@0.0.1366.738" timestamp="1604083460925" />
     <state x="92" y="91" width="1182" height="547" key="AVDManager" timestamp="1604939150288">
       <screen x="0" y="0" width="1366" height="728" />
@@ -376,25 +380,25 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="553" y="257" key="Github.ShareDialog/0.0.1366.728@0.0.1366.728" timestamp="1596674572787" />
-    <state width="925" height="2" key="GridCell.Tab.0.bottom" timestamp="1604954341338">
+    <state width="925" height="2" key="GridCell.Tab.0.bottom" timestamp="1604955532542">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="925" height="2" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1604954341338" />
+    <state width="925" height="2" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1604955532542" />
     <state width="557" height="48" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1604091472897" />
-    <state width="925" height="2" key="GridCell.Tab.0.center" timestamp="1604954341338">
+    <state width="925" height="2" key="GridCell.Tab.0.center" timestamp="1604955532542">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="925" height="2" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1604954341338" />
+    <state width="925" height="2" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1604955532542" />
     <state width="557" height="48" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1604091472896" />
-    <state width="925" height="2" key="GridCell.Tab.0.left" timestamp="1604954341337">
+    <state width="925" height="2" key="GridCell.Tab.0.left" timestamp="1604955532542">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="925" height="2" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1604954341337" />
+    <state width="925" height="2" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1604955532542" />
     <state width="557" height="48" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1604091472896" />
-    <state width="925" height="2" key="GridCell.Tab.0.right" timestamp="1604954341338">
+    <state width="925" height="2" key="GridCell.Tab.0.right" timestamp="1604955532542">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="925" height="2" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1604954341338" />
+    <state width="925" height="2" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1604955532542" />
     <state width="557" height="48" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1604091472897" />
     <state width="1367" height="230" key="GridCell.Tab.1.bottom" timestamp="1603746081984">
       <screen x="0" y="0" width="1366" height="738" />
@@ -412,10 +416,10 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="1367" height="230" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1603746081984" />
-    <state x="184" y="0" key="SettingsEditor" timestamp="1601040775592">
-      <screen x="0" y="0" width="1366" height="738" />
+    <state x="184" y="0" key="SettingsEditor" timestamp="1605025378997">
+      <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="184" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1600615448889" />
+    <state x="184" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1605025378997" />
     <state x="184" y="0" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1601040775592" />
     <state x="275" y="98" key="Vcs.Push.Dialog.v2" timestamp="1603914603932">
       <screen x="0" y="0" width="1366" height="738" />
