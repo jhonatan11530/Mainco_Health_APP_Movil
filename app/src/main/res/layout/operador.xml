@@ -40,7 +40,8 @@
                 android:gravity="center"
                 android:hint="ID DEL OPERADOR"
                 android:inputType="text"
-                android:textColorHint="#000" />
+                android:textColorHint="#000"
+                android:autofillHints="" />
 
             <EditText
                 android:id="@+id/OP"
@@ -54,7 +55,8 @@
                 android:hint="INGRESE EL NUMERO DE O.P"
                 android:inputType="text"
                 android:textColorHint="#000"
-                tools:ignore="NestedWeights" />
+                tools:ignore="NestedWeights"
+                android:autofillHints="" />
 
             <Button
                 android:id="@+id/Validar"

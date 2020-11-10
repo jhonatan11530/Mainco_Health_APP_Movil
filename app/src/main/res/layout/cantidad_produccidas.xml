@@ -73,7 +73,8 @@
             android:ems="10"
             android:gravity="center"
             android:hint="DIGITE AQUI LA CANTIDAD"
-            android:inputType="number" />
+            android:inputType="number"
+            android:autofillHints="" />
 
         <TextView
             android:layout_width="match_parent"
@@ -109,7 +110,8 @@
             android:ems="10"
             android:gravity="center"
             android:hint="DIGITE AQUI LA CANTIDAD"
-            android:inputType="number" />
+            android:inputType="number"
+            android:autofillHints="" />
 
         <TextView
             android:layout_width="match_parent"
