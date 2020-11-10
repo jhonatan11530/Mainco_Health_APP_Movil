@@ -23,7 +23,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
-        tools:targetApi="m">
+        tools:targetApi="m"
+        android:fullBackupContent="@xml/backup_descriptor">
 
         <receiver
             android:name="Receiver.ConnectingReceiver"
