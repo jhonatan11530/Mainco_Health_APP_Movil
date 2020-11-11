@@ -7,6 +7,8 @@
         android:name="android.hardware.wifi"
         android:required="false" />
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
@@ -27,7 +29,21 @@
         tools:targetApi="m">
 
         <receiver
+            android:name="Receiver.StartAppOnBoot"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+            </intent-filter>
+        </receiver>
+
+        <receiver
             android:name="Receiver.ConnectingReceiver"
+            android:enabled="true"
+            android:exported="false" />
+        <receiver
+            android:name="Receiver.BatteryReceiver"
             android:enabled="true"
             android:exported="false" />
 
@@ -48,10 +64,6 @@
             android:enabled="true" />
         <service
             android:name="Services.ServicioActividad"
-            android:enabled="true" />
-
-        <receiver
-            android:name="Receiver.BatteryReceiver"
             android:enabled="true" />
 
         <activity

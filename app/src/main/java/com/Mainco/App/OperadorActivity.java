@@ -88,8 +88,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
     private AsyncHttpClient cliente, cliente1, cliente2;
     private Thread workerThread = null;
 
-    private BatteryReceiver mBatteryReceiver = new BatteryReceiver();
-    private IntentFilter mIntentFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+
 
 
     private BroadcastReceiver LlenarSpinner = new BroadcastReceiver() {
@@ -237,7 +236,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         Serviciocontador.addAction("ServicioContador");
         registerReceiver(ServicioContador, Serviciocontador);
 
-
         Intent llenarspinner = new Intent(OperadorActivity.this, ServicioActividad.class);
         startService(llenarspinner);
 
@@ -341,18 +339,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
             }
         }).start();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        registerReceiver(mBatteryReceiver, mIntentFilter);
-    }
-
-    @Override
-    protected void onPause() {
-        unregisterReceiver(mBatteryReceiver);
-        super.onPause();
     }
 
     @Override
