@@ -25,8 +25,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.textfield.TextInputEditText;
-
 import Http_Conexion.HttpRequest;
 import IP.cambiarIP;
 import TSS.TTS;
@@ -36,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private static final int CODE_DRAW_OVER_OTHER_APP_PERMISSION = 2084;
     final WifiConfiguration conf = new WifiConfiguration();
-    EditText login,pass;
+    EditText login, pass;
     Button validar;
     TextView registre;
     CheckBox GUARDARUTO;
@@ -59,16 +57,16 @@ public class LoginActivity extends AppCompatActivity {
         validar = findViewById(R.id.login);
 
         SharedPreferences mostrardato = getPreferences(Context.MODE_PRIVATE);
-         String usuario = mostrardato.getString("usuario", "");
-         String contraseña = mostrardato.getString("pass", "");
+        String usuario = mostrardato.getString("usuario", "");
+        String contraseña = mostrardato.getString("pass", "");
 
-         if(usuario != "" && contraseña != ""){
-             login.setText(usuario);
-             pass.setText(contraseña);
-             GUARDARUTO.setEnabled(false);
-         }else{
-             GUARDARUTO.setEnabled(true);
-         }
+        if (usuario != "" && contraseña != "") {
+            login.setText(usuario);
+            pass.setText(contraseña);
+            GUARDARUTO.setEnabled(false);
+        } else {
+            GUARDARUTO.setEnabled(true);
+        }
 
     }
 
@@ -154,7 +152,6 @@ public class LoginActivity extends AppCompatActivity {
             public void run() {
                 try {
                     Thread.sleep(1000);
-
 
 
                 } catch (InterruptedException e) {
