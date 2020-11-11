@@ -4,16 +4,12 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.net.wifi.WifiConfiguration;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
@@ -26,7 +22,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -36,7 +31,7 @@ import TSS.TTS;
 
 @SuppressWarnings("ALL")
 public class LoginActivity extends AppCompatActivity {
-    private static final int REQUEST_OVERLAY_PERMISSION = 1;
+    public static int ACTION_MANAGE_OVERLAY_PERMISSION_REQUEST_CODE = 5469;
     final WifiConfiguration conf = new WifiConfiguration();
     EditText login, pass;
     Button validar;
@@ -78,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
 
         textToSpeech.speak("NO PUEDES CERRAR LA APLICACION DEBES TERMINAR TU LABOR");
 
-    }
+        }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
