@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private static final int CODE_DRAW_OVER_OTHER_APP_PERMISSION = 2084;
     final WifiConfiguration conf = new WifiConfiguration();
-    TextInputEditText login, pass;
+    EditText login,pass;
     Button validar;
     TextView registre;
     CheckBox GUARDARUTO;
@@ -46,7 +47,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
-        mostrarguardado();
         textToSpeech = new TTS();
         textToSpeech.init(this);
         GUARDARUTO = findViewById(R.id.OK);
@@ -57,6 +57,19 @@ public class LoginActivity extends AppCompatActivity {
         registre = findViewById(R.id.registre);
 
         validar = findViewById(R.id.login);
+
+        SharedPreferences mostrardato = getPreferences(Context.MODE_PRIVATE);
+         String usuario = mostrardato.getString("usuario", "");
+         String contraseña = mostrardato.getString("pass", "");
+
+         if(usuario != "" && contraseña != ""){
+             login.setText(usuario);
+             pass.setText(contraseña);
+             GUARDARUTO.setEnabled(false);
+         }else{
+             GUARDARUTO.setEnabled(true);
+         }
+
     }
 
     public void onBackPressed() {
@@ -128,14 +141,13 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences shared = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor usu = shared.edit();
         usu.putString("usuario", login.getText().toString());
+        usu.putString("pass", pass.getText().toString());
         usu.commit();
 
     }
 
     public void mostrarguardado() {
 
-        SharedPreferences mostrardato = getPreferences(Context.MODE_PRIVATE);
-        final String user = mostrardato.getString("usuario", "");
 
         new Thread(new Runnable() {
             @Override
@@ -143,7 +155,7 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     Thread.sleep(1000);
 
-                    //   login.setText("user");
+
 
                 } catch (InterruptedException e) {
                     e.printStackTrace();

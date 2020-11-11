@@ -106,7 +106,7 @@
                 android:gravity="center"
                 android:onClick="comprobar"
                 android:text="Recuperar Contraseña"
-                android:textColor="#000"
+                android:textColor="#FFF"
                 tools:ignore="OnClick,UsingOnClickInXml" />
 
 

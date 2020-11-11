@@ -13,6 +13,8 @@
         android:weightSum="12"
         tools:ignore="UselessParent">
 
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -34,23 +36,25 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="3"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="center">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:gravity="center"
-                android:hint="INGRESE SU ID"
-                android:orientation="vertical"
                 android:textColorHint="#fff"
+                android:orientation="vertical"
                 app:hintTextAppearance="@color/white">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <EditText
                     android:id="@+id/estado"
                     android:layout_width="350dp"
                     android:layout_height="60dp"
+                    android:hint="INGRESE SU ID"
                     android:background="@drawable/lineas_login"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:gravity="center" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -58,22 +62,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:gravity="center"
-                android:hint="INGRESE SU CONTRASEÑA"
-                android:orientation="vertical"
                 android:textColorHint="#fff"
-                app:hintTextAppearance="@color/white"
+                android:orientation="vertical"
+                app:hintTextAppearance="@color/white">
 
-                app:passwordToggleEnabled="true">
-
-                <com.google.android.material.textfield.TextInputEditText
+                <EditText
                     android:id="@+id/ID"
                     android:layout_width="350dp"
                     android:layout_height="60dp"
+                    android:hint="INGRESE SU CONTRASEÑA"
                     android:background="@drawable/lineas_login"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:gravity="center" />
 
             </com.google.android.material.textfield.TextInputLayout>
-
         </LinearLayout>
 
 
@@ -91,7 +93,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="80dp"
                 android:gravity="center"
-                android:text="RECORDAR USUARIO"
+                android:text="RECORDAR LOGIN"
                 android:textColor="#FFF"
                 android:textSize="15sp" />
 
@@ -141,6 +143,14 @@
 
 
         </LinearLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_margin="@dimen/fab_margin"
+            app:srcCompat="@android:drawable/ic_dialog_email" />
 
     </LinearLayout>
+
 </LinearLayout>
