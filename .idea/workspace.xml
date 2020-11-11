@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AnalysisUIOptions">
+    <option name="GROUP_BY_SEVERITY" value="true" />
     <option name="CUSTOM_SCOPE_NAME" value="All Places" />
   </component>
   <component name="AndroidLayouts">
@@ -348,15 +349,15 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="438" y="72" key="#xdebugger.evaluate/0.0.1366.738@0.0.1366.738" timestamp="1597783347393" />
-    <state x="430" y="164" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1605025331139">
+    <state x="430" y="164" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1605025913634">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="430" y="164" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1366.728@0.0.1366.728" timestamp="1605025331139" />
+    <state x="430" y="164" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1366.728@0.0.1366.728" timestamp="1605025913634" />
     <state x="430" y="166" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1366.738@0.0.1366.738" timestamp="1604083460925" />
-    <state x="92" y="91" width="1182" height="547" key="AVDManager" timestamp="1604939150288">
+    <state x="92" y="91" width="1182" height="547" key="AVDManager" timestamp="1605039606430">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="92" y="91" width="1182" height="547" key="AVDManager/0.0.1366.728@0.0.1366.728" timestamp="1604939150288" />
+    <state x="92" y="91" width="1182" height="547" key="AVDManager/0.0.1366.728@0.0.1366.728" timestamp="1605039606430" />
     <state x="92" y="92" width="1182" height="554" key="AVDManager/0.0.1366.738@0.0.1366.738" timestamp="1604085678824" />
     <state x="263" y="124" key="AndroidCreateResourceDirectoryDialog" timestamp="1597864817826">
       <screen x="0" y="0" width="1366" height="738" />
@@ -380,25 +381,25 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="553" y="257" key="Github.ShareDialog/0.0.1366.728@0.0.1366.728" timestamp="1596674572787" />
-    <state width="925" height="2" key="GridCell.Tab.0.bottom" timestamp="1604955532542">
+    <state width="925" height="329" key="GridCell.Tab.0.bottom" timestamp="1605041270182">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="925" height="2" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1604955532542" />
+    <state width="925" height="329" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1605041270182" />
     <state width="557" height="48" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1604091472897" />
-    <state width="925" height="2" key="GridCell.Tab.0.center" timestamp="1604955532542">
+    <state width="925" height="329" key="GridCell.Tab.0.center" timestamp="1605041270182">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="925" height="2" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1604955532542" />
+    <state width="925" height="329" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1605041270182" />
     <state width="557" height="48" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1604091472896" />
-    <state width="925" height="2" key="GridCell.Tab.0.left" timestamp="1604955532542">
+    <state width="925" height="329" key="GridCell.Tab.0.left" timestamp="1605041270181">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="925" height="2" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1604955532542" />
+    <state width="925" height="329" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1605041270181" />
     <state width="557" height="48" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1604091472896" />
-    <state width="925" height="2" key="GridCell.Tab.0.right" timestamp="1604955532542">
+    <state width="925" height="329" key="GridCell.Tab.0.right" timestamp="1605041270182">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="925" height="2" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1604955532542" />
+    <state width="925" height="329" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1605041270182" />
     <state width="557" height="48" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1604091472897" />
     <state width="1367" height="230" key="GridCell.Tab.1.bottom" timestamp="1603746081984">
       <screen x="0" y="0" width="1366" height="738" />

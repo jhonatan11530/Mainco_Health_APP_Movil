@@ -15,6 +15,7 @@
     <application
         android:name="androidx.multidex.MultiDexApplication"
         android:allowBackup="true"
+        android:fullBackupContent="@xml/backup_descriptor"
         android:icon="@mipmap/mainco"
         android:label="@string/MAIN"
         android:roundIcon="@mipmap/mainco_round"
@@ -23,8 +24,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
-        tools:targetApi="m"
-        android:fullBackupContent="@xml/backup_descriptor">
+        tools:targetApi="m">
 
         <receiver
             android:name="Receiver.ConnectingReceiver"

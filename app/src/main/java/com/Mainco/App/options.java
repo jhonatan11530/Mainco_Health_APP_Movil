@@ -35,9 +35,9 @@ import cz.msebera.android.httpclient.Header;
 
 public class options extends AppCompatActivity {
 
+    private final boolean activar = true;
     private ListView componentes;
     private Button button;
-    private final boolean activar = true;
     private ProgressDialog builder;
 
     @Override
@@ -68,7 +68,7 @@ public class options extends AppCompatActivity {
     }
 
 
-    public void dianostico() {
+    public void dianostico(View v) {
         button.setEnabled(false);
 
         builder = new ProgressDialog(options.this);
@@ -145,7 +145,7 @@ public class options extends AppCompatActivity {
     }
 
 
-    public void masinfo() {
+    public void masinfo(View v) {
 
         runOnUiThread(new Runnable() {
             @Override
@@ -244,7 +244,7 @@ public class options extends AppCompatActivity {
 
     }
 
-    public void support() {
+    public void support(View v) {
         androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(options.this);
         builder.setTitle("CONTACTO");
         builder.setMessage("si desea soporte o comunicarte con el desarrollador de la aplicacion Mainco Health app.\n\n" +
@@ -262,7 +262,7 @@ public class options extends AppCompatActivity {
         builder.create().show();
     }
 
-    public void info() {
+    public void info(View v) {
 
         androidx.appcompat.app.AlertDialog.Builder builder = new androidx.appcompat.app.AlertDialog.Builder(options.this);
         builder.setTitle("APLICACION MAINCO HEALTH CARE");

@@ -69,12 +69,12 @@
             android:id="@+id/digicantidad"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:autofillHints=""
             android:background="@drawable/items"
             android:ems="10"
             android:gravity="center"
             android:hint="DIGITE AQUI LA CANTIDAD"
-            android:inputType="number"
-            android:autofillHints="" />
+            android:inputType="number" />
 
         <TextView
             android:layout_width="match_parent"
@@ -106,12 +106,12 @@
             android:id="@+id/fallas"
             android:layout_width="match_parent"
             android:layout_height="60dp"
+            android:autofillHints=""
             android:background="@drawable/items"
             android:ems="10"
             android:gravity="center"
             android:hint="DIGITE AQUI LA CANTIDAD"
-            android:inputType="number"
-            android:autofillHints="" />
+            android:inputType="number" />
 
         <TextView
             android:layout_width="match_parent"

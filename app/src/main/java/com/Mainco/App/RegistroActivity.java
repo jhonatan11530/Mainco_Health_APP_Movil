@@ -19,6 +19,7 @@ import IP.cambiarIP;
 import TSS.TTS;
 
 
+@SuppressWarnings("unused")
 public class RegistroActivity extends AppCompatActivity {
 
     TextInputEditText nombre, apellido, cedula, pass;
@@ -79,15 +80,19 @@ public class RegistroActivity extends AppCompatActivity {
         pass = findViewById(R.id.pass);
         resultado = findViewById(R.id.rol);
 
+        //noinspection ConstantConditions
         if (nombre.getText().toString().length() == 0) {
             nombre.setError("NOMBRE ES REQUERIDO !");
         }
+        //noinspection ConstantConditions
         if (apellido.getText().toString().length() == 0) {
             apellido.setError("APELLIDO ES REQUERIDO !");
         }
+        //noinspection ConstantConditions
         if (cedula.getText().toString().length() == 0) {
             cedula.setError("CEDULA ES REQUERIDO !");
         }
+        //noinspection ConstantConditions
         if (pass.getText().toString().length() == 0) {
             pass.setError("CONTRASEÑA ES REQUERIDO !");
         } else {

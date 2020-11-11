@@ -107,7 +107,7 @@
                 android:onClick="comprobar"
                 android:text="Recuperar Contraseña"
                 android:textColor="#000"
-                tools:ignore="UsingOnClickInXml" />
+                tools:ignore="OnClick,UsingOnClickInXml" />
 
 
         </LinearLayout>

@@ -103,7 +103,8 @@
                 android:onClick="olvidoC"
                 android:text="OLVIDADO SU CONTRASEÑA"
                 android:textColor="#FFF"
-                app:drawableLeftCompat="@drawable/candado" />
+                app:drawableLeftCompat="@drawable/candado"
+                tools:ignore="UsingOnClickInXml" />
         </LinearLayout>
 
         <LinearLayout
@@ -125,7 +126,8 @@
                 android:gravity="center"
                 android:onClick="validartodo"
                 android:text="iniciar sesion"
-                android:textColor="#FFF" />
+                android:textColor="#FFF"
+                tools:ignore="UsingOnClickInXml" />
 
             <TextView
                 android:id="@+id/registre"
@@ -134,7 +136,8 @@
                 android:gravity="center"
                 android:onClick="registro"
                 android:text="REGISTRARSE"
-                android:textColor="#FFF" />
+                android:textColor="#FFF"
+                tools:ignore="UsingOnClickInXml" />
 
 
         </LinearLayout>

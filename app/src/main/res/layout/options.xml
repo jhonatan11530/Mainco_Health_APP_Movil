@@ -67,7 +67,8 @@
                         android:layout_height="80dp"
                         android:enabled="false"
                         android:onClick="masinfo"
-                        android:text="MAS INFORMACION" />
+                        android:text="MAS INFORMACION"
+                        tools:ignore="UsingOnClickInXml" />
 
 
                 </LinearLayout>
@@ -188,14 +189,16 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:onClick="dianostico"
-                            android:text="DIAGNÓSTICO DE LA APP" />
+                            android:text="DIAGNÓSTICO DE LA APP"
+                            tools:ignore="UsingOnClickInXml" />
                     </LinearLayout>
 
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="80dp"
                         android:onClick="info"
-                        android:text="INFORMACION DE ESCLUSIVIDAD" />
+                        android:text="INFORMACION DE ESCLUSIVIDAD"
+                        tools:ignore="UsingOnClickInXml" />
 
 
                 </LinearLayout>
@@ -253,7 +256,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="80dp"
                         android:onClick="support"
-                        android:text="OBTENER SOPORTE" />
+                        android:text="OBTENER SOPORTE"
+                        tools:ignore="UsingOnClickInXml" />
 
                 </LinearLayout>
 

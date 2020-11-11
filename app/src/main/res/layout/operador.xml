@@ -35,13 +35,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="4dp"
                 android:layout_weight="2"
+                android:autofillHints=""
                 android:background="@drawable/items"
                 android:ems="10"
                 android:gravity="center"
                 android:hint="ID DEL OPERADOR"
                 android:inputType="text"
-                android:textColorHint="#000"
-                android:autofillHints="" />
+                android:textColorHint="#000" />
 
             <EditText
                 android:id="@+id/OP"
@@ -49,14 +49,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="4dp"
                 android:layout_weight="2"
+                android:autofillHints=""
                 android:background="@drawable/items"
                 android:ems="10"
                 android:gravity="center"
                 android:hint="INGRESE EL NUMERO DE O.P"
                 android:inputType="text"
                 android:textColorHint="#000"
-                tools:ignore="NestedWeights"
-                android:autofillHints="" />
+                tools:ignore="NestedWeights" />
 
             <Button
                 android:id="@+id/Validar"
@@ -67,7 +67,8 @@
                 android:onClick="operador"
                 android:text="VALIDAR INFORMACION"
                 android:textColor="#ffffff"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                tools:ignore="UsingOnClickInXml" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -115,7 +116,8 @@
                 android:onClick="registrar"
                 android:text="COMENZAR PRODUCCION"
                 android:textColor="#ffffff"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                tools:ignore="UsingOnClickInXml" />
 
             <Button
                 android:id="@+id/tiempo"
@@ -126,7 +128,8 @@
                 android:onClick="hora"
                 android:text="REGISTRAR TIEMPO DE PARO"
                 android:textColor="#ffffff"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                tools:ignore="UsingOnClickInXml" />
 
             <Button
                 android:id="@+id/salida"
@@ -138,7 +141,8 @@
                 android:onClick="salida"
                 android:text="REGISTRAR PRODUCCION"
                 android:textColor="#ffffff"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                tools:ignore="UsingOnClickInXml" />
 
         </LinearLayout>
 

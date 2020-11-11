@@ -66,9 +66,11 @@ public class OlvidoActivity extends AppCompatActivity {
 
     public void comprobar() {
 
+        //noinspection ConstantConditions
         if (id.getText().toString().length() == 0) {
             id.setError("ID ES REQUERIDO !");
         }
+        //noinspection ConstantConditions
         if (cedula.getText().toString().length() == 0) {
             cedula.setError("CONTRASEÑA ES REQUERIDO !");
         } else {
