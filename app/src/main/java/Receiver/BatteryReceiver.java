@@ -10,8 +10,6 @@ import android.os.BatteryManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import TSS.TTS;
-
 
 public class BatteryReceiver extends BroadcastReceiver {
     @SuppressWarnings("StatementWithEmptyBody")

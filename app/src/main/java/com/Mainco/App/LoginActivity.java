@@ -73,7 +73,7 @@ public class LoginActivity extends AppCompatActivity {
 
         textToSpeech.speak("NO PUEDES CERRAR LA APLICACION DEBES TERMINAR TU LABOR");
 
-        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

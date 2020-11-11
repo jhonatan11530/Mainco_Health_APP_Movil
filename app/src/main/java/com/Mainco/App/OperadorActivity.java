@@ -56,7 +56,6 @@ import GET_SET.cantidadfallas;
 import GET_SET.motivoparo;
 import Http_Conexion.HttpRequest;
 import IP.cambiarIP;
-import Receiver.BatteryReceiver;
 import Services.ServicioActividad;
 import Services.ServicioCantidad;
 import Services.ServicioContador;
@@ -87,8 +86,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
     private int minuto, segundo, horas, i, hora, cantidadpro, cantidadotra, volumencan, total, volumen;
     private AsyncHttpClient cliente, cliente1, cliente2;
     private Thread workerThread = null;
-
-
 
 
     private BroadcastReceiver LlenarSpinner = new BroadcastReceiver() {
@@ -1194,154 +1191,153 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             @Override
             public void run() {
                 try {
-                final String nombretarea = Actividad.getSelectedItem().toString();
-                String Validar = HttpRequest.get("http://" + cambiarIP.ip + "/validar/ValidarRegistro/ValidarRegistro.php?id=" + id.getText().toString()).body();
+                    final String nombretarea = Actividad.getSelectedItem().toString();
+                    String Validar = HttpRequest.get("http://" + cambiarIP.ip + "/validar/ValidarRegistro/ValidarRegistro.php?id=" + id.getText().toString()).body();
 
                     JSONArray ValidarRegistro = new JSONArray(Validar);
 
-                    if (ValidarRegistro.getString(0).length() == 4){
+                    if (ValidarRegistro.getString(0).length() == 4) {
 
                         System.out.println("EL VALOR ES NULL");
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-
-
-                        id = findViewById(R.id.operador);
-
-                        // imprime fecha
-                        dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-                        date = new Date();
-
-                        //imprime hora
-                        hourFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
-
-                        //almacena los datos en una cadena
-                        final String hora = hourFormat.format(date);
-
-                        final String fecha = dateFormat.format(date);
-
-                        AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
-                        builder.setTitle("HA EMPEZADO A SU ACTIVIDAD");
-                        builder.setIcon(R.drawable.checker);
-                        builder.setMessage("PORFAVOR EMPIECE HA RELIZAR SU LABOR O ACTIVIDAD ASIGNADA");
-                        edit = new EditText(OperadorActivity.this);
-                        edit.setEnabled(false);
-                        edit.setText(fecha);
-                        textToSpeech.speak("PUEDE EMPEZAR A REALIZAR SU LABOR");
-
-                        final String fechas = edit.getText().toString();
-                        final String Nop = NumeroItem.getSelectedItem().toString();
-                        final String tarea = Actividad.getSelectedItem().toString();
-                        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
-
+                        runOnUiThread(new Runnable() {
                             @Override
-                            public void onClick(DialogInterface dialog, int which) {
+                            public void run() {
 
-                                // TODO Auto-generated method stub
-                                hilo = new Thread(new Runnable() {
+
+                                id = findViewById(R.id.operador);
+
+                                // imprime fecha
+                                dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+                                date = new Date();
+
+                                //imprime hora
+                                hourFormat = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+
+                                //almacena los datos en una cadena
+                                final String hora = hourFormat.format(date);
+
+                                final String fecha = dateFormat.format(date);
+
+                                AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
+                                builder.setTitle("HA EMPEZADO A SU ACTIVIDAD");
+                                builder.setIcon(R.drawable.checker);
+                                builder.setMessage("PORFAVOR EMPIECE HA RELIZAR SU LABOR O ACTIVIDAD ASIGNADA");
+                                edit = new EditText(OperadorActivity.this);
+                                edit.setEnabled(false);
+                                edit.setText(fecha);
+                                textToSpeech.speak("PUEDE EMPEZAR A REALIZAR SU LABOR");
+
+                                final String fechas = edit.getText().toString();
+                                final String Nop = NumeroItem.getSelectedItem().toString();
+                                final String tarea = Actividad.getSelectedItem().toString();
+                                builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+
                                     @Override
-                                    public void run() {
-                                        final String nombretarea = Actividad.getSelectedItem().toString();
-                                        try {
+                                    public void onClick(DialogInterface dialog, int which) {
 
-                                            String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/Sobrante.php?cod=" + NumeroItem.getSelectedItem().toString() + "&tarea=" + nombretarea + "&op=" + op.getText().toString()).body();
-                                            JSONArray validar = new JSONArray(response);
-                                            int validator = Integer.parseInt(validar.getString(0));
+                                        // TODO Auto-generated method stub
+                                        hilo = new Thread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                final String nombretarea = Actividad.getSelectedItem().toString();
+                                                try {
 
-                                            if (validator == 0) {
-                                                runOnUiThread(new Runnable() {
-                                                    @Override
-                                                    public void run() {
-                                                        Btnsalida.setEnabled(true);
-                                                        BtnParo.setEnabled(true);
-                                                    }
-                                                });
+                                                    String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/Sobrante.php?cod=" + NumeroItem.getSelectedItem().toString() + "&tarea=" + nombretarea + "&op=" + op.getText().toString()).body();
+                                                    JSONArray validar = new JSONArray(response);
+                                                    int validator = Integer.parseInt(validar.getString(0));
 
-
-                                                String respuesta = HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidad_en_op.php?cod=" + NumeroItem.getSelectedItem().toString() + "&op=" + op.getText().toString()).body();
-                                                JSONArray validartor = new JSONArray(respuesta);
-                                                int real = Integer.parseInt(validartor.getString(0));
-                                                HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodifi.php?cod=" + NumeroItem.getSelectedItem().toString() + "&totales=" + real + "&op=" + op.getText().toString()).body();
-
-                                                Intent cantidad = new Intent(OperadorActivity.this, ServicioCantidad.class);
-                                                cantidad.putExtra("op", op.getText().toString());
-                                                cantidad.putExtra("cod", NumeroItem.getSelectedItem().toString());
-                                                cantidad.putExtra("tarea", Actividad.getSelectedItem().toString());
-                                                startService(cantidad);
-
-                                            }
-                                            if (validator > 0) {
-                                                runOnUiThread(new Runnable() {
-                                                    @Override
-                                                    public void run() {
-                                                        Btnsalida.setEnabled(true);
-                                                        BtnParo.setEnabled(true);
-                                                    }
-                                                });
-
-                                                runOnUiThread(new Runnable() {
-                                                    @Override
-                                                    public void run() {
-                                                        AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
-                                                        builder.setTitle("HAY CANTIDADES PENDIENTES");
-                                                        builder.setIcon(R.drawable.informacion);
-                                                        builder.setMessage("DEBE TERMINAR LAS CANTIDADES PENDIENTES");
-
-                                                        builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+                                                    if (validator == 0) {
+                                                        runOnUiThread(new Runnable() {
                                                             @Override
-                                                            public void onClick(DialogInterface dialogInterface, int i) {
-
+                                                            public void run() {
+                                                                Btnsalida.setEnabled(true);
+                                                                BtnParo.setEnabled(true);
                                                             }
                                                         });
-                                                        AlertDialog alert = builder.create();
-                                                        alert.show();
-                                                        alert.setCanceledOnTouchOutside(false);
-                                                    }
-                                                });
 
-                                                Intent cantidad = new Intent(OperadorActivity.this, ServicioCantidad.class);
-                                                cantidad.putExtra("op", op.getText().toString());
-                                                cantidad.putExtra("cod", NumeroItem.getSelectedItem().toString());
-                                                cantidad.putExtra("tarea", Actividad.getSelectedItem().toString());
-                                                startService(cantidad);
+
+                                                        String respuesta = HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidad_en_op.php?cod=" + NumeroItem.getSelectedItem().toString() + "&op=" + op.getText().toString()).body();
+                                                        JSONArray validartor = new JSONArray(respuesta);
+                                                        int real = Integer.parseInt(validartor.getString(0));
+                                                        HttpRequest.get("http://" + cambiarIP.ip + "/validar/cantidadmodifi.php?cod=" + NumeroItem.getSelectedItem().toString() + "&totales=" + real + "&op=" + op.getText().toString()).body();
+
+                                                        Intent cantidad = new Intent(OperadorActivity.this, ServicioCantidad.class);
+                                                        cantidad.putExtra("op", op.getText().toString());
+                                                        cantidad.putExtra("cod", NumeroItem.getSelectedItem().toString());
+                                                        cantidad.putExtra("tarea", Actividad.getSelectedItem().toString());
+                                                        startService(cantidad);
+
+                                                    }
+                                                    if (validator > 0) {
+                                                        runOnUiThread(new Runnable() {
+                                                            @Override
+                                                            public void run() {
+                                                                Btnsalida.setEnabled(true);
+                                                                BtnParo.setEnabled(true);
+                                                            }
+                                                        });
+
+                                                        runOnUiThread(new Runnable() {
+                                                            @Override
+                                                            public void run() {
+                                                                AlertDialog.Builder builder = new AlertDialog.Builder(OperadorActivity.this);
+                                                                builder.setTitle("HAY CANTIDADES PENDIENTES");
+                                                                builder.setIcon(R.drawable.informacion);
+                                                                builder.setMessage("DEBE TERMINAR LAS CANTIDADES PENDIENTES");
+
+                                                                builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+                                                                    @Override
+                                                                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                                                                    }
+                                                                });
+                                                                AlertDialog alert = builder.create();
+                                                                alert.show();
+                                                                alert.setCanceledOnTouchOutside(false);
+                                                            }
+                                                        });
+
+                                                        Intent cantidad = new Intent(OperadorActivity.this, ServicioCantidad.class);
+                                                        cantidad.putExtra("op", op.getText().toString());
+                                                        cantidad.putExtra("cod", NumeroItem.getSelectedItem().toString());
+                                                        cantidad.putExtra("tarea", Actividad.getSelectedItem().toString());
+                                                        startService(cantidad);
+
+                                                    }
+
+                                                    HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizaEntrada.php?id=" + id.getText().toString() + "&Finicial=" + fechas + "&Hinicial=" + hora + "&op=" + op.getText().toString()).body();
+
+                                                    runOnUiThread(new Runnable() {
+                                                        @Override
+                                                        public void run() {
+                                                            BtnIngreso.setEnabled(false);
+                                                            BtnIngreso.setBackgroundColor(Color.parseColor("#919191"));
+                                                        }
+                                                    });
+
+
+                                                } catch (JSONException e) {
+                                                    e.printStackTrace();
+                                                }
+
 
                                             }
-
-                                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/actualizaEntrada.php?id=" + id.getText().toString() + "&Finicial=" + fechas + "&Hinicial=" + hora + "&op=" + op.getText().toString()).body();
-
-                                            runOnUiThread(new Runnable() {
-                                                @Override
-                                                public void run() {
-                                                    BtnIngreso.setEnabled(false);
-                                                    BtnIngreso.setBackgroundColor(Color.parseColor("#919191"));
-                                                }
-                                            });
-
-
-
-
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
-                                        }
-
-
+                                        });
+                                        hilo.start();
+                                        hilo.setPriority(Thread.MIN_PRIORITY);
+                                        Thread.interrupted();
                                     }
                                 });
-                                hilo.start();
-                                hilo.setPriority(Thread.MIN_PRIORITY);
-                                Thread.interrupted();
+
+                                AlertDialog alert = builder.create();
+                                alert.show();
+                                alert.setCanceledOnTouchOutside(false);
                             }
                         });
 
-                        AlertDialog alert = builder.create();
-                        alert.show();
-                        alert.setCanceledOnTouchOutside(false);
-                        }
-                    });
-
-                    }if (ValidarRegistro.getString(0).length() == 10){
-                        System.out.println("EL VALOR NO ES NULL "+ValidarRegistro.getString(0));
+                    }
+                    if (ValidarRegistro.getString(0).length() == 10) {
+                        System.out.println("EL VALOR NO ES NULL " + ValidarRegistro.getString(0));
 
                         runOnUiThread(new Runnable() {
                             @Override

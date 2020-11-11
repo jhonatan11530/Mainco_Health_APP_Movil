@@ -15,16 +15,15 @@ import Receiver.StartAppOnBoot;
 
 public class MainActivity extends AppCompatActivity {
 
-    // BOOT
-    private StartAppOnBoot mBaootReceiver = new StartAppOnBoot();
-    private IntentFilter mIntentFilterBoot = new IntentFilter(Intent.ACTION_BOOT_COMPLETED);
-
-    // BATERY
-    private BatteryReceiver mBatteryReceiver = new BatteryReceiver();
-    private IntentFilter mIntentFilterBatery = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
     // CONNECTING
     private final ConnectingReceiver connectingReceiver = new ConnectingReceiver();
     private final IntentFilter mIntentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+    // BOOT
+    private StartAppOnBoot mBaootReceiver = new StartAppOnBoot();
+    private IntentFilter mIntentFilterBoot = new IntentFilter(Intent.ACTION_BOOT_COMPLETED);
+    // BATERY
+    private BatteryReceiver mBatteryReceiver = new BatteryReceiver();
+    private IntentFilter mIntentFilterBatery = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
