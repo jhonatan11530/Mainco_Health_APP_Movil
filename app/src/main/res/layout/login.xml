@@ -63,7 +63,8 @@
                 android:gravity="center"
                 android:orientation="vertical"
                 android:textColorHint="#fff"
-                app:hintTextAppearance="@color/white">
+                app:hintTextAppearance="@color/white"
+                app:passwordToggleEnabled="true">
 
                 <EditText
                     android:id="@+id/ID"

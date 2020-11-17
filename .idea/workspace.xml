@@ -299,10 +299,10 @@
     </state>
     <state x="200" y="98" key="#PSD/0.0.1366.728@0.0.1366.728" timestamp="1605109467341" />
     <state x="134" y="202" key="#PSD/0.0.1366.738@0.0.1366.738" timestamp="1603300084500" />
-    <state x="492" y="231" key="#Updates" timestamp="1605022837591">
+    <state x="492" y="231" key="#Updates" timestamp="1605613814233">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="492" y="231" key="#Updates/0.0.1366.728@0.0.1366.728" timestamp="1605022837591" />
+    <state x="492" y="231" key="#Updates/0.0.1366.728@0.0.1366.728" timestamp="1605613814233" />
     <state x="137" y="24" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603483406298">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -316,14 +316,6 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="413" y="145" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1366.738@0.0.1366.738" timestamp="1597865132624" />
-    <state x="531" y="255" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1596673243506">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="531" y="255" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1366.728@0.0.1366.728" timestamp="1596673243506" />
-    <state x="263" y="24" key="#com.intellij.openapi.projectRoots.ui.ProjectJdksEditor" timestamp="1596673240406">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="263" y="24" key="#com.intellij.openapi.projectRoots.ui.ProjectJdksEditor/0.0.1366.728@0.0.1366.728" timestamp="1596673240406" />
     <state x="363" y="94" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1600613709822">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -358,10 +350,10 @@
     </state>
     <state x="430" y="164" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1366.728@0.0.1366.728" timestamp="1605099644624" />
     <state x="430" y="166" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1366.738@0.0.1366.738" timestamp="1604083460925" />
-    <state x="92" y="91" width="1182" height="547" key="AVDManager" timestamp="1605109784391">
+    <state x="92" y="91" width="1182" height="547" key="AVDManager" timestamp="1605613305174">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="92" y="91" width="1182" height="547" key="AVDManager/0.0.1366.728@0.0.1366.728" timestamp="1605109784391" />
+    <state x="92" y="91" width="1182" height="547" key="AVDManager/0.0.1366.728@0.0.1366.728" timestamp="1605613305174" />
     <state x="92" y="92" width="1182" height="554" key="AVDManager/0.0.1366.738@0.0.1366.738" timestamp="1604085678824" />
     <state x="263" y="124" key="AndroidCreateResourceDirectoryDialog" timestamp="1597864817826">
       <screen x="0" y="0" width="1366" height="738" />
@@ -372,38 +364,30 @@
     </state>
     <state x="263" y="122" key="AndroidCreateResourceFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1604953068076" />
     <state x="263" y="124" key="AndroidCreateResourceFileDialog/0.0.1366.738@0.0.1366.738" timestamp="1603293974452" />
-    <state x="337" y="0" key="CommitChangelistDialog2" timestamp="1596676243503">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="337" y="0" key="CommitChangelistDialog2/0.0.1366.728@0.0.1366.728" timestamp="1596676243503" />
     <state x="463" y="120" key="FileChooserDialogImpl" timestamp="1604507396114">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="463" y="120" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1604507396114" />
     <state x="463" y="122" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1604085101946" />
-    <state x="553" y="257" key="Github.ShareDialog" timestamp="1596674572787">
+    <state width="462" height="2" key="GridCell.Tab.0.bottom" timestamp="1605615725041">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="553" y="257" key="Github.ShareDialog/0.0.1366.728@0.0.1366.728" timestamp="1596674572787" />
-    <state width="1323" height="146" key="GridCell.Tab.0.bottom" timestamp="1605113750849">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state width="1323" height="146" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1605113750849" />
+    <state width="462" height="2" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1605615725041" />
     <state width="557" height="48" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1604091472897" />
-    <state width="1323" height="146" key="GridCell.Tab.0.center" timestamp="1605113750849">
+    <state width="462" height="2" key="GridCell.Tab.0.center" timestamp="1605615725041">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="146" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1605113750849" />
+    <state width="462" height="2" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1605615725041" />
     <state width="557" height="48" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1604091472896" />
-    <state width="1323" height="146" key="GridCell.Tab.0.left" timestamp="1605113750849">
+    <state width="462" height="2" key="GridCell.Tab.0.left" timestamp="1605615725041">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="146" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1605113750849" />
+    <state width="462" height="2" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1605615725041" />
     <state width="557" height="48" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1604091472896" />
-    <state width="1323" height="146" key="GridCell.Tab.0.right" timestamp="1605113750849">
+    <state width="462" height="2" key="GridCell.Tab.0.right" timestamp="1605615725041">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="146" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1605113750849" />
+    <state width="462" height="2" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1605615725041" />
     <state width="557" height="48" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1604091472897" />
     <state width="1367" height="230" key="GridCell.Tab.1.bottom" timestamp="1603746081984">
       <screen x="0" y="0" width="1366" height="738" />
@@ -429,7 +413,6 @@
     <state x="275" y="98" key="Vcs.Push.Dialog.v2" timestamp="1603914603932">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="275" y="97" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1596676296706" />
     <state x="275" y="98" key="Vcs.Push.Dialog.v2/0.0.1366.738@0.0.1366.738" timestamp="1603914603932" />
     <state x="267" y="117" key="caller.chooser.dialog" timestamp="1603724231435">
       <screen x="0" y="0" width="1366" height="738" />
@@ -448,10 +431,6 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="379" y="190" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1597681433236" />
-    <state x="492" y="286" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1596551382681">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="492" y="286" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.738@0.0.1366.738" timestamp="1596551382681" />
     <state x="454" y="72" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1600878190368">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
@@ -481,14 +460,6 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="346" y="59" width="672" height="678" key="search.everywhere.popup/0.0.1366.738@0.0.1366.738" timestamp="1599595633807" />
-    <state x="513" y="155" key="svn.repositoryBrowser" timestamp="1596676114293">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="513" y="155" key="svn.repositoryBrowser/0.0.1366.728@0.0.1366.728" timestamp="1596676114293" />
-    <state x="505" y="139" key="svn4idea.import.options" timestamp="1596674550486">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="505" y="139" key="svn4idea.import.options/0.0.1366.728@0.0.1366.728" timestamp="1596674550486" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/android$All_in_app.ic" NAME="All in app Coverage Results" MODIFIED="1593715343874" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
