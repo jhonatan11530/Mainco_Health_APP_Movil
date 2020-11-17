@@ -40,7 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:gravity="center"
-                android:text="¿Olvidaste tu contraseña?"
+                android:text="@string/OLVIDO_TU_CONTRASEÑA"
                 android:textColor="@color/white"
                 android:textSize="25sp" />
 
@@ -49,7 +49,7 @@
                 android:layout_height="30dp"
                 android:layout_marginVertical="5dp"
                 android:gravity="center"
-                android:text="Ingresa el usuario con el que te registraste"
+                android:text="@string/INGRESE_EL_USUARIO"
                 android:textColor="@color/white"
                 android:textSize="15sp" />
 
@@ -66,7 +66,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:gravity="center"
-                android:hint="INGRESE SU ID"
+                android:hint="@string/INGRESE_SU_ID_OLVIDO"
                 android:textColorHint="#fff"
                 app:hintTextAppearance="@color/white"
                 app:startIconDrawable="@drawable/candado">
@@ -84,7 +84,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:gravity="center"
-                android:hint="INGRESE SU CONTRASEÑA"
+                android:hint="@string/INGRESE_SU_CONTRASEÑA_OLVIDO"
                 android:textColorHint="#fff"
                 app:hintTextAppearance="@color/white"
                 app:passwordToggleEnabled="true"
@@ -105,7 +105,7 @@
                 android:background="@drawable/btn_redondo"
                 android:gravity="center"
                 android:onClick="comprobar"
-                android:text="Recuperar Contraseña"
+                android:text="@string/RECUPERAR_CONTRASEÑA_OLVIDO"
                 android:textColor="#FFF"
                 tools:ignore="OnClick,UsingOnClickInXml" />
 

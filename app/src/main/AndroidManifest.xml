@@ -76,23 +76,23 @@
         </activity>
         <activity
             android:name=".options"
-            android:label="@string/title_activity_opciones"
+            android:label="@string/AYUDA"
             android:screenOrientation="portrait" />
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login"
+            android:label="@string/LOGIN"
             android:screenOrientation="portrait" />
         <activity
             android:name=".OperadorActivity"
-            android:label="@string/title_activity_operador"
+            android:label="@string/PROUCCION"
             android:screenOrientation="portrait" />
         <activity
             android:name=".RegistroActivity"
-            android:label="@string/title_activity_registro"
+            android:label="@string/USUARIOS"
             android:screenOrientation="portrait" />
         <activity
             android:name=".OlvidoActivity"
-            android:label="@string/title_activity_olvido"
+            android:label="@string/CONTRASEÑA"
             android:screenOrientation="portrait" />
         <activity
             android:name="Introducciones.INTRODUCCION"

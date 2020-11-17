@@ -1,19 +1,33 @@
 <resources>
+    <!-- ACTIVITY NAME -->
     <string name="MAIN">Mainco health app</string>
-    <string name="title_activity_login">LOGIN</string>
+    <string name="LOGIN">LOGIN</string>
     <string name="SALIR">SALIR</string>
-
-    <string name="title_activity_operador">INTERFAZ DE PROUCCION</string>
-    <string name="title_activity_olvido">OLVIDO SU CONTRASEÑA</string>
-    <string name="title_activity_registro">REGISTRO DE USUARIOS</string>
-    <string name="title_activity_opciones">INFORMACION Y AYUDA</string>
-    <string name="title_activity_main2">MainActivity</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="PROUCCION">INTERFAZ DE PROUCCION</string>
+    <string name="CONTRASEÑA">OLVIDO SU CONTRASEÑA</string>
+    <string name="USUARIOS">REGISTRO DE USUARIOS</string>
+    <string name="AYUDA">INFORMACION Y AYUDA</string>
+    <!-- STRING DE LOGIN -->
+    <string name="ID">INGRESE SU ID</string>
+    <string name="PASSWORD">INGRESE SU CONTRASEÑA</string>
+    <string name="RECORDAR">RECORDAR LOGIN</string>
+    <string name="RECUPERAR_PASS">OLVIDADO SU CONTRASEÑA</string>
+    <string name="BTN_LOGIN">INICIAR SESIÓN</string>
+    <string name="BTN_REGISTRO">REGISTRARSE</string>
+    <!-- STRING DE OLVIDO -->
+    <string name="OLVIDO_TU_CONTRASEÑA">¿Olvidaste tu contraseña?</string>
+    <string name="INGRESE_EL_USUARIO">Ingresa el usuario con el que te registraste</string>
+    <string name="INGRESE_SU_ID_OLVIDO">INGRESE SU ID</string>
+    <string name="INGRESE_SU_CONTRASEÑA_OLVIDO">INGRESE SU CONTRASEÑA</string>
+    <string name="RECUPERAR_CONTRASEÑA_OLVIDO">RECUPERAR CONTRASEÑA</string>
+    <!-- STRING DE REGISTRO -->
+    <string name="REGISTRO_DE_USUARIO_REGISTRO">REGISTRO DE USUARIO</string>
+    <string name="TEXTO_REGISTRO">DEBE REGISTRARSE PARA PODER ENTRAR AL SISTEMA</string>
+    <string name="INGRESE_SU_NOMBRE_REGISTRO">INGRESE SU NOMBRE</string>
+    <string name="INGRESE_SU_APELLIDO_REGISTRO">INGRESE SU APELLIDO</string>
+    <string name="USUARIO_REGISTRO">USUARIO</string>
+    <string name="CONTRASEÑA_REGISTRO">CONTRASEÑA</string>
+    <string name="TEXTO_REGISTRO2">SELECIONE EL CARGO ASIGNADO</string>
+    <string name="OPERADOR_REGISTRO">OPERADOR</string>
+    <string name="REGISTRAR_REGISTRO">REGISTRAR</string>
 </resources>
