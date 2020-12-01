@@ -84,7 +84,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
     private TextView motivo, MOSTRAR, texto, resultados, MostrarCantidadOP;
     private Button go, stop, BtnParo, positivo, neutrar, BtnIngreso, Btnsalida, validarinfo, Validar, BtnHora;
     private int minuto, segundo, horas, i, hora, cantidadpro, cantidadotra, volumencan, total, volumen;
-    private AsyncHttpClient cliente, cliente1, cliente2,validar;
+    private AsyncHttpClient cliente, cliente1, cliente2, validar;
     private Thread workerThread = null;
 
 

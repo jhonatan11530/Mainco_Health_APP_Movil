@@ -80,7 +80,7 @@ public class OlvidoActivity extends AppCompatActivity {
             cedula.setError("CONTRASEÑA ES REQUERIDO !");
         } else {
 
-            String url ="http://" + cambiarIP.ip + "/validar/olvido.php?cedula=" + id.getText().toString();
+            String url = "http://" + cambiarIP.ip + "/validar/olvido.php?cedula=" + id.getText().toString();
             olvido.post(url, new AsyncHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
