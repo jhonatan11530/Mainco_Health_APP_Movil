@@ -6,29 +6,34 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
-
-import org.json.JSONArray;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import Http_Conexion.HttpRequest;
 import IP.cambiarIP;
 import TSS.TTS;
+import cz.msebera.android.httpclient.Header;
 
 public class OlvidoActivity extends AppCompatActivity {
 
     TTS textToSpeech = null;
     private TextInputEditText id, cedula;
+    private AsyncHttpClient olvido;
 
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.olvido);
+
+        olvido = new AsyncHttpClient();
 
         textToSpeech = new TTS();
         textToSpeech.init(this);
@@ -64,7 +69,7 @@ public class OlvidoActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void comprobar() {
+    public void comprobar(View v) {
 
         //noinspection ConstantConditions
         if (id.getText().toString().length() == 0) {
@@ -75,75 +80,46 @@ public class OlvidoActivity extends AppCompatActivity {
             cedula.setError("CONTRASEÑA ES REQUERIDO !");
         } else {
 
-            new Thread(new Runnable() {
+            String url ="http://" + cambiarIP.ip + "/validar/olvido.php?cedula=" + id.getText().toString();
+            olvido.post(url, new AsyncHttpResponseHandler() {
                 @Override
-                public void run() {
-                    String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/olvido.php?cedula=" + id.getText().toString()).body();
+                public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            HttpRequest.get("http://" + cambiarIP.ip + "/validar/olvido.php?cedula=" + id.getText().toString() + "&pass=" + cedula.getText().toString()).body();
+                        }
+                    }).start();
 
-                    try {
-                        JSONArray objecto = new JSONArray(response);
-
-                        if (objecto.length() > 0) {
-
-                            new Thread(new Runnable() {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(OlvidoActivity.this);
+                            builder.setTitle("SE RESTAURO LA CONTRASEÑA");
+                            builder.setMessage("Se cambio la contraseña exitosamente");
+                            textToSpeech.speak("Se cambio la contraseña exitosamente");
+                            builder.setPositiveButton("Iniciar Sesiòn", new DialogInterface.OnClickListener() {
                                 @Override
-                                public void run() {
-                                    HttpRequest.get("http://" + cambiarIP.ip + "/validar/olvido.php?cedula=" + id.getText().toString() + "&pass=" + cedula.getText().toString()).body();
-
-                                    try {
-
-                                        runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-
-
-                                                AlertDialog.Builder builder = new AlertDialog.Builder(OlvidoActivity.this);
-
-                                                builder.setTitle("SE RESTAURO LA CONTRASEÑA");
-                                                builder.setMessage("Se cambio la contraseña exitosamente");
-                                                textToSpeech.speak("Se cambio la contraseña exitosamente");
-                                                builder.setPositiveButton("Iniciar Sesiòn", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                                        Intent e = new Intent(getApplicationContext(), LoginActivity.class);
-                                                        startActivity(e);
-                                                        finish();
-                                                    }
-                                                });
-                                                AlertDialog alert = builder.create();
-                                                alert.show();
-                                                alert.setCanceledOnTouchOutside(false);
-
-                                            }
-                                        });
-                                    } catch (Exception e) {
-                                        e.printStackTrace();
-                                    }
-
-
-                                }
-                            }).start();
-
-                        } else {
-
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Toast.makeText(getApplicationContext(), "NO SE ENCUENTRA EL ID O USUARIO", Toast.LENGTH_SHORT).show();
-
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    Intent e = new Intent(getApplicationContext(), LoginActivity.class);
+                                    startActivity(e);
+                                    finish();
                                 }
                             });
-
-
+                            AlertDialog alert = builder.create();
+                            alert.show();
+                            alert.setCanceledOnTouchOutside(false);
                         }
-
-                    } catch (Exception e) {
-
-                        e.printStackTrace();
-                    }
+                    });
 
                 }
-            }).start();
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                    Toast.makeText(getApplicationContext(), "NO SE ENCUENTRA EL ID O USUARIO", Toast.LENGTH_SHORT).show();
+                }
+            });
+
         }
     }
 

@@ -282,7 +282,7 @@ public class options extends AppCompatActivity {
         builder.setNegativeButton("CONOCER LICENCIA", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                String url = "http://192.168.20.9:8080/LICENSE.txt";
+                String url = "http://192.168.20.9:8080/LICENSE.html";
                 Uri uri = Uri.parse(url);
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 startActivity(intent);

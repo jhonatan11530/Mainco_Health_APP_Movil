@@ -6,13 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
-import com.loopj.android.http.AsyncHttpClient;
 
 import Http_Conexion.HttpRequest;
 import IP.cambiarIP;
@@ -25,7 +25,7 @@ public class RegistroActivity extends AppCompatActivity {
     TextInputEditText nombre, apellido, cedula, pass;
     CheckBox resultado;
     Button registro;
-    AsyncHttpClient client;
+
     TTS textToSpeech = null;
 
     @Override
@@ -33,10 +33,9 @@ public class RegistroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registro);
 
-        client = new AsyncHttpClient();
-
         textToSpeech = new TTS();
         textToSpeech.init(this);
+
         nombre = findViewById(R.id.nombre);
         apellido = findViewById(R.id.apellido);
         cedula = findViewById(R.id.cedula);
@@ -72,7 +71,7 @@ public class RegistroActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void registro() {
+    public void registro(View v) {
 
         nombre = findViewById(R.id.nombre);
         apellido = findViewById(R.id.apellido);

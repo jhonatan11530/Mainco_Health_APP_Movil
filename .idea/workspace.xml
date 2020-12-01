@@ -312,10 +312,6 @@
     </state>
     <state x="474" y="84" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1604953366552" />
     <state x="474" y="85" key="#com.intellij.ide.util.MemberChooser/0.0.1366.738@0.0.1366.738" timestamp="1604082988526" />
-    <state x="413" y="145" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1597865132624">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="413" y="145" key="#com.intellij.ide.util.PackageChooserDialog/0.0.1366.738@0.0.1366.738" timestamp="1597865132624" />
     <state x="363" y="94" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1600613709822">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -341,10 +337,6 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="363" y="28" key="#com.intellij.unscramble.UnscrambleDialog/0.0.1366.738@0.0.1366.738" timestamp="1600801242880" />
-    <state x="438" y="72" key="#xdebugger.evaluate" timestamp="1597783347393">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="438" y="72" key="#xdebugger.evaluate/0.0.1366.738@0.0.1366.738" timestamp="1597783347393" />
     <state x="430" y="164" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1605615977329">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -355,10 +347,6 @@
     </state>
     <state x="92" y="91" width="1182" height="547" key="AVDManager/0.0.1366.728@0.0.1366.728" timestamp="1605616280851" />
     <state x="92" y="92" width="1182" height="554" key="AVDManager/0.0.1366.738@0.0.1366.738" timestamp="1604085678824" />
-    <state x="263" y="124" key="AndroidCreateResourceDirectoryDialog" timestamp="1597864817826">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state x="263" y="124" key="AndroidCreateResourceDirectoryDialog/0.0.1366.738@0.0.1366.738" timestamp="1597864817826" />
     <state x="263" y="122" key="AndroidCreateResourceFileDialog" timestamp="1604953068076">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -369,25 +357,25 @@
     </state>
     <state x="463" y="120" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1604507396114" />
     <state x="463" y="122" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1604085101946" />
-    <state width="462" height="2" key="GridCell.Tab.0.bottom" timestamp="1605617894994">
+    <state width="925" height="65" key="GridCell.Tab.0.bottom" timestamp="1606840160167">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="462" height="2" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1605617894994" />
+    <state width="925" height="65" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1606840160167" />
     <state width="557" height="48" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1604091472897" />
-    <state width="462" height="2" key="GridCell.Tab.0.center" timestamp="1605617894993">
+    <state width="925" height="65" key="GridCell.Tab.0.center" timestamp="1606840160167">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="462" height="2" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1605617894993" />
+    <state width="925" height="65" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1606840160167" />
     <state width="557" height="48" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1604091472896" />
-    <state width="462" height="2" key="GridCell.Tab.0.left" timestamp="1605617894993">
+    <state width="925" height="65" key="GridCell.Tab.0.left" timestamp="1606840160167">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="462" height="2" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1605617894993" />
+    <state width="925" height="65" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1606840160167" />
     <state width="557" height="48" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1604091472896" />
-    <state width="462" height="2" key="GridCell.Tab.0.right" timestamp="1605617894993">
+    <state width="925" height="65" key="GridCell.Tab.0.right" timestamp="1606840160167">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="462" height="2" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1605617894993" />
+    <state width="925" height="65" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1606840160167" />
     <state width="557" height="48" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1604091472897" />
     <state width="1367" height="230" key="GridCell.Tab.1.bottom" timestamp="1603746081984">
       <screen x="0" y="0" width="1366" height="738" />
@@ -427,10 +415,6 @@
     </state>
     <state x="92" y="91" width="1182" height="547" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1366.728@0.0.1366.728" timestamp="1600615459087" />
     <state x="92" y="92" width="1182" height="554" key="com.android.tools.idea.avdmanager.AvdListDialog/0.0.1366.738@0.0.1366.738" timestamp="1603538516098" />
-    <state x="379" y="190" key="com.intellij.ide.util.TipDialog" timestamp="1597681433236">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="379" y="190" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1597681433236" />
     <state x="454" y="72" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1600878190368">
       <screen x="0" y="0" width="1366" height="738" />
     </state>

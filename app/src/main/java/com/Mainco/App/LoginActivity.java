@@ -25,9 +25,12 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import Http_Conexion.HttpRequest;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+
 import IP.cambiarIP;
 import TSS.TTS;
+import cz.msebera.android.httpclient.Header;
 
 @SuppressWarnings("ALL")
 public class LoginActivity extends AppCompatActivity {
@@ -39,10 +42,13 @@ public class LoginActivity extends AppCompatActivity {
     CheckBox GUARDARUTO;
     ProgressDialog pd;
     TTS textToSpeech;
+    private AsyncHttpClient logueo;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
+
+        logueo = new AsyncHttpClient();
 
         textToSpeech = new TTS();
         textToSpeech.init(this);
@@ -182,81 +188,78 @@ public class LoginActivity extends AppCompatActivity {
         pd.setCancelable(false);
         pd.setCanceledOnTouchOutside(false);
 
-        new Thread(new Runnable() {
+        String url = "http://" + cambiarIP.ip + "/validar/validar.php?cedula=" + login.getText().toString() + "&pass=" + pass.getText().toString();
+        logueo.post(url, new AsyncHttpResponseHandler() {
             @Override
-            public void run() {
-                try {
-                    Thread.sleep(2000);
-                    String response = HttpRequest.get("http://" + cambiarIP.ip + "/validar/validar.php?cedula=" + login.getText().toString() + "&pass=" + pass.getText().toString()).body();
-                    System.out.println("NO SE " + response.length());
-                    if (response.length() > 0) {
-                        pd.cancel();
-                        textToSpeech.speak("BIENVENIDO");
-                        Intent e = new Intent(getApplicationContext(), OperadorActivity.class);
-                        startActivity(e);
+            public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
 
-                        if (GUARDARUTO.isChecked()) {
+                pd.cancel();
+                textToSpeech.speak("BIENVENIDO");
+                Intent e = new Intent(getApplicationContext(), OperadorActivity.class);
+                startActivity(e);
 
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Toast.makeText(getApplicationContext(), "SE GUARDO EL USUARIO Y CONTRASEÑA", Toast.LENGTH_SHORT).show();
+                if (GUARDARUTO.isChecked()) {
 
-                                    guardar();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getApplicationContext(), "SE GUARDO EL USUARIO Y CONTRASEÑA", Toast.LENGTH_SHORT).show();
 
-                                }
-                            });
-
+                            guardar();
 
                         }
+                    });
 
-                    } else {
-                        pd.cancel();
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-
-                                String titleText = "ERROR AL INICIAR SESSION";
-                                ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(Color.parseColor("#E82F2E"));
-
-                                SpannableStringBuilder ssBuilder = new SpannableStringBuilder(titleText);
-
-                                ssBuilder.setSpan(
-                                        foregroundColorSpan,
-                                        0,
-                                        titleText.length(),
-                                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
-                                );
-
-                                final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                                builder.setTitle(ssBuilder);
-                                builder.setIcon(R.drawable.peligro);
-                                builder.setMessage("VERIFIQUE EL USUARIO Y CONTRASEÑA");
-
-                                Intent textToSpeech = new Intent(LoginActivity.this, TTS.class);
-                                textToSpeech.putExtra("habla", "ERROR AL INICIAR SESIÓN. VERIFIQUE EL USUARIO Y CONTRASEÑA");
-                                startService(textToSpeech);
-                                builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        builder.setCancelable(true);
-                                    }
-                                });
-                                AlertDialog alert = builder.create();
-                                alert.show();
-                                alert.setCanceledOnTouchOutside(false);
-
-                            }
-                        });
-
-                    }
-
-
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
             }
-        }).start();
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                pd.cancel();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        String titleText = "ERROR AL INICIAR SESSION";
+                        ForegroundColorSpan foregroundColorSpan = new ForegroundColorSpan(Color.parseColor("#E82F2E"));
+
+                        SpannableStringBuilder ssBuilder = new SpannableStringBuilder(titleText);
+
+                        ssBuilder.setSpan(
+                                foregroundColorSpan,
+                                0,
+                                titleText.length(),
+                                Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                        );
+
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                        builder.setTitle(ssBuilder);
+                        builder.setIcon(R.drawable.peligro);
+                        builder.setMessage("VERIFIQUE EL USUARIO Y CONTRASEÑA");
+
+                        Intent textToSpeech = new Intent(LoginActivity.this, TTS.class);
+                        textToSpeech.putExtra("habla", "ERROR AL INICIAR SESIÓN. VERIFIQUE EL USUARIO Y CONTRASEÑA");
+                        startService(textToSpeech);
+                        builder.setPositiveButton("ACEPTAR", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                builder.setCancelable(true);
+                            }
+                        });
+                        AlertDialog alert = builder.create();
+                        alert.show();
+                        alert.setCanceledOnTouchOutside(false);
+
+                    }
+                });
+            }
+
+            @Override
+            public void onRetry(int retryNo) {
+
+            }
+        });
+
     }
 
 }

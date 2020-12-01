@@ -84,7 +84,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
     private TextView motivo, MOSTRAR, texto, resultados, MostrarCantidadOP;
     private Button go, stop, BtnParo, positivo, neutrar, BtnIngreso, Btnsalida, validarinfo, Validar, BtnHora;
     private int minuto, segundo, horas, i, hora, cantidadpro, cantidadotra, volumencan, total, volumen;
-    private AsyncHttpClient cliente, cliente1, cliente2;
+    private AsyncHttpClient cliente, cliente1, cliente2,validar;
     private Thread workerThread = null;
 
 
@@ -187,6 +187,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         cliente = new AsyncHttpClient();
         cliente1 = new AsyncHttpClient();
         cliente2 = new AsyncHttpClient();
+        validar = new AsyncHttpClient();
 
         // CONFIGURACION HTTP CLIENTE
         cliente.setConnectTimeout(28800000);
@@ -687,42 +688,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
             e.printStackTrace();
         }
 
-    }
-
-    public void validaractividad() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(1000);
-
-                    String responses = HttpRequest.get("http://" + cambiarIP.ip + "/validar/validarcantidad.php?numero=" + NumeroItem.getSelectedItem().toString() + "&tarea=" + Actividad.getSelectedItem().toString()).body();
-                    try {
-                        JSONArray objecto = new JSONArray(responses);
-                        int variable = Integer.parseInt(objecto.getString(0));
-
-                        if (variable == 0) {
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-
-                                    BtnParo.setEnabled(false);
-                                    BtnIngreso.setEnabled(false);
-                                    Btnsalida.setEnabled(false);
-
-                                }
-                            });
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }).start();
     }
 
     public void validar() {
