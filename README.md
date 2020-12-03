@@ -11,5 +11,5 @@ hora salida a produccion
 eficiencia
 eficacia
 
- ![ScreenShot](https://es.wikipedia.org/wiki/Imagen#/media/Archivo:Image_created_with_a_mobile_phone.png)
+ ![Alt text](https://es.wikipedia.org/wiki/Imagen#/media/Archivo:Image_created_with_a_mobile_phone.png)
 
