@@ -11,5 +11,5 @@ hora salida a produccion
 eficiencia
 eficacia
 
- ![Alt text](https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png)
+ ![Alt text](https://github.com/jhonatan11530/android/blob/master/app/src/main/res/drawable/spash.jpg)
 
