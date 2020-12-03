@@ -12,6 +12,17 @@ Mainco health app es una aplicacion para recolectar informacion sobre el area de
 - eficiencia
 - eficacia
 
+# LENGUAJE DE PROGRAMACION
+- JAVA
+
+# ENTORNO DE TRABAJO FRAMEWORK
+- ANDROID STUDIO
+
+# CONEXION CON BASE DE DATOS
+- SQL SERVER
+- ORACLE
+- APACHE-PHP (EJECUTA CONSULTAS)
+
 # COMPATIBILIDAD SISTEMA S.O (ANDROID)
 
 - API 18 Android 4.3 (CELULAR Y TABLET'S)
