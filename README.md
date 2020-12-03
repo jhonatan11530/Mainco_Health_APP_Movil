@@ -15,11 +15,13 @@ Aplicacion para recolectar informacion sobre el area de platan
  ![Alt text](https://github.com/jhonatan11530/android/blob/master/app/src/main/res/mipmap-hdpi/mainco.png)
 
 # LOGO MAINCO HEALTH CARE S.A.S
-<img src="https://github.com/jhonatan11530/android/blob/master/app/src/main/res/drawable/spash.jpg" alt="Stack of blueberry pancakes with powdered sugar" sytle="width: 50px">
+<img sytle="width: 50px;height=500"  src="https://github.com/jhonatan11530/android/blob/master/app/src/main/res/drawable/spash.jpg" alt="LOGO MAINCO" >
 
 # COMPATIBILIDAD SISTEMA S.O (ANDROID)
 
-# API 18 Android 4.3
-# API 28 Android 9
-# COMPATIBILIDAD CON TABLET'S RESOLUCION 1080P
+# API 18 Android 4.3 (CELULAR Y TABLET'S)
+# API 28 Android 9 (CELULAR Y TABLET'S)
+
+# NOTA
+En el caso de ejecutar la app en una TABLET'S
 
