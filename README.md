@@ -25,3 +25,9 @@ Aplicacion para recolectar informacion sobre el area de platan
 # NOTA
 En el caso de ejecutar la app en una TABLET'S
 
+# Copyright © 2019 Mainco Health Care
+
+# LICENCIA
+
+https://github.com/jhonatan11530/android/blob/master/LICENSE.txt
+
