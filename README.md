@@ -1,6 +1,11 @@
-# APLICACION MOVIL ANDROID MAINCO HEALTH APP
+<p align="center"><a target="_blank"><img src="https://github.com/jhonatan11530/android/blob/master/app/src/main/res/drawable/spash.jpg" width="400"></a></p>
 
-Aplicacion para recolectar informacion sobre el area de platan
+<p align="center">
+<a ><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+</p>
+
+#  QUE ES MAINCO HEALTH APP
+Mainco health app es una aplicacion para recolectar informacion sobre el area de platan
 
 - cantidad produccidas
 - cantidad rechazadas
@@ -14,8 +19,7 @@ Aplicacion para recolectar informacion sobre el area de platan
 # IMAGEN ICON MAINCO HEALTH APP
  ![Alt text](https://github.com/jhonatan11530/android/blob/master/app/src/main/res/mipmap-hdpi/mainco.png)
 
-# LOGO MAINCO HEALTH CARE S.A.S
-<img height=300 width=300  src="https://github.com/jhonatan11530/android/blob/master/app/src/main/res/drawable/spash.jpg" alt="LOGO MAINCO" >
+
 
 # COMPATIBILIDAD SISTEMA S.O (ANDROID)
 
