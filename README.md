@@ -16,11 +16,12 @@ Mainco health app es una aplicacion para recolectar informacion sobre el area de
 
 - API 18 Android 4.3 (CELULAR Y TABLET'S)
 - API 28 Android 9 (CELULAR Y TABLET'S)
-Compatibilidad con Tablet Resolucion maxima 1080p
+- Compatibilidad con Tablet Resolucion maxima 1080p
 
 # Copyright © 2019 Mainco Health Care
 
 # LICENCIA
-
+Licencia para la aplicacion para Mainco Health Care S.A.S 
+- LICENCIA APACHE V2
 https://github.com/jhonatan11530/android/blob/master/LICENSE.txt
 
