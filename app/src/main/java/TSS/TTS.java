@@ -21,7 +21,7 @@ public class TTS {
                         Log.e("erro", "ESTE LENGUAJE NO ES PERMITIDO");
                     } else {
                         textToSpeech.setPitch(1f);
-                        textToSpeech.setSpeechRate(1f);
+                        textToSpeech.setSpeechRate(1.1f);
 
                     }
                 }
