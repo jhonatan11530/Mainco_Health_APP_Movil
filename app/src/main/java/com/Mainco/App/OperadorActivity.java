@@ -833,6 +833,8 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                     public void run() {
                                         BtnIngreso.setEnabled(false);
                                         BtnIngreso.setBackgroundColor(Color.parseColor("#919191"));
+                                        BtnParo.setEnabled(true);
+                                        Btnsalida.setEnabled(true);
                                     }
                                 });
                             }
