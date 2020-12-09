@@ -806,18 +806,37 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
 
                         if (response.length() > 0) {
 
+                            String Validar = HttpRequest.get("http://" + cambiarIP.ip + "/validar/ValidarRegistro/ValidarRegistro.php?id=" + id.getText().toString()).body();
+                            JSONArray ValidarRegistro = new JSONArray(Validar);
 
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    BtnIngreso.setEnabled(true);
-                                    BtnIngreso.setBackgroundColor(Color.parseColor("#2196F3"));
+                            if (ValidarRegistro.getString(0).length() == 4) {
+                                System.out.println("EL VALOR NO ES NULL 1 " + ValidarRegistro.getString(0));
 
-                                    Btnsalida.setEnabled(false);
-                                    BtnParo.setEnabled(false);
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        BtnIngreso.setEnabled(true);
+                                        BtnIngreso.setBackgroundColor(Color.parseColor("#2196F3"));
 
-                                }
-                            });
+                                        Btnsalida.setEnabled(false);
+                                        BtnParo.setEnabled(false);
+
+                                    }
+                                });
+                            }
+
+                            if (ValidarRegistro.getString(0).length() == 10) {
+                                System.out.println("EL VALOR NO ES NULL 2 " + ValidarRegistro.getString(0));
+
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        BtnIngreso.setEnabled(false);
+                                        BtnIngreso.setBackgroundColor(Color.parseColor("#919191"));
+                                    }
+                                });
+                            }
+
                             NOMBRE = objecto.getString(0);
 
                             resultados.setText("OPERADOR : " + NOMBRE.toString());
@@ -1155,15 +1174,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
         new Thread(new Runnable() {
             @Override
             public void run() {
-                try {
-                    final String nombretarea = Actividad.getSelectedItem().toString();
-                    String Validar = HttpRequest.get("http://" + cambiarIP.ip + "/validar/ValidarRegistro/ValidarRegistro.php?id=" + id.getText().toString()).body();
 
-                    JSONArray ValidarRegistro = new JSONArray(Validar);
-
-                    if (ValidarRegistro.getString(0).length() == 4) {
-
-                        System.out.println("EL VALOR ES NULL");
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -1299,24 +1310,6 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                                 alert.setCanceledOnTouchOutside(false);
                             }
                         });
-
-                    }
-                    if (ValidarRegistro.getString(0).length() == 10) {
-                        System.out.println("EL VALOR NO ES NULL " + ValidarRegistro.getString(0));
-
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                BtnIngreso.setEnabled(false);
-                                BtnIngreso.setBackgroundColor(Color.parseColor("#919191"));
-                            }
-                        });
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
 
             }
         }).start();

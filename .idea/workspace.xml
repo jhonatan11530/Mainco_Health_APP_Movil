@@ -54,7 +54,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[J6_PLUS_API_28]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[14330766]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -96,16 +96,21 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ApkExportedModule" value="android.app" />
     <property name="BundleExportedModule" value="android.app" />
+    <property name="DEBUGGABLE_DEVICE" value="J6_PLUS_API_28 [emulator-5554]" />
+    <property name="DEBUGGABLE_PROCESS" value="com.MaincoHealthCare.App" />
+    <property name="DEBUGGER_ID" value="Auto" />
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_3a_API_30_x86" />
     <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-11-06T13:36:52.674Z" />
     <property name="ResourceManagerPrefKey.ResourceType" value="DRAWABLE" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="SHOW_ALL_PROCESSES" value="true" />
     <property name="SelectDeploymentTargetsDialog.selectedDevices" value="Pixel_2_API_28" />
     <property name="ToolWindowServices.ShowToolbar" value="false" />
     <property name="android-custom-viewC:/SDK/sources/android-28/android/widget/TextView.java_SELECTED" value="TextView" />
     <property name="android.sdk.path" value="D:/sdk" />
+    <property name="kotlin.migration.detection.enabled" value="false" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/java" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="memory.settings.postsync.last.time.stamp" value="1600527808767" />
@@ -147,6 +152,15 @@
     </option>
   </component>
   <component name="RunManager" selected="Android App.app">
+    <configuration name="All in android.app" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
+      <module name="android.app" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="All in app (1)" type="AndroidJUnit" factoryName="Android JUnit" temporary="true" nameIsGenerated="true">
       <module name="android.app" />
       <option name="PACKAGE_NAME" value="" />
@@ -240,6 +254,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Android JUnit.All in android.app" />
         <item itemvalue="Android JUnit.All in app (2)" />
         <item itemvalue="Android JUnit.All in app (1)" />
       </list>
@@ -337,66 +352,74 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="363" y="28" key="#com.intellij.unscramble.UnscrambleDialog/0.0.1366.738@0.0.1366.738" timestamp="1600801242880" />
-    <state x="430" y="164" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1605615977329">
+    <state x="302" y="108" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1606854036336">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="430" y="164" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1366.728@0.0.1366.728" timestamp="1605615977329" />
+    <state x="302" y="108" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1366.728@0.0.1366.728" timestamp="1606854036336" />
     <state x="430" y="166" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1366.738@0.0.1366.738" timestamp="1604083460925" />
-    <state x="92" y="91" width="1182" height="547" key="AVDManager" timestamp="1605616280851">
+    <state x="92" y="91" width="1182" height="547" key="AVDManager" timestamp="1607100329285">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="92" y="91" width="1182" height="547" key="AVDManager/0.0.1366.728@0.0.1366.728" timestamp="1605616280851" />
+    <state x="92" y="91" width="1182" height="547" key="AVDManager/0.0.1366.728@0.0.1366.728" timestamp="1607100329285" />
     <state x="92" y="92" width="1182" height="554" key="AVDManager/0.0.1366.738@0.0.1366.738" timestamp="1604085678824" />
     <state x="263" y="122" key="AndroidCreateResourceFileDialog" timestamp="1604953068076">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="263" y="122" key="AndroidCreateResourceFileDialog/0.0.1366.728@0.0.1366.728" timestamp="1604953068076" />
     <state x="263" y="124" key="AndroidCreateResourceFileDialog/0.0.1366.738@0.0.1366.738" timestamp="1603293974452" />
-    <state x="463" y="120" key="FileChooserDialogImpl" timestamp="1604507396114">
+    <state x="481" y="110" key="AndroidProcessChooserDialog" timestamp="1606853032443">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="120" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1604507396114" />
+    <state x="481" y="110" key="AndroidProcessChooserDialog/0.0.1366.728@0.0.1366.728" timestamp="1606853032443" />
+    <state x="463" y="120" key="FileChooserDialogImpl" timestamp="1606853165538">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="120" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1606853165538" />
     <state x="463" y="122" key="FileChooserDialogImpl/0.0.1366.738@0.0.1366.738" timestamp="1604085101946" />
-    <state width="925" height="65" key="GridCell.Tab.0.bottom" timestamp="1606840160167">
+    <state width="925" height="284" key="GridCell.Tab.0.bottom" timestamp="1607516310163">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="925" height="65" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1606840160167" />
+    <state width="925" height="284" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1607516310163" />
     <state width="557" height="48" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1604091472897" />
-    <state width="925" height="65" key="GridCell.Tab.0.center" timestamp="1606840160167">
+    <state width="925" height="284" key="GridCell.Tab.0.center" timestamp="1607516310163">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="925" height="65" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1606840160167" />
+    <state width="925" height="284" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1607516310163" />
     <state width="557" height="48" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1604091472896" />
-    <state width="925" height="65" key="GridCell.Tab.0.left" timestamp="1606840160167">
+    <state width="925" height="284" key="GridCell.Tab.0.left" timestamp="1607516310163">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="925" height="65" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1606840160167" />
+    <state width="925" height="284" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1607516310162" />
     <state width="557" height="48" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1604091472896" />
-    <state width="925" height="65" key="GridCell.Tab.0.right" timestamp="1606840160167">
+    <state width="925" height="284" key="GridCell.Tab.0.right" timestamp="1607516310163">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="925" height="65" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1606840160167" />
+    <state width="925" height="284" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1607516310163" />
     <state width="557" height="48" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1604091472897" />
-    <state width="1367" height="230" key="GridCell.Tab.1.bottom" timestamp="1603746081984">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state width="1367" height="230" key="GridCell.Tab.1.bottom/0.0.1366.738@0.0.1366.738" timestamp="1603746081984" />
-    <state width="1367" height="230" key="GridCell.Tab.1.center" timestamp="1603746081984">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state width="1367" height="230" key="GridCell.Tab.1.center/0.0.1366.738@0.0.1366.738" timestamp="1603746081984" />
-    <state width="1367" height="230" key="GridCell.Tab.1.left" timestamp="1603746081984">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state width="1367" height="230" key="GridCell.Tab.1.left/0.0.1366.738@0.0.1366.738" timestamp="1603746081984" />
-    <state width="1367" height="230" key="GridCell.Tab.1.right" timestamp="1603746081984">
-      <screen x="0" y="0" width="1366" height="738" />
-    </state>
-    <state width="1367" height="230" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1603746081984" />
-    <state x="184" y="0" key="SettingsEditor" timestamp="1605025378997">
+    <state width="1323" height="465" key="GridCell.Tab.1.bottom" timestamp="1606856428360">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="184" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1605025378997" />
+    <state width="1323" height="465" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1606856428360" />
+    <state width="1367" height="230" key="GridCell.Tab.1.bottom/0.0.1366.738@0.0.1366.738" timestamp="1603746081984" />
+    <state width="1323" height="465" key="GridCell.Tab.1.center" timestamp="1606856428360">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="465" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1606856428360" />
+    <state width="1367" height="230" key="GridCell.Tab.1.center/0.0.1366.738@0.0.1366.738" timestamp="1603746081984" />
+    <state width="1323" height="465" key="GridCell.Tab.1.left" timestamp="1606856428360">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="465" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1606856428360" />
+    <state width="1367" height="230" key="GridCell.Tab.1.left/0.0.1366.738@0.0.1366.738" timestamp="1603746081984" />
+    <state width="1323" height="465" key="GridCell.Tab.1.right" timestamp="1606856428360">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="465" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1606856428360" />
+    <state width="1367" height="230" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1603746081984" />
+    <state x="184" y="0" key="SettingsEditor" timestamp="1607346473832">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="184" y="0" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1607346473832" />
     <state x="184" y="0" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1601040775592" />
     <state x="275" y="98" key="Vcs.Push.Dialog.v2" timestamp="1603914603932">
       <screen x="0" y="0" width="1366" height="738" />
@@ -447,5 +470,6 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/android$All_in_app.ic" NAME="All in app Coverage Results" MODIFIED="1593715343874" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/android$All_in_android_app.ic" NAME="All in android.app Coverage Results" MODIFIED="1606854082155" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
