@@ -1,13 +1,15 @@
 <?php
-  require_once("../ConexionSQL.php");
+require_once("../ConexionSQL.php");
 
-$conn = sqlsrv_connect( Server() , connectionInfo());
-$output[] =  http_response_code();
-if( $conn ) {
-    echo json_encode($output);
+$connectionInfo  = sqlsrv_connect(Server() , connectionInfo());
+if( $connectionInfo ) {
+    $conecto[] = "Correcto.";
+    echo json_encode($conecto);
 }else{
-     echo "Conexión no se pudo establecer.<br />";
-     die( print_r( sqlsrv_errors(), true));
-}
 
+    $fallo[] = "Incorrecto.";
+    echo json_encode($fallo);
+
+    die( print_r( sqlsrv_errors(), true));
+}
 ?>

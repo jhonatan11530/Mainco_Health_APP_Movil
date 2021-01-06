@@ -81,17 +81,17 @@ class tarea{
     while($listo = sqlsrv_fetch_array($res, SQLSRV_FETCH_ASSOC)) {
 
      $cant[] = $listo["cantidad"];
-      $extandar[] = round($listo["extandar"] *3600) / $listo["cantidadbase"];
-    
+      $extandar[] = round($listo["extandar"] *3600) * $listo["cantidadbase"] ;
     }
 
     for ($i=0; $i < count($cant); $i++) { 
 
-       $array[] = $cant[$i] * $extandar[$i];
+       $array[] =  $cant[$i] * $extandar[$i] ;
     }
+
     /*CONVERTIDO A HORA EFICACIA */
      $dato = array_sum($array);
-
+     
     echo "TIEMPO ESTÁNDAR :".$dato;
     echo "<br>";
     echo "<br>";
@@ -107,7 +107,7 @@ class HORA{
 
     /*CONVERTIDO A HORA EFICACIA */
 
-    echo "TIEMPO EN HORAS QUE SE DEBE DEMORAR EN HACER LA OP: ".$dato;
+    echo "TIEMPO EN HORAS QUE SE DEBE DEMORAR EN HACER LA OP: ".gmdate('H:i:s', $dato);
      
     $d = new entradasalida();
     $d->totaltime($ID,$dato,$op,$cant,$llave,$cod,$tarea);
@@ -181,7 +181,7 @@ class EFICIENCIA{
         $res = sqlsrv_query($mysql, $search);
 
        $f = new EFICACIA();
-       $f->eficacias($ID,$dato,$op,$cant,$llave,$cod,$tarea);
+       $f->eficacias($ID,$dato,$op,$cant,$llave,$cod,$tarea,$dates);
 
    
   }
@@ -189,17 +189,9 @@ class EFICIENCIA{
 }
 
 class EFICACIA{
-  function eficacias($ID,$dato,$op,$cant,$llave,$cod,$tarea){
-    /* YA ESTA LISTO NO MODIFICAR */
-    $mysql = sqlsrv_connect(Server() , connectionInfo());
-    $search = "SELECT programadas FROM proyecto.produccion WHERE numero_op = '".$op."' AND cod_producto='".$cod."' ";
-    $res = sqlsrv_query($mysql, $search);  
-    
-    while($listo = sqlsrv_fetch_array($res, SQLSRV_FETCH_ASSOC)) {
-          
-       $programado = $listo["programadas"];
-    }
+  function eficacias($ID,$dato,$op,$cant,$llave,$cod,$tarea,$dates){
 
+    $programado = gmdate('H:i:s', $dates);
     /*------------------------------------------*/
     $mysql = sqlsrv_connect(Server() , connectionInfo());
     $sql_statements = "SELECT SUM(DATEDIFF(SECOND, '00:00:00', CONVERT(time, tiempo_descanso))) AS tiempo_descanso FROM proyecto.motivo_paro WHERE numero_op= '".$op."' AND id= '".$ID."'";
@@ -213,12 +205,9 @@ class EFICACIA{
     if($programado != null){
 
       $promedioSUM = gmdate('H:i:s', $TIMEPAROSUM);
-
-      $datetime1 = new DateTime($promedioSUM);
-      $datetime2 = new DateTime($programado);
-      $interval = $datetime1->diff($datetime2);
-       $diferencia = $interval->format('%H:%I:%S');
+      $verifi =  $dates + $TIMEPAROSUM;
       
+      $diferencia = gmdate('H:i:s', $verifi);
         // TIEMPO EXTANDAR PROGRAMADA
       list($hours, $minutes, $segund) = explode(':', $programado);
        $timeprogramado = ($hours * 3600 ) + ($minutes * 60 ) + $segund;
@@ -226,7 +215,7 @@ class EFICACIA{
     list($hours, $minutes, $segund) = explode(':', $diferencia);
      $timeproduccido = ($hours * 3600 ) + ($minutes * 60 ) + $segund;
 
-     $eficacia = $timeproduccido / $timeprogramado  * 100;
+     $eficacia = round($timeprogramado / $timeproduccido * 100);
       $eficacias = round($eficacia);
       echo "<br>";
       echo "<br>";

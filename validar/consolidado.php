@@ -1,28 +1,26 @@
 <?php
 require_once("ConexionSQL.php");
-
+date_default_timezone_set('America/Bogota');
 
 $op = $_GET["op"];
 $nombre = $_GET["nombre"];
 $fecha = $_GET["fecha"];
-$actual = $_GET["hora"];
-if(isset($op) && isset($nombre)&& isset($fecha) && isset($actual)){
+if(isset($op) && isset($nombre)&& isset($fecha)){
 $a = new comienzo();
-$a->inicio($nombre,$fecha,$op,$actual);
+$a->inicio($nombre,$fecha,$op);
 }
 
 class comienzo{
-  function inicio($nombre,$fecha,$op,$actual){
-      sleep(1);
+  function inicio($nombre,$fecha,$op){
       $mysqli = sqlsrv_connect(Server() , connectionInfo());
-      $CONSULTID = "SELECT DISTINCT id FROM proyecto.operador WHERE nombre='".$nombre."' AND numero_op='".$op."' AND inicial = '".$fecha."'  AND hora_final = '".$actual."' ";
+      $CONSULTID = "SELECT DISTINCT id FROM proyecto.operador WHERE nombre='".$nombre."' AND numero_op='".$op."' AND inicial = '".$fecha."' ";
       $llaves = sqlsrv_query($mysqli, $CONSULTID);
       while($row = sqlsrv_fetch_array($llaves, SQLSRV_FETCH_ASSOC)) {
          $ID = $row["id"];
         
       }  
 
-      $CONSULTAREA = "SELECT DISTINCT tarea FROM proyecto.operador WHERE nombre='".$nombre."' AND numero_op='".$op."' AND inicial = '".$fecha."' AND hora_final = '".$actual."' ";
+      $CONSULTAREA = "SELECT DISTINCT tarea FROM proyecto.operador WHERE nombre='".$nombre."' AND numero_op='".$op."' AND inicial = '".$fecha."' ";
       $llaves = sqlsrv_query($mysqli, $CONSULTAREA);
       while($row = sqlsrv_fetch_array($llaves, SQLSRV_FETCH_ASSOC)) {
 
@@ -30,13 +28,13 @@ class comienzo{
       }
 
       $a = new produc();
-      $a->produccion($op,$ID,$fecha,$nombre,$tarea,$actual);
+      $a->produccion($op,$ID,$fecha,$nombre,$tarea);
 
     }
 }
 
 class produc{
-  function produccion($op,$ID,$fecha,$nombre,$tarea,$actual){
+  function produccion($op,$ID,$fecha,$nombre,$tarea){
 
     $mysqli = sqlsrv_connect(Server() , connectionInfo());
       $consulta = "SELECT cod_producto FROM proyecto.produccion WHERE numero_op = '".$op."'";
@@ -49,99 +47,90 @@ class produc{
       }
 
       $c = new HORA();
-      $c->EFICACIA($ID,$op,$cod,$fecha,$nombre,$tarea,$actual);
+      $c->EFICACIA($ID,$op,$cod,$fecha,$nombre,$tarea);
   }
 } 
 
 class HORA{
-  function EFICACIA($ID,$op,$cod,$fecha,$nombre,$tarea,$actual){
+  function EFICACIA($ID,$op,$cod,$fecha,$nombre,$tarea){
 
-    //  
+    /**/
     $mysqli = sqlsrv_connect(Server() , connectionInfo());
-    $search = "SELECT operador.cantidad,operador.tarea as tarea,cantidadbase, extandar
-    FROM proyecto.produccion INNER JOIN proyecto.tarea ON proyecto.produccion.numero_op = proyecto.tarea.numero_op  INNER JOIN proyecto.operador ON proyecto.operador.tarea = proyecto.tarea.tarea
-      WHERE proyecto.tarea.tarea='".$tarea."' AND proyecto.operador.inicial='".$fecha."' AND proyecto.operador.nombre='".$nombre."'
-       AND proyecto.produccion.numero_op='".$op."' ";
-    $res = sqlsrv_query($mysqli, $search);  
-    
-    $cant = array();
-    $extandar = array();
-    while($listo = sqlsrv_fetch_array($res, SQLSRV_FETCH_ASSOC)) {
+    $searchtotal = "SELECT operador.cantidad,operador.tarea as tarea,cantidadbase, extandar
+    FROM proyecto.produccion INNER JOIN proyecto.tarea ON proyecto.produccion.cod_producto = proyecto.tarea.id  INNER JOIN proyecto.operador ON proyecto.operador.tarea = proyecto.tarea.tarea
+      WHERE proyecto.operador.inicial='".$fecha."' AND proyecto.operador.nombre='".$nombre."' AND proyecto.produccion.numero_op='".$op."' AND proyecto.tarea.numero_op='".$op."'";
+    $restotal = sqlsrv_query($mysqli, $searchtotal);  
+
+    while($listo = sqlsrv_fetch_array($restotal, SQLSRV_FETCH_ASSOC)) {
 
      $cant[] = $listo["cantidad"];
       $extandar[] = round($listo["extandar"] *3600) / $listo["cantidadbase"];
     
     }
-
     for ($i=0; $i < count($cant); $i++) { 
 
-       $array[] = $cant[$i] * $extandar[$i];
+       $array[] = $extandar[$i] * $cant[$i];
     }
-
     /*CONVERTIDO A HORA EFICACIA */
-     $datosa = array_sum($array);
+     $dato = array_sum($array);
 
     $d = new entradasalida();
-    $d->totaltime($ID,$datosa,$op,$cod,$fecha,$nombre,$actual,$tarea);
+    $d->totaltime($ID,$dato,$op,$cod,$fecha,$nombre,$tarea);
   }
 }
 
 class entradasalida{
-  function totaltime($ID,$datosa,$op,$cod,$fecha,$nombre,$actual,$tarea){
+  function totaltime($ID,$dato,$op,$cod,$fecha,$nombre,$tarea){
     $mysqli = sqlsrv_connect(Server() , connectionInfo());
-   $search = "SELECT hora_inicial,hora_final FROM proyecto.operador WHERE id = '".$ID."' AND tarea='".$tarea."' AND inicial='".$fecha."' AND hora_final='".$actual."' ";
-    $res = sqlsrv_query($mysqli, $search);  
+   $search = "SELECT SUM(DATEDIFF(SECOND,hora_inicial,hora_final)) AS total FROM proyecto.operador WHERE id = '".$ID."' AND numero_op='".$op."' ";
+    $res= sqlsrv_query($mysqli, $search);  
     while($listo = sqlsrv_fetch_array($res, SQLSRV_FETCH_ASSOC)) {
-      $inicial = $listo["hora_inicial"]->format('H:i:s');
-      $final = $listo["hora_final"]->format('H:i:s');
-
-      
+      $totalfechas =  $listo['total'];
+      $real =gmdate("H:i:s", $totalfechas);
 
     }
 
+    $sum_paro = "SELECT SUM(DATEDIFF(SECOND, '00:00:00', CONVERT(time, tiempo_descanso))) AS tiempo_descanso FROM proyecto.motivo_paro WHERE id='".$ID."' AND numero_op='".$op."'";
+$ensayo = sqlsrv_query($mysqli, $sum_paro);
+while($listo = sqlsrv_fetch_array($ensayo, SQLSRV_FETCH_ASSOC)) {
+    $TIMEPAROSUM= $listo["tiempo_descanso"] ; 
+    $promedioSUM = gmdate('H:i:s', $TIMEPAROSUM);
+  }
+
+                     // TIEMPO DIFERENCIA
+                     list($hours, $minutes, $segund) = explode(':', $real);
+                     $timeprogramado = ($hours * 3600 ) + ($minutes * 60 ) + $segund;
+                 // TIEMPO REAL LABORADO
+                 list($hours, $minutes, $segund) = explode(':', $promedioSUM);
+                 $timeproduccido = ($hours * 3600 ) + ($minutes * 60 ) + $segund;
+                 
+                 
+                 $habil = $timeprogramado - $timeproduccido;
+                 $habiles = gmdate('H:i:s', $habil);
+
+                 $estimado = gmdate('H:i:s', $dato);
+                 
+
     $e = new EFICIENCIA();
-    $e->eficiencias($datosa,$ID,$op,$cod,$fecha,$nombre,$inicial,$final,$actual,$tarea);
+    $e->eficiencias($nombre,$op,$fecha,$real,$estimado,$habiles);
   }
 }
 
 class EFICIENCIA{
-  function eficiencias($datosa,$ID,$op,$cod,$fecha,$nombre,$inicial,$final,$actual,$tarea){
+  function eficiencias($nombre,$op,$fecha,$real,$estimado,$habiles){
 
-        /* YA ESTA LISTO */
-    $mysqli = sqlsrv_connect(Server() , connectionInfo());
-    $sql_statements = "SELECT SUM(DATEDIFF(SECOND, '00:00:00', CONVERT(time, tiempo_descanso))) AS tiempo_descanso FROM proyecto.motivo_paro WHERE  numero_op= '".$op."' AND id= '".$ID."' AND fecha='".$fecha."'";
-    $ensayo = sqlsrv_query($mysqli, $sql_statements);
-    while($row = sqlsrv_fetch_array($ensayo, SQLSRV_FETCH_ASSOC)) {
-        $TIMEPAROSUM= $row["tiempo_descanso"] ;
-       
-    }  
-     $promedioSUM = gmdate('H:i:s',$TIMEPAROSUM);
+        // PASAR TIEMPO DESCANSO EN SEGUNDOS ESTO SE SACA DEL PRODUCCIDO DEL DIA
+        list($horas, $minutos, $segundos) = explode(':', $estimado);
+        $timeestimado = ($horas * 3600 ) + ($minutos * 60 ) + $segundos;
+    
+        // PASAR TIEMPO DESCANSO EN SEGUNDOS ESTO SE SACA DE SQL SERVER
+        list($horas, $minutos, $segundos) = explode(':', $habiles);
+        $timehabiles = ($horas * 3600 ) + ($minutos * 60 ) + $segundos;
 
-
-     $datetime1 = new DateTime($final);
-      $datetime2 = new DateTime($inicial);
-      $interval = $datetime1->diff($datetime2);
-      $inicia = $interval->format('%H:%I:%S');
-
-     $datetime1 = new DateTime($inicia);
-     $datetime2 = new DateTime($promedioSUM);
-     $interval = $datetime1->diff($datetime2);
-      $real = $interval->format('%H:%I:%S');
-
-
-    // PASAR DE HORAS REALES LABORADAS A SEGUNDOS
-    list($horas, $minutos, $segundos) = explode(':', $real);
-    $datest = ($horas * 3600 ) + ($minutos * 60 ) + $segundos;
-
-    $formula =  $datosa / $datest * 100;
-    $formulas = round($formula);
-
-    $dates = tiempo_produccido($datest);
-
-   $dato = tiempo_estimado($datosa);
+        $formulas = round($timeestimado / $timehabiles * 100);
 
        $f = new EFICACIA();
-       $f->eficacias($ID,$dato,$op,$cod,$formulas,$dates,$fecha,$nombre,$inicia,$actual);
+       $f->eficacias($nombre,$op,$fecha,$real,$estimado,$habiles,$formulas);
 
       
   }
@@ -149,93 +138,65 @@ class EFICIENCIA{
 }
 
 class EFICACIA{
-    function eficacias($ID,$dato,$op,$cod,$formulas,$dates,$fecha,$nombre,$inicia,$actual){
-        
-          // TIEMPO EXTANDAR PROGRAMADA
-        list($hours, $minutes, $segund) = explode(':', $inicia);
-         $timeprogramado = ($hours * 3600 ) + ($minutes * 60 ) + $segund;
-      // TIEMPO REAL LABORADO
-      list($hours, $minutes, $segund) = explode(':', $dates);
-       $timeproduccido = ($hours * 3600 ) + ($minutes * 60 ) + $segund;
-  
-       $eficacia = $timeproduccido / $timeprogramado  * 100;
-        $eficacias = round($eficacia);
+    function eficacias($nombre,$op,$fecha,$real,$estimado,$habiles,$formulas){
+    
 
-      $a = new CONSOLIDADO();
-      $a->run($eficacias,$formulas,$dato,$dates,$fecha,$nombre,$op,$inicia,$actual);
+                // PASAR TIEMPO DESCANSO EN SEGUNDOS ESTO SE SACA DEL PRODUCCIDO DEL DIA
+                list($horas, $minutos, $segundos) = explode(':', $real);
+                $timereal = ($horas * 3600 ) + ($minutos * 60 ) + $segundos;
+            
+                // PASAR TIEMPO DESCANSO EN SEGUNDOS ESTO SE SACA DE SQL SERVER
+                list($horas, $minutos, $segundos) = explode(':', $habiles);
+                $timehabiles = ($horas * 3600 ) + ($minutos * 60 ) + $segundos;
 
+                $eficacias = round($timehabiles / $timereal * 100);
+
+        $f = new CONSOLIDADO();
+        $f->run($nombre,$op,$fecha,$real,$estimado,$habiles,$formulas,$eficacias);
     }
 }
 
   
   
 class CONSOLIDADO{
-    function run($eficacias,$formulas,$dato,$dates,$fecha,$nombre,$op,$inicia,$actual){
+    function run($nombre,$op,$fecha,$real,$estimado,$habiles,$formulas,$eficacias){
          echo "FECHA : ".$fecha;echo "<br>";
          echo "NUMERO OP : ".$op;echo "<br>";
          echo "NOMBRE : ".$nombre;echo "<br>";echo "<br>";
-         echo "TIEMPO HABIL  SIN TIEMPO DE PARO : ".$inicia; echo "<br>";
-         echo "TIEMPO ESTIMADO : ".$dato;echo "<br>";
-         echo "TIEMPO PRODUCCIDO CON TIEMPO DE PARO : ".$dates;echo "<br>";echo "<br>";
+         echo "TIEMPO HABIL SIN TIEMPO DE PARO : ".$real; echo "<br>";
+         echo "TIEMPO ESTIMADO : ".$estimado;echo "<br>";
+         echo "TIEMPO PRODUCCIDO CON TIEMPO DE PARO : ".$habiles;echo "<br>";echo "<br>";
 
          echo "% EFICIENCIA : ".$formulas;echo "<br>";
          echo "% PRODUCTIVIDAD : ".$eficacias;echo "<br>";
          $form =substr($formulas, 0,3);
-         /* */
+
+    $mysqli = sqlsrv_connect(Server() , connectionInfo());
+    $sql_statements = "SELECT OP FROM proyecto.promedio WHERE  OP= '".$op."' AND fecha='".$fecha."'";
+    $ensayo = sqlsrv_query($mysqli, $sql_statements);
+    while($row = sqlsrv_fetch_array($ensayo, SQLSRV_FETCH_ASSOC)) {
+      $NUMERO= $row["OP"];
+       
+    }  
+    if($NUMERO !=""){
+
+      // SOLO SE ACTUALIZA
+
          $mysqli = sqlsrv_connect(Server() , connectionInfo());
-         $res = "INSERT INTO proyecto.promedio (fecha,hora,OP,Descripcion,tiempo_habil,timepo_estimado,tiempo_produccido,eficiencia,produccion)
-         VALUES ('".$fecha."','".$actual."','".$op."','".$nombre."','".$inicia."','".$dato."','".$dates."','".$form."','".$eficacias."')";
+         $res = "UPDATE proyecto.promedio SET tiempo_habil='".$real."' , timepo_estimado='".$estimado."',
+         tiempo_produccido='".$habiles."' , eficiencia='".$form."' , produccion='".$eficacias."' WHERE OP='".$op."' AND fecha='".$fecha."' ";
+         sqlsrv_query($mysqli, $res);
+
+    }else{
+      
+      // SOLO SE INSERTA
+
+        $mysqli = sqlsrv_connect(Server() , connectionInfo());
+         $res = "INSERT INTO proyecto.promedio (fecha,OP,Descripcion,tiempo_habil,timepo_estimado,tiempo_produccido,eficiencia,produccion)
+         VALUES ('".$fecha."','".$op."','".$nombre."','".$real."','".$estimado."','".$habiles."','".$form."','".$eficacias."')";
          sqlsrv_query($mysqli, $res); 
- 
-        
+  
+    }
 
     }
 }
-
-/* FUNCIONES PARA PASAR SEGUNDOS A HORAS FORMATO 24 HOURS */
-function tiempo_habil($segundos) { 
-  $h = floor($segundos / 3600); 
-  $m = floor(($segundos % 3600) / 60); 
-  $s = $segundos - ($h * 3600) - ($m * 60); 
-  $variable = $h+$m+$s;
-  $time = gmdate('H:i:s',$variable);
-  return $time ; 
-}
-
-
-function diferencia_horas($segundos) { 
-  $h = floor($segundos / 3600); 
-  $m = floor(($segundos % 3600) / 60); 
-  $s = $segundos - ($h * 3600) - ($m * 60); 
-  $variable = $h+$m+$s;
-  $time = gmdate('H:i:s',$variable);
-  return $time ; 
-}
-
-
-
-function tiempo_real_produccido($segundos) { 
-  $h = floor($segundos / 3600); 
-  $m = floor(($segundos % 3600) / 60); 
-  $s = $segundos - ($h * 3600) - ($m * 60); 
-  $variable = $h+$m+$s;
-  $time = gmdate('H:i:s',$variable);
-  return $time ; 
-}
-
-function tiempo_estimado($segundos) { 
-  $h = floor($segundos / 3600); 
-  $m = floor(($segundos % 3600) / 60); 
-  $s = $segundos - ($h * 3600) - ($m * 60); 
-  $variable = $h+$m+$s;
-  $time = gmdate('H:i:s',$variable);
-  return $time ; 
-}
-
-function tiempo_produccido($segundos) { 
-$h = floor($segundos / 3600); 
-$m = floor(($segundos % 3600) / 60); 
-$s = $segundos - ($h * 3600) - ($m * 60); 
-return sprintf('%02d:%02d:%02d', $h, $m, $s); 
-}
-?>

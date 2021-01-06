@@ -1,5 +1,6 @@
 <?php
 require_once("ConexionSQL.php");
+
 $ID = $_GET["id"];
 $op = $_GET["op"];
 $inicial = $_GET["Finicial"];

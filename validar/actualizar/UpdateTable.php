@@ -2,7 +2,7 @@
 set_time_limit(0);
 require_once("../ConexionSQL.php");
 //error_reporting(0);
-//INICIO();
+INICIO();
 //MOTIVOS();
 
 function INICIO(){
@@ -30,12 +30,12 @@ function INICIO(){
         $id[] = $sql["cod_producto"];
       }
       $SQLSERVER = count($id);
-      PRODUCCION($item,$descrip);
+      // PRODUCCION($item,$descrip);
 
       /* CONSULTAR Y INSERTAR TAREA */
   /*-------------------------------------------*/
 
-  //INICIO2($item);
+  // INICIO2($item);
 
 }
 
@@ -46,8 +46,8 @@ function PRODUCCION($item,$descrip){
           $descripcion = $descrip[$i];
           
         $SQL = sqlsrv_connect(Server() , connectionInfo());
-        $sql_consulta = "INSERT INTO proyecto.produccion(id,numero_op,cod_producto,descripcion,cantidad,autorizado)
-        VALUES('".$iten."',null,'".$iten."','".$descripcion."',0,0)";
+        $sql_consulta = "INSERT INTO proyecto.produccion(numero_op,cod_producto,descripcion,cantidad,autorizado)
+        VALUES(null,'".$iten."','".$descripcion."',0,0)";
         $result = sqlsrv_query($SQL, $sql_consulta);
         }
 }
@@ -111,8 +111,8 @@ function TAREA($item,$descrip,$timeoper,$cant){
            echo $base = $cant[$i];
            echo "<br>";
         $SQL = sqlsrv_connect(Server() , connectionInfo());
-        $sql_consulta = "INSERT INTO proyecto.tarea(numero_op,tarea,cantidadpentiente,cantidadbase,extandar) 
-        VALUES('".$iten."','".$descripcion."',0,'".$base."','".$time."')";
+        $sql_consulta = "INSERT INTO proyecto.tarea(numero_op,id,tarea,cantidadpentiente,cantidadbase,extandar) 
+        VALUES(NULL,'".$iten."','".$descripcion."',0,'".$base."','".$time."')";
         $result = sqlsrv_query($SQL, $sql_consulta);
           }
             

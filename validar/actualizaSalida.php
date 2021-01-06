@@ -35,12 +35,12 @@ $a->ejecutar($ID,$op,$tarea,$llave);
 }
 else{
   echo "aqui no paso nada";
+
 }
 
   class ejemplo{
     function ejecutar($ID,$op,$tarea,$llave){
-    
-        sleep(1);
+  
         $mysql = sqlsrv_connect(Server() , connectionInfo());
         $sql_statements = "SELECT * FROM proyecto.operador WHERE id='".$ID."'  AND numero_op = '".$op."' AND llaves='".$llave."' ";
         $llaves = sqlsrv_query($mysql, $sql_statements);
@@ -91,7 +91,6 @@ else{
       FROM proyecto.produccion INNER JOIN proyecto.tarea ON proyecto.produccion.numero_op = proyecto.tarea.numero_op  INNER JOIN proyecto.operador ON proyecto.operador.tarea = proyecto.tarea.tarea
        WHERE proyecto.tarea.tarea='".$tarea."' AND proyecto.operador.inicial='".$fecha."' AND proyecto.operador.nombre='".$nombre."'
          AND proyecto.produccion.numero_op='".$op."' ";
-
       $res = sqlsrv_query($mysqli, $search);  
       
       $cant = array();
@@ -99,14 +98,14 @@ else{
       while($listo = sqlsrv_fetch_array($res, SQLSRV_FETCH_ASSOC)) {
   
        $cant[] = $listo["cantidad"];
-        $extandar[] = round($listo["extandar"] *3600) / $listo["cantidadbase"];
-      
+        $extandar[] = round($listo["extandar"] *3600) * $listo["cantidadbase"] ;
       }
   
       for ($i=0; $i < count($cant); $i++) { 
   
-         $array[] = $cant[$i] * $extandar[$i];
+         $array[] =  $cant[$i] * $extandar[$i] ;
       }
+  
       /*CONVERTIDO A HORA EFICACIA */
        $dato = array_sum($array);
   
@@ -201,7 +200,7 @@ else{
         $res = sqlsrv_query($mysql, $search);
   
          $f = new EFICACIA();
-         $f->eficacias($ID,$dato,$op,$cant,$llave,$cod,$tarea);
+         $f->eficacias($ID,$dato,$op,$cant,$llave,$cod,$tarea,$dates);
   
      
     }
@@ -209,17 +208,10 @@ else{
   }
   
   class EFICACIA{
-    function eficacias($ID,$dato,$op,$cant,$llave,$cod,$tarea){
-      /* YA ESTA LISTO NO MODIFICAR */
-      $mysql = sqlsrv_connect(Server() , connectionInfo());
-      $search = "SELECT programadas FROM proyecto.produccion WHERE numero_op = '".$op."' AND cod_producto='".$cod."' ";
-      $res = sqlsrv_query($mysql, $search);  
-      
-      while($listo = sqlsrv_fetch_array($res, SQLSRV_FETCH_ASSOC)) {
-            
-         $programado = $listo["programadas"];
-      }
-  
+    function eficacias($ID,$dato,$op,$cant,$llave,$cod,$tarea,$dates){
+
+
+      $programado = gmdate('H:i:s', $dates);
       /*------------------------------------------*/
       $mysql = sqlsrv_connect(Server() , connectionInfo());
       $sql_statements = "SELECT SUM(DATEDIFF(SECOND, '00:00:00', CONVERT(time, tiempo_descanso))) AS tiempo_descanso FROM proyecto.motivo_paro WHERE numero_op= '".$op."' AND id= '".$ID."'";
@@ -233,12 +225,9 @@ else{
       if($programado != null){
   
         $promedioSUM = gmdate('H:i:s', $TIMEPAROSUM);
-  
-        $datetime1 = new DateTime($promedioSUM);
-        $datetime2 = new DateTime($programado);
-        $interval = $datetime1->diff($datetime2);
-         $diferencia = $interval->format('%H:%I:%S');
+        $verifi =  $dates + $TIMEPAROSUM;
         
+        $diferencia = gmdate('H:i:s', $verifi);
           // TIEMPO EXTANDAR PROGRAMADA
         list($hours, $minutes, $segund) = explode(':', $programado);
          $timeprogramado = ($hours * 3600 ) + ($minutes * 60 ) + $segund;
@@ -246,18 +235,16 @@ else{
       list($hours, $minutes, $segund) = explode(':', $diferencia);
        $timeproduccido = ($hours * 3600 ) + ($minutes * 60 ) + $segund;
   
-       $eficacia = $timeproduccido / $timeprogramado  * 100;
+       $eficacia = round($timeprogramado / $timeproduccido * 100);
         $eficacias = round($eficacia);
         echo "<br>";
         echo "<br>";
        echo "EFICACIA : ".$eficacias ;
-      
+  
        $mysql = sqlsrv_connect(Server() , connectionInfo());
-      $search = "UPDATE proyecto.operador SET eficacia='".$eficacias."' WHERE id= '".$ID."' AND llaves='".$llave."'";
-      $res = sqlsrv_query($mysql, $search);
-  
+        $search = "UPDATE proyecto.operador SET eficacia='".$eficacias."' WHERE id= '".$ID."' AND llaves='".$llave."'";
+        $res = sqlsrv_query($mysql, $search);
       $mysql->close();	
-  
   
       }
     }
