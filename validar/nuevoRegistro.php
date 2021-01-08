@@ -39,8 +39,7 @@ else{
 
 class nuevo{
   public function run($id,$nom){
-    
-    sleep(1);
+  
     $cant = 0;
     $mysqli = sqlsrv_connect(Server() , connectionInfo());
     $res = "INSERT INTO proyecto.operador (id,nombre,cantidad,cantidad_fallas) VALUES ('".$id."','".$nom."','".$cant."','".$cant."')";

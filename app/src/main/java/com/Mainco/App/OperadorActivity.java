@@ -809,6 +809,7 @@ public class OperadorActivity extends AppCompatActivity implements LifecycleObse
                             String Validar = HttpRequest.get("http://" + cambiarIP.ip + "/validar/ValidarRegistro/ValidarRegistro.php?id=" + id.getText().toString()).body();
                             JSONArray ValidarRegistro = new JSONArray(Validar);
 
+                            System.out.println("EL VALOR NO ES NULL " + ValidarRegistro.getString(0).length());
                             if (ValidarRegistro.getString(0).length() == 4) {
                                 System.out.println("EL VALOR NO ES NULL 1 " + ValidarRegistro.getString(0));
 

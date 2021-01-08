@@ -82,27 +82,27 @@ class HORA{
 class entradasalida{
   function totaltime($ID,$dato,$op,$cod,$fecha,$nombre,$tarea){
     $mysqli = sqlsrv_connect(Server() , connectionInfo());
-   $search = "SELECT SUM(DATEDIFF(SECOND,hora_inicial,hora_final)) AS total FROM proyecto.operador WHERE id = '".$ID."' AND numero_op='".$op."' ";
+   $search = "SELECT SUM(DATEDIFF(SECOND,hora_inicial,hora_final)) AS total FROM proyecto.operador WHERE id = '".$ID."' AND inicial='".$fecha."' ";
     $res= sqlsrv_query($mysqli, $search);  
     while($listo = sqlsrv_fetch_array($res, SQLSRV_FETCH_ASSOC)) {
       $totalfechas =  $listo['total'];
-      $real =gmdate("H:i:s", $totalfechas);
+      $real =gmdate("H:i:s", $totalfechas); 
 
     }
 
-    $sum_paro = "SELECT SUM(DATEDIFF(SECOND, '00:00:00', CONVERT(time, tiempo_descanso))) AS tiempo_descanso FROM proyecto.motivo_paro WHERE id='".$ID."' AND numero_op='".$op."'";
+    $sum_paro = "SELECT SUM(DATEDIFF(SECOND, '00:00:00', CONVERT(time, tiempo_descanso))) AS tiempo_descanso FROM proyecto.motivo_paro WHERE id='".$ID."' AND fecha='".$fecha."'";
 $ensayo = sqlsrv_query($mysqli, $sum_paro);
 while($listo = sqlsrv_fetch_array($ensayo, SQLSRV_FETCH_ASSOC)) {
     $TIMEPAROSUM= $listo["tiempo_descanso"] ; 
-    $promedioSUM = gmdate('H:i:s', $TIMEPAROSUM);
+     $promedioSUM = gmdate('H:i:s', $TIMEPAROSUM);
   }
 
                      // TIEMPO DIFERENCIA
                      list($hours, $minutes, $segund) = explode(':', $real);
-                     $timeprogramado = ($hours * 3600 ) + ($minutes * 60 ) + $segund;
+                     echo   $timeprogramado = ($hours * 3600 ) + ($minutes * 60 ) + $segund;echo "<br>";
                  // TIEMPO REAL LABORADO
                  list($hours, $minutes, $segund) = explode(':', $promedioSUM);
-                 $timeproduccido = ($hours * 3600 ) + ($minutes * 60 ) + $segund;
+                 echo $timeproduccido = ($hours * 3600 ) + ($minutes * 60 ) + $segund;
                  
                  
                  $habil = $timeprogramado - $timeproduccido;
@@ -172,10 +172,10 @@ class CONSOLIDADO{
          $form =substr($formulas, 0,3);
 
     $mysqli = sqlsrv_connect(Server() , connectionInfo());
-    $sql_statements = "SELECT OP FROM proyecto.promedio WHERE  OP= '".$op."' AND fecha='".$fecha."'";
+    $sql_statements = "SELECT fecha FROM proyecto.promedio WHERE fecha='".$fecha."'";
     $ensayo = sqlsrv_query($mysqli, $sql_statements);
     while($row = sqlsrv_fetch_array($ensayo, SQLSRV_FETCH_ASSOC)) {
-      $NUMERO= $row["OP"];
+      $NUMERO= $row["fecha"];
        
     }  
     if($NUMERO !=""){
@@ -184,7 +184,7 @@ class CONSOLIDADO{
 
          $mysqli = sqlsrv_connect(Server() , connectionInfo());
          $res = "UPDATE proyecto.promedio SET tiempo_habil='".$real."' , timepo_estimado='".$estimado."',
-         tiempo_produccido='".$habiles."' , eficiencia='".$form."' , produccion='".$eficacias."' WHERE OP='".$op."' AND fecha='".$fecha."' ";
+         tiempo_produccido='".$habiles."' , eficiencia='".$form."' , produccion='".$eficacias."' WHERE  fecha='".$fecha."' ";
          sqlsrv_query($mysqli, $res);
 
     }else{
@@ -192,8 +192,8 @@ class CONSOLIDADO{
       // SOLO SE INSERTA
 
         $mysqli = sqlsrv_connect(Server() , connectionInfo());
-         $res = "INSERT INTO proyecto.promedio (fecha,OP,Descripcion,tiempo_habil,timepo_estimado,tiempo_produccido,eficiencia,produccion)
-         VALUES ('".$fecha."','".$op."','".$nombre."','".$real."','".$estimado."','".$habiles."','".$form."','".$eficacias."')";
+         $res = "INSERT INTO proyecto.promedio (fecha,Descripcion,tiempo_habil,timepo_estimado,tiempo_produccido,eficiencia,produccion)
+         VALUES ('".$fecha."','".$nombre."','".$real."','".$estimado."','".$habiles."','".$form."','".$eficacias."')";
          sqlsrv_query($mysqli, $res); 
   
     }

@@ -34,8 +34,7 @@ function INICIO(){
 
       /* CONSULTAR Y INSERTAR TAREA */
   /*-------------------------------------------*/
-
-  // INICIO2($item);
+   //INICIO2($item);
 
 }
 
